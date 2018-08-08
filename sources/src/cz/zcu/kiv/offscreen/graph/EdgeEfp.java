@@ -1,6 +1,7 @@
 package cz.zcu.kiv.offscreen.graph;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -63,6 +64,16 @@ public class EdgeEfp implements EdgeInterface {
 		logger.trace("ENTRY");
 		logger.trace("EXIT");
 		return edgeId;
+	}
+
+	@Override
+	public List<SubedgeInfo> getSubedgeInfo() {
+		return null;
+	}
+
+	@Override
+	public void setSubedgeInfo(List<SubedgeInfo> subedgeInfo) {
+		// TODO 30.7.2018 empty body (copy from CoCaEx ASWI)
 	}
 
 	public ArrayList<EfpFeature> getFeatures() {

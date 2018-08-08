@@ -20,7 +20,7 @@ public class FileManager {
 
     private int MAX_FILE_SIZE = 512000000;
     private int MAX_MEM_SIZE = 4 * 1024;
-    private static final String ACCEPTED_EXTENSION_FILE = "jar";
+    private static final String ACCEPTED_EXTENSION_FILE = "json";
     private String storagePath;
     private Logger logger = Logger.getLogger(FileManager.class);
 
@@ -43,7 +43,7 @@ public class FileManager {
         return new File(this.storagePath).isDirectory();
     }
 
-    private boolean isJar(String componentName) {
+    private boolean isAcceptedExtension(String componentName) {
         return componentName.endsWith("." + ACCEPTED_EXTENSION_FILE);
     }
 
@@ -64,7 +64,7 @@ public class FileManager {
             List<FileItem> fileItems = upload.parseRequest(request);
             File file;
             for (FileItem fileItem : fileItems) {
-                if (isJar(fileItem.getName()) && fileItem.getSize() > 0) {
+                if (isAcceptedExtension(fileItem.getName()) && fileItem.getSize() > 0) {
                     logger.debug(fileItem.getName() + " - " + fileItem.getContentType());
                     file = new File(this.storagePath + File.separator + fileItem.getName());
                     fileItem.write(file);
@@ -101,7 +101,7 @@ public class FileManager {
     public void saveFile(InputStream inputStream, String fileName) throws IOException {
         File file = new File(this.storagePath + File.separator + fileName);
 
-        if (isJar(file.getName())) {
+        if (isAcceptedExtension(file.getName())) {
             BufferedInputStream in = new BufferedInputStream(inputStream);
             FileOutputStream out = new FileOutputStream(file);
 

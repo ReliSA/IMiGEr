@@ -1,5 +1,7 @@
 package cz.zcu.kiv.offscreen.loader.configuration;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import javax.servlet.ServletContext;
 
@@ -10,11 +12,11 @@ import javax.servlet.ServletContext;
 public class ConfigurationLoader {
 
 	public static final String PROP_STORAGE_LOCATION = "storageLocation";
-	public static final String CRCE_API_BASE = "crceApiBase";
+	public static final String PROP_CONFIG_LOCATION = "configLocation";
 
 	/**
 	 * Get storage location property from web.xml.
-	 * 
+	 *
 	 * @param context App context.
 	 * @return Storage location path.
 	 * @throws IOException
@@ -24,13 +26,13 @@ public class ConfigurationLoader {
 	}
 
 	/**
-	 * Get CRCE API base path from web.xml.
+	 * Get configuration location property from web.xml.
 	 *
 	 * @param context App context.
 	 * @return Storage location path.
 	 * @throws IOException
 	 */
-	public static String getCrceApiBase(ServletContext context) throws IOException {
-		return context.getInitParameter(CRCE_API_BASE);
+	public static String getConfigLocation(ServletContext context) throws IOException {
+		return context.getInitParameter(PROP_CONFIG_LOCATION);
 	}
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import cz.zcu.kiv.offscreen.loader.configuration.ConfigurationLoader;
@@ -24,52 +25,55 @@ public class DownloadComponent extends HttpServlet {
     private String crceApiBase;
     private FileManager fileManager;
 
+    private Logger logger = Logger.getLogger(DownloadComponent.class);
+
     /**
      * Downloads component by its UUID set in query parameter. The component is then stored in the current graph version
      * folder. As a response, JSON containing component's UUID and filename is returned.
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // there was no uuid passed in the request
-        if (request.getParameter("uuid") == null) {
-            response.sendError(response.SC_BAD_REQUEST);
-            return;
-        }
-
-        // initialize file manager
-        String workingDirectory;
-        if (request.getParameter("diagram_hash") == null) {
-            workingDirectory = SessionManager.getSessionValue(request, "JSESSIONID");
-        } else {
-            workingDirectory = request.getParameter("diagram_hash");
-        }
-
-        if (request.getParameter("graphVersion") != null) {
-            workingDirectory += File.separator + request.getParameter("graphVersion");
-        } else {
-            workingDirectory += File.separator + SessionManager.getSessionValue(request, "graphVersion");
-        }
-
-        String storageLocation = ConfigurationLoader.getStorageLocation(request.getServletContext());
-
-        fileManager = new FileManager(workingDirectory, storageLocation);
-        if (!fileManager.isExistStorage()) {
-            fileManager.createStorageDirectory();
-        }
-
-        // download component
-        crceApiBase = ConfigurationLoader.getCrceApiBase(request.getServletContext());
-
-        String uuid = request.getParameter("uuid");
-        String name = downloadComponent(uuid);
-
-        JSONObject componentJson = new JSONObject();
-        componentJson.put("uuid", uuid);
-        componentJson.put("name", name);
-
-        // send response
-        response.setContentType("application/json");
-        response.getWriter().write(componentJson.toString());
+        logger.error("Method is no longer supported because CRCE is removed from project.");
+//        // there was no uuid passed in the request
+//        if (request.getParameter("uuid") == null) {
+//            response.sendError(response.SC_BAD_REQUEST);
+//            return;
+//        }
+//
+//        // initialize file manager
+//        String workingDirectory;
+//        if (request.getParameter("diagram_hash") == null) {
+//            workingDirectory = SessionManager.getSessionValue(request, "JSESSIONID");
+//        } else {
+//            workingDirectory = request.getParameter("diagram_hash");
+//        }
+//
+//        if (request.getParameter("graphVersion") != null) {
+//            workingDirectory += File.separator + request.getParameter("graphVersion");
+//        } else {
+//            workingDirectory += File.separator + SessionManager.getSessionValue(request, "graphVersion");
+//        }
+//
+//        String storageLocation = ConfigurationLoader.getStorageLocation(request.getServletContext());
+//
+//        fileManager = new FileManager(workingDirectory, storageLocation);
+//        if (!fileManager.isExistStorage()) {
+//            fileManager.createStorageDirectory();
+//        }
+//
+//        // download component
+//        crceApiBase = ConfigurationLoader.getCrceApiBase(request.getServletContext());
+//
+//        String uuid = request.getParameter("uuid");
+//        String name = downloadComponent(uuid);
+//
+//        JSONObject componentJson = new JSONObject();
+//        componentJson.put("uuid", uuid);
+//        componentJson.put("name", name);
+//
+//        // send response
+//        response.setContentType("application/json");
+//        response.getWriter().write(componentJson.toString());
     }
 
     /*

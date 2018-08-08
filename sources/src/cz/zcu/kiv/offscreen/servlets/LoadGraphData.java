@@ -15,8 +15,11 @@ import cz.zcu.kiv.ccu.ApiInterCompatibilityChecker;
 import cz.zcu.kiv.ccu.ApiInterCompatibilityResult;
 import cz.zcu.kiv.offscreen.api.GraphInterface;
 import cz.zcu.kiv.offscreen.graph.GraphExport;
+import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.creator.GraphMaker;
 import cz.zcu.kiv.offscreen.graph.loader.DemoDiagramLoader;
+import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
+import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
 import cz.zcu.kiv.offscreen.loader.configuration.ConfigurationLoader;
 import cz.zcu.kiv.offscreen.session.SessionManager;
 import cz.zcu.kiv.offscreen.storage.FileManager;
@@ -50,31 +53,27 @@ public class LoadGraphData extends HttpServlet {
         String storageLocation = ConfigurationLoader.getStorageLocation(request.getServletContext());
 
         FileManager fileManager = new FileManager(workingDirectory, storageLocation);
+        response.setContentType("application/json");
 
         if (request.getSession().getAttribute("demo_id") == null) {
             // it doesn't have EFPs -> read from ComAV
             if (request.getSession().getAttribute("graph_json_data") == null) {
-                // compatibility checking
-                ApiCheckersSetting.Builder settingBuilder = new ApiCheckersSetting.Builder();
-                settingBuilder.defaultSett();
-                ApiCheckersSetting sett = settingBuilder.build();
-                ApiInterCompatibilityChecker<File> checker = ApiCheckersFactory.getApiInterCompatibilityChecker(sett);
-
-                ApiInterCompatibilityResult comparisonResult;
                 File[] uploadedFiles = fileManager.getUploadedComponents().toArray(new File[0]);
-                comparisonResult = checker.checkInterCompatibility(null, uploadedFiles);
+                File fileToDisplay = uploadedFiles[0];
 
-                GraphMaker graphMaker = new GraphMaker(storageLocation + File.separator + workingDirectory, comparisonResult, uploadedFiles);
-
-                GraphInterface graph = graphMaker.generate();
+                GraphManager graphManager = new GraphJSONDataLoader(fileToDisplay).LoadData();
+                String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
+                JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
+                GraphInterface graph = graphManager.createGraph(configLoader);
                 GraphExport export = new GraphExport(graph);
+                JSONObject json = JSONObject.fromObject(export);
 
-                response.setContentType("application/json");
-                response.getWriter().write(JSONObject.fromObject(export).toString());
+                String resultJsonString = json.toString();
+
+                response.getWriter().write(resultJsonString);
 
             } else {
                 // it has EFPs -> read from the session
-                response.setContentType("application/json");
                 response.getWriter().write(request.getSession().getAttribute("graph_json_data").toString());
 
                 request.getSession().removeAttribute("graph_json_data");
@@ -87,7 +86,6 @@ public class LoadGraphData extends HttpServlet {
             DemoDiagramLoader loader = new DemoDiagramLoader();
             InputStream in = this.getServletContext().getResourceAsStream(path);
 
-            response.setContentType("application/json");
             response.getWriter().write(loader.readDemoJSONFromFile(in));
 
             request.getSession().setAttribute("demo_id", null);

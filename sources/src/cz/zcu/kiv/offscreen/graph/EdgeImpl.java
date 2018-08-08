@@ -17,6 +17,7 @@ public class EdgeImpl implements EdgeInterface {
     private String to;
     private List<String> packageConnections;
     private boolean isCompatible;
+    private List<SubedgeInfo> subedgeInfo;
     private String compInfoJSON;
     private Logger logger = Logger.getLogger(EdgeImpl.class);
 
@@ -60,13 +61,30 @@ public class EdgeImpl implements EdgeInterface {
         return edgeId;
     }
 
+    @Override
+    public List<SubedgeInfo> getSubedgeInfo() {
+        return subedgeInfo;
+    }
+
+    @Override
+    public void setSubedgeInfo(List<SubedgeInfo> subedgeInfo) {
+        this.subedgeInfo = subedgeInfo;
+    }
+
+    @Override
+    public boolean equals(Object edge) {
+        if (!(edge instanceof EdgeImpl)) return false;
+        EdgeImpl cmpEdge = (EdgeImpl) edge;
+        return from.equals(cmpEdge.from) && to.equals(cmpEdge.to);
+    }
+
     public List<String> getPackageConnections() {
         logger.trace("ENTRY");
         logger.trace("EXIT");
         return this.packageConnections;
     }
 
-    public void setPackageConnection(List<String> packageConnections) {
+    public void setPackageConnections(List<String> packageConnections) {
         logger.trace("ENTRY");
         this.packageConnections = packageConnections;
         logger.trace("EXIT");

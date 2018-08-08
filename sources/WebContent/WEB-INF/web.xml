@@ -17,7 +17,7 @@
 	</context-param>
 	<context-param>
 		<param-name>DbPsw</param-name>
-		<param-value></param-value>
+		<param-value>NULL</param-value>
 	</context-param>
 	<context-param>
 		<param-name>HOME_URL</param-name>
@@ -26,11 +26,11 @@
 	</context-param>
 	<context-param>
 		<param-name>storageLocation</param-name>
-		<param-value>C:\Users\adnuk\Documents\aswi\uloziste</param-value>
+		<param-value>C:\Users\Tomas\Documents\imiger\storage</param-value>
 	</context-param>
 	<context-param>
-		<param-name>crceApiBase</param-name>
-		<param-value>http://localhost:8081/rest/v2</param-value>
+		<param-name>configLocation</param-name>
+		<param-value>C:\Users\Tomas\Documents\imiger\config</param-value>
 	</context-param>
 
 	<context-param>

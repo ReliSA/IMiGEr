@@ -26,4 +26,11 @@ public interface VertexInterface {
 
 	public void setImportedPackages(List<String> importedPackages);
 
+	public int getArchetype();
+
+	public void setArchetype(int archetype);
+
+	public void setAttributes(List<String[]> attributes);
+
+	public List<String[]> getAttributes();
 }

@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 import cz.zcu.kiv.offscreen.api.VertexInterface;
 
 /**
- * 
+ *
  * @author Jiri Loudil
- * 
+ *
  */
 public class VertexEfp implements VertexInterface {
 	private int id;
@@ -23,7 +23,7 @@ public class VertexEfp implements VertexInterface {
 	private Logger logger = Logger.getLogger(VertexEfp.class);
 
 	/**
-	 * 
+	 *
 	 * @param id
 	 * @param name
 	 * @param symbolicName
@@ -33,9 +33,9 @@ public class VertexEfp implements VertexInterface {
 		this.id = id;
 		this.name = name;
 		this.symbolicName = symbolicName;
-		
+
 		this.exportedPackages = new LinkedList<String>();
-        this.importedPackages = new LinkedList<String>();
+		this.importedPackages = new LinkedList<String>();
 
 		logger.trace("EXIT");
 	}
@@ -87,6 +87,26 @@ public class VertexEfp implements VertexInterface {
 		logger.trace("ENTRY");
 		this.importedPackages = importedPackages;
 		logger.trace("EXIT");
+	}
+
+	@Override
+	public int getArchetype() {
+		return 0;
+	}
+
+	@Override
+	public void setArchetype(int archetype) {
+
+	}
+
+	@Override
+	public void setAttributes(List<String[]> attributes) {
+
+	}
+
+	@Override
+	public List<String[]> getAttributes() {
+		return null;
 	}
 
 }
