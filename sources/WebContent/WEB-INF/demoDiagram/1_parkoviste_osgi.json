@@ -1,0 +1,95 @@
+{
+	"edges": [{
+		"from": "ParkovisteSpringDMBrana 1.0.0.qualifier",
+		"id": 1,
+		"packageConnections": [],
+		"to": "org.eclipse.equinox.event 1.1.100.v20090520-1800"
+	}, {
+		"from": "ParkovisteSpringDMPult 1.0.0.qualifier",
+		"id": 2,
+		"packageConnections": [],
+		"to": "org.eclipse.equinox.event 1.1.100.v20090520-1800"
+	}, {
+		"from": "ParkovisteSpringDMTabule 1.0.0.qualifier",
+		"id": 3,
+		"packageConnections": [],
+		"to": "org.eclipse.equinox.event 1.1.100.v20090520-1800"
+	}, {
+		"from": "ParkovisteSpringDMKonfigurace 1.0.0.qualifier",
+		"id": 4,
+		"packageConnections": ["cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"to": "ParkovisteSpringDMBrana 1.0.0.qualifier"
+	}, {
+		"from": "ParkovisteSpringDMParkoviste 1.0.0.qualifier",
+		"id": 5,
+		"packageConnections": ["cz.zcu.kiv.cosi.parkoviste.parkoviste"],
+		"to": "ParkovisteSpringDMBrana 1.0.0.qualifier"
+	}, {
+		"from": "ParkovisteSpringDMKonfigurace 1.0.0.qualifier",
+		"id": 6,
+		"packageConnections": ["cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"to": "ParkovisteSpringDMParkoviste 1.0.0.qualifier"
+	}, {
+		"from": "org.eclipse.equinox.event 1.1.100.v20090520-1800",
+		"id": 7,
+		"packageConnections": [],
+		"to": "ParkovisteSpringDMParkoviste 1.0.0.qualifier"
+	}, {
+		"from": "ParkovisteSpringDMBrana 1.0.0.qualifier",
+		"id": 8,
+		"packageConnections": ["cz.zcu.kiv.cosi.parkoviste.brana"],
+		"to": "ParkovisteSpringDMPult 1.0.0.qualifier"
+	}, {
+		"from": "ParkovisteSpringDMTabule 1.0.0.qualifier",
+		"id": 9,
+		"packageConnections": [],
+		"to": "ParkovisteSpringDMPult 1.0.0.qualifier"
+	}, {
+		"from": "ParkovisteSpringDMKonfigurace 1.0.0.qualifier",
+		"id": 10,
+		"packageConnections": ["cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"to": "ParkovisteSpringDMPult 1.0.0.qualifier"
+	}, {
+		"from": "ParkovisteSpringDMKonfigurace 1.0.0.qualifier",
+		"id": 11,
+		"packageConnections": ["cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"to": "ParkovisteSpringDMTabule 1.0.0.qualifier"
+	}],
+	"vertices": [{
+		"exportedPackages": [],
+		"id": 5,
+		"importedPackages": ["org.osgi.service.event", "cz.zcu.kiv.cosi.parkoviste.brana", "org.osgi.framework", "cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"name": "ParkovisteSpringDMPult",
+		"symbolicName": "ParkovisteSpringDMPult 1.0.0.qualifier"
+	}, {
+		"exportedPackages": ["cz.zcu.kiv.cosi.parkoviste.brana"],
+		"id": 2,
+		"importedPackages": ["org.osgi.service.event", "cz.zcu.kiv.cosi.parkoviste.parkoviste", "cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"name": "ParkovisteSpringDMBrana",
+		"symbolicName": "ParkovisteSpringDMBrana 1.0.0.qualifier"
+	}, {
+		"exportedPackages": [],
+		"id": 6,
+		"importedPackages": ["org.osgi.service.event", "cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"name": "ParkovisteSpringDMTabule",
+		"symbolicName": "ParkovisteSpringDMTabule 1.0.0.qualifier"
+	}, {
+		"exportedPackages": ["cz.zcu.kiv.cosi.parkoviste.parkoviste"],
+		"id": 4,
+		"importedPackages": ["org.osgi.service.event", "cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"name": "ParkovisteSpringDMParkoviste",
+		"symbolicName": "ParkovisteSpringDMParkoviste 1.0.0.qualifier"
+	}, {
+		"exportedPackages": ["org.eclipse.equinox.internal.event", "org.eclipse.equinox.internal.event.mapper"],
+		"id": 1,
+		"importedPackages": ["org.eclipse.osgi.util", "org.osgi.service.log", "org.osgi.service.event", "org.eclipse.osgi.framework.eventmgr", "org.osgi.util.tracker", "org.osgi.framework"],
+		"name": "Event Admin",
+		"symbolicName": "org.eclipse.equinox.event 1.1.100.v20090520-1800"
+	}, {
+		"exportedPackages": ["cz.zcu.kiv.cosi.parkoviste.konfigurace"],
+		"id": 3,
+		"importedPackages": [],
+		"name": "ParkovisteSpringDMKonfigurace",
+		"symbolicName": "ParkovisteSpringDMKonfigurace 1.0.0.qualifier"
+	}]
+}

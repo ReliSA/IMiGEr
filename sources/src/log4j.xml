@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- bundle-cmp tests logging configuration -->
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-6p [%c:%M:%L] - %m%n"/>
+		</layout>
+	</appender>
+	<!-- 
+	<appender name="fullLogFileAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="h:/log/pia_prototype2_full.log" />
+		<param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-6p [%c:%M:%L] - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="hibernateLogFileAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="h:/log/pia_prototype2_hibernate.log" />
+		<param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-6p [%c:%M:%L] - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="securityLogFileAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="h:/log/pia_prototype2_security.log" />
+		<param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-6p [%c:%M:%L] - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="springLogFileAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="h:/log/pia_prototype2_spring.log" />
+		<param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-6p [%c:%M:%L] - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="appLogFileAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="h:/log/pia_prototype2.log" />
+        <param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-6p [%c:%M:%L] - %m%n"/>
+		</layout>
+	</appender>-->
+	
+	<!--<logger name="cz.zcu.kiv.offscreen" additivity="false">
+		<level value="trace"/>
+		<appender-ref ref="consoleAppender"/>
+	</logger>-->
+	
+	<!--<logger name="org.springframework" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="consoleAppender"/>
+	</logger>-->
+	
+	<root>
+		<level value="info" />
+		<appender-ref ref="consoleAppender"/>
+	</root>
+</log4j:configuration>

@@ -1,0 +1,35 @@
+/* 
+    Document   : tree
+    Created on : 2.12.2013
+    Author     : Jiri Loudil
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.jstree-classic { 
+	background-color: #CAED9E !important;
+}
+
+.ui-tooltip-with-efp ul ul {
+	/* hack for indention of efp leaves w/o jstree*/
+    padding-left : 4em !important;
+    margin-left : 0 !important;
+}
+
+.jstree ul ul {
+	/* hack for indention of efp leaves with jstree */
+    padding-left : 1em !important;
+    margin-left : 0 !important;
+}
+
+.featureListItem {
+	font-weight: bold;
+}
+
+.efpListLabel {
+	font-weight: bold;
+}
+
+.jstree a {
+	color: #3F6219 !important;
+}
