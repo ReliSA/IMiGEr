@@ -1,7 +1,0 @@
-- jquery-1.8.3.js               jQuery 1.8.3
-- jquery-ui-1.10.3.custom.js    jQuery UI 1.10.3
-- jquery.contextMenu.js         jQuery Context Menu Plugin 1.01 (kontextové menu)
-- jquery.jstree.js              jQuery jsTree plugin 1.0-rc3 (zobrazení stromových struktur)
-- jquery.qtip.js                jQuery qTip plugin 2.2.0 (bublinové titulky)
-- saveSvgAsPng.js               https://github.com/exupero/saveSvgAsPng (uloží obsah SVG jako PNG obrázek)
-- spin.js                       https://github.com/fgnass/spin.js v1.2.5 (zobrazí loading animaci)
