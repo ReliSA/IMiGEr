@@ -1,0 +1,101 @@
+{
+  //defaultní filter
+  "defaultFilter": {
+
+    //filter podle archetypù vrcholù
+    "vertexArchetypeFilter": {
+      "archetypes": [ "archetypeName1", "archetypeName2", ... ], //seznam názvù archetypù
+      "matchType": "match_type" //match type: "matching" / "non_matching"
+    },
+
+    //filter podle archetypù hran
+    "edgeArchetypeFilter": {
+      //seznam trojic archetypù (archetyp výchozího vrcholu, archetyp hrany, archetype cílového vrcholu)
+      "archetypes": [
+        {
+          "fromArchetypes": [ "vertexArchetypeName1", "vertexArchetypeName2", ... ], //seznam názvù archetypù výchozího vrcholu
+          "edgeArchetypes": [ "edgeArchetypeName1", "edgeArchetypeName2", ... ], //seznam názvù archetypù hrany
+          "toArchetypes": [ "vertexArchetypeName1", "vertexArchetypeName2", ... ] //seznam názvù archetypù cílového vrcholu
+          //filtr je vždy pro každou trojici fromArchetype-edgeArchetpye-toArchetype, která splòuje libovolnou z uvedených kombinací
+        },
+        {
+          "fromArchetypes": [ "vertexArchetypeName1", "vertexArchetypeName2", ... ], //seznam názvù archetypù výchozího vrcholu
+          "edgeArchetypes": [ "edgeArchetypeName1", "edgeArchetypeName2", ... ], //seznam názvù archetypù hrany
+          "toArchetypes": [ "vertexArchetypeName1", "vertexArchetypeName2", ... ] //seznam názvù archetypù cílového vrcholu
+        },
+        {
+          "fromArchetypes": [ "vertexArchetypeName1", "vertexArchetypeName2", ... ], //seznam názvù archetypù výchozího vrcholu
+          "edgeArchetypes": [ "edgeArchetypeName1", "edgeArchetypeName2", ... ], //seznam názvù archetypù hrany
+          "toArchetypes": [ "vertexArchetypeName1", "vertexArchetypeName2", ... ] //seznam názvù archetypù cílového vrcholu
+        },
+        ...
+      ],
+      "matchType": "matchType" //match type: "matching" / "non_matching"
+    },
+
+    //filter podle atributù vrcholù
+    "vertexAttributeFilters": [
+      //filter pro typ ENUM
+      {
+        "archetype": "archetypeName", //název archetypu, pro který filtr platí
+        "attributeName": "attributeName", //název atributu
+        //"filter" obsahuje info o samotném filtru, jeho struktura závisí na datovém typu daného atributu, ten lze zjistit v aplikaci z naèteného grafu v GraphManageru
+        "filter": {
+          "values": [ "value1", "value2", ... ], //hodnoty jako string
+          "matchType": "matchType" //match type: "any" / "none" / "exact_match"
+        }
+      },
+      //filter pro typ STRING
+      {
+        "archetype": "archetypeName", //název archetypu, pro který filtr platí
+        "attributeName": "attributeName", //název atributu
+        //"filter" obsahuje info o samotném filtru, jeho struktura závisí na datovém typu daného atributu, ten lze zjistit v aplikaci z naèteného grafu v GraphManageru
+        "filter": {
+          "value": "value", //hodnota typu string
+          "matchType": "matchType" //match type: "exact_match" / "exact_mismatch" / "containing" / "non_containing" / "regular_expression"
+        }
+      },
+      //filter pro typ NUMBER
+      {
+        "archetype": "archetypeName", //název archetypu, pro který filtr platí
+        "attributeName": "attributeName", //název atributu
+        //"filter" obsahuje info o samotném filtru, jeho struktura závisí na datovém typu daného atributu, ten lze zjistit v aplikaci z naèteného grafu v GraphManageru
+        "filter": {
+          "min": cislo, //minimální hodnota jako èíslo
+          "max": cislo, //maximání hodnota jako èíslo
+          "minInclusive": inclusive, //info, zda min je souèást intervalu èi nikoliv, jako hodnota typu bool (true/false)
+          "maxInclusive": inclusive, //info, zda max je souèást intervalu èi nikoliv, jako hodnota typu bool (true/false)
+          "matchType": "matchType" //match type: "matching" / "non_matching"
+        }
+      },
+      //filter pro typ DATE
+      {
+        "archetype": "archetypeName", //název archetypu, pro který filtr platí
+        "attributeName": "attributeName", //název atributu
+        //"filter" obsahuje info o samotném filtru, jeho struktura závisí na datovém typu daného atributu, ten lze zjistit v aplikaci z naèteného grafu v GraphManageru
+        "filter": {
+          "min": "datum", //minimální hodnota jako datum reprezentovaná øetìzcem ve formátu ve formátu yyyy-MM-dd HH:mm:ss
+          "max": "datum", //maximání hodnota jako datum reprezentovaná øetìzcem ve formátu ve formátu yyyy-MM-dd HH:mm:ss
+          "minInclusive": inclusive, //info, zda min je souèást intervalu èi nikoliv, jako hodnota typu bool (true/false)
+          "maxInclusive": inclusive, //info, zda max je souèást intervalu èi nikoliv, jako hodnota typu bool (true/false)
+          "matchType": "matchType" //match type: "matching" / "non_matching"
+        }
+      },
+      ...
+    ],
+
+    //filter podle atributù hran
+    "edgeAttributeFilters": [
+      //stejné jako u "vertexAttributeFilters"
+    ]
+  },
+  
+  "defaultGroupArchetypes": [ "archetypeName1", "archetypeName2", ... ], //Pole názvù archetypù, které budou pøesunuty do skupin v postranní lištì
+
+  //Definice archetypových ikon
+  "archetypeIcons": {
+    //ikony identifikovány pomocí jmén
+    "archetypeName1": 'archetype 1 svg', //hodnotou v této struktuøe je poté svg kód
+    "archetypeName2": 'archetype 2 svg'
+  }
+}
