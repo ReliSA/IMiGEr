@@ -61,7 +61,7 @@
 		<script src="js/zoom.js"></script>
 		<script src="js/app.js"></script>
 
-		<title>Visualization of large component diagrams</title>
+		<title>IMiGEr</title>
 	</head>
 
 	<body>
@@ -114,7 +114,7 @@
 			<header class="header" id="header">
 				<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
 
-				<h2 class="header-title">Visualization of large component diagrams</h2>
+				<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 
 				<% if (!is_efp_diagram) { %>
 					<jsp:include page="logged_user.jsp" />

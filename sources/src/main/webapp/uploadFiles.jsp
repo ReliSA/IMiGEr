@@ -12,7 +12,7 @@
 		<script src="old/js/diagram.js"></script>
 		<script src="old/js/user.js"></script>
 
-		<title>Visualization of large component diagrams</title>
+		<title>IMiGEr</title>
 	</head>
 
 	<body>
@@ -20,7 +20,7 @@
 			<header class="header" id="header">
 				<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
 
-				<h2 class="header-title">Visualization of large component diagrams</h2>
+				<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 
 				<jsp:include page="logged_user.jsp" />
 
