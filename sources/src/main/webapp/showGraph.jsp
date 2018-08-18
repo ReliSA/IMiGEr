@@ -242,7 +242,7 @@
 
 		<script>
 		var app = new App;
-		app.HOME_URL = '<%=getPath%>cocaex-compatibility/';
+		app.HOME_URL = '<%=getPath%>imiger/';
 
 		$(document).ready(function() {
 			var loaderFn;

@@ -29,6 +29,6 @@ function Cookies() {
 	this.set = function(name, value) {
 		var date = new Date();
 
-		document.cookie = name + "=" + value + "; path=/cocaex-compatibility";
+		document.cookie = name + "=" + value + "; path=/imiger";
 	};
 }
