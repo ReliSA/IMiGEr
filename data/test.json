@@ -1,0 +1,123 @@
+{
+  "vertices": [
+    {
+      "title": "Vertex 1",
+      "id": 0,
+      "archetype": 0,
+      "text": "not used",
+      "attributes": {
+        "0": "Some attr value",
+        "1": 52,
+        "2": 12
+      }
+    },
+    {
+      "title": "Vertex 2",
+      "id": 1,
+      "archetype": 1,
+      "text": "not used",
+      "attributes": {
+        "1": 7,
+        "2": -598
+      }
+    },
+    {
+      "title": "Vertex 3",
+      "id": 2,
+      "archetype": 2,
+      "text": "not used",
+      "attributes": {
+        "0": "Some attr value"
+      }
+    },
+    {
+      "title": "Vertex 4",
+      "id": 3,
+      "archetype": 0,
+      "text": "not used",
+      "attributes": {
+        "0": "Some attr value",
+        "1": 782,
+        "2": -35456
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 1,
+      "id": 0,
+      "archetype": 0,
+      "text": "not used",
+      "attributes": {
+      }
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "id": 1,
+      "archetype": 0,
+      "text": "not used",
+      "attributes": {
+      }
+    },
+    {
+      "from": 2,
+      "to": 0,
+      "id": 2,
+      "archetype": 0,
+      "text": "not used",
+      "attributes": {
+      }
+    },
+    {
+      "from": 3,
+      "to": 1,
+      "id": 3,
+      "archetype": 0,
+      "text": "not used",
+      "attributes": {
+      }
+    }
+  ],
+
+  "vertexArchetypes": [
+    {
+      "name": "Some archetype",
+      "text": "not used"
+    },
+    {
+      "name": "Some different archetype",
+      "text": "not used"
+    },
+    {
+      "name": "Another archetype",
+      "text": "not used"
+    }
+  ],
+
+  "edgeArchetypes": [
+    {
+      "name": "Edge archetype",
+      "text": "not used"
+    }
+  ],
+
+  "attributeTypes": [
+    {
+      "name": "Attr 1",
+      "dataType": "string",
+      "text": "not used"
+    },
+    {
+      "name": "Attr 2",
+      "dataType": "int",
+      "text": "not used"
+    },
+    {
+      "name": "Attr 3",
+      "dataType": "int",
+      "text": "not used"
+    }
+  ]
+}

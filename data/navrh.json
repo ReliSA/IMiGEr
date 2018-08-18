@@ -1,0 +1,56 @@
+{
+  "vertices": [ //vrcholy
+    {
+      "title": <string>, //jméno vrcholu
+      "id": <int>, //identifikátor vrcholu - použito napø. pøi definici odkud kam vede hrana
+      "archetype": <int>, //typ vrcholu (index v poli vertexArchetypes)
+      "text": <string>, //text pro pøípadné dodateèné info mimo atributy - nemusí být použito, mùže sloužit jako popisek vrcholu, napø. když si uživatel zobrazí jeho detaily, nejdøíve se zobrazí tento popisek a až pak hodnoty atributù, mùže sloužit i jen jako nosiè informace, která nebude uživateli pøístupná
+      "attributes"://struktura atributu je vzdy klic - hodnota
+		  {
+			  <attribute idx> : <object>, //klic je index v poli attributeTypes, hodnotou je hodnota daného atributu
+			  ...
+		  }
+    },
+    ...
+  ],
+  "edges": [ //hrany
+    {
+      "from": <int>, //id poèáteèního vrcholu
+      "to": <int>, //id koncového vrcholu
+      "id": <int>, //identifikátor hrany
+      "archetype": <int>, //typ hrany (index v poli edgeArchetypes)
+      "text": <string>, //podobnì jako text u vertices
+	    "attributes"://struktura atributu je vzdy klic - hodnota
+		  {
+			  <attribute idx> : <object>, //klic je index v poli attributeTypes, hodnotou je hodnota daného atributu
+			  ...
+		  }
+    },
+    ...
+  ],
+
+  "vertexArchetypes": [ //možné archetypy vrcholù
+    {
+      "name": <string>, //název archetypu
+      "text": <string> //podobnì jako u pøedchozích - mùže sloužit jako popisek archetypu, nemusí být použit
+    },
+    ...
+  ],
+
+  "edgeArchetypes": [ //možné archetypy hran
+    {
+      "name": <string>, //název archetypu
+      "text": <string> //podobnì jako u pøedchozích - mùže sloužit jako popisek archetypu, nemusí být použit
+    },
+    ...
+  ],
+
+  "attributeTypes": [
+    {
+      "name": <string>, //název atributu
+      "dataType": <string>, //datový typ atributu (int/string/...)
+      "text": <string> //podobnì jako u pøedchozích - mùže sloužit jako popisek atributu, nemusí být použit
+    },
+    ...
+  ]
+}
