@@ -21,7 +21,7 @@
 	</context-param>
 	<context-param>
 		<param-name>HOME_URL</param-name>
-		<param-value>http://localhost:8080/VisualizationTool/</param-value>
+		<param-value>http://localhost:8080/imiger/</param-value>
 	</context-param>
 	<context-param>
 		<param-name>storageLocation</param-name>
