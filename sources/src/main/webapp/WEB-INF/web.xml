@@ -13,24 +13,23 @@
 	</context-param>
 	<context-param>
 		<param-name>DbUser</param-name>
-		<param-value>root</param-value>
+		<param-value>admin</param-value>
 	</context-param>
 	<context-param>
 		<param-name>DbPsw</param-name>
-		<param-value>NULL</param-value>
+		<param-value>admin</param-value>
 	</context-param>
 	<context-param>
 		<param-name>HOME_URL</param-name>
-		<!--<param-value>http://localhost:8081/VisualizationTool/</param-value>-->
-		<param-value>http://localhost:8080/cocaex-compatibility/</param-value>
+		<param-value>http://localhost:8080/VisualizationTool/</param-value>
 	</context-param>
 	<context-param>
 		<param-name>storageLocation</param-name>
-		<param-value>C:\Users\Tomas\Documents\imiger\storage</param-value>
+		<param-value>C:\Users\fidra\Work\imiger\storage</param-value>
 	</context-param>
 	<context-param>
 		<param-name>configLocation</param-name>
-		<param-value>C:\Users\Tomas\Documents\imiger\config</param-value>
+		<param-value>C:\Users\fidra\Work\imiger\config</param-value>
 	</context-param>
 
 	<context-param>
