@@ -46,7 +46,9 @@ public class LoadGraphData extends HttpServlet {
         String storageLocation = ConfigurationLoader.getStorageLocation(request.getServletContext());
 
         FileManager fileManager = new FileManager(workingDirectory, storageLocation);
+
         response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
 
         if (request.getSession().getAttribute("demo_id") == null) {
             // it doesn't have EFPs -> read from ComAV
