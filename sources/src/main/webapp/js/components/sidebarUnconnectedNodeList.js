@@ -55,7 +55,7 @@ function SidebarUnconnectedNodeList(props) {
 		});
 
 		// title
-		rootElement.appendChild(app.dom.htmlStringToElement('<h2 class="node-container-title">Unconnected components</h2>'));
+		rootElement.appendChild(app.dom.htmlStringToElement('<h2 class="node-container-title">Unconnected vertices</h2>'));
 
 		// buttons
 		buttonGroup = app.utils.createHtmlElement('div', {

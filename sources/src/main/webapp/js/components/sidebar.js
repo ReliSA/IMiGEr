@@ -49,14 +49,13 @@ function Sidebar() {
 		var unconnectedButton = app.utils.createHtmlElement('button', {
 			'class': 'button',
 			'id': 'unconnectedButton',
-			'title': 'Unconnected components',
-			'data-tooltip': 'top',
+			'title': 'Unconnected vertices',
 		});
 		unconnectedButton.appendChild(app.dom.createHtmlElement('img', {
 			'src': 'images/tochange/unconnected.gif',
-			'alt': 'Icon of "toggle unconnected components list" action',
+			'alt': 'Icon of "toggle unconnected vertices list" action',
 		}));
-		unconnectedButton.appendChild(app.dom.createTextElement('List'));
+		unconnectedButton.appendChild(app.dom.createTextElement('Unconnected vertices'));
 		unconnectedButton.addEventListener('click', function() {
 			document.getElementById('unconnectedNodeListComponent').classList.toggle('hidden');
 			app.redrawEdges();
