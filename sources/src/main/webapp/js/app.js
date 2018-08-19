@@ -49,6 +49,13 @@ function App() {
 	/** @prop {array<Group>} groupList */
 	this.groupList = [];
 
+	/** TODO: jsDoc */
+	this.archetype = {
+		vertex: [],
+		edge: [],
+		icon: [],
+	};
+
 	/**
 	 * Loads graph using diagram (if available).
 	 * @param diagramId Diagram identifier.
