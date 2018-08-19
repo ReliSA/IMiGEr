@@ -11,8 +11,6 @@ function App() {
 	this.graphExporter = new GraphExporter;
 	/** @prop {GraphHistory} graphHistory */
 	this.graphHistory = new GraphHistory;
-	/** @prop {JavaComponentChanger} componentChanger */
-	this.componentChanger = new JavaComponentChanger;
 	/** @prop {Loader} loader */
 	this.loader = new Loader;
 	/** @prop {Zoom} zoom */

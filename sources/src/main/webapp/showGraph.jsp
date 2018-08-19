@@ -28,13 +28,8 @@
 		<script src="js/components/floatingPoint.js"></script>
 		<script src="js/components/group.js"></script>
 		<script src="js/components/groupVertexList.js"></script>
-		<script src="js/components/change.js"></script>
-		<script src="js/components/changeModalWindow.js"></script>
-		<script src="js/components/changeVertexList.js"></script>
 		<script src="js/components/sidebar.js"></script>
 		<script src="js/components/sidebarExcludedNodeList.js"></script>
-		<script src="js/components/sidebarMissingComponentList.js"></script>
-		<script src="js/components/sidebarPostponedChangeList.js"></script>
 		<script src="js/components/sidebarUnconnectedNodeList.js"></script>
 		<script src="js/components/statusBar.js"></script>
 		<script src="js/components/vertex.js"></script>
@@ -52,7 +47,6 @@
 		<script src="js/graphLoader.js"></script>
 		<script src="js/graphExporter.js"></script>
 		<script src="js/graphHistory.js"></script>
-		<script src="js/javaComponentChanger.js"></script>
 		<script src="js/loader.js"></script>
 		<script src="js/markSymbol.js"></script>
 		<script src="js/utils/cookies.js"></script>

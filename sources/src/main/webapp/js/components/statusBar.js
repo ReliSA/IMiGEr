@@ -1,11 +1,10 @@
 /**
- * Class representing the sidebar status bar. It displays number of components loaded in the diagram and the current graph version.
+ * Class representing the sidebar status bar. It displays number of components loaded in the diagram.
  * @constructor
  */
 function StatusBar() {
 	var rootElement;
 	var componentCounterElement;
-	var graphVersionElement;
 
 	/**
 	 * Sets a new count of components loaded in the diagram.
@@ -14,15 +13,6 @@ function StatusBar() {
 	this.setComponentCount = function(componentCount) {
 		componentCounterElement.innerHTML = '';
 		componentCounterElement.appendChild(app.utils.createTextElement('loaded components: ' + componentCount));
-	};
-
-	/**
-	 * Sets a new graph version.
-	 * @param {string|integer} graphVersion New graph version.
-	 */
-	this.setGraphVersion = function(graphVersion) {
-		graphVersionElement.innerHTML = '';
-		graphVersionElement.appendChild(app.utils.createTextElement('graph version: ' + graphVersion));
 	};
 
 	/**
@@ -39,11 +29,6 @@ function StatusBar() {
 		});
 		rootElement.appendChild(componentCounterElement);
 
-		graphVersionElement = app.utils.createHtmlElement('span', {
-			'class': 'graph-version',
-		});
-		rootElement.appendChild(graphVersionElement);
-
 		return rootElement;
 	};
 
@@ -52,6 +37,5 @@ function StatusBar() {
 	 */
 	this.reset = function() {
 		componentCounterElement.innerHTML = '';
-		graphVersionElement.innerHTML = '';
 	};
 }

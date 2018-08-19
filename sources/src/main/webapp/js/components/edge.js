@@ -9,9 +9,6 @@ function Edge(props) {
 
 	var rootElement;
 
-	var compatible = props.isCompatible;
-	var compatibilityInfo = props.compInfoJSON ? JSON.parse(props.compInfoJSON) : [];
-
 	var hidden = false;
 	var dimmed = false;
 	var highlighted = false;
@@ -106,20 +103,6 @@ function Edge(props) {
 
 		var lollipop = rootElement.querySelector('.lollipop');
 		lollipop.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
-	};
-
-	/**
-	 * @returns {boolean} True if the edge is compatible, otherwise false.
-	 */
-	this.isCompatible = function() {
-		return compatible;
-	};
-
-	/**
-	 * @returns {object} Information on compatibility of the two vertices this edge is connecting.
-	 */
-	this.getCompatibilityInfo = function() {
-		return compatibilityInfo;
 	};
 
 	/**
@@ -294,11 +277,6 @@ function Edge(props) {
 	 * @param {Event} e Click event.
 	 */
 	function click(e) {
-		if (compatibilityInfo.length > 0) {
-			app.viewportComponent.edgePopoverComponent.setContent(compatibilityInfo);
-			app.viewportComponent.edgePopoverComponent.setPosition(new Coordinates(e.clientX, e.clientY));
-			app.viewportComponent.edgePopoverComponent.open();
-		}
 
 		// unhighlight other edges
 		app.edgeList.filter(function(edge) {

@@ -87,25 +87,8 @@ function GraphLoader() {
 			app.sidebarComponent.unconnectedNodeListComponent.add(vertex);
 		});
 
-		// find missing components
-		app.edgeList.filter(function(edge) {
-			return edge.getFrom().name === app.constants.notFoundVertexName;
-		}).forEach(function(edge) {
-			var compatibilityInfoList = edge.getCompatibilityInfo();
-			compatibilityInfoList.forEach(function(compatibilityInfo) {
-				if (compatibilityInfo.incomps.length === 0) return;
-
-				compatibilityInfo.incomps.forEach(function(incompatibility) {
-					if (!incompatibility.desc.isIncompCause) return;
-
-					app.sidebarComponent.missingClassListComponent.add(incompatibility.desc.name);
-				});
-			});
-		});
-
 		// update status bar
 		app.sidebarComponent.statusBarComponent.setComponentCount(data.vertices.length);
-		app.sidebarComponent.statusBarComponent.setGraphVersion(app.cookies.get('graphVersion'));
 	};
 
 }
