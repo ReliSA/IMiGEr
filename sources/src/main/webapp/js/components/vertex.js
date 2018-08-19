@@ -9,7 +9,7 @@ function Vertex(props) {
 	/** @prop {integer} archetype Archetype of the vertex. */
 	this.archetype = app.archetype.vertex[props.archetype];
 	/** @prop {string} name Name of the vertex. */
-	this.name = props.name;
+	this.name = props.name.split(':')[1];
 	/** @prop {array} symbol Symbol of the group. */
 	this.symbol = app.markSymbol.getMarkSymbol();
 
@@ -18,7 +18,7 @@ function Vertex(props) {
 
 	var position = new Coordinates(0, 0);
 	var size = {
-		width: Math.max(30 + props.name.length * 8.3, 200),	// 8.3 is approximate width (in pixels) of one character using Consolas at 15px font size
+		width: Math.max(30 + this.name.length * 8.3, 200),	// 8.3 is approximate width (in pixels) of one character using Consolas at 15px font size
 		height: 30,
 	};
 	var group = null;
@@ -452,7 +452,7 @@ function Vertex(props) {
 			'x': 25,
 			'y': 20,
 		});
-		nameText.appendChild(document.createTextNode(props.name));
+		nameText.appendChild(document.createTextNode(this.name));
 		rootElement.appendChild(nameText);
 
 		// symbol list
@@ -472,7 +472,7 @@ function Vertex(props) {
 	function renderExcluded() {
 		rootElement = app.utils.createHtmlElement('li', {
 			'class': 'node vertex',
-			'data-id': props.id,
+			'data-id': this.id,
 		});
 
 		var svg = app.utils.createSvgElement('svg', {
