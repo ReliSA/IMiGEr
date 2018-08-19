@@ -124,6 +124,7 @@ function Viewport() {
 		});
 		rootElement.addEventListener('wheel', onMouseWheel.bind(this));
 		rootElement.addEventListener('mousedown', onMouseDown.bind(this));
+		rootElement.addEventListener('dblclick', onDoubleClick.bind(this));
 
 		var mainSvg = app.utils.createSvgElement('svg', {
 			'xmlns': 'http://www.w3.org/2000/svg',
@@ -239,5 +240,11 @@ function Viewport() {
 			
 			app.redrawEdges();
 		}
+	}
+
+	function onDoubleClick(e) {
+		app.closeFloatingComponents();
+
+		app.zoom.zoomIn(new Coordinates(e.offsetX, e.offsetY));
 	}
 }
