@@ -6,6 +6,8 @@
 function Vertex(props) {
 	/** @prop {integer} id Unique identifier of the vertex. */
 	this.id = props.id;
+	/** @prop {integer} archetype Archetype of the vertex. */
+	this.archetype = app.archetype.vertex[props.archetype];
 	/** @prop {string} name Name of the vertex. */
 	this.name = props.name;
 	/** @prop {array} symbol Symbol of the group. */
@@ -431,34 +433,19 @@ function Vertex(props) {
 			'x': 1,
 			'y': 1,
 		}));
-		
-		// interface
-		var interface = app.utils.createSvgElement('g', {
-			'class': 'interface',
-			'transform': 'translate(8, 8)',
+
+		// archetype
+		var archetype = app.utils.createSvgElement('g', {
+			'class': 'archetype',
+			'data-vertexId': this.id,
+			'transform': 'translate(7, 6)',
 		});
-		interface.addEventListener('click', interfaceClick.bind(this));
-		
-		interface.appendChild(app.utils.createSvgElement('rect', {
-			'width': 10,
-			'height': 15,
-			'x': 0,
-			'y': 0,
-		}));
-		interface.appendChild(app.utils.createSvgElement('rect', {
-			'width': 6,
-			'height': 3,
-			'x': -3,
-			'y': 3,
-		}));
-		interface.appendChild(app.utils.createSvgElement('rect', {
-			'width': 6,
-			'height': 3,
-			'x': -3,
-			'y': 9,
-		}));
-		rootElement.appendChild(interface);
-		
+		archetype.addEventListener('click', archetypeClick.bind(this));
+
+		archetype.innerHTML = app.archetype.icon[this.archetype.name];
+
+		rootElement.appendChild(archetype);
+
 		// name
 		var nameText = app.utils.createSvgElement('text', {
 			'fill': 'black',
@@ -712,10 +699,10 @@ function Vertex(props) {
 	 * Reveals vertex popover.
 	 * @param {Event} e Click event.
 	 */
-	function interfaceClick(e) {
+	function archetypeClick(e) {
 		e.stopPropagation();
 
-		app.viewportComponent.vertexPopoverComponent.setContent(props.symbolicName, props.exportedPackages, props.importedPackages);
+		app.viewportComponent.vertexPopoverComponent.setContent(this.name + ` (${this.archetype.name})`, props.exportedPackages);
 		app.viewportComponent.vertexPopoverComponent.setPosition(new Coordinates(e.clientX, e.clientY));
 		app.viewportComponent.vertexPopoverComponent.open();
 	}
