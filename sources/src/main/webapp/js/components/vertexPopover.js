@@ -1,48 +1,27 @@
 /**
- * Class representing a popover revealed on vertex interface symbol click to display its required and provided interfaces.
+ * Class representing a popover revealed on vertex interface symbol click to display its attributes.
  * @see Vertex
  * @constructor
  */
 function VertexPopover() {
 	var rootElement;
 	var popoverTitle;
-	var exportedPackagesContainer;
-	var exportedPackagesListElement;
-	var importedPackagesContainer;
-	var importedPackagesListElement;
+	var detailsListElement;
 
 	/**
 	 * Sets the contents of the popover.
 	 * @param {string} name Title of the popover.
-	 * @param {array} exportedPackages List of exported interfaces.
-	 * @param {array} importedPackages List of provided interfaces.
+	 * @param {array} attributes List of attributes.
 	 */
-	this.setContent = function(name, exportedPackages, importedPackages) {
+	this.setContent = function(name, attributes) {
 		popoverTitle.innerText = name;
 
-		if (exportedPackages.length === 0) {
-			exportedPackagesContainer.classList.add('hidden');
-		} else {
-			exportedPackagesContainer.classList.remove('hidden');
-
-			exportedPackages.forEach(function(pakkage) {
+		if (attributes.length > 0) {
+			attributes.forEach(function(attributes) {
 				var listItem = app.utils.createHtmlElement('li', {});
-				listItem.appendChild(document.createTextNode(pakkage));
+				listItem.appendChild(document.createTextNode(attributes));
 
-				exportedPackagesListElement.appendChild(listItem);
-			});
-		}
-
-		if (importedPackages.length === 0) {
-			importedPackagesContainer.classList.add('hidden');
-		} else {
-			importedPackagesContainer.classList.remove('hidden');
-
-			importedPackages.forEach(function(pakkage) {
-				var listItem = app.utils.createHtmlElement('li', {});
-				listItem.appendChild(document.createTextNode(pakkage));
-
-				importedPackagesListElement.appendChild(listItem);
+				detailsListElement.appendChild(listItem);
 			});
 		}
 	};
@@ -69,8 +48,7 @@ function VertexPopover() {
 	this.close = function() {
 		rootElement.classList.add('hidden');
 
-		exportedPackagesListElement.innerHTML = '';
-		importedPackagesListElement.innerHTML = '';
+		detailsListElement.innerHTML = '';
 	};
 
 	/**
@@ -95,19 +73,8 @@ function VertexPopover() {
 		});
 		rootElement.appendChild(popoverContent);
 
-		exportedPackagesContainer = app.utils.createHtmlElement('div', {});
-		exportedPackagesContainer.appendChild(document.createTextNode('Exported packages'));
-		popoverContent.appendChild(exportedPackagesContainer);
-
-		exportedPackagesListElement = app.utils.createHtmlElement('ul', {});
-		exportedPackagesContainer.appendChild(exportedPackagesListElement);
-
-		importedPackagesContainer = app.utils.createHtmlElement('div', {});
-		importedPackagesContainer.appendChild(document.createTextNode('Imported packages'));
-		popoverContent.appendChild(importedPackagesContainer);
-
-		importedPackagesListElement = app.utils.createHtmlElement('ul', {});
-		importedPackagesContainer.appendChild(importedPackagesListElement);
+		detailsListElement = app.utils.createHtmlElement('ul', {});
+		popoverContent.appendChild(detailsListElement);
 
 		return rootElement;
 	};
