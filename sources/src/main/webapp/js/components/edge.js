@@ -76,16 +76,16 @@ function Edge(props) {
 			line.setAttribute('y1', start.y);
 		});
 		
-		// lollipop position and rotation
-		var position = getLollipopPosition.call(this);
-		var rotation = getLollipopRotation.call(this);
+		// arrow position and rotation
+		var position = getArrowPosition.call(this);
+		var rotation = getArrowRotation.call(this);
 
-		var lollipop = rootElement.querySelector('.lollipop');
-		lollipop.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
+		var arrow = rootElement.querySelector('.arrow');
+		arrow.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
 	};
 	
 	/**
-	 * Moved ending point of the edge to new coordinates and rotates the lollipop.
+	 * Moved ending point of the edge to new coordinates and rotates the arrow.
 	 * @param {Coordinates} coords New ending coordinates of the edge.
 	 */
 	this.moveEnd = function(coords) {
@@ -97,12 +97,12 @@ function Edge(props) {
 			line.setAttribute('y2', end.y);
 		});
 		
-		// lollipop position and rotation
-		var position = getLollipopPosition.call(this);
-		var rotation = getLollipopRotation.call(this);
+		// arrow position and rotation
+		var position = getArrowPosition.call(this);
+		var rotation = getArrowRotation.call(this);
 
-		var lollipop = rootElement.querySelector('.lollipop');
-		lollipop.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
+		var arrow = rootElement.querySelector('.arrow');
+		arrow.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
 	};
 
 	/**
@@ -209,58 +209,22 @@ function Edge(props) {
 			'y2': end.y,
 		}));
 
-		// lollipop position and rotation
-		var position = getLollipopPosition.call(this);
-		var rotation = getLollipopRotation.call(this);
+		// arrow position and rotation
+		var position = getArrowPosition.call(this);
+		var rotation = getArrowRotation.call(this);
 		
-		// lollipop
-		var lollipop = app.utils.createSvgElement('g', {
-			'class': 'lollipop lollipop--cross',
+		// arrow
+		var arrow = app.utils.createSvgElement('g', {
+			'class': 'arrow',
+			'data-edgeId': this.id,
 			'transform': `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`,
 		});
-		lollipop.appendChild(app.utils.createSvgElement('path', {
-			'd': 'M0,-12 C16,-12 16,12 0,12',
-		}));
-		lollipop.appendChild(app.utils.createSvgElement('circle', {
-			'cx': 0,
-			'cy': 0,
-			'r': 8,
-		}));
-		lollipop.addEventListener('click', click.bind(this));
-		rootElement.appendChild(lollipop);
+		arrow.appendChild(app.utils.createSvgElement('polygon', {
+			'points': '0,-10 30,0 0,10',
 
-		if (compatible) {
-			// tick
-			lollipop.appendChild(app.utils.createSvgElement('line', {
-				'x1': 6,
-				'y1': -4,
-				'x2': -4,
-				'y2': 6,
-				'transform': 'rotate(90)',
-			}));
-			lollipop.appendChild(app.utils.createSvgElement('line', {
-				'x1': -5,
-				'y1': -3,
-				'x2': -4,
-				'y2': 5,
-				'transform': 'rotate(90)',
-			}));
-
-		} else {
-			// cross
-			lollipop.appendChild(app.utils.createSvgElement('line', {
-				'x1': -5,
-				'y1': -5,
-				'x2': 5,
-				'y2': 5,
-			}));
-			lollipop.appendChild(app.utils.createSvgElement('line', {
-				'x1': -5,
-				'y1': 5,
-				'x2': 5,
-				'y2': -5,
-			}));
-		}
+		}));
+		arrow.addEventListener('click', click.bind(this));
+		rootElement.appendChild(arrow);
 
 		return rootElement;
 	};
@@ -318,20 +282,20 @@ function Edge(props) {
 	}
 	
 	/**
-	 * @returns {Coordinates} Current position of the lollipop.
+	 * @returns {Coordinates} Current position of the arrow.
 	 */
-	function getLollipopPosition() {
-		// lollipop is placed at 1/3 of the distance from start to end
+	function getArrowPosition() {
+		// arrow is placed at 2/3 of the distance from start to end
 		return new Coordinates(
-			(2 * start.x + end.x) / 3,
-			(2 * start.y + end.y) / 3,
+			(start.x + 2 * end.x) / 3,
+			(start.y + 2 * end.y) / 3,
 		);
 	}
 	
 	/**
-	 * @returns {float} Current rotation of the lollipop in degrees.
+	 * @returns {float} Current rotation of the arrow in degrees.
 	 */
-	function getLollipopRotation() {
+	function getArrowRotation() {
 		return -1 * Math.atan2(end.x - start.x, end.y - start.y) * 180 / Math.PI + 90;
 	}
 }
