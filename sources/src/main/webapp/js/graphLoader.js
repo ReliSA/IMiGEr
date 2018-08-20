@@ -92,6 +92,36 @@ function GraphLoader() {
 			app.sidebarComponent.unconnectedNodeListComponent.add(vertex);
 		});
 
+		// group vertex archetypes
+		var archetypeGroupMap = {};
+
+		data.defaultGroupArchetypes.forEach(function(archetypeIndex) {
+			app.vertexList.filter(function(vertex) {
+				return vertex.archetype === app.archetype.vertex[archetypeIndex];
+			}).forEach(function(vertex) {
+				if (archetypeGroupMap[archetypeIndex] instanceof Group) {
+					// group of the archetype vertices already exists
+					var group = archetypeGroupMap[archetypeIndex];
+
+				} else {
+					// create a new group
+					var group = new Group({
+						name: `${app.archetype.vertex[archetypeIndex].name} vertices`,
+					});
+					group.setExcluded(true);
+
+					app.nodeList.push(group);
+					app.groupList.push(group);
+
+					app.sidebarComponent.excludedNodeListComponent.add(group);
+
+					archetypeGroupMap[archetypeIndex] = group;
+				}
+
+				group.addVertex(vertex);
+			});
+		});
+
 		// update status bar
 		app.sidebarComponent.statusBarComponent.setComponentCount(data.vertices.length);
 	};
