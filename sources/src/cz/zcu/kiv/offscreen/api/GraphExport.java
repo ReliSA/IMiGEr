@@ -1,9 +1,6 @@
 package cz.zcu.kiv.offscreen.api;
 
-import cz.zcu.kiv.offscreen.graph.EdgeArchetype;
-import cz.zcu.kiv.offscreen.graph.Graph;
-import cz.zcu.kiv.offscreen.graph.VertexArchetype;
-import cz.zcu.kiv.offscreen.graph.AttributeType;
+import cz.zcu.kiv.offscreen.graph.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +32,18 @@ public class GraphExport {
 
     public GraphExport(Graph graph) {
         logger.trace("ENTRY");
-        this.vertices = new ArrayList<Vertex>(graph.getVertices().values());
-        this.edges = new ArrayList<Edge>(graph.getEdges());
-        this.vertexArchetypes = new ArrayList<VertexArchetype>(graph.getVertexArchetypes());
-        this.edgeArchetypes = new ArrayList<EdgeArchetype>(graph.getEdgeArchetypes());
+        this.vertices = new ArrayList<>(graph.getVertices().values());
+        this.edges = new ArrayList<>(graph.getEdges());
+        this.vertexArchetypes = new ArrayList<>(graph.getVertexArchetypes());
+        this.edgeArchetypes = new ArrayList<>(graph.getEdgeArchetypes());
         this.attributeTypes = new ArrayList<>(graph.getAttributeTypes());
         this.possibleEnumValues = graph.getPossibleEnumValues();
         this.archetypeIcons = graph.getArchetypeIcons();
+        this.groups = graph.getGraphState().getGroups();
+        this.positions = graph.getGraphState().getPositions();
+        this.sideBar = graph.getGraphState().getSideBar();
+        this.selectedVertex = graph.getGraphState().getSelectedVertex();
+        this.selectedEdge = graph.getGraphState().getSelectedEdge();
         logger.trace("EXIT");
     }
 

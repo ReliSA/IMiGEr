@@ -1,5 +1,6 @@
 package cz.zcu.kiv.offscreen.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,15 @@ public class Group {
     private List<Integer> verticesEdgeFromId;
     /** List of vertices id whose incoming edges are visible. */
     private List<Integer> verticesEdgeToId;
+
+    public Group(int groupId, int id, String name){
+        this.groupId = groupId;
+        this.id = id;
+        this.name = name;
+        verticesId = new ArrayList<>();
+        verticesEdgeFromId = new ArrayList<>();
+        verticesEdgeToId = new ArrayList<>();
+    }
 
     public Group(int groupId, int id, String name, List<Integer> verticesId, List<Integer> verticesEdgeFromId, List<Integer> verticesEdgeToId) {
         this.groupId = groupId;
@@ -75,5 +85,17 @@ public class Group {
 
     public void setVerticesEdgeToId(List<Integer> verticesEdgeToId) {
         this.verticesEdgeToId = verticesEdgeToId;
+    }
+
+    public void addVertexId(int vertexId){
+        this.verticesId.add(vertexId);
+    }
+
+    public void addVetexEdgeToId(int vertexId){
+        this.verticesEdgeToId.add(vertexId);
+    }
+
+    public void addVetexEdgeFromId(int vertexId){
+        this.verticesEdgeFromId.add(vertexId);
     }
 }

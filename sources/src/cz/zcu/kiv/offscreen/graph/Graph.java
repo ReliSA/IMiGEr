@@ -21,8 +21,10 @@ public class Graph {
     private List<AttributeType> attributeTypes;
     private Map<String, List<String>> possibleEnumValues;
     private List<String> defaultGroupArchetypes;
-
     private Map<String, String> archetypeIcons;
+
+    private GraphState graphState;
+
     private Logger logger = Logger.getLogger(Graph.class);
 
     public Graph() {
@@ -105,5 +107,13 @@ public class Graph {
         logger.trace("ENTRY");
         this.vertices.put(name, vertex);
         logger.trace("EXIT");
+    }
+
+    public GraphState getGraphState() {
+        return graphState;
+    }
+
+    public void setGraphState(GraphState graphState) {
+        this.graphState = graphState;
     }
 }

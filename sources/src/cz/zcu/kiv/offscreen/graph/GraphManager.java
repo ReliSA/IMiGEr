@@ -1,6 +1,7 @@
 package cz.zcu.kiv.offscreen.graph;
 
 import cz.zcu.kiv.offscreen.api.Edge;
+import cz.zcu.kiv.offscreen.api.Group;
 import cz.zcu.kiv.offscreen.api.SubedgeInfo;
 import cz.zcu.kiv.offscreen.api.Vertex;
 import cz.zcu.kiv.offscreen.graph.filter.*;
@@ -36,6 +37,8 @@ public class GraphManager {
             }
         }
     }
+
+    private int lastVertexOrGroupId = 1;
 
     public List<VertexArchetype> vertexArchetypes = new ArrayList<>();
     public List<EdgeArchetype> edgeArchetypes = new ArrayList<>();
@@ -291,6 +294,8 @@ public class GraphManager {
         graph.setAttributeTypes(attributeTypes);
         graph.setPossibleEnumValues(possibleEnumValues);
 
+        graph.setGraphState(createGraphState(graph));
+
         return graph;
     }
 
@@ -498,14 +503,13 @@ public class GraphManager {
      * @param resultVertices - List of vertices to add to the graph.
      */
     private void addVerticesToGraph(Graph graph, Set<VertexImpl> resultVertices) {
-        int idCounter = 1;
         for (VertexImpl vertexImpl : resultVertices) {
 
             VertexArchetype archetype = vertexArchetypes.get(vertexImpl.getArchetype());
             String title = archetype.name + ":" + vertexImpl.getTitle();
             List<String[]> attributes = getAttributesAsArray(vertexImpl.getSortedAttributes());
 
-            Vertex vertex = new Vertex(idCounter++, vertexImpl.getOriginalId(), title, vertexImpl.getArchetype(), vertexImpl.getText(), attributes);
+            Vertex vertex = new Vertex(lastVertexOrGroupId++, vertexImpl.getOriginalId(), title, vertexImpl.getArchetype(), vertexImpl.getText(), attributes);
 
             graph.addVertex("" + vertexImpl.getId(), vertex);
         }
@@ -555,5 +559,59 @@ public class GraphManager {
                 break;
         }
         return attrValue;
+    }
+
+    /**
+     * Method is used for initialization of default graph status based on input graph.
+     *
+     * @param graph graph where are set vertices, defaultGroupArchetypes and vertexArchetypes.
+     * @return instance of created GraphState
+     */
+    private GraphState createGraphState(Graph graph) {
+        GraphState state = new GraphState();
+
+        state.addGroupsAll(createDefaultGroups(graph));
+
+
+        return state;
+    }
+
+    /**
+     * Method create list of groups based on defaultGroupArchetypes whose are defined in graph. Vertices are taken
+     * from graph too.
+     *
+     * @param graph graph from which are groups created.
+     * @return created list of groups or empty list.
+     */
+    private Collection<Group> createDefaultGroups(Graph graph){
+
+        Map<Integer, Group> groups = new HashMap<>();
+        int groupId = 1;
+
+        // find index of vertex archetypes names
+        int index = 0;
+        for(VertexArchetype archetype : graph.getVertexArchetypes()){
+            if(graph.getDefaultGroupArchetypes().contains(archetype.name)){
+                groups.put(index, new Group(groupId++, lastVertexOrGroupId++, archetype.name));
+            }
+            index++;
+        }
+
+        // find vertices with founded vertex archetypes indices
+        for (Vertex vertex : graph.getVertices().values()){
+            if(groups.keySet().contains(vertex.getArchetype())){
+                groups.get(vertex.getArchetype()).addVertexId(vertex.getId());
+            }
+        }
+
+        // remove groups without vertices
+        List<Group> groupList = new ArrayList<>();
+        for(Group group : groups.values()){
+            if (!group.getVerticesId().isEmpty()){
+                groupList.add(group);
+            }
+        }
+
+        return groupList;
     }
 }
