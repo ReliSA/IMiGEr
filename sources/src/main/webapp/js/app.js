@@ -157,6 +157,11 @@ function App() {
 		document.getElementById('zoomValue').innerText = Math.round(self.zoom.scale * 100) + '%';
 		document.getElementById('graph').setAttribute('transform', 'scale(' + self.zoom.scale + ')');
 
+		// filters
+		document.getElementById('toggleFilters').addEventListener('click', function(e) {
+			document.getElementById('filters').classList.toggle('hidden');
+		});
+
 		// search
 		document.getElementById('searchText').addEventListener('keyup', function(e) {
 			// enter key

@@ -125,6 +125,12 @@
 							<hr class="navbar-separator">
 						</li>
 						<li>
+							<button class="btn toggle-filters" id="toggleFilters">Filters</button>
+						</li>
+						<li>
+							<hr class="navbar-separator">
+						</li>
+						<li>
 							<input class="search-text" id="searchText" type="text" placeholder="Search components...">
 							<button class="btn search" id="search"><img src="images/search.png" title="search" alt="search"></button>
 							<span class="search-count" id="countOfFound" title="Count of components found">0</span>
@@ -224,7 +230,40 @@
 					</ul>
 				</nav>
 			</header>
-			
+
+			<div class="filterBar hidden" id="filters">
+				<div class="filterbar-nav">
+					<button class="button buttonClassic" id="addFilter">Add filter</button>
+					<button class="button buttonClassic" id="deleteFilter">Delete filter</button>
+					<select id="filterTypeSelection">
+						<option value="Archetype"> Archetype </option>
+						<option value="Atribute"> Atribute </option>
+						<option value="Logical"> Logical </option>
+					</select>
+					<select id="logicOperationSelection" disabled="disabled">
+						<option value="And"> And </option>
+						<option value="Or"> Or </option>
+						<option value="Xor"> Xor </option>
+					</select>
+					<select id="attributeTypeSelection" disabled="disabled">
+						<option value="Enum"> Enum </option>
+						<option value="String"> String </option>
+						<option value="Number"> Number </option>
+						<option value="Date"> Date </option>
+					</select>
+				</div>
+
+				<div class="vertex-tree" id="vertexTree">
+					<ul class="vertexTreeList">
+						<li class="vertexTreeItem" id="1">
+							<span>
+								Vertex Filters
+							</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+
 			<main class="graph-content" id="content"></main>
 		</div>
 
