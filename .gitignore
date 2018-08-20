@@ -1,3 +1,5 @@
 sources/.idea/
-sources/build/
-sources/WebContent/node_modules/
+sources/target/
+sources/src/main/webapp/node_modules/
+storage/
+*.iml
