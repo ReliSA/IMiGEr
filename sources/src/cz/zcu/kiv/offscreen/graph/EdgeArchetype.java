@@ -12,4 +12,8 @@ public class EdgeArchetype {
     public String getName() {
         return  name;
     }
+
+    public String getText() {
+        return text;
+    }
 }

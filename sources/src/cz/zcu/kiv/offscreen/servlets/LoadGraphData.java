@@ -1,22 +1,8 @@
 package cz.zcu.kiv.offscreen.servlets;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import cz.zcu.kiv.ccu.ApiCheckersFactory;
-import cz.zcu.kiv.ccu.ApiCheckersSetting;
-import cz.zcu.kiv.ccu.ApiInterCompatibilityChecker;
-import cz.zcu.kiv.ccu.ApiInterCompatibilityResult;
-import cz.zcu.kiv.offscreen.api.GraphInterface;
-import cz.zcu.kiv.offscreen.graph.GraphExport;
+import cz.zcu.kiv.offscreen.graph.Graph;
+import cz.zcu.kiv.offscreen.api.GraphExport;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
-import cz.zcu.kiv.offscreen.graph.creator.GraphMaker;
 import cz.zcu.kiv.offscreen.graph.loader.DemoDiagramLoader;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
@@ -24,6 +10,13 @@ import cz.zcu.kiv.offscreen.loader.configuration.ConfigurationLoader;
 import cz.zcu.kiv.offscreen.session.SessionManager;
 import cz.zcu.kiv.offscreen.storage.FileManager;
 import net.sf.json.JSONObject;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @author Jindra Pavlíková <jindra.pav2@seznam.cz>
@@ -35,7 +28,7 @@ public class LoadGraphData extends HttpServlet {
      * graph is returned as JSON in response body.
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // initialize file manager
         String workingDirectory;
         if (request.getParameter("diagram_hash") == null) {
@@ -64,7 +57,7 @@ public class LoadGraphData extends HttpServlet {
                 GraphManager graphManager = new GraphJSONDataLoader(fileToDisplay).LoadData();
                 String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
                 JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
-                GraphInterface graph = graphManager.createGraph(configLoader);
+                Graph graph = graphManager.createGraph(configLoader);
                 GraphExport export = new GraphExport(graph);
                 JSONObject json = JSONObject.fromObject(export);
 

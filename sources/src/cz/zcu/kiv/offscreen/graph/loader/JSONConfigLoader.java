@@ -1,6 +1,6 @@
 package cz.zcu.kiv.offscreen.graph.loader;
 
-import cz.zcu.kiv.offscreen.AttributeType;
+import cz.zcu.kiv.offscreen.graph.AttributeType;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.filter.*;
@@ -11,7 +11,6 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -376,5 +375,19 @@ public class JSONConfigLoader {
         }
 
         return defaultGroupArchetypes;
+    }
+
+    /**
+     * Loads default group archetypes and return them in a list.
+     * @return list of archetypes.
+     */
+    public List<String> loadGroupArchetypesStrings(){
+        List<String> groupArchetypes = new ArrayList<>();
+
+        JSONArray defaultGroupArchetypesJson = json.getJSONArray("defaultGroupArchetypes");
+        for (Object jsonItem : defaultGroupArchetypesJson) {
+            groupArchetypes.add(jsonItem.toString());
+        }
+        return groupArchetypes;
     }
 }

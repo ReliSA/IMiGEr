@@ -12,4 +12,8 @@ public class VertexArchetype {
     public String getName() {
         return name;
     }
+
+    public String getText() {
+        return text;
+    }
 }

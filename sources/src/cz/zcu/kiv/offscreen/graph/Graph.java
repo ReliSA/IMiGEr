@@ -1,72 +1,63 @@
 package cz.zcu.kiv.offscreen.graph;
 
-import cz.zcu.kiv.offscreen.AttributeType;
-import cz.zcu.kiv.offscreen.api.EdgeInterface;
-import cz.zcu.kiv.offscreen.api.GraphInterface;
-import cz.zcu.kiv.offscreen.api.VertexInterface;
+import cz.zcu.kiv.offscreen.api.Edge;
+import cz.zcu.kiv.offscreen.api.Vertex;
+import org.apache.log4j.Logger;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
 
 /**
- *
- * @author Jindra Pavlíková
+ * Class represents graph which is loaded from input JSON file.
  */
-public class GraphImpl implements GraphInterface {
+public class Graph {
 
-    private Map<String, VertexInterface> vertices;
-    private List<EdgeInterface> edges;
-    private Logger logger = Logger.getLogger(GraphImpl.class);
+    private Map<String, Vertex> vertices;
+    private List<Edge> edges;
     private List<VertexArchetype> vertexArchetypes;
     private List<EdgeArchetype> edgeArchetypes;
     private List<AttributeType> attributeTypes;
     private Map<String, List<String>> possibleEnumValues;
-    private List<Integer> defaultGroupArchetypes;
+    private List<String> defaultGroupArchetypes;
 
     private Map<String, String> archetypeIcons;
+    private Logger logger = Logger.getLogger(Graph.class);
 
-    public GraphImpl() {
+    public Graph() {
         logger.trace("ENTRY");
-        this.vertices = new HashMap<String, VertexInterface>();
-        this.edges = new LinkedList<EdgeInterface>();
+        this.vertices = new HashMap<String, Vertex>();
+        this.edges = new LinkedList<Edge>();
         logger.trace("EXIT");
     }
 
-    @Override
-    public List<EdgeInterface> getEdges() {
+    public List<Edge> getEdges() {
         logger.trace("ENTRY");
         logger.trace("EXIT");
         return edges;
     }
 
-    @Override
     public List<VertexArchetype> getVertexArchetypes() {
         return vertexArchetypes;
     }
 
-    @Override
     public List<EdgeArchetype> getEdgeArchetypes() {
         return edgeArchetypes;
     }
 
-    @Override
     public void setVertexArchetypes(List<VertexArchetype> vertexArchetypes) {
         this.vertexArchetypes = vertexArchetypes;
     }
 
-    @Override
     public  void setEdgeArchetypes(List<EdgeArchetype> edgeArchetypes) {
         this.edgeArchetypes = edgeArchetypes;
     }
 
-    @Override
     public void setAttributeTypes(List<AttributeType> attributeTypes) {
         this.attributeTypes = attributeTypes;
     }
 
-    @Override
     public void setPossibleEnumValues(Map<Integer, List<String>> possibleEnumValues) {
         this.possibleEnumValues = new HashMap<>();
         for (Integer index : possibleEnumValues.keySet()) {
@@ -78,47 +69,39 @@ public class GraphImpl implements GraphInterface {
         this.archetypeIcons = archetypeIcons;
     }
 
-    @Override
-    public List<Integer> getDefaultGroupArchetypes() {
+    public List<String> getDefaultGroupArchetypes() {
         return defaultGroupArchetypes;
     }
 
-    @Override
-    public void setDefaultGroupArchetypes(List<Integer> defaultGroupArchetypes) {
+    public void setDefaultGroupArchetypes(List<String> defaultGroupArchetypes) {
         this.defaultGroupArchetypes = defaultGroupArchetypes;
     }
 
-    @Override
     public List<AttributeType> getAttributeTypes() {
         return attributeTypes;
     }
 
-    @Override
     public Map<String, List<String>> getPossibleEnumValues() {
         return possibleEnumValues;
     }
 
-    @Override
     public Map<String, String> getArchetypeIcons() {
         return archetypeIcons;
     }
 
-    @Override
-    public Map<String, VertexInterface> getVertices() {
+    public Map<String, Vertex> getVertices() {
         logger.trace("ENTRY");
         logger.trace("EXIT");
         return vertices;
     }
 
-    @Override
-    public void addEdge(EdgeInterface edge) {
+    public void addEdge(Edge edge) {
         logger.trace("ENTRY");
         this.edges.add(edge);
         logger.trace("EXIT");
     }
 
-    @Override
-    public void addVertex(String name, VertexInterface vertex) {
+    public void addVertex(String name, Vertex vertex) {
         logger.trace("ENTRY");
         this.vertices.put(name, vertex);
         logger.trace("EXIT");

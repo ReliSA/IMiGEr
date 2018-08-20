@@ -1,8 +1,8 @@
 package cz.zcu.kiv.offscreen.graph;
 
-import cz.zcu.kiv.offscreen.AttributeType;
-import cz.zcu.kiv.offscreen.api.GraphInterface;
-import cz.zcu.kiv.offscreen.api.VertexInterface;
+import cz.zcu.kiv.offscreen.api.Edge;
+import cz.zcu.kiv.offscreen.api.SubedgeInfo;
+import cz.zcu.kiv.offscreen.api.Vertex;
 import cz.zcu.kiv.offscreen.graph.filter.*;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
 
@@ -49,12 +49,12 @@ public class GraphManager {
     /**
      * key is the archetype index, value is the set of vertices of the given archetype
      */
-    public Map<Integer, HashSet<VertexData>> vertices = new HashMap<>();
+    public Map<Integer, HashSet<VertexImpl>> vertices = new HashMap<>();
 
     /**
      * key is the triplet of archetypes {fromVertex, edge, toVertex}, value is the list of edges for the given archetype triplet
      */
-    public Map<EdgeArchetypeInfo, List<EdgeData>> edges = new HashMap<>();
+    public Map<EdgeArchetypeInfo, List<EdgeImpl>> edges = new HashMap<>();
 
     public void addVertexArchetype(String name, String text) {
         vertexArchetypes.add(new VertexArchetype(name, text));
@@ -64,12 +64,7 @@ public class GraphManager {
         edgeArchetypes.add(new EdgeArchetype(name, text));
     }
 
-    /**
-     *
-     * @param name
-     * @param dataType
-     * @param text
-     */
+
     public void addAttributeType(String name, AttributeDataType dataType, String text) {
         attributeTypes.add(new AttributeType(name, dataType, text));
     }
@@ -153,11 +148,11 @@ public class GraphManager {
      * @param attributes     - Map of attributes associated with the vertex
      */
     public void addVertex(int id, String title, String text, int archetypeIndex, Map<Integer, Attribute> attributes) {
-        VertexData vertexToAdd = new VertexData(id, title, text, archetypeIndex);
+        VertexImpl vertexToAdd = new VertexImpl(id, id, title, archetypeIndex, text);
         if (vertices.containsKey(archetypeIndex)) {
             vertices.get(archetypeIndex).add(vertexToAdd);
         } else {
-            HashSet<VertexData> vertexSet = new HashSet<>();
+            HashSet<VertexImpl> vertexSet = new HashSet<>();
             vertexSet.add(vertexToAdd);
             vertices.put(archetypeIndex, vertexSet);
         }
@@ -177,16 +172,16 @@ public class GraphManager {
      * @param attributes    - Map of attributes associated with the edge
      */
     public void addEdge(int id, int from, int to, String text, EdgeArchetypeInfo archetypeInfo, Map<Integer, Attribute> attributes) {
-        EdgeData edgeToAdd = new EdgeData(id, from, to, text, archetypeInfo.edgeArchetypeIndex);
+        EdgeImpl edgeToAdd = new EdgeImpl(id, from, to, text, id, archetypeInfo.edgeArchetypeIndex);
+        edgeToAdd.addAttributes(attributes);
+
         if (edges.containsKey(archetypeInfo)) {
             edges.get(archetypeInfo).add(edgeToAdd);
         } else {
-            List<EdgeData> edgesList = new ArrayList<>();
+            List<EdgeImpl> edgesList = new ArrayList<>();
             edgesList.add(edgeToAdd);
             edges.put(archetypeInfo, edgesList);
         }
-
-        edgeToAdd.addAttributes(attributes);
     }
 
     /**
@@ -256,12 +251,12 @@ public class GraphManager {
 
     /**
      * Filters the edges and vertices according to the default filter loaded from the configuration file
-     * and constructs the {@code GraphImpl} object.
+     * and constructs the {@code Graph} object.
      * @param configLoader - The object that loads the configuration file.
-     * @return - Constructed {@code GraphImpl} object.
+     * @return - Constructed {@code Graph} object.
      */
-    public GraphInterface createGraph(JSONConfigLoader configLoader) {
-        GraphInterface graph = new GraphImpl();
+    public Graph createGraph(JSONConfigLoader configLoader) {
+        Graph graph = new Graph();
 
         // To use default filter from a configuration file
         GraphFilter filter = configLoader.loadDefaultFilter();
@@ -275,14 +270,17 @@ public class GraphManager {
         Map<String, String> archetypeIcons = configLoader.loadArchetypeIcons();
         graph.setArchetypeIcons(archetypeIcons);
 
-        List<Integer> defaultGroupArchetypes = configLoader.loadGroupArchetypes();
+        List<String> defaultGroupArchetypes = configLoader.loadGroupArchetypesStrings();
         graph.setDefaultGroupArchetypes(defaultGroupArchetypes);
 
-        Set<VertexData> resultVertices = getVerticesByArchetypeFilter(filter);
+
+
+
+        Set<VertexImpl> resultVertices = getVerticesByArchetypeFilter(filter);
 
         resultVertices = getVerticesByAttributeFilter(filter, resultVertices);
 
-        List<EdgeData> resultEdges = getEdgesByArchetypeFilter(filter, resultVertices);
+        List<EdgeImpl> resultEdges = getEdgesByArchetypeFilter(filter, resultVertices);
 
         resultEdges = getEdgesByAttributeFilter(filter, resultEdges);
 
@@ -302,15 +300,15 @@ public class GraphManager {
      * @param vertices - List of vertices for filtration.
      * @return - List of vertices filtered by attribute.
      */
-    private Set<VertexData> getVerticesByAttributeFilter(GraphFilter filter, Set<VertexData> vertices) {
-        Set<VertexData> resultVertices = new HashSet<>();
-        for (VertexData vertex : vertices) {
+    private Set<VertexImpl> getVerticesByAttributeFilter(GraphFilter filter, Set<VertexImpl> vertices) {
+        Set<VertexImpl> resultVertices = new HashSet<>();
+        for (VertexImpl vertex : vertices) {
             boolean filterPassed = true;
-            AttributeFilter attributeFilter = filter.getVertexAttributeFilter(vertex.archetypeIndex);
+            AttributeFilter attributeFilter = filter.getVertexAttributeFilter(vertex.getArchetype());
             if (attributeFilter != null) {
                 // Iterate through all attributes of the vertex
-                for (int attributeIndex : vertex.attributes.keySet()) {
-                    Attribute vertexAttribute = vertex.attributes.get(attributeIndex);
+                for (int attributeIndex : vertex.getAttributesMap().keySet()) {
+                    Attribute vertexAttribute = vertex.getAttributesMap().get(attributeIndex);
 
                     filterPassed = (filterPassed && checkAttributeFiltersPassed(vertexAttribute, attributeFilter, attributeIndex));
                     if (!filterPassed) break;   // filter did not pass
@@ -328,15 +326,15 @@ public class GraphManager {
      * @param edges - List of edges for filtration.
      * @return - List of edges filtered by attribute.
      */
-    private List<EdgeData> getEdgesByAttributeFilter(GraphFilter filter, List<EdgeData> edges) {
-        List<EdgeData> resultEdges = new ArrayList<>();
-        for (EdgeData edge : edges) {
+    private List<EdgeImpl> getEdgesByAttributeFilter(GraphFilter filter, List<EdgeImpl> edges) {
+        List<EdgeImpl> resultEdges = new ArrayList<>();
+        for (EdgeImpl edge : edges) {
             boolean filterPassed = true;
-            AttributeFilter attributeFilter = filter.getEdgeAttributeFilter(edge.archetypeIndex);
+            AttributeFilter attributeFilter = filter.getEdgeAttributeFilter(edge.getArchetype());
             if (attributeFilter != null) {
                 // Iterate through all attributes of the edge
-                for (int attributeIndex : edge.attributes.keySet()) {
-                    Attribute edgeAttribute = edge.attributes.get(attributeIndex);
+                for (int attributeIndex : edge.getAttributesMap().keySet()) {
+                    Attribute edgeAttribute = edge.getAttributesMap().get(attributeIndex);
 
                     filterPassed = (filterPassed && checkAttributeFiltersPassed(edgeAttribute, attributeFilter, attributeIndex));
                     if (!filterPassed) break;   // filter did not pass
@@ -357,7 +355,7 @@ public class GraphManager {
      * @return - true if passed the filter, else false.
      */
     private boolean checkAttributeFiltersPassed(Attribute vertexAttribute, AttributeFilter attributeFilter, int attributeIndex) {
-        AttributeDataType attributeType = attributeTypes.get(vertexAttribute.typeIndex).dataType;
+        AttributeDataType attributeType = attributeTypes.get(vertexAttribute.getTypeIndex()).dataType;
 
         boolean filterPassed;
         ITypeAttributeFilter typeFilter = null;
@@ -379,7 +377,7 @@ public class GraphManager {
             return true;
         }
 
-        filterPassed = typeFilter.filter(vertexAttribute.value);
+        filterPassed = typeFilter.filter(vertexAttribute.getValue());
 
         return filterPassed;
     }
@@ -390,8 +388,8 @@ public class GraphManager {
      * @param filter - Filter to be applied to the vertices.
      * @return A list of vertices filtered by the specified filter object.
      */
-    private HashSet<VertexData> getVerticesByArchetypeFilter(GraphFilter filter) {
-        HashSet<VertexData> resultVertices = new HashSet<>();
+    private HashSet<VertexImpl> getVerticesByArchetypeFilter(GraphFilter filter) {
+        HashSet<VertexImpl> resultVertices = new HashSet<>();
 
         VertexArchetypeFilter vertexArchetypeFilter = filter.getVertexArchetypeFilter();
         List<Integer> archetypesFiltered = vertexArchetypeFilter.archetypeIndeces;
@@ -423,8 +421,8 @@ public class GraphManager {
      * @param resultVertices - List of vertices which should be present in the result graph.
      * @return A list of edges filtered by the specified filter object
      */
-    private List<EdgeData> getEdgesByArchetypeFilter(GraphFilter filter, Set<VertexData> resultVertices) {
-        List<EdgeData> resultEdges = new ArrayList<>();
+    private List<EdgeImpl> getEdgesByArchetypeFilter(GraphFilter filter, Set<VertexImpl> resultVertices) {
+        List<EdgeImpl> resultEdges = new ArrayList<>();
 
         EdgeArchetypeFilter edgeArchetypeFilter = filter.getEdgeArchetypeFilter();
         List<EdgeArchetypeInfo> edgeInfosFiltered = edgeArchetypeFilter.archetypeIndeces;
@@ -445,12 +443,12 @@ public class GraphManager {
                 break;
         }
 
-        Iterator<EdgeData> i = resultEdges.iterator();
+        Iterator<EdgeImpl> i = resultEdges.iterator();
         while (i.hasNext()) {
-            EdgeData edge = i.next();
+            EdgeImpl edge = i.next();
 
-            VertexData toDummy = new VertexData(edge.to, null, null, -1);
-            VertexData fromDummy = new VertexData(edge.from, null, null, -1);
+            VertexImpl toDummy = new VertexImpl(edge.getTo(), edge.getTo(), null, -1,null);
+            VertexImpl fromDummy = new VertexImpl(edge.getFrom(), edge.getFrom(), null, -1, null);
 
             if (!resultVertices.contains(toDummy) || !resultVertices.contains(fromDummy)){
                 i.remove();
@@ -462,37 +460,32 @@ public class GraphManager {
 
     /**
      * Adds edges to graph.
+     *
+     * Edges are equal when their attributes from and to are equal. Equal edges are combined and their differences
+     * are saved in list of SubedgeInfo.
+     *
      * @param graph - graph to which add the edges
      * @param resultEdges - List of edges to add to the graph.
      */
-    private void addEdgesToGraph(GraphInterface graph, List<EdgeData> resultEdges) {
-        HashMap<EdgeData, List<SubedgeInfo>> edgeSet = new HashMap<>();
+    private void addEdgesToGraph(Graph graph, List<EdgeImpl> resultEdges) {
+        HashMap<EdgeImpl, List<SubedgeInfo>> edgeSet = new HashMap<>();
 
-        for (EdgeData edgeData : resultEdges) {
-            ArrayList<String[]> attributes = new ArrayList<>();
-            for (Attribute attr : edgeData.getSortedAttributes()) {
-                String attrName = attributeTypes.get(attr.typeIndex).name;
-                AttributeDataType attrType = attributeTypes.get(attr.typeIndex).dataType;
+        for (EdgeImpl edgeImpl : resultEdges) {
+            List<String[]> attributes = getAttributesAsArray(edgeImpl.getSortedAttributes());
+            SubedgeInfo subedgeInfo = new SubedgeInfo(edgeImpl.getOriginalId(), edgeImpl.getArchetype(), attributes);
 
-                StringBuilder attrValue = getAttributeValue(attr, attrType);
-                attributes.add(new String[]{attrName, attrValue.toString()});
-            }
-
-            SubedgeInfo subedgeInfo = new SubedgeInfo(edgeData.archetypeIndex, attributes);
-            subedgeInfo.id = edgeData.id;
-            if (edgeSet.containsKey(edgeData)) {
-                edgeSet.get(edgeData).add(subedgeInfo);
+            if (edgeSet.containsKey(edgeImpl)) {
+                edgeSet.get(edgeImpl).add(subedgeInfo);
             } else {
                 List<SubedgeInfo> subEdgeInfoList = new ArrayList<>();
                 subEdgeInfoList.add(subedgeInfo);
-                edgeSet.put(new EdgeData(edgeData.id, edgeData.from, edgeData.to, edgeData.text, edgeData.archetypeIndex), subEdgeInfoList);
+                edgeSet.put(edgeImpl, subEdgeInfoList);
             }
         }
 
         int idCounter = 1;
-        for (EdgeData edgeData : edgeSet.keySet()) {
-            EdgeImpl edge = new EdgeImpl(idCounter++, "" + edgeData.from, "" + edgeData.to, true, "[]");
-            edge.setSubedgeInfo(edgeSet.get(edgeData));
+        for (EdgeImpl edgeImpl : edgeSet.keySet()) {
+            Edge edge = new Edge(idCounter++, edgeImpl.getFrom(), edgeImpl.getTo(), edgeImpl.getText(), edgeSet.get(edgeImpl));
             graph.addEdge(edge);
         }
         graph.setVertexArchetypes(vertexArchetypes);
@@ -504,31 +497,31 @@ public class GraphManager {
      * @param graph - Graph to which add the vertices.
      * @param resultVertices - List of vertices to add to the graph.
      */
-    private void addVerticesToGraph(GraphInterface graph, Set<VertexData> resultVertices) {
+    private void addVerticesToGraph(Graph graph, Set<VertexImpl> resultVertices) {
         int idCounter = 1;
-        for (VertexData vertexData : resultVertices) {
-            VertexArchetype archetype = vertexArchetypes.get(vertexData.archetypeIndex);
-            VertexInterface vertex = new VertexImpl(idCounter++, archetype.name + ":" + vertexData.title, "" + vertexData.id);
+        for (VertexImpl vertexImpl : resultVertices) {
 
-            ArrayList<String> attributeStrings = new ArrayList<>();
-            ArrayList<String[]> attributes = new ArrayList<>();
-            for (Attribute attr : vertexData.getSortedAttributes()) {
-                String attrName = attributeTypes.get(attr.typeIndex).name;
-                AttributeDataType attrType = attributeTypes.get(attr.typeIndex).dataType;
+            VertexArchetype archetype = vertexArchetypes.get(vertexImpl.getArchetype());
+            String title = archetype.name + ":" + vertexImpl.getTitle();
+            List<String[]> attributes = getAttributesAsArray(vertexImpl.getSortedAttributes());
 
-                StringBuilder attrValue;
+            Vertex vertex = new Vertex(idCounter++, vertexImpl.getOriginalId(), title, vertexImpl.getArchetype(), vertexImpl.getText(), attributes);
 
-                attrValue = getAttributeValue(attr, attrType);
-
-                attributeStrings.add(attrName + ": " + attrValue);
-                attributes.add(new String[]{attrName, attrValue.toString()});
-            }
-
-            vertex.setExportedPackages(attributeStrings);
-            vertex.setArchetype(vertexData.archetypeIndex);
-            vertex.setAttributes(attributes);
-            graph.addVertex("" + vertexData.id, vertex);
+            graph.addVertex("" + vertexImpl.getId(), vertex);
         }
+    }
+
+    private List<String[]> getAttributesAsArray(List<Attribute> sortedAttributes) {
+        ArrayList<String[]> attributes = new ArrayList<>();
+
+        for (Attribute attr : sortedAttributes) {
+            String attrName = attributeTypes.get(attr.getTypeIndex()).name;
+            AttributeDataType attrType = attributeTypes.get(attr.getTypeIndex()).dataType;
+
+            StringBuilder attrValue = getAttributeValue(attr, attrType);
+            attributes.add(new String[]{attrName, attrValue.toString()});
+        }
+        return attributes;
     }
 
     /**
@@ -541,14 +534,14 @@ public class GraphManager {
         StringBuilder attrValue;
         switch (attrType) {
             case NUMBER:
-                attrValue = new StringBuilder(attr.value.toString());
+                attrValue = new StringBuilder(attr.getValue().toString());
                 break;
             case DATE:
-                attrValue = new StringBuilder(attr.value.toString());
+                attrValue = new StringBuilder(attr.getValue().toString());
                 break;
             case ENUM: // Enum attribute type must be a list of integers!
-                List<Integer> valuePositions = (List<Integer>) attr.value;
-                List<String> values = getEnumStringsForAttrIndex(attr.typeIndex, valuePositions);
+                List<Integer> valuePositions = (List<Integer>) attr.getValue();
+                List<String> values = getEnumStringsForAttrIndex(attr.getTypeIndex(), valuePositions);
 
                 attrValue = new StringBuilder();
                 for (int j = 0; j < values.size(); j++) {
@@ -558,7 +551,7 @@ public class GraphManager {
                 }
                 break;
             default:
-                attrValue = new StringBuilder(attr.value.toString());
+                attrValue = new StringBuilder(attr.getValue().toString());
                 break;
         }
         return attrValue;

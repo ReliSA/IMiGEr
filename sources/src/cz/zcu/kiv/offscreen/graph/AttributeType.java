@@ -1,10 +1,15 @@
-package cz.zcu.kiv.offscreen;
+package cz.zcu.kiv.offscreen.graph;
 
-import cz.zcu.kiv.offscreen.graph.GraphManager;
-
+/**
+ * Class represents one attribute type which is used in input JSON file and in output JSON file (file between frontend
+ * and backend).
+ */
 public class AttributeType {
+    /** name of attribute */
     public String name;
+    /** data type of attribute */
     public GraphManager.AttributeDataType dataType;
+    /** additional info */
     public String text;
 
     public AttributeType(String name, GraphManager.AttributeDataType dataType, String text) {
@@ -19,5 +24,9 @@ public class AttributeType {
 
     public GraphManager.AttributeDataType getDataType() {
         return dataType;
+    }
+
+    public String getText() {
+        return text;
     }
 }

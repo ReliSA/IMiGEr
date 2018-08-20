@@ -1,7 +1,5 @@
 package cz.zcu.kiv.offscreen.loader.configuration;
 
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
 import javax.servlet.ServletContext;
 

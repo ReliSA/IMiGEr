@@ -1,101 +1,85 @@
 package cz.zcu.kiv.offscreen.graph;
 
-import cz.zcu.kiv.offscreen.api.EdgeInterface;
-import java.util.LinkedList;
-import java.util.List;
-import org.apache.log4j.Logger;
+import cz.zcu.kiv.offscreen.api.BaseEdge;
+
+import java.util.*;
 
 /**
- * This class represents edge.
- *
- * @author Jindra Pavlíková
+ * Class represents edge which is used for input JSON format.
  */
-public class EdgeImpl implements EdgeInterface {
+public class EdgeImpl extends BaseEdge {
 
-    private int edgeId;
-    private String from;
-    private String to;
-    private List<String> packageConnections;
-    private boolean isCompatible;
-    private List<SubedgeInfo> subedgeInfo;
-    private String compInfoJSON;
-    private Logger logger = Logger.getLogger(EdgeImpl.class);
+    /** original identification number which is defined in input file */
+    private int originalId;
+    /** index of edge archetype */
+    private int archetypeIndex;
+    /** Map contains attributes stored in key value format. Key is index to array of attribute types defined in input file */
+    private Map<Integer, Attribute> attributesMap;
 
     /**
-     * Inicialization of edge.
-     *
-     * @param edgeId id of edge
-     * @param from name of vertex which leads from the edge
-     * @param to name of vertex which leads to the edge
+     * Create new edge.
+     * @param id new generated identification number
+     * @param from original ID of vertex from edge leads
+     * @param to original ID of vertex where edge leads
+     * @param text additional info
+     * @param originalId original identification number which is defined in input file
+     * @param archetypeIndex index of edge archetype
      */
-    public EdgeImpl(int edgeId, String from, String to, boolean isCompatible, String compInfoJSON) {
-        logger.trace("ENTRY");
-        this.edgeId = edgeId;
-        this.from = from;
-        this.to = to;
-        this.packageConnections = new LinkedList<String>();
-        this.isCompatible = isCompatible;
-        this.compInfoJSON = compInfoJSON;
-        logger.trace("EXIT");
+    public EdgeImpl(int id, int from, int to, String text, int originalId, int archetypeIndex) {
+        super(id, from, to, text);
+        this.originalId = originalId;
+        this.archetypeIndex = archetypeIndex;
+        this.attributesMap = new HashMap<>();
     }
 
-    @Override
-    public String getFrom() {
-        logger.trace("ENTRY");
-        logger.trace("EXIT");
-        return from;
-
+    public Attribute getAttribute(int attrTypeIndex) {
+        return attributesMap.get(attrTypeIndex);
     }
 
-    @Override
-    public String getTo() {
-        logger.trace("ENTRY");
-        logger.trace("EXIT");
-        return to;
+    public Map<Integer, Attribute> getAttributesMap() {
+        return attributesMap;
     }
 
-    @Override
-    public int getId() {
-        logger.trace("ENTRY");
-        logger.trace("EXIT");
-        return edgeId;
+
+    public int getOriginalId() {
+        return originalId;
     }
 
-    @Override
-    public List<SubedgeInfo> getSubedgeInfo() {
-        return subedgeInfo;
+
+    public int getArchetype() {
+        return archetypeIndex;
     }
 
-    @Override
-    public void setSubedgeInfo(List<SubedgeInfo> subedgeInfo) {
-        this.subedgeInfo = subedgeInfo;
+
+    public void addAttribute(int attrTypeIndex, Object value) {
+        Attribute attr = new Attribute(attrTypeIndex, value);
+        attributesMap.put(attrTypeIndex, attr);
     }
 
-    @Override
-    public boolean equals(Object edge) {
-        if (!(edge instanceof EdgeImpl)) return false;
-        EdgeImpl cmpEdge = (EdgeImpl) edge;
-        return from.equals(cmpEdge.from) && to.equals(cmpEdge.to);
+    public void addAttributes(Map<Integer, Attribute> attributes) {
+        this.attributesMap.putAll(attributes);
     }
 
-    public List<String> getPackageConnections() {
-        logger.trace("ENTRY");
-        logger.trace("EXIT");
-        return this.packageConnections;
+    public void setOriginalId(int originalId) {
+        this.originalId = originalId;
     }
 
-    public void setPackageConnections(List<String> packageConnections) {
-        logger.trace("ENTRY");
-        this.packageConnections = packageConnections;
-        logger.trace("EXIT");
+    public void setArchetypeIndex(int archetypeIndex) {
+        this.archetypeIndex = archetypeIndex;
     }
-    
-    public boolean getIsCompatible() {
-        return isCompatible;
+
+    /**
+     * Return list of attributes sorted by their key value in {@code attributeMap}
+     * @return sorted list
+     */
+    public List<Attribute> getSortedAttributes() {
+        List<Attribute> list = new ArrayList<>();
+        ArrayList<Integer> indices = new ArrayList<>(attributesMap.keySet());
+        //indices.sort(Integer::compareTo);
+        Collections.sort(indices);
+        for (Integer index : indices) {
+            list.add(attributesMap.get(index));
+        }
+        return list;
     }
-    
-    public String getCompInfoJSON() {
-        return compInfoJSON;
-    }
-   
 }

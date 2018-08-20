@@ -1,56 +1,57 @@
-package cz.zcu.kiv.offscreen.graph;
+package cz.zcu.kiv.offscreen.api;
 
-import cz.zcu.kiv.offscreen.AttributeType;
-import cz.zcu.kiv.offscreen.api.EdgeInterface;
-import cz.zcu.kiv.offscreen.api.GraphInterface;
-import cz.zcu.kiv.offscreen.api.VertexInterface;
+import cz.zcu.kiv.offscreen.graph.EdgeArchetype;
+import cz.zcu.kiv.offscreen.graph.Graph;
+import cz.zcu.kiv.offscreen.graph.VertexArchetype;
+import cz.zcu.kiv.offscreen.graph.AttributeType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
 /**
- *
- * @author Jindra Pavlíková <jindra.pav2@seznam.cz>
+ * Class represents graph with all information about graph plus information about state in which used store graph.
+ * Class is used for creating of JSON which is send to frontend.
  */
 public class GraphExport {
 
-    private List<VertexInterface> vertices;
-    private List<EdgeInterface> edges;
+    private List<Vertex> vertices;
+    private List<Edge> edges;
     private List<VertexArchetype> vertexArchetypes;
     private List<EdgeArchetype> edgeArchetypes;
     private List<AttributeType> attributeTypes;
     private Map<String, List<String>> possibleEnumValues;
     private Map<String, String> archetypeIcons;
-    private List<Integer> defaultGroupArchetypes;
+
+    private List<Group> groups;
+    private List<Position> positions;
+    private List<SideBar> sideBar;
+    private int selectedVertex;
+    private int selectedEdge;
 
     private Logger logger = Logger.getLogger(GraphExport.class);
 
-    public GraphExport(GraphInterface graph) {
+    public GraphExport(Graph graph) {
         logger.trace("ENTRY");
-        this.vertices = new ArrayList<VertexInterface>(graph.getVertices().values());
-        this.edges = new ArrayList<EdgeInterface>(graph.getEdges());
+        this.vertices = new ArrayList<Vertex>(graph.getVertices().values());
+        this.edges = new ArrayList<Edge>(graph.getEdges());
         this.vertexArchetypes = new ArrayList<VertexArchetype>(graph.getVertexArchetypes());
         this.edgeArchetypes = new ArrayList<EdgeArchetype>(graph.getEdgeArchetypes());
         this.attributeTypes = new ArrayList<>(graph.getAttributeTypes());
         this.possibleEnumValues = graph.getPossibleEnumValues();
         this.archetypeIcons = graph.getArchetypeIcons();
-        this.defaultGroupArchetypes = graph.getDefaultGroupArchetypes();
         logger.trace("EXIT");
     }
 
-    public List<EdgeInterface> getEdges() {
+    public List<Edge> getEdges() {
         logger.trace("ENTRY");
         logger.trace("EXIT");
         return edges;
     }
 
-    public List<VertexInterface> getVertices() {
+    public List<Vertex> getVertices() {
         logger.trace("ENTRY");
         logger.trace("EXIT");
         return vertices;
@@ -76,7 +77,23 @@ public class GraphExport {
         return archetypeIcons;
     }
 
-    public List<Integer> getDefaultGroupArchetypes() {
-        return defaultGroupArchetypes;
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
+    }
+
+    public List<SideBar> getSideBar() {
+        return sideBar;
+    }
+
+    public int getSelectedVertex() {
+        return selectedVertex;
+    }
+
+    public int getSelectedEdge() {
+        return selectedEdge;
     }
 }
