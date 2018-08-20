@@ -5,25 +5,32 @@
  */
 function EdgePopover() {
 	var rootElement;
-	var popoverContentElement;
+	var detailsListElement;
 
 	/**
-	 * Sets compatibility information held by the edge.
-	 * @param {object} compatibilityInfo Compatibility information of the edge.
+	 * Sets the contents of the popover.
+	 * @param {array} subedgeInfoList List of various edge information.
 	 */
-	this.setContent = function(compatibilityInfo) {
-		popoverContentElement.appendChild(createHtmlTree(compatibilityInfo));
+	this.setContent = function(subedgeInfoList) {
+		if (subedgeInfoList.length === 0) return;
 
-		$.jstree.create(popoverContentElement, {
-			core : {
-				'animation': 25,
-			},
-			themes : {
-				'theme': 'classic',
-				'dots': true,
-				'icons': false,
-			},
-			plugins : [ 'themes', 'html_data' ],
+		subedgeInfoList.filter(function(subedgeInfo) {
+			return subedgeInfo.attributes.length > 0;
+		}).forEach(function(subedgeInfo) {
+			var listItem = app.dom.createHtmlElement('li', {});
+			listItem.appendChild(app.dom.createTextElement(app.archetype.edge[subedgeInfo.archetype].name));
+
+			var sublist = app.dom.createHtmlElement('ul', {});
+			listItem.appendChild(sublist);
+
+			detailsListElement.appendChild(listItem);
+
+			subedgeInfo.attributes.forEach(function(attribute) {
+				var listItem = app.dom.createHtmlElement('li', {});
+				listItem.appendChild(app.dom.createTextElement(`${attribute[0]}: ${attribute[1]}`));
+
+				sublist.appendChild(listItem);
+			});
 		});
 	};
 
@@ -49,9 +56,7 @@ function EdgePopover() {
 	this.close = function() {
 		rootElement.classList.add('hidden');
 
-		$.jstree.destroy(popoverContentElement);
-
-		popoverContentElement.innerHTML = '';
+		detailsListElement.innerHTML = '';
 	};
 
 	/**
@@ -69,13 +74,16 @@ function EdgePopover() {
 		var popoverTitle = app.utils.createHtmlElement('span', {
 			'class': 'popover-title',
 		});
-		popoverTitle.appendChild(document.createTextNode('Incompatibility details'));
+		popoverTitle.appendChild(document.createTextNode('Edge details'));
 		rootElement.appendChild(popoverTitle);
 
-		popoverContentElement = app.utils.createHtmlElement('div', {
+		var popoverContent = app.utils.createHtmlElement('div', {
 			'class': 'popover-content',
 		});
-		rootElement.appendChild(popoverContentElement);
+		rootElement.appendChild(popoverContent);
+
+		detailsListElement = app.utils.createHtmlElement('ul', {});
+		popoverContent.appendChild(detailsListElement);
 
 		return rootElement;
 	};
@@ -86,87 +94,6 @@ function EdgePopover() {
 	 */
 	function stopPropagation(e) {
 		e.stopPropagation();
-	}
-
-	/**
-	 * Creates a new list displaying the compatibility information as tree in memory.
-	 * @param {array<object>} compatibilityInfoList List of compatibility information held by the edge.
-	 * @returns {Element} HTML DOM element.
-	 */
-	function createHtmlTree(compatibilityInfoList) {
-		var incompatibilityNameList = [];
-		var list = app.utils.createHtmlElement('ul', {});
-
-		compatibilityInfoList.forEach(function(compatibilityInfo) {
-			if (compatibilityInfo.incomps.length === 0) return;
-
-			compatibilityInfo.incomps.forEach(function(incompatibility) {
-				if (!incompatibility.desc.isIncompCause && incompatibility.subtree.length === 0) return;
-
-				if (incompatibilityNameList.indexOf(incompatibility.desc.name) > -1) return;
-				incompatibilityNameList.push(incompatibility.desc.name);
-
-				var label;
-				if (incompatibility.desc.isIncompCause) {
-					label = app.dom.htmlStringToElement(`<span>${incompatibility.desc.incompName}</span>`);
-				} else {
-					label = document.createTextNode(incompatibility.desc.name);
-				}
-
-				var listItem = app.utils.createHtmlElement('li', {});
-				listItem.appendChild(label);
-				list.appendChild(listItem);
-
-				var subList = app.utils.createHtmlElement('ul', {});
-				listItem.appendChild(subList);
-
-				appendHtmlSubtree(subList, incompatibility.subtree);
-			});
-		});
-
-		return list;
-	}
-
-	/**
-	 * Appends a new list item displaying a single incompatibility to the list passed as a parameter.
-	 * @param {Element} list HTML DOM element to append this tree to.
-	 * @param {array<object>} incompatibilityList List of incompatibility information.
-	 */
-	function appendHtmlSubtree(list, incompatibilityList) {
-		incompatibilityList.forEach(function(incompatibility) {
-			if (!incompatibility.desc.isIncompCause && incompatibility.subtree.length === 0) return;
-
-			var label;
-			if (incompatibility.desc.isIncompCause) {
-				label = app.dom.htmlStringToElement(`<span>${incompatibility.desc.incompName}</span>`);
-			} else {
-				label = document.createTextNode(incompatibility.desc.name);
-			}
-
-			var listItem = app.utils.createHtmlElement('li', {});
-			listItem.appendChild(label);
-			list.appendChild(listItem);
-
-			if (incompatibility.desc.isIncompCause && incompatibility.desc.difference !== 'DEL') {
-				var subList = app.utils.createHtmlElement('ul', {});
-				listItem.appendChild(subList);
-
-				var subListItemProvided = app.utils.createHtmlElement('li', {});
-				subListItemProvided.appendChild(app.dom.htmlStringToElement(`<span><img src="images/efp_qtip/provided.png"> <span class="second">${incompatibility.desc.objectNameSecond}</span></span>`));
-				subList.appendChild(subListItemProvided);
-
-				var subListItemRequired = app.utils.createHtmlElement('li', {});
-				subListItemRequired.appendChild(app.dom.htmlStringToElement(`<span><img src="images/efp_qtip/required.png"> <span class="first">${incompatibility.desc.objectNameFirst}</span></span>`));
-				subList.appendChild(subListItemRequired);
-			}
-
-			if (incompatibility.subtree.length !== 0) {
-				var subList = app.utils.createHtmlElement('ul', {});
-				listItem.appendChild(subList);
-
-				appendHtmlSubtree(subList, incompatibility.subtree);
-			}
-		});
 	}
 
 }

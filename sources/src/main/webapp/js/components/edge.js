@@ -6,6 +6,8 @@
 function Edge(props) {
 	/** @prop {integer} id Unique identifier of the edge. */
 	this.id = props.id;
+	/** @prop {integer} archetype Archetype of the edge. */
+	this.archetype = app.archetype.edge[props.subedgeInfo.archetype];
 
 	var rootElement;
 
@@ -241,6 +243,9 @@ function Edge(props) {
 	 * @param {Event} e Click event.
 	 */
 	function click(e) {
+		app.viewportComponent.edgePopoverComponent.setContent(props.subedgeInfo);
+		app.viewportComponent.edgePopoverComponent.setPosition(new Coordinates(e.clientX, e.clientY));
+		app.viewportComponent.edgePopoverComponent.open();
 
 		// unhighlight other edges
 		app.edgeList.filter(function(edge) {
