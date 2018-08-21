@@ -1,10 +1,9 @@
 package cz.zcu.kiv.imiger.tests.backend;
 
-import cz.zcu.kiv.offscreen.api.EdgeInterface;
-import cz.zcu.kiv.offscreen.api.GraphInterface;
-import cz.zcu.kiv.offscreen.graph.EdgeImpl;
+import cz.zcu.kiv.offscreen.api.Edge;
+import cz.zcu.kiv.offscreen.api.SubedgeInfo;
+import cz.zcu.kiv.offscreen.graph.Graph;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
-import cz.zcu.kiv.offscreen.graph.SubedgeInfo;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
 import org.junit.jupiter.api.Assertions;
@@ -37,138 +36,138 @@ public class GraphFilterTest {
 
     @Test
     void testFilter1a() {
-        GraphInterface graph = createGraph("test1a.json");
+        Graph graph = createGraph("test1a.json");
 
-        List<String> vertexIds = new ArrayList<>();
-        vertexIds.add("32");
-        vertexIds.add("9");
-        vertexIds.add("1");
-        vertexIds.add("2");
+        List<Integer> vertexIds = new ArrayList<>();
+        vertexIds.add(32);
+        vertexIds.add(9);
+        vertexIds.add(1);
+        vertexIds.add(2);
 
-        List<EdgeInterface> edges = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
 
         List<SubedgeInfo> subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(117));
-        edges.add(createTestEdge("1", "32", subedgeInfos));
+        edges.add(createTestEdge(1, 32, subedgeInfos));
 
         subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(10));
-        edges.add(createTestEdge("1", "9", subedgeInfos));
+        edges.add(createTestEdge(1, 9, subedgeInfos));
 
         subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(8));
-        edges.add(createTestEdge("2", "9", subedgeInfos));
+        edges.add(createTestEdge(2, 9, subedgeInfos));
 
         graphContains(graph, vertexIds, edges);
     }
 
     @Test
     void testFilter1b() {
-        GraphInterface graph = createGraph("test1b.json");
+        Graph graph = createGraph("test1b.json");
 
-        List<String> vertexIds = new ArrayList<>();
-        vertexIds.add("2");
-        vertexIds.add("9");
-        vertexIds.add("18");
+        List<Integer> vertexIds = new ArrayList<>();
+        vertexIds.add(2);
+        vertexIds.add(9);
+        vertexIds.add(18);
 
-        List<EdgeInterface> edges = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
 
         List<SubedgeInfo> subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(9));
-        edges.add(createTestEdge("9", "2", subedgeInfos));
+        edges.add(createTestEdge(9, 2, subedgeInfos));
 
         subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(86));
-        edges.add(createTestEdge("18", "2", subedgeInfos));
+        edges.add(createTestEdge(18, 2, subedgeInfos));
 
         graphContains(graph, vertexIds, edges);
     }
 
     @Test
     void testFilter1c() {
-        GraphInterface graph = createGraph("test1c.json");
+        Graph graph = createGraph("test1c.json");
 
-        List<String> vertexIds = new ArrayList<>();
-        vertexIds.add("2");
-        vertexIds.add("18");
-        vertexIds.add("32");
+        List<Integer> vertexIds = new ArrayList<>();
+        vertexIds.add(2);
+        vertexIds.add(18);
+        vertexIds.add(32);
 
-        List<EdgeInterface> edges = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
 
         List<SubedgeInfo> subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(79));
-        edges.add(createTestEdge("2", "18", subedgeInfos));
+        edges.add(createTestEdge(2, 18, subedgeInfos));
 
         subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(86));
-        edges.add(createTestEdge("18", "2", subedgeInfos));
+        edges.add(createTestEdge(18, 2, subedgeInfos));
 
         graphContains(graph, vertexIds, edges);
     }
 
     @Test
     void testFilter1d() {
-        GraphInterface graph = createGraph("test1d.json");
+        Graph graph = createGraph("test1d.json");
 
-        List<String> vertexIds = new ArrayList<>();
-        vertexIds.add("1");
-        vertexIds.add("9");
-        vertexIds.add("32");
+        List<Integer> vertexIds = new ArrayList<>();
+        vertexIds.add(1);
+        vertexIds.add(9);
+        vertexIds.add(32);
 
-        List<EdgeInterface> edges = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
 
         List<SubedgeInfo> subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(10));
-        edges.add(createTestEdge("1", "9", subedgeInfos));
+        edges.add(createTestEdge(1, 9, subedgeInfos));
 
         subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(117));
-        edges.add(createTestEdge("1", "32", subedgeInfos));
+        edges.add(createTestEdge(1, 32, subedgeInfos));
 
         graphContains(graph, vertexIds, edges);
     }
 
     @Test
     void testFilter1e() {
-        GraphInterface graph = createGraph("test1e.json");
+        Graph graph = createGraph("test1e.json");
 
-        List<String> vertexIds = new ArrayList<>();
-        vertexIds.add("1");
-        vertexIds.add("32");
-        vertexIds.add("9");
+        List<Integer> vertexIds = new ArrayList<>();
+        vertexIds.add(1);
+        vertexIds.add(32);
+        vertexIds.add(9);
 
-        List<EdgeInterface> edges = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
 
         List<SubedgeInfo> subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(11));
-        edges.add(createTestEdge("9", "1", subedgeInfos));
+        edges.add(createTestEdge(9, 1, subedgeInfos));
 
         subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(117));
-        edges.add(createTestEdge("1", "32", subedgeInfos));
+        edges.add(createTestEdge(1, 32, subedgeInfos));
 
         graphContains(graph, vertexIds, edges);
     }
 
     @Test
     void testFilter1f() {
-        GraphInterface graph = createGraph("test1f.json");
+        Graph graph = createGraph("test1f.json");
 
-        List<String> vertexIds = new ArrayList<>();
-        vertexIds.add("1");
-        vertexIds.add("2");
-        vertexIds.add("18");
+        List<Integer> vertexIds = new ArrayList<>();
+        vertexIds.add(1);
+        vertexIds.add(2);
+        vertexIds.add(18);
 
-        List<EdgeInterface> edges = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
 
         List<SubedgeInfo> subedgeInfos = new ArrayList<>();
         subedgeInfos.add(createTestSubEdge(86));
-        edges.add(createTestEdge("18", "2", subedgeInfos));
+        edges.add(createTestEdge(18, 2, subedgeInfos));
 
         graphContains(graph, vertexIds, edges);
     }
 
-    private GraphInterface createGraph(String configFilename) {
+    private Graph createGraph(String configFilename) {
         String configLocation = testDirectory + "\\config";
         JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
         JSONConfigLoader.configFilename = configFilename;
@@ -176,17 +175,11 @@ public class GraphFilterTest {
     }
 
     private SubedgeInfo createTestSubEdge(int id) {
-        SubedgeInfo subedge = new SubedgeInfo(0, null);
-        subedge.id = id;
-
-        return subedge;
+        return new SubedgeInfo(id,0, null);
     }
 
-    private EdgeInterface createTestEdge(String from, String to, List<SubedgeInfo> subedges) {
-        EdgeInterface edge = new EdgeImpl(0, from, to, false, "");
-        edge.setSubedgeInfo(subedges);
-
-        return edge;
+    private Edge createTestEdge(int from, int to, List<SubedgeInfo> subedges) {
+        return new Edge(0, from, to, "", subedges);
     }
 
     /**
@@ -195,20 +188,20 @@ public class GraphFilterTest {
      * @param vertexIds - vertices, that graph must contain in order to pass the test.
      * @param edges - edges, that graph must contain in order to pass the test.
      */
-    private void graphContains(GraphInterface graph, List<String> vertexIds, List<EdgeInterface> edges) {
+    private void graphContains(Graph graph, List<Integer> vertexIds, List<Edge> edges) {
         Assertions.assertEquals(graph.getVertices().size(), vertexIds.size());
         Assertions.assertEquals(graph.getEdges().size(), edges.size());
 
         // Vertices
-        for (String vertexId : graph.getVertices().keySet()) {
+        for (int vertexId : graph.getVertices().keySet()) {
             Assertions.assertTrue(vertexIds.contains(vertexId));
         }
 
         // Edges
-        for (EdgeInterface edge : graph.getEdges()) {
+        for (Edge edge : graph.getEdges()) {
             Assertions.assertTrue(edges.contains(edge));
 
-            EdgeInterface edgeCmp = edges.get(edges.indexOf(edge));
+            Edge edgeCmp = edges.get(edges.indexOf(edge));
             Assertions.assertEquals(edge.getSubedgeInfo().size(), edgeCmp.getSubedgeInfo().size());
 
             for (SubedgeInfo subedgeInfo : edge.getSubedgeInfo()) {
@@ -225,7 +218,7 @@ public class GraphFilterTest {
      */
     private boolean containsSubedgeWithId(SubedgeInfo subedgeInfo, List<SubedgeInfo> subedgeInfos) {
         for (SubedgeInfo s : subedgeInfos) {
-            if (s.id == subedgeInfo.id) {
+            if (s.getOriginalId() == subedgeInfo.getOriginalId()) {
                 return true;
             }
         }
