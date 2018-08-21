@@ -1,0 +1,4 @@
+Vertices - ids: 2, 18, 32
+Edges 	- from: 2, to: 18, ids: 79
+	- from: 18, to: 2, ids: 86
+	
