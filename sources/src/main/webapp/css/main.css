@@ -584,25 +584,16 @@ body {
     display: inline-block;
 }
 
-.sidebar .node .required-counter,
-.sidebar .node .provided-counter {
-	fill: white;
+.sidebar .node .related-archetype > text {
+	font-size: 0.8em;
+}
+
+.sidebar .node .related-archetype > g {
+	dominant-baseline: central;
+}
+
+.sidebar .node .related-archetype > line {
 	stroke: #000;
-	stroke-width: 1;
-}
-
-.sidebar .node .required-counter > text,
-.sidebar .node .provided-counter > text {
-	fill: #000;
-	stroke-width: 0;
-}
-
-.sidebar .node--highlighted-required-neighbours .required-counter .lollipop {
-	fill: red;
-}
-
-.sidebar .node--highlighted-provided-neighbours .provided-counter .lollipop {
-    fill: #5896ff;
 }
 
 .sidebar .group {

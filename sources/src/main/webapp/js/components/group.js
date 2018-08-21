@@ -32,6 +32,7 @@ function Group(props) {
 	var dimmed = false;
 
 	var vertexList = [];
+	var relatedArchetypeMap = {};
 
 	/**
 	 * Adds a new vertex to the group. The vertex is set as excluded and its DOM element is removed from document. Its edges are moved so that they end at the group.
@@ -149,6 +150,13 @@ function Group(props) {
 	 */
 	this.getEdgeList = function() {
 		return [].concat(this.getInEdgeList(), this.getOutEdgeList());
+	};
+
+	/**
+	 * @returns {object} Map with archetype indexes as keys and counters of their instances as values.
+	 */
+	this.getRelatedArchetypeMap = function() {
+		return relatedArchetypeMap;
 	};
 
 	/**

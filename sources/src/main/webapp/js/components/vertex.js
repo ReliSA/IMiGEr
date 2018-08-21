@@ -506,11 +506,11 @@ function Vertex(props) {
 		});
 		rootElement.appendChild(relatedArchetypeListContainer);
 
-		var i = 0;
+		var archetypeIconOrder = 0;
 		for (var archetypeIndex in relatedArchetypeMap) {
 			var relatedArchetype = app.utils.createSvgElement('g', {
 				'class': 'related-archetype',
-				'transform': `translate(${i * relatedArchetypeIconWidth}, 8)`,
+				'transform': `translate(${archetypeIconOrder * relatedArchetypeIconWidth}, 8)`,
 			});
 			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
 
@@ -518,7 +518,7 @@ function Vertex(props) {
 
 			relatedArchetypeListContainer.appendChild(relatedArchetype);
 
-			i++;
+			archetypeIconOrder++;
 		}
 
 		// symbol list
@@ -548,25 +548,42 @@ function Vertex(props) {
 		});
 		rootElement.appendChild(svg);
 
-		var group = app.dom.createSvgElement('g', {
-			'transform': 'translate(60,10)',
+		// related archetypes
+		var relatedArchetypesGroup = app.dom.createSvgElement('g', {
+			'transform': 'translate(10, 15)',
 		});
-		svg.appendChild(group);
+		svg.appendChild(relatedArchetypesGroup);
 
-		// related
-		var i = 0;
+		var archetypeIconOrder = 0;
 		for (var archetypeIndex in relatedArchetypeMap) {
 			var relatedArchetype = app.dom.createSvgElement('g', {
 				'class': 'related-archetype',
-				'transform': `translate(0, ${i * 20})`,
-		});
-			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
+				'transform': `translate(0, ${archetypeIconOrder * 20})`,
+			});
+			relatedArchetypesGroup.appendChild(relatedArchetype);
 
-			relatedArchetype.innerHTML = app.archetype.icon[app.archetype.vertex[archetypeIndex].name];
+			// counter
+			var relatedArchetypeCounter = app.dom.createSvgElement('text', {});
+			relatedArchetypeCounter.appendChild(app.dom.createTextElement(relatedArchetypeMap[archetypeIndex]));
+			relatedArchetype.appendChild(relatedArchetypeCounter);
 
-			group.appendChild(relatedArchetype);
+			// icon
+			var relatedArchetypeIcon = app.dom.createSvgElement('g', {
+				'transform': `translate(15, -10)`,
+			});
+			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
+			relatedArchetypeIcon.innerHTML = app.archetype.icon[app.archetype.vertex[archetypeIndex].name];
+			relatedArchetype.appendChild(relatedArchetypeIcon);
 
-			i++;
+			// line
+			relatedArchetype.appendChild(app.dom.createSvgElement('line', {
+				'x1': 30,
+				'y1': -5,
+				'x2': 36,
+				'y2': -5,
+			}));
+
+			archetypeIconOrder++;
 		}
 
 		// name

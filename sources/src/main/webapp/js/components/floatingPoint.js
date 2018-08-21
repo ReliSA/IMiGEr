@@ -90,25 +90,34 @@ function FloatingPoint() {
 		position.y = (bbox.top - viewportPosition.y - app.headerHeight);
 
 		if (node instanceof Vertex) {
-			var inEdgeOffsetY = 15;
-			var outEdgeOffsetY = 45;
+			var edgeOffsetY = 10;
 		} else if (node instanceof Group) {
-			var inEdgeOffsetY = 40;
-			var outEdgeOffsetY = 70;
+			var edgeOffsetY = 40;
+		} else {
+			var edgeOffsetY = 0;
 		}
+
+		var archetypeList = Object.keys(node.getRelatedArchetypeMap()).map(function(archetypeIndex) {
+			return parseInt(archetypeIndex);
+		});
+		var archetypeIconOrder;
 
 		// redraw dependent edges
 		inEdgeList.forEach(function(edge) {
+			archetypeIconOrder = archetypeList.indexOf(edge.getFrom().archetype);
+
 			edge.moveEnd(new Coordinates(
 				position.x / app.zoom.scale,
-				(position.y + inEdgeOffsetY) / app.zoom.scale,
+				(position.y + edgeOffsetY + archetypeIconOrder * 20) / app.zoom.scale,
 			));
 		}, this);
 
 		outEdgeList.forEach(function(edge) {
+			archetypeIconOrder = archetypeList.indexOf(edge.getTo().archetype);
+
 			edge.moveStart(new Coordinates(
 				position.x / app.zoom.scale,
-				(position.y + outEdgeOffsetY) / app.zoom.scale,
+				(position.y + edgeOffsetY + archetypeIconOrder * 20) / app.zoom.scale,
 			));
 		}, this);
 	};
