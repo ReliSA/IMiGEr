@@ -511,7 +511,7 @@ public class GraphManager {
 
             Vertex vertex = new Vertex(lastVertexOrGroupId++, vertexImpl.getOriginalId(), title, vertexImpl.getArchetype(), vertexImpl.getText(), attributes);
 
-            graph.addVertex("" + vertexImpl.getId(), vertex);
+            graph.addVertex(vertexImpl.getId(), vertex);
         }
     }
 

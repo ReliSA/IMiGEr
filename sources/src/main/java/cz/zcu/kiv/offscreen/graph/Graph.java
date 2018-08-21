@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class Graph {
 
-    private Map<String, Vertex> vertices;
+    private Map<Integer, Vertex> vertices;
     private List<Edge> edges;
     private List<VertexArchetype> vertexArchetypes;
     private List<EdgeArchetype> edgeArchetypes;
@@ -29,7 +29,7 @@ public class Graph {
 
     public Graph() {
         logger.trace("ENTRY");
-        this.vertices = new HashMap<String, Vertex>();
+        this.vertices = new HashMap<Integer, Vertex>();
         this.edges = new LinkedList<Edge>();
         logger.trace("EXIT");
     }
@@ -91,7 +91,7 @@ public class Graph {
         return archetypeIcons;
     }
 
-    public Map<String, Vertex> getVertices() {
+    public Map<Integer, Vertex> getVertices() {
         logger.trace("ENTRY");
         logger.trace("EXIT");
         return vertices;
@@ -103,9 +103,9 @@ public class Graph {
         logger.trace("EXIT");
     }
 
-    public void addVertex(String name, Vertex vertex) {
+    public void addVertex(int id, Vertex vertex) {
         logger.trace("ENTRY");
-        this.vertices.put(name, vertex);
+        this.vertices.put(id, vertex);
         logger.trace("EXIT");
     }
 
