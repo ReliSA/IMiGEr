@@ -80,21 +80,13 @@ function VertexContextMenuList() {
 		rootElement = app.utils.createHtmlElement('div', {
 			'class': 'context-menu hidden',
 		});
-		rootElement.addEventListener('mousedown', stopPropagation.bind(this));
+		rootElement.addEventListener('mousedown', app.utils.stopPropagation);
 
 		listElement = app.utils.createHtmlElement('ul', {});
 		rootElement.appendChild(listElement);
 
 		return rootElement;
 	};
-
-	/**
-	 * Stops propagation of the event which triggered this function to its parental elements.
-	 * @param {Event} e The event.
-	 */
-	function stopPropagation(e) {
-		e.stopPropagation();
-	}
 
 	/**
 	 * Context menu item click interaction. The vertex this context menu is bound to is either added to the group or merged 

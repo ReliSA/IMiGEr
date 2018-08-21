@@ -424,6 +424,7 @@ function Vertex(props) {
 			'data-name': this.name,
 		});
 		rootElement.addEventListener('click', click.bind(this));
+		rootElement.addEventListener('dblclick', app.utils.stopPropagation);
 		rootElement.addEventListener('contextmenu', contextMenu.bind(this));
 		rootElement.addEventListener('mousedown', mouseDown.bind(this));
 		

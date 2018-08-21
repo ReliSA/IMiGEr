@@ -59,8 +59,8 @@ function VertexPopover() {
 		rootElement = app.utils.createHtmlElement('div', {
 			'class': 'popover vertex-popover hidden',
 		});
-		rootElement.addEventListener('wheel', stopPropagation.bind(this));
-		rootElement.addEventListener('mousedown', stopPropagation.bind(this));
+		rootElement.addEventListener('wheel', app.utils.stopPropagation);
+		rootElement.addEventListener('mousedown', app.utils.stopPropagation);
 		rootElement.addEventListener('mouseleave', this.close.bind(this));
 
 		popoverTitle = app.utils.createHtmlElement('span', {
@@ -78,12 +78,4 @@ function VertexPopover() {
 
 		return rootElement;
 	};
-
-	/**
-	 * Stops propagation of the event which triggered this function to its parental elements.
-	 * @param {Event} e The event.
-	 */
-	function stopPropagation(e) {
-		e.stopPropagation();
-	}
 }

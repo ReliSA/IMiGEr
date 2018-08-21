@@ -9,6 +9,14 @@ function Utils() {
 	this.noop = function() {};
 
 	/**
+	 * Stops propagation of the mouse interaction to parental elements.
+	 * @param {MouseEvent} e Click/double-click event.
+	 */
+	this.stopPropagation = function(e) {
+		e.stopPropagation();
+	};
+
+	/**
 	 * Checks whether the variable passed as parameter is defined.
 	 * 
 	 * @param {boolean} variable Variable to be checked.
