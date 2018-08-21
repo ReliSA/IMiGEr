@@ -312,7 +312,7 @@ body {
 	stroke-width: 1;
 }
 
-.viewport .vertex--found > rect {
+.viewport .node--found > rect {
 	fill: orange;
 }
 

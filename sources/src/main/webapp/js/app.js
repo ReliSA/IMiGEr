@@ -188,25 +188,25 @@ function App() {
 
 			var found = 0;
 			
-			var vertexList = self.viewportComponent.getVertexList();
-			vertexList.forEach(function(vertex) {
-				if (!vertex.name.toLowerCase().includes(term.toLowerCase())) {
-					vertex.setFound(false);
-					return;
+			var nodeList = self.viewportComponent.getNodeList();
+			nodeList.forEach(function(node) {
+				if (!node.name.toLowerCase().includes(term.toLowerCase())) {
+					node.setFound(false);
+
+				} else {
+					node.setFound(true);
+
+					found++;
 				}
-
-				found++;
-
-				vertex.setFound(true);
 			});
 			
 			document.getElementById('countOfFound').innerText = found;
 		}
 
 		function resetSearch(e) {
-			var vertexList = self.viewportComponent.getVertexList();
-			vertexList.forEach(function(vertex) {
-				vertex.setFound(false);
+			var nodeList = self.viewportComponent.getNodeList();
+			nodeList.forEach(function(node) {
+				node.setFound(false);
 			});
 
 			document.getElementById('searchText').value = '';

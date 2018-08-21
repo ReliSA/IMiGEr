@@ -26,14 +26,15 @@ function Vertex(props) {
 
 	var pan = false;
 	var excluded = false;
-	var found = false;
-	var dimmed = false;
+	var iconsDisplayed = false;
+
 	var highlighted = false;
 	var highlightedRequired = false;
 	var highlightedProvided = false;
 	var highlightedRequiredNeighbours = false;
 	var highlightedProvidedNeighbours = false;
-	var iconsDisplayed = false;
+	var found = false;
+	var dimmed = false;
 
 	var inEdgeList = [];
 	var outEdgeList = [];
@@ -195,9 +196,9 @@ function Vertex(props) {
 		if (excluded) return;
 		
 		if (newValue) {
-			rootElement.classList.add('vertex--found');
+			rootElement.classList.add('node--found');
 		} else {
-			rootElement.classList.remove('vertex--found');
+			rootElement.classList.remove('node--found');
 		}
 	};
 

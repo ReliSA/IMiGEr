@@ -25,12 +25,14 @@ function Group(props) {
 
 	var pan = false;
 	var excluded = false;
-	var dimmed = false;
+
 	var highlighted = false;
 	var highlightedRequired = false;
 	var highlightedProvided = false;
 	var highlightedRequiredNeighbours = false;
 	var highlightedProvidedNeighbours = false;
+	var found = false;
+	var dimmed = false;
 
 	var vertexList = [];
 
@@ -213,6 +215,22 @@ function Group(props) {
 				));
 			});
 		}, this);
+	};
+
+	/**
+	 * Sets the group as found. Highlighting is skipped when the group is excluded.
+	 * @param {boolean} newValue True to mark the group as found, otherwise false.
+	 */
+	this.setFound = function(newValue) {
+		found = newValue;
+
+		if (excluded) return;
+		
+		if (newValue) {
+			rootElement.classList.add('node--found');
+		} else {
+			rootElement.classList.remove('node--found');
+		}
 	};
 
 	/**
