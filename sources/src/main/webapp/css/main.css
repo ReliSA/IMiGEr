@@ -259,20 +259,12 @@ body {
 	flex: 1;
 }
 
-.lollipop--cross > line {
-	stroke: red;
-}
-
-.lollipop--tick > line {
-	stroke: green;
-}
-
 .viewport .edge {
 	stroke: black;
     stroke-width: 1;
 }
 
-.viewport .edge .lollipop {
+.viewport .edge .arrow {
 	fill: white;
     stroke-width: 2;
 }
@@ -295,7 +287,7 @@ body {
     stroke-width: 2;
 }
 
-.viewport .edge--highlighted .lollipop {
+.viewport .edge--highlighted .arrow {
 	stroke: red;
 }
 
@@ -341,10 +333,8 @@ body {
 	fill: yellow;
 }
 
-.viewport .vertex .interface {
-    fill: white;
-    stroke: black;
-    stroke-width: 1px;
+.viewport .vertex .archetype {
+	dominant-baseline: central;
 }
 
 .context-menu {

@@ -19,8 +19,6 @@ function Group(props) {
 		width: 70,
 		height: 70,
 	};
-	var requiredCounter = 0;
-	var providedCounter = 0;
 	var floater = null;
 
 	var pan = false;
@@ -75,9 +73,6 @@ function Group(props) {
 			vertexListComponent.appendChild(vertex);
 		}
 
-		requiredCounter += vertex.getInEdgeList().length;
-		providedCounter += vertex.getOutEdgeList().length;
-
 		vertexList.push(vertex);
 	};
 
@@ -105,9 +100,6 @@ function Group(props) {
 		if (rootElement) {
 			vertexListComponent.removeChild(vertex);
 		}
-
-		requiredCounter -= vertex.getInEdgeList().length;
-		providedCounter -= vertex.getOutEdgeList().length;
 
 		vertexList.splice(vertexList.indexOf(vertex), 1);
 	};
@@ -265,7 +257,7 @@ function Group(props) {
 
 	/**
 	 * Toggles highlighting of the group to mark it as requirement of some other node.
-	 * @param {boolean} newValue True to highlight the group as required, false to unhighlight.
+	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
 	this.setHighlightedRequired = function(newValue) {
 		highlightedRequired = newValue;
@@ -279,7 +271,7 @@ function Group(props) {
 	
 	/**
 	 * Toggles highlighting of the group to mark it as dependent of some other node.
-	 * @param {boolean} newValue True to highlight the group as provided, false to unhighlight.
+	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
 	this.setHighlightedProvided = function(newValue) {
 		highlightedProvided = newValue;
@@ -457,7 +449,7 @@ function Group(props) {
 		// name
 		var nameText = app.utils.createSvgElement('text', {
 			'class': 'group-name',
-			'x': 0,
+			'x': 20,
 			'y': 15,
 		});
 		nameText.appendChild(document.createTextNode(this.name));
@@ -580,6 +572,7 @@ function Group(props) {
 		});
 		svg.appendChild(group);
 
+		/*
 		// required
 		var required = app.utils.createSvgElement('g', {
 			'class': 'required-counter',
@@ -649,6 +642,7 @@ function Group(props) {
 		});
 		providedCounterText.appendChild(document.createTextNode(providedCounter));
 		provided.appendChild(providedCounterText);
+		*/
 
 		// symbol
 		var symbolText = app.utils.createHtmlElement('span', {
@@ -761,28 +755,6 @@ function Group(props) {
 
 			rootElement.querySelector('.group-name').textContent = this.name;
 		}
-	}
-
-	/**
-	 * Highlights the group as a requirement.
-	 */
-	function requiredClick() {
-		this.setHighlighted(!highlighted);
-		this.setHighlightedRequiredNeighbours(highlighted);
-		this.setHighlightedProvidedNeighbours(false);
-
-		highlightRequiredNeighbours.call(this);
-	}
-
-	/**
-	 * Highlights the group as a dependent.
-	 */
-	function providedClick() {
-		this.setHighlighted(!highlighted);
-		this.setHighlightedRequiredNeighbours(false);
-		this.setHighlightedProvidedNeighbours(highlighted);
-
-		highlightProvidedNeighbours.call(this);
 	}
 
 	/**

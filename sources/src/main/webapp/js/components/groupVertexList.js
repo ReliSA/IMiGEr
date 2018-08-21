@@ -5,7 +5,10 @@
  * @param {Group} parentalGroup Group this vertex list is bound to.
  */
 function GroupVertexList(parentalGroup) {
+	const lineHeight = 18;
+
 	var rootElement;
+	var listItemCounter = 0;
 
 	/**
 	 * Adds a new vertex to the list. Binds user interactions to local handler functions.
@@ -16,7 +19,9 @@ function GroupVertexList(parentalGroup) {
 		if (parentalGroup.isExcluded()) {
 			listItemElement = app.utils.createHtmlElement('li', {});
 		} else {
-			listItemElement = app.utils.createSvgElement('text', {});
+			listItemElement = app.utils.createSvgElement('text', {
+				'y': listItemCounter * lineHeight,
+			});
 		}
 
 		listItemElement.setAttribute('data-id', vertex.id);
@@ -24,6 +29,8 @@ function GroupVertexList(parentalGroup) {
 		listItemElement.addEventListener('click', listItemClick.bind(vertex));
 
 		rootElement.appendChild(listItemElement);
+
+		listItemCounter++;
 	};
 
 	/**

@@ -13,12 +13,15 @@ function Vertex(props) {
 	/** @prop {array} symbol Symbol of the group. */
 	this.symbol = app.markSymbol.getMarkSymbol();
 
+	const oneCharacterWidth = 8.3;	// approximate width (in pixels) of one character using Consolas at 15px font size
+	const minimumWidth = 200;
+
 	var rootElement;
 	var symbolListComponent;
 
 	var position = new Coordinates(0, 0);
 	var size = {
-		width: Math.max(30 + this.name.length * 8.3, 200),	// 8.3 is approximate width (in pixels) of one character using Consolas at 15px font size
+		width: Math.max(30 + this.name.length * oneCharacterWidth, minimumWidth),
 		height: 30,
 	};
 	var group = null;
@@ -69,14 +72,14 @@ function Vertex(props) {
 	};
 
 	/**
-	 * @returns {array<Edge>} Array of edges going to the vertex.
+	 * @returns {array<Edge>} Array of edges incoming to the vertex.
 	 */
 	this.getInEdgeList = function() {
 		return inEdgeList;
 	};
 
 	/**
-	 * @returns {array<Edge>} Array of edges going from the vertex.
+	 * @returns {array<Edge>} Array of edges outgoing from the vertex.
 	 */
 	this.getOutEdgeList = function() {
 		return outEdgeList;
@@ -94,6 +97,10 @@ function Vertex(props) {
 		symbolListComponent.appendChild(symbol);
 	};
 
+	/**
+	 * Removes symbol from the list of symbols displayed next to the vertex.
+	 * @param {array} symbol Node symbol to be removed.
+	 */
 	this.removeSymbol = function(symbol) {
 		symbolList.splice(symbolList.indexOf(symbol), 1);
 
@@ -115,6 +122,7 @@ function Vertex(props) {
 
 	/**
 	 * Updates the current position of the vertex in graph.
+	 * @param {Coordinates} New position of the vertex.
 	 */
 	this.setPosition = function(coords) {
 		if (!(coords instanceof Coordinates)) {
@@ -125,7 +133,7 @@ function Vertex(props) {
 	};
 
 	/**
-	 * @returns {Coordinates} Centre of the group.
+	 * @returns {Coordinates} Centre of the vertex.
 	 */
 	this.getCenter = function() {
 		return new Coordinates(
@@ -162,7 +170,7 @@ function Vertex(props) {
 	};
 
 	/**
-	 * @returns {Group} Group this vertex is part of. If the vertex stands alone, null is returned.
+	 * @returns {Group} Group this vertex is currently part of. If the vertex stands alone, null is returned.
 	 */
 	this.getGroup = function() {
 		return group;
@@ -220,7 +228,7 @@ function Vertex(props) {
 
 	/**
 	 * Toggles highlighting of the vertex.
-	 * @param {boolean} newValue True to highlight the vertex, otherwise false.
+	 * @param {boolean} newValue True to highlight the vertex, false to unhighlight.
 	 */
 	this.setHighlighted = function(newValue) {
 		highlighted = newValue;
@@ -234,7 +242,7 @@ function Vertex(props) {
 
 	/**
 	 * Toggles highlighting of the vertex to mark it as requirement of some other node.
-	 * @param {boolean} newValue True to highlight the vertex as required, false to unhighlight.
+	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
 	this.setHighlightedRequired = function(newValue) {
 		highlightedRequired = newValue;
@@ -252,7 +260,7 @@ function Vertex(props) {
 	
 	/**
 	 * Toggles highlighting of the vertex to mark it as dependent of some other node.
-	 * @param {boolean} newValue True to highlight the vertex as provided, false to unhighlight.
+	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
 	this.setHighlightedProvided = function(newValue) {
 		highlightedProvided = newValue;
@@ -436,17 +444,16 @@ function Vertex(props) {
 			'y': 1,
 		}));
 
-		// archetype
-		var archetype = app.utils.createSvgElement('g', {
+		// archetype icon
+		var archetypeIcon = app.dom.createSvgElement('g', {
 			'class': 'archetype',
-			'data-vertexId': this.id,
 			'transform': 'translate(7, 6)',
 		});
-		archetype.addEventListener('click', archetypeClick.bind(this));
+		archetypeIcon.addEventListener('click', archetypeClick.bind(this));
 
-		archetype.innerHTML = app.archetype.icon[this.archetype.name];
+		archetypeIcon.innerHTML = app.archetype.icon[app.archetype.vertex[this.archetype].name];
 
-		rootElement.appendChild(archetype);
+		rootElement.appendChild(archetypeIcon);
 
 		// name
 		var nameText = app.utils.createSvgElement('text', {
@@ -472,19 +479,19 @@ function Vertex(props) {
 	 * @returns {Element} HTML DOM element.
 	 */
 	function renderExcluded() {
-		rootElement = app.utils.createHtmlElement('li', {
+		rootElement = app.dom.createHtmlElement('li', {
 			'class': 'node vertex',
 			'data-id': this.id,
 		});
 
-		var svg = app.utils.createSvgElement('svg', {
+		var svg = app.dom.createSvgElement('svg', {
 			'xmlns': 'http://www.w3.org/2000/svg',
 			'height': 60,
 			'width': 46,
 		});
 		rootElement.appendChild(svg);
 
-		var group = app.utils.createSvgElement('g', {
+		var group = app.dom.createSvgElement('g', {
 			'transform': 'translate(60,10)',
 		});
 		svg.appendChild(group);
@@ -598,18 +605,6 @@ function Vertex(props) {
 		showSymbolButton.addEventListener('click', showIconClick.bind(this));
 		buttonGroup.appendChild(showSymbolButton);
 
-		// to change button
-		var toChangeButton = app.utils.createHtmlElement('button', {
-			'class': 'change-button button',
-			'title': 'Set component for change',
-		});
-		toChangeButton.appendChild(app.utils.createHtmlElement('img', {
-			'src': 'images/tochange/tochange-trans.gif',
-			'alt': 'Icon of "set component for change" action',
-		}));
-		toChangeButton.addEventListener('click', addToChange.bind(this));
-		buttonGroup.appendChild(toChangeButton);
-
 		// include button
 		var includeButton = app.utils.createHtmlElement('button', {
 			'class': 'include-button button',
@@ -643,7 +638,9 @@ function Vertex(props) {
 	 * Vertex click interaction. Based on whether the vertex is excluded and currently selected mouse mode (move, exclude),
 	 * the vertex is either highlighted or moved within the graph.
 	 */
-	function click() {
+	function click(e) {
+		e.stopPropagation();
+
 		if (excluded) {
 			this.setHighlighted(!highlighted);
 			this.setHighlightedRequiredNeighbours(highlighted);
@@ -737,14 +734,6 @@ function Vertex(props) {
 				node.removeSymbol(this.symbol);
 			}
 		}, this);
-	}
-
-	/**
-	 * Adds the vertex to the list of components to be changed.
-	 * @param {Event} e Click event.
-	 */
-	function addToChange(e) {
-		app.sidebarComponent.addToChange(this);
 	}
 
 	/**
@@ -902,7 +891,7 @@ function Vertex(props) {
 	}
 
 	/**
-	 * Highlights only neighbours the vertex that are required.
+	 * Highlights only neighbours of the vertex that are required.
 	 */
 	function highlightRequiredNeighbours() {
 		if (highlighted) {
@@ -922,7 +911,7 @@ function Vertex(props) {
 	}
 
 	/**
-	 * Highlights only neighbours the vertex that are provided.
+	 * Highlights only neighbours of the vertex that are provided.
 	 */
 	function highlightProvidedNeighbours() {
 		if (highlighted) {
