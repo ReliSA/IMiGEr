@@ -1,13 +1,11 @@
 package cz.zcu.kiv.imiger.tests.frontend;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,7 +19,7 @@ public class SampleTest {
     @Test
     public void Test(){
         WebElement fileInput = browser.findElement(By.id("hidden_input"));
-        fileInput.sendKeys(System.getProperty("user.dir") + "\\..\\data\\aswi2017falsum.json" );
+        fileInput.sendKeys(System.getProperty("user.dir") + "\\..\\test\\data\\aswi2017falsum.json" );
         browser.findElement(By.className("load")).click();
 
         WebDriverWait wait = new WebDriverWait(browser, 20);
