@@ -1,0 +1,108 @@
+{
+ "attributeTypes": [
+
+ ],
+ "vertexArchetypes": [
+  {
+   "name": "1",
+   "text": ""
+  },
+  {
+   "name": "2",
+   "text": ""
+  },
+  {
+   "name": "3",
+   "text": ""
+  },
+  {
+   "name": "4",
+   "text": ""
+  }
+ ],
+ "edgeArchetypes": [
+	{
+		"name": "edge",
+		"text": ""
+	}
+ ],
+ "vertices": [
+  {
+   "archetype": 0,
+   "attributes": {},
+   "id": 1,
+   "text": "",
+   "title": "V1"
+  },
+  {
+   "archetype": 1,
+   "attributes": {},
+   "id": 2,
+   "text": "",
+   "title": "V2"
+  },
+  {
+   "archetype": 1,
+   "attributes": {},
+   "id": 3,
+   "text": "",
+   "title": "V3"
+  },
+  {
+   "archetype": 3,
+   "attributes": {},
+   "id": 4,
+   "text": "",
+   "title": "V4"
+  },
+  {
+   "archetype": 2,
+   "attributes": {},
+   "id": 5,
+   "text": "",
+   "title": "V5"
+  }
+ ],
+ "edges": [
+	{
+	   "archetype": 0,
+	   "from": 1,
+	   "attributes": {},
+	   "id": 0,
+	   "to": 2,
+	   "text": ""
+	},
+	{
+	   "archetype": 0,
+	   "from": 3,
+	   "attributes": {},
+	   "id": 1,
+	   "to": 1,
+	   "text": ""
+	},
+	{
+	   "archetype": 0,
+	   "from": 1,
+	   "attributes": {},
+	   "id": 2,
+	   "to": 4,
+	   "text": ""
+	},
+	{
+	   "archetype": 0,
+	   "from": 4,
+	   "attributes": {},
+	   "id": 3,
+	   "to": 1,
+	   "text": ""
+	},
+	{
+	   "archetype": 0,
+	   "from": 4,
+	   "attributes": {},
+	   "id": 4,
+	   "to": 5,
+	   "text": ""
+	}
+ ]
+}
