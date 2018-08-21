@@ -6,10 +6,10 @@
 function Vertex(props) {
 	/** @prop {integer} id Unique identifier of the vertex. */
 	this.id = props.id;
-	/** @prop {integer} archetype Archetype of the vertex. */
-	this.archetype = app.archetype.vertex[props.archetype];
+	/** @prop {integer} archetype Identifier of the vertex archetype. */
+	this.archetype = props.archetype;
 	/** @prop {string} name Name of the vertex. */
-	this.name = props.name.split(':')[1];
+	this.name = props.title.split(':')[1];
 	/** @prop {array} symbol Symbol of the group. */
 	this.symbol = app.markSymbol.getMarkSymbol();
 

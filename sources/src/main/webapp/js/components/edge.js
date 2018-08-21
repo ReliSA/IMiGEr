@@ -6,8 +6,8 @@
 function Edge(props) {
 	/** @prop {integer} id Unique identifier of the edge. */
 	this.id = props.id;
-	/** @prop {integer} archetype Archetype of the edge. */
-	this.archetype = app.archetype.edge[props.subedgeInfo.archetype];
+	/** @prop {integer} archetype Archetype of the edge. TODO: why is there multiple subedgeInfo for one edge? */
+	this.archetype = -1;
 
 	var rootElement;
 

@@ -5,7 +5,7 @@
  */
 function Group(props) {
 	/** @prop {integer} id Unique identifier of the group. */
-	this.id = app.groupList.length + 1;
+	this.id = props.hasOwnProperty('id') ? props.id : app.groupList.length + 1;
 	/** @prop {string} name Name of the group. */
 	this.name = props.hasOwnProperty('name') ? props.name : 'Group ' + this.id;
 	/** @prop {array} symbol Symbol of the group. */

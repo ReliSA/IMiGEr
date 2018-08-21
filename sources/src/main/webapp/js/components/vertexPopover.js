@@ -11,19 +11,19 @@ function VertexPopover() {
 	/**
 	 * Sets the contents of the popover.
 	 * @param {string} name Title of the popover.
-	 * @param {array} attributes List of attributes.
+	 * @param {array} attributeList List of attributes.
 	 */
-	this.setContent = function(name, attributes) {
+	this.setContent = function(name, attributeList) {
 		popoverTitle.innerText = name;
 
-		if (attributes.length > 0) {
-			attributes.forEach(function(attributes) {
-				var listItem = app.utils.createHtmlElement('li', {});
-				listItem.appendChild(document.createTextNode(attributes));
+		if (attributeList.length === 0) return;
 
-				detailsListElement.appendChild(listItem);
-			});
-		}
+		attributeList.forEach(function(attribute) {
+			var listItem = app.utils.createHtmlElement('li', {});
+			listItem.appendChild(document.createTextNode(`${attribute[0]}: ${attribute[1]}`));
+
+			detailsListElement.appendChild(listItem);
+		});
 	};
 
 	/**

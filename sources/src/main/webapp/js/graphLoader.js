@@ -20,12 +20,12 @@ function GraphLoader() {
 
 		var canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
 
-		// archetypes
+		// store archetypes
 		app.archetype.vertex = data.vertexArchetypes;
 		app.archetype.edge = data.edgeArchetypes;
 		app.archetype.icon = data.archetypeIcons;
 
-		// vertices
+		// construct vertices
 		var vertexMap = {};
 		data.vertices.forEach(function(component) {
 			var vertex = new Vertex(component);
@@ -55,12 +55,10 @@ function GraphLoader() {
 			app.nodeList.push(vertex);
 			app.vertexList.push(vertex);
 
-			vertexMap[component.symbolicName] = vertex;
-
-			app.viewportComponent.addVertex(vertex);
+			vertexMap[component.originalId] = vertex;
 		});
 
-		// edges
+		// construct edges
 		data.edges.forEach(function(component) {
 			var edge = new Edge(component);
 
@@ -74,12 +72,24 @@ function GraphLoader() {
 				toNode.addInEdge(edge);
 			}
 
-			app.edgeList.push(edge);
+			if (fromNode && toNode) {
+				fromNode.incrementRelatedArchetype(toNode.archetype);
+				toNode.incrementRelatedArchetype(fromNode.archetype);
+			}
 
-			app.viewportComponent.addEdge(edge);
+			app.edgeList.push(edge);
 		});
 
 		delete vertexMap;
+
+		// render components
+		app.vertexList.forEach(function(vertex) {
+			app.viewportComponent.addVertex(vertex);
+		});
+
+		app.edgeList.forEach(function(edge) {
+			app.viewportComponent.addEdge(edge);
+		});
 
 		// center viewport
 		app.viewportComponent.center();
@@ -92,34 +102,21 @@ function GraphLoader() {
 			app.sidebarComponent.unconnectedNodeListComponent.add(vertex);
 		});
 
-		// group vertex archetypes
-		var archetypeGroupMap = {};
+		// construct groups
+		data.groups.forEach(function(component) {
+			var group = new Group(component);
+			group.setExcluded(true);
 
-		data.defaultGroupArchetypes.forEach(function(archetypeIndex) {
 			app.vertexList.filter(function(vertex) {
-				return vertex.archetype === app.archetype.vertex[archetypeIndex];
+				return component.verticesId.indexOf(vertex.id) > -1;
 			}).forEach(function(vertex) {
-				if (archetypeGroupMap[archetypeIndex] instanceof Group) {
-					// group of the archetype vertices already exists
-					var group = archetypeGroupMap[archetypeIndex];
-
-				} else {
-					// create a new group
-					var group = new Group({
-						name: `${app.archetype.vertex[archetypeIndex].name} vertices`,
-					});
-					group.setExcluded(true);
-
-					app.nodeList.push(group);
-					app.groupList.push(group);
-
-					app.sidebarComponent.excludedNodeListComponent.add(group);
-
-					archetypeGroupMap[archetypeIndex] = group;
-				}
-
 				group.addVertex(vertex);
 			});
+
+			app.nodeList.push(group);
+			app.groupList.push(group);
+
+			app.sidebarComponent.excludedNodeListComponent.add(group);
 		});
 
 		// update status bar

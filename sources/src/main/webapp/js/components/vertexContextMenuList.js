@@ -104,7 +104,7 @@ function VertexContextMenuList() {
 	function nodeListItemClick(e) {
 		if (this instanceof Vertex) {
 			// create a new group
-			var group = new Group;
+			var group = new Group({});
 			group.setExcluded(true);
 			group.addVertex(this);
 

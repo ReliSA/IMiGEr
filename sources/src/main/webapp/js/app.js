@@ -242,7 +242,7 @@ function App() {
 			});
 
 			if (verticesWithMostEdges.length > 0) {
-				var group = new Group;
+				var group = new Group({});
 
 				verticesWithMostEdges.forEach(function(vertex) {
 					group.addVertex(vertex);
