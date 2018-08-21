@@ -25,10 +25,9 @@ function Group(props) {
 	var excluded = false;
 
 	var highlighted = false;
-	var highlightedRequired = false;
-	var highlightedProvided = false;
 	var highlightedRequiredNeighbours = false;
 	var highlightedProvidedNeighbours = false;
+	var highlightedArchetypeNeighbours = false;
 	var found = false;
 	var dimmed = false;
 
@@ -256,12 +255,34 @@ function Group(props) {
 	};
 
 	/**
+	 * Toggles inner state of the group marking whether highlighting of its requirements is active.
+	 * @param {boolean} newValue True to highlight the neighbours, false to unhighlight.
+	 */
+	this.setHighlightedRequiredNeighbours = function(newValue) {
+		highlightedRequiredNeighbours = newValue;
+	};
+
+	/**
+	 * Toggles inner state of the group marking whether highlighting of its dependents is active.
+	 * @param {boolean} newValue True to highlight the neighbours, false to unhighlight.
+	 */
+	this.setHighlightedProvidedNeighbours = function(newValue) {
+		highlightedProvidedNeighbours = newValue;
+	};
+
+	/**
+	 * Toggles inner state of the group marking whether highlighting of instances of a vertex archetype is active.
+	 * @param {boolean} newValue True to highlight the neighbours, false to unhighlight.
+	 */
+	this.setHighlightedArchetypeNeighbours = function(newValue) {
+		highlightedArchetypeNeighbours = newValue;
+	};
+
+	/**
 	 * Toggles highlighting of the group to mark it as requirement of some other node.
 	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
 	this.setHighlightedRequired = function(newValue) {
-		highlightedRequired = newValue;
-
 		if (newValue) {
 			rootElement.classList.add('node--highlighted-required');
 		} else {
@@ -274,8 +295,6 @@ function Group(props) {
 	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
 	this.setHighlightedProvided = function(newValue) {
-		highlightedProvided = newValue;
-
 		if (newValue) {
 			rootElement.classList.add('node--highlighted-provided');
 		} else {
@@ -284,32 +303,14 @@ function Group(props) {
 	};
 	
 	/**
-	 * Toggles highlighting of the group when only its requirements should be highlighted. Anytime this value is changed, generic 
-	 * {@link Group#setHighlighted} method should be called too.
-	 * @param {boolean} newValue True to highlight the group when only its requirements should be highlighted, false to unhighlight.
+	 * Toggles highlighting of the group to mark it as instance of archetype related to some other node.
+	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
-	this.setHighlightedRequiredNeighbours = function(newValue) {
-		highlightedRequiredNeighbours = newValue;
-
+	this.setHighlightedArchetype = function(newValue) {
 		if (newValue) {
-			rootElement.classList.add('node--highlighted-required-neighbours');
+			rootElement.classList.add('node--highlighted-archetype');
 		} else {
-			rootElement.classList.remove('node--highlighted-required-neighbours');
-		}
-	};
-	
-	/**
-	 * Toggles highlighting of the group when only its dependents should be highlighted. Anytime this value is changed, generic 
-	 * {@link Group#setHighlighted} method should be called too.
-	 * @param {boolean} newValue True to highlight the group when only its dependents should be highlighted, false to unhighlight.
-	 */
-	this.setHighlightedProvidedNeighbours = function(newValue) {
-		highlightedProvidedNeighbours = newValue;
-
-		if (newValue) {
-			rootElement.classList.add('node--highlighted-provided-neighbours');
-		} else {
-			rootElement.classList.remove('node--highlighted-provided-neighbours');
+			rootElement.classList.remove('node--highlighted-archetype');
 		}
 	};
 
@@ -393,8 +394,6 @@ function Group(props) {
 		rootElement = excluded ? renderExcluded.call(this) : renderIncluded.call(this);
 
 		this.setHighlighted(highlighted);
-		this.setHighlightedRequiredNeighbours(highlightedRequiredNeighbours);
-		this.setHighlightedProvidedNeighbours(highlightedProvidedNeighbours);
 
 		return rootElement;
 	};
@@ -716,7 +715,9 @@ function Group(props) {
 			this.setHighlightedRequiredNeighbours(highlighted);
 			this.setHighlightedProvidedNeighbours(highlighted);
 
-			highlightNeighbours.call(this);
+			prepareHighlighting.call(this);
+			highlightRequiredNeighbours.call(this);
+			highlightProvidedNeighbours.call(this);
 			return;
 		}
 
@@ -730,8 +731,10 @@ function Group(props) {
 				this.setHighlighted(!highlighted);
 				this.setHighlightedRequiredNeighbours(highlighted);
 				this.setHighlightedProvidedNeighbours(highlighted);
-
-				highlightNeighbours.call(this);
+	
+				prepareHighlighting.call(this);
+				highlightRequiredNeighbours.call(this);
+				highlightProvidedNeighbours.call(this);
 				break;
 
 			case 'exclude':
@@ -851,12 +854,14 @@ function Group(props) {
 	}
 	
 	/**
-	 * Highlights all neighbours of vertices in the group. They are either highlighted as required or provided, or dimmed.
+	 * Prepares highlighting of all graph components so that only the wished ones need to be modified.
 	 */
-	function highlightNeighbours() {
+	function prepareHighlighting() {
 		this.setDimmed(false);
+
 		this.setHighlightedRequired(false);
 		this.setHighlightedProvided(false);
+		this.setHighlightedArchetype(false);
 
 		if (highlighted) {
 			// dim and unhighlight all nodes but this
@@ -868,13 +873,11 @@ function Group(props) {
 				node.setHighlighted(false);
 				node.setHighlightedRequired(false);
 				node.setHighlightedProvided(false);
-				node.setHighlightedRequiredNeighbours(false);
-				node.setHighlightedProvidedNeighbours(false);
+				node.setHighlightedArchetype(false);
 			}, this);
 
 			// dim and unhighlight all edges
 			app.edgeList.forEach(function(edge) {
-				edge.setHidden(edge.getFrom().isExcluded() || edge.getTo().isExcluded());
 				edge.setDimmed(true);
 
 				edge.setHighlighted(false);
@@ -882,39 +885,21 @@ function Group(props) {
 				edge.setHighlightedProvided(false);
 			});
 
-			// highlight required neighbours
-			this.getInEdgeList().forEach(function(edge) {
-				edge.setHidden(false);
-				edge.setDimmed(false);
-				edge.setHighlightedRequired(true);
-
-				edge.getFrom().setDimmed(false);
-				edge.getFrom().setHighlightedRequired(true);
-			});
-			
-			// highlight provided neighbours
-			this.getOutEdgeList().forEach(function(edge) {
-				edge.setHidden(false);
-				edge.setDimmed(false);
-				edge.setHighlightedProvided(true);
-
-				edge.getTo().setDimmed(false);
-				edge.getTo().setHighlightedProvided(true);
-			});
-
 		} else {
 			app.nodeList.forEach(function(node) {
+				if (node === this) return;
+
 				node.setDimmed(false);
 
 				node.setHighlighted(false);
 				node.setHighlightedRequired(false);
 				node.setHighlightedProvided(false);
-				node.setHighlightedRequiredNeighbours(false);
-				node.setHighlightedProvidedNeighbours(false);
+				node.setHighlightedArchetype(false);
 			}, this);
 
 			app.edgeList.forEach(function(edge) {
 				edge.setHidden(edge.getFrom().isExcluded() || edge.getTo().isExcluded());
+
 				edge.setDimmed(false);
 
 				edge.setHighlighted(false);
@@ -928,39 +913,41 @@ function Group(props) {
 	 * Highlights only neighbours of vertices in the group that are required.
 	 */
 	function highlightRequiredNeighbours() {
-		if (highlighted) {
-			this.getInEdgeList().forEach(function(edge) {
-				edge.setHidden(false);
-				edge.setHighlightedRequired(true);
-				edge.getFrom().setHighlightedRequired(true);
-			});
+		if (highlightedRequiredNeighbours === false) return;
 
-		} else {
-			this.getInEdgeList().forEach(function(edge) {
-				edge.setHidden(true);
-				edge.setHighlightedRequired(false);
-				edge.getFrom().setHighlightedRequired(false);
-			});
-		}
+		this.getInEdgeList().forEach(function(edge) {
+			edge.setHidden(false);
+
+			edge.getFrom().setDimmed(false);
+			edge.setDimmed(false);
+
+			edge.setHighlightedRequired(true);
+			edge.getFrom().setHighlightedRequired(true);
+		});
 	}
 
 	/**
 	 * Highlights only neighbours of vertices in the group that are provided.
 	 */
 	function highlightProvidedNeighbours() {
-		if (highlighted) {
-			this.getOutEdgeList().forEach(function(edge) {
-				edge.setHidden(false);
-				edge.setHighlightedProvided(true);
-				edge.getTo().setHighlightedProvided(true);
-			});
+		if (highlightedProvidedNeighbours === false) return;
 
-		} else {
-			this.getOutEdgeList().forEach(function(edge) {
-				edge.setHidden(true);
-				edge.setHighlightedProvided(false);
-				edge.getTo().setHighlightedProvided(false);
-			});
-		}
+		this.getOutEdgeList().forEach(function(edge) {
+			edge.setHidden(false);
+
+			edge.setDimmed(false);
+			edge.getTo().setDimmed(false);
+
+			edge.setHighlightedProvided(true);
+			edge.getTo().setHighlightedProvided(true);
+		});
+	}
+
+	/**
+	 * Highlights only neighbours of the group that are instances of the archetype.
+	 * @param {integer} archetypeIndex Index of the vertex archetype.
+	 */
+	function highlightArchetypeNeighbours(archetypeIndex) {
+		if (highlightedArchetypeNeighbours === false) return;
 	}
 }

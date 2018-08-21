@@ -15,6 +15,7 @@ function Vertex(props) {
 
 	const oneCharacterWidth = 8.3;	// approximate width (in pixels) of one character using Consolas at 15px font size
 	const minimumWidth = 200;
+	const relatedArchetypeIconWidth = 20;
 
 	var rootElement;
 	var symbolListComponent;
@@ -32,16 +33,16 @@ function Vertex(props) {
 	var iconsDisplayed = false;
 
 	var highlighted = false;
-	var highlightedRequired = false;
-	var highlightedProvided = false;
 	var highlightedRequiredNeighbours = false;
 	var highlightedProvidedNeighbours = false;
+	var highlightedArchetypeNeighbours = false;
 	var found = false;
 	var dimmed = false;
 
 	var inEdgeList = [];
 	var outEdgeList = [];
 	var symbolList = [];
+	var relatedArchetypeMap = {};
 	
 	/**
 	 * Adds a new edge ending in the vertex. Its ending point is moved to the current position of the vertex.
@@ -86,8 +87,41 @@ function Vertex(props) {
 	};
 
 	/**
-	 * 
-	 * @param {array} symbol Node symbol to be displayed next to the vertex.
+	 * @returns {integer} Number of incoming/outgoing edges.
+	 */
+	this.countEdges = function() {
+		return inEdgeList.length + outEdgeList.length;
+	};
+
+	/**
+	 * Increments counter of instances of a vertex archetype by one.
+	 * @param {integer} archetypeIndex Index of the vertex archetype.
+	 */
+	this.incrementRelatedArchetype = function(archetypeIndex) {
+		if (!relatedArchetypeMap.hasOwnProperty(archetypeIndex)) {
+			relatedArchetypeMap[archetypeIndex] = 0;
+		}
+
+		relatedArchetypeMap[archetypeIndex]++;
+	};
+
+	/**
+	 * @returns {object} Map with archetype indexes as keys and counters of their instances as values.
+	 */
+	this.getRelatedArchetypeMap = function() {
+		return relatedArchetypeMap;
+	};
+
+	/**
+	 * @returns {integer} Number of unique vertex archetypes related to the vertex.
+	 */
+	this.countRelatedArchetypes = function() {
+		return Object.keys(relatedArchetypeMap).length;
+	};
+
+	/**
+	 * Adds symbol to the list of symbols displayed next to the vertex.
+	 * @param {array} symbol Node symbol to be added.
 	 */
 	this.addSymbol = function(symbol) {
 		symbolList.push(symbol);
@@ -107,10 +141,6 @@ function Vertex(props) {
 		if (excluded) return;
 
 		symbolListComponent.removeChild(symbol);
-	};
-
-	this.countEdges = function() {
-		return inEdgeList.length + outEdgeList.length;
 	};
 	
 	/**
@@ -241,12 +271,34 @@ function Vertex(props) {
 	};
 
 	/**
+	 * Toggles inner state of the vertex marking whether highlighting of its requirements is active.
+	 * @param {boolean} newValue True to highlight the neighbours, false to unhighlight.
+	 */
+	this.setHighlightedRequiredNeighbours = function(newValue) {
+		highlightedRequiredNeighbours = newValue;
+	};
+
+	/**
+	 * Toggles inner state of the vertex marking whether highlighting of its dependents is active.
+	 * @param {boolean} newValue True to highlight the neighbours, false to unhighlight.
+	 */
+	this.setHighlightedProvidedNeighbours = function(newValue) {
+		highlightedProvidedNeighbours = newValue;
+	};
+
+	/**
+	 * Toggles inner state of the vertex marking whether highlighting of instances of a vertex archetype is active.
+	 * @param {boolean} newValue True to highlight the neighbours, false to unhighlight.
+	 */
+	this.setHighlightedArchetypeNeighbours = function(newValue) {
+		highlightedArchetypeNeighbours = newValue;
+	};
+
+	/**
 	 * Toggles highlighting of the vertex to mark it as requirement of some other node.
 	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
 	this.setHighlightedRequired = function(newValue) {
-		highlightedRequired = newValue;
-
 		if (newValue) {
 			rootElement.classList.add('node--highlighted-required');
 		} else {
@@ -263,8 +315,6 @@ function Vertex(props) {
 	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
 	this.setHighlightedProvided = function(newValue) {
-		highlightedProvided = newValue;
-
 		if (newValue) {
 			rootElement.classList.add('node--highlighted-provided');
 		} else {
@@ -277,32 +327,18 @@ function Vertex(props) {
 	};
 	
 	/**
-	 * Toggles highlighting of the vertex when only its requirements should be highlighted. Anytime this value is changed, generic
-	 * {@link Vertex#setHighlighted} method should be called too.
-	 * @param {boolean} newValue True to highlight the vertex when only its requirements should be highlighted, false to unhighlight.
+	 * Toggles highlighting of the vertex to mark it as instance of archetype related to some other node.
+	 * @param {boolean} newValue True to highlight, false to unhighlight.
 	 */
-	this.setHighlightedRequiredNeighbours = function(newValue) {
-		highlightedRequiredNeighbours = newValue;
-
+	this.setHighlightedArchetype = function(newValue) {
 		if (newValue) {
-			rootElement.classList.add('node--highlighted-required-neighbours');
+			rootElement.classList.add('node--highlighted-archetype');
 		} else {
-			rootElement.classList.remove('node--highlighted-required-neighbours');
+			rootElement.classList.remove('node--highlighted-archetype');
 		}
-	};
 	
-	/**
-	 * Toggles highlighting of the vertex when only its dependents should be highlighted. Anytime this value is changed, generic 
-	 * {@link Vertex#setHighlighted} method should be called too.
-	 * @param {boolean} newValue True to highlight the vertex when only its dependents should be highlighted, false to unhighlight.
-	 */
-	this.setHighlightedProvidedNeighbours = function(newValue) {
-		highlightedProvidedNeighbours = newValue;
-
-		if (newValue) {
-			rootElement.classList.add('node--highlighted-provided-neighbours');
-		} else {
-			rootElement.classList.remove('node--highlighted-provided-neighbours');
+		if (group !== null) {
+			group.setHighlightedArchetype(newValue);
 		}
 	};
 
@@ -390,11 +426,11 @@ function Vertex(props) {
 	 * @returns {Element} HTML or SVG DOM element depending on whether the vertex is excluded.
 	 */
 	this.render = function() {
+		size.width += this.countRelatedArchetypes() * relatedArchetypeIconWidth;
+
 		rootElement = excluded ? renderExcluded.call(this) : renderIncluded.call(this);
 
 		this.setHighlighted(highlighted);
-		this.setHighlightedRequiredNeighbours(highlightedRequiredNeighbours);
-		this.setHighlightedProvidedNeighbours(highlightedProvidedNeighbours);
 
 		return rootElement;
 	};
@@ -447,7 +483,7 @@ function Vertex(props) {
 		// archetype icon
 		var archetypeIcon = app.dom.createSvgElement('g', {
 			'class': 'archetype',
-			'transform': 'translate(7, 6)',
+			'transform': 'translate(8, 8)',
 		});
 		archetypeIcon.addEventListener('click', archetypeClick.bind(this));
 
@@ -463,6 +499,27 @@ function Vertex(props) {
 		});
 		nameText.appendChild(document.createTextNode(this.name));
 		rootElement.appendChild(nameText);
+
+		// related archetype icons
+		var relatedArchetypeListContainer = app.dom.createSvgElement('g', {
+			'transform': `translate(${size.width - this.countRelatedArchetypes() * relatedArchetypeIconWidth}, 0)`,
+		});
+		rootElement.appendChild(relatedArchetypeListContainer);
+
+		var i = 0;
+		for (var archetypeIndex in relatedArchetypeMap) {
+			var relatedArchetype = app.utils.createSvgElement('g', {
+				'class': 'related-archetype',
+				'transform': `translate(${i * relatedArchetypeIconWidth}, 8)`,
+			});
+			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
+
+			relatedArchetype.innerHTML = app.archetype.icon[app.archetype.vertex[archetypeIndex].name];
+
+			relatedArchetypeListContainer.appendChild(relatedArchetype);
+
+			i++;
+		}
 
 		// symbol list
 		symbolListComponent = new VertexSymbolList;
@@ -496,89 +553,21 @@ function Vertex(props) {
 		});
 		svg.appendChild(group);
 
-		// required
-		var required = app.utils.createSvgElement('g', {
-			'class': 'required-counter',
+		// related
+		var i = 0;
+		for (var archetypeIndex in relatedArchetypeMap) {
+			var relatedArchetype = app.dom.createSvgElement('g', {
+				'class': 'related-archetype',
+				'transform': `translate(0, ${i * 20})`,
 		});
-		required.addEventListener('click', requiredClick.bind(this));
-		group.appendChild(required);
+			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
 
-		required.appendChild(app.utils.createSvgElement('line', {
-			'x1': -50,
-			'y1': 5,
-			'x2': -42,
-			'y2': 5,
-			'stroke': 'black',
-			'class': 'outer-floater',
-		}));
-		required.appendChild(app.utils.createSvgElement('line', {
-			'x1': -20,
-			'y1': 5,
-			'x2': -14,
-			'y2': 5,
-			'stroke': 'black',
-		}));
-		required.appendChild(app.utils.createSvgElement('rect', {
-			'x': -58,
-			'y': 1,
-			'width': 8,
-			'height': 8,
-			'class': 'outer-port',
-		}));
-		required.appendChild(app.utils.createSvgElement('path', {
-			'class': 'lollipop',
-			'd': 'M-31,-5 C-16,-5 -16,15 -31,16',
-		}));
+			relatedArchetype.innerHTML = app.archetype.icon[app.archetype.vertex[archetypeIndex].name];
 
-		var requiredCounterText = app.utils.createSvgElement('text', {
-			'x': -36,
-			'y': 10,
-		});
-		requiredCounterText.appendChild(document.createTextNode(props.importedPackages.length));
-		required.appendChild(requiredCounterText);
+			group.appendChild(relatedArchetype);
 
-		// provided
-		var provided = app.utils.createSvgElement('g', {
-			'class': 'provided-counter',
-		});
-		provided.addEventListener('click', providedClick.bind(this));
-		group.appendChild(provided);
-
-		provided.appendChild(app.utils.createSvgElement('line', {
-			'x1': -50,
-			'y1': 35,
-			'x2': -44,
-			'y2': 35,
-			'stroke': 'black',
-			'class': 'outer-floater',
-		}));
-		provided.appendChild(app.utils.createSvgElement('line', {
-			'x1': -20,
-			'y1': 35,
-			'x2': -14,
-			'y2': 35,
-			'stroke': 'black',
-		}));
-		provided.appendChild(app.utils.createSvgElement('rect', {
-			'x': -58,
-			'y': 31,
-			'width': 8,
-			'height': 8,
-			'class': 'outer-port',
-		}));
-		provided.appendChild(app.utils.createSvgElement('circle', {
-			'class': 'lollipop',
-			'cx': -32,
-			'cy': 35,
-			'r': 11,
-		}));
-
-		var providedCounterText = app.utils.createSvgElement('text', {
-			'x': -36,
-			'y': 40,
-		});
-		providedCounterText.appendChild(document.createTextNode(props.exportedPackages.length));
-		provided.appendChild(providedCounterText);
+			i++;
+		}
 
 		// name
 		var nameText = app.utils.createHtmlElement('div', {
@@ -646,7 +635,9 @@ function Vertex(props) {
 			this.setHighlightedRequiredNeighbours(highlighted);
 			this.setHighlightedProvidedNeighbours(highlighted);
 
-			highlightNeighbours.call(this);
+			prepareHighlighting.call(this);
+			highlightRequiredNeighbours.call(this);
+			highlightProvidedNeighbours.call(this);
 			return;
 		}
 
@@ -660,8 +651,10 @@ function Vertex(props) {
 				this.setHighlighted(!highlighted);
 				this.setHighlightedRequiredNeighbours(highlighted);
 				this.setHighlightedProvidedNeighbours(highlighted);
-
-				highlightNeighbours.call(this);
+	
+				prepareHighlighting.call(this);
+				highlightRequiredNeighbours.call(this);
+				highlightProvidedNeighbours.call(this);
 				break;
 
 			case 'exclude':
@@ -673,42 +666,35 @@ function Vertex(props) {
 	}
 
 	/**
-	 * Highlights the vertex as a requirement.
-	 */
-	function requiredClick() {
-		this.setHighlighted(!highlighted);
-		this.setHighlightedRequiredNeighbours(highlighted);
-		this.setHighlightedProvidedNeighbours(false);
-
-		highlightRequiredNeighbours.call(this);
-	}
-
-	/**
-	 * Highlights the vertex as a dependent.
-	 */
-	function providedClick() {
-		this.setHighlighted(!highlighted);
-		this.setHighlightedRequiredNeighbours(false);
-		this.setHighlightedProvidedNeighbours(highlighted);
-
-		highlightProvidedNeighbours.call(this);
-	}
-	
-	/**
 	 * Reveals vertex popover.
-	 * @param {Event} e Click event.
+	 * @param {MouseEvent} e Click event.
 	 */
 	function archetypeClick(e) {
 		e.stopPropagation();
 
-		app.viewportComponent.vertexPopoverComponent.setContent(this.name + ` (${this.archetype.name})`, props.exportedPackages);
+		app.viewportComponent.vertexPopoverComponent.setContent(this.name + ` (${app.archetype.vertex[this.archetype].name})`, props.attributes);
 		app.viewportComponent.vertexPopoverComponent.setPosition(new Coordinates(e.clientX, e.clientY));
 		app.viewportComponent.vertexPopoverComponent.open();
+	}
+	
+	/**
+	 * Archetype icon click interaction. Toggles highlighting of neighbour vertices which are instances of a vertex archetype.
+	 * @param {integer} archetypeIndex Index of the vertex archetype.
+	 * @param {MouseEvent} e Click event.
+	 */
+	function relatedArchetypeClick(archetypeIndex, e) {
+		e.stopPropagation();
+
+		this.setHighlighted(!highlighted);
+		this.setHighlightedArchetypeNeighbours(highlighted);
+
+		prepareHighlighting.call(this);
+		highlightArchetypeNeighbours.call(this, archetypeIndex);
 	}
 
 	/**
 	 * Displays symbol of the vertex next to all nodes that it is connected with.
-	 * @param {Event} e Click event.
+	 * @param {MouseEvent} e Click event.
 	 */
 	function showIconClick(e) {
 		iconsDisplayed = !iconsDisplayed;
@@ -815,14 +801,16 @@ function Vertex(props) {
 			document.body.removeEventListener('mouseleave', mouseUp);
 		}
 	}
-	
+
 	/**
-	 * Highlights all neighbours of the vertex. They are either highlighted as required or provided, or dimmed.
+	 * * Prepares highlighting of all graph components so that only the wished ones need to be modified.
 	 */
-	function highlightNeighbours() {
+	function prepareHighlighting() {
 		this.setDimmed(false);
+
 		this.setHighlightedRequired(false);
 		this.setHighlightedProvided(false);
+		this.setHighlightedArchetype(false);
 
 		if (highlighted) {
 			// dim and unhighlight all nodes but this
@@ -834,13 +822,11 @@ function Vertex(props) {
 				node.setHighlighted(false);
 				node.setHighlightedRequired(false);
 				node.setHighlightedProvided(false);
-				node.setHighlightedRequiredNeighbours(false);
-				node.setHighlightedProvidedNeighbours(false);
+				node.setHighlightedArchetype(false);
 			}, this);
 
 			// dim and unhighlight all edges
 			app.edgeList.forEach(function(edge) {
-				edge.setHidden(edge.getFrom().isExcluded() || edge.getTo().isExcluded());
 				edge.setDimmed(true);
 
 				edge.setHighlighted(false);
@@ -848,39 +834,21 @@ function Vertex(props) {
 				edge.setHighlightedProvided(false);
 			});
 
-			// highlight required neighbours
-			inEdgeList.forEach(function(edge) {
-				edge.setHidden(false);
-				edge.setDimmed(false);
-				edge.setHighlightedRequired(true);
-
-				edge.getFrom().setDimmed(false);
-				edge.getFrom().setHighlightedRequired(true);
-			});
-
-			// highlight provided neighbours
-			outEdgeList.forEach(function(edge) {
-				edge.setHidden(false);
-				edge.setDimmed(false);
-				edge.setHighlightedProvided(true);
-
-				edge.getTo().setDimmed(false);
-				edge.getTo().setHighlightedProvided(true);
-			});
-
 		} else {
 			app.nodeList.forEach(function(node) {
+				if (node === this) return;
+
 				node.setDimmed(false);
 
 				node.setHighlighted(false);
 				node.setHighlightedRequired(false);
 				node.setHighlightedProvided(false);
-				node.setHighlightedRequiredNeighbours(false);
-				node.setHighlightedProvidedNeighbours(false);
+				node.setHighlightedArchetype(false);
 			}, this);
 
 			app.edgeList.forEach(function(edge) {
 				edge.setHidden(edge.getFrom().isExcluded() || edge.getTo().isExcluded());
+
 				edge.setDimmed(false);
 
 				edge.setHighlighted(false);
@@ -894,43 +862,63 @@ function Vertex(props) {
 	 * Highlights only neighbours of the vertex that are required.
 	 */
 	function highlightRequiredNeighbours() {
-		if (highlighted) {
-			inEdgeList.forEach(function(edge) {
-				edge.setHidden(false);
-				edge.setHighlightedRequired(true);
-				edge.getFrom().setHighlightedRequired(true);
-			});
+		if (highlightedRequiredNeighbours === false) return;
 
-		} else {
-			inEdgeList.forEach(function(edge) {
-				edge.setHidden(true);
-				edge.setHighlightedRequired(false);
-				edge.getFrom().setHighlightedRequired(false);
-			});
-		}
+		inEdgeList.forEach(function(edge) {
+			edge.setHidden(false);
+
+			edge.setDimmed(false);
+			edge.getFrom().setDimmed(false);
+
+			edge.setHighlightedRequired(true);
+			edge.getFrom().setHighlightedRequired(true);
+		});
 	}
 
 	/**
 	 * Highlights only neighbours of the vertex that are provided.
 	 */
 	function highlightProvidedNeighbours() {
-		if (highlighted) {
-			outEdgeList.filter(function(edge) {
-				return !edge.getTo().isExcluded();
-			}).forEach(function(edge) {
-				edge.setHidden(false);
-				edge.setHighlightedProvided(true);
-				edge.getTo().setHighlightedProvided(true);
-			});
+		if (highlightedProvidedNeighbours === false) return;
 
-		} else {
-			outEdgeList.filter(function(edge) {
-				return !edge.getTo().isExcluded();
-			}).forEach(function(edge) {
-				edge.setHidden(true);
-				edge.setHighlightedProvided(false);
-				edge.getTo().setHighlightedProvided(false);
-			});
-		}
+		outEdgeList.forEach(function(edge) {
+			edge.setHidden(false);
+
+			edge.setDimmed(false);
+			edge.getTo().setDimmed(false);
+
+			edge.setHighlightedProvided(true);
+			edge.getTo().setHighlightedProvided(true);
+		});
+	}
+
+	/**
+	 * Highlights only neighbours of the vertex that are instances of the archetype.
+	 * @param {integer} archetypeIndex Index of the vertex archetype.
+	 */
+	function highlightArchetypeNeighbours(archetypeIndex) {
+		if (highlightedArchetypeNeighbours === false) return;
+
+		inEdgeList.filter(function(edge) {
+			return edge.getFrom().archetype === archetypeIndex;
+		}).forEach(function(edge) {
+			edge.setHidden(false);
+
+			edge.setDimmed(false);
+			edge.getFrom().setDimmed(false);
+
+			edge.getFrom().setHighlightedArchetype(true);
+		});
+
+		outEdgeList.filter(function(edge) {
+			return edge.getTo().archetype === archetypeIndex;
+		}).forEach(function(edge) {
+			edge.setHidden(false);
+
+			edge.setDimmed(false);
+			edge.getTo().setDimmed(false);
+
+			edge.getTo().setHighlightedArchetype(true);
+		});
 	}
 }

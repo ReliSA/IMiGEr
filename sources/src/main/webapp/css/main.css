@@ -325,6 +325,10 @@ body {
 	fill: #5896FF;
 }
 
+.viewport .node--highlighted-archetype > rect {
+	fill: yellowgreen;
+}
+
 .viewport .node--highlighted-required.node--highlighted-provided > rect {
 	fill: url(#node--highlighted-required-provided);
 }
@@ -334,6 +338,10 @@ body {
 }
 
 .viewport .vertex .archetype {
+	dominant-baseline: central;
+}
+
+.viewport .vertex .related-archetype {
 	dominant-baseline: central;
 }
 
