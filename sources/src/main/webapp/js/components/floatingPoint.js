@@ -92,7 +92,7 @@ function FloatingPoint() {
 		if (node instanceof Vertex) {
 			var edgeOffsetY = 10;
 		} else if (node instanceof Group) {
-			var edgeOffsetY = 40;
+			var edgeOffsetY = 35;
 		} else {
 			var edgeOffsetY = 0;
 		}

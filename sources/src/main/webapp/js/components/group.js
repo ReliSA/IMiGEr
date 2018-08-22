@@ -67,6 +67,15 @@ function Group(props) {
 			}
 		}, this);
 
+		var vertexRelatedArchetypeMap = vertex.getRelatedArchetypeMap();
+		for (var archetypeIndex in vertexRelatedArchetypeMap) {
+			if (!relatedArchetypeMap.hasOwnProperty(archetypeIndex)) {
+				relatedArchetypeMap[archetypeIndex] = 0;
+			}
+	
+			relatedArchetypeMap[archetypeIndex] += vertexRelatedArchetypeMap[archetypeIndex];
+		}
+
 		app.viewportComponent.removeVertex(vertex);
 
 		if (rootElement) {
@@ -94,6 +103,11 @@ function Group(props) {
 		vertex.getOutEdgeList().forEach(function(edge) {
 			edge.moveStart(this.getCenter());
 		}, vertex);
+
+		var vertexRelatedArchetypeMap = vertex.getRelatedArchetypeMap();
+		for (var archetypeIndex in vertexRelatedArchetypeMap) {
+			relatedArchetypeMap[archetypeIndex] -= vertexRelatedArchetypeMap[archetypeIndex];
+		}
 
 		app.viewportComponent.addVertex(vertex);
 
@@ -570,86 +584,48 @@ function Group(props) {
 		var svg = app.utils.createSvgElement('svg', {
 			'xmlns': 'http://www.w3.org/2000/svg',
 			'height': 60,
-			'width': 40,
+			'width': 46,
 		});
 		rootElement.appendChild(svg);
 
-		var group = app.utils.createSvgElement('g', {
-			'transform': 'translate(60,10)',
+		// related archetypes
+		var relatedArchetypesGroup = app.dom.createSvgElement('g', {
+			'transform': 'translate(10, 15)',
 		});
-		svg.appendChild(group);
+		svg.appendChild(relatedArchetypesGroup);
 
-		/*
-		// required
-		var required = app.utils.createSvgElement('g', {
-			'class': 'required-counter',
-		});
-		required.addEventListener('click', requiredClick.bind(this));
-		group.appendChild(required);
+		var archetypeIconOrder = 0;
+		for (var archetypeIndex in relatedArchetypeMap) {
+			var relatedArchetype = app.dom.createSvgElement('g', {
+				'class': 'related-archetype',
+				'transform': `translate(0, ${archetypeIconOrder * 20})`,
+			});
+			relatedArchetypesGroup.appendChild(relatedArchetype);
 
-		required.appendChild(app.utils.createSvgElement('line', {
-			'x1': -60,
-			'y1': 5,
-			'x2': -50,
-			'y2': 5,
-			'stroke': 'black',
-			'class': 'outer-floater',
-		}));
-		required.appendChild(app.utils.createSvgElement('line', {
-			'x1': -30,
-			'y1': 5,
-			'x2': -20,
-			'y2': 5,
-			'stroke': 'black',
-		}));
-		required.appendChild(app.utils.createSvgElement('path', {
-			'class': 'lollipop',
-			'd': 'M-42,-5 C-27,-5 -27,15 -42,15',
-		}));
+			// counter
+			var relatedArchetypeCounter = app.dom.createSvgElement('text', {});
+			relatedArchetypeCounter.appendChild(app.dom.createTextElement(relatedArchetypeMap[archetypeIndex]));
+			relatedArchetype.appendChild(relatedArchetypeCounter);
 
-		var requiredCounterText = app.utils.createSvgElement('text', {
-			'x': -45,
-			'y': 10,
-		});
-		requiredCounterText.appendChild(document.createTextNode(requiredCounter));
-		required.appendChild(requiredCounterText);
+			// icon
+			var relatedArchetypeIcon = app.dom.createSvgElement('g', {
+				'class': 'archetype-icon',
+				'transform': `translate(15, -10)`,
+			});
+			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
+			relatedArchetypeIcon.innerHTML = app.archetype.icon[app.archetype.vertex[archetypeIndex].name];
+			relatedArchetype.appendChild(relatedArchetypeIcon);
 
-		// provided
-		var provided = app.utils.createSvgElement('g', {
-			'class': 'provided-counter',
-		});
-		provided.addEventListener('click', providedClick.bind(this));
-		group.appendChild(provided);
+			// line
+			relatedArchetype.appendChild(app.dom.createSvgElement('line', {
+				'x1': 30,
+				'y1': -5,
+				'x2': 36,
+				'y2': -5,
+			}));
 
-		provided.appendChild(app.utils.createSvgElement('line', {
-			'x1': -60,
-			'y1': 35,
-			'x2': -50,
-			'y2': 35,
-			'stroke': 'black',
-			'class': 'outer-floater',
-		}));
-		provided.appendChild(app.utils.createSvgElement('line', {
-			'x1': -30,
-			'y1': 35,
-			'x2': -20,
-			'y2': 35,
-			'stroke': 'black',
-		}));
-		provided.appendChild(app.utils.createSvgElement('circle', {
-			'class': 'lollipop',
-			'cx': -42,
-			'cy': 35,
-			'r': 11,
-		}));
-
-		var providedCounterText = app.utils.createSvgElement('text', {
-			'x': -45,
-			'y': 40,
-		});
-		providedCounterText.appendChild(document.createTextNode(providedCounter));
-		provided.appendChild(providedCounterText);
-		*/
+			archetypeIconOrder++;
+		}
 
 		// symbol
 		var symbolText = app.utils.createHtmlElement('span', {
@@ -813,6 +789,21 @@ function Group(props) {
 	}
 	
 	/**
+	 * Archetype icon click interaction. Toggles highlighting of neighbour vertices which are instances of a vertex archetype.
+	 * @param {integer} archetypeIndex Index of the vertex archetype.
+	 * @param {MouseEvent} e Click event.
+	 */
+	function relatedArchetypeClick(archetypeIndex, e) {
+		e.stopPropagation();
+
+		this.setHighlighted(!highlighted);
+		this.setHighlightedArchetypeNeighbours(highlighted);
+
+		prepareHighlighting.call(this);
+		highlightArchetypeNeighbours.call(this, archetypeIndex);
+	}
+	
+	/**
 	 * Handles drag and drop interaction with the group. At the moment mouse button is pressed, it is not yet known whether 
 	 * it is just clicked or dragged.
 	 * @param {Event} e Mouse down event.
@@ -957,5 +948,27 @@ function Group(props) {
 	 */
 	function highlightArchetypeNeighbours(archetypeIndex) {
 		if (highlightedArchetypeNeighbours === false) return;
+
+		this.getInEdgeList().filter(function(edge) {
+			return edge.getFrom().archetype === archetypeIndex;
+		}).forEach(function(edge) {
+			edge.setHidden(false);
+
+			edge.setDimmed(false);
+			edge.getFrom().setDimmed(false);
+
+			edge.getFrom().setHighlightedArchetype(true);
+		});
+
+		this.getOutEdgeList().filter(function(edge) {
+			return edge.getTo().archetype === archetypeIndex;
+		}).forEach(function(edge) {
+			edge.setHidden(false);
+
+			edge.setDimmed(false);
+			edge.getTo().setDimmed(false);
+
+			edge.getTo().setHighlightedArchetype(true);
+		});
 	}
 }
