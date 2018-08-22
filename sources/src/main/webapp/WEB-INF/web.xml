@@ -92,10 +92,6 @@
 		<servlet-name>LoadGraphData</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.LoadGraphData</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>EfpImport</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.EfpImport</servlet-class>
-	</servlet>
 
 	<!--
 	URL-to-servlet mappings
@@ -147,10 +143,6 @@
 	<servlet-mapping>
 		<servlet-name>LoadGraphData</servlet-name>
 		<url-pattern>/api/graph-data</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>EfpImport</servlet-name>
-		<url-pattern>/efp-import</url-pattern>
 	</servlet-mapping>
 
 	<session-config>
