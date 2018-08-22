@@ -337,12 +337,9 @@ body {
 	fill: yellow;
 }
 
-.viewport .vertex .archetype {
+.archetype-icon {
 	dominant-baseline: central;
-}
-
-.viewport .vertex .related-archetype {
-	dominant-baseline: central;
+	pointer-events: bounding-box;
 }
 
 .context-menu {
@@ -586,10 +583,6 @@ body {
 
 .sidebar .node .related-archetype > text {
 	font-size: 0.8em;
-}
-
-.sidebar .node .related-archetype > g {
-	dominant-baseline: central;
 }
 
 .sidebar .node .related-archetype > line {

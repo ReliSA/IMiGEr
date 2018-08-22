@@ -426,8 +426,6 @@ function Vertex(props) {
 	 * @returns {Element} HTML or SVG DOM element depending on whether the vertex is excluded.
 	 */
 	this.render = function() {
-		size.width += this.countRelatedArchetypes() * relatedArchetypeIconWidth;
-
 		rootElement = excluded ? renderExcluded.call(this) : renderIncluded.call(this);
 
 		this.setHighlighted(highlighted);
@@ -475,14 +473,14 @@ function Vertex(props) {
 		
 		rootElement.appendChild(app.utils.createSvgElement('rect', {
 			'height': size.height,
-			'width': size.width,
+			'width': size.width + this.countRelatedArchetypes() * relatedArchetypeIconWidth,
 			'x': 1,
 			'y': 1,
 		}));
 
 		// archetype icon
 		var archetypeIcon = app.dom.createSvgElement('g', {
-			'class': 'archetype',
+			'class': 'archetype-icon',
 			'transform': 'translate(8, 8)',
 		});
 		archetypeIcon.addEventListener('click', archetypeClick.bind(this));
@@ -502,14 +500,14 @@ function Vertex(props) {
 
 		// related archetype icons
 		var relatedArchetypeListContainer = app.dom.createSvgElement('g', {
-			'transform': `translate(${size.width - this.countRelatedArchetypes() * relatedArchetypeIconWidth}, 0)`,
+			'transform': `translate(${size.width}, 0)`,
 		});
 		rootElement.appendChild(relatedArchetypeListContainer);
 
 		var archetypeIconOrder = 0;
 		for (var archetypeIndex in relatedArchetypeMap) {
 			var relatedArchetype = app.utils.createSvgElement('g', {
-				'class': 'related-archetype',
+				'class': 'archetype-icon',
 				'transform': `translate(${archetypeIconOrder * relatedArchetypeIconWidth}, 8)`,
 			});
 			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
@@ -569,6 +567,7 @@ function Vertex(props) {
 
 			// icon
 			var relatedArchetypeIcon = app.dom.createSvgElement('g', {
+				'class': 'archetype-icon',
 				'transform': `translate(15, -10)`,
 			});
 			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
