@@ -19,6 +19,7 @@
 		<script src="js/libs/saveSvgAsPng.js"></script>
 		<script src="js/libs/jstree.min.js"></script>
 
+		<script src="js/components/attribute.js"></script>
 		<script src="js/components/edge.js"></script>
 		<script src="js/components/edgePopover.js"></script>
 		<script src="js/components/floatingPoint.js"></script>
@@ -30,7 +31,6 @@
 		<script src="js/components/statusBar.js"></script>
 		<script src="js/components/vertex.js"></script>
 		<script src="js/components/vertexContextMenuList.js"></script>
-		<script src="js/components/vertexLight.js"></script>
 		<script src="js/components/vertexPopover.js"></script>
 		<script src="js/components/vertexSymbolList.js"></script>
 		<script src="js/components/viewport.js"></script>

@@ -56,6 +56,9 @@ function App() {
 		icon: [],
 	};
 
+	/** TODO: jsDoc */
+	this.attributeTypeList = [];
+
 	/**
 	 * Loads graph using diagram (if available).
 	 * @param diagramId Diagram identifier.

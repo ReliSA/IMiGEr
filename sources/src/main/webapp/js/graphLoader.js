@@ -20,6 +20,8 @@ function GraphLoader() {
 
 		var canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
 
+		app.attributeTypeList = data.attributeTypes;
+
 		// store archetypes
 		app.archetype.vertex = data.vertexArchetypes;
 		app.archetype.edge = data.edgeArchetypes;

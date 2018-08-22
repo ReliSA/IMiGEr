@@ -19,10 +19,7 @@ function VertexPopover() {
 		if (attributeList.length === 0) return;
 
 		attributeList.forEach(function(attribute) {
-			var listItem = app.utils.createHtmlElement('li', {});
-			listItem.appendChild(document.createTextNode(`${attribute[0]}: ${attribute[1]}`));
-
-			detailsListElement.appendChild(listItem);
+			detailsListElement.appendChild(new Attribute(attribute).render());
 		});
 	};
 

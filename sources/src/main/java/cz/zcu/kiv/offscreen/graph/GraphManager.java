@@ -541,7 +541,8 @@ public class GraphManager {
                 attrValue = new StringBuilder(attr.getValue().toString());
                 break;
             case DATE:
-                attrValue = new StringBuilder(attr.getValue().toString());
+                Date value = (Date) attr.getValue();
+                attrValue = new StringBuilder(String.valueOf(value.getTime()));
                 break;
             case ENUM: // Enum attribute type must be a list of integers!
                 List<Integer> valuePositions = (List<Integer>) attr.getValue();

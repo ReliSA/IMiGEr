@@ -26,10 +26,7 @@ function EdgePopover() {
 			detailsListElement.appendChild(listItem);
 
 			subedgeInfo.attributes.forEach(function(attribute) {
-				var listItem = app.dom.createHtmlElement('li', {});
-				listItem.appendChild(app.dom.createTextElement(`${attribute[0]}: ${attribute[1]}`));
-
-				sublist.appendChild(listItem);
+				sublist.appendChild(new Attribute(attribute).render());
 			});
 		});
 	};
