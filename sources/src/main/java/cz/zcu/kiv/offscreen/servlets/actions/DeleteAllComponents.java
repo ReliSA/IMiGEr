@@ -47,7 +47,7 @@ public class DeleteAllComponents extends HttpServlet {
             request.setAttribute("componentNames", fileManager.getUploadedComponentsNames());
 
             // redirect
-            response.sendRedirect(getServletContext().getInitParameter("HOME_URL") + "upload-files");
+            response.sendRedirect(getServletContext().getInitParameter("HOME_URL"));
         }
     }
 }

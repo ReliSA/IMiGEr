@@ -62,16 +62,7 @@ function App() {
 	 * @param diagramHash Diagram hash.
 	 */
 	this.diagramLoader = function(diagramId, diagramHash) {
-		return loadGraphData.bind(this, diagramId, diagramHash, null, null);
-	};
-
-	/**
-	 * Loads graph using EFP data.
-	 * @param {boolean} withEfps Is EFPs in graph?
-	 * @param {object} efpSettings EFP settings.
-	 */
-	this.efpLoader = function(withEfps, efpSettings) {
-		return loadGraphData.bind(this, null, null, withEfps, efpSettings);
+		return loadGraphData.bind(this, diagramId, diagramHash);
 	};
 
 	/**
@@ -292,10 +283,8 @@ function App() {
 	 * Loads graph data of a diagram.
 	 * @param {string} diagramId Identifier of the diagram to be loaded.
 	 * @param {string} diagramHash Hash of the diagram to be loaded.
-	 * @param {boolean} withEfps Load diagram with extra-functional properties.
-	 * @param {object} efpSettings Settings of EFP graph.
 	 */
-	function loadGraphData(diagramId, diagramHash, withEfps, efpSettings) {
+	function loadGraphData(diagramId, diagramHash) {
 		var self = this;
 
 		self.loader.enable();
@@ -311,16 +300,6 @@ function App() {
 		if (diagramHash !== 'null') {
 			loadGraphURL +=  '&diagramHash=' + diagramHash;
 			loadDiagramURL += '&diagramHash=' + diagramHash;
-		}
-
-		// TODO: how to handle EFPs? see old code for details
-		if (withEfps !== null) {
-			// Build graph with EFPs
-			//GraphManager.isEfpGraph = true;
-	
-			// set EFP settings
-			//GraphManager.efpMinIntDiameter = efpSettings.minInterfaceDiameter;
-			//GraphManager.efpMaxIntDiameter = efpSettings.maxInterfaceDiameter;
 		}
 
 		// exported data of graph
@@ -345,7 +324,7 @@ function App() {
 
 		}, function() {
 			// go to the upload page
-			window.location.replace('./upload-files');
+			window.location.replace('./');
 		});
 	}
 

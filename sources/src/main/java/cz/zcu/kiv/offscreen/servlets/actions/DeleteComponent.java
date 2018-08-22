@@ -75,7 +75,7 @@ public class DeleteComponent extends HttpServlet {
 
         } else {
             // redirect
-            response.sendRedirect(getServletContext().getInitParameter("HOME_URL") + "upload-files" + redirectUrlParams);
+            response.sendRedirect(getServletContext().getInitParameter("HOME_URL") + redirectUrlParams);
         }
     }
 }

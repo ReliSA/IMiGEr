@@ -32,10 +32,6 @@ public class ShowGraph extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// framework
-        String framework = request.getParameter("framework") == null ? "osgi" : request.getParameter("framework");
-        response.addCookie(new Cookie("framework", framework));
-
         // should save button be displayed?
 		boolean showSaveButton = request.getParameter("diagram_id") != null && request.getParameter("diagram_hash") != null;
 		request.setAttribute("show_icon_save", showSaveButton);

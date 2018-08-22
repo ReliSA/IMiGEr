@@ -1,8 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="cz.zcu.kiv.offscreen.graph.efp.EfpGraphicSettings"%>
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@page import="cz.zcu.kiv.comav.loaders.osgi.service.RequiredService"%>
-<%@page import="sun.reflect.ReflectionFactory.GetReflectionFactoryAction"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.google.gson.GsonBuilder"%>
@@ -60,47 +56,27 @@
 
 	<body>
 		<%
-		//String path = request.getContextPath();
 		String getProtocol = request.getScheme();
 		String getDomain = request.getServerName();
 		String getPort = Integer.toString(request.getServerPort());
-		String getPath = getProtocol+"://"+getDomain+":"+getPort+"/";
+		String getPath = getProtocol + "://" + getDomain + ":" + getPort + "/";
 		String getURI = request.getRequestURI();
-
-		// set graphic settings for EFP graph
-		ServletContext context = this.getServletContext();
-		EfpGraphicSettings efpSettings = new EfpGraphicSettings();
-
-		efpSettings.setMinInterfaceDiameter(Integer.valueOf(context.getInitParameter("minInterfaceDiameter")));
-		efpSettings.setMaxInterfaceDiameter(Integer.valueOf(context.getInitParameter("maxInterfaceDiameter")));
-
-		// JSONize graph settings
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		Gson gson = gsonBuilder.create();
-
-		String efpSettingsJson = gson.toJson(efpSettings);
 
 		// logged-in user
 		boolean logged_user = false;
-		boolean diagram_id_hash_set = false;
-		if (request.getSession().getAttribute("logged_user") == "1"){
+		if (request.getSession().getAttribute("logged_user") == "1") {
 			logged_user = true;
 		}
 
-		if (request.getParameter("diagram_id")!= null && request.getParameter("diagram_hash") != null) {
+		// saved diagram
+		boolean diagram_id_hash_set = false;
+		if (request.getParameter("diagram_id") != null && request.getParameter("diagram_hash") != null) {
 			diagram_id_hash_set = true;
 		}
 
 		String diagram_url = "";
-		boolean show_icon_save = true;
 		if (logged_user && diagram_id_hash_set) {
-			diagram_url = "?diagram_id="+ request.getParameter("diagram_id")+"&diagram_hash=" + request.getParameter("diagram_hash");
-			show_icon_save = true;
-		}
-
-		boolean is_efp_diagram = false;
-		if (request.getAttribute("efpPortalRefererUrl") != null) {
-			is_efp_diagram = true;
+			diagram_url = "?diagram_id=" + request.getParameter("diagram_id") + "&diagram_hash=" + request.getParameter("diagram_hash");
 		}
 		%>
 
@@ -110,9 +86,7 @@
 
 				<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 
-				<% if (!is_efp_diagram) { %>
-					<jsp:include page="logged_user.jsp" />
-				<% } %>
+				<jsp:include page="logged_user.jsp" />
 
 				<nav class="navbar" id="navigation">
 					<ul>
@@ -172,11 +146,7 @@
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<% if (!is_efp_diagram) { %>
-								<a href="<%=getServletContext().getInitParameter("HOME_URL")%>upload-files<%=diagram_url%>" class="btn btn-block back-to-upload" id="view_back_to_upload" title="Back to upload"></a>
-							<% } else { %>
-								<a href="<%=request.getAttribute("efpPortalRefererUrl")%>" class="btn btn-block back-to-upload" id="view_back_to_upload" title="Back"></a>
-							<% } %>
+							<a href="<%=getServletContext().getInitParameter("HOME_URL")%><%=diagram_url%>" class="btn btn-block back-to-upload" id="view_back_to_upload" title="Back to upload"></a>
 						</li>
 						<li>
 							<hr class="navbar-separator">
@@ -186,26 +156,6 @@
 								<img src="images/layout_off.png" id="applyLayoutImg" alt="Apply layout to current graph.">
 							</button>
 						</li>
-						<%
-						if (request.getAttribute("efpPortalEfpNames") != null) {
-							final Map<String, String> efpMappings = (Map<String, String>)request.getAttribute("efpPortalEfpNames");
-							if (!efpMappings.isEmpty()) {
-						%>
-						<li><hr class="navbar-separator"></li>
-						<li>
-							<select name="EFPselector" class="EFP-selector" id="EFPselector">
-								<option value="" selected="selected" class="option_default">none</option>
-								<% for (Map.Entry<String, String> entry : efpMappings.entrySet()) { %>
-									<option value="<%=entry.getValue()%>"><%=entry.getValue()%></option>
-								<% } %>
-							</select>
-						</li>
-						<%
-							}
-						}
-						%>
-
-						<% if (show_icon_save) { %>
 						<li>
 							<hr class="navbar-separator">
 						</li>
@@ -218,15 +168,14 @@
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<a href="<%=getServletContext().getInitParameter("HOME_URL")%>graph?diagram_id=<%=request.getParameter("diagram_id")%>&diagram_hash=<%=request.getParameter("diagram_hash")%>" class="btn btn-block view-refresh-diagram" id="view_refresh_diagram" title="Refresh diagram"></a>
+							<a href="<%=getServletContext().getInitParameter("HOME_URL")%>graph<%=diagram_url%>" class="btn btn-block view-refresh-diagram" id="view_refresh_diagram" title="Refresh diagram"></a>
 						</li>
 						<li>
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<a href="<%=getServletContext().getInitParameter("HOME_URL")%>graph?diagram_id=<%=request.getParameter("diagram_id")%>&diagram_hash=<%=request.getParameter("diagram_hash")%>" class="btn btn-block view-refresh-reset-diagram" id="view_refresh_reset_diagram" onclick="reset_diagram(<%=request.getParameter("diagram_id")%>,'<%=request.getParameter("diagram_hash")%>'); return false;" title="Refresh diagram - reset position"></a>
+							<a href="<%=getServletContext().getInitParameter("HOME_URL")%>graph<%=diagram_url%>" class="btn btn-block view-refresh-reset-diagram" id="view_refresh_reset_diagram" onclick="reset_diagram(<%=request.getParameter("diagram_id")%>,'<%=request.getParameter("diagram_hash")%>'); return false;" title="Refresh diagram - reset position"></a>
 						</li>
-						<% } %>
 					</ul>
 				</nav>
 			</header>
@@ -278,12 +227,7 @@
 		app.HOME_URL = '<%=getPath%>imiger/';
 
 		$(document).ready(function() {
-			var loaderFn;
-			<% if (request.getAttribute("graph_json") != null) { %>
-				loaderFn = app.efpLoader('<%=request.getAttribute("graph_json")%>', '<%=efpSettingsJson%>');
-			<% } else { %>
-				loaderFn = app.diagramLoader('<%=request.getParameter("diagram_id")%>', '<%=request.getParameter("diagram_hash")%>');
-			<% } %>
+			var loaderFn = app.diagramLoader('<%=request.getParameter("diagram_id")%>', '<%=request.getParameter("diagram_hash")%>');
 
 			app.run(loaderFn);
 		});

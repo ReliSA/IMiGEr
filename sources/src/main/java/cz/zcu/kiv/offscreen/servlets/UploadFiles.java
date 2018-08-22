@@ -1,9 +1,10 @@
-package cz.zcu.kiv.offscreen.servlets.actions;
+package cz.zcu.kiv.offscreen.servlets;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -80,15 +81,16 @@ public class UploadFiles extends HttpServlet {
         response.addCookie(new Cookie("graphVersion", String.valueOf(version)));
 
         // response
-        ArrayList<Map<String, String>> list = new ArrayList<>();
+        List<Map<String, String>> userDiagramList = new ArrayList<>();
         if (request.getSession().getAttribute("logged_user") == "1") {
             int loggedUserId = (int) request.getSession().getAttribute("logged_user_id");
 
-			list = new Diagram(db).getDiagramListByUserId(loggedUserId);
+			userDiagramList = new Diagram(db).getDiagramListByUserId(loggedUserId);
         }
-        request.setAttribute("diagramNames", list);
+        request.setAttribute("diagramNames", userDiagramList);
 
-        request.setAttribute("diagramPublic", new Diagram(db).getDiagramPublicList());
+        List<Map<String, String>> publicDiagramList = new Diagram(db).getDiagramPublicList();
+        request.setAttribute("diagramPublic", publicDiagramList);
         
         request.setAttribute("componentNames", fileManager.getUploadedComponentsNames());
         request.setAttribute("errorMessage", result);

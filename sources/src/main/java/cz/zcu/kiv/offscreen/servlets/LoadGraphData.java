@@ -51,28 +51,19 @@ public class LoadGraphData extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         if (request.getSession().getAttribute("demo_id") == null) {
-            // it doesn't have EFPs -> read from ComAV
-            if (request.getSession().getAttribute("graph_json_data") == null) {
-                File[] uploadedFiles = fileManager.getUploadedComponents().toArray(new File[0]);
-                File fileToDisplay = uploadedFiles[0];
+            File[] uploadedFiles = fileManager.getUploadedComponents().toArray(new File[0]);
+            File fileToDisplay = uploadedFiles[0];
 
-                GraphManager graphManager = new GraphJSONDataLoader(fileToDisplay).LoadData();
-                String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
-                JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
-                Graph graph = graphManager.createGraph(configLoader);
-                GraphExport export = new GraphExport(graph);
-                JSONObject json = JSONObject.fromObject(export);
+            GraphManager graphManager = new GraphJSONDataLoader(fileToDisplay).LoadData();
+            String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
+            JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
+            Graph graph = graphManager.createGraph(configLoader);
+            GraphExport export = new GraphExport(graph);
+            JSONObject json = JSONObject.fromObject(export);
 
-                String resultJsonString = json.toString();
+            String resultJsonString = json.toString();
 
-                response.getWriter().write(resultJsonString);
-
-            } else {
-                // it has EFPs -> read from the session
-                response.getWriter().write(request.getSession().getAttribute("graph_json_data").toString());
-
-                request.getSession().removeAttribute("graph_json_data");
-            }
+            response.getWriter().write(resultJsonString);
 
         } else {
             String demoId = request.getSession().getAttribute("demo_id").toString();
