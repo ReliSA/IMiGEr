@@ -82,8 +82,8 @@ public class SaveLog extends HttpServlet{
 
     private boolean checkUserId(int diagramID, int userId, DB db) {
 
-        Diagram diag = new Diagram(db);
-        HashMap<String,String> param = (HashMap<String, String>) diag.getDiagramParam(diagramID);
+        Diagram diag = new Diagram(db, diagramID);
+        HashMap<String,String> param = (HashMap<String, String>) diag.getDiagram();
         String idStr = param.get("user_id");
         int id = Integer.parseInt(idStr);
         if (userId==0){

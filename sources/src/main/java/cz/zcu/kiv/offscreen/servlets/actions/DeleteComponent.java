@@ -48,7 +48,7 @@ public class DeleteComponent extends HttpServlet {
 
             DB db = new DB(getServletContext());
             Diagram diagram = new Diagram(db, diagramId);
-            Map<String, String> diag_param = diagram.getDiagramParam(diagramId);
+            Map<String, String> diag_param = diagram.getDiagram();
 
             if (request.getSession().getAttribute("logged_user_id") == null) {
         		doDeleteComponent = false;

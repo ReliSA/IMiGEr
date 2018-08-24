@@ -30,8 +30,8 @@ public class DiagramEndpoint extends HttpServlet {
         Integer diagramId = Integer.parseInt(request.getParameter("diagram_id"));
 
         DB db = new DB(getServletContext());
-        Diagram diagram = new Diagram(db);
-        Map<String, String> diag_param = diagram.getDiagramParam(diagramId);
+        Diagram diagram = new Diagram(db, diagramId);
+        Map<String, String> diag_param = diagram.getDiagram();
 
         // user is not owner of the diagram
         if (!request.getSession().getAttribute("logged_user_id").toString().equals(diag_param.get("user_id"))) {
@@ -68,7 +68,7 @@ public class DiagramEndpoint extends HttpServlet {
 
         DB db = new DB(getServletContext());
         Diagram diagram = new Diagram(db, diagramId);
-        Map<String, String> diag_param = diagram.getDiagramParam(diagramId);
+        Map<String, String> diag_param = diagram.getDiagram();
 
         // user is not owner of the diagram
         if (!request.getSession().getAttribute("logged_user_id").toString().equals(diag_param.get("user_id"))) {
@@ -77,7 +77,7 @@ public class DiagramEndpoint extends HttpServlet {
         }
 
         String verticesPosition = request.getParameter("vertices_position");
-        diagram.updateVerticesPosition(verticesPosition);
+        //diagram.updateVerticesPosition(verticesPosition); REMOVED FROM DATABASE
 
         // send response
         response.setContentType("application/json");
@@ -110,7 +110,7 @@ public class DiagramEndpoint extends HttpServlet {
 
         DB db = new DB(getServletContext());
         Diagram diagram = new Diagram(db, diagramId);
-        Map<String, String> diag_param = diagram.getDiagramParam(diagramId);
+        Map<String, String> diag_param = diagram.getDiagram();
 
         // user is not owner of the diagram
         if (!request.getSession().getAttribute("logged_user_id").toString().equals(diag_param.get("user_id"))) {

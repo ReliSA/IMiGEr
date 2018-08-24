@@ -1,251 +1,228 @@
 package cz.zcu.kiv.offscreen.user;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import javax.servlet.ServletContext;
+import java.util.*;
 
 /**
- * Class is usefull for saving and loading diagram params from database.
- * 
- * @author Daniel Bureš
+ * Class is used for saving and loading diagram params from database.
  *
+ * @author Daniel Bureš
+ * @author Tomáš Šimandl
  */
 public class Diagram {
-	private DB db = null;
-	private int id = 0;
-	private ResultSet rs;
-	 
-	
-	public Diagram(DB db) {			
-		this(db,0);
-	}
-	
-	
-	public Diagram(DB db,int id) {
-		this.db = db;	
-		this.id = id;
-	}
-	
-	/**
-	 * Method returns object id.
-	 * 
-	 * @return id
-	 */
-	public int getId(){
-		return this.id;
-	}
-	
-	/**
-	 * Method returns id of object as string.
-	 * 
-	 * @return
-	 */
-	public String getIdStr(){
-		return Integer.toString(this.id);		
-	}
-	
-	/**
-	 * Method saves new diagram into database.
-	 * 
-	 * @param param - diagram parameters
-	 */
-	public void update(Map<String, String> param){
-		try {
-			if ( this.id  == 0 ) {
-				  
-				    String diagram_name = param.get("diagram_name")  ;
-				    String hash = param.get("hash")  ;  
-				    String component_count = param.get("component_count")  ;
-				    String user_id = param.get("user_id")  ;
-				    String public_diag = param.get("public")  ;
-				
-					String qy = "INSERT INTO diagram (id, created, user_id,component_count, name, session_id, hash,public ) " +
-										"VALUES ('0', NOW(), '"+user_id+"', '"+component_count+"', '"+diagram_name+"', '', '" + hash + "' , '" + public_diag + "' ) ";
-					Statement st = db.getConn().createStatement();
-					st.executeUpdate(qy, Statement.RETURN_GENERATED_KEYS);
-					ResultSet rs = st.getGeneratedKeys();
-					
-					if(rs.next()){							
-						this.id = rs.getInt(1);						
-					}					
-					
-				
-			}else{
-				    String diagram_name = param.get("diagram_name")  ;
-				    String component_count = param.get("component_count")  ;
-				    String public_diag = param.get("public")  ;  
-				
-					String qy = "UPDATE diagram SET component_count = '" + component_count + "', name = '"+diagram_name+"', public = '"+public_diag+"' " + 
-										" WHERE id= '" + this.id + "'";
-					Statement st = db.getConn().createStatement();
-					st.executeUpdate(qy, Statement.RETURN_GENERATED_KEYS);
-					ResultSet rs = st.getGeneratedKeys();
+    private DB db = null;
+    private int id = -1;
 
-			}
-					  
-			
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-	}
-	
-	/**
-	 * Method deletes diagram from database.
-	 */
-	public void delete(){
-		String qy = "DELETE FROM diagram WHERE id = '"+ this.id+"' LIMIT 1";
-		
-		db.exStatement(qy);
-						
-		
-	}
-	
-	/*
-	public void updateViewport(String viewport_html){
-		String qy = "UPDATE diagram SET viewport_html = '"+ viewport_html+"' WHERE id = '"+ this.id+"' LIMIT 1";
-		try {
-			db.exStatement(qy);
-						
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-	}
 
-	public void updateRightpanel(String rightpanel_html){
-		String qy = "UPDATE diagram SET rightpanel_html = '"+ rightpanel_html+"' WHERE id = '"+ this.id+"' LIMIT 1";
-		try {
-			db.exStatement(qy);
-						
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-	}*/
-	
-	/**
-	 * Method updates vertices position in database. Position of vertices are saved in json.
-	 * 
-	 * @param vertices_position_json
-	 */
-	public void updateVerticesPosition(String vertices_position_json){
-		String qy = "UPDATE diagram SET vertices_position = '"+ vertices_position_json+"' WHERE id = '"+ this.id+"' LIMIT 1";
-		
-			db.exStatement(qy);
-						
-		
-	}
-	
-	/**
-	 * Method returns parameters of diagram.
-	 * @param diagram_id
-	 * @return
-	 */
-	public Map<String,String> getDiagramParam(int diagram_id){
-		HashMap<String, String> item_map = new HashMap<String, String>();
-		String qy = "SELECT * FROM diagram WHERE id = '"+diagram_id+"' ORDER BY created DESC ";
-		try {
-			rs = db.exQuery(qy);			
-			while ( rs != null && rs.next() ) {
-				
-				
-				item_map.put("id", String.valueOf(rs.getInt("id")) );
-				item_map.put("name", rs.getString("name")  );
-				item_map.put("hash", rs.getString("hash")  );
-				item_map.put("public", String.valueOf(rs.getInt("public")) );
-				item_map.put("user_id", String.valueOf(rs.getInt("user_id")) );
-				item_map.put("vertices_position", rs.getString("vertices_position")  );
-				item_map.put("component_count", String.valueOf(rs.getInt("component_count")) );
-				item_map.put("created", Util.formatDate(rs.getString("created") ) );
-				item_map.put("session_id", rs.getString("session_id") );
-				
-				
-			}
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		
-		return item_map;
-		
-	}
-	
-	/**
-	 * Method returns list of digrams, which are uploaded by user.
-	 * 
-	 * @param user_id
-	 * @return
-	 */
-	public ArrayList<Map<String,String>> getDiagramListByUserId(int user_id){		
-		ArrayList<Map<String,String>> diagram_list = new ArrayList<Map<String,String>>();
-		String qy = "SELECT * FROM diagram WHERE user_id = '"+user_id+"' ORDER BY created DESC ";
-		try {
-			rs = db.exQuery(qy);			
-			while ( rs != null && rs.next() ) {
-				HashMap<String, String> item_map = new HashMap<String, String>();
-				
-				item_map.put("id", String.valueOf(rs.getInt("id")) );
-				item_map.put("name", (rs.getString("name").length()==0?"No name":rs.getString("name"))  );
-				item_map.put("public", String.valueOf(rs.getInt("public")) );
-				item_map.put("component_count", String.valueOf(rs.getInt("component_count")) );
-				item_map.put("hash", rs.getString("hash")  );
-				item_map.put("created", Util.formatDate(rs.getString("created") ) );
-				item_map.put("session_id", rs.getString("session_id") );
-				
-				diagram_list.add(item_map);
-			}
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		
-		return diagram_list;
-		
-	}
-	
-	
-	/**
-	 * Method returns list of public diagrams.
-	 * @return
-	 */
-	public ArrayList<Map<String,String>> getDiagramPublicList(){
-		
-		ArrayList<Map<String,String>> diagram_list = new ArrayList<Map<String,String>>();
-		String qy = "SELECT * FROM diagram WHERE public = 1 ORDER BY name ASC ";
-		try {
-			rs = db.exQuery(qy);			
-			while ( rs != null && rs.next() ) {
-				HashMap<String, String> item_map = new HashMap<String, String>();
-				
-				item_map.put("id", String.valueOf(rs.getInt("id")) );
-				item_map.put("name", (rs.getString("name").length()==0?"No name":rs.getString("name"))  );
-				item_map.put("public", String.valueOf(rs.getInt("public")) );
-				item_map.put("component_count", String.valueOf(rs.getInt("component_count")) );
-				item_map.put("hash", rs.getString("hash")  );
-				item_map.put("created", Util.formatDate(rs.getString("created") ) );
-				item_map.put("session_id", rs.getString("session_id") );
-				
-				diagram_list.add(item_map);
-			}
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		
-		return diagram_list;
-		
-	}
-	
+    public Diagram(DB db) {
+        this(db, -1);
+    }
+
+    public Diagram(DB db, int id) {
+        this.db = db;
+        this.id = id;
+    }
+
+    /**
+     * Method returns object id.
+     *
+     * @return id
+     */
+    public int getId() {
+        return this.id;
+    }
+
+    public int getUserId(){
+        if(this.id < 0) return -1;
+
+        String qy = "SELECT user_id FROM diagram WHERE id = '" + this.id + "'";
+        ResultSet rs = db.exQuery(qy);
+
+        try{
+            if (rs != null && rs.next()) {
+                return rs.getInt("user_id");
+            }
+        }  catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+     * Method return map of values of actual diagram or empty map if id of diagram is invalid.
+     *
+     * @return created map.
+     */
+    public Map<String, String> getDiagram() {
+        if (this.id < 0) return Collections.emptyMap();
+
+        String qy = "SELECT * FROM diagram WHERE id = '" + this.id + "'";
+
+        try {
+
+            ResultSet rs = db.exQuery(qy);
+            if (rs != null && rs.next()) {
+                return createMap(rs);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Collections.emptyMap();
+    }
+
+    /**
+     * Method saves new diagram into database or update existing diagram.
+     *
+     * @param param - diagram parameters
+     */
+    public void update(Map<String, String> param) {
+        try {
+            if (this.id < 0) {
+                // crating new diagram
+
+                String name = param.get("name");
+                String userId = param.get("user_id");
+                String isPublic = param.get("public");
+                String graphJson = param.get("graph_json");
+
+
+                String qy = "INSERT INTO diagram (name, created, last_update, user_id, public, graph_json ) " +
+                        "VALUES (?, NOW(), NOW(), ?, ?, ?) ";
+
+                PreparedStatement pst = db.getConn().prepareStatement(qy);
+                pst.setString(1, name);
+                pst.setString(2, userId);
+                pst.setString(3, isPublic);
+                pst.setString(4, graphJson);
+                pst.executeUpdate();
+
+                ResultSet rs = pst.getGeneratedKeys();
+
+                if (rs.next()) {
+                    this.id = rs.getInt(1);
+                }
+            } else {
+                String name = param.get("name");
+                String isPublic = param.get("public");
+                String graphJson = param.get("graph_json");
+
+                String qy = "UPDATE diagram SET name = ?, public = ?, graph_json = ?, last_update = NOW() WHERE id= ?";
+
+                PreparedStatement pst = db.getConn().prepareStatement(qy);
+                pst.setString(1, name);
+                pst.setString(2, isPublic);
+                pst.setString(3, graphJson);
+                pst.setInt(4, this.id);
+                pst.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Method deletes diagram from database.
+     */
+    public void delete() {
+        if (id < 0) return;
+
+        String qy = "DELETE FROM diagram WHERE id = '" + this.id + "' LIMIT 1";
+        db.exStatement(qy);
+    }
+
+    /**
+     * Method change graph_json in diagram and return number of affected rows in database.
+     *
+     * @param graphJson json of diagram
+     * @return number of affected rows in database
+     */
+    public int updateGraphJson(String graphJson){
+        if(this.id < 0) return 0;
+
+        String qy = "UPDATE diagram SET graph_json = ? WHERE id = ?";
+
+        try {
+            PreparedStatement pst = db.getConn().prepareStatement(qy);
+            pst.setString(1, graphJson);
+            pst.setInt(2, this.id);
+            pst.executeUpdate();
+            return pst.getUpdateCount();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    /**
+     * Method returns list of diagrams, which are uploaded by given user.
+     *
+     * @param user_id id of user
+     * @return created list of diagram params.
+     */
+    public ArrayList<Map<String, String>> getDiagramListByUserId(int user_id) {
+        String qy = "SELECT * FROM diagram WHERE user_id = '" + user_id + "' ORDER BY created DESC ";
+
+        return createListOfMap(db.exQuery(qy));
+    }
+
+
+    /**
+     * Method returns list of all public diagrams.
+     *
+     * @return created list of diagram params
+     */
+    public ArrayList<Map<String, String>> getDiagramPublicList() {
+
+        String qy = "SELECT * FROM diagram WHERE public = 1 ORDER BY name ASC ";
+
+        return createListOfMap(db.exQuery(qy));
+    }
+
+    /**
+     * Iterate over all items in input ResultSet and return list of all founded diagrams (map of diagram parameters).
+     *
+     * @param rs result set which contains diagram rows.
+     * @return created list of diagrams.
+     */
+    private ArrayList<Map<String,String>> createListOfMap(ResultSet rs) {
+        ArrayList<Map<String, String>> diagram_list = new ArrayList<>();
+
+        try {
+            while (rs != null && rs.next()) {
+                diagram_list.add(createMap(rs));
+            }
+            return diagram_list;
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return new ArrayList<>();
+    }
+
+    /**
+     * Method take from input ResultSet all parameters of diagram. Result set must point to some row and can not be null.
+     *
+     * @param rs not null result set
+     * @return map of all parameters.
+     * @throws SQLException
+     */
+    private Map<String,String> createMap(ResultSet rs) throws SQLException {
+        HashMap<String, String> item_map = new HashMap<>();
+
+        item_map.put("id", String.valueOf(rs.getInt("id")));
+        item_map.put("name", rs.getString("name"));
+        item_map.put("created", Util.formatDate(rs.getString("created")));
+        item_map.put("last_update", Util.formatDate(rs.getString("last_update")));
+        item_map.put("user_id", String.valueOf(rs.getInt("user_id")));
+        item_map.put("public", String.valueOf(rs.getInt("public")));
+        item_map.put("graph_json", String.valueOf(rs.getString("graph_json")));
+
+        return item_map;
+    }
 }
