@@ -26,6 +26,7 @@
 		<script src="js/components/floatingPoint.js"></script>
 		<script src="js/components/group.js"></script>
 		<script src="js/components/groupVertexList.js"></script>
+		<script src="js/components/minimap.js"></script>
 		<script src="js/components/sidebar.js"></script>
 		<script src="js/components/sidebarExcludedNodeList.js"></script>
 		<script src="js/components/sidebarUnconnectedNodeList.js"></script>

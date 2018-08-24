@@ -468,7 +468,6 @@ body {
 	flex-basis: 350px;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 350px;
 	background-color: #f0f9ff;
 }
 
@@ -790,10 +789,24 @@ body {
 	content: "▼";
 }
 
+.minimap {
+	border-top: 1px solid #7db9e8;
+	background-color: #fff;
+}
+
+.minimap-viewport {
+	stroke: #999;
+	stroke-width: 1px;
+	fill-opacity: 0;
+	shape-rendering: crispedges;
+	transition: stroke .4s;
+}
+
+.minimap-viewport:hover {
+	stroke: #000;
+}
+
 .status-bar {
-    /* position: fixed; */
-    bottom: 0;
-    flex-basis: 22px;
     font-size: 11px;
     z-index: 1;
     color: #cceefc;
@@ -804,6 +817,11 @@ body {
 	display: inline-block;
 	margin-right: 5px;
 	padding: 5px;
+}
+
+.status-bar .link {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 /**

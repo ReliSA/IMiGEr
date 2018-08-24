@@ -9,6 +9,8 @@ function Sidebar() {
 	this.unconnectedNodeListComponent = null;
 	/** @prop {SidebarExcludedNodeList} excludedNodeListComponent */
 	this.excludedNodeListComponent = null;
+	/** @prop {Minimap} minimapComponent */
+	this.minimapComponent = null;
 	/** @prop {StatusBar} statusBarComponent */
 	this.statusBarComponent = null;
 
@@ -37,7 +39,6 @@ function Sidebar() {
 			'class': 'sidebar',
 			'id': 'sidebar',
 		});
-
 
 		var sidebarNav = app.utils.createHtmlElement('nav', {
 			'class': 'sidebar-navbar',
@@ -75,7 +76,6 @@ function Sidebar() {
 		});
 		sidebarContainer.appendChild(this.unconnectedNodeListComponent.render());
 
-
 		// excluded nodes
 		this.excludedNodeListComponent = new SidebarExcludedNodeList({
 			'id': 'excludedNodeListComponent',
@@ -83,10 +83,18 @@ function Sidebar() {
 		rootElement.appendChild(this.excludedNodeListComponent.render());
 
 
+		var sidebarBottom = app.utils.createHtmlElement('div', {
+			'class': 'sidebar-bottom',
+		});
+		rootElement.appendChild(sidebarBottom);
+
+		// minimap
+		this.minimapComponent = new Minimap;
+		sidebarBottom.appendChild(this.minimapComponent.render());
+
 		// status bar
 		this.statusBarComponent = new StatusBar;
-		rootElement.appendChild(this.statusBarComponent.render());
-
+		sidebarBottom.appendChild(this.statusBarComponent.render());
 
 		return rootElement;
 	};

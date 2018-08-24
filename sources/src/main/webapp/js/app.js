@@ -133,6 +133,7 @@ function App() {
 
 		self.sidebarComponent = new Sidebar;
 		content.appendChild(self.sidebarComponent.render());
+		self.sidebarComponent.minimapComponent.setViewportSize(self.viewportComponent.getSize());
 
 		// context menu
 		document.body.addEventListener('mousedown', function() {
@@ -279,6 +280,8 @@ function App() {
 		window.addEventListener('resize', function(e) {
 			self.headerHeight = getHeaderHeight();
 			self.redrawEdges();
+
+			self.sidebarComponent.minimapComponent.setViewportSize(self.viewportComponent.getSize());
 		});
 	}
 

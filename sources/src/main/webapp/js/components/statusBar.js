@@ -29,6 +29,13 @@ function StatusBar() {
 		});
 		rootElement.appendChild(componentCounterElement);
 
+		minimapToggleElement = app.dom.createHtmlElement('span', {
+			'class': 'link',
+		});
+		minimapToggleElement.appendChild(app.dom.createTextElement('toggle minimap'));
+		minimapToggleElement.addEventListener('click', toggleMinimap.bind(this));
+		rootElement.appendChild(minimapToggleElement);
+
 		return rootElement;
 	};
 
@@ -38,4 +45,10 @@ function StatusBar() {
 	this.reset = function() {
 		componentCounterElement.innerHTML = '';
 	};
+
+	function toggleMinimap(e) {
+		e.preventDefault();
+
+		document.getElementById('minimapComponent').classList.toggle('hidden');
+	}
 }

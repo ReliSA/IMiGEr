@@ -94,11 +94,23 @@ function Viewport() {
 		return groupList;
 	};
 
+	this.getSize = function() {
+		return {
+			'width': rootElement.offsetWidth,
+			'height': rootElement.offsetHeight,
+		};
+	};
+
 	this.getPosition = function() {
 		return new Coordinates(
 			+innerSvgElement.getAttribute('x'),
 			+innerSvgElement.getAttribute('y'),
 		);
+	};
+
+	this.setPosition = function(coords) {
+		innerSvgElement.setAttribute('x', coords.x);
+		innerSvgElement.setAttribute('y', coords.y);
 	};
 
 	this.center = function() {
@@ -222,11 +234,15 @@ function Viewport() {
 		
 		function mouseMove(e) {
 			if (!pan) return;
-			
+
 			e.preventDefault();
-			
-			innerSvgElement.setAttribute('x', position.x - (start.x - e.clientX));
-			innerSvgElement.setAttribute('y', position.y - (start.y - e.clientY));
+
+			var coords = new Coordinates(position.x - (start.x - e.clientX), position.y - (start.y - e.clientY));
+
+			innerSvgElement.setAttribute('x', coords.x);
+			innerSvgElement.setAttribute('y', coords.y);
+
+			app.sidebarComponent.minimapComponent.setViewportPosition(coords);
 		}
 
 		function mouseUp(e) {
