@@ -65,6 +65,10 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.UploadFiles</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>SaveDiagram</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.SaveDiagram</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>DeleteAllComponents</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.DeleteAllComponents</servlet-class>
 	</servlet>
@@ -104,6 +108,11 @@
 		<servlet-name>ShowGraph</servlet-name>
 		<url-pattern>/graph</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SaveDiagram</servlet-name>
+		<url-pattern>/api/save-diagram</url-pattern>
+	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>DeleteAllComponents</servlet-name>
 		<url-pattern>/delete-components</url-pattern>
