@@ -1,16 +1,16 @@
 package cz.zcu.kiv.offscreen.servlets;
 
-import cz.zcu.kiv.offscreen.graph.Graph;
+import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.api.GraphExport;
+import cz.zcu.kiv.offscreen.graph.Graph;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.loader.DemoDiagramLoader;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
 import cz.zcu.kiv.offscreen.loader.configuration.ConfigurationLoader;
-import cz.zcu.kiv.offscreen.session.SessionManager;
-import cz.zcu.kiv.offscreen.storage.FileManager;
 import net.sf.json.JSONObject;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,43 +28,30 @@ public class LoadGraphData extends HttpServlet {
      * graph is returned as JSON in response body.
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // initialize file manager
-        String workingDirectory;
-        if (request.getParameter("diagram_hash") == null) {
-            workingDirectory = SessionManager.getSessionValue(request, "JSESSIONID");
-        } else {
-            workingDirectory = request.getParameter("diagram_hash");
-        }
-
-        if (request.getParameter("graphVersion") != null) {
-            workingDirectory += File.separator + request.getParameter("graphVersion");
-        } else {
-            workingDirectory += File.separator + SessionManager.getSessionValue(request, "graphVersion");
-        }
-
-        String storageLocation = ConfigurationLoader.getStorageLocation(request.getServletContext());
-
-        FileManager fileManager = new FileManager(workingDirectory, storageLocation);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
         if (request.getSession().getAttribute("demo_id") == null) {
-            File[] uploadedFiles = fileManager.getUploadedComponents().toArray(new File[0]);
-            File fileToDisplay = uploadedFiles[0];
 
-            GraphManager graphManager = new GraphJSONDataLoader(fileToDisplay).LoadData();
-            String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
-            JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
-            Graph graph = graphManager.createGraph(configLoader);
-            GraphExport export = new GraphExport(graph);
-            JSONObject json = JSONObject.fromObject(export);
+            String jsonToDisplay = (String)request.getSession().getAttribute("json_graph");
+            request.getSession().removeAttribute("json_graph");
 
-            String resultJsonString = json.toString();
+            if (!Strings.isNullOrEmpty(jsonToDisplay)) {
+                GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
+                String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
+                JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
+                Graph graph = graphManager.createGraph(configLoader);
+                GraphExport export = new GraphExport(graph);
+                JSONObject json = JSONObject.fromObject(export);
 
-            response.getWriter().write(resultJsonString);
+                String resultJsonString = json.toString();
 
+                response.getWriter().write(resultJsonString);
+            } else {
+                response.getWriter().write("");
+            }
         } else {
             String demoId = request.getSession().getAttribute("demo_id").toString();
             String path = "/WEB-INF" + File.separator + "demoDiagram" + File.separator + demoId + ".json";

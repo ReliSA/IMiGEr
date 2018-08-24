@@ -1,5 +1,6 @@
 package cz.zcu.kiv.offscreen.graph.loader;
 
+import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.graph.Attribute;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
@@ -39,6 +40,10 @@ public class GraphJSONDataLoader {
         this.file = file;
     }
 
+    public GraphJSONDataLoader(String json){
+        loadedJSON = json;
+    }
+
     private void loadJSON() throws IOException {
         loadedJSON = FileUtils.readFileToString(file, "UTF-8");
     }
@@ -46,7 +51,9 @@ public class GraphJSONDataLoader {
     public GraphManager LoadData() throws IOException {
         this.graphManager = new GraphManager();
 
-        loadJSON();
+        if(Strings.isNullOrEmpty(loadedJSON)) {
+            loadJSON();
+        }
         JSONObject json = JSONObject.fromObject(loadedJSON);
 
         JSONArray attributeTypes = getLoadedAttributeTypes(json);

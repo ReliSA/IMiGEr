@@ -36,6 +36,8 @@ public class ShowGraph extends HttpServlet {
 		boolean showSaveButton = request.getParameter("diagram_id") != null && request.getParameter("diagram_hash") != null;
 		request.setAttribute("show_icon_save", showSaveButton);
 
+
+/*
 		// is it only a demo diagram?
 		if (request.getParameter("demo_id") != null) {
 			request.getSession().setAttribute("demo_id", request.getParameter("demo_id"));
@@ -140,7 +142,7 @@ public class ShowGraph extends HttpServlet {
 			}
 
 			request.getSession().setAttribute("id_diagram", request.getParameter("id_diagram"));
-        }
+        }*/
 
         // render
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/showGraph.jsp");

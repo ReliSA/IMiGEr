@@ -35,17 +35,19 @@
 						<p class="errorMessage">${errorMessage}</p>
 					</c:if>
 
-					<h3>Upload SPADe data:</h5>
+					<h5>Upload SPADe data:</h5>
 
-					<form name="uploadForm" method="post" enctype="multipart/form-data">
+					<form action="/" method="post" enctype="multipart/form-data">
 						<div class="form-field">
 							<input type="file" name="file">
 						</div>
 
-						<input type="submit" value="Upload">
+						<hr class="verticalSeparator">
+
+						<input type="submit" value="Start visualization">
 					</form>
 
-					<c:if test="${not empty componentNames}">
+					<%--<c:if test="${not empty componentNames}">
 						<hr class="verticalSeparator">
 
 						<h3>Uploaded components:</h3>
@@ -62,21 +64,21 @@
 							}
 							%>
 							<c:forEach items="${componentNames}" var="componentName">
-								<li id="${componentName}">${componentName}                                
+								<li id="${componentName}">${componentName}
 								<% if (request.getParameter("diagram_id") == null || ( request.getSession().getAttribute("logged_user_id") != null &&
-										request.getAttribute("diagram_user_id") != null && 
+										request.getAttribute("diagram_user_id") != null &&
 										request.getAttribute("diagram_user_id").toString().compareTo(request.getSession().getAttribute("logged_user_id").toString()) == 0  )) { %>
 									<a href="delete-component?name=${componentName}<%= request.getAttribute("url_diagram_id") %>"><img src="images/button_cancel.png" alt="delete" class="imgDelete"/></a></li>
 								<% } %>
 							</c:forEach>
 						</ul>
 					</c:if>
-
 					<hr class="verticalSeparator">
 
 					<form name="diagramForm" action="graph" method="post">
-						<input type="submit" value="Start visualization" ${not empty componentNames ? "" : "disabled='disabled'"}>
+					<input type="submit" value="Start visualization" ${not empty componentNames ? "" : "disabled='disabled'"}>
 					</form>
+--%>
 				</div>
 			</main>
 		</div>
