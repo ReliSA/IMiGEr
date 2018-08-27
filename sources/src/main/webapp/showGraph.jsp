@@ -227,7 +227,7 @@
 		app.HOME_URL = '<%=getPath%>imiger/';
 
 		$(document).ready(function() {
-			var loaderFn = app.diagramLoader('<%=request.getParameter("diagram_id")%>', '<%=request.getParameter("diagram_hash")%>');
+			var loaderFn = app.diagramLoader('<%=request.getParameter("diagramId")%>', '<%=request.getParameter("diagram_hash")%>');
 
 			app.run(loaderFn);
 		});

@@ -50,6 +50,22 @@ public class Diagram {
         return -1;
     }
 
+    public String getJsonDiagram(){
+        if(this.id < 0) return "";
+
+        String qy = "SELECT graph_json FROM diagram WHERE id = '" + this.id + "'";
+        ResultSet rs = db.exQuery(qy);
+
+        try{
+            if (rs != null && rs.next()) {
+                return rs.getString("graph_json");
+            }
+        }  catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     /**
      * Method return map of values of actual diagram or empty map if id of diagram is invalid.
      *

@@ -8,6 +8,8 @@ import cz.zcu.kiv.offscreen.graph.loader.DemoDiagramLoader;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
 import cz.zcu.kiv.offscreen.loader.configuration.ConfigurationLoader;
+import cz.zcu.kiv.offscreen.user.DB;
+import cz.zcu.kiv.offscreen.user.Diagram;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -35,23 +37,38 @@ public class LoadGraphData extends HttpServlet {
 
         if (request.getSession().getAttribute("demo_id") == null) {
 
-            String jsonToDisplay = (String)request.getSession().getAttribute("json_graph");
-            request.getSession().removeAttribute("json_graph");
+            String diagram_id = request.getParameter("diagramId");
 
-            if (!Strings.isNullOrEmpty(jsonToDisplay)) {
-                GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
-                String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
-                JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
-                Graph graph = graphManager.createGraph(configLoader);
-                GraphExport export = new GraphExport(graph);
-                JSONObject json = JSONObject.fromObject(export);
+            if (diagram_id == null) {
+                String jsonToDisplay;
+                jsonToDisplay = (String)request.getSession().getAttribute("json_graph");
+                request.getSession().removeAttribute("json_graph");
 
-                String resultJsonString = json.toString();
+                if (!Strings.isNullOrEmpty(jsonToDisplay)) {
+                    GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
+                    String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
+                    JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
+                    Graph graph = graphManager.createGraph(configLoader);
+                    GraphExport export = new GraphExport(graph);
+                    JSONObject json = JSONObject.fromObject(export);
 
-                response.getWriter().write(resultJsonString);
+                    String resultJsonString = json.toString();
+
+                    response.getWriter().write(resultJsonString);
+                } else {
+                    response.getWriter().write("");
+                }
+
             } else {
-                response.getWriter().write("");
+                // TODO check user permissions to this graph
+                Integer diagramId = Integer.parseInt(diagram_id);
+
+                DB db = new DB(getServletContext());
+                Diagram diagram = new Diagram(db, diagramId);
+                response.getWriter().write(diagram.getJsonDiagram());
             }
+
+
         } else {
             String demoId = request.getSession().getAttribute("demo_id").toString();
             String path = "/WEB-INF" + File.separator + "demoDiagram" + File.separator + demoId + ".json";
