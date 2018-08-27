@@ -57,30 +57,9 @@
 	</head>
 
 	<body>
-		<%
-		String getProtocol = request.getScheme();
-		String getDomain = request.getServerName();
-		String getPort = Integer.toString(request.getServerPort());
-		String getPath = getProtocol + "://" + getDomain + ":" + getPort + "/";
-		String getURI = request.getRequestURI();
-
-		// logged-in user
-		boolean logged_user = false;
-		if (request.getSession().getAttribute("logged_user") == "1") {
-			logged_user = true;
-		}
-
-		// saved diagram
-		boolean diagram_id_hash_set = false;
-		if (request.getParameter("diagram_id") != null && request.getParameter("diagram_hash") != null) {
-			diagram_id_hash_set = true;
-		}
-
-		String diagram_url = "";
-		if (logged_user && diagram_id_hash_set) {
-			diagram_url = "?diagram_id=" + request.getParameter("diagram_id") + "&diagram_hash=" + request.getParameter("diagram_hash");
-		}
-		%>
+		<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
+		<c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
+		<c:set var="user" value="${sessionScope.user}"/>
 
 		<div class="wrapper">
 			<header class="header" id="header">
@@ -148,7 +127,7 @@
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<a href="<%=getServletContext().getInitParameter("HOME_URL")%><%=diagram_url%>" class="btn btn-block back-to-upload" id="view_back_to_upload" title="Back to upload"></a>
+							<a href="${HOME_URL}" class="btn btn-block back-to-upload" id="view_back_to_upload" title="Back to upload"></a>
 						</li>
 						<li>
 							<hr class="navbar-separator">
@@ -166,7 +145,7 @@
 								<img src="images/png_save.png" id="applyLayoutImg" alt="Save diagram as PNG.">
 							</button>
 						</li>
-						<c:if test="${show_icon_save}">
+						<c:if test="${isLoggedIn}">
 							<li>
 								<button class="btn save-diagram" id="btnSaveDiagramToDb" title="Save diagram.">
 									<img src="images/icon_save.png" id="applyLayoutImg" alt="Save diagram">
@@ -177,13 +156,13 @@
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<a href="<%=getServletContext().getInitParameter("HOME_URL")%>graph<%=diagram_url%>" class="btn btn-block view-refresh-diagram" id="view_refresh_diagram" title="Refresh diagram"></a>
+							<a href="${HOME_URL}graph?diagramId=${param.diagramId}" class="btn btn-block view-refresh-diagram" id="view_refresh_diagram" title="Refresh diagram"></a>
 						</li>
 						<li>
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<a href="<%=getServletContext().getInitParameter("HOME_URL")%>graph<%=diagram_url%>" class="btn btn-block view-refresh-reset-diagram" id="view_refresh_reset_diagram" onclick="reset_diagram(<%=request.getParameter("diagram_id")%>,'<%=request.getParameter("diagram_hash")%>'); return false;" title="Refresh diagram - reset position"></a>
+							<button class="btn btn-block view-refresh-reset-diagram" id="view_refresh_reset_diagram" title="Refresh diagram - reset position"></a>
 						</li>
 					</ul>
 				</nav>
@@ -233,10 +212,10 @@
 
 		<script>
 		var app = new App;
-		app.HOME_URL = '<%=getPath%>imiger/';
+		app.HOME_URL = '${HOME_URL}';
 
 		$(document).ready(function() {
-			var loaderFn = app.diagramLoader('<%=request.getParameter("diagramId")%>', '<%=request.getParameter("diagram_hash")%>');
+			var loaderFn = app.diagramLoader('${param.diagramId}');
 
 			app.run(loaderFn);
 		});
