@@ -697,67 +697,12 @@ body {
 	top: 2em;
 }
 
-.node-container:not(.excluded-nodes) .change-button {
-    display: none;
-}
-
-.change-nodes .button-group .change-button,
-.change-nodes .button-group .change-button {
-    display: none;
-}
-
-.sidebar .change-list {
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-
-.sidebar .change:not(.change--triggered) .change-controls {
-	display: none;
-}
-
-.sidebar .change:not(.change--triggered) .change-controls + .node-list {
-	display: none;
-}
-
-.sidebar .change--triggered .include-not-found-checkbox,
-.sidebar .change--triggered .trigger-change-button {
-	display: none;
-}
-
-.sidebar .change--triggered .change-controls + .node-list .include-button {
-	display: none;
-}
-
-.sidebar .change-controls {
-    position: relative;
-    text-align: center;
-}
-
-.sidebar .change-controls .transition-arrow {
-	font-size: 3em;
-}
-
-.sidebar .change-controls .load-details-button {
-	font-weight: bold;
-}
-
-.sidebar .change--details-loaded .change-controls .load-details-button {
-	display: none;
-}
-
 .unconnected-nodes .node > svg {
     display: none;
 }
 
 .unconnected-nodes .button-group .show-symbol-button {
     display: none;
-}
-
-.missing-components .node-list > li {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .sort-list {
