@@ -1,4 +1,4 @@
-package cz.zcu.kiv.offscreen.servlets;
+package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.api.GraphExport;
@@ -8,12 +8,12 @@ import cz.zcu.kiv.offscreen.graph.loader.DemoDiagramLoader;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
 import cz.zcu.kiv.offscreen.loader.configuration.ConfigurationLoader;
+import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -23,7 +23,7 @@ import java.io.InputStream;
 /**
  * @author Jindra Pavlíková <jindra.pav2@seznam.cz>
  */
-public class LoadGraphData extends HttpServlet {
+public class LoadGraphData extends BaseServlet {
 
     /**
      * Constructs graph data using either the current graph version or the version set in query parameter. Resulting

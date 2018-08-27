@@ -20,7 +20,7 @@ import java.util.Map;
  *
  * @author Jindra PavlĂ­kovĂˇ <jindra.pav2@seznam.cz>
  */
-public class UploadFiles extends HttpServlet {
+public class UploadFiles extends BaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

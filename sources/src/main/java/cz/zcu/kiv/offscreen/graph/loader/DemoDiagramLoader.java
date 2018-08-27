@@ -7,11 +7,9 @@ import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
 
-import cz.zcu.kiv.offscreen.servlets.LoadGraphData;
-
 public class DemoDiagramLoader {
 
-	private Logger logger = Logger.getLogger(LoadGraphData.class);
+	private Logger logger = Logger.getLogger(DemoDiagramLoader.class);
 
 	/**
 	 * 

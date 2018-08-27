@@ -21,7 +21,7 @@ import cz.zcu.kiv.offscreen.user.Diagram;
  *
  * @author Jindra PavlĂ­kovĂˇ <jindra.pav2@seznam.cz>
  */
-public class ShowGraph extends HttpServlet {
+public class ShowGraph extends BaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

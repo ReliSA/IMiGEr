@@ -45,36 +45,36 @@
 	servlets
 	-->
 	<servlet>
-		<servlet-name>Register</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.Register</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>Login</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.Login</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>Logout</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.Logout</servlet-class>
+		<servlet-name>UploadFiles</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.UploadFiles</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>ShowGraph</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.ShowGraph</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>UploadFiles</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.UploadFiles</servlet-class>
+		<servlet-name>Register</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.Register</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.Login</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.Logout</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SaveDiagram</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.SaveDiagram</servlet-class>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.SaveDiagram</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>RemoveDiagram</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.RemoveDiagram</servlet-class>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.RemoveDiagram</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>LoadGraphData</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.LoadGraphData</servlet-class>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.LoadGraphData</servlet-class>
 	</servlet>
 
 	<!--
