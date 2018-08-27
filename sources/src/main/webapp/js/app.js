@@ -28,8 +28,7 @@ function App() {
 	this.HOME_URL = null;
 	/** @prop {object} API Application programming interface paths. */
 	this.API = {
-		loadGraph: 'api/graph-data',
-		loadDiagram: 'api/diagram',
+		loadGraphData: 'api/load-graph-data',
 	};
 
 	/** @prop {float} headerHeight Current height of the application header. */
@@ -62,10 +61,9 @@ function App() {
 	/**
 	 * Loads graph using diagram (if available).
 	 * @param diagramId Diagram identifier.
-	 * @param diagramHash Diagram hash.
 	 */
-	this.diagramLoader = function(diagramId, diagramHash) {
-		return loadGraphData.bind(this, diagramId, diagramHash);
+	this.diagramLoader = function(diagramId) {
+		return loadGraphData.bind(this, diagramId);
 	};
 
 	/**
@@ -288,43 +286,22 @@ function App() {
 	/**
 	 * Loads graph data of a diagram.
 	 * @param {string} diagramId Identifier of the diagram to be loaded.
-	 * @param {string} diagramHash Hash of the diagram to be loaded.
 	 */
-	function loadGraphData(diagramId, diagramHash) {
+	function loadGraphData(diagramId) {
 		var self = this;
 
 		self.loader.enable();
 
-		var loadGraphURL = self.API.loadGraph;
-		var loadDiagramURL = self.API.loadDiagram;
+		var loadGraphDataURL = self.API.loadGraphData;
 
 		if (diagramId !== 'null') {
-			loadGraphURL += '?diagramId=' + diagramId;
-			loadDiagramURL += '?diagramId=' + diagramId;
+			loadGraphDataURL += '?diagramId=' + diagramId;
 		}
-
-		if (diagramHash !== 'null') {
-			loadGraphURL +=  '&diagramHash=' + diagramHash;
-			loadDiagramURL += '&diagramHash=' + diagramHash;
-		}
-
-		// exported data of graph
-		var graphExportData = null;
 
 		// get vertex position data
-		$.getJSON(loadDiagramURL).then(function(data) {
-			graphExportData = JSON.parse(data.vertices_position);
-
-			// get graph data
-			return $.getJSON(loadGraphURL);
-
-		}, function() {
-			// get graph data
-			return $.getJSON(loadGraphURL);
-
-		}).then(function(data) {
+		$.getJSON(loadGraphDataURL).then(function(data) {
 			// construct graph
-			self.graphLoader.run(data, graphExportData);
+			self.graphLoader.run(data);
 
 			self.loader.disable();
 

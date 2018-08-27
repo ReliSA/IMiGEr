@@ -6,16 +6,11 @@ function GraphLoader() {
 	/**
 	 * Loads a new graph using graph data passed as parameters.
 	 * @param {object} data Data of the graph.
-	 * @param {object} graphExportData Export of a previously loaded diagram.
-	 * @throws {InvalidArgumentException} Thrown when either graph data or export data are incomplete.
+	 * @throws {InvalidArgumentException} Thrown when either graph data are incomplete.
 	 */
-	this.run  = function(data, graphExportData) {
+	this.run  = function(data) {
 		if (app.utils.isUndefined(data.vertices) || app.utils.isUndefined(data.edges)) {
 			throw new InvalidArgumentException('Invalid data.');
-		}
-
-		if (graphExportData !== null && (app.utils.isUndefined(data.vertices) || app.utils.isUndefined(data.edges))) {
-			throw new InvalidArgumentException('Invalid graph export data.');
 		}
 
 		var canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
@@ -32,27 +27,10 @@ function GraphLoader() {
 		data.vertices.forEach(function(component) {
 			var vertex = new Vertex(component);
 
-			var isPositionSet = false;
-			if (graphExportData !== null) {
-				var exportedVertex = graphExportData.vertices.find(function(exportedVertex) {
-					return exportedVertex.name == this;
-				}, vertex.name);
-
-				// vertex is present in exported graph data
-				if (app.utils.isDefined(exportedVertex)) {
-					var coords = new Coordinates(exportedVertex.position.x, exportedVertex.position.y);
-					vertex.setPosition(coords);
-
-					isPositionSet = true;
-				}
-			}
-
-			if (isPositionSet === false) {
-				vertex.setPosition(new Coordinates(
-					Math.floor(Math.random() * canvasSize),
-					Math.floor(Math.random() * canvasSize),
-				));
-			}
+			vertex.setPosition(new Coordinates(
+				Math.floor(Math.random() * canvasSize),
+				Math.floor(Math.random() * canvasSize),
+			));
 
 			app.nodeList.push(vertex);
 			app.vertexList.push(vertex);
