@@ -54,9 +54,7 @@ public class LoadGraphData extends BaseServlet {
      * Return json of file which was uploaded and is stored in session.
      */
     private String getDiagramFromSession(HttpServletRequest request) throws IOException {
-
-        String jsonToDisplay = (String)request.getSession().getAttribute("json_graph");
-        request.getSession().removeAttribute("json_graph");
+        String jsonToDisplay = (String) request.getSession().getAttribute("json_graph");
 
         if (!Strings.isNullOrEmpty(jsonToDisplay)) {
             GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
