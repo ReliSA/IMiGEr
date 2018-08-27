@@ -16,10 +16,8 @@ public class SaveDiagram extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        // user is not logged in
         if (!isLoggedIn(request)) {
-            response.sendError(response.SC_UNAUTHORIZED);
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
@@ -32,7 +30,7 @@ public class SaveDiagram extends BaseServlet {
 
         // input parameters are invalid
         if (Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(graphJson)) {
-            response.sendError(response.SC_BAD_REQUEST);
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
@@ -50,11 +48,10 @@ public class SaveDiagram extends BaseServlet {
 
             // user is not owner of the diagram
             if (loggedUserId != diagram.getUserId()) {
-                response.sendError(response.SC_UNAUTHORIZED);
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
             }
         }
-
 
         Map<String, String> diagramParams = new HashMap<>();
         diagramParams.put("name", name);

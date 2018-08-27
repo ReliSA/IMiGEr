@@ -12,14 +12,13 @@ public class RemoveDiagram extends BaseServlet {
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         if (!isLoggedIn(request)) {
-            response.sendError(response.SC_UNAUTHORIZED);
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
-        if(request.getParameter("diagram_id") == null){
-            response.sendError(response.SC_BAD_REQUEST);
+        if (request.getParameter("diagram_id") == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
@@ -29,12 +28,13 @@ public class RemoveDiagram extends BaseServlet {
         DB db = new DB(getServletContext());
         Diagram diagram = new Diagram(db, diagramId);
 
-        if(diagram.getUserId() != loggedUserId){
-            response.sendError(response.SC_UNAUTHORIZED);
+        if (diagram.getUserId() != loggedUserId) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
         diagram.delete();
-        response.sendRedirect("/");
+
+        response.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
 }

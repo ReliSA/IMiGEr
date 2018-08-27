@@ -59,8 +59,6 @@ public class Register extends BaseServlet {
     		errors.put("user_password", "Passwords must be at least 5 characters long.");
     	}
 
-    	JSONObject json = new JSONObject();
-    	
     	if (errors.isEmpty()) {
     		Map<String, String> userMap = new HashMap<>();
     		userMap.put("name", name);
@@ -74,13 +72,14 @@ public class Register extends BaseServlet {
 			response.setStatus(HttpServletResponse.SC_CREATED);
 
     	} else {
-    		json.put("error", errors);
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    	}
+			JSONObject json = new JSONObject();
+			json.put("error", new JSONObject(errors));
 
-		response.setContentType("application/json");
-		response.getWriter().write(json.toString());
-		response.getWriter().flush();
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.setContentType("application/json");
+			response.getWriter().write(json.toString());
+			response.getWriter().flush();
+		}
     }
     
     /**

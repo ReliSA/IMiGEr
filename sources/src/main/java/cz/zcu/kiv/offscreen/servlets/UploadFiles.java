@@ -24,24 +24,6 @@ public class UploadFiles extends BaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if (ServletFileUpload.isMultipartContent(request)) {
-            String jsonGraph = new FileManager("","").loadFile(request);
-
-            if(Strings.isNullOrEmpty(jsonGraph)){
-                request.setAttribute("errorMessage", "<strong>Unsupported file</strong><br/>");
-            } else {
-                request.getSession().setAttribute("json_graph", jsonGraph);
-                response.sendRedirect(getServletContext().getInitParameter("HOME_URL") + "graph");
-                return;
-            }
-        }
-
         DB db = new DB(getServletContext());
         Diagram diagram = new Diagram(db);
 
@@ -59,5 +41,18 @@ public class UploadFiles extends BaseServlet {
         // render
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/uploadFiles.jsp");
         rd.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String jsonGraph = new FileManager("","").loadFile(request);
+
+        if (Strings.isNullOrEmpty(jsonGraph)) {
+            request.setAttribute("errorMessage", "<strong>Unsupported file</strong><br/>");
+            doGet(request, response);
+        } else {
+            request.getSession().setAttribute("json_graph", jsonGraph);
+            response.sendRedirect(getServletContext().getInitParameter("HOME_URL") + "graph");
+        }
     }
 }

@@ -13,7 +13,6 @@ import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
 import net.sf.json.JSONObject;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -30,13 +29,11 @@ public class LoadGraphData extends BaseServlet {
      * graph is returned as JSON in response body.
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
         if (request.getSession().getAttribute("demo_id") == null) {
-
             String diagram_id = request.getParameter("diagramId");
 
             if (diagram_id == null) {
@@ -66,26 +63,32 @@ public class LoadGraphData extends BaseServlet {
 
             return json.toString();
         }
-        return "";
+
+        return "";  // TODO: ugly fallback
     }
 
     /**
      * Return json of diagram which is taken from database. Permissions of user to this diagram is checked.
      */
     private String getDiagramById(HttpServletRequest request, int diagramId){
-
         DB db = new DB(getServletContext());
         Diagram diagram = new Diagram(db, diagramId);
 
-        if(!diagram.isPublic()){
-            // Diagram is not public
+        if (diagram.isPublic()) {
+            return diagram.getJsonDiagram();
+        }
 
-            if (!isLoggedIn(request) || diagram.getUserId() != getUserId(request)) {
-                return ""; // User is not logged in or is not owner of diagram
+        // diagram is not public
+        if (isLoggedIn(request)) {
+            int loggedUserId = getUserId(request);
+
+            if (diagram.getUserId() == loggedUserId) {
+                return diagram.getJsonDiagram();
             }
         }
 
-        return diagram.getJsonDiagram();
+        // User is not logged in or is not owner of diagram
+        return "";  // TODO: ugly fallback
     }
 
     /**
