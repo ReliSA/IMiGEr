@@ -88,16 +88,17 @@ public class UploadFiles extends HttpServlet {
 
 
         DB db = new DB(getServletContext());
+        Diagram diagram = new Diagram(db);
 
         List<Map<String, String>> userDiagramList = new ArrayList<>();
         if (request.getSession().getAttribute("logged_user") == "1") {
             int loggedUserId = (int) request.getSession().getAttribute("logged_user_id");
 
-            userDiagramList = new Diagram(db).getDiagramListByUserId(loggedUserId);
+            userDiagramList = diagram.getDiagramListByUserId(loggedUserId);
         }
         request.setAttribute("diagramNames", userDiagramList);
 
-        List<Map<String, String>> publicDiagramList = new Diagram(db).getDiagramPublicList();
+        List<Map<String, String>> publicDiagramList = diagram.getDiagramPublicList();
         request.setAttribute("diagramPublic", publicDiagramList);
 
         // render

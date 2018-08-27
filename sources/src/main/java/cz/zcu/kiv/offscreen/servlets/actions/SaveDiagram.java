@@ -24,6 +24,7 @@ public class SaveDiagram extends HttpServlet {
             return;
         }
 
+        request.setCharacterEncoding("UTF-8");
         Integer loggedUserId = Integer.parseInt(request.getSession().getAttribute("logged_user_id").toString());
         String name = request.getParameter("name");
         String graphJson = request.getParameter("graph_json");
@@ -62,5 +63,7 @@ public class SaveDiagram extends HttpServlet {
         diagramParams.put("user_id", loggedUserId.toString());
 
         diagram.update(diagramParams);
+
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 }
