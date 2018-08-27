@@ -9,78 +9,69 @@
 		<link rel="stylesheet" href="css/main.css">
 
 		<script src="js/libs/jquery-1.8.3.js"></script>
-		<script src="old/js/diagram.js"></script>
-		<script src="old/js/user.js"></script>
+		<script src="js/legacy/diagram.js"></script>
+		<script src="js/legacy/user.js"></script>
+		<script src="js/userMenu.js"></script>
 
 		<title>IMiGEr</title>
 	</head>
 
 	<body>
-		<div class="wrapper">
-			<header class="header" id="header">
-				<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
+		<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
+		<c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
+		<c:set var="user" value="${sessionScope.user}"/>
 
-				<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
+		<header class="header" id="header">
+			<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
 
-				<jsp:include page="logged_user.jsp" />
+			<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 
-				<nav class="navbar" id="navigation"></nav>
-			</header>
+			<%@ include file="userMenu.jsp" %>
+		</header>
 
-			<main class="upload-content">
-				<jsp:include page="logged_user_menu.jsp" />
+		<main class="upload-content">
+			<div class="upload-forms">
+				<c:if test="${not empty errorMessage}">
+					<p class="alert">${errorMessage}</p>
+				</c:if>
 
-				<div class="upload-forms">
-					<c:if test="${not empty errorMessage}">
-						<p class="errorMessage">${errorMessage}</p>
-					</c:if>
+				<strong>Upload SPADe data:</strong>
 
-					<h5>Upload SPADe data:</h5>
+				<form method="post" enctype="multipart/form-data">
+					<div class="form-field">
+						<input type="file" name="file">
+					</div>
 
-					<form action="/" method="post" enctype="multipart/form-data">
-						<div class="form-field">
-							<input type="file" name="file">
-						</div>
+					<input type="submit" value="Start visualization">
+				</form>
+			</div>
 
-						<hr class="verticalSeparator">
+			<c:if test="${isLoggedIn}">
+				<div class="diagrams-menu">
+					<h3>My diagrams</h3>
 
-						<input type="submit" value="Start visualization">
-					</form>
-
-					<%--<c:if test="${not empty componentNames}">
-						<hr class="verticalSeparator">
-
-						<h3>Uploaded components:</h3>
-
-						<ul id="uploadedComponent">
-							<%
-							if (request.getParameter("diagram_id") == null) {
-								request.setAttribute("url_diagram_id", "");
-							%>
-								<li id="deleteAll">Delete all <a href="delete-components"><img src="images/button_cancel.png" alt="delete" class="imgDelete"/></a></li>
-							<%
-							} else {
-								request.setAttribute("url_diagram_id", "&diagram_id="+ request.getParameter("diagram_id") +  "&diagram_hash="+ request.getParameter("diagram_hash"));
-							}
-							%>
-							<c:forEach items="${componentNames}" var="componentName">
-								<li id="${componentName}">${componentName}
-								<% if (request.getParameter("diagram_id") == null || ( request.getSession().getAttribute("logged_user_id") != null &&
-										request.getAttribute("diagram_user_id") != null &&
-										request.getAttribute("diagram_user_id").toString().compareTo(request.getSession().getAttribute("logged_user_id").toString()) == 0  )) { %>
-									<a href="delete-component?name=${componentName}<%= request.getAttribute("url_diagram_id") %>"><img src="images/button_cancel.png" alt="delete" class="imgDelete"/></a></li>
-								<% } %>
-							</c:forEach>
-						</ul>
-					</c:if>
-					<hr class="verticalSeparator">
-
-					<form name="diagramForm" action="graph" method="post">
-					<input type="submit" value="Start visualization" ${not empty componentNames ? "" : "disabled='disabled'"}>
-					</form>
---%>
+					<ul>
+						<c:forEach items="${diagramsPrivate}" var="diagram">
+							<li>
+								<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
+								<button onclick="return deleteDiagram(${diagram.id});"><img src="images/button_cancel.png" alt="odstranit"></a>
+							</li>
+						</c:forEach>
+					</ul>
 				</div>
-			</main>
-		</div>
+			</c:if>
+
+			<div class="diagrams-menu">
+				<h3>Public diagrams</h3>
+
+				<ul>
+					<c:forEach items="${diagramsPublic}" var="diagram">
+						<li>
+							<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</main>
 	</body>
 </html>

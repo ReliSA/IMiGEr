@@ -108,7 +108,6 @@ body {
 /* login popup */
 
 .header .login_popup {
-	display: none;
 	position: absolute;
 	right: 4px;
 	top: 45px;
@@ -136,7 +135,6 @@ body {
 /* register popup */
 
 .header .register_popup {
-	display: none;
 	position: absolute;
 	right: 4px;
 	top: 45px;

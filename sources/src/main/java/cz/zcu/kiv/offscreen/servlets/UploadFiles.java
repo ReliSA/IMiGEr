@@ -96,10 +96,10 @@ public class UploadFiles extends BaseServlet {
 
             userDiagramList = diagram.getDiagramListByUserId(loggedUserId);
         }
-        request.setAttribute("diagramNames", userDiagramList);
+        request.setAttribute("diagramsPrivate", userDiagramList);
 
         List<Map<String, String>> publicDiagramList = diagram.getDiagramPublicList();
-        request.setAttribute("diagramPublic", publicDiagramList);
+        request.setAttribute("diagramsPublic", publicDiagramList);
 
         // render
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/uploadFiles.jsp");

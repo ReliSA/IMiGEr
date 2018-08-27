@@ -88,7 +88,7 @@
 
 				<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 
-				<jsp:include page="logged_user.jsp" />
+				<%@ include file="userMenu.jsp" %>
 
 				<nav class="navbar" id="navigation">
 					<ul>
