@@ -68,7 +68,7 @@ body {
     margin-bottom: 20px;
 }
 
-#uploadedComponent .imgDelete {
+.imgDelete {
     width: 16px;
     height: 16px;
     float: right;

@@ -69,6 +69,10 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.SaveDiagram</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>RemoveDiagram</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.RemoveDiagram</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>DeleteAllComponents</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.DeleteAllComponents</servlet-class>
 	</servlet>
@@ -111,6 +115,10 @@
 	<servlet-mapping>
 		<servlet-name>SaveDiagram</servlet-name>
 		<url-pattern>/api/save-diagram</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RemoveDiagram</servlet-name>
+		<url-pattern>/api/remove-diagram</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
