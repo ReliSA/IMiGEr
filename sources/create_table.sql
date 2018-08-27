@@ -32,12 +32,8 @@ CREATE TABLE IF NOT EXISTS `diagram` (
   `created` datetime NOT NULL,
   `last_update` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
-  `public` tinyint(1) NOT NULL DEFAULT '0'
-  `graph_json` text COLLATE utf8_czech_ci NOT NULL DEFAULT '',
---   `session_id` varchar(32) COLLATE utf8_czech_ci NOT NULL,
---   `component_count` int(11) NOT NULL DEFAULT '0',
---   `vertices_position` text COLLATE utf8_czech_ci NOT NULL,
---   `hash` varchar(32) COLLATE utf8_czech_ci NOT NULL DEFAULT '',
+  `public` tinyint(1) NOT NULL DEFAULT '0',
+  `graph_json` text COLLATE utf8_czech_ci NOT NULL DEFAULT ''
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 -- --------------------------------------------------------
