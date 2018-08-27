@@ -42,51 +42,6 @@ public class UploadFiles extends BaseServlet {
             }
         }
 
-//        String diagram_id = request.getParameter("diagram_id");
-//        if (diagram_id != null) {
-//            Integer diagramId = Integer.parseInt(diagram_id);
-//
-//	        Diagram diagram_edit = new Diagram(db, diagramId);
-//	        Map<String, String> diag_param = diagram_edit.getDiagramParam(diagramId);
-//
-//	        request.setAttribute("diagram_name", diag_param.get("name"));
-//	        request.setAttribute("diagram_user_id", diag_param.get("user_id"));
-//	        request.setAttribute("diagram_public_checked", (diag_param.get("public").compareTo("1") == 0 ? " checked=\"checked\" " : ""));
-//        } else {
-//        	request.setAttribute("diagram_name", "");
-//        	request.setAttribute("diagram_public_checked", "");
-//        	request.setAttribute("diagram_user_id", "-1");
-//        }
-
-        // initialize file manager
-//        String workingDirectory;
-//        if (request.getParameter("diagram_hash") == null) {
-//            workingDirectory = SessionManager.getSessionValue(request, "JSESSIONID");
-//        } else {
-//            workingDirectory = request.getParameter("diagram_hash");
-//        }
-//
-//        int version = 1;
-//        workingDirectory += File.separator + String.valueOf(version);
-//
-//        String storageLocation = ConfigurationLoader.getStorageLocation(request.getServletContext());
-
-//        FileManager fileManager = new FileManager(workingDirectory, storageLocation);
-//        if (!fileManager.isExistStorage()) {
-//            fileManager.createStorageDirectory();
-//        }
-
-        // save files from request
-//        String result;
-//        if (ServletFileUpload.isMultipartContent(request)) {
-//            result = fileManager.saveFile(request);
-//        } else {
-//            result = "";
-//        }
-
-//        response.addCookie(new Cookie("graphVersion", String.valueOf(version)));
-
-
         DB db = new DB(getServletContext());
         Diagram diagram = new Diagram(db);
 

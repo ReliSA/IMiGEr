@@ -1,8 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page import="java.util.Map"%>
-<%@page import="com.google.gson.Gson"%>
-<%@page import="com.google.gson.GsonBuilder"%>
 
 <!DOCTYPE html>
 <html>
