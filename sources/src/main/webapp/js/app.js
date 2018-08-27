@@ -294,7 +294,7 @@ function App() {
 
 		var loadGraphDataURL = self.API.loadGraphData;
 
-		if (diagramId !== 'null') {
+		if (diagramId !== '') {
 			loadGraphDataURL += '?diagramId=' + diagramId;
 		}
 
