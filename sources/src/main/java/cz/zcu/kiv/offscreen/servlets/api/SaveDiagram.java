@@ -18,13 +18,14 @@ public class SaveDiagram extends BaseServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         // user is not logged in
-        if (request.getSession().getAttribute("logged_user_id") == null) {
+        if (!isLoggedIn(request)) {
             response.sendError(response.SC_UNAUTHORIZED);
             return;
         }
 
+        int loggedUserId = getUserId(request);
+
         request.setCharacterEncoding("UTF-8");
-        Integer loggedUserId = Integer.parseInt(request.getSession().getAttribute("logged_user_id").toString());
         String name = request.getParameter("name");
         String graphJson = request.getParameter("graph_json");
         String isPublic = StringUtils.defaultIfBlank(request.getParameter("public"), "0");
@@ -59,7 +60,7 @@ public class SaveDiagram extends BaseServlet {
         diagramParams.put("name", name);
         diagramParams.put("public", isPublic);
         diagramParams.put("graph_json", graphJson);
-        diagramParams.put("user_id", loggedUserId.toString());
+        diagramParams.put("user_id", Integer.toString(loggedUserId));
 
         diagram.update(diagramParams);
 

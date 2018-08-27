@@ -80,8 +80,7 @@ public class LoadGraphData extends BaseServlet {
         if(!diagram.isPublic()){
             // Diagram is not public
 
-            Integer loggedUserId = (Integer) request.getSession().getAttribute("logged_user_id");
-            if(loggedUserId == null || diagram.getUserId() != loggedUserId) {
+            if (!isLoggedIn(request) || diagram.getUserId() != getUserId(request)) {
                 return ""; // User is not logged in or is not owner of diagram
             }
         }

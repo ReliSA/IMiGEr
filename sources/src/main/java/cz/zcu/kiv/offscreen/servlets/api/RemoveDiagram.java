@@ -13,7 +13,7 @@ public class RemoveDiagram extends BaseServlet {
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        if (request.getSession().getAttribute("logged_user_id") == null) {
+        if (!isLoggedIn(request)) {
             response.sendError(response.SC_UNAUTHORIZED);
             return;
         }
@@ -23,9 +23,9 @@ public class RemoveDiagram extends BaseServlet {
             return;
         }
 
-        Integer loggedUserId = Integer.parseInt(request.getSession().getAttribute("logged_user_id").toString());
-        Integer diagramId = Integer.parseInt(request.getParameter("diagram_id"));
+        int loggedUserId = getUserId(request);
 
+        Integer diagramId = Integer.parseInt(request.getParameter("diagram_id"));
         DB db = new DB(getServletContext());
         Diagram diagram = new Diagram(db, diagramId);
 

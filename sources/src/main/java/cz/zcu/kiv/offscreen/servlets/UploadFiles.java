@@ -46,8 +46,8 @@ public class UploadFiles extends BaseServlet {
         Diagram diagram = new Diagram(db);
 
         List<Map<String, String>> userDiagramList = new ArrayList<>();
-        if (request.getSession().getAttribute("logged_user") == "1") {
-            int loggedUserId = (int) request.getSession().getAttribute("logged_user_id");
+        if (isLoggedIn(request)) {
+            int loggedUserId = getUserId(request);
 
             userDiagramList = diagram.getDiagramListByUserId(loggedUserId);
         }
