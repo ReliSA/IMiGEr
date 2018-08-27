@@ -11,7 +11,7 @@ import java.io.IOException;
 public class RemoveDiagram extends BaseServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         if (request.getSession().getAttribute("logged_user_id") == null) {
             response.sendError(response.SC_UNAUTHORIZED);
