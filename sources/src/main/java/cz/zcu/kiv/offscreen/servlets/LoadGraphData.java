@@ -60,11 +60,20 @@ public class LoadGraphData extends HttpServlet {
                 }
 
             } else {
-                // TODO check user permissions to this graph
                 Integer diagramId = Integer.parseInt(diagram_id);
 
                 DB db = new DB(getServletContext());
                 Diagram diagram = new Diagram(db, diagramId);
+
+                if(!diagram.isPublic()){
+
+                    Integer loggedUserId = (Integer) request.getSession().getAttribute("logged_user_id");
+                    if(loggedUserId == null || diagram.getUserId() != loggedUserId) {
+                        response.getWriter().write("");
+                        return;
+                    }
+                }
+
                 response.getWriter().write(diagram.getJsonDiagram());
             }
 

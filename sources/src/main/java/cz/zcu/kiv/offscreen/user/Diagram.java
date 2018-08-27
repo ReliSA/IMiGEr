@@ -50,6 +50,22 @@ public class Diagram {
         return -1;
     }
 
+    public boolean isPublic(){
+        if(this.id < 0) return false;
+
+        String qy = "SELECT public FROM diagram WHERE id = '" + this.id + "'";
+        ResultSet rs = db.exQuery(qy);
+
+        try{
+            if (rs != null && rs.next()) {
+                return rs.getString("public").equals("1");
+            }
+        }  catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public String getJsonDiagram(){
         if(this.id < 0) return "";
 
