@@ -50,6 +50,9 @@ public class LoadGraphData extends HttpServlet {
         }
     }
 
+    /**
+     * Return json of file which was uploaded and is stored in session.
+     */
     private String getDiagramFromSession(HttpServletRequest request) throws IOException {
 
         String jsonToDisplay = (String)request.getSession().getAttribute("json_graph");
@@ -68,6 +71,9 @@ public class LoadGraphData extends HttpServlet {
         return "";
     }
 
+    /**
+     * Return json of diagram which is taken from database. Permissions of user to this diagram is checked.
+     */
     private String getDiagramById(HttpServletRequest request, int diagramId){
 
         DB db = new DB(getServletContext());
@@ -85,6 +91,9 @@ public class LoadGraphData extends HttpServlet {
         return diagram.getJsonDiagram();
     }
 
+    /**
+     * Return demo diagram from file system.
+     */
     private String getDemoDiagram(HttpServletRequest request){
         String demoId = request.getSession().getAttribute("demo_id").toString();
         String path = "/WEB-INF" + File.separator + "demoDiagram" + File.separator + demoId + ".json";
