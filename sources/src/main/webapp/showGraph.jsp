@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.google.gson.GsonBuilder"%>
@@ -164,6 +165,13 @@
 								<img src="images/png_save.png" id="applyLayoutImg" alt="Save diagram as PNG.">
 							</button>
 						</li>
+						<c:if test="${show_icon_save}">
+							<li>
+								<button class="btn save-diagram" id="btnSaveDiagramToDb" title="Save diagram.">
+									<img src="images/icon_save.png" id="applyLayoutImg" alt="Save diagram">
+								</button>
+							</li>
+						</c:if>
 						<li>
 							<hr class="navbar-separator">
 						</li>

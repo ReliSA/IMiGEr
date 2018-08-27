@@ -7,7 +7,7 @@
 	<ul>	
 		<c:forEach items="${diagramNames}" var="diagramName">
 			<li id="diagram_id_${diagramName.id}">
-				<a href="/graph?diagramId=${diagramNames.id}">${diagramName.name}</a><a href="#" onclick="return deleteDiagram(${diagramName.id});"><img src="images/button_cancel.png" alt="odstranit" class="imgDelete"/></a>
+				<a href="/graph?diagramId=${diagramName.id}">${diagramName.name}</a><a href="#" onclick="return deleteDiagram(${diagramName.id});"><img src="images/button_cancel.png" alt="odstranit" class="imgDelete"/></a>
 			</li>
 		</c:forEach>
 		<li id="diagram_id_new">

@@ -25,19 +25,33 @@ public class ShowGraph extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	// render
+        // should save button be displayed?
+        Integer loggedUserId = (Integer) request.getSession().getAttribute("logged_user_id");
+        String diagramIdStr = request.getParameter("diagramId");
+
+        boolean showSaveButton  = loggedUserId != null;
+
+        if (showSaveButton && diagramIdStr != null){
+            Integer diagramId = Integer.parseInt(diagramIdStr);
+
+            DB db = new DB(getServletContext());
+            Diagram diagram = new Diagram(db, diagramId);
+
+            showSaveButton = diagram.getUserId() == loggedUserId;
+        }
+
+        request.setAttribute("show_icon_save", showSaveButton);
+
+
+        // render
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/showGraph.jsp");
         rd.forward(request, response);
     }
 
+    /*
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // should save button be displayed?
-		boolean showSaveButton = request.getParameter("diagram_id") != null && request.getParameter("diagram_hash") != null;
-		request.setAttribute("show_icon_save", showSaveButton);
 
-
-/*
 		// is it only a demo diagram?
 		if (request.getParameter("demo_id") != null) {
 			request.getSession().setAttribute("demo_id", request.getParameter("demo_id"));
@@ -142,10 +156,11 @@ public class ShowGraph extends HttpServlet {
 			}
 
 			request.getSession().setAttribute("id_diagram", request.getParameter("id_diagram"));
-        }*/
+        }
 
         // render
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/showGraph.jsp");
 		rd.forward(request, response);
     }
+    */
 }
