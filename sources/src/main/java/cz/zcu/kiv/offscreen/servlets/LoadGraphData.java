@@ -40,54 +40,60 @@ public class LoadGraphData extends HttpServlet {
             String diagram_id = request.getParameter("diagramId");
 
             if (diagram_id == null) {
-                String jsonToDisplay;
-                jsonToDisplay = (String)request.getSession().getAttribute("json_graph");
-                request.getSession().removeAttribute("json_graph");
-
-                if (!Strings.isNullOrEmpty(jsonToDisplay)) {
-                    GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
-                    String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
-                    JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
-                    Graph graph = graphManager.createGraph(configLoader);
-                    GraphExport export = new GraphExport(graph);
-                    JSONObject json = JSONObject.fromObject(export);
-
-                    String resultJsonString = json.toString();
-
-                    response.getWriter().write(resultJsonString);
-                } else {
-                    response.getWriter().write("");
-                }
-
+                response.getWriter().write(getDiagramFromSession(request));
             } else {
-                Integer diagramId = Integer.parseInt(diagram_id);
-
-                DB db = new DB(getServletContext());
-                Diagram diagram = new Diagram(db, diagramId);
-
-                if(!diagram.isPublic()){
-
-                    Integer loggedUserId = (Integer) request.getSession().getAttribute("logged_user_id");
-                    if(loggedUserId == null || diagram.getUserId() != loggedUserId) {
-                        response.getWriter().write("");
-                        return;
-                    }
-                }
-
-                response.getWriter().write(diagram.getJsonDiagram());
+                response.getWriter().write(getDiagramById(request, Integer.parseInt(diagram_id)));
             }
-
-
+            
         } else {
-            String demoId = request.getSession().getAttribute("demo_id").toString();
-            String path = "/WEB-INF" + File.separator + "demoDiagram" + File.separator + demoId + ".json";
-
-            DemoDiagramLoader loader = new DemoDiagramLoader();
-            InputStream in = this.getServletContext().getResourceAsStream(path);
-
-            response.getWriter().write(loader.readDemoJSONFromFile(in));
-
-            request.getSession().setAttribute("demo_id", null);
+            response.getWriter().write(getDemoDiagram(request));
         }
+    }
+
+    private String getDiagramFromSession(HttpServletRequest request) throws IOException {
+
+        String jsonToDisplay = (String)request.getSession().getAttribute("json_graph");
+        request.getSession().removeAttribute("json_graph");
+
+        if (!Strings.isNullOrEmpty(jsonToDisplay)) {
+            GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
+            String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
+            JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
+            Graph graph = graphManager.createGraph(configLoader);
+            GraphExport export = new GraphExport(graph);
+            JSONObject json = JSONObject.fromObject(export);
+
+            return json.toString();
+        }
+        return "";
+    }
+
+    private String getDiagramById(HttpServletRequest request, int diagramId){
+
+        DB db = new DB(getServletContext());
+        Diagram diagram = new Diagram(db, diagramId);
+
+        if(!diagram.isPublic()){
+            // Diagram is not public
+
+            Integer loggedUserId = (Integer) request.getSession().getAttribute("logged_user_id");
+            if(loggedUserId == null || diagram.getUserId() != loggedUserId) {
+                return ""; // User is not logged in or is not owner of diagram
+            }
+        }
+
+        return diagram.getJsonDiagram();
+    }
+
+    private String getDemoDiagram(HttpServletRequest request){
+        String demoId = request.getSession().getAttribute("demo_id").toString();
+        String path = "/WEB-INF" + File.separator + "demoDiagram" + File.separator + demoId + ".json";
+
+        DemoDiagramLoader loader = new DemoDiagramLoader();
+        InputStream in = this.getServletContext().getResourceAsStream(path);
+
+        request.getSession().setAttribute("demo_id", null);
+
+        return loader.readDemoJSONFromFile(in);
     }
 }
