@@ -73,18 +73,6 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.RemoveDiagram</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>DeleteAllComponents</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.DeleteAllComponents</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>DeleteComponent</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.DeleteComponent</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>DiagramEndpoint</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.actions.DiagramEndpoint</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>LoadGraphData</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.LoadGraphData</servlet-class>
 	</servlet>
@@ -119,19 +107,6 @@
 	<servlet-mapping>
 		<servlet-name>RemoveDiagram</servlet-name>
 		<url-pattern>/api/remove-diagram</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>DeleteAllComponents</servlet-name>
-		<url-pattern>/delete-components</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>DeleteComponent</servlet-name>
-		<url-pattern>/delete-component</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>DiagramEndpoint</servlet-name>
-		<url-pattern>/api/diagram</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>LoadGraphData</servlet-name>
