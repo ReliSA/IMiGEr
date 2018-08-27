@@ -37,7 +37,7 @@ public class UploadFiles extends BaseServlet {
                 request.setAttribute("errorMessage", "<strong>Unsupported file</strong><br/>");
             } else {
                 request.getSession().setAttribute("json_graph", jsonGraph);
-                response.sendRedirect("/graph");
+                response.sendRedirect(getServletContext().getInitParameter("HOME_URL") + "graph");
                 return;
             }
         }
