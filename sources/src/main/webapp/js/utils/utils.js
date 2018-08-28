@@ -53,7 +53,7 @@ function Utils() {
 
 	/**
 	 * Returns a new promise that is resolved at the moment when all promises passed as function parameter are resolved.
-	 * https://stackoverflow.com/a/35825493
+	 * {@link https://stackoverflow.com/a/35825493}
 	 * 
 	 * @param promises Array of promises to wait for.
 	 * @return New promise.

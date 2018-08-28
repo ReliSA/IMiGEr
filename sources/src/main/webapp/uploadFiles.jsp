@@ -27,20 +27,21 @@
 			<%@ include file="userMenu.jsp" %>
 		</header>
 
-		<main class="upload-content">
-			<div class="upload-forms">
+		<main>
+			<div class="upload-form">
+				<h3>New diagram</h3>
+
 				<c:if test="${not empty errorMessage}">
 					<p class="alert">${errorMessage}</p>
 				</c:if>
 
-				<strong>Upload SPADe data:</strong>
-
 				<form method="post" enctype="multipart/form-data">
 					<div class="form-field">
-						<input type="file" name="file">
+						<label for="file">Select SPADe data file:</label><br>
+						<input type="file" name="file" id="file">
 					</div>
 
-					<input type="submit" value="Start visualization">
+					<button type="submit">Start visualization</button>
 				</form>
 			</div>
 

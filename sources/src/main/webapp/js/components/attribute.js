@@ -1,5 +1,5 @@
 /**
- * TODO: jsDoc
+ * Class representing an attribute of vertex/edge. Output is formatted based on attribute name and datatype of its value.
  * @constructor
  * @param {array} props Details of the attribute.
  */

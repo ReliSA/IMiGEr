@@ -6,72 +6,67 @@ body {
     overflow: hidden;
 }
 
-.hidden {
-	display: none !important;
+ul {
+	list-style: none;
+	padding-left: 0;
 }
 
-.header {
-    width: 100%;
-    background: -webkit-linear-gradient(top, #f0f9ff 0%,#cbebff 47%,#a1dbff 100%);
+.hidden {
+	display: none !important;
 }
 
 .row {
 	display: flex;
 }
 
-.upload-content {
-	text-align: center;
+.form-field {
+	margin-bottom: 20px;
 }
 
-.upload-content ul {
-	list-style: none;
-	padding-left: 0;
-}
+/**
+ * UPLOAD SCREEN
+ */
 
-#logged_user_menu {
+.upload-form {
     width: 200px;
-    padding: 20px 10px;
-    float: left;
-    text-align: left;
-    height: 500px;
-    background: #CFEAFE;
-    box-shadow: 3px 3px 10px #888;
-}
-
-.upload-forms {
-    display: inline-block;
-    min-height: 150px;
-    text-align: left;
     margin: 20px auto;
     padding: 10px;
     background-color: #CFEAFE;
     box-shadow: 3px 3px 10px #888;
 }
 
-.upload-forms input[type="submit"] {
+.upload-form button[type="submit"] {
 	display: block;
+	width: 100%;
+}
+
+.diagrams-menu {
 	width: 200px;
-	margin: 0 auto;
+    margin: 20px auto;
+	padding: 10px;
+	background-color: #CFEAFE;
+	box-shadow: 3px 3px 10px #888;
 }
 
-#uploadedComponent li {
-    padding: 8px 5px;
-    min-width: 450px;
-    background: #f5f4f4;
+.diagrams-menu li button {
+	float: right;
+    width: 20px;
+    height: 20px;
+    padding: 0;
 }
 
-#uploadedComponent li:nth-child(odd) {
-    background: #e0dfdf;
+.diagrams-menu li img {
+	max-width: 100%;
 }
 
-#uploadedComponent #deleteAll {
-    margin-bottom: 20px;
-}
+/**
+ * HEADER
+ */
 
-.imgDelete {
-    width: 16px;
-    height: 16px;
-    float: right;
+.header {
+    position: relative;
+    width: 100%;
+    background: -webkit-linear-gradient(top, #f0f9ff 0%,#cbebff 47%,#a1dbff 100%);
 }
 
 .header-logo {
@@ -147,6 +142,10 @@ body {
 	font-weight: normal;
 	line-height: 30px;
 }
+
+/**
+ * NAVBAR
+ */
 
 .navbar {
     background: -webkit-linear-gradient(top, #1e5799 0%,#7db9e8 100%);
@@ -224,6 +223,10 @@ body {
     vertical-align: middle;
 }
 
+/**
+ * LOADER
+ */
+
 .loader {
     position: absolute;
     top: 0;
@@ -247,6 +250,10 @@ body {
 .loader-content p {
 	display: none;
 }
+
+/**
+ * GRAPH
+ */
 
 .graph-content {
 	display: flex;
@@ -341,6 +348,10 @@ body {
 	pointer-events: bounding-box;
 }
 
+/**
+ * CONTEXT MENU
+ */
+
 .context-menu {
 	position: absolute;
 	font-family: 'Arial', sans-serif;
@@ -378,7 +389,11 @@ body {
 	vertical-align: -3px;
 }
 
-.popover {
+/**
+ * POPOVER
+ */
+
+ .popover {
 	position: absolute;
 	z-index: 1;
 	font-family: 'Arial', sans-serif;
@@ -401,7 +416,11 @@ body {
 	padding: 0 0.5em 0.5em 0.5em;
 }
 
-.viewport .neighbour-node-symbol {
+/**
+ * VIEWPORT
+ */
+
+ .viewport .neighbour-node-symbol {
     stroke: #000;
     stroke-width: 1;
 }
@@ -412,6 +431,11 @@ body {
 
 .viewport .group {
 	user-select: none;
+}
+
+.viewport .group .group-viewport {
+	stroke: #000;
+	stroke-width: 0;
 }
 
 .viewport .group .group-symbol {
@@ -450,6 +474,10 @@ body {
 	display: none;
 }
 
+.viewport .group:not(.group--expanded) .group-viewport {
+    display: none;
+}
+
 .viewport .group--expanded .expand-button {
 	display: none;
 }
@@ -461,6 +489,10 @@ body {
 .viewport .group--expanded > rect {
 	width: 220px;
 }
+
+/**
+ * SIDEBAR
+ */
 
 .sidebar {
 	display: flex;
@@ -706,6 +738,8 @@ body {
     display: none;
 }
 
+/* sorting */
+
 .sort-list {
 	font-size: 0.8em;
 	list-style: none;
@@ -733,6 +767,8 @@ body {
 	content: "▼";
 }
 
+/* minimap */
+
 .minimap {
 	border-top: 1px solid #7db9e8;
 	background-color: #fff;
@@ -750,6 +786,8 @@ body {
 	stroke: #000;
 }
 
+/* status bar */
+
 .status-bar {
     font-size: 11px;
     z-index: 1;
@@ -766,37 +804,6 @@ body {
 .status-bar .link {
 	text-decoration: underline;
 	cursor: pointer;
-}
-
-/**
- * MODAL WINDOW
- **/
-
-.modal {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-	right: 0;
-	padding: 20px 40px;
-    background: rgba(255, 255, 255, 0.7);
-}
-
-.modal-content {
-	position: relative;
-    height: 100%;
-    background-color: #fff;
-    border: 1px solid #7db9e8;
-}
-
-.modal-content .close-button {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	display: block;
-    width: 20px;
-    height: 20px;
-    padding: 0;
 }
 
 /**

@@ -163,6 +163,8 @@ function Group(props) {
 	 * @returns {array<Edge>} List of all edges related to vertices added to the group.
 	 */
 	this.getEdgeList = function() {
+		// TODO: some edges get duplicated in the resulting array this way
+
 		return [].concat(this.getInEdgeList(), this.getOutEdgeList());
 	};
 

@@ -1,20 +1,21 @@
 /**
+ * Class representing minimap of the viewport displayed in sidebar. It is used to have a quick overview of the current viewport layout.
  * @constructor
  */
 function Minimap() {
 	var rootElement;
 	var viewportElement;
 
-	var zoom = 0.1;
+	var scale = 0.1;
 	var useElement = '#graph';
 
 	/**
-	 * 
+	 * Resizes the minimap viewport using current viewport size and minimap scale.
 	 * @param {object} size Object holding current dimensions of the viewport component.
 	 */
 	this.setViewportSize = function(size) {
-		viewportElement.setAttribute('width', size.width * zoom);
-		viewportElement.setAttribute('height', size.height * zoom);
+		viewportElement.setAttribute('width', size.width * scale);
+		viewportElement.setAttribute('height', size.height * scale);
 	};
 
 	/**
@@ -28,12 +29,12 @@ function Minimap() {
 	};
 
 	/**
-	 * TODO: jsDoc
+	 * Moves the minimap viewport to a new position based on current viewport position and minimap scale.
 	 * @param {Coordinates} coords Coordinates of the viewport.
 	 */
 	this.setViewportPosition = function(coords) {
-		viewportElement.setAttribute('x', coords.x * -1 * zoom);
-		viewportElement.setAttribute('y', coords.y * -1 * zoom);
+		viewportElement.setAttribute('x', coords.x * -1 * scale);
+		viewportElement.setAttribute('y', coords.y * -1 * scale);
 	};
 
 	/**
@@ -48,7 +49,7 @@ function Minimap() {
 		});
 
 		var graphElement = app.dom.createSvgElement('use', {
-			'transform': `scale(${zoom})`,
+			'transform': `scale(${scale})`,
 		});
 		graphElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', useElement);
 		rootElement.appendChild(graphElement);
@@ -78,7 +79,7 @@ function Minimap() {
 			viewportElement.setAttribute('x', minimapViewportPosition.x - offset.x);
 			viewportElement.setAttribute('y', minimapViewportPosition.y - offset.y);
 
-			app.viewportComponent.setPosition(new Coordinates(viewportPosition.x + (1 / zoom) * offset.x, viewportPosition.y + (1 / zoom) * offset.y));
+			app.viewportComponent.setPosition(new Coordinates(viewportPosition.x + (1 / scale) * offset.x, viewportPosition.y + (1 / scale) * offset.y));
 		}
 
 		function mouseUp(e) {
