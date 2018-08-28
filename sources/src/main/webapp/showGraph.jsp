@@ -49,6 +49,7 @@
 		<script src="js/utils/utils.js"></script>
 		<script src="js/zoom.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/userMenu.js"></script>
 
 		<title>IMiGEr</title>
 	</head>

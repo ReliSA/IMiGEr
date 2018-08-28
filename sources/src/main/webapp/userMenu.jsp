@@ -1,13 +1,13 @@
 <c:if test="${isLoggedIn}">
-	<div class="login_box">
-		${user.username} <a href="api/log-out" id="logoutButton">Log out</a>
+	<div class="user-menu">
+		${user.username} <a href="api/log-out" class="button" id="logoutButton">Log out</a>
 	</div>
 </c:if>
 
 <c:if test="${!isLoggedIn}">
-	<div class="login_box">
-		<button id="toggleLoginPopupButton">Log in</a>
-		<button id="toggleRegisterPopupButton">Register</a>
+	<div class="user-menu">
+		<button class="button" id="toggleLoginPopupButton">Log in</a>
+		<button class="button" id="toggleRegisterPopupButton">Register</a>
 	</div>
 </c:if>
 
@@ -35,7 +35,7 @@
 			<tr>
 				<td></td>
 				<td>
-					<button type="submit">Login</button>
+					<button type="submit" class="button">Login</button>
 				</td>
 			</tr>
 		</table>
@@ -50,7 +50,7 @@
 					Name:
 				</td>
 				<td>
-					<input type="text" name="user_name" id="user_name">
+					<input type="text" name="name">
 				</td>
 			</tr>
 			<tr>
@@ -58,7 +58,7 @@
 					E-mail:
 				</td>
 				<td>
-					<input type="text" name="user_email" id="user_email">
+					<input type="text" name="email">
 				</td>
 			</tr>
 			<tr>
@@ -66,7 +66,7 @@
 					Login name:
 				</td>
 				<td>
-					<input type="text" name="user_nick" id="user_nick">
+					<input type="text" name="username">
 				</td>
 			</tr>
 			<tr>
@@ -74,7 +74,7 @@
 					Password:
 				</td>
 				<td>
-					<input type="password" name="user_password" id="user_password">
+					<input type="password" name="password">
 				</td>
 			</tr>
 			<tr>
@@ -82,13 +82,13 @@
 					Password again:
 				</td>
 				<td>
-					<input type="password" name="user_password_2" id="user_password_2">
+					<input type="password" name="passwordCheck">
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<button type="submit">Register</button>
+					<button type="submit" class="button">Register</button>
 				</td>
 			</tr>
 		</table>

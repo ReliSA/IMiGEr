@@ -88,21 +88,22 @@ body {
 
 /* login and register links */
 
-.header .login_box {
-	float: right;
+.header .user-menu {
 	position: absolute;
-	right: 25px;
-	top: 0px;
-	font-weight: bold;	
+	right: 0;
+	top: 0;
+	padding-left: 25px;
+	padding-right: 25px;
+	line-height: 60px;
 }
 
-.header .login_box a {
+.header .user-menu .button {
 	color: #0B548A;
 	font-size: 14px;
-}
-
-.header .login_box a:hover {
-	text-decoration: none;
+	font-weight: bold;
+	background: none;
+	border: none;
+	cursor: pointer;
 }
 
 /* login popup */
