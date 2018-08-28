@@ -29,6 +29,8 @@ function App() {
 	/** @prop {object} API Application programming interface paths. */
 	this.API = {
 		loadGraphData: 'api/load-graph-data',
+		saveDiagram: 'api/save-diagram',
+		removeDiagram: 'api/remove-diagram',
 	};
 
 	/** @prop {float} headerHeight Current height of the application header. */
@@ -57,6 +59,9 @@ function App() {
 
 	/** TODO: jsDoc */
 	this.attributeTypeList = [];
+
+	/** TODO: jsDoc */
+	this.possibleEnumValues = {};
 
 	/**
 	 * Loads graph using diagram (if available).
@@ -273,7 +278,42 @@ function App() {
 				scale: 1,
 			});
 		});
-		
+
+		// save to database button
+		var saveDiagramToDatabaseButton = document.getElementById('btnSaveDiagramToDatabase');
+		if (saveDiagramToDatabaseButton) {
+			saveDiagramToDatabaseButton.addEventListener('click', function(e) {
+				var diagramId = app.utils.getQueryVariable('diagramId');
+				if (diagramId === false) diagramId = null;
+
+				var diagramName = prompt('Enter new diagram name:');
+				if (diagramName === null || diagramName === '') return false;
+
+				$.ajax({
+					'type': 'POST',
+					'url': app.API.saveDiagram,
+					'data': {
+						'diagram_id': diagramId,
+						'name': diagramName,
+						'graph_json': JSON.stringify(self.graphExporter.run()),
+						'public': 0,
+					},
+					'success': function() {
+						alert('Saved.');
+					},
+					'error': function(xhr) {
+						switch (xhr.status) {
+							case 401:
+								alert('You are either not logged in or not an owner of this diagram.');
+								break;
+							default:
+								alert('Something went wrong.');
+						}
+					},
+				});
+			});
+		}
+
 		// window resize
 		window.addEventListener('resize', function(e) {
 			self.headerHeight = getHeaderHeight();

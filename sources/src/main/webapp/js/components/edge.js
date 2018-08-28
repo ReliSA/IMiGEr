@@ -239,6 +239,20 @@ function Edge(props) {
 	};
 
 	/**
+	 * Exports the edge to a new, plain JS object.
+	 * @returns {Object} exported edge
+	 */
+	this.export = function() {
+		return {
+			subedgeInfo: props.subedgeInfo,
+			from: this.getFrom().id,
+			to: this.getTo().id,
+			text: '',
+			id: this.id,
+		};
+	};
+
+	/**
 	 * Edge click interaction. Highlights the edge and vertices related to it. Reveals edge popover.
 	 * @param {Event} e Click event.
 	 */

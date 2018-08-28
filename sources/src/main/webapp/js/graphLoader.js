@@ -15,22 +15,34 @@ function GraphLoader() {
 
 		var canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
 
-		app.attributeTypeList = data.attributeTypes;
-
 		// store archetypes
 		app.archetype.vertex = data.vertexArchetypes;
 		app.archetype.edge = data.edgeArchetypes;
 		app.archetype.icon = data.archetypeIcons;
+
+		app.attributeTypeList = data.attributeTypes;
+		app.possibleEnumValues = data.possibleEnumValues;
 
 		// construct vertices
 		var vertexMap = {};
 		data.vertices.forEach(function(component) {
 			var vertex = new Vertex(component);
 
-			vertex.setPosition(new Coordinates(
-				Math.floor(Math.random() * canvasSize),
-				Math.floor(Math.random() * canvasSize),
-			));
+			// position
+			var position = data.positions.find(function(position) {
+				return position.id === ('vertex' + vertex.id);
+			});
+
+			if (app.utils.isDefined(position)) {
+				vertex.setPosition(new Coordinates(position.x, position.y));
+
+			} else {
+				// set random
+				vertex.setPosition(new Coordinates(
+					Math.floor(Math.random() * canvasSize),
+					Math.floor(Math.random() * canvasSize),
+				));
+			}
 
 			app.nodeList.push(vertex);
 			app.vertexList.push(vertex);
@@ -71,9 +83,6 @@ function GraphLoader() {
 			app.viewportComponent.addEdge(edge);
 		});
 
-		// center viewport
-		app.viewportComponent.center();
-
 		// find unconnected vertices
 		app.vertexList.filter(function(vertex) {
 			return vertex.isUnconnected();
@@ -85,19 +94,51 @@ function GraphLoader() {
 		// construct groups
 		data.groups.forEach(function(component) {
 			var group = new Group(component);
-			group.setExcluded(true);
 
+			// vertices
 			app.vertexList.filter(function(vertex) {
 				return component.verticesId.indexOf(vertex.id) > -1;
 			}).forEach(function(vertex) {
 				group.addVertex(vertex);
 			});
 
+			// position
+			var position = data.positions.find(function(position) {
+				return position.id === ('group' + group.id);
+			});
+
+			if (app.utils.isDefined(position)) {
+				group.setPosition(new Coordinates(position.x, position.y));
+
+			} else {
+				// set random
+				group.setPosition(new Coordinates(
+					Math.floor(Math.random() * canvasSize),
+					Math.floor(Math.random() * canvasSize),
+				));
+			}
+
 			app.nodeList.push(group);
 			app.groupList.push(group);
 
-			app.sidebarComponent.excludedNodeListComponent.add(group);
+			app.viewportComponent.addGroup(group);
 		});
+
+		// exclude nodes
+		data.sideBar.forEach(function(excludedNode) {
+			var node = app.nodeList.find(function(node) {
+				return node.id === excludedNode.id;
+			});
+
+			if (app.utils.isDefined(node)) {
+				node.exclude();
+
+				app.sidebarComponent.excludedNodeListComponent.add(node);
+			}
+		});
+
+		// center viewport
+		app.viewportComponent.center();
 
 		// update status bar
 		app.sidebarComponent.statusBarComponent.setComponentCount(data.vertices.length);

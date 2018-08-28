@@ -9,7 +9,7 @@ function Vertex(props) {
 	/** @prop {integer} archetype Identifier of the vertex archetype. */
 	this.archetype = props.archetype;
 	/** @prop {string} name Name of the vertex. */
-	this.name = props.title.split(':')[1];
+	this.name = props.title.split(':')[1];	// TODO: archetype prefix is useless
 	/** @prop {array} symbol Symbol of the group. */
 	this.symbol = app.markSymbol.getMarkSymbol();
 
@@ -257,6 +257,13 @@ function Vertex(props) {
 	};
 
 	/**
+	 * @returns true if the vertex is currently highlighted (in any way), otherwise false
+	 */
+	this.isHighlighted = function() {
+		return highlighted;
+	};
+
+	/**
 	 * Toggles highlighting of the vertex.
 	 * @param {boolean} newValue True to highlight the vertex, false to unhighlight.
 	 */
@@ -453,6 +460,21 @@ function Vertex(props) {
 		}).forEach(function(edge) {
 			edge.setHidden(hideEdges);
 		});
+	};
+
+	/**
+	 * Exports the vertex to a new, plain JS object.
+	 * @returns {Object} exported vertex
+	 */
+	this.export = function() {
+		return {
+			archetype: this.archetype,
+			attributes: props.attributes,
+			id: this.id,
+			originalId: this.id,
+			text: '',
+			title: 'XXX:' + this.name,	// TODO: archetype prefix is useless
+		};
 	};
 
 	/**

@@ -145,7 +145,10 @@
 						</li>
 						<c:if test="${isLoggedIn}">
 							<li>
-								<button class="btn save-diagram" id="btnSaveDiagramToDb" title="Save diagram.">
+								<hr class="navbar-separator">
+							</li>
+							<li>
+								<button class="btn save-diagram" id="btnSaveDiagramToDatabase" title="Save diagram.">
 									<img src="images/icon_save.png" id="applyLayoutImg" alt="Save diagram">
 								</button>
 							</li>

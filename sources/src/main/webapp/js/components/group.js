@@ -263,6 +263,13 @@ function Group(props) {
 	};
 
 	/**
+	 * @returns true if the group is currently highlighted (in any way), otherwise false
+	 */
+	this.isHighlighted = function() {
+		return highlighted;
+	};
+
+	/**
 	 * Toggles highlighting of the group.
 	 * @param {boolean} newValue True to highlight the group, false to unhighlight.
 	 */
@@ -442,6 +449,25 @@ function Group(props) {
 		}).forEach(function(edge) {
 			edge.setHidden(hideEdges);
 		});
+	};
+
+	/**
+	 * Exports the group to a new, plain JS object.
+	 * @returns {Object} exported group
+	 */
+	this.export = function() {
+		var verticesId = vertexList.map(function(vertex) {
+			return vertex.id;
+		});
+
+		return {
+			groupId: this.id,
+			id: this.id,
+			name: this.name,
+			verticesId: verticesId,
+			verticesEdgeFromId: [],	// TODO: what to put in here?
+			verticesEdgeToId: [],	// TODO: what to put in here?
+		};
 	};
 
 	/**
