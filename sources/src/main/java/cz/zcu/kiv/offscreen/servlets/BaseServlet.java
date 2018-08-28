@@ -11,7 +11,9 @@ public abstract class BaseServlet extends HttpServlet {
      * @return true if the user is logged in to current session, otherwise false
      */
     protected boolean isLoggedIn(HttpServletRequest request) {
-        return (boolean) request.getSession().getAttribute("isLoggedIn");
+        Object isLoggedIn = request.getSession().getAttribute("isLoggedIn");
+
+        return isLoggedIn != null && (boolean) isLoggedIn;
     }
 
     /**
