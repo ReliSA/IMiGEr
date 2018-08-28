@@ -21,9 +21,11 @@ public class SaveDiagram extends BaseServlet {
             return;
         }
 
+        request.setCharacterEncoding("UTF-8");
+
         int loggedUserId = getUserId(request);
 
-        request.setCharacterEncoding("UTF-8");
+        String diagramId = request.getParameter("diagram_id");
         String name = request.getParameter("name");
         String graphJson = request.getParameter("graph_json");
         String isPublic = StringUtils.defaultIfBlank(request.getParameter("public"), "0");
@@ -37,14 +39,13 @@ public class SaveDiagram extends BaseServlet {
         DB db = new DB(getServletContext());
         Diagram diagram;
 
-        if (request.getParameter("diagram_id") == null) {
+        if (Strings.isNullOrEmpty(diagramId)) {
             // new diagram
             diagram = new Diagram(db);
 
         } else {
             // diagram exists
-            Integer diagramId = Integer.parseInt(request.getParameter("diagram_id"));
-            diagram = new Diagram(db, diagramId);
+            diagram = new Diagram(db, Integer.parseInt(diagramId));
 
             // user is not owner of the diagram
             if (loggedUserId != diagram.getUserId()) {

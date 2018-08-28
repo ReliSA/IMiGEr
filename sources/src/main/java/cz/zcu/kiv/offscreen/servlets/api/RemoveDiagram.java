@@ -1,5 +1,6 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
+import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
@@ -17,16 +18,17 @@ public class RemoveDiagram extends BaseServlet {
             return;
         }
 
-        if (request.getParameter("diagram_id") == null) {
+        int loggedUserId = getUserId(request);
+
+        String diagramId = request.getParameter("diagram_id");
+
+        if (Strings.isNullOrEmpty(diagramId)) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
-        int loggedUserId = getUserId(request);
-
-        Integer diagramId = Integer.parseInt(request.getParameter("diagram_id"));
         DB db = new DB(getServletContext());
-        Diagram diagram = new Diagram(db, diagramId);
+        Diagram diagram = new Diagram(db, Integer.parseInt(diagramId));
 
         if (diagram.getUserId() != loggedUserId) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
