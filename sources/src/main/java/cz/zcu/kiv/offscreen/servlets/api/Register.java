@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.common.base.Strings;
 import org.json.JSONObject;
 
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
@@ -33,30 +34,30 @@ public class Register extends BaseServlet {
 
 		Map<String, String> errors = new HashMap<>();
 
-		if (name == null || name.length() == 0) {
-			errors.put("user_name", "Please enter name.");
+		if (Strings.isNullOrEmpty(name)) {
+			errors.put("name", "Please enter name.");
 		}
 
-		if (email == null || email.length() == 0) {
-			errors.put("user_email", "Please enter e-mail address.");
+		if (Strings.isNullOrEmpty(email)) {
+			errors.put("email", "Please enter e-mail address.");
 		} else if (!isEmailAddressValid(email)) {
-			errors.put("user_email", "Please enter valid e-mail address.");
+			errors.put("email", "Please enter valid e-mail address.");
 		} else if (user.existsEmail(email)) {
-			errors.put("user_email", "E-mail already exists.");
+			errors.put("email", "E-mail already exists.");
 		}
 
-		if (username == null || username.length() == 0) {
-			errors.put("user_nick", "Please enter username.");
+		if (Strings.isNullOrEmpty(username)) {
+			errors.put("username", "Please enter username.");
 		} else if (user.existsNick(username)) {
-			errors.put("user_nick", "Nickname already exists.");
+			errors.put("username", "Nickname already exists.");
 		}
     	
-    	if (password == null || password.length() == 0 || passwordCheck == null || passwordCheck.length() == 0) {
-    		errors.put("user_password", "Please enter password.");
-    	} else if (!password.equals(passwordCheck)) {
-    		errors.put("user_password", "Passwords must be equal.");
+    	if (Strings.isNullOrEmpty(password) || Strings.isNullOrEmpty(passwordCheck)) {
+    		errors.put("password", "Please enter password.");
     	} else if (password.length() < 5) {
-    		errors.put("user_password", "Passwords must be at least 5 characters long.");
+    		errors.put("password", "Passwords must be at least 5 characters long.");
+		} else if (!password.equals(passwordCheck)) {
+			errors.put("passwordCheck", "Passwords must be equal.");
     	}
 
     	if (errors.isEmpty()) {
