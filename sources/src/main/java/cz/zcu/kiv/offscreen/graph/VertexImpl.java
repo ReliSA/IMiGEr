@@ -15,12 +15,12 @@ public class VertexImpl extends BaseVertex {
      * Creates new vertex.
      * @param id new generated identification number.
      * @param originalId original identification number from input file
-     * @param title title of vertex
+     * @param name of vertex
      * @param archetypeIndex index of vertex archetype
      * @param text additional info
      */
-    public VertexImpl(int id, int originalId, String title, int archetypeIndex, String text) {
-        super(id, originalId, title, archetypeIndex, text);
+    public VertexImpl(int id, int originalId, String name, int archetypeIndex, String text) {
+        super(id, originalId, name, archetypeIndex, text);
         this.attributesMap = new HashMap<>();
     }
 

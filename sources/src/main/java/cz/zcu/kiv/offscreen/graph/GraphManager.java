@@ -145,13 +145,13 @@ public class GraphManager {
      * vertices with the archetypeIndex as the key.
      *
      * @param id             - ID of the vertex to add
-     * @param title          - Title of the vertex
+     * @param name           - Name of the vertex
      * @param text           - Text of the vertex
      * @param archetypeIndex - Type of archetype associated with this vertex
      * @param attributes     - Map of attributes associated with the vertex
      */
-    public void addVertex(int id, String title, String text, int archetypeIndex, Map<Integer, Attribute> attributes) {
-        VertexImpl vertexToAdd = new VertexImpl(id, id, title, archetypeIndex, text);
+    public void addVertex(int id, String name, String text, int archetypeIndex, Map<Integer, Attribute> attributes) {
+        VertexImpl vertexToAdd = new VertexImpl(id, id, name, archetypeIndex, text);
         if (vertices.containsKey(archetypeIndex)) {
             vertices.get(archetypeIndex).add(vertexToAdd);
         } else {
@@ -505,11 +505,15 @@ public class GraphManager {
     private void addVerticesToGraph(Graph graph, Set<VertexImpl> resultVertices) {
         for (VertexImpl vertexImpl : resultVertices) {
 
-            VertexArchetype archetype = vertexArchetypes.get(vertexImpl.getArchetype());
-            String title = archetype.name + ":" + vertexImpl.getTitle();
             List<String[]> attributes = getAttributesAsArray(vertexImpl.getSortedAttributes());
 
-            Vertex vertex = new Vertex(lastVertexOrGroupId++, vertexImpl.getOriginalId(), title, vertexImpl.getArchetype(), vertexImpl.getText(), attributes);
+            Vertex vertex = new Vertex(
+                    lastVertexOrGroupId++,
+                    vertexImpl.getOriginalId(),
+                    vertexImpl.getName(),
+                    vertexImpl.getArchetype(),
+                    vertexImpl.getText(),
+                    attributes);
 
             graph.addVertex(vertexImpl.getId(), vertex);
         }

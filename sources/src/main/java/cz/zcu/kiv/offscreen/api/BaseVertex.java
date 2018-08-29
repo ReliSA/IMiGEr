@@ -10,17 +10,17 @@ public class BaseVertex {
     private int id;
     /** Identification number which is in input file. */
     private int originalId;
-    /** Title of vertex. */
-    private String title;
+    /** Name of vertex. */
+    private String name;
     /** Index of vertex archetype. */
     private int archetypeIndex;
     /** Additional info. */
     private String text;
 
-    public BaseVertex(int id, int originalId, String title, int archetypeIndex, String text) {
+    public BaseVertex(int id, int originalId, String name, int archetypeIndex, String text) {
         this.id = id;
         this.originalId = originalId;
-        this.title = title;
+        this.name = name;
         this.archetypeIndex = archetypeIndex;
         this.text = text;
     }
@@ -41,12 +41,12 @@ public class BaseVertex {
         this.originalId = originalId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getArchetype() {

@@ -14,13 +14,13 @@ public class Vertex extends BaseVertex {
      * Create new vertex.
      * @param id new generated identification number.
      * @param originalId original identification number from input file
-     * @param title title of vertex
+     * @param name of vertex
      * @param archetypeIndex index of vertex archetype
      * @param text additional info
      * @param attributes List of all attributes. Every attribute is stored in String array in pair as {attribute name, attribute value}.
      */
-    public Vertex(int id, int originalId, String title, int archetypeIndex, String text, List<String[]> attributes) {
-        super(id, originalId, title, archetypeIndex, text);
+    public Vertex(int id, int originalId, String name, int archetypeIndex, String text, List<String[]> attributes) {
+        super(id, originalId, name, archetypeIndex, text);
         this.attributes = attributes;
     }
 
