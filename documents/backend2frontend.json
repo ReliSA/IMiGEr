@@ -19,8 +19,12 @@ Návrh JSONu
 
 	"vertexArchetypes": [		//možné archetypy vrcholů
 		{
+			"icon": <string>,  	// svg s ikonou
 			"name": <string>,	//název archetypu
 			"text": <string>	//může sloužit jako popisek archetypu, nemusí být použit
+
+			// svg musí být pro správnou vizualizaci definován tak, aby obsahoval objekty, které leží uvnitř obdélníka [0; 0] až [12; 15]
+			// dát pozor u svg na escapování uvozovek
 		},
 		...
 	],
@@ -39,6 +43,10 @@ Návrh JSONu
 			"originalId": <int>,			//identifikátor vrcholu, který byl použit před zpracováním(filtrací) v backendu
 			"text": <string>,				//text pro případné dodatečné info mimo atributy - nemusí být použito, může sloužit jako popisek vrcholu, např. když si uživatel zobrazí jeho detaily, nejdříve se zobrazí tento popisek a až pak hodnoty atributů, může sloužit i jen jako nosič informace, která nebude uživateli přístupná
 			"title": <string>,				//jméno vrcholu
+			"position": {								//obsahuje relativní pozici uzlu v grafu
+				"x": <float>,
+				"y": <float>
+			}
 		},
 		...
 	],
@@ -76,33 +84,18 @@ Návrh JSONu
 		...
 	},
 
-	"archetypeIcons": [						//Definice archetypových ikon
-		{
-			"name": "archetypeName",		//ikony identifikovány pomocí jmén
-			"value": "archetype svg"		//dát pozor na escapování uvozovek
-			
-			//svg musí být pro správnou vizualizaci definován tak, aby obsahoval objekty, které leží uvnitř obdélníka [0; 0] až [12; 15]
-		},
-		...
-	],
-
 	"groups": [											//obsahuje jednotlivé skupiny uzlů
 		{
 			"groupId": <int>,							//identifikátor skupiny
 			"id": <int>,								//identifikátor, který je jedinečný v rámci skupin i všech uzlů
 			"name": <string>,							//název skupiny
-			"verticesId": [<int>, <int>, ...],			//identifikátory uzlů, které jsou ve skupině
+			"verticesId": [<int>, <int>, ...],			//original id uzlu, které jsou ve skupině
 			"verticesEdgeFromId": [<int>, <int>, ...],	//identifikátory uzlů, jejichž odchozí hrany jsou viditelné v grafu
 			"verticesEdgeToId": [<int>, <int>, ...]		//identifikátory uzlů, jejichž příchozí hrany jsou viditelné v grafu
-		},
-		...
-	],
-
-	"positions": [			//obsahuje relativní pozice uzlů a skupin v grafu
-		{
-			"id": <int>,	//identifikátor uzlu nebo skupiny
-			"x": <int>,		//X-ová pozice v grafu
-			"y": <int>		//Y-ová pozice v grafu
+			"position": {								//obsahuje relativní pozici skupiny v grafu
+				"x": <float>,
+				"y": <float>
+			}
 		},
 		...
 	],
