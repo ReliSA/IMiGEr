@@ -218,7 +218,7 @@ public class GraphFilterTest {
      */
     private boolean containsSubedgeWithId(SubedgeInfo subedgeInfo, List<SubedgeInfo> subedgeInfos) {
         for (SubedgeInfo s : subedgeInfos) {
-            if (s.getOriginalId() == subedgeInfo.getOriginalId()) {
+            if (s.getId() == subedgeInfo.getId()) {
                 return true;
             }
         }
