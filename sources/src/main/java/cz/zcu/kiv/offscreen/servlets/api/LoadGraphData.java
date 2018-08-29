@@ -37,20 +37,19 @@ public class LoadGraphData extends BaseServlet {
             String diagram_id = request.getParameter("diagramId");
 
             if (diagram_id == null) {
-                response.getWriter().write(getDiagramFromSession(request));
+                getDiagramFromSession(request, response);
             } else {
-                response.getWriter().write(getDiagramById(request, Integer.parseInt(diagram_id)));
+                getDiagramById(request, response, Integer.parseInt(diagram_id));
             }
-            
         } else {
-            response.getWriter().write(getDemoDiagram(request));
+            getDemoDiagram(request, response);
         }
     }
 
     /**
-     * Return json of file which was uploaded and is stored in session.
+     * Add file which was uploaded and is stored in session to response or set http status code to BAD_REQUEST.
      */
-    private String getDiagramFromSession(HttpServletRequest request) throws IOException {
+    private void getDiagramFromSession(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String jsonToDisplay = (String) request.getSession().getAttribute("json_graph");
 
         if (!Strings.isNullOrEmpty(jsonToDisplay)) {
@@ -61,40 +60,51 @@ public class LoadGraphData extends BaseServlet {
             GraphExport export = new GraphExport(graph);
             JSONObject json = JSONObject.fromObject(export);
 
-            return json.toString();
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write(json.toString());
+            response.getWriter().flush();
+            return;
         }
 
-        return "";  // TODO: ugly fallback
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
 
     /**
-     * Return json of diagram which is taken from database. Permissions of user to this diagram is checked.
+     * Add json of diagram which is taken from database to response or set http status code to UNAUTHORIZED.
+     * Permissions of user to this diagram is checked.
      */
-    private String getDiagramById(HttpServletRequest request, int diagramId){
+    private void getDiagramById(HttpServletRequest request, HttpServletResponse response, int diagramId) throws IOException {
         DB db = new DB(getServletContext());
         Diagram diagram = new Diagram(db, diagramId);
 
+        String json = "";
+
         if (diagram.isPublic()) {
-            return diagram.getJsonDiagram();
-        }
+            json =  diagram.getJsonDiagram();
 
-        // diagram is not public
-        if (isLoggedIn(request)) {
-            int loggedUserId = getUserId(request);
+        } else {
+            if (isLoggedIn(request)) {
+                int loggedUserId = getUserId(request);
 
-            if (diagram.getUserId() == loggedUserId) {
-                return diagram.getJsonDiagram();
+                if (diagram.getUserId() == loggedUserId) {
+                    json = diagram.getJsonDiagram();
+                }
             }
         }
 
-        // User is not logged in or is not owner of diagram
-        return "";  // TODO: ugly fallback
+        if (Strings.isNullOrEmpty(json)){
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        } else {
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write(json);
+            response.getWriter().flush();
+        }
     }
 
     /**
-     * Return demo diagram from file system.
+     * Add demo diagram from file system to response.
      */
-    private String getDemoDiagram(HttpServletRequest request){
+    private void getDemoDiagram(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String demoId = request.getSession().getAttribute("demo_id").toString();
         String path = "/WEB-INF" + File.separator + "demoDiagram" + File.separator + demoId + ".json";
 
@@ -103,6 +113,8 @@ public class LoadGraphData extends BaseServlet {
 
         request.getSession().setAttribute("demo_id", null);
 
-        return loader.readDemoJSONFromFile(in);
+        response.setStatus(HttpServletResponse.SC_OK);
+        response.getWriter().write(loader.readDemoJSONFromFile(in));
+        response.getWriter().flush();
     }
 }
