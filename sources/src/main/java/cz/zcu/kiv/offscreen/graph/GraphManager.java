@@ -618,7 +618,7 @@ public class GraphManager {
         // find vertices with founded vertex archetypes indices
         for (Vertex vertex : graph.getVertices().values()){
             if(groups.keySet().contains(vertex.getArchetype())){
-                groups.get(vertex.getArchetype()).addVertexId(vertex.getId());
+                groups.get(vertex.getArchetype()).addVertexId(vertex.getOriginalId());
             }
         }
 
