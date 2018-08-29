@@ -27,9 +27,9 @@ function GraphLoader() {
 		data.vertices.forEach(function(component) {
 			var vertex = new Vertex(component);
 
-			var position = component.position
+			var position = component.position;
 
-			if (position === null) {
+			if (position === null || app.utils.isUndefined(position)) {
                 // set random
                 vertex.setPosition(new Coordinates(
                     Math.floor(Math.random() * canvasSize),
@@ -43,7 +43,7 @@ function GraphLoader() {
 			app.nodeList.push(vertex);
 			app.vertexList.push(vertex);
 
-			vertexMap[component.originalId] = vertex;
+			vertexMap[component.id] = vertex;
 		});
 
 		// construct edges
@@ -100,7 +100,7 @@ function GraphLoader() {
 
 			// position
 			var position = component.position
-			if (position === null) {
+			if (position === null || app.utils.isUndefined(position)) {
                 // set random
                 group.setPosition(new Coordinates(
                     Math.floor(Math.random() * canvasSize),

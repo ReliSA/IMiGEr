@@ -463,12 +463,12 @@ function Group(props) {
 		});
 
 		return {
-			groupId: this.id,
 			id: this.id,
 			name: this.name,
 			verticesId: verticesId,
 			verticesEdgeFromId: [],	// TODO: what to put in here?
 			verticesEdgeToId: [],	// TODO: what to put in here?
+			position: position,
 		};
 	};
 

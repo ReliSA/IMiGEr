@@ -471,9 +471,9 @@ function Vertex(props) {
 			archetype: this.archetype,
 			attributes: props.attributes,
 			id: this.id,
-			originalId: this.id,
 			text: '',
 			name: this.name,
+			position: position,
 		};
 	};
 
