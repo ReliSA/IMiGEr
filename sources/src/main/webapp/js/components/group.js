@@ -641,7 +641,7 @@ function Group(props) {
 				'transform': `translate(15, -10)`,
 			});
 			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
-			relatedArchetypeIcon.innerHTML = app.archetype.icon[app.archetype.vertex[archetypeIndex].name];
+			relatedArchetypeIcon.innerHTML = app.archetype.vertex[archetypeIndex].icon;
 			relatedArchetype.appendChild(relatedArchetypeIcon);
 
 			// line

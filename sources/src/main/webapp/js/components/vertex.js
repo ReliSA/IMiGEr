@@ -507,7 +507,7 @@ function Vertex(props) {
 		});
 		archetypeIcon.addEventListener('click', archetypeClick.bind(this));
 
-		archetypeIcon.innerHTML = app.archetype.icon[app.archetype.vertex[this.archetype].name];
+		archetypeIcon.innerHTML = app.archetype.vertex[this.archetype].icon;
 
 		rootElement.appendChild(archetypeIcon);
 
@@ -534,7 +534,7 @@ function Vertex(props) {
 			});
 			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
 
-			relatedArchetype.innerHTML = app.archetype.icon[app.archetype.vertex[archetypeIndex].name];
+			relatedArchetype.innerHTML = app.archetype.vertex[archetypeIndex].icon;
 
 			relatedArchetypeListContainer.appendChild(relatedArchetype);
 
@@ -593,7 +593,7 @@ function Vertex(props) {
 				'transform': `translate(15, -10)`,
 			});
 			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
-			relatedArchetypeIcon.innerHTML = app.archetype.icon[app.archetype.vertex[archetypeIndex].name];
+			relatedArchetypeIcon.innerHTML = app.archetype.vertex[archetypeIndex].icon;
 			relatedArchetype.appendChild(relatedArchetypeIcon);
 
 			// line

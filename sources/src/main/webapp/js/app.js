@@ -54,7 +54,6 @@ function App() {
 	this.archetype = {
 		vertex: [],
 		edge: [],
-		icon: [],
 	};
 
 	/** TODO: jsDoc */

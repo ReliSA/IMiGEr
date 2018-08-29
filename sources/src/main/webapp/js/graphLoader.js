@@ -18,7 +18,6 @@ function GraphLoader() {
 		// store archetypes
 		app.archetype.vertex = data.vertexArchetypes;
 		app.archetype.edge = data.edgeArchetypes;
-		app.archetype.icon = data.archetypeIcons;
 
 		app.attributeTypeList = data.attributeTypes;
 		app.possibleEnumValues = data.possibleEnumValues;
