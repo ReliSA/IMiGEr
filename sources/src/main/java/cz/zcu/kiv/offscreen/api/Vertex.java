@@ -9,6 +9,8 @@ public class Vertex extends BaseVertex {
 
     /** List of all tributes. Every attribute is stored in String array in pair as {attribute name, attribute value}. */
     private List<String[]> attributes;
+    /** Relative position in graph */
+    private Position position;
 
     /**
      * Create new vertex.
@@ -22,6 +24,7 @@ public class Vertex extends BaseVertex {
     public Vertex(int id, int originalId, String name, int archetypeIndex, String text, List<String[]> attributes) {
         super(id, originalId, name, archetypeIndex, text);
         this.attributes = attributes;
+        this.position = null;
     }
 
     public List<String[]> getAttributes() {
@@ -30,5 +33,13 @@ public class Vertex extends BaseVertex {
 
     public void setAttributes(List<String[]> attributes) {
         this.attributes = attributes;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

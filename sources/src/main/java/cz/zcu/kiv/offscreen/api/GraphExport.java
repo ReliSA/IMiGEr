@@ -22,7 +22,6 @@ public class GraphExport {
     private Map<String, List<String>> possibleEnumValues;
 
     private List<Group> groups;
-    private List<Position> positions;
     private List<SideBar> sideBar;
     private int selectedVertex;
     private int selectedEdge;
@@ -38,7 +37,6 @@ public class GraphExport {
         this.attributeTypes = new ArrayList<>(graph.getAttributeTypes());
         this.possibleEnumValues = graph.getPossibleEnumValues();
         this.groups = graph.getGraphState().getGroups();
-        this.positions = graph.getGraphState().getPositions();
         this.sideBar = graph.getGraphState().getSideBar();
         this.selectedVertex = graph.getGraphState().getSelectedVertex();
         this.selectedEdge = graph.getGraphState().getSelectedEdge();
@@ -75,10 +73,6 @@ public class GraphExport {
 
     public List<Group> getGroups() {
         return groups;
-    }
-
-    public List<Position> getPositions() {
-        return positions;
     }
 
     public List<SideBar> getSideBar() {

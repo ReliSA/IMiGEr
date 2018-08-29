@@ -20,14 +20,17 @@ public class Group {
     private List<Integer> verticesEdgeFromId;
     /** List of vertices id whose incoming edges are visible. */
     private List<Integer> verticesEdgeToId;
+    /** Relative position in graph */
+    private Position position;
 
     public Group(int groupId, int id, String name){
         this.groupId = groupId;
         this.id = id;
         this.name = name;
-        verticesId = new ArrayList<>();
-        verticesEdgeFromId = new ArrayList<>();
-        verticesEdgeToId = new ArrayList<>();
+        this.verticesId = new ArrayList<>();
+        this.verticesEdgeFromId = new ArrayList<>();
+        this.verticesEdgeToId = new ArrayList<>();
+        this.position = null;
     }
 
     public Group(int groupId, int id, String name, List<Integer> verticesId, List<Integer> verticesEdgeFromId, List<Integer> verticesEdgeToId) {
@@ -37,6 +40,7 @@ public class Group {
         this.verticesId = verticesId;
         this.verticesEdgeFromId = verticesEdgeFromId;
         this.verticesEdgeToId = verticesEdgeToId;
+        this.position = null;
     }
 
     public int getGroupId() {
@@ -97,5 +101,13 @@ public class Group {
 
     public void addVetexEdgeFromId(int vertexId){
         this.verticesEdgeFromId.add(vertexId);
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }
