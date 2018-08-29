@@ -27,20 +27,17 @@ function GraphLoader() {
 		data.vertices.forEach(function(component) {
 			var vertex = new Vertex(component);
 
-			// position
-			var position = data.positions.find(function(position) {
-				return position.id === ('vertex' + vertex.id);
-			});
+			var position = component.position
 
-			if (app.utils.isDefined(position)) {
-				vertex.setPosition(new Coordinates(position.x, position.y));
+			if (position === null) {
+                // set random
+                vertex.setPosition(new Coordinates(
+                    Math.floor(Math.random() * canvasSize),
+                    Math.floor(Math.random() * canvasSize),
+                ));
 
-			} else {
-				// set random
-				vertex.setPosition(new Coordinates(
-					Math.floor(Math.random() * canvasSize),
-					Math.floor(Math.random() * canvasSize),
-				));
+            } else {
+                vertex.setPosition(new Coordinates(position.x, position.y));
 			}
 
 			app.nodeList.push(vertex);
@@ -102,20 +99,17 @@ function GraphLoader() {
 			});
 
 			// position
-			var position = data.positions.find(function(position) {
-				return position.id === ('group' + group.id);
-			});
+			var position = component.position
+			if (position === null) {
+                // set random
+                group.setPosition(new Coordinates(
+                    Math.floor(Math.random() * canvasSize),
+                    Math.floor(Math.random() * canvasSize),
+                ));
 
-			if (app.utils.isDefined(position)) {
-				group.setPosition(new Coordinates(position.x, position.y));
-
-			} else {
-				// set random
-				group.setPosition(new Coordinates(
-					Math.floor(Math.random() * canvasSize),
-					Math.floor(Math.random() * canvasSize),
-				));
-			}
+            } else {
+                group.setPosition(new Coordinates(position.x, position.y));
+            }
 
 			app.nodeList.push(group);
 			app.groupList.push(group);

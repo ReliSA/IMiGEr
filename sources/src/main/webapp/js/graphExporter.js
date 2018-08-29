@@ -22,25 +22,6 @@ function GraphExporter() {
 			return group.export();
 		});
 
-		// positions of nodes
-		var positions = app.nodeList.map(function(node) {
-			if (node instanceof Vertex) {
-				var id = 'vertex' + node.id;
-			} else if (node instanceof Group) {
-				var id = 'group' + node.id;
-			} else {
-				var id = node.id;
-			}
-
-			var position = node.getPosition();
-
-			return {
-				id: id,
-				x: position.x,
-				y: position.y,
-			};
-		});
-
 		// nodes excluded to the sidebar
 		var excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
 		var sideBar = excludedNodeList.map(function(node) {
@@ -57,9 +38,7 @@ function GraphExporter() {
 			vertices: vertices,
 			edges: edges,
 			possibleEnumValues: app.possibleEnumValues,
-			archetypeIcons: app.archetype.icon,
 			groups: groups,
-			positions: positions,
 			sideBar: sideBar,
 			selectedVertex: null,	// TODO: selected == highlighted
 			selectedEdge: null,	// TODO selected == highlighted
