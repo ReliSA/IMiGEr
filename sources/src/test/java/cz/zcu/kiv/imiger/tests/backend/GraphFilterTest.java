@@ -2,6 +2,7 @@ package cz.zcu.kiv.imiger.tests.backend;
 
 import cz.zcu.kiv.offscreen.api.Edge;
 import cz.zcu.kiv.offscreen.api.SubedgeInfo;
+import cz.zcu.kiv.offscreen.api.Vertex;
 import cz.zcu.kiv.offscreen.graph.Graph;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
@@ -193,8 +194,8 @@ public class GraphFilterTest {
         Assertions.assertEquals(graph.getEdges().size(), edges.size());
 
         // Vertices
-        for (int vertexId : graph.getVertices().keySet()) {
-            Assertions.assertTrue(vertexIds.contains(vertexId));
+        for (Vertex vertex : graph.getVertices()) {
+            Assertions.assertTrue(vertexIds.contains(vertex.getId()));
         }
 
         // Edges
