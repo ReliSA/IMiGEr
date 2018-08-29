@@ -9,7 +9,7 @@ function Vertex(props) {
 	/** @prop {integer} archetype Identifier of the vertex archetype. */
 	this.archetype = props.archetype;
 	/** @prop {string} name Name of the vertex. */
-	this.name = props.title.split(':')[1];	// TODO: archetype prefix is useless
+	this.name = props.name;
 	/** @prop {array} symbol Symbol of the group. */
 	this.symbol = app.markSymbol.getMarkSymbol();
 
@@ -473,7 +473,7 @@ function Vertex(props) {
 			id: this.id,
 			originalId: this.id,
 			text: '',
-			title: 'XXX:' + this.name,	// TODO: archetype prefix is useless
+			name: this.name,
 		};
 	};
 
