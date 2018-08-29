@@ -640,7 +640,7 @@ function Group(props) {
 				'class': 'archetype-icon',
 				'transform': `translate(15, -10)`,
 			});
-			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
+			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex))); // TODO when icon == null can not click on item
 			relatedArchetypeIcon.innerHTML = app.archetype.vertex[archetypeIndex].icon;
 			relatedArchetype.appendChild(relatedArchetypeIcon);
 

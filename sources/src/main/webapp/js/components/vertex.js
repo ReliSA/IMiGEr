@@ -505,7 +505,7 @@ function Vertex(props) {
 			'class': 'archetype-icon',
 			'transform': 'translate(8, 8)',
 		});
-		archetypeIcon.addEventListener('click', archetypeClick.bind(this));
+		archetypeIcon.addEventListener('click', archetypeClick.bind(this)); // TODO when icon == null can not click on item
 
 		archetypeIcon.innerHTML = app.archetype.vertex[this.archetype].icon;
 
@@ -532,7 +532,7 @@ function Vertex(props) {
 				'class': 'archetype-icon',
 				'transform': `translate(${archetypeIconOrder * relatedArchetypeIconWidth}, 8)`,
 			});
-			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
+			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex))); // TODO when icon == null can not click on item
 
 			relatedArchetype.innerHTML = app.archetype.vertex[archetypeIndex].icon;
 
@@ -592,7 +592,7 @@ function Vertex(props) {
 				'class': 'archetype-icon',
 				'transform': `translate(15, -10)`,
 			});
-			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex)));
+			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex))); // TODO when icon == null can not click on item
 			relatedArchetypeIcon.innerHTML = app.archetype.vertex[archetypeIndex].icon;
 			relatedArchetype.appendChild(relatedArchetypeIcon);
 
