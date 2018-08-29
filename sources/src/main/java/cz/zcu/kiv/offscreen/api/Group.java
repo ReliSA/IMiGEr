@@ -8,9 +8,7 @@ import java.util.List;
  */
 public class Group {
 
-    /** Generated id of group which is unique only in groups. */
-    private int groupId;
-    /** Generated if of group which is unique in groups and vertexes. */
+    /** Generated id of group. */
     private int id;
     /** Name of group */
     private String name;
@@ -23,8 +21,7 @@ public class Group {
     /** Relative position in graph */
     private Position position;
 
-    public Group(int groupId, int id, String name){
-        this.groupId = groupId;
+    public Group(int id, String name){
         this.id = id;
         this.name = name;
         this.verticesId = new ArrayList<>();
@@ -33,22 +30,13 @@ public class Group {
         this.position = null;
     }
 
-    public Group(int groupId, int id, String name, List<Integer> verticesId, List<Integer> verticesEdgeFromId, List<Integer> verticesEdgeToId) {
-        this.groupId = groupId;
+    public Group(int id, String name, List<Integer> verticesId, List<Integer> verticesEdgeFromId, List<Integer> verticesEdgeToId) {
         this.id = id;
         this.name = name;
         this.verticesId = verticesId;
         this.verticesEdgeFromId = verticesEdgeFromId;
         this.verticesEdgeToId = verticesEdgeToId;
         this.position = null;
-    }
-
-    public int getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
     }
 
     public int getId() {

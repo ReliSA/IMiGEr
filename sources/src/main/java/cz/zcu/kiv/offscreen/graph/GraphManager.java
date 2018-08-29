@@ -38,8 +38,6 @@ public class GraphManager {
         }
     }
 
-    private int lastVertexOrGroupId = 1;
-
     public List<VertexArchetype> vertexArchetypes = new ArrayList<>();
     public List<EdgeArchetype> edgeArchetypes = new ArrayList<>();
     public List<AttributeType> attributeTypes = new ArrayList<>();
@@ -151,7 +149,7 @@ public class GraphManager {
      * @param attributes     - Map of attributes associated with the vertex
      */
     public void addVertex(int id, String name, String text, int archetypeIndex, Map<Integer, Attribute> attributes) {
-        VertexImpl vertexToAdd = new VertexImpl(id, id, name, archetypeIndex, text);
+        VertexImpl vertexToAdd = new VertexImpl(id, name, archetypeIndex, text);
         if (vertices.containsKey(archetypeIndex)) {
             vertices.get(archetypeIndex).add(vertexToAdd);
         } else {
@@ -447,8 +445,8 @@ public class GraphManager {
         while (i.hasNext()) {
             EdgeImpl edge = i.next();
 
-            VertexImpl toDummy = new VertexImpl(edge.getTo(), edge.getTo(), null, -1,null);
-            VertexImpl fromDummy = new VertexImpl(edge.getFrom(), edge.getFrom(), null, -1, null);
+            VertexImpl toDummy = new VertexImpl(edge.getTo(), null, -1,null);
+            VertexImpl fromDummy = new VertexImpl(edge.getFrom(), null, -1, null);
 
             if (!resultVertices.contains(toDummy) || !resultVertices.contains(fromDummy)){
                 i.remove();
@@ -519,16 +517,8 @@ public class GraphManager {
         for (VertexImpl vertexImpl : resultVertices) {
 
             List<String[]> attributes = getAttributesAsArray(vertexImpl.getSortedAttributes());
-
-            Vertex vertex = new Vertex(
-                    lastVertexOrGroupId++,
-                    vertexImpl.getOriginalId(),
-                    vertexImpl.getName(),
-                    vertexImpl.getArchetype(),
-                    vertexImpl.getText(),
-                    attributes);
-
-            graph.addVertex(vertexImpl.getId(), vertex);
+            Vertex vertex = new Vertex(vertexImpl,attributes);
+            graph.addVertex(vertex);
         }
     }
 
@@ -610,15 +600,15 @@ public class GraphManager {
         int index = 0;
         for(VertexArchetype archetype : graph.getVertexArchetypes()){
             if(graph.getDefaultGroupArchetypes().contains(archetype.name)){
-                groups.put(index, new Group(groupId++, lastVertexOrGroupId++, archetype.name));
+                groups.put(index, new Group(groupId++, archetype.name));
             }
             index++;
         }
 
         // find vertices with founded vertex archetypes indices
-        for (Vertex vertex : graph.getVertices().values()){
+        for (Vertex vertex : graph.getVertices()){
             if(groups.keySet().contains(vertex.getArchetype())){
-                groups.get(vertex.getArchetype()).addVertexId(vertex.getOriginalId());
+                groups.get(vertex.getArchetype()).addVertexId(vertex.getId());
             }
         }
 

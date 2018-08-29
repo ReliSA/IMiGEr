@@ -1,5 +1,7 @@
 package cz.zcu.kiv.offscreen.api;
 
+import cz.zcu.kiv.offscreen.graph.VertexImpl;
+
 import java.util.List;
 
 /**
@@ -14,17 +16,25 @@ public class Vertex extends BaseVertex {
 
     /**
      * Create new vertex.
-     * @param id new generated identification number.
-     * @param originalId original identification number from input file
+     * @param id original identification number from input file
      * @param name of vertex
      * @param archetypeIndex index of vertex archetype
      * @param text additional info
      * @param attributes List of all attributes. Every attribute is stored in String array in pair as {attribute name, attribute value}.
      */
-    public Vertex(int id, int originalId, String name, int archetypeIndex, String text, List<String[]> attributes) {
-        super(id, originalId, name, archetypeIndex, text);
+    public Vertex(int id, String name, int archetypeIndex, String text, List<String[]> attributes) {
+        super(id, name, archetypeIndex, text);
         this.attributes = attributes;
         this.position = null;
+    }
+
+    /**
+     * Create new vertex.
+     * @param vertex instance of VertexImpl with set all parameters
+     * @param attributes ist of all attributes. Every attribute is stored in String array in pair as {attribute name, attribute value}.
+     */
+    public Vertex(VertexImpl vertex, List<String[]> attributes){
+        this(vertex.getId(), vertex.getName(), vertex.getArchetype(), vertex.getText(), attributes);
     }
 
     public List<String[]> getAttributes() {

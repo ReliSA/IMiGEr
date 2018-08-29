@@ -8,8 +8,6 @@ public class BaseVertex {
 
     /** New generated identification number. */
     private int id;
-    /** Identification number which is in input file. */
-    private int originalId;
     /** Name of vertex. */
     private String name;
     /** Index of vertex archetype. */
@@ -17,9 +15,8 @@ public class BaseVertex {
     /** Additional info. */
     private String text;
 
-    public BaseVertex(int id, int originalId, String name, int archetypeIndex, String text) {
+    public BaseVertex(int id, String name, int archetypeIndex, String text) {
         this.id = id;
-        this.originalId = originalId;
         this.name = name;
         this.archetypeIndex = archetypeIndex;
         this.text = text;
@@ -31,14 +28,6 @@ public class BaseVertex {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getOriginalId() {
-        return originalId;
-    }
-
-    public void setOriginalId(int originalId) {
-        this.originalId = originalId;
     }
 
     public String getName() {
@@ -71,17 +60,17 @@ public class BaseVertex {
      */
     @Override
     public int hashCode() {
-        return originalId;
+        return id;
     }
 
     /**
      * Two vertices are equals when their {@code originalId} is equals.
-     * @param edge which will be compared with this instance
+     * @param vertex which will be compared with this instance
      * @return true if vertices are equal, false otherwise
      */
     @Override
-    public boolean equals(Object edge) {
-        if (!(edge instanceof BaseVertex)) return false;
-        return originalId == ((BaseVertex) edge).originalId;
+    public boolean equals(Object vertex) {
+        if (!(vertex instanceof BaseVertex)) return false;
+        return id == ((BaseVertex) vertex).id;
     }
 }

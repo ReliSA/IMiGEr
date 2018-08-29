@@ -5,6 +5,7 @@ import cz.zcu.kiv.offscreen.graph.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -14,7 +15,7 @@ import org.apache.log4j.Logger;
  */
 public class GraphExport {
 
-    private List<Vertex> vertices;
+    private Set<Vertex> vertices;
     private List<Edge> edges;
     private List<VertexArchetype> vertexArchetypes;
     private List<EdgeArchetype> edgeArchetypes;
@@ -30,11 +31,11 @@ public class GraphExport {
 
     public GraphExport(Graph graph) {
         logger.trace("ENTRY");
-        this.vertices = new ArrayList<>(graph.getVertices().values());
-        this.edges = new ArrayList<>(graph.getEdges());
-        this.vertexArchetypes = new ArrayList<>(graph.getVertexArchetypes());
-        this.edgeArchetypes = new ArrayList<>(graph.getEdgeArchetypes());
-        this.attributeTypes = new ArrayList<>(graph.getAttributeTypes());
+        this.vertices = graph.getVertices();
+        this.edges = graph.getEdges();
+        this.vertexArchetypes = graph.getVertexArchetypes();
+        this.edgeArchetypes = graph.getEdgeArchetypes();
+        this.attributeTypes = graph.getAttributeTypes();
         this.possibleEnumValues = graph.getPossibleEnumValues();
         this.groups = graph.getGraphState().getGroups();
         this.sideBar = graph.getGraphState().getSideBar();
@@ -49,7 +50,7 @@ public class GraphExport {
         return edges;
     }
 
-    public List<Vertex> getVertices() {
+    public Set<Vertex> getVertices() {
         logger.trace("ENTRY");
         logger.trace("EXIT");
         return vertices;

@@ -4,17 +4,14 @@ import cz.zcu.kiv.offscreen.api.Edge;
 import cz.zcu.kiv.offscreen.api.Vertex;
 import org.apache.log4j.Logger;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class represents graph which is loaded from input JSON file.
  */
 public class Graph {
 
-    private Map<Integer, Vertex> vertices;
+    private Set<Vertex> vertices;
     private List<Edge> edges;
     private List<VertexArchetype> vertexArchetypes;
     private List<EdgeArchetype> edgeArchetypes;
@@ -28,8 +25,8 @@ public class Graph {
 
     public Graph() {
         logger.trace("ENTRY");
-        this.vertices = new HashMap<Integer, Vertex>();
-        this.edges = new LinkedList<Edge>();
+        this.vertices = new HashSet<>();
+        this.edges = new LinkedList<>();
         logger.trace("EXIT");
     }
 
@@ -82,7 +79,7 @@ public class Graph {
         return possibleEnumValues;
     }
 
-    public Map<Integer, Vertex> getVertices() {
+    public Set<Vertex> getVertices() {
         logger.trace("ENTRY");
         logger.trace("EXIT");
         return vertices;
@@ -94,9 +91,9 @@ public class Graph {
         logger.trace("EXIT");
     }
 
-    public void addVertex(int id, Vertex vertex) {
+    public void addVertex(Vertex vertex) {
         logger.trace("ENTRY");
-        this.vertices.put(id, vertex);
+        this.vertices.add(vertex);
         logger.trace("EXIT");
     }
 
