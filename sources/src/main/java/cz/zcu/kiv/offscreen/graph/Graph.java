@@ -21,7 +21,6 @@ public class Graph {
     private List<AttributeType> attributeTypes;
     private Map<String, List<String>> possibleEnumValues;
     private List<String> defaultGroupArchetypes;
-    private Map<String, String> archetypeIcons;
 
     private GraphState graphState;
 
@@ -67,10 +66,6 @@ public class Graph {
         }
     }
 
-    public void setArchetypeIcons(Map<String, String> archetypeIcons) {
-        this.archetypeIcons = archetypeIcons;
-    }
-
     public List<String> getDefaultGroupArchetypes() {
         return defaultGroupArchetypes;
     }
@@ -85,10 +80,6 @@ public class Graph {
 
     public Map<String, List<String>> getPossibleEnumValues() {
         return possibleEnumValues;
-    }
-
-    public Map<String, String> getArchetypeIcons() {
-        return archetypeIcons;
     }
 
     public Map<Integer, Vertex> getVertices() {

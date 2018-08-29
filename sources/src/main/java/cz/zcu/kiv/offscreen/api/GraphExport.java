@@ -20,7 +20,6 @@ public class GraphExport {
     private List<EdgeArchetype> edgeArchetypes;
     private List<AttributeType> attributeTypes;
     private Map<String, List<String>> possibleEnumValues;
-    private Map<String, String> archetypeIcons;
 
     private List<Group> groups;
     private List<Position> positions;
@@ -38,7 +37,6 @@ public class GraphExport {
         this.edgeArchetypes = new ArrayList<>(graph.getEdgeArchetypes());
         this.attributeTypes = new ArrayList<>(graph.getAttributeTypes());
         this.possibleEnumValues = graph.getPossibleEnumValues();
-        this.archetypeIcons = graph.getArchetypeIcons();
         this.groups = graph.getGraphState().getGroups();
         this.positions = graph.getGraphState().getPositions();
         this.sideBar = graph.getGraphState().getSideBar();
@@ -73,10 +71,6 @@ public class GraphExport {
 
     public Map<String, List<String>> getPossibleEnumValues() {
         return possibleEnumValues;
-    }
-
-    public Map<String, String> getArchetypeIcons() {
-        return archetypeIcons;
     }
 
     public List<Group> getGroups() {

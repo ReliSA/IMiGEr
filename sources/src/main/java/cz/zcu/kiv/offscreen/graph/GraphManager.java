@@ -266,30 +266,25 @@ public class GraphManager {
         if (filter == null) {
             // To Enable Everything
             filter = new GraphFilter();
-            filter.setVertexArchetypeFilter(new ArrayList<Integer>(), GraphFilter.ArchetypeMatchType.NON_MATCHING);
-            filter.setEdgeArchetypeFilter(new ArrayList<EdgeArchetypeInfo>(), GraphFilter.ArchetypeMatchType.NON_MATCHING);
+            filter.setVertexArchetypeFilter(new ArrayList<>(), GraphFilter.ArchetypeMatchType.NON_MATCHING);
+            filter.setEdgeArchetypeFilter(new ArrayList<>(), GraphFilter.ArchetypeMatchType.NON_MATCHING);
         }
 
-        Map<String, String> archetypeIcons = configLoader.loadArchetypeIcons();
-        graph.setArchetypeIcons(archetypeIcons);
 
         List<String> defaultGroupArchetypes = configLoader.loadGroupArchetypesStrings();
         graph.setDefaultGroupArchetypes(defaultGroupArchetypes);
 
-
-
-
         Set<VertexImpl> resultVertices = getVerticesByArchetypeFilter(filter);
-
         resultVertices = getVerticesByAttributeFilter(filter, resultVertices);
-
         List<EdgeImpl> resultEdges = getEdgesByArchetypeFilter(filter, resultVertices);
-
         resultEdges = getEdgesByAttributeFilter(filter, resultEdges);
 
         addVerticesToGraph(graph, resultVertices);
-
         addEdgesToGraph(graph, resultEdges);
+
+        Map<String, String> archetypeIcons = configLoader.loadArchetypeIcons();
+        addVertexArchetypes(graph, archetypeIcons);
+        graph.setEdgeArchetypes(edgeArchetypes);
 
         graph.setAttributeTypes(attributeTypes);
         graph.setPossibleEnumValues(possibleEnumValues);
@@ -493,8 +488,26 @@ public class GraphManager {
             Edge edge = new Edge(idCounter++, edgeImpl.getFrom(), edgeImpl.getTo(), edgeImpl.getText(), edgeSet.get(edgeImpl));
             graph.addEdge(edge);
         }
+    }
+
+    /**
+     * Adds icons from input map to vertexArchetypes and add archetypes to graph.
+     *
+     * @param graph - Graph in which will be set vertex archetypes
+     * @param archetypeIcons Map where key is archetype name and value is svg icon.
+     */
+    private void addVertexArchetypes(Graph graph, Map<String, String> archetypeIcons){
+
+        for(VertexArchetype archetype : vertexArchetypes){
+            for(String archetypeName : archetypeIcons.keySet()){
+
+                if(archetype.name.equals(archetypeName)){
+                    archetype.icon = archetypeIcons.get(archetypeName);
+                    break;
+                }
+            }
+        }
         graph.setVertexArchetypes(vertexArchetypes);
-        graph.setEdgeArchetypes(edgeArchetypes);
     }
 
     /**
