@@ -1,7 +1,5 @@
 package cz.zcu.kiv.offscreen.api;
 
-import cz.zcu.kiv.offscreen.graph.*;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

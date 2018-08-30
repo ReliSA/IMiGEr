@@ -1,4 +1,4 @@
-package cz.zcu.kiv.offscreen.graph;
+package cz.zcu.kiv.offscreen.api;
 
 public class VertexArchetype {
     public String name;

@@ -1,42 +1,12 @@
 package cz.zcu.kiv.offscreen.graph;
 
-import cz.zcu.kiv.offscreen.api.Edge;
-import cz.zcu.kiv.offscreen.api.Group;
-import cz.zcu.kiv.offscreen.api.SubedgeInfo;
-import cz.zcu.kiv.offscreen.api.Vertex;
+import cz.zcu.kiv.offscreen.api.*;
 import cz.zcu.kiv.offscreen.graph.filter.*;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
 
 import java.util.*;
 
 public class GraphManager {
-
-    public enum AttributeDataType {
-        NUMBER {
-            @Override
-            public String toString() {
-                return "number";
-            }
-        },
-        DATE {
-            @Override
-            public String toString() {
-                return "date";
-            }
-        },
-        ENUM {
-            @Override
-            public String toString() {
-                return "enum";
-            }
-        },
-        STRING {
-            @Override
-            public String toString() {
-                return "string";
-            }
-        }
-    }
 
     public List<VertexArchetype> vertexArchetypes = new ArrayList<>();
     public List<EdgeArchetype> edgeArchetypes = new ArrayList<>();

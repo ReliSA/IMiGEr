@@ -2,6 +2,7 @@ package cz.zcu.kiv.offscreen.graph.loader;
 
 import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.graph.Attribute;
+import cz.zcu.kiv.offscreen.api.AttributeDataType;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import net.sf.json.JSONArray;
@@ -91,12 +92,12 @@ public class GraphJSONDataLoader {
         for (int i = 0; i < attributeTypes.size(); i++) {
             JSONObject attributeType = attributeTypes.getJSONObject(i);
             String dataTypeString = attributeType.getString("dataType");
-            GraphManager.AttributeDataType dataType;
+            AttributeDataType dataType;
             switch (dataTypeString) {
-                case "number": dataType = GraphManager.AttributeDataType.NUMBER; break;
-                case "date": dataType = GraphManager.AttributeDataType.DATE; break;
-                case "enum": dataType = GraphManager.AttributeDataType.ENUM; break;
-                default: dataType = GraphManager.AttributeDataType.STRING; break;
+                case "number": dataType = AttributeDataType.NUMBER; break;
+                case "date": dataType = AttributeDataType.DATE; break;
+                case "enum": dataType = AttributeDataType.ENUM; break;
+                default: dataType = AttributeDataType.STRING; break;
             }
             graphManager.addAttributeType(attributeType.getString("name"), dataType, attributeType.getString("text"));
         }

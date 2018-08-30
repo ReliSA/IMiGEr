@@ -1,7 +1,6 @@
 package cz.zcu.kiv.offscreen.graph;
 
-import cz.zcu.kiv.offscreen.api.Edge;
-import cz.zcu.kiv.offscreen.api.Vertex;
+import cz.zcu.kiv.offscreen.api.*;
 import org.apache.log4j.Logger;
 
 import java.util.*;

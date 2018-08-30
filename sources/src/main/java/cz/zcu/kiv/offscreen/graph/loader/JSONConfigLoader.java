@@ -1,6 +1,7 @@
 package cz.zcu.kiv.offscreen.graph.loader;
 
-import cz.zcu.kiv.offscreen.graph.AttributeType;
+import cz.zcu.kiv.offscreen.api.AttributeDataType;
+import cz.zcu.kiv.offscreen.api.AttributeType;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.filter.*;
@@ -222,7 +223,7 @@ public class JSONConfigLoader {
         for (Object[] vertexAttributeFilterString : vertexAttributeFilterStrings) {
             int archetypeIndex = graphManager.getVertexArchetypeIndex(vertexAttributeFilterString[0].toString());
             int attributeIndex = graphManager.getAttributeIndex(vertexAttributeFilterString[1].toString());
-            GraphManager.AttributeDataType type = graphManager.attributeTypes.get(attributeIndex).dataType;
+            AttributeDataType type = graphManager.attributeTypes.get(attributeIndex).dataType;
             switch (type) {
                 case NUMBER:
                     NumberAttributeFilter nf = (NumberAttributeFilter) vertexAttributeFilterString[2];
@@ -253,7 +254,7 @@ public class JSONConfigLoader {
         for (Object[] edgeAttributeFilterString : edgeAttributeFilterStrings) {
             int archetypeIndex = graphManager.getEdgeArchetypeIndex(edgeAttributeFilterString[0].toString());
             int attributeIndex = graphManager.getAttributeIndex(edgeAttributeFilterString[1].toString());
-            GraphManager.AttributeDataType type = graphManager.attributeTypes.get(attributeIndex).dataType;
+            AttributeDataType type = graphManager.attributeTypes.get(attributeIndex).dataType;
             switch (type) {
                 case NUMBER:
                     NumberAttributeFilter nf = (NumberAttributeFilter) edgeAttributeFilterString[2];
