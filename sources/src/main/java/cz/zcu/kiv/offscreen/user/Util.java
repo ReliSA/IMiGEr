@@ -1,24 +1,17 @@
 package cz.zcu.kiv.offscreen.user;
 
-import net.sf.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Util {
-	
-	
-	
+class Util {
+
 	/**
 	 *	Method do a hash code from string.
 	 *
 	 * @param md5 - String to hash
 	 * @return String - hashcode 
 	 */
-	public static String MD5(String md5) {
+	static String MD5(String md5) {
 		   try {
 		        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
 		        byte[] array = md.digest(md5.getBytes());
@@ -31,9 +24,8 @@ public class Util {
 		    }
 		    return null;
 	}
-	
-	
-	public static String formatDate(String date){	
+
+	static String formatDate(String date){
 		String pattern = "(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2}).*";
 		Pattern pat = Pattern.compile(pattern);
 		Matcher matches = pat.matcher(date);
@@ -45,9 +37,4 @@ public class Util {
 		
 		return formatedDate;
 	}
-
-	
-	
-	
-	
 }

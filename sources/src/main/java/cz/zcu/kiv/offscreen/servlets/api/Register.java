@@ -42,13 +42,13 @@ public class Register extends BaseServlet {
 			errors.put("email", "Please enter e-mail address.");
 		} else if (!isEmailAddressValid(email)) {
 			errors.put("email", "Please enter valid e-mail address.");
-		} else if (user.existsEmail(email)) {
+		} else if (user.isEmailExists(email)) {
 			errors.put("email", "E-mail already exists.");
 		}
 
 		if (Strings.isNullOrEmpty(username)) {
 			errors.put("username", "Please enter username.");
-		} else if (user.existsNick(username)) {
+		} else if (user.isNickExists(username)) {
 			errors.put("username", "Nickname already exists.");
 		}
     	

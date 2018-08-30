@@ -1,14 +1,13 @@
 package cz.zcu.kiv.offscreen.user;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-
 /**
- * Class CUser is used for creating, updating or loading user from database.
+ * Class User is used for creating, updating or loading user from database.
  *
  * @author Daniel Bureš
  *
@@ -16,9 +15,6 @@ import javax.servlet.ServletContext;
 public class User {
 	private DB db = null;
 	private int id = 0;
-	private ResultSet rs;
-	private Map<String,String> paramStr = new HashMap<String,String>(10);
-
 
 	/**
 	 * Constructs object, where is saved db connection.
@@ -33,65 +29,28 @@ public class User {
 	public User(DB db, int id){
 		this.db = db;
 		this.id = id;
-
-		if(id > 0){
-			load();
-		}
-
-	}
-
-	/**
-	 * Method loads user from database. User is loaded by his id, which must be saved in object of this class.
-	 */
-	public void load(){
-		String qy = "SELECT * FROM user WHERE id = '"+this.id+"' ";
-		try {
-			rs = db.exQuery(qy);
-			if ( rs != null && rs.next() ) {
-				this.id = rs.getInt("id");
-
-
-				paramStr.put("nick", rs.getString("nick")  );
-
-			}else{
-				this.id = 0;
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-
-	/**
-	 * Method sets session for current user and save session to database.
-	 *
-	 * @param session
-	 */
-	public void setSession(String session){
-		if(id > 0){
-			String qy = "UPDATE user SET session='"+session+"' WHERE id='"+ this.id +"'";
-			db.exStatement(qy);
-		}
 	}
 
 	/**
 	 * Method try to login user by his nick name and password. If login is OK then returns true else  returns false;
 	 *
-	 * @param nick
-	 * @param psw
+	 * @param nick users login name
+	 * @param psw users password
 	 * @return true - login ok
 	 * 		   false - login failed
 	 */
 	public boolean login(String nick, String psw){
-		String qy = "SELECT * FROM user WHERE nick LIKE '"+nick+"' AND psw LIKE '"+Util.MD5(psw)+"' AND active = '1' LIMIT 1";
-		try {
-			rs = db.exQuery(qy);
-			if ( rs.next() ) {
+		String qy = "SELECT * FROM user WHERE nick LIKE ? AND psw LIKE ? AND active = '1' LIMIT 1";
+
+		try{
+			PreparedStatement pst = db.getPreparedStatement(qy, false);
+			pst.setString(1, nick);
+			pst.setString(2, Util.MD5(psw));
+			ResultSet rs = db.executeQuery(pst);
+
+			if ( rs != null && rs.next() ) {
 				if(rs.getInt("id") > 0){
 					this.id = rs.getInt("id");
-					load();
 					return true;
 				}
 			}
@@ -99,169 +58,185 @@ public class User {
 			e.printStackTrace();
 		}
 
-
 		return false;
 	}
 
-
-
-	public void register(Map<String, String> param){
-		try {
-				if ( this.id  == 0 ) {
-
-					String qy = "INSERT INTO user (id,created,active, nick,name, psw,session,email) " +
-										"VALUES (	'0', " +
-										"			NOW(), " +
-										"			'1', " +
-										"			'" + param.get("nick") + "',"+
-										"			'" + param.get("name") + "',"+
-										"			'" + Util.MD5(param.get("password")) + "'," +
-										" 			'" + param.get("session") + "',"+
-										" 			'" + param.get("email") + "' ) ";
-					Statement st = db.getConn().createStatement();
-					st.executeUpdate(qy, Statement.RETURN_GENERATED_KEYS);
-					ResultSet rs = st.getGeneratedKeys();
-
-					if(rs.next()){
-						this.id = rs.getInt(1);
-					}
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-	}
-
 	/**
-	 * Method saves parameters into database. if is not loaded user then is created new User.
+	 * Method register new user to database. Id of user (variable id) must not be set.
+	 * When register is success variable id is set.
 	 *
-	 * @param param - parameters to save
-	 * @param cx
+	 * @param param Parameters which describing user. Keys must be: nick, name, password, session, email.
 	 */
-	public void update(Map<String, String> param,ServletContext cx){
+	public void register(Map<String, String> param){
 		try {
 			if ( this.id  == 0 ) {
 
-					String qy = "INSERT INTO user (id,created,active) " +
-										"VALUES ('0', NOW(), '1' ) ";
-					Statement st = db.getConn().createStatement();
-					st.executeUpdate(qy, Statement.RETURN_GENERATED_KEYS);
-					ResultSet rs = st.getGeneratedKeys();
+				String qy = "INSERT INTO user (id, created, active, nick, name, psw, session, email) " +
+						"VALUES ( ?, NOW(), ?, ?, ?, ?, ?, ?)";
 
-					if(rs.next()){
-						this.id = rs.getInt(1);
-					}
+				PreparedStatement pst = db.getPreparedStatement(qy, true);
+				pst.setInt(1, 0);
+				pst.setInt(2, 1);
+				pst.setString(3, param.get("nick"));
+				pst.setString(4, param.get("name"));
+				pst.setString(5, Util.MD5(param.get("password")));
+				pst.setString(6, param.get("session"));
+				pst.setString(7, param.get("email"));
 
+				ResultSet rs = db.executeUpdate(pst);
 
+				if(rs != null && rs.next()){
+					this.id = rs.getInt(1);
+				}
 			}
 
-			String tmp_info = param.get("info");
-			tmp_info = tmp_info.replaceAll("\\<","&lt;");
-			tmp_info = tmp_info.replaceAll("\\>","&gt;");
-			tmp_info = tmp_info.replaceAll("\\n","<br \\/>");
-			param.put("info",tmp_info);
-
-
-			db.exStatement(	"UPDATE user " +
-							"SET  email = '"+param.get("email")+"',"+
-								  "nick = '"+param.get("nick")+"',"+
-								  (param.get("noSavePsw")!=null?"":",psw = '"+param.get("psw")+"' " )+
-								  (param.get("active")!= null && Integer.valueOf(param.get("active")) >= 0 ? ",active = '" + param.get("active") + "'": "" )+
-								  " WHERE id = '" + this.id +"'");
-
-
-
-
-
 		} catch (SQLException e) {
-			cx.setAttribute("DEBUG", "e " + e.getMessage() + " state: "+e.getSQLState() + " sqlerrcode" + e.getErrorCode());
+			e.printStackTrace();
+		}
+	}
 
+	/**
+	 * Return all information about user from database stored in map. Keys of map are: id, nick, name, psw, session,
+	 * active, created, email.
+	 *
+	 * @return created map or empty map.
+	 */
+	public Map<String, String> getUser(){
+		String qy = "SELECT * FROM user WHERE id = '" + this.id + "'";
+		try {
+			ResultSet rs = db.executeQuery(qy);
+
+			if ( rs != null && rs.next() ) {
+				Map<String, String> params = new HashMap<>(8);
+				params.put("id", rs.getString("id"));
+				params.put("nick", rs.getString("nick"));
+				params.put("name", rs.getString("name"));
+				params.put("psw", rs.getString("psw"));
+				params.put("session", rs.getString("session"));
+				params.put("active", rs.getString("active"));
+				params.put("created", rs.getString("created"));
+				params.put("email", rs.getString("email"));
+
+				return params;
+
+			} else {
+				this.id = 0;
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
+		return Collections.emptyMap();
 	}
 
-
 	/**
-	 * Returns id of loaded user.
+	 * Returns id of user. Value 0 indicates not existing user.
 	 *
-	 * @return int
+	 * @return int with user id or 0.
 	 */
 	public int getId(){
 		return id;
 	}
 
 	/**
-	 * Returns loaded parameters, which are saved in Map<String,String>.
-	 * @return Map<String,String> loaded parameters, which are saved in Map<String,String>.
+	 * Method sets session for current user and save session to database.
 	 */
-	public Map<String,String> getParam(){
-		return paramStr;
+	public void setSession(String session){
+		if(id > 0){
+			String qy = "UPDATE user SET session= ? WHERE id='" + this.id + "'";
+
+			try {
+
+				PreparedStatement pst = db.getPreparedStatement(qy, false);
+				pst.setString(1, session);
+				db.executeStatement(pst);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
-	 * Method returns nick of loaded user.
-	 * @return
+	 * Method saves parameters into database. Method can change only email, nick and active parameters.
+	 * @param param - parameters to save
+	 */
+	public void update(Map<String, String> param) {
+		if ( this.id  != 0 ) {
+			try {
+				String qy = "UPDATE user SET  email = ?, nick = ?, active = ? WHERE id = ?";
+
+				PreparedStatement pst = db.getPreparedStatement(qy, false);
+				pst.setString(1, param.get("email"));
+				pst.setString(2, param.get("nick"));
+				pst.setString(3, param.get("active"));
+				pst.setInt(4, this.id);
+
+				db.executeStatement(pst);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Returns nick of user or empty string when no user is loaded.
 	 */
 	public String getNick(){
-		return paramStr.get("nick");
-	}
+		if (this.id != 0) {
+			String qy = "SELECT nick FROM user WHERE id = '" + this.id + "'";
+			ResultSet rs = db.executeQuery(qy);
 
-	/**
-	 * Method checks if exists user with nick.
-	 * @param testNick
-	 * @return
-	 */
-	public boolean existsNick(String testNick){
-		boolean exists = false;
-
-		String qy = "SELECT * FROM user WHERE LOWER(nick) LIKE '"+testNick.toLowerCase()+"' LIMIT 1";
-		try {
-			rs = db.exQuery(qy);
-
-			if ( rs.next() ) {
-				if(rs.getInt("id") > 0){
-					return true;
+			try{
+				if (rs != null && rs.next()) {
+					return rs.getString("nick");
 				}
+			}  catch (SQLException e){
+				e.printStackTrace();
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 
-		return exists;
-
+		return "";
 	}
 
-
 	/**
-	 * Method checks if user exists by him e-mail.
+	 * Method checks if exists user with input nick.
 	 *
-	 * @param testEmail
-	 * @return
+	 * @return true - nick already exists, false - otherwise
 	 */
-	public boolean existsEmail(String testEmail){
-		boolean exists = false;
+	public boolean isNickExists(String testNick){
+		return isExists("nick", testNick);
+	}
 
-		String qy = "SELECT * FROM user WHERE LOWER(email) LIKE '"+testEmail.toLowerCase()+"' LIMIT 1";
+	/**
+	 * Method checks if exists user with input e-mail.
+	 *
+	 * @return true - e-mail already exists, false otherwise
+	 */
+	public boolean isEmailExists(String testEmail){
+		return isExists("email", testEmail);
+	}
+
+	/**
+	 * Method checks if exists user whose attribute given by name exists with given value
+	 *
+	 * @return true - minimal one user exists, false - otherwise
+	 */
+	private boolean isExists(String name, String value){
+		String qy = "SELECT * FROM user WHERE LOWER(" + name + ") LIKE ? LIMIT 1";
+
 		try {
-			rs = db.exQuery(qy);
+			PreparedStatement pst = db.getPreparedStatement(qy, false);
+			pst.setString(1, value.toLowerCase());
+			ResultSet rs = db.executeQuery(pst);
 
-			if ( rs.next() ) {
-				if ( rs.getInt("id") > 0 ) {
-					return true;
-				}
+			if ( rs != null && rs.next() && rs.getInt("id") > 0) {
+				return true;
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return exists;
-
+		return false;
 	}
-
-
-
 }

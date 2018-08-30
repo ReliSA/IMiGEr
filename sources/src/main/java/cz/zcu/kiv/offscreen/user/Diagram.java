@@ -13,11 +13,11 @@ import java.util.*;
  */
 public class Diagram {
     private DB db = null;
-    private int id = -1;
+    private int id = 0;
 
 
     public Diagram(DB db) {
-        this(db, -1);
+        this(db, 0);
     }
 
     public Diagram(DB db, int id) {
@@ -34,11 +34,15 @@ public class Diagram {
         return this.id;
     }
 
+    /**
+     * Return id of user which is owner of diagram.
+     * @return user id
+     */
     public int getUserId(){
-        if(this.id < 0) return -1;
+        if(this.id == 0) return 0;
 
         String qy = "SELECT user_id FROM diagram WHERE id = '" + this.id + "'";
-        ResultSet rs = db.exQuery(qy);
+        ResultSet rs = db.executeQuery(qy);
 
         try{
             if (rs != null && rs.next()) {
@@ -50,11 +54,15 @@ public class Diagram {
         return -1;
     }
 
+    /**
+     * Returns if diagram is public or not
+     * @return true - diagram is public, false - diagram is not public
+     */
     public boolean isPublic(){
-        if(this.id < 0) return false;
+        if(this.id == 0) return false;
 
         String qy = "SELECT public FROM diagram WHERE id = '" + this.id + "'";
-        ResultSet rs = db.exQuery(qy);
+        ResultSet rs = db.executeQuery(qy);
 
         try{
             if (rs != null && rs.next()) {
@@ -66,11 +74,14 @@ public class Diagram {
         return false;
     }
 
+    /**
+     * Returns json of diagram. Json can be send straight to frontend.
+     */
     public String getJsonDiagram(){
-        if(this.id < 0) return "";
+        if(this.id == 0) return "";
 
         String qy = "SELECT graph_json FROM diagram WHERE id = '" + this.id + "'";
-        ResultSet rs = db.exQuery(qy);
+        ResultSet rs = db.executeQuery(qy);
 
         try{
             if (rs != null && rs.next()) {
@@ -88,13 +99,13 @@ public class Diagram {
      * @return created map.
      */
     public Map<String, String> getDiagram() {
-        if (this.id < 0) return Collections.emptyMap();
+        if (this.id == 0) return Collections.emptyMap();
 
         String qy = "SELECT * FROM diagram WHERE id = '" + this.id + "'";
 
         try {
 
-            ResultSet rs = db.exQuery(qy);
+            ResultSet rs = db.executeQuery(qy);
             if (rs != null && rs.next()) {
                 return createMap(rs);
             }
@@ -113,7 +124,7 @@ public class Diagram {
      */
     public void update(Map<String, String> param) {
         try {
-            if (this.id < 0) {
+            if (this.id == 0) {
                 // crating new diagram
 
                 String name = param.get("name");
@@ -125,16 +136,15 @@ public class Diagram {
                 String qy = "INSERT INTO diagram (name, created, last_update, user_id, public, graph_json ) " +
                         "VALUES (?, NOW(), NOW(), ?, ?, ?) ";
 
-                PreparedStatement pst = db.getConn().prepareStatement(qy);
+                PreparedStatement pst = db.getPreparedStatement(qy, true);
                 pst.setString(1, name);
                 pst.setString(2, userId);
                 pst.setString(3, isPublic);
                 pst.setString(4, graphJson);
-                pst.executeUpdate();
 
-                ResultSet rs = pst.getGeneratedKeys();
+                ResultSet rs = db.executeUpdate(pst);
 
-                if (rs.next()) {
+                if (rs != null && rs.next()) {
                     this.id = rs.getInt(1);
                 }
             } else {
@@ -144,12 +154,13 @@ public class Diagram {
 
                 String qy = "UPDATE diagram SET name = ?, public = ?, graph_json = ?, last_update = NOW() WHERE id= ?";
 
-                PreparedStatement pst = db.getConn().prepareStatement(qy);
+                PreparedStatement pst = db.getPreparedStatement(qy, false);
                 pst.setString(1, name);
                 pst.setString(2, isPublic);
                 pst.setString(3, graphJson);
                 pst.setInt(4, this.id);
-                pst.executeUpdate();
+
+                db.executeStatement(pst);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -160,10 +171,10 @@ public class Diagram {
      * Method deletes diagram from database.
      */
     public void delete() {
-        if (id < 0) return;
+        if (id == 0) return;
 
         String qy = "DELETE FROM diagram WHERE id = '" + this.id + "' LIMIT 1";
-        db.exStatement(qy);
+        db.executeStatement(qy);
     }
 
     /**
@@ -173,16 +184,15 @@ public class Diagram {
      * @return number of affected rows in database
      */
     public int updateGraphJson(String graphJson){
-        if(this.id < 0) return 0;
+        if(this.id == 0) return 0;
 
         String qy = "UPDATE diagram SET graph_json = ? WHERE id = ?";
 
         try {
-            PreparedStatement pst = db.getConn().prepareStatement(qy);
+            PreparedStatement pst = db.getPreparedStatement(qy, false);
             pst.setString(1, graphJson);
             pst.setInt(2, this.id);
-            pst.executeUpdate();
-            return pst.getUpdateCount();
+            return db.executeStatement(pst);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -199,7 +209,7 @@ public class Diagram {
     public ArrayList<Map<String, String>> getDiagramListByUserId(int user_id) {
         String qy = "SELECT * FROM diagram WHERE user_id = '" + user_id + "' ORDER BY created DESC ";
 
-        return createListOfMap(db.exQuery(qy));
+        return createListOfMap(db.executeQuery(qy));
     }
 
 
@@ -212,7 +222,7 @@ public class Diagram {
 
         String qy = "SELECT * FROM diagram WHERE public = 1 ORDER BY name ASC ";
 
-        return createListOfMap(db.exQuery(qy));
+        return createListOfMap(db.executeQuery(qy));
     }
 
     /**
@@ -242,7 +252,6 @@ public class Diagram {
      *
      * @param rs not null result set
      * @return map of all parameters.
-     * @throws SQLException
      */
     private Map<String,String> createMap(ResultSet rs) throws SQLException {
         HashMap<String, String> item_map = new HashMap<>();
