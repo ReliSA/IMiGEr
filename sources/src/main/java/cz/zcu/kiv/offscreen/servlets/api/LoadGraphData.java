@@ -1,8 +1,7 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.common.base.Strings;
-import cz.zcu.kiv.offscreen.api.GraphExport;
-import cz.zcu.kiv.offscreen.graph.Graph;
+import cz.zcu.kiv.offscreen.api.Graph;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.loader.DemoDiagramLoader;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
@@ -56,8 +55,8 @@ public class LoadGraphData extends BaseServlet {
             GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
             String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
             JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
-            Graph graph = graphManager.createGraph(configLoader);
-            GraphExport export = new GraphExport(graph);
+            cz.zcu.kiv.offscreen.graph.Graph graph = graphManager.createGraph(configLoader);
+            Graph export = new Graph(graph);
             JSONObject json = JSONObject.fromObject(export);
 
             response.setStatus(HttpServletResponse.SC_OK);
