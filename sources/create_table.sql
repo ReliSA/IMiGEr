@@ -39,24 +39,6 @@ CREATE TABLE IF NOT EXISTS `diagram` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabulky `log`
---
-
-CREATE TABLE IF NOT EXISTS `log` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `user_name` varchar(10) COLLATE utf8_czech_ci NOT NULL,
-  `id_diagram` int(11) NOT NULL,
-  `event` varchar(10) COLLATE utf8_czech_ci NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_delay` datetime DEFAULT NULL,
-  `change_jar` varchar(128) COLLATE utf8_czech_ci DEFAULT NULL,
-  `new_version` varchar(128) COLLATE utf8_czech_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktura tabulky `user`
 --
 
@@ -83,12 +65,6 @@ ALTER TABLE `diagram`
   ADD PRIMARY KEY (`id`);
 
 --
--- Klíče pro tabulku `log`
---
-ALTER TABLE `log`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Klíče pro tabulku `user`
 --
 ALTER TABLE `user`
@@ -103,11 +79,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `diagram`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT pro tabulku `log`
---
-ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pro tabulku `user`
 --
