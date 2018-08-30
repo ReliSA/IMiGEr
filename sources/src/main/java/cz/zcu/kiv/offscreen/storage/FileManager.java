@@ -47,32 +47,6 @@ public class FileManager {
         return componentName.endsWith("." + ACCEPTED_EXTENSION_FILE);
     }
 
-    public String loadFile(HttpServletRequest request){
-
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-
-        ServletFileUpload upload = new ServletFileUpload(factory);
-        upload.setSizeMax(MAX_FILE_SIZE);
-
-        try {
-            // Parse the request to get file item.
-            List<FileItem> fileItems = upload.parseRequest(request);
-            FileItem fileItem = fileItems.get(0);
-
-            if (isAcceptedExtension(fileItem.getName()) && fileItem.getSize() > 0) {
-                logger.debug(fileItem.getName() + " - " + fileItem.getContentType());
-                return fileItem.getString("UTF-8");
-
-            } else {
-                return "";
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return "";
-    }
-
     public String saveFile(HttpServletRequest request) {
         logger.trace("ENTRY");
 

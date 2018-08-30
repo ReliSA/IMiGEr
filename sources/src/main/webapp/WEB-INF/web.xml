@@ -24,10 +24,6 @@
 		<param-value>http://localhost:8080/imiger/</param-value>
 	</context-param>
 	<context-param>
-		<param-name>storageLocation</param-name>
-		<param-value>C:\Users\fidra\Work\imiger\storage</param-value>
-	</context-param>
-	<context-param>
 		<param-name>configLocation</param-name>
 		<param-value>C:\Users\fidra\Work\imiger\config</param-value>
 	</context-param>

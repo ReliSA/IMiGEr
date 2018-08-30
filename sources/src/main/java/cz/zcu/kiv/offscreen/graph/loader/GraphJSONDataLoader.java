@@ -24,36 +24,47 @@ import java.util.Map;
  */
 public class GraphJSONDataLoader {
 
+    static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
     private File file;
     private String loadedJSON;
-
     private GraphManager graphManager;
 
     /**
      * stores archetypes of vertices, key is the vertex id, value is the index of its archetype
      */
-    private HashMap<Integer, Integer> vertexArchetypes = new HashMap<Integer, Integer>();
+    private HashMap<Integer, Integer> vertexArchetypes = new HashMap<>();
 
-    static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     public GraphJSONDataLoader(File file) {
         this.file = file;
+        loadJSON();
     }
 
     public GraphJSONDataLoader(String json){
         loadedJSON = json;
     }
 
-    private void loadJSON() throws IOException {
-        loadedJSON = FileUtils.readFileToString(file, "UTF-8");
+    private void loadJSON() {
+        try {
+            loadedJSON = FileUtils.readFileToString(file, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public GraphManager LoadData() throws IOException {
+    /**
+     * Method load graph from parameters from constructor or null when data are invalid.
+     *
+     * @return GraphManager of loaded graph or null.
+     */
+    public GraphManager LoadData() {
         this.graphManager = new GraphManager();
 
         if(Strings.isNullOrEmpty(loadedJSON)) {
-            loadJSON();
+            return null;
         }
+
         JSONObject json = JSONObject.fromObject(loadedJSON);
 
         JSONArray attributeTypes = getLoadedAttributeTypes(json);
@@ -72,7 +83,7 @@ public class GraphJSONDataLoader {
     /**
      * Returns the json array with the loaded attribute types.
      * Adds the attributes to the list of all attribute types.
-     * @param json
+     * @param json array of loaded graph
      * @return - Json array with the attribute types.
      */
     private JSONArray getLoadedAttributeTypes(JSONObject json) {
@@ -95,7 +106,7 @@ public class GraphJSONDataLoader {
 
     /**
      * Loads the vertex archetypes from the json and adds them to all vertex archetypes.
-     * @param json
+     * @param json array of loaded graph
      */
     private void loadVertexArchetypes(JSONObject json) {
         JSONArray vertexArchetypes = json.getJSONArray("vertexArchetypes");
@@ -108,7 +119,7 @@ public class GraphJSONDataLoader {
 
     /**
      * Loads the edge archetypes from the json and adds them to all edge archetypes.
-     * @param json
+     * @param json array of loaded graph
      */
     private void loadEdgeArchetypes(JSONObject json) {
         JSONArray edgeArchetypes = json.getJSONArray("edgeArchetypes");
@@ -122,7 +133,7 @@ public class GraphJSONDataLoader {
     /**
      * Loads the vertices from the json and adds them to the list of all vertices.
      * @param attributeTypes - json array with the attribute types
-     * @param json
+     * @param json array of loaded graph
      */
     private void loadVertices(JSONArray attributeTypes, JSONObject json) {
         JSONArray verticesObject = json.getJSONArray("vertices");
@@ -144,7 +155,7 @@ public class GraphJSONDataLoader {
     /**
      * Loads the edges from the json and adds them to the list of all edges.
      * @param attributeTypes - List of attributes
-     * @param json
+     * @param json array of loaded graph
      */
     private void loadEdges(JSONArray attributeTypes, JSONObject json) {
         JSONArray edgesObject = json.getJSONArray("edges");

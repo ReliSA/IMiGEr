@@ -1,14 +1,13 @@
 package cz.zcu.kiv.offscreen.servlets;
 
 import com.google.common.base.Strings;
+import cz.zcu.kiv.offscreen.storage.FileLoader;
 import cz.zcu.kiv.offscreen.storage.FileManager;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -45,7 +44,7 @@ public class UploadFiles extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String jsonGraph = new FileManager("","").loadFile(request);
+        String jsonGraph = new FileLoader().loadFile(request);
 
         if (Strings.isNullOrEmpty(jsonGraph)) {
             request.setAttribute("errorMessage", "<strong>Unsupported file</strong><br/>");
