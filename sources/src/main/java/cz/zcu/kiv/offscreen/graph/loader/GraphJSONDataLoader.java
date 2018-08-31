@@ -1,12 +1,14 @@
 package cz.zcu.kiv.offscreen.graph.loader;
 
 import com.google.common.base.Strings;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import cz.zcu.kiv.offscreen.graph.Attribute;
 import cz.zcu.kiv.offscreen.api.AttributeDataType;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -14,10 +16,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class loads json file with graph data.
@@ -65,10 +64,9 @@ public class GraphJSONDataLoader {
         if(Strings.isNullOrEmpty(loadedJSON)) {
             return null;
         }
+        JsonObject json = new JsonParser().parse(loadedJSON).getAsJsonObject();
 
-        JSONObject json = JSONObject.fromObject(loadedJSON);
-
-        JSONArray attributeTypes = getLoadedAttributeTypes(json);
+        JsonArray attributeTypes = getLoadedAttributeTypes(json);
 
         loadVertexArchetypes(json);
 
@@ -87,19 +85,17 @@ public class GraphJSONDataLoader {
      * @param json array of loaded graph
      * @return - Json array with the attribute types.
      */
-    private JSONArray getLoadedAttributeTypes(JSONObject json) {
-        JSONArray attributeTypes = json.getJSONArray("attributeTypes");
-        for (int i = 0; i < attributeTypes.size(); i++) {
-            JSONObject attributeType = attributeTypes.getJSONObject(i);
-            String dataTypeString = attributeType.getString("dataType");
-            AttributeDataType dataType;
-            switch (dataTypeString) {
-                case "number": dataType = AttributeDataType.NUMBER; break;
-                case "date": dataType = AttributeDataType.DATE; break;
-                case "enum": dataType = AttributeDataType.ENUM; break;
-                default: dataType = AttributeDataType.STRING; break;
-            }
-            graphManager.addAttributeType(attributeType.getString("name"), dataType, attributeType.getString("text"));
+    private JsonArray getLoadedAttributeTypes(JsonObject json) {
+
+        JsonArray attributeTypes = json.getAsJsonArray("attributeTypes");
+        for (JsonElement attributeTypeElement : attributeTypes) {
+
+            JsonObject attributeType = attributeTypeElement.getAsJsonObject();
+            String dataTypeString = attributeType.get("dataType").getAsString();
+
+            AttributeDataType dataType = AttributeDataType.getEnum(dataTypeString);
+
+            graphManager.addAttributeType(attributeType.get("name").getAsString(), dataType, attributeType.get("text").getAsString());
         }
 
         return attributeTypes;
@@ -109,12 +105,13 @@ public class GraphJSONDataLoader {
      * Loads the vertex archetypes from the json and adds them to all vertex archetypes.
      * @param json array of loaded graph
      */
-    private void loadVertexArchetypes(JSONObject json) {
-        JSONArray vertexArchetypes = json.getJSONArray("vertexArchetypes");
-        for (int i = 0; i < vertexArchetypes.size(); i++) {
-            JSONObject vertexArchetype = vertexArchetypes.getJSONObject(i);
+    private void loadVertexArchetypes(JsonObject json) {
+        JsonArray vertexArchetypes = json.getAsJsonArray("vertexArchetypes");
 
-            graphManager.addVertexArchetype(vertexArchetype.getString("name"), vertexArchetype.getString("text"));
+        for (JsonElement vertexArchetypeElement : vertexArchetypes){
+
+            JsonObject vertexArchetype = vertexArchetypeElement.getAsJsonObject();
+            graphManager.addVertexArchetype(vertexArchetype.get("name").getAsString(), vertexArchetype.get("text").getAsString());
         }
     }
 
@@ -122,12 +119,12 @@ public class GraphJSONDataLoader {
      * Loads the edge archetypes from the json and adds them to all edge archetypes.
      * @param json array of loaded graph
      */
-    private void loadEdgeArchetypes(JSONObject json) {
-        JSONArray edgeArchetypes = json.getJSONArray("edgeArchetypes");
-        for (int i = 0; i < edgeArchetypes.size(); i++) {
-            JSONObject edgeArchetype = edgeArchetypes.getJSONObject(i);
+    private void loadEdgeArchetypes(JsonObject json) {
+        JsonArray edgeArchetypes = json.getAsJsonArray("edgeArchetypes");
+        for (JsonElement edgeArchetypeElement : edgeArchetypes) {
+            JsonObject edgeArchetype = edgeArchetypeElement.getAsJsonObject();
 
-            graphManager.addEdgeArchetype(edgeArchetype.getString("name"), edgeArchetype.getString("text"));
+            graphManager.addEdgeArchetype(edgeArchetype.get("name").getAsString(), edgeArchetype.get("text").getAsString());
         }
     }
 
@@ -136,17 +133,19 @@ public class GraphJSONDataLoader {
      * @param attributeTypes - json array with the attribute types
      * @param json array of loaded graph
      */
-    private void loadVertices(JSONArray attributeTypes, JSONObject json) {
-        JSONArray verticesObject = json.getJSONArray("vertices");
-        for (int i = 0; i < verticesObject.size(); i++) {
-            JSONObject vertexObject = verticesObject.getJSONObject(i);
-            String name = vertexObject.getString("title");
-            String text = vertexObject.getString("text");
-            int archetypeIndex = vertexObject.getInt("archetype");
-            int vertexId = vertexObject.getInt("id");
+    private void loadVertices(JsonArray attributeTypes, JsonObject json) {
+        JsonArray verticesObject = json.getAsJsonArray("vertices");
+        for (JsonElement vertexElement : verticesObject) {
+            JsonObject vertexObject = vertexElement.getAsJsonObject();
+
+            String name = vertexObject.get("title").getAsString();
+            String text = vertexObject.get("text").getAsString();
+            int archetypeIndex = vertexObject.get("archetype").getAsShort();
+            int vertexId = vertexObject.get("id").getAsInt();
+
             vertexArchetypes.put(vertexId, archetypeIndex);
 
-            JSONObject attributesObject = vertexObject.getJSONObject("attributes");
+            JsonObject attributesObject = vertexObject.getAsJsonObject("attributes");
             Map<Integer, Attribute> attributes = loadObjectAttributes(attributesObject, attributeTypes);
 
             graphManager.addVertex(vertexId, name, text, archetypeIndex, attributes);
@@ -158,19 +157,22 @@ public class GraphJSONDataLoader {
      * @param attributeTypes - List of attributes
      * @param json array of loaded graph
      */
-    private void loadEdges(JSONArray attributeTypes, JSONObject json) {
-        JSONArray edgesObject = json.getJSONArray("edges");
-        for (int i = 0; i < edgesObject.size(); i++) {
-            JSONObject edgeObject = edgesObject.getJSONObject(i);
-            int edgeId = edgeObject.getInt("id");
-            int from = edgeObject.getInt("from");
-            int to = edgeObject.getInt("to");
-            String text = edgeObject.getString("text");
-            int archetypeIndex = edgeObject.getInt("archetype");
+    private void loadEdges(JsonArray attributeTypes, JsonObject json) {
+        JsonArray edgesObject = json.getAsJsonArray("edges");
+
+        for (JsonElement edgeElement : edgesObject) {
+            JsonObject edgeObject = edgeElement.getAsJsonObject();
+
+            int edgeId = edgeObject.get("id").getAsInt();
+            int from = edgeObject.get("from").getAsInt();
+            int to = edgeObject.get("to").getAsInt();
+            String text = edgeObject.get("text").getAsString();
+            int archetypeIndex = edgeObject.get("archetype").getAsInt();
+
             int fromArchetypeIndex = vertexArchetypes.get(from);
             int toArchetypeIndex = vertexArchetypes.get(to);
 
-            JSONObject attributesObject = edgeObject.getJSONObject("attributes");
+            JsonObject attributesObject = edgeObject.getAsJsonObject("attributes");
             Map<Integer, Attribute> attributes = loadObjectAttributes(attributesObject, attributeTypes);
 
             EdgeArchetypeInfo archetypeInfo = new EdgeArchetypeInfo(fromArchetypeIndex, archetypeIndex, toArchetypeIndex);
@@ -184,12 +186,13 @@ public class GraphJSONDataLoader {
      * @param attributeTypes - All types of attributes
      * @return Map of attributes for the json object
      */
-    private Map<Integer, Attribute> loadObjectAttributes(JSONObject attributesObject, JSONArray attributeTypes) {
+    private Map<Integer, Attribute> loadObjectAttributes(JsonObject attributesObject, JsonArray attributeTypes) {
         Map<Integer, Attribute> attributes = new HashMap<>();
-        for (Object attributeKey : attributesObject.keySet()) {
-            Object attrValue = loadAttributeFromObject((String)attributeKey, attributeTypes, attributesObject);
 
-            int attributeTypeIndex = Integer.parseInt((String)attributeKey);
+        for (Map.Entry<String, JsonElement> attribute : attributesObject.entrySet()) {
+            Object attrValue = loadAttributeFromObject(attribute, attributeTypes);
+
+            int attributeTypeIndex = Integer.parseInt(attribute.getKey());
             attributes.put(attributeTypeIndex, new Attribute(attributeTypeIndex, attrValue));
         }
 
@@ -198,34 +201,37 @@ public class GraphJSONDataLoader {
 
     /**
      * Loads single attribute from the json object
-     * @param attributeIdString - Attribute id as key
+     * @param attribute - Attribute
      * @param attributeTypes - All the attributes types
-     * @param attributesObject - Object containing all the attributes for the current object
      * @return Value of the attribute
      */
-    private Object loadAttributeFromObject(String attributeIdString, JSONArray attributeTypes, JSONObject attributesObject) {
-        int attributeId = Integer.parseInt(attributeIdString);
-        String attrType = attributeTypes.getJSONObject(attributeId).getString("dataType");
+    private Object loadAttributeFromObject(Map.Entry<String, JsonElement> attribute, JsonArray attributeTypes) {
+
+        int attributeId = Integer.parseInt(attribute.getKey());
+        String attrType = attributeTypes.get(attributeId).getAsJsonObject().get("dataType").getAsString();
         Object attrValue;
         switch (attrType) {
             case "number":
-                String val = attributesObject.getString(attributeIdString);
+                String val = attribute.getValue().getAsString();
                 attrValue = new BigDecimal(val);
                 break;
             case "date":
-                String dateStr = attributesObject.getString(attributeIdString);
+                String dateStr = attribute.getValue().getAsString();
                 SimpleDateFormat format = new SimpleDateFormat(GraphJSONDataLoader.DATETIME_FORMAT);
                 attrValue = format.parse(dateStr, new ParsePosition(0));
                 break;
             case "enum":
                 List<String> enumValues = new ArrayList<>();
-                JSONArray enumValuesArray = attributesObject.optJSONArray(attributeIdString);
-                if (enumValuesArray == null) {
-                    enumValues.add(attributesObject.getString(attributeIdString)); // Only one value present
-                } else {
-                    for (int j = 0; j < enumValuesArray.size(); j++) {
-                        enumValues.add(enumValuesArray.getString(j));
+
+                if (attribute.getValue().isJsonArray()) {
+
+                    JsonArray enumValuesArray = attribute.getValue().getAsJsonArray();
+                    for (JsonElement element : enumValuesArray) {
+                            enumValues.add(element.isJsonNull() ? "" : element.getAsString());
                     }
+
+                } else {
+                    enumValues.add(attribute.getValue().getAsString()); // Only one value present
                 }
 
                 graphManager.addUniquePossibleAttributeValues(attributeId, enumValues);
@@ -233,7 +239,20 @@ public class GraphJSONDataLoader {
 
                 break;
             default:
-                attrValue = attributesObject.getString(attributeIdString);
+                StringBuilder elements = new StringBuilder();
+                if (attribute.getValue().isJsonArray()){
+
+                    for (JsonElement element : attribute.getValue().getAsJsonArray()){
+                        if (elements.length() != 0) {
+                            elements.append(", ");
+                        }
+                        elements.append(element.getAsString());
+                    }
+                    attrValue = elements.toString();
+
+                } else {
+                    attrValue = attribute.getValue().getAsString();
+                }
                 break;
         }
 

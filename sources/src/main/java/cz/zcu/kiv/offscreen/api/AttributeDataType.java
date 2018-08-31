@@ -24,5 +24,14 @@ public enum AttributeDataType {
         public String toString() {
             return "string";
         }
+    };
+
+    public static AttributeDataType getEnum(String value){
+        switch (value) {
+            case "number": return AttributeDataType.NUMBER;
+            case "date": return AttributeDataType.DATE;
+            case "enum": return AttributeDataType.ENUM;
+            default: return AttributeDataType.STRING;
+        }
     }
 }
