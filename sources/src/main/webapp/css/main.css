@@ -48,6 +48,10 @@ ul {
 	box-shadow: 3px 3px 10px #888;
 }
 
+.diagrams-menu li {
+	height: 20px;
+}
+
 .diagrams-menu li button {
 	float: right;
     width: 20px;

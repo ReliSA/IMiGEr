@@ -28,11 +28,7 @@ public class GraphFilterTest {
 
         File graphFile = new File(testDirectory + "\\data\\test1.json");
 
-        try {
-            graphManager = new GraphJSONDataLoader(graphFile).LoadData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        graphManager = new GraphJSONDataLoader(graphFile).LoadData();
     }
 
     @Test
