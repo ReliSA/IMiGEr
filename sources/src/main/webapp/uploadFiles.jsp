@@ -53,7 +53,7 @@
 						<c:forEach items="${diagramsPrivate}" var="diagram">
 							<li>
 								<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
-								<button class="removeDiagramButton" data-id="${diagram.id}"><img src="images/button_cancel.png" alt="odstranit"></a>
+								<button class="removeDiagramButton" data-name="${diagram.name}" data-id="${diagram.id}"><img src="images/button_cancel.png" alt="odstranit"></button>
 							</li>
 						</c:forEach>
 					</ul>
@@ -75,22 +75,25 @@
 
 		<script>
 			$('.removeDiagramButton').click(function(e) {
-				$.ajax({
-					'type': 'delete',
-					'url': 'api/remove-diagram?diagram_id=' + $(this).data('id'),
-					'success': function() {
-						location.reload(true);
-					},
-					'error': function(xhr) {
-						switch (xhr.status) {
-							case 401:
-								alert('You are either not logged in or not an owner of this diagram.');
-								break;
-							default:
-								alert('Something went wrong.');
-						}
-					},
-				});
+
+			    if(confirm('Are you want to delete ' + $(this).data('name') + '?')) {
+                    $.ajax({
+                        'type': 'delete',
+                        'url': 'api/remove-diagram?diagram_id=' + $(this).data('id'),
+                        'success': function () {
+                            location.reload(true);
+                        },
+                        'error': function (xhr) {
+                            switch (xhr.status) {
+                                case 401:
+                                    alert('You are either not logged in or not an owner of this diagram.');
+                                    break;
+                                default:
+                                    alert('Something went wrong.');
+                            }
+                        },
+                    });
+                }
 			});
 		</script>
 	</body>
