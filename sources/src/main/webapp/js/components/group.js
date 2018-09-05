@@ -398,7 +398,7 @@ function Group(props) {
 		app.viewportComponent.removeGroup(this);
 
         if(showIcon){
-            //showIconClick.bind(this)(null) // TODO implement
+            showIconClick.bind(this)(null)
         }
 	};
 
@@ -410,6 +410,10 @@ function Group(props) {
 
 		this.setExcluded(false);
 		this.remove(false);
+
+        if(iconsDisplayed) {
+            showIconClick.bind(this)(null);
+        }
 
 		app.viewportComponent.addGroup(this);
 
@@ -702,6 +706,16 @@ function Group(props) {
 		});
 		rootElement.appendChild(buttonGroup);
 
+        // show symbol button
+        var showSymbolButton = app.utils.createHtmlElement('button', {
+            'class': 'show-symbol-button button',
+            'style': 'background-color: ' + this.symbol[1] + ';',
+            'title': 'Show symbol next to all neighbouring components',
+        });
+        showSymbolButton.appendChild(document.createTextNode(this.symbol[0]));
+        showSymbolButton.addEventListener('click', showIconClick.bind(this));
+        buttonGroup.appendChild(showSymbolButton);
+
 		// include button
 		var includeButton = app.utils.createHtmlElement('button', {
 			'class': 'include-button button',
@@ -785,6 +799,40 @@ function Group(props) {
 			rootElement.querySelector('.group-name').textContent = this.name;
 		}
 	}
+
+    /**
+     * Displays symbol of the group next to all nodes that it is connected with.
+     * @param {MouseEvent} e Click event.
+     */
+    function showIconClick(e) {
+        iconsDisplayed = !iconsDisplayed;
+
+        var neighbourList = [];
+
+        this.getInEdgeList().filter(function (edge) {
+            return !edge.getFrom().isExcluded();
+        }).forEach(function (edge) {
+            if (!neighbourList.includes(edge.getFrom())) {
+                neighbourList.push(edge.getFrom());
+            }
+        });
+
+        this.getOutEdgeList().filter(function (edge) {
+            return !edge.getTo().isExcluded();
+        }).forEach(function (edge) {
+            if (!neighbourList.includes(edge.getTo())) {
+                neighbourList.push(edge.getTo());
+            }
+        });
+
+        neighbourList.forEach(function(node) {
+            if (iconsDisplayed) {
+                node.addSymbol(this.symbol);
+            } else {
+                node.removeSymbol(this.symbol);
+            }
+        }, this);
+    }
 
 	/**
 	 * Includes the group back to the viewport.
