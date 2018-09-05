@@ -397,7 +397,11 @@ function Vertex(props) {
 		this.removeFromSidebarList();
 
 		this.setExcluded(false);
-		this.remove(false);
+        this.remove(false);
+
+        if(iconsDisplayed) {
+            showIconClick.bind(this)(null);
+        }
 
 		app.viewportComponent.addVertex(this);
 
@@ -742,13 +746,17 @@ function Vertex(props) {
 		inEdgeList.filter(function(edge) {
 			return !edge.getFrom().isExcluded();
 		}).forEach(function(edge) {
-			neighbourList.push(edge.getFrom());
+			if(!neighbourList.includes(edge.getFrom())) {
+                neighbourList.push(edge.getFrom());
+            }
 		});
 
 		outEdgeList.filter(function(edge) {
 			return !edge.getTo().isExcluded();
 		}).forEach(function(edge) {
-			neighbourList.push(edge.getTo());
+			if(!neighbourList.includes(edge.getTo())) {
+                neighbourList.push(edge.getTo());
+            }
 		});
 
 		neighbourList.forEach(function(node) {
