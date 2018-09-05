@@ -28,7 +28,7 @@ function ForceDirected() {
 			j = 0;
 
 		for (i = 0; i < visibleNodes.length; i++) {
-			forceField[getId(visibleNodes[i])] = [0, 0];
+			forceField[app.utils.getUniqueId(visibleNodes[i])] = [0, 0];
 		}
 
 		// calculate repulsive force
@@ -56,8 +56,8 @@ function ForceDirected() {
 				var distance = Math.sqrt(sum);
 
 				if (distance !== 0) {
-					forceField[getId(currNode)][0] += Math.floor(x * (repulsiveStrength / distance));
-					forceField[getId(currNode)][1] += Math.floor(y * (repulsiveStrength / distance));
+					forceField[app.utils.getUniqueId(currNode)][0] += Math.floor(x * (repulsiveStrength / distance));
+					forceField[app.utils.getUniqueId(currNode)][1] += Math.floor(y * (repulsiveStrength / distance));
 				}
 			}
 		}
@@ -79,8 +79,8 @@ function ForceDirected() {
 				var sum = Math.pow(x, 2) + Math.pow(y, 2);
 				var distance = Math.sqrt(sum);
 
-				forceField[getId(currNode)][0] += Math.round(-1 * x * (distance / attractiveStrength));
-				forceField[getId(currNode)][1] += Math.round(-1 * y * (distance / attractiveStrength));
+				forceField[app.utils.getUniqueId(currNode)][0] += Math.round(-1 * x * (distance / attractiveStrength));
+				forceField[app.utils.getUniqueId(currNode)][1] += Math.round(-1 * y * (distance / attractiveStrength));
 			}
 
 			for (j = 0; j < currNode.getOutEdgeList().length; j++) {
@@ -96,8 +96,8 @@ function ForceDirected() {
 				var sum = Math.pow(x, 2) + Math.pow(y, 2);
 				var distance = Math.sqrt(sum);
 
-				forceField[getId(currNode)][0] += Math.round(-1 * x * (distance / attractiveStrength));
-				forceField[getId(currNode)][1] += Math.round(-1 * y * (distance / attractiveStrength));
+				forceField[app.utils.getUniqueId(currNode)][0] += Math.round(-1 * x * (distance / attractiveStrength));
+				forceField[app.utils.getUniqueId(currNode)][1] += Math.round(-1 * y * (distance / attractiveStrength));
 			}
 		}
 
@@ -139,8 +139,8 @@ function ForceDirected() {
 			}
 
 			// force dampening
-			var forceX = Math.floor(forceField[getId(currNode)][0] / dampeningEffect),
-				forceY = Math.floor(forceField[getId(currNode)][1] / dampeningEffect);
+			var forceX = Math.floor(forceField[app.utils.getUniqueId(currNode)][0] / dampeningEffect),
+				forceY = Math.floor(forceField[app.utils.getUniqueId(currNode)][1] / dampeningEffect);
 
 			// adding a random effect
 			/*
@@ -161,22 +161,4 @@ function ForceDirected() {
 			}
 		}
 	};
-
-	/**
-	 * @param {(Vertex|Group)} node Graph node.
-	 * @returns {string} Unique identifier of a graph node (group or vertex).
-	 */
-	function getId(node) {
-		var prefix;
-		if (node instanceof Vertex) {
-			prefix = 'vertex-';
-		} else if (node instanceof Group) {
-			prefix = 'group-';
-		} else {
-			prefix = '';
-		}
-
-		return prefix + node.id;
-	}
-
 }
