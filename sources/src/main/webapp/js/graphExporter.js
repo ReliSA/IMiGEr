@@ -26,8 +26,8 @@ function GraphExporter() {
 		var excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
 		var sideBar = excludedNodeList.map(function(node) {
 			return {
-				id: node.id,
-				isHighlighted: node.isHighlighted(),
+				id: app.utils.getUniqueId(node),
+				isHighlighted: node.isIconsDisplayed(),
 			};
 		});
 

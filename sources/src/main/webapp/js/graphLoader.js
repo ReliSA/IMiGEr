@@ -99,7 +99,7 @@ function GraphLoader() {
 			});
 
 			// position
-			var position = component.position
+			var position = component.position;
 			if (position === null || app.utils.isUndefined(position)) {
                 // set random
                 group.setPosition(new Coordinates(
@@ -119,12 +119,27 @@ function GraphLoader() {
 
 		// exclude nodes
 		data.sideBar.forEach(function(excludedNode) {
+            if(typeof excludedNode.id !== 'string' && !(excludedNode.id instanceof String)) {
+            	return;
+            }
+            var idArr = excludedNode.id.split("-");
+            if(idArr.length !== 2){
+				return;
+            }
+            idArr[1] = parseInt(idArr[1], 10);
+
 			var node = app.nodeList.find(function(node) {
-				return node.id === excludedNode.id;
+				var prefix = '';
+				if (node instanceof Vertex) {
+					prefix = 'vertex';
+				} else if (node instanceof Group) {
+					prefix = 'group';
+				}
+				return idArr[0] === prefix && node.id === idArr[1];
 			});
 
 			if (app.utils.isDefined(node)) {
-				node.exclude();
+				node.exclude(excludedNode.isHighlighted);
 
 				app.sidebarComponent.excludedNodeListComponent.add(node);
 			}

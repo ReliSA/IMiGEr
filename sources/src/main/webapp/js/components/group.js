@@ -23,6 +23,7 @@ function Group(props) {
 
 	var pan = false;
 	var excluded = false;
+    var iconsDisplayed = false;
 
 	var highlighted = false;
 	var highlightedRequiredNeighbours = false;
@@ -264,6 +265,13 @@ function Group(props) {
 		}
 	};
 
+    /**
+     * @returns {boolean} true if icon in all neighbours should be displayed, false otherwise
+     */
+    this.isIconsDisplayed = function () {
+        return iconsDisplayed;
+    };
+
 	/**
 	 * @returns true if the group is currently highlighted (in any way), otherwise false
 	 */
@@ -379,13 +387,19 @@ function Group(props) {
 	};
 
 	/**
-	 * Excludes the group from the viewport. Removes group DOM element and hides its edges.
+	 * Excludes the group from the viewport. Removes group DOM element and hides its edges. If showIcon is set to True
+     * display icon in all neighbour vertices.
+     * @param {boolean} showIcon True to display icon in all neighbours, False otherwise
 	 */
-	this.exclude = function() {
+	this.exclude = function(showIcon) {
 		this.setExcluded(true);
 		this.remove(true);
 
 		app.viewportComponent.removeGroup(this);
+
+        if(showIcon){
+            //showIconClick.bind(this)(null) // TODO implement
+        }
 	};
 
 	/**
@@ -466,8 +480,8 @@ function Group(props) {
 			id: this.id,
 			name: this.name,
 			verticesId: verticesId,
-			verticesEdgeFromId: [],	// TODO: what to put in here?
-			verticesEdgeToId: [],	// TODO: what to put in here?
+			verticesEdgeFromId: [],	// TODO: what to put in here? ids of vertices which outgoing edges are visible in graph
+			verticesEdgeToId: [],	// TODO: what to put in here? ids of vertices which incoming edges are visible in graph
 			position: position,
 		};
 	};

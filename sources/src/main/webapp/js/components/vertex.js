@@ -256,6 +256,14 @@ function Vertex(props) {
 		}
 	};
 
+    /**
+     * @returns {boolean} true if icon in all neighbours should be displayed, false otherwise
+     */
+	this.isIconsDisplayed = function () {
+		return iconsDisplayed;
+    };
+
+
 	/**
 	 * @returns true if the vertex is currently highlighted (in any way), otherwise false
 	 */
@@ -381,13 +389,19 @@ function Vertex(props) {
 	};
 
 	/**
-	 * Excludes the vertex from the viewport. Removes vertex DOM element and hides its edges.
+	 * Excludes the vertex from the viewport. Removes vertex DOM element and hides its edges. If showIcon is set to True
+	 * display icon in all neighbour vertices.
+	 * @param {boolean} showIcon True to display icon in all neighbours, False otherwise
 	 */
-	this.exclude = function() {
+	this.exclude = function(showIcon = false) {
 		this.setExcluded(true);
 		this.remove(true);
 
 		app.viewportComponent.removeVertex(this);
+
+		if(showIcon){
+			showIconClick.bind(this)(null)
+		}
 	};
 
 	/**
@@ -747,16 +761,16 @@ function Vertex(props) {
 			return !edge.getFrom().isExcluded();
 		}).forEach(function(edge) {
 			if(!neighbourList.includes(edge.getFrom())) {
-                neighbourList.push(edge.getFrom());
-            }
+				neighbourList.push(edge.getFrom());
+			}
 		});
 
 		outEdgeList.filter(function(edge) {
 			return !edge.getTo().isExcluded();
 		}).forEach(function(edge) {
 			if(!neighbourList.includes(edge.getTo())) {
-                neighbourList.push(edge.getTo());
-            }
+				neighbourList.push(edge.getTo());
+			}
 		});
 
 		neighbourList.forEach(function(node) {
