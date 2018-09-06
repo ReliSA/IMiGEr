@@ -756,13 +756,7 @@ function Group(props) {
 	 */
 	function click() {
 		if (excluded) {
-			this.setHighlighted(!highlighted);
-			this.setHighlightedRequiredNeighbours(highlighted);
-			this.setHighlightedProvidedNeighbours(highlighted);
-
-			prepareHighlighting.call(this);
-			highlightRequiredNeighbours.call(this);
-			highlightProvidedNeighbours.call(this);
+			this.setHighlightedWithNeighbours(!highlighted);
 			return;
 		}
 
@@ -773,13 +767,7 @@ function Group(props) {
 
 		switch (document.actionForm.actionMove.value) {
 			case 'move':
-				this.setHighlighted(!highlighted);
-				this.setHighlightedRequiredNeighbours(highlighted);
-				this.setHighlightedProvidedNeighbours(highlighted);
-	
-				prepareHighlighting.call(this);
-				highlightRequiredNeighbours.call(this);
-				highlightProvidedNeighbours.call(this);
+				this.setHighlightedWithNeighbours(!highlighted);
 				break;
 
 			case 'exclude':
@@ -789,6 +777,21 @@ function Group(props) {
 				break;
 		}
 	}
+
+    /**
+	 * Method add or remove highlighting of group and all neighbours.
+     *
+	 * @param newHighlighted true to highlight, false otherwise
+     */
+    this.setHighlightedWithNeighbours = function (newHighlighted) {
+        this.setHighlighted(newHighlighted);
+        this.setHighlightedRequiredNeighbours(highlighted);
+        this.setHighlightedProvidedNeighbours(highlighted);
+
+        prepareHighlighting.call(this);
+        highlightRequiredNeighbours.call(this);
+        highlightProvidedNeighbours.call(this);
+    };
 
 	/**
 	 * Group name click interaction. Reveals a prompt for new group name.

@@ -133,6 +133,13 @@ function Edge(props) {
 		}
 	};
 
+    /**
+     * @returns true if the edge is currently highlighted (in any way), otherwise false
+     */
+	this.isHighlighted = function () {
+		return highlighted;
+    };
+
 	/**
 	 * Toggles highlighting of the edge.
 	 * @param {boolean} newValue True to highlight the edge, false to unhighlight.

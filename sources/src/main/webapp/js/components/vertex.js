@@ -689,13 +689,7 @@ function Vertex(props) {
 		e.stopPropagation();
 
 		if (excluded) {
-			this.setHighlighted(!highlighted);
-			this.setHighlightedRequiredNeighbours(highlighted);
-			this.setHighlightedProvidedNeighbours(highlighted);
-
-			prepareHighlighting.call(this);
-			highlightRequiredNeighbours.call(this);
-			highlightProvidedNeighbours.call(this);
+            this.setHighlightedWithNeighbours(!highlighted);
 			return;
 		}
 
@@ -706,13 +700,7 @@ function Vertex(props) {
 
 		switch (document.actionForm.actionMove.value) {
 			case 'move':
-				this.setHighlighted(!highlighted);
-				this.setHighlightedRequiredNeighbours(highlighted);
-				this.setHighlightedProvidedNeighbours(highlighted);
-	
-				prepareHighlighting.call(this);
-				highlightRequiredNeighbours.call(this);
-				highlightProvidedNeighbours.call(this);
+				this.setHighlightedWithNeighbours(!highlighted);
 				break;
 
 			case 'exclude':
@@ -722,6 +710,21 @@ function Vertex(props) {
 				break;
 		}
 	}
+
+    /**
+     * Method add or remove highlighting of vertex and all neighbours.
+     *
+     * @param newHighlighted true to highlight, false otherwise
+     */
+	this.setHighlightedWithNeighbours = function (newHighlighted) {
+        this.setHighlighted(newHighlighted);
+        this.setHighlightedRequiredNeighbours(highlighted);
+        this.setHighlightedProvidedNeighbours(highlighted);
+
+        prepareHighlighting.call(this);
+        highlightRequiredNeighbours.call(this);
+        highlightProvidedNeighbours.call(this);
+    };
 
 	/**
 	 * Reveals vertex popover.

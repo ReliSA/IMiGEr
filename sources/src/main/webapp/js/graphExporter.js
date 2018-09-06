@@ -31,6 +31,17 @@ function GraphExporter() {
 			};
 		});
 
+        var highlightedEdge = app.edgeList.find(function (edge) {
+            return edge.isHighlighted()
+        });
+
+        // when edge is highlighted another vertex can not be highlighted
+        if (app.utils.isUndefined(highlightedEdge)) {
+            var highlightedVertex = app.nodeList.find(function (vertex) {
+                return vertex.isHighlighted()
+            });
+        }
+
 		return {
 			attributeTypes: app.attributeTypeList,
 			edgeArchetypes: app.archetype.edge,
@@ -40,8 +51,8 @@ function GraphExporter() {
 			possibleEnumValues: app.possibleEnumValues,
 			groups: groups,
 			sideBar: sideBar,
-			selectedVertex: null,	// TODO: selected == highlighted
-			selectedEdge: null,	// TODO selected == highlighted
+			selectedVertex: app.utils.getUniqueId(highlightedVertex), // selected = highlighted
+			selectedEdge: app.utils.isUndefined(highlightedEdge) ? '' : highlightedEdge.id, // selected = highlighted
 		};
 	}
 

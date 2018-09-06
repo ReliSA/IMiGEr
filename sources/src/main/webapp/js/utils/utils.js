@@ -19,8 +19,8 @@ function Utils() {
 	/**
 	 * Checks whether the variable passed as parameter is defined.
 	 * 
-	 * @param {boolean} variable Variable to be checked.
-	 * @return true if the variable is defined, otherwise false
+	 * @param variable Variable to be checked.
+	 * @return {boolean} true if the variable is defined, otherwise false
 	 */
 	this.isDefined = function(variable) {
 		return typeof variable !== 'undefined';
@@ -29,8 +29,8 @@ function Utils() {
 	/**
 	 * Checks whether the variable passed as parameter is not defined.
 	 * 
-	 * @param {boolean} variable Variable to be checked.
-	 * @return true if the variable is NOT defined, otherwise false
+	 * @param variable Variable to be checked.
+	 * @return {boolean} true if the variable is NOT defined, otherwise false
 	 */
 	this.isUndefined = function(variable) {
 		return typeof variable === 'undefined';
@@ -100,7 +100,9 @@ function Utils() {
      * @returns {string} Unique identifier of a graph node (group or vertex).
      */
     this.getUniqueId = function(node) {
-        var prefix;
+    	if(this.isUndefined(node)) return '';
+
+    	var prefix;
         if (node instanceof Vertex) {
             prefix = 'vertex-';
         } else if (node instanceof Group) {
