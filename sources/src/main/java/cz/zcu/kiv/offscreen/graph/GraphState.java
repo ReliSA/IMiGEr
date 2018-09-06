@@ -11,8 +11,8 @@ public class GraphState {
 
     private List<Group> groups = new ArrayList<>();
     private List<SideBar> sideBar = new ArrayList<>();
-    private int selectedVertex;
-    private int selectedEdge;
+    private int highlightedVertex;
+    private int highlightedEdge;
 
 
     public List<Group> getGroups() {
@@ -23,12 +23,12 @@ public class GraphState {
         return sideBar;
     }
 
-    public int getSelectedVertex() {
-        return selectedVertex;
+    public int getHighlightedVertex() {
+        return highlightedVertex;
     }
 
-    public int getSelectedEdge() {
-        return selectedEdge;
+    public int getHighlightedEdge() {
+        return highlightedEdge;
     }
 
     public void addGroup(Group group){
@@ -47,11 +47,11 @@ public class GraphState {
         this.sideBar.addAll(collection);
     }
 
-    public void setSelectedVertex(int selectedVertex) {
-        this.selectedVertex = selectedVertex;
+    public void setHighlightedVertex(int highlightedVertex) {
+        this.highlightedVertex = highlightedVertex;
     }
 
-    public void setSelectedEdge(int selectedEdge) {
-        this.selectedEdge = selectedEdge;
+    public void setHighlightedEdge(int highlightedEdge) {
+        this.highlightedEdge = highlightedEdge;
     }
 }

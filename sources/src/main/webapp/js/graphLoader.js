@@ -22,27 +22,27 @@ function GraphLoader() {
 		app.attributeTypeList = data.attributeTypes;
 		app.possibleEnumValues = data.possibleEnumValues;
 
-        var selectedNodeId;
-        var selectedNodeType;
-        if (app.utils.isDefined(data.selectedVertex)) {
-            var selectedNodeAttr = data.selectedVertex.split("-");
-            if (selectedNodeAttr.length === 2) {
-                selectedNodeType = selectedNodeAttr[0];
-                selectedNodeId = parseInt(selectedNodeAttr[1], 10);
+        var highlightedNodeId;
+        var highlightedNodeType;
+        if (app.utils.isDefined(data.highlightedVertex)) {
+            var highlightedNodeAttr = data.highlightedVertex.split("-");
+            if (highlightedNodeAttr.length === 2) {
+                highlightedNodeType = highlightedNodeAttr[0];
+                highlightedNodeId = parseInt(highlightedNodeAttr[1], 10);
             }
         }
-		var selectedEdgeId = parseInt(data.selectedEdge, 10);
+		var highlightedEdgeId = parseInt(data.highlightedEdge, 10);
 
-        var selectedNode = undefined;
-        var selectedEdge = undefined;
+        var highlightedNode = undefined;
+        var highlightedEdge = undefined;
 
         // construct vertices
 		var vertexMap = {};
 		data.vertices.forEach(function(component) {
 			var vertex = new Vertex(component);
 
-			if (selectedNodeType === 'vertex' && selectedNodeId === vertex.id ){
-				selectedNode = vertex;
+			if (highlightedNodeType === 'vertex' && highlightedNodeId === vertex.id ){
+                highlightedNode = vertex;
 			}
 
 			var position = component.position;
@@ -68,8 +68,8 @@ function GraphLoader() {
 		data.edges.forEach(function(component) {
 			var edge = new Edge(component);
 
-            if (selectedEdgeId === edge.id ){
-                selectedEdge = edge;
+            if (highlightedEdgeId === edge.id ){
+                highlightedEdge = edge;
             }
 
 			var fromNode = vertexMap[component.from];
@@ -113,8 +113,8 @@ function GraphLoader() {
 		data.groups.forEach(function(component) {
 			var group = new Group(component);
 
-			if (selectedNodeType === 'group' && selectedNodeId === group.id ){
-                selectedNode = group;
+			if (highlightedNodeType === 'group' && highlightedNodeId === group.id ){
+                highlightedNode = group;
             }
 
 			// vertices
@@ -165,7 +165,7 @@ function GraphLoader() {
 			});
 
 			if (app.utils.isDefined(node)) {
-				node.exclude(excludedNode.isHighlighted);
+				node.exclude(excludedNode.isIconsDisplayed);
 
 				app.sidebarComponent.excludedNodeListComponent.add(node);
 			}
@@ -177,12 +177,12 @@ function GraphLoader() {
 		// update status bar
 		app.sidebarComponent.statusBarComponent.setComponentCount(data.vertices.length);
 
-		if (app.utils.isDefined(selectedEdge)) {
-			selectedEdge.setHighlighted(true);
-			selectedEdge.getFrom().setHighlighted(true);
-			selectedEdge.getTo().setHighlighted(true);
+		if (app.utils.isDefined(highlightedEdge)) {
+            highlightedEdge.setHighlighted(true);
+            highlightedEdge.getFrom().setHighlighted(true);
+            highlightedEdge.getTo().setHighlighted(true);
         }
-		if (app.utils.isDefined(selectedNode)) selectedNode.setHighlightedWithNeighbours(true);
+		if (app.utils.isDefined(highlightedNode)) highlightedNode.setHighlightedWithNeighbours(true);
 	};
 
 }

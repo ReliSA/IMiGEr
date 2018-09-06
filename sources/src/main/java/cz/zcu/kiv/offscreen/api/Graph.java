@@ -21,8 +21,8 @@ public class Graph {
 
     private List<Group> groups;
     private List<SideBar> sideBar;
-    private int selectedVertex;
-    private int selectedEdge;
+    private int highlightedVertex;
+    private int highlightedEdge;
 
     private Logger logger = Logger.getLogger(Graph.class);
 
@@ -36,8 +36,8 @@ public class Graph {
         this.possibleEnumValues = graph.getPossibleEnumValues();
         this.groups = graph.getGraphState().getGroups();
         this.sideBar = graph.getGraphState().getSideBar();
-        this.selectedVertex = graph.getGraphState().getSelectedVertex();
-        this.selectedEdge = graph.getGraphState().getSelectedEdge();
+        this.highlightedVertex = graph.getGraphState().getHighlightedVertex();
+        this.highlightedEdge = graph.getGraphState().getHighlightedEdge();
         logger.trace("EXIT");
     }
 
@@ -77,11 +77,11 @@ public class Graph {
         return sideBar;
     }
 
-    public int getSelectedVertex() {
-        return selectedVertex;
+    public int getHighlightedVertex() {
+        return highlightedVertex;
     }
 
-    public int getSelectedEdge() {
-        return selectedEdge;
+    public int getHighlightedEdge() {
+        return highlightedEdge;
     }
 }

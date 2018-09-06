@@ -27,7 +27,7 @@ function GraphExporter() {
 		var sideBar = excludedNodeList.map(function(node) {
 			return {
 				id: app.utils.getUniqueId(node),
-				isHighlighted: node.isIconsDisplayed(),
+                isIconsDisplayed: node.isIconsDisplayed(),
 			};
 		});
 
@@ -51,8 +51,8 @@ function GraphExporter() {
 			possibleEnumValues: app.possibleEnumValues,
 			groups: groups,
 			sideBar: sideBar,
-			selectedVertex: app.utils.getUniqueId(highlightedVertex), // selected = highlighted
-			selectedEdge: app.utils.isUndefined(highlightedEdge) ? '' : highlightedEdge.id, // selected = highlighted
+            highlightedVertex: app.utils.getUniqueId(highlightedVertex),
+			highlightedEdge: app.utils.isUndefined(highlightedEdge) ? '' : highlightedEdge.id,
 		};
 	}
 

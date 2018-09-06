@@ -39,8 +39,7 @@ Návrh JSONu
 				],
 				...
 			],
-			"id": <int>,					//identifikátor vrcholu - použito např. při definici odkud kam vede hrana
-			"originalId": <int>,			//identifikátor vrcholu, který byl použit před zpracováním(filtrací) v backendu
+			"id": <int>,					//identifikátor vrcholu, který byl použit před zpracováním(filtrací) v backendu
 			"text": <string>,				//text pro případné dodatečné info mimo atributy - nemusí být použito, může sloužit jako popisek vrcholu, např. když si uživatel zobrazí jeho detaily, nejdříve se zobrazí tento popisek a až pak hodnoty atributů, může sloužit i jen jako nosič informace, která nebude uživateli přístupná
 			"title": <string>,				//jméno vrcholu
 			"position": {								//obsahuje relativní pozici uzlu v grafu
@@ -55,7 +54,7 @@ Návrh JSONu
 		{
 			"subedgeInfo": [
 				{
-					"originalId": <int>,	//identifikátor hrany, který byl použit před zpracováním(filtrací) v backendu
+					"id": <int>,			//identifikátor hrany, který byl použit před zpracováním(filtrací) v backendu
 					"archetype": <int>,		//typ hrany (index v poli edgeArchetypes)
 					"attributes": [			//struktura atributu je vzdy klic - hodnota
 						[
@@ -86,8 +85,7 @@ Návrh JSONu
 
 	"groups": [											//obsahuje jednotlivé skupiny uzlů
 		{
-			"groupId": <int>,							//identifikátor skupiny
-			"id": <int>,								//identifikátor, který je jedinečný v rámci skupin i všech uzlů
+			"id": <int>,								//identifikátor skupiny
 			"name": <string>,							//název skupiny
 			"verticesId": [<int>, <int>, ...],			//original id uzlu, které jsou ve skupině
 			"verticesEdgeFromId": [<int>, <int>, ...],	//identifikátory uzlů, jejichž odchozí hrany jsou viditelné v grafu

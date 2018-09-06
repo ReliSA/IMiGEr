@@ -8,11 +8,11 @@ public class SideBar {
     /** Identification number of vertex or group which was generated in application. */
     private int vertexId;
     /** Indicates if related vertexes of this item have visible icon which shows relation with this item. */
-    private boolean highlighted;
+    private boolean isIconsDisplayed;
 
-    public SideBar(int vertexId, boolean highlighted) {
+    public SideBar(int vertexId, boolean isIconsDisplayed) {
         this.vertexId = vertexId;
-        this.highlighted = highlighted;
+        this.isIconsDisplayed = isIconsDisplayed;
     }
 
     public int getVertexId() {
@@ -23,11 +23,11 @@ public class SideBar {
         this.vertexId = vertexId;
     }
 
-    public boolean isHighlighted() {
-        return highlighted;
+    public boolean isIconsDisplayed() {
+        return isIconsDisplayed;
     }
 
-    public void setHighlighted(boolean highlighted) {
-        this.highlighted = highlighted;
+    public void setIconsDisplayed(boolean iconsDisplayed) {
+        this.isIconsDisplayed = iconsDisplayed;
     }
 }
