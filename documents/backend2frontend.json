@@ -98,14 +98,14 @@ Návrh JSONu
 		...
 	],
 
-	"sideBar": [					//obsahuje seznam uzlů a skupin, které jsou umístěné v postraním panelu
+	"sideBar": [									//obsahuje seznam uzlů a skupin, které jsou umístěné v postraním panelu
 		{
-			"id": <int>,			//identifikátor uzlu nebo skupiny
-			"isHighlighted": <bool>	//identifikuje, zda budou u sousedů zobrazeny ikony
+			"id": vertex-<int>/group-<int>,			//identifikátor uzlu nebo skupiny
+			"isIconsDisplayed": <bool>					//identifikuje, zda budou u sousedů zobrazeny ikony
 		},
 		...
 	],
 
-	"selectedVertex": <int>,		//identifikátor uzlu nebo skupiny, který je zvýrazněn
-	"selectedEdge": <int>			//identifikátor hrany, která je zvýrazněna
+	"highlightedVertex": vertex-<int>/group-<int>,		//identifikátor uzlu nebo skupiny, který je zvýrazněn
+	"highlightedEdge": <int>							//identifikátor hrany, která je zvýrazněna
 }
