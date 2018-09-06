@@ -263,6 +263,11 @@ function Vertex(props) {
 		return iconsDisplayed;
     };
 
+	this.removeIcon = function () {
+		if(iconsDisplayed) {
+			showIconClick.bind(this)(null)
+		}
+    };
 
 	/**
 	 * @returns true if the vertex is currently highlighted (in any way), otherwise false
@@ -410,12 +415,9 @@ function Vertex(props) {
 	this.include = function() {
 		this.removeFromSidebarList();
 
-		this.setExcluded(false);
+        this.removeIcon();
+        this.setExcluded(false);
         this.remove(false);
-
-        if(iconsDisplayed) {
-            showIconClick.bind(this)(null);
-        }
 
 		app.viewportComponent.addVertex(this);
 

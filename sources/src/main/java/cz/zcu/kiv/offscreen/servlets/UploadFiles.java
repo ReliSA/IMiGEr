@@ -2,7 +2,6 @@ package cz.zcu.kiv.offscreen.servlets;
 
 import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.storage.FileLoader;
-import cz.zcu.kiv.offscreen.storage.FileManager;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
 

@@ -48,6 +48,10 @@ function Group(props) {
 			position = vertex.getPosition();
 		}
 
+		var isIconShown = this.isIconsDisplayed();
+		if(isIconShown) showIconClick.bind(this)(null);
+
+		vertex.removeIcon();
 		vertex.setGroup(this);
 		vertex.setExcluded(this.isExcluded());
 		vertex.remove(this.isExcluded());	// edges of the vertex should be removed from DOM only if group is excluded
@@ -84,6 +88,7 @@ function Group(props) {
 		}
 
 		vertexList.push(vertex);
+        if(isIconShown) showIconClick.bind(this)(null);
 	};
 
 	/**
@@ -408,12 +413,12 @@ function Group(props) {
 	this.include = function() {
 		this.removeFromSidebarList();
 
-		this.setExcluded(false);
-		this.remove(false);
-
         if(iconsDisplayed) {
             showIconClick.bind(this)(null);
         }
+        	
+        this.setExcluded(false);
+		this.remove(false);
 
 		app.viewportComponent.addGroup(this);
 
