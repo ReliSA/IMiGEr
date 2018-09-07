@@ -38,6 +38,7 @@
 
 		<script src="js/constants.js"></script>
 		<script src="js/coordinates.js"></script>
+		<script src="js/filter.js"></script>
 		<script src="js/forceDirected.js"></script>
 		<script src="js/graphLoader.js"></script>
 		<script src="js/graphExporter.js"></script>
@@ -163,7 +164,7 @@
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<button class="btn btn-block view-refresh-reset-diagram" id="view_refresh_reset_diagram" title="Refresh diagram - reset position"></a>
+							<button class="btn btn-block view-refresh-reset-diagram" id="view_refresh_reset_diagram" title="Refresh diagram - reset position"></button>
 						</li>
 					</ul>
 				</nav>
@@ -175,19 +176,24 @@
 					<button class="button buttonClassic" id="deleteFilter">Delete filter</button>
 					<select id="filterTypeSelection">
 						<option value="Archetype"> Archetype </option>
-						<option value="Atribute"> Atribute </option>
+						<option value="Attribute"> Attribute </option>
 						<option value="Logical"> Logical </option>
 					</select>
-					<select id="logicOperationSelection" disabled="disabled">
-						<option value="And"> And </option>
-						<option value="Or"> Or </option>
-						<option value="Xor"> Xor </option>
-					</select>
-					<select id="attributeTypeSelection" disabled="disabled">
+					<select id="vertexArchetypeSelection"></select>
+					<select class="hidden" id="attributeTypeSelection">
 						<option value="Enum"> Enum </option>
 						<option value="String"> String </option>
 						<option value="Number"> Number </option>
 						<option value="Date"> Date </option>
+					</select>
+					<select class="hidden" id="logicOperationSelection">
+						<option value="And"> And </option>
+						<option value="Or"> Or </option>
+						<option value="Xor"> Xor </option>
+					</select>
+					<select id="matchTypeSelection">
+						<option value="Match"> Match </option>
+						<option value="NotMatch"> Not Match </option>
 					</select>
 				</div>
 
