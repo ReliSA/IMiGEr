@@ -884,6 +884,8 @@ function Group(props) {
 		}, this);
 
 		app.viewportComponent.removeGroup(this);
+
+		app.groupList.splice(app.groupList.indexOf(this), 1);
 	}
 	
 	/**
