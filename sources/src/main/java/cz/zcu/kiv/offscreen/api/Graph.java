@@ -21,8 +21,8 @@ public class Graph {
 
     private List<Group> groups;
     private List<SideBar> sideBar;
-    private int highlightedVertex;
-    private int highlightedEdge;
+    private String highlightedVertex; // group-ID, vertex-ID
+    private String highlightedEdge;
 
     private Logger logger = Logger.getLogger(Graph.class);
 
@@ -77,11 +77,11 @@ public class Graph {
         return sideBar;
     }
 
-    public int getHighlightedVertex() {
+    public String getHighlightedVertex() {
         return highlightedVertex;
     }
 
-    public int getHighlightedEdge() {
+    public String getHighlightedEdge() {
         return highlightedEdge;
     }
 }

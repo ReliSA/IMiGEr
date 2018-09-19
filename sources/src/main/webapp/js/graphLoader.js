@@ -24,14 +24,16 @@ function GraphLoader() {
 
         var highlightedNodeId;
         var highlightedNodeType;
-        if (app.utils.isDefined(data.highlightedVertex)) {
+        if (app.utils.isDefined(data.highlightedVertex) && data.highlightedVertex.length > 0) {
             var highlightedNodeAttr = data.highlightedVertex.split("-");
             if (highlightedNodeAttr.length === 2) {
                 highlightedNodeType = highlightedNodeAttr[0];
                 highlightedNodeId = parseInt(highlightedNodeAttr[1], 10);
             }
         }
-		var highlightedEdgeId = parseInt(data.highlightedEdge, 10);
+        if (app.utils.isDefined(data.highlightedEdge) && data.highlightedEdge.length > 0) {
+            var highlightedEdgeId = parseInt(data.highlightedEdge, 10);
+        }
 
         var highlightedNode = undefined;
         var highlightedEdge = undefined;
