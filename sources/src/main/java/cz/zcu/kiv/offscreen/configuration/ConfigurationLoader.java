@@ -1,4 +1,4 @@
-package cz.zcu.kiv.offscreen.loader.configuration;
+package cz.zcu.kiv.offscreen.configuration;
 
 import javax.servlet.ServletContext;
 

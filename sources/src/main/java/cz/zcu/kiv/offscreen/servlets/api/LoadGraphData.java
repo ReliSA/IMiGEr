@@ -6,7 +6,7 @@ import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.loader.DemoDiagramLoader;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
-import cz.zcu.kiv.offscreen.loader.configuration.ConfigurationLoader;
+import cz.zcu.kiv.offscreen.configuration.ConfigurationLoader;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
