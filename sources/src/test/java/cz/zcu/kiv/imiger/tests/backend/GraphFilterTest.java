@@ -1,9 +1,9 @@
 package cz.zcu.kiv.imiger.tests.backend;
 
 import cz.zcu.kiv.offscreen.api.Edge;
+import cz.zcu.kiv.offscreen.api.Graph;
 import cz.zcu.kiv.offscreen.api.SubedgeInfo;
 import cz.zcu.kiv.offscreen.api.Vertex;
-import cz.zcu.kiv.offscreen.graph.Graph;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

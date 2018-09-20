@@ -53,11 +53,12 @@ public class LoadGraphData extends BaseServlet {
 
         if (!Strings.isNullOrEmpty(jsonToDisplay)) {
             GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
+
             String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
             JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
-            cz.zcu.kiv.offscreen.graph.Graph graph = graphManager.createGraph(configLoader);
-            Graph export = new Graph(graph);
-            JSONObject json = JSONObject.fromObject(export);
+
+            Graph graph = graphManager.createGraph(configLoader);
+            JSONObject json = JSONObject.fromObject(graph);
 
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write(json.toString());

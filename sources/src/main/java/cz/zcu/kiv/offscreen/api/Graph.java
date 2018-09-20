@@ -1,8 +1,6 @@
 package cz.zcu.kiv.offscreen.api;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 
@@ -26,19 +24,9 @@ public class Graph {
 
     private Logger logger = Logger.getLogger(Graph.class);
 
-    public Graph(cz.zcu.kiv.offscreen.graph.Graph graph) {
-        logger.trace("ENTRY");
-        this.vertices = graph.getVertices();
-        this.edges = graph.getEdges();
-        this.vertexArchetypes = graph.getVertexArchetypes();
-        this.edgeArchetypes = graph.getEdgeArchetypes();
-        this.attributeTypes = graph.getAttributeTypes();
-        this.possibleEnumValues = graph.getPossibleEnumValues();
-        this.groups = graph.getGraphState().getGroups();
-        this.sideBar = graph.getGraphState().getSideBar();
-        this.highlightedVertex = graph.getGraphState().getHighlightedVertex();
-        this.highlightedEdge = graph.getGraphState().getHighlightedEdge();
-        logger.trace("EXIT");
+    public Graph() {
+        vertices = new HashSet<>();
+        edges = new LinkedList<>();
     }
 
     public List<Edge> getEdges() {
@@ -83,5 +71,40 @@ public class Graph {
 
     public String getHighlightedEdge() {
         return highlightedEdge;
+    }
+
+    public void setVertexArchetypes(List<VertexArchetype> vertexArchetypes) {
+        this.vertexArchetypes = vertexArchetypes;
+    }
+
+    public void setEdgeArchetypes(List<EdgeArchetype> edgeArchetypes) {
+        this.edgeArchetypes = edgeArchetypes;
+    }
+
+    public void setAttributeTypes(List<AttributeType> attributeTypes) {
+        this.attributeTypes = attributeTypes;
+    }
+
+    public void setPossibleEnumValues(Map<Integer, List<String>> possibleEnumValues) {
+        this.possibleEnumValues = new HashMap<>();
+        for (Integer index : possibleEnumValues.keySet()) {
+            this.possibleEnumValues.put("" + index, possibleEnumValues.get(index));
+        }
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
+    public void setSideBar(List<SideBar> sideBar) {
+        this.sideBar = sideBar;
+    }
+
+    public void setHighlightedVertex(String highlightedVertex) {
+        this.highlightedVertex = highlightedVertex;
+    }
+
+    public void setHighlightedEdge(String highlightedEdge) {
+        this.highlightedEdge = highlightedEdge;
     }
 }

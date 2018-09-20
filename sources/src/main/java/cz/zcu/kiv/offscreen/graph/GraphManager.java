@@ -239,9 +239,6 @@ public class GraphManager {
         }
 
 
-        List<String> defaultGroupArchetypes = configLoader.loadGroupArchetypesStrings();
-        graph.setDefaultGroupArchetypes(defaultGroupArchetypes);
-
         Set<VertexImpl> resultVertices = getVerticesByArchetypeFilter(filter);
         resultVertices = getVerticesByAttributeFilter(filter, resultVertices);
         List<EdgeImpl> resultEdges = getEdgesByArchetypeFilter(filter, resultVertices);
@@ -257,7 +254,8 @@ public class GraphManager {
         graph.setAttributeTypes(attributeTypes);
         graph.setPossibleEnumValues(possibleEnumValues);
 
-        graph.setGraphState(createGraphState(graph));
+        List<String> defaultGroupArchetypes = configLoader.loadGroupArchetypesStrings();
+        addDefaultGroups(graph, defaultGroupArchetypes);
 
         return graph;
     }
@@ -454,7 +452,7 @@ public class GraphManager {
         int idCounter = 1;
         for (EdgeImpl edgeImpl : edgeSet.keySet()) {
             Edge edge = new Edge(idCounter++, edgeImpl.getFrom(), edgeImpl.getTo(), edgeImpl.getText(), edgeSet.get(edgeImpl));
-            graph.addEdge(edge);
+            graph.getEdges().add(edge);
         }
     }
 
@@ -488,7 +486,7 @@ public class GraphManager {
 
             List<String[]> attributes = getAttributesAsArray(vertexImpl.getSortedAttributes());
             Vertex vertex = new Vertex(vertexImpl,attributes);
-            graph.addVertex(vertex);
+            graph.getVertices().add(vertex);
         }
     }
 
@@ -540,28 +538,13 @@ public class GraphManager {
     }
 
     /**
-     * Method is used for initialization of default graph status based on input graph.
+     * Method add list of groups whose are defined in defaultGroupArchetypes to graph.
+     * Vertices are taken from graph.
      *
-     * @param graph graph where are set vertices, defaultGroupArchetypes and vertexArchetypes.
-     * @return instance of created GraphState
+     * @param graph graph to which are groups added.
+     * @param defaultGroupArchetypes list of group archetypes
      */
-    private GraphState createGraphState(Graph graph) {
-        GraphState state = new GraphState();
-
-        state.addGroupsAll(createDefaultGroups(graph));
-
-
-        return state;
-    }
-
-    /**
-     * Method create list of groups based on defaultGroupArchetypes whose are defined in graph. Vertices are taken
-     * from graph too.
-     *
-     * @param graph graph from which are groups created.
-     * @return created list of groups or empty list.
-     */
-    private Collection<Group> createDefaultGroups(Graph graph){
+    private void addDefaultGroups(Graph graph, List<String> defaultGroupArchetypes){
 
         Map<Integer, Group> groups = new HashMap<>();
         int groupId = 1;
@@ -569,7 +552,7 @@ public class GraphManager {
         // find index of vertex archetypes names
         int index = 0;
         for(VertexArchetype archetype : graph.getVertexArchetypes()){
-            if(graph.getDefaultGroupArchetypes().contains(archetype.name)){
+            if(defaultGroupArchetypes.contains(archetype.name)){
                 groups.put(index, new Group(groupId++, archetype.name));
             }
             index++;
@@ -590,6 +573,6 @@ public class GraphManager {
             }
         }
 
-        return groupList;
+        graph.setGroups(groupList);
     }
 }
