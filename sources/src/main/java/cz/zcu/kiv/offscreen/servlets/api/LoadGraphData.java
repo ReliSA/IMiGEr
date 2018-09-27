@@ -50,23 +50,42 @@ public class LoadGraphData extends BaseServlet {
      */
     private void getDiagramFromSession(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String jsonToDisplay = (String) request.getSession().getAttribute("json_graph");
+        String jsonType = (String) request.getSession().getAttribute("json_graph_type");
 
-        if (!Strings.isNullOrEmpty(jsonToDisplay)) {
-            GraphManager graphManager = new GraphJSONDataLoader(jsonToDisplay).LoadData();
+        if (!Strings.isNullOrEmpty(jsonToDisplay) && jsonType != null) {
 
-            String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
-            JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
+            String rawJson;
 
-            Graph graph = graphManager.createGraph(configLoader);
-            JSONObject json = JSONObject.fromObject(graph);
+            switch (jsonType) {
+                case "spade":
+                    String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
+                    rawJson = convertSpadeToRawJson(jsonToDisplay, configLocation);
+                    break;
+                default:
+                    rawJson = jsonToDisplay;
+            }
 
             response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write(json.toString());
+            response.getWriter().write(rawJson);
             response.getWriter().flush();
             return;
         }
 
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    }
+
+    /**
+     * Convert input spade JSON to frontend backend JSON and return it.
+     */
+    private String convertSpadeToRawJson(String spadeJson, String configLocation){
+        GraphManager graphManager = new GraphJSONDataLoader(spadeJson).LoadData();
+
+        JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
+
+        Graph graph = graphManager.createGraph(configLoader);
+        JSONObject json = JSONObject.fromObject(graph);
+
+        return json.toString();
     }
 
     /**

@@ -43,13 +43,18 @@ public class UploadFiles extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String jsonGraph = new FileLoader().loadFile(request);
+        Map<String, String> jsonData = new FileLoader().loadFile(request);
 
-        if (Strings.isNullOrEmpty(jsonGraph)) {
+        if(!jsonData.containsKey("file") || !jsonData.containsKey("jsonFileFormat")) {
+            request.setAttribute("errorMessage", "<strong>Invalid request!</strong><br/>");
+            doGet(request, response);
+
+        } else if (Strings.isNullOrEmpty(jsonData.get("file"))) {
             request.setAttribute("errorMessage", "<strong>Unsupported file</strong><br/>");
             doGet(request, response);
         } else {
-            request.getSession().setAttribute("json_graph", jsonGraph);
+            request.getSession().setAttribute("json_graph", jsonData.get("file"));
+            request.getSession().setAttribute("json_graph_type", jsonData.get("jsonFileFormat"));
             response.sendRedirect(getServletContext().getInitParameter("HOME_URL") + "graph");
         }
     }

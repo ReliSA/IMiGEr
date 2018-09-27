@@ -41,6 +41,14 @@
 						<input type="file" name="file" id="file">
 					</div>
 
+					<div class="form-field">
+						<label for="jsonFileFormat">Select type of JSON:</label><br>
+						<select name="jsonFileFormat" id="jsonFileFormat">
+							<option value="spade">Spade JSON</option>
+							<option value="raw">Raw JSON</option>
+						</select>
+					</div>
+
 					<button type="submit">Start visualization</button>
 				</form>
 			</div>
