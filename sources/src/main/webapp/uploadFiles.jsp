@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="css/main.css">
 
-		<script src="js/libs/jquery-1.8.3.js"></script>
+		<script src="js/libs/jquery-3.3.1.min.js"></script>
 		<script src="js/userMenu.js"></script>
 
 		<title>IMiGEr</title>
