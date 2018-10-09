@@ -44,7 +44,18 @@ public class Login extends BaseServlet {
                 request.getSession().setAttribute("userId", userVO.getId());
                 request.getSession().setAttribute("user", userVO);
 
+                Map<String, Object> userMap = new HashMap<>();
+                userMap.put("id", user.getId());
+                userMap.put("username", user.getNick());
+
+                JSONObject json = new JSONObject();
+                json.put("user", new JSONObject(userMap));
+
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
                 response.setStatus(HttpServletResponse.SC_ACCEPTED);
+                response.getWriter().write(json.toString());
+                response.getWriter().flush();
 
             } else {
                 request.getSession().setAttribute("isLoggedIn", false);
