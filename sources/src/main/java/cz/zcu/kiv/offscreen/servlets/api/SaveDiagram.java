@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
-import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +24,10 @@ public class SaveDiagram extends BaseServlet {
 
         int loggedUserId = getUserId(request);
 
-        String diagramId = request.getParameter("diagram_id");
+        String diagramId = request.getParameter("diagramId");
         String name = request.getParameter("name");
-        String graphJson = request.getParameter("graph_json");
-        String isPublic = StringUtils.defaultIfBlank(request.getParameter("public"), "0");
+        String graphJson = request.getParameter("graphJson");
+        String isPublic = request.getParameter("public");
 
         // input parameters are invalid
         if (Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(graphJson)) {

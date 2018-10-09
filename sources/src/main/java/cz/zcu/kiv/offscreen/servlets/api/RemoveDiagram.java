@@ -20,7 +20,7 @@ public class RemoveDiagram extends BaseServlet {
 
         int loggedUserId = getUserId(request);
 
-        String diagramId = request.getParameter("diagram_id");
+        String diagramId = request.getParameter("diagramId");
 
         if (Strings.isNullOrEmpty(diagramId)) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
