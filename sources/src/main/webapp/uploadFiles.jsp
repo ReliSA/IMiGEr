@@ -1,6 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
+<c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
+<c:set var="user" value="${sessionScope.user}"/>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,11 +18,7 @@
 		<title>IMiGEr</title>
 	</head>
 
-	<body>
-		<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
-		<c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
-		<c:set var="user" value="${sessionScope.user}"/>
-
+	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
 		<header class="header" id="header">
 			<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
 
@@ -51,20 +51,18 @@
 				</form>
 			</div>
 
-			<c:if test="${isLoggedIn}">
-				<div class="diagrams-menu">
-					<h3>My diagrams</h3>
+			<div class="diagrams-menu loggedInOnly">
+				<h3>My diagrams</h3>
 
-					<ul>
-						<c:forEach items="${diagramsPrivate}" var="diagram">
-							<li>
-								<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
-								<button class="removeDiagramButton" data-name="${diagram.name}" data-id="${diagram.id}"><img src="images/button_cancel.png" alt="odstranit"></button>
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
-			</c:if>
+				<ul id="privateDiagramList">
+					<c:forEach items="${diagramsPrivate}" var="diagram">
+						<li>
+							<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
+							<button class="removeDiagramButton" data-name="${diagram.name}" data-id="${diagram.id}"><img src="images/button_cancel.png" alt="odstranit"></button>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
 
 			<div class="diagrams-menu">
 				<h3>Public diagrams</h3>

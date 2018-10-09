@@ -890,3 +890,12 @@ ul {
 	background: none !important;
 	box-shadow: none !important;
 }
+
+/**
+ * USER AUTHENTICATION
+ **/
+
+.loggedIn .loggedOutOnly,
+.loggedOut .loggedInOnly {
+	display: none !important;
+}

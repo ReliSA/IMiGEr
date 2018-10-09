@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 	var toggleLoginPopupButton = document.getElementById('toggleLoginPopupButton');
 	var toggleRegisterPopupButton = document.getElementById('toggleRegisterPopupButton');
+	var usernameLabel = document.getElementById('usernameLabel');
 	var logoutButton = document.getElementById('logoutButton');
 
 	var loginPopup = document.getElementById('loginPopup');
@@ -9,94 +10,98 @@ document.addEventListener('DOMContentLoaded', function() {
 	var loginForm = document.forms['loginForm'];
 	var registerForm = document.forms['registerForm'];
 
-	if (toggleLoginPopupButton) {
-		toggleLoginPopupButton.addEventListener('click', function() {
-			loginPopup.classList.toggle('hidden');
+	toggleLoginPopupButton.addEventListener('click', function() {
+		loginPopup.classList.toggle('hidden');
+	});
+
+	toggleRegisterPopupButton.addEventListener('click', function() {
+		registerPopup.classList.toggle('hidden');
+	});
+
+	logoutButton.addEventListener('click', function(e) {
+		e.preventDefault();
+
+		$.ajax({
+			'type': 'GET',
+			'url': logoutButton.href,
+			'success': function() {
+				document.dispatchEvent(new CustomEvent('imiger.userLoggedOut'));
+
+				usernameLabel.innerText = '';
+
+				document.body.classList.remove('loggedIn');
+				document.body.classList.add('loggedOut');
+			},
+			'error': function() {
+				alert('Something went wrong.');
+			},
 		});
-	}
+	});
 
-	if (toggleRegisterPopupButton) {
-		toggleRegisterPopupButton.addEventListener('click', function() {
-			registerPopup.classList.toggle('hidden');
+	loginForm.addEventListener('submit', function(e) {
+		e.preventDefault();
+
+		$.ajax({
+			'type': loginForm.method,
+			'url': loginForm.action,
+			'data': {
+				'username': loginForm.username.value,
+				'password': loginForm.password.value,
+			},
+			'success': function(data) {
+				document.dispatchEvent(new CustomEvent('imiger.userLoggedIn'));
+
+				usernameLabel.innerText = data.user.username;
+
+				document.body.classList.remove('loggedOut');
+				document.body.classList.add('loggedIn');
+
+				loginPopup.classList.add('hidden');
+			},
+			'error': function(xhr) {
+				switch (xhr.status) {
+					case 400:
+						printErrors(xhr);
+						break;
+					case 401:
+						alert('Invalid credentials.');
+						break;
+					default:
+						alert('Something went wrong.');
+				}
+			},
 		});
-	}
+	});
 
-	if (logoutButton) {
-		logoutButton.addEventListener('click', function(e) {
-			e.preventDefault();
+	registerForm.addEventListener('submit', function(e) {
+		e.preventDefault();
 
-			$.ajax({
-				'type': 'GET',
-				'url': logoutButton.href,
-				'success': function() {
-					location.reload(true);
-				},
-				'error': function() {
-					alert('Something went wrong.');
-				},
-			});
+		$.ajax({
+			'type': registerForm.method,
+			'url': registerForm.action,
+			'data': {
+				'name': registerForm.name.value,
+				'email': registerForm.email.value,
+				'username': registerForm.username.value,
+				'password': registerForm.password.value,
+				'passwordCheck': registerForm.passwordCheck.value,
+			},
+			'success': function() {
+				document.dispatchEvent(new CustomEvent('imiger.userRegistered'));
+
+				registerPopup.classList.add('hidden');
+			},
+			'error': function(xhr) {
+				switch (xhr.status) {
+					case 400:
+						printErrors(xhr);
+						break;
+					default:
+						alert('Something went wrong.');
+				}
+			},
 		});
-	}
-
-	if (loginForm) {
-		loginForm.addEventListener('submit', function(e) {
-			e.preventDefault();
-
-			$.ajax({
-				'type': loginForm.method,
-				'url': loginForm.action,
-				'data': {
-					'username': loginForm.username.value,
-					'password': loginForm.password.value,
-				},
-				'success': function() {
-					location.reload(true);
-				},
-				'error': function(xhr) {
-					switch (xhr.status) {
-						case 400:
-							printErrors(xhr);
-							break;
-						case 401:
-							alert('Invalid credentials.');
-							break;
-						default:
-							alert('Something went wrong.');
-					}
-				},
-			});
-		});
-	}
-
-	if (registerForm) {
-		registerForm.addEventListener('submit', function(e) {
-			e.preventDefault();
-
-			$.ajax({
-				'type': registerForm.method,
-				'url': registerForm.action,
-				'data': {
-					'name': registerForm.name.value,
-					'email': registerForm.email.value,
-					'username': registerForm.username.value,
-					'password': registerForm.password.value,
-					'passwordCheck': registerForm.passwordCheck.value,
-				},
-				'success': function() {
-					location.reload(true);
-				},
-				'error': function(xhr) {
-					switch (xhr.status) {
-						case 400:
-							printErrors(xhr);
-							break;
-						default:
-							alert('Something went wrong.');
-					}
-				},
-			});
-		});
-	}
+	});
 });
 
 function printErrors(xhr) {

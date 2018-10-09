@@ -1,6 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
+<c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
+<c:set var="user" value="${sessionScope.user}"/>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -55,11 +59,7 @@
 		<title>IMiGEr</title>
 	</head>
 
-	<body>
-		<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
-		<c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
-		<c:set var="user" value="${sessionScope.user}"/>
-
+	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
 		<div class="wrapper">
 			<header class="header" id="header">
 				<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
@@ -144,16 +144,14 @@
 								<img src="images/png_save.png" id="applyLayoutImg" alt="Save diagram as PNG.">
 							</button>
 						</li>
-						<c:if test="${isLoggedIn}">
-							<li>
-								<hr class="navbar-separator">
-							</li>
-							<li>
-								<button class="btn save-diagram" id="btnSaveDiagramToDatabase" title="Save diagram.">
-									<img src="images/icon_save.png" id="applyLayoutImg" alt="Save diagram">
-								</button>
-							</li>
-						</c:if>
+						<li class="loggedInOnly">
+							<hr class="navbar-separator">
+						</li>
+						<li class="loggedInOnly">
+							<button class="btn save-diagram" id="btnSaveDiagramToDatabase" title="Save diagram">
+								<img src="images/icon_save.png" id="applyLayoutImg" alt="Save diagram">
+							</button>
+						</li>
 						<li>
 							<hr class="navbar-separator">
 						</li>
