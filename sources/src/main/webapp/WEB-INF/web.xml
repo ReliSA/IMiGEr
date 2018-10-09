@@ -61,6 +61,10 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.Logout</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>GetDiagram</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetDiagram</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>SaveDiagram</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.SaveDiagram</servlet-class>
 	</servlet>
@@ -95,6 +99,10 @@
 	<servlet-mapping>
 		<servlet-name>Logout</servlet-name>
 		<url-pattern>/api/log-out</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetDiagram</servlet-name>
+		<url-pattern>/api/get-diagram</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SaveDiagram</servlet-name>

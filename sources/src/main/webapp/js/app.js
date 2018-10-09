@@ -31,6 +31,7 @@ function App() {
 	/** @prop {object} API Application programming interface paths. */
 	this.API = {
 		loadGraphData: 'api/load-graph-data',
+		getDiagram: 'api/get-diagram',
 		saveDiagram: 'api/save-diagram',
 		removeDiagram: 'api/remove-diagram',
 	};
@@ -51,6 +52,9 @@ function App() {
 	this.vertexList = [];
 	/** @prop {array<Group>} groupList */
 	this.groupList = [];
+
+	/** TODO: jsDoc */
+	this.diagram = null;
 
 	/** TODO: jsDoc */
 	this.archetype = {
@@ -311,16 +315,16 @@ function App() {
 				var diagramId = app.utils.getQueryVariable('diagramId');
 				if (diagramId === false) diagramId = null;
 
-				var diagramName = prompt('Enter new diagram name:');
+				var diagramName = prompt('Enter new diagram name:', self.diagram !== null ? self.diagram.name : '');
 				if (diagramName === null || diagramName === '') return false;
 
 				$.ajax({
 					'type': 'POST',
 					'url': app.API.saveDiagram,
 					'data': {
-						'diagram_id': diagramId,
+						'diagramId': diagramId,
 						'name': diagramName,
-						'graph_json': JSON.stringify(self.graphExporter.run()),
+						'graphJson': JSON.stringify(self.graphExporter.run()),
 						'public': 0,
 					},
 					'success': function() {
@@ -357,14 +361,26 @@ function App() {
 
 		self.loader.enable();
 
-		var loadGraphDataURL = self.API.loadGraphData;
+		var loadGraphDataPromise;
 
-		if (diagramId !== '') {
-			loadGraphDataURL += '?diagramId=' + diagramId;
+		if (diagramId === '') {
+			loadGraphDataPromise = $.getJSON(self.API.loadGraphData);
+
+		} else {
+			getDiagramPromise = $.getJSON(self.API.getDiagram + '?diagramId=' + diagramId);
+
+			loadGraphDataPromise = getDiagramPromise.then(function(data) {
+				self.diagram = {
+					id: data.id,
+					name: data.name,
+				};
+
+				return $.getJSON(self.API.loadGraphData + '?diagramId=' + diagramId);
+			});
 		}
 
 		// get vertex position data
-		$.getJSON(loadGraphDataURL).then(function(data) {
+		loadGraphDataPromise.then(function(data) {
 			// construct graph
 			self.graphLoader.run(data);
 
