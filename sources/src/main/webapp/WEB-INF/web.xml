@@ -76,6 +76,10 @@
 		<servlet-name>LoadGraphData</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.LoadGraphData</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetPrivateDiagrams</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetPrivateDiagrams</servlet-class>
+	</servlet>
 
 	<!--
 	URL-to-servlet mappings
@@ -115,6 +119,10 @@
 	<servlet-mapping>
 		<servlet-name>LoadGraphData</servlet-name>
 		<url-pattern>/api/load-graph-data</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetPrivateDiagrams</servlet-name>
+		<url-pattern>/api/get-private-diagrams</url-pattern>
 	</servlet-mapping>
 
 	<session-config>

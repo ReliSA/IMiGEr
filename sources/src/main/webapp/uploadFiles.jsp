@@ -78,26 +78,57 @@
 		</main>
 
 		<script>
-			$('.removeDiagramButton').click(function(e) {
+			var privateDiagramList = document.getElementById('privateDiagramList');
 
-			    if(confirm('Are you want to delete ' + $(this).data('name') + '?')) {
-                    $.ajax({
-                        'type': 'delete',
-                        'url': 'api/remove-diagram?diagram_id=' + $(this).data('id'),
-                        'success': function () {
-                            location.reload(true);
-                        },
-                        'error': function (xhr) {
-                            switch (xhr.status) {
-                                case 401:
-                                    alert('You are either not logged in or not an owner of this diagram.');
-                                    break;
-                                default:
-                                    alert('Something went wrong.');
-                            }
-                        },
-                    });
-                }
+			$(privateDiagramList).on('click', '.removeDiagramButton', function(e) {
+				if (confirm('Do you really want to delete ' + $(this).data('name') + '?')) {
+					$.ajax({
+						'type': 'delete',
+						'url': 'api/remove-diagram?diagramId=' + $(this).data('id'),
+						'success': function () {
+							location.reload(true);
+						},
+						'error': function (xhr) {
+							switch (xhr.status) {
+								case 401:
+									alert('You are either not logged in or not an owner of this diagram.');
+									break;
+								default:
+									alert('Something went wrong.');
+							}
+						},
+					});
+				}
+			});
+
+			document.addEventListener('imiger.userLoggedIn', function() {
+				$.getJSON('api/get-private-diagrams').then(function(data) {
+					data.forEach(function(diagram) {
+						var openDiagramLink = document.createElement('a');
+						openDiagramLink.setAttribute('href', './graph?diagramId=' + diagram.id);
+						openDiagramLink.innerText = diagram.name;
+
+						var removeDiagramIcon = document.createElement('img');
+						removeDiagramIcon.setAttribute('src', 'images/button_cancel.png');
+						removeDiagramIcon.setAttribute('alt', 'odstranit');
+
+						var removeDiagramButton = document.createElement('button');
+						removeDiagramButton.setAttribute('class', 'removeDiagramButton');
+						removeDiagramButton.setAttribute('data-id', diagram.id);
+						removeDiagramButton.setAttribute('data-name', diagram.name);
+						removeDiagramButton.appendChild(removeDiagramIcon);
+
+						var diagramListItem = document.createElement('li');
+						diagramListItem.appendChild(openDiagramLink);
+						diagramListItem.appendChild(removeDiagramButton);
+
+						privateDiagramList.appendChild(diagramListItem);
+					});
+				});
+			});
+
+			document.addEventListener('imiger.userLoggedOut', function() {
+				privateDiagramList.innerHTML = '';
 			});
 		</script>
 	</body>
