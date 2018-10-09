@@ -1,15 +1,11 @@
-<c:if test="${isLoggedIn}">
-	<div class="user-menu">
-		${user.username} <a href="api/log-out" class="button" id="logoutButton">Log out</a>
-	</div>
-</c:if>
+<div class="user-menu loggedInOnly">
+	<span id="usernameLabel">${user.username}</span> <a href="api/log-out" class="button" id="logoutButton">Log out</a>
+</div>
 
-<c:if test="${!isLoggedIn}">
-	<div class="user-menu">
-		<button class="button" id="toggleLoginPopupButton">Log in</a>
-		<button class="button" id="toggleRegisterPopupButton">Register</a>
-	</div>
-</c:if>
+<div class="user-menu loggedOutOnly">
+	<button class="button" id="toggleLoginPopupButton">Log in</a>
+	<button class="button" id="toggleRegisterPopupButton">Register</a>
+</div>
 
 <div class="login_popup hidden" id="loginPopup">
 	<form action="api/log-in" method="post" name="loginForm">

@@ -11,11 +11,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	var registerForm = document.forms['registerForm'];
 
 	toggleLoginPopupButton.addEventListener('click', function() {
+		registerPopup.classList.add('hidden');
 		loginPopup.classList.toggle('hidden');
+
+		loginForm.username.focus();
 	});
 
 	toggleRegisterPopupButton.addEventListener('click', function() {
+		loginPopup.classList.add('hidden');
 		registerPopup.classList.toggle('hidden');
+
+		registerForm.name.focus();
 	});
 
 	logoutButton.addEventListener('click', function(e) {
