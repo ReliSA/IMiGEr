@@ -42,11 +42,9 @@
 					</div>
 
 					<div class="form-field">
-						<label for="jsonFileFormat">Select type of JSON:</label><br>
-						<select name="jsonFileFormat" id="jsonFileFormat">
-							<option value="spade">Spade JSON</option>
-							<option value="raw">Raw JSON</option>
-						</select>
+						Select type of data file:<br>
+						<label for="spade"><input type="radio" name="jsonFileFormat" value="spade" id="spade" checked> Spade JSON</label><br>
+						<label for="raw"><input type="radio" name="jsonFileFormat" value="raw" id="raw"> Raw JSON</label><br>
 					</div>
 
 					<button type="submit">Start visualization</button>
