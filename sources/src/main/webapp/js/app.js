@@ -45,6 +45,8 @@ function App() {
 	this.sidebarComponent = null;
 	/** @prop {Viewport} viewportComponent */
 	this.viewportComponent = null;
+	/** @prop {ModalWindow} modalWindowComponent */
+	this.modalWindowComponent = null;
 
 	/** @prop {array<Edge>} edgeList */
 	this.edgeList = [];
@@ -145,6 +147,9 @@ function App() {
 		self.sidebarComponent = new Sidebar;
 		content.appendChild(self.sidebarComponent.render());
 		self.sidebarComponent.minimapComponent.setViewportSize(self.viewportComponent.getSize());
+
+		self.modalWindowComponent = new ModalWindow;
+		content.appendChild(self.modalWindowComponent.render());
 
 		// context menu
 		document.body.addEventListener('mousedown', function() {
@@ -311,39 +316,9 @@ function App() {
 		});
 
 		// save to database button
-		var saveDiagramToDatabaseButton = document.getElementById('btnSaveDiagramToDatabase');
-		if (saveDiagramToDatabaseButton) {
-			saveDiagramToDatabaseButton.addEventListener('click', function(e) {
-				var diagramId = app.utils.getQueryVariable('diagramId');
-				if (diagramId === false) diagramId = null;
-
-				var diagramName = prompt('Enter new diagram name:', self.diagram !== null ? self.diagram.name : '');
-				if (diagramName === null || diagramName === '') return false;
-
-				$.ajax({
-					'type': 'POST',
-					'url': app.API.saveDiagram,
-					'data': {
-						'diagramId': diagramId,
-						'name': diagramName,
-						'graphJson': JSON.stringify(self.graphExporter.run()),
-						'public': 0,
-					},
-					'success': function() {
-						alert('Saved.');
-					},
-					'error': function(xhr) {
-						switch (xhr.status) {
-							case 401:
-								alert('You are either not logged in or not an owner of this diagram.');
-								break;
-							default:
-								alert('Something went wrong.');
-						}
-					},
-				});
-			});
-		}
+		document.getElementById('btnSaveDiagramToDatabase').addEventListener('click', function(e) {
+			self.modalWindowComponent.open();
+		});
 
 		// window resize
 		window.addEventListener('resize', function(e) {
@@ -373,6 +348,8 @@ function App() {
 
 			loadGraphDataPromise = getDiagramPromise.then(function(data) {
 				self.diagram = new Diagram(data);
+
+				document.title = self.NAME + ' - ' + self.diagram.name;
 
 				return $.getJSON(self.API.loadGraphData + '?diagramId=' + diagramId);
 			});
