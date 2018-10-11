@@ -60,16 +60,15 @@ function App() {
 	/** @prop {Diagram} diagram */
 	this.diagram = null;
 
-	/** TODO: jsDoc */
+	/** @prop {object} archetype Object containing all vertex and edge archetypes used in currently displayed diagram. */
 	this.archetype = {
 		vertex: [],
 		edge: [],
 	};
 
-	/** TODO: jsDoc */
+	/** @prop {array} attributeTypeList Array containing all possible types of vertex/edge attributes. */
 	this.attributeTypeList = [];
-
-	/** TODO: jsDoc */
+	/** @prop {array} possibleEnumValues Array containing all possible values of attributes with datatype ENUM. */
 	this.possibleEnumValues = {};
 
 	/**
