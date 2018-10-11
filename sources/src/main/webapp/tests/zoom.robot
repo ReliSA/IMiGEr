@@ -1,30 +1,32 @@
 *** Settings ***
 Documentation	A test suite with tests of graph zoom.
-...
-...				This test has a workflow that is created using keywords in
-...				the imported resource file.
-...
+
 Library			String
+
 Suite Setup		Open Browser To Demo Diagram
-Test Teardown	Reload Diagram Screen
 Suite Teardown	Close Browser
+Test Teardown	Reload Diagram Screen
+
 Resource		common.robot
 
+
 *** Variables ***
-${defaultZoom}	${80}
-${minZoom}	${10}
-${maxZoom}	${500}
+${defaultZoom}		${80}
+${minZoom}			${10}
+${maxZoom}			${500}
 
-${graphWrapper}		//*[name()='g'][@id='graph']
+${graphWrapper}		//*[name()="g"][@id="graph"]
 
-${zoomInButton}		//button[@id='zoomIn']
-${zoomOutButton}	//button[@id='zoomOut']
-${zoomValue}		//span[@id='zoomValue']
+${zoomInButton}		//button[@id="zoomIn"]
+${zoomOutButton}	//button[@id="zoomOut"]
+${zoomValue}		//span[@id="zoomValue"]
+
 
 *** Test Cases ***
 Zoom In
 	Click Element		${zoomInButton}
 	Zoom Should Be Equal	${defaultZoom + 10}
+
 
 Zoom In Constraint
 	# zoom in to maximum (there are 12 steps between default and maximum zoom level)
@@ -32,15 +34,18 @@ Zoom In Constraint
 	Zoom Should Be Equal	${maxZoom}
 	Element Should Have Class	${zoomInButton}	disabled
 
+
 Zoom Out
 	Click Element		${zoomOutButton}
 	Zoom Should Be Equal	${defaultZoom - 10}
+
 
 Zoom Out Constraint
 	# zoom out to minimum (there are 5 steps between default and minimum zoom level)
 	Repeat Keyword	5	Click Element	${zoomOutButton}
 	Zoom Should Be Equal	${minZoom}
 	Element Should Have Class	${zoomOutButton}	disabled
+
 
 *** Keywords ***
 Zoom Should Be Equal
