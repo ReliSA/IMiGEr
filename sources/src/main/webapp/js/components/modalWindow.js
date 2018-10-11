@@ -90,7 +90,7 @@ function ModalWindow() {
 				history.replaceState({} , document.title, app.HOME_URL + 'graph?diagramId=' + app.diagram.id);
 
 				self.close();
-				alert('Saved.');
+				alert('Diagram was successfully saved.');
 			},
 			'error': function(xhr) {
 				switch (xhr.status) {

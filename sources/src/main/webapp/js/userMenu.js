@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				document.dispatchEvent(new CustomEvent('imiger.userRegistered'));
 
 				registerPopup.classList.add('hidden');
+				alert('You were successfully registered.');
 			},
 			'error': function(xhr) {
 				switch (xhr.status) {

@@ -364,7 +364,15 @@ function App() {
 
 			self.filter.initializeSelectors(self.archetype.vertex);
 
-		}, function() {
+		}, function(xhr) {
+			switch (xhr.status) {
+				case 401:
+					alert('You are not allowed to view the diagram.');
+					break;
+				default:
+					alert('Something went wrong.');
+			}
+
 			// go to the upload page
 			window.location.replace('./');
 		});
