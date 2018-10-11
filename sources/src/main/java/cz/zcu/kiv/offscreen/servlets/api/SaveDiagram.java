@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
+import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,6 +62,13 @@ public class SaveDiagram extends BaseServlet {
 
         diagram.update(diagramParams);
 
+        // send response
+        JSONObject json = new JSONObject(diagram.getDiagram());
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
+        response.getWriter().write(json.toString());
+        response.getWriter().flush();
     }
 }
