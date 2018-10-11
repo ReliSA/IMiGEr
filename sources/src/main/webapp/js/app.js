@@ -9,8 +9,6 @@ function App() {
 	this.graphLoader = new GraphLoader;
 	/** @prop {GraphExporter} graphExporter */
 	this.graphExporter = new GraphExporter;
-	/** @prop {GraphHistory} graphHistory */
-	this.graphHistory = new GraphHistory;
 	/** @prop {Loader} loader */
 	this.loader = new Loader;
 	/** @prop {Zoom} zoom */

@@ -47,7 +47,6 @@
 		<script src="js/forceDirected.js"></script>
 		<script src="js/graphLoader.js"></script>
 		<script src="js/graphExporter.js"></script>
-		<script src="js/graphHistory.js"></script>
 		<script src="js/loader.js"></script>
 		<script src="js/markSymbol.js"></script>
 		<script src="js/utils/cookies.js"></script>
