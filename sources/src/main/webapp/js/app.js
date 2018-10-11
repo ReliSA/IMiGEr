@@ -55,7 +55,7 @@ function App() {
 	/** @prop {array<Group>} groupList */
 	this.groupList = [];
 
-	/** TODO: jsDoc */
+	/** @prop {Diagram} diagram */
 	this.diagram = null;
 
 	/** TODO: jsDoc */
@@ -372,10 +372,7 @@ function App() {
 			getDiagramPromise = $.getJSON(self.API.getDiagram + '?id=' + diagramId);
 
 			loadGraphDataPromise = getDiagramPromise.then(function(data) {
-				self.diagram = {
-					id: data.id,
-					name: data.name,
-				};
+				self.diagram = new Diagram(data);
 
 				return $.getJSON(self.API.loadGraphData + '?diagramId=' + diagramId);
 			});

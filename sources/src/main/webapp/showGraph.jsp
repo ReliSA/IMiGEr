@@ -42,6 +42,7 @@
 
 		<script src="js/constants.js"></script>
 		<script src="js/coordinates.js"></script>
+		<script src="js/diagram.js"></script>
 		<script src="js/filter.js"></script>
 		<script src="js/forceDirected.js"></script>
 		<script src="js/graphLoader.js"></script>
