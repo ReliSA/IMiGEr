@@ -11,6 +11,20 @@ ul {
 	padding-left: 0;
 }
 
+td {
+	padding: 0 0.8em;
+	line-height: 35px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+	width: 150px;
+}
+
+form input[type="checkbox"] {
+	margin: 0;
+}
+
 .hidden {
 	display: none !important;
 }
@@ -118,18 +132,6 @@ ul {
 	font-size: 13px;
 	font-weight: normal;
 	line-height: 35px;
-}
-
-.header .login_popup td {
-	height: 35px;
-}
-.header .login_popup input {
-	margin-left: 15px;
-}
-
-.header .login_popup input[type=text],
-.header .login_popup input[type=password] {
-	width: 150px;
 }
 
 /* register popup */

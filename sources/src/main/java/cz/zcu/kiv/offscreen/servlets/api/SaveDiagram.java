@@ -25,7 +25,7 @@ public class SaveDiagram extends BaseServlet {
 
         int loggedUserId = getUserId(request);
 
-        String diagramId = request.getParameter("diagramId");
+        String diagramId = request.getParameter("id");
         String name = request.getParameter("name");
         String graphJson = request.getParameter("graphJson");
         String isPublic = request.getParameter("public");

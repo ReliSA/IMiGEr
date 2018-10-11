@@ -37,7 +37,7 @@
 
 				<form method="post" enctype="multipart/form-data">
 					<div class="form-field">
-						<label for="file">Select SPADe data file:</label><br>
+						<label for="file">Select JSON data file:</label><br>
 						<input type="file" name="file" id="file">
 					</div>
 
@@ -67,7 +67,7 @@
 			<div class="diagrams-menu">
 				<h3>Public diagrams</h3>
 
-				<ul>
+				<ul id="publicDiagramList">
 					<c:forEach items="${diagramsPublic}" var="diagram">
 						<li>
 							<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>

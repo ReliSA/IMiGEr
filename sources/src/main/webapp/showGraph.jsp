@@ -132,7 +132,7 @@
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<button class="btn" id="applyLayout" title="Apply layout to current graph.">
+							<button class="btn" id="applyLayout" title="Apply layout to current graph">
 								<img src="images/layout_off.png" id="applyLayoutImg" alt="Apply layout to current graph.">
 							</button>
 						</li>
@@ -140,7 +140,7 @@
 							<hr class="navbar-separator">
 						</li>
 						<li>
-							<button class="btn save-diagram" id="btnSaveDiagram" title="Save diagram as PNG.">
+							<button class="btn save-diagram" id="btnSaveDiagram" title="Save diagram as PNG">
 								<img src="images/png_save.png" id="applyLayoutImg" alt="Save diagram as PNG.">
 							</button>
 						</li>

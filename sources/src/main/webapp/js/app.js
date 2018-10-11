@@ -26,6 +26,8 @@ function App() {
 	/** @prop {Filter} filter */
 	this.filter = new Filter;
 
+	/** @prop {string} NAME Application name. */
+	this.NAME = document.title;
 	/** @prop {string} HOME_URL Application home URL. */
 	this.HOME_URL = null;
 	/** @prop {object} API Application programming interface paths. */
@@ -367,7 +369,7 @@ function App() {
 			loadGraphDataPromise = $.getJSON(self.API.loadGraphData);
 
 		} else {
-			getDiagramPromise = $.getJSON(self.API.getDiagram + '?diagramId=' + diagramId);
+			getDiagramPromise = $.getJSON(self.API.getDiagram + '?id=' + diagramId);
 
 			loadGraphDataPromise = getDiagramPromise.then(function(data) {
 				self.diagram = {

@@ -14,18 +14,18 @@
 		<table>
 			<tr>
 				<td>
-					Login name:
+					<label for="loginUsername">Login name:</label>
 				</td>
 				<td>
-					<input type="text" name="username">
+					<input type="text" name="username" id="loginUsername">
 				</td>
 			</tr>
 			<tr>
 				<td>
-					Password:
+					<label for="loginPassword">Password:</label>
 				</td>
 				<td>
-					<input type="password" name="password">
+					<input type="password" name="password" id="loginPassword">
 				</td>
 			</tr>
 			<tr>
@@ -43,42 +43,42 @@
 		<table>	  		
 			<tr>
 				<td>
-					Name:
+					<label for="registerName">Name:</label>
 				</td>
 				<td>
-					<input type="text" name="name">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					E-mail:
-				</td>
-				<td>
-					<input type="text" name="email">
+					<input type="text" name="name" id="registerName">
 				</td>
 			</tr>
 			<tr>
 				<td>
-					Login name:
+					<label for="registerEmail">E-mail:</label>
 				</td>
 				<td>
-					<input type="text" name="username">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Password:
-				</td>
-				<td>
-					<input type="password" name="password">
+					<input type="text" name="email" id="registerEmail">
 				</td>
 			</tr>
 			<tr>
 				<td>
-					Password again:
+					<label for="registerUsername">Login name:</label>
 				</td>
 				<td>
-					<input type="password" name="passwordCheck">
+					<input type="text" name="username" id="registerUsername">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="registerPassword">Password:</label>
+				</td>
+				<td>
+					<input type="password" name="password" id="registerPassword">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="registerPasswordCheck">Password again:</label>
+				</td>
+				<td>
+					<input type="password" name="passwordCheck" id="registerPasswordCheck">
 				</td>
 			</tr>
 			<tr>
