@@ -12,7 +12,6 @@ function Group(props) {
 	this.symbol = app.markSymbol.getMarkSymbol();
 
 	var rootElement;
-	var vertexListComponent;
 
 	var position = new Coordinates(0, 0);
 	var size = {
@@ -83,10 +82,6 @@ function Group(props) {
 
 		app.viewportComponent.removeVertex(vertex);
 
-		if (rootElement) {
-			vertexListComponent.appendChild(vertex);
-		}
-
 		vertexList.push(vertex);
         if(isIconShown) showIconClick.bind(this)(null);
 	};
@@ -116,10 +111,6 @@ function Group(props) {
 		}
 
 		app.viewportComponent.addVertex(vertex);
-
-		if (rootElement) {
-			vertexListComponent.removeChild(vertex);
-		}
 
 		vertexList.splice(vertexList.indexOf(vertex), 1);
 	};
@@ -521,7 +512,7 @@ function Group(props) {
 		// name
 		var nameText = app.utils.createSvgElement('text', {
 			'class': 'group-name',
-			'x': 20,
+			'x': 5,
 			'y': 15,
 		});
 		nameText.appendChild(document.createTextNode(this.name));
@@ -536,54 +527,6 @@ function Group(props) {
 		});
 		symbolText.appendChild(document.createTextNode(this.symbol[0]));
 		rootElement.appendChild(symbolText);
-
-		// expand button
-		var expandButton = app.utils.createSvgElement('g', {
-			'class': 'button expand-button',
-		});
-		expandButton.appendChild(app.utils.createSvgElement('rect', {
-			'rx': 4,
-			'ry': 4,
-			'x': 4,
-			'y': 4,
-			'height': 14,
-			'width': 14,
-		}));
-		expandButton.appendChild(app.utils.createSvgElement('line', {
-			'x1': 11,
-			'y1': 6,
-			'x2': 11,
-			'y2': 16,
-		}));
-		expandButton.appendChild(app.utils.createSvgElement('line', {
-			'x1': 6,
-			'y1': 11,
-			'x2': 16,
-			'y2': 11,
-		}));
-		expandButton.addEventListener('click', expandClick.bind(this));
-		rootElement.appendChild(expandButton);
-
-		// compress button
-		var compressButton = app.utils.createSvgElement('g', {
-			'class': 'button compress-button',
-		});
-		compressButton.appendChild(app.utils.createSvgElement('rect', {
-			'rx': 4,
-			'ry': 4,
-			'x': 4,
-			'y': 4,
-			'height': 14,
-			'width': 14,
-		}));
-		compressButton.appendChild(app.utils.createSvgElement('line', {
-			'x1': 6,
-			'y1': 11,
-			'x2': 16,
-			'y2': 11,
-		}));
-		compressButton.addEventListener('click', compressClick.bind(this));
-		rootElement.appendChild(compressButton);
 
 		// dissolve button
 		var dissolveButton = app.utils.createSvgElement('g', {
@@ -611,14 +554,6 @@ function Group(props) {
 		}));
 		dissolveButton.addEventListener('click', dissolveClick.bind(this));
 		rootElement.appendChild(dissolveButton);
-
-		// vertex list
-		vertexListComponent = new GroupVertexList(this);
-		rootElement.appendChild(vertexListComponent.render());
-
-		vertexList.forEach(function(vertex) {
-			vertexListComponent.appendChild(vertex);
-		}, this);
 
 		return rootElement;
 	}
@@ -696,14 +631,6 @@ function Group(props) {
 		nameText.appendChild(document.createTextNode(this.name));
 		nameText.addEventListener('click', nameClick.bind(this));
 		rootElement.appendChild(nameText);
-
-		// vertex list
-		vertexListComponent = new GroupVertexList(this);
-		rootElement.appendChild(vertexListComponent.render());
-
-		vertexList.forEach(function(vertex) {
-			vertexListComponent.appendChild(vertex);
-		}, this);
 
 		// buttons
 		var buttonGroup = app.utils.createHtmlElement('div', {
@@ -847,26 +774,6 @@ function Group(props) {
 	 */
 	function includeClick() {
 		this.include.call(this);
-	}
-
-	/**
-	 * Sets the group as expanded so that its vertices are listed too.
-	 * @param {Event} e Click event.
-	 */
-	function expandClick(e) {
-		e.stopPropagation();
-
-		rootElement.classList.add('group--expanded');
-	}
-
-	/**
-	 * Sets the group as compress so that its vertices are not explicitly listed.
-	 * @param {Event} e Click event.
-	 */
-	function compressClick(e) {
-		e.stopPropagation();
-
-		rootElement.classList.remove('group--expanded');
 	}
 
 	/**

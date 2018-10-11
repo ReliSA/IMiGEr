@@ -457,43 +457,9 @@ form input[type="checkbox"] {
 	stroke: #000;
 }
 
-.viewport .group .expand-button > line {
-	stroke: #000;
-	stroke-width: 2;
-}
-
-.viewport .group .compress-button > line {
-	stroke: #000;
-	stroke-width: 2;
-}
-
 .viewport .group .dissolve-button > line {
 	stroke: #ca0000;
 	stroke-width: 2;
-}
-
-.viewport .group:not(.group--expanded) .compress-button {
-	display: none;
-}
-
-.viewport .group:not(.group--expanded) .group-vertex-list {
-	display: none;
-}
-
-.viewport .group:not(.group--expanded) .group-viewport {
-    display: none;
-}
-
-.viewport .group--expanded .expand-button {
-	display: none;
-}
-
-.viewport .group--expanded .compress-button {
-	display: block;
-}
-
-.viewport .group--expanded > rect {
-	width: 220px;
 }
 
 /**
