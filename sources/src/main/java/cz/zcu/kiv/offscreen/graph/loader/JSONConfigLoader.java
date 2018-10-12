@@ -49,7 +49,7 @@ public class JSONConfigLoader {
 
         try {
             //String filterJson = FileUtils.readFileToString(new File("D:\\aswi-git\\aswi\\config\\empty_filter.json"), "UTF-8");
-            String filterJson = FileUtils.readFileToString(new File(pathToConfig + "\\" + configFilename), "UTF-8");
+            String filterJson = FileUtils.readFileToString(new File(pathToConfig + File.separator + configFilename), "UTF-8");
 
             json = JSONObject.fromObject(filterJson);
 
