@@ -1,0 +1,1618 @@
+{
+  "attributeTypes": [
+    {
+      "dataType": "STRING",
+      "name": "EID",
+      "text": "External ID"
+    },
+    {
+      "dataType": "STRING",
+      "name": "Name",
+      "text": ""
+    },
+    {
+      "dataType": "STRING",
+      "name": "Description",
+      "text": ""
+    },
+    {
+      "dataType": "STRING",
+      "name": "Comment",
+      "text": ""
+    },
+    {
+      "dataType": "STRING",
+      "name": "Message",
+      "text": "Commit message"
+    },
+    {
+      "dataType": "STRING",
+      "name": "Identities",
+      "text": "Logins, aliases, other names"
+    },
+    {
+      "dataType": "STRING",
+      "name": "Emails",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Roles",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Author",
+      "text": "Author's name"
+    },
+    {
+      "dataType": "DATE",
+      "name": "Created",
+      "text": "Creation date"
+    },
+    {
+      "dataType": "STRING",
+      "name": "URL",
+      "text": ""
+    },
+    {
+      "dataType": "NUMBER",
+      "name": "Number",
+      "text": "Ticket number in issue tracker"
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Assignee",
+      "text": "Assignee's name"
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Type",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Priority",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Severity",
+      "text": ""
+    },
+    {
+      "dataType": "DATE",
+      "name": "Start",
+      "text": "Start date"
+    },
+    {
+      "dataType": "DATE",
+      "name": "Due",
+      "text": "Due date"
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Iteration",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Status",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Resolution",
+      "text": ""
+    },
+    {
+      "dataType": "NUMBER",
+      "name": "Estimate",
+      "text": "Estimated time"
+    },
+    {
+      "dataType": "NUMBER",
+      "name": "Spent",
+      "text": "Spent time"
+    },
+    {
+      "dataType": "NUMBER",
+      "name": "Progress",
+      "text": "% done"
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Categories",
+      "text": ""
+    },
+    {
+      "dataType": "STRING",
+      "name": "Identifier",
+      "text": ""
+    },
+    {
+      "dataType": "DATE",
+      "name": "Committed",
+      "text": "Committed on date"
+    },
+    {
+      "dataType": "STRING",
+      "name": "Changes",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Branches",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Tags",
+      "text": "VCS tags"
+    },
+    {
+      "dataType": "ENUM",
+      "name": "MIME",
+      "text": "MIME type"
+    },
+    {
+      "dataType": "NUMBER",
+      "name": "Size",
+      "text": "in bytes"
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Relation",
+      "text": "Relation type"
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Role classes",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Role super classes",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Type class",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Priority class",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Priority super class",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Severity class",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Severity super class",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Status class",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Status super class",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Resolution class",
+      "text": ""
+    },
+    {
+      "dataType": "ENUM",
+      "name": "Resolution super class",
+      "text": ""
+    }
+  ],
+  "edgeArchetypes": [
+    {
+      "name": "Authorship",
+      "text": ""
+    },
+    {
+      "name": "Assignment",
+      "text": ""
+    },
+    {
+      "name": "CommitParticipation",
+      "text": ""
+    },
+    {
+      "name": "ItemRelation",
+      "text": ""
+    },
+    {
+      "name": "Affection",
+      "text": ""
+    },
+    {
+      "name": "Commit",
+      "text": ""
+    },
+    {
+      "name": "Modification",
+      "text": ""
+    }
+  ],
+  "vertexArchetypes": [
+    {
+      "icon": "<circle r=\"3\" cx=\"6\" cy=\"3\" fill=\"black\" stroke-width=\"0\"/><path d=\"M 1 10 A 6 4 0 0 1 11 10 L 11 15 L 1 15\" fill=\"black\" stroke-width=\"0\"/>",
+      "name": "Person",
+      "text": ""
+    },
+    {
+      "icon": "<path d=\"M 1 0 L 3 0 A 2 1 0 0 0 9 0 L 11 0, 11 15, 9 15 A 2 1 0 0 0 3 15 L 1 15 Z\" stroke=\"black\" fill=\"none\" stroke-linejoin=\"round\"/><line x1=\"1\" y1=\"6\" x2=\"11\" y2=\"6\" stroke=\"black\" stroke-width=\"0.5\" stroke-dasharray=\"1,1\" stroke-linecap=\"round\"/>",
+      "name": "Ticket",
+      "text": ""
+    },
+    {
+      "icon": "<polygon points=\"0.5,0.5 7.5,0.5 11.5,4.5 11.5,14.5 0.5,14.5\" fill=\"white\" stroke=\"black\" stroke-linejoin=\"round\" /><polygon points=\"7.5,0.5 11.5,4.5 7.5,4.5\" fill=\"gray\" stroke=\"black\" stroke-linejoin=\"round\" />",
+      "name": "File",
+      "text": ""
+    },
+    {
+      "icon": "<text x=\"6\" y=\"7\" font-weight=\"bold\" style=\"font-family: serif !important; text-anchor: middle\">W</text>",
+      "name": "Wiki",
+      "text": ""
+    },
+    {
+      "icon": "<polygon points=\"1,4 5,4 3,1\" fill=\"black\" stroke=\"black\" stroke-linejoin=\"round\" /><line x1=\"3\" y1=\"2\" x2=\"3\" y2=\"13\" stroke=\"black\"/><polygon points=\"7,11 11,11 9,14\" fill=\"black\" stroke=\"black\" stroke-linejoin=\"round\" /><line x1=\"9\" y1=\"2\" x2=\"9\" y2=\"13\" stroke=\"black\"/>",
+      "name": "Change",
+      "text": ""
+    },
+    {
+      "icon": "<circle r=\"4\" cx=\"6\" cy=\"7.5\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"2\"/><line x1=\"6\" y1=\"1\" x2=\"6\" y2=\"3.5\" stroke=\"black\" stroke-width=\"2\" stroke-linecap=\"round\"/><line x1=\"6\" y1=\"11.5\" x2=\"6\" y2=\"14\" stroke=\"black\" stroke-width=\"2\" stroke-linecap=\"round\"/>",
+      "name": "Commit",
+      "text": ""
+    },
+    {
+      "icon": "<polygon points=\"0.5,0.5 7.5,0.5 11.5,4.5 11.5,14.5 0.5,14.5\" fill=\"white\" stroke=\"black\" stroke-linejoin=\"round\" /><polygon points=\"7.5,0.5 11.5,4.5 7.5,4.5\" fill=\"gray\" stroke=\"black\" stroke-linejoin=\"round\" /><ellipse cx=\"5\" cy=\"7\" rx=\"3\" ry=\"1\" stroke=\"black\" fill=\"transparent\" stroke-width=\"0.5\"/><path d=\"M 2 7 L 2 12 A 3 1 0 0 0 8 12 L 8 7\" stroke-width=\"0.5\" stroke=\"black\" fill=\"transparent\"/><path d=\"M 2 8.66 A 3 1 0 0 0 8 8.66\" stroke-width=\"0.5\" stroke=\"black\" fill=\"transparent\"/><path d=\"M 2 10.33 A 3 1 0 0 0 8 10.33\" stroke-width=\"0.5\" stroke=\"black\" fill=\"transparent\"/>",
+      "name": "RepoFile",
+      "text": ""
+    }
+  ],
+  "vertices": [
+    {
+      "archetype": 0,
+      "attributes": [
+        [
+          "Name",
+          "Petr Pícha"
+        ],
+        [
+          "Identities",
+          "Petr Pícha, petrpicha48, ppicha"
+        ],
+        [
+          "Emails",
+          "petrpicha48@seznam.cz"
+        ],
+        [
+          "Roles",
+          "Mentor, Developer, Team leader, Customer, Project admin"
+        ],
+        [
+          "Role classes",
+          "MENTOR, DEVELOPER, PROJECTMANAGER, STAKEHOLDER, STAKEHOLDER"
+        ],
+        [
+          "Role super classes",
+          "STAKEHOLDER, TEAMMEMBER, MANAGEMENT, STAKEHOLDER, STAKEHOLDER"
+        ]
+      ],
+      "id": 0,
+      "text": "",
+      "name": "Petr Pícha",
+      "position": {
+        "x": 1283,
+        "y": 146
+      }
+    },
+    {
+      "archetype": 0,
+      "attributes": [
+        [
+          "Name",
+          "Jan Albl"
+        ],
+        [
+          "Identities",
+          "Jan Albl, alblj"
+        ],
+        [
+          "Emails",
+          "Jan Albl, alblj@students.zcu.cz"
+        ],
+        [
+          "Roles",
+          "Developer"
+        ],
+        [
+          "Role classes",
+          "DEVELOPER"
+        ],
+        [
+          "Role super classes",
+          "TEAMMEMBER"
+        ]
+      ],
+      "id": 1,
+      "text": "",
+      "name": "Jan Albl",
+      "position": {
+        "x": 1094,
+        "y": 1037
+      }
+    },
+    {
+      "archetype": 0,
+      "attributes": [
+        [
+          "Name",
+          "Petr Mayr"
+        ],
+        [
+          "Identities",
+          "Petr Mayr, pmayr"
+        ],
+        [
+          "Emails",
+          "Petr Mayr, pmayr@students.zcu.cz"
+        ],
+        [
+          "Roles",
+          "Developer, Team leader"
+        ],
+        [
+          "Role classes",
+          "DEVELOPER, PROJECTMANAGER"
+        ],
+        [
+          "Role super classes",
+          "TEAMMEMBER, MANAGEMENT"
+        ]
+      ],
+      "id": 2,
+      "text": "",
+      "name": "Petr Mayr",
+      "position": {
+        "x": 776.909090909091,
+        "y": 303.6363636363636
+      }
+    },
+    {
+      "archetype": 0,
+      "attributes": [
+        [
+          "Name",
+          "Tomáš Matějka"
+        ],
+        [
+          "Identities",
+          "Tomáš Matějka, matejka"
+        ],
+        [
+          "Emails",
+          "Tomáš Matějka, matejka@students.zcu.cz"
+        ],
+        [
+          "Roles",
+          "Developer"
+        ],
+        [
+          "Role classes",
+          "DEVELOPER"
+        ],
+        [
+          "Role super classes",
+          "TEAMMEMBER"
+        ]
+      ],
+      "id": 3,
+      "text": "",
+      "name": "Tomáš Matějka",
+      "position": {
+        "x": 843,
+        "y": 680
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "Uživatelská_dokumentace"
+        ],
+        [
+          "Author",
+          "Milan Široký"
+        ],
+        [
+          "Created",
+          "1492086696000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/Uživatelská_dokumentace"
+        ]
+      ],
+      "id": 291,
+      "text": "",
+      "name": "Uživatelská_dokumentace",
+      "position": {
+        "x": 380.4545454545455,
+        "y": 437.09090909090907
+      }
+    },
+    {
+      "archetype": 0,
+      "attributes": [
+        [
+          "Name",
+          "Milan Široký"
+        ],
+        [
+          "Identities",
+          "Milan Široký, milan.siroky, milan2"
+        ],
+        [
+          "Emails",
+          "Milan Široký, milan2@students.zcu.cz"
+        ],
+        [
+          "Roles",
+          "Developer"
+        ],
+        [
+          "Role classes",
+          "DEVELOPER"
+        ],
+        [
+          "Role super classes",
+          "TEAMMEMBER"
+        ]
+      ],
+      "id": 4,
+      "text": "",
+      "name": "Milan Široký",
+      "position": {
+        "x": 0.1818181818182092,
+        "y": 503.1818181818183
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "2_iterace_-_retrospektiva"
+        ],
+        [
+          "Author",
+          "Petr Mayr"
+        ],
+        [
+          "Created",
+          "1492615375000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/2_iterace_-_retrospektiva"
+        ]
+      ],
+      "id": 292,
+      "text": "",
+      "name": "2_iterace_-_retrospektiva",
+      "position": {
+        "x": 631.1818181818182,
+        "y": -6.272727272727292
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "Akceptační_scénáře"
+        ],
+        [
+          "Author",
+          "Milan Široký"
+        ],
+        [
+          "Created",
+          "1492075811000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/Akceptační_scénáře"
+        ]
+      ],
+      "id": 293,
+      "text": "",
+      "name": "Akceptační_scénáře",
+      "position": {
+        "x": 8.909090909090931,
+        "y": 700.4545454545453
+      }
+    },
+    {
+      "archetype": 0,
+      "attributes": [
+        [
+          "Name",
+          "unknown"
+        ],
+        [
+          "Identities",
+          "unknown"
+        ],
+        [
+          "Emails",
+          ""
+        ],
+        [
+          "Roles",
+          "member"
+        ],
+        [
+          "Role classes",
+          "TEAMMEMBER"
+        ],
+        [
+          "Role super classes",
+          "TEAMMEMBER"
+        ]
+      ],
+      "id": 6,
+      "text": "",
+      "name": "unknown",
+      "position": {
+        "x": 289,
+        "y": 885
+      }
+    },
+    {
+      "archetype": 2,
+      "attributes": [
+        [
+          "EID",
+          "/download/1126"
+        ],
+        [
+          "Name",
+          "Vize_produktu.docx"
+        ],
+        [
+          "Created",
+          "1490031480000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/attachments/download/1126/Vize_produktu.docx"
+        ],
+        [
+          "MIME",
+          "docx"
+        ],
+        [
+          "Size",
+          "19456"
+        ]
+      ],
+      "id": 294,
+      "text": "",
+      "name": "Vize_produktu.docx",
+      "position": {
+        "x": 683.8181818181818,
+        "y": 427.6363636363636
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "5_iterace"
+        ],
+        [
+          "Author",
+          "Petr Mayr"
+        ],
+        [
+          "Created",
+          "1492615490000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/5_iterace"
+        ]
+      ],
+      "id": 295,
+      "text": "",
+      "name": "5_iterace",
+      "position": {
+        "x": 64.72727272727273,
+        "y": 144.90909090909093
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "4_terace"
+        ],
+        [
+          "Author",
+          "Petr Mayr"
+        ],
+        [
+          "Created",
+          "1492613980000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/4_terace"
+        ]
+      ],
+      "id": 296,
+      "text": "",
+      "name": "4_terace",
+      "position": {
+        "x": 79.00000000000011,
+        "y": 414.7272727272728
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "4_iterace"
+        ],
+        [
+          "Author",
+          "Petr Mayr"
+        ],
+        [
+          "Created",
+          "1492614088000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/4_iterace"
+        ]
+      ],
+      "id": 297,
+      "text": "",
+      "name": "4_iterace",
+      "position": {
+        "x": 74.00000000000001,
+        "y": 211.36363636363637
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "1_iterace"
+        ],
+        [
+          "Author",
+          "Petr Mayr"
+        ],
+        [
+          "Created",
+          "1492614063000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/1_iterace"
+        ]
+      ],
+      "id": 298,
+      "text": "",
+      "name": "1_iterace",
+      "position": {
+        "x": 78.81818181818183,
+        "y": -78.18181818181813
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "Wiki"
+        ],
+        [
+          "Author",
+          "Milan Široký"
+        ],
+        [
+          "Created",
+          "1490006737000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/Wiki"
+        ]
+      ],
+      "id": 299,
+      "text": "",
+      "name": "Wiki",
+      "position": {
+        "x": 386.0909090909091,
+        "y": 609.0909090909091
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "3_iterace"
+        ],
+        [
+          "Author",
+          "Petr Mayr"
+        ],
+        [
+          "Created",
+          "1492614629000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/3_iterace"
+        ]
+      ],
+      "id": 300,
+      "text": "",
+      "name": "3_iterace",
+      "position": {
+        "x": 69.36363636363646,
+        "y": 82.81818181818187
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "Popis_iterací_v_rámci_projektu"
+        ],
+        [
+          "Author",
+          "Milan Široký"
+        ],
+        [
+          "Created",
+          "1492075903000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/Popis_iterací_v_rámci_projektu"
+        ]
+      ],
+      "id": 301,
+      "text": "",
+      "name": "Popis_iterací_v_rámci_projektu",
+      "position": {
+        "x": -543.9999999999999,
+        "y": 335.72727272727275
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "1_terace"
+        ],
+        [
+          "Author",
+          "Petr Mayr"
+        ],
+        [
+          "Created",
+          "1492613227000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/1_terace"
+        ]
+      ],
+      "id": 302,
+      "text": "",
+      "name": "1_terace",
+      "position": {
+        "x": 75.99999999999999,
+        "y": 352.2727272727273
+      }
+    },
+    {
+      "archetype": 3,
+      "attributes": [
+        [
+          "Name",
+          "2_iterace"
+        ],
+        [
+          "Author",
+          "Petr Mayr"
+        ],
+        [
+          "Created",
+          "1492614850000"
+        ],
+        [
+          "URL",
+          "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/2_iterace"
+        ]
+      ],
+      "id": 303,
+      "text": "",
+      "name": "2_iterace",
+      "position": {
+        "x": 72.0909090909091,
+        "y": 4.363636363636431
+      }
+    }
+  ],
+  "edges": [
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1591
+        }
+      ],
+      "from": 301,
+      "to": 298,
+      "text": "",
+      "id": 1
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1595
+        }
+      ],
+      "from": 301,
+      "to": 297,
+      "text": "",
+      "id": 2
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1500
+        }
+      ],
+      "from": 303,
+      "to": 301,
+      "text": "",
+      "id": 3
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1596
+        }
+      ],
+      "from": 301,
+      "to": 296,
+      "text": "",
+      "id": 4
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1593
+        }
+      ],
+      "from": 301,
+      "to": 303,
+      "text": "",
+      "id": 5
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1592
+        }
+      ],
+      "from": 301,
+      "to": 302,
+      "text": "",
+      "id": 6
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1594
+        }
+      ],
+      "from": 301,
+      "to": 300,
+      "text": "",
+      "id": 7
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1540
+        }
+      ],
+      "from": 297,
+      "to": 301,
+      "text": "",
+      "id": 8
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1501
+        }
+      ],
+      "from": 303,
+      "to": 292,
+      "text": "",
+      "id": 9
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1649
+        },
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1650
+        },
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1651
+        }
+      ],
+      "from": 299,
+      "to": 291,
+      "text": "",
+      "id": 10
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "parent of:PARENTOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1597
+        }
+      ],
+      "from": 301,
+      "to": 295,
+      "text": "",
+      "id": 11
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1564
+        }
+      ],
+      "from": 295,
+      "to": 301,
+      "text": "",
+      "id": 12
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1516
+        }
+      ],
+      "from": 292,
+      "to": 303,
+      "text": "",
+      "id": 13
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1485
+        }
+      ],
+      "from": 302,
+      "to": 301,
+      "text": "",
+      "id": 14
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1768
+        }
+      ],
+      "from": 4,
+      "to": 293,
+      "text": "",
+      "id": 15
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1766
+        }
+      ],
+      "from": 2,
+      "to": 295,
+      "text": "",
+      "id": 16
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1531
+        }
+      ],
+      "from": 300,
+      "to": 301,
+      "text": "",
+      "id": 17
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1772
+        }
+      ],
+      "from": 4,
+      "to": 291,
+      "text": "",
+      "id": 18
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1758
+        }
+      ],
+      "from": 2,
+      "to": 292,
+      "text": "",
+      "id": 19
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1752
+        }
+      ],
+      "from": 2,
+      "to": 298,
+      "text": "",
+      "id": 20
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1762
+        }
+      ],
+      "from": 2,
+      "to": 297,
+      "text": "",
+      "id": 21
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1764
+        }
+      ],
+      "from": 2,
+      "to": 296,
+      "text": "",
+      "id": 22
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1470
+        }
+      ],
+      "from": 298,
+      "to": 301,
+      "text": "",
+      "id": 23
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1756
+        }
+      ],
+      "from": 2,
+      "to": 303,
+      "text": "",
+      "id": 24
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1754
+        }
+      ],
+      "from": 2,
+      "to": 302,
+      "text": "",
+      "id": 25
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1774
+        }
+      ],
+      "from": 4,
+      "to": 299,
+      "text": "",
+      "id": 26
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1770
+        }
+      ],
+      "from": 2,
+      "to": 301,
+      "text": "",
+      "id": 27
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1555
+        }
+      ],
+      "from": 296,
+      "to": 301,
+      "text": "",
+      "id": 28
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 6,
+          "attributes": [
+            [
+              "Relation",
+              "last modified"
+            ]
+          ],
+          "id": 1760
+        }
+      ],
+      "from": 2,
+      "to": 300,
+      "text": "",
+      "id": 29
+    },
+    {
+      "subedgeInfo": [
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1632
+        },
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1633
+        },
+        {
+          "archetype": 3,
+          "attributes": [
+            [
+              "Relation",
+              "child of:CHILDOF:HIERARCHICAL"
+            ]
+          ],
+          "id": 1634
+        }
+      ],
+      "from": 291,
+      "to": 299,
+      "text": "",
+      "id": 30
+    }
+  ],
+  "possibleEnumValues": {
+    "7": [
+      "Mentor",
+      "Developer",
+      "Team leader",
+      "Customer",
+      "Project admin",
+      "member"
+    ],
+    "8": [
+      "Milan Široký",
+      "Petr Mayr",
+      "Jan Albl",
+      "Tomáš Matějka"
+    ],
+    "12": [
+      "Tomáš Matějka",
+      "Milan Široký",
+      "Jan Albl",
+      "Petr Mayr",
+      "unknown"
+    ],
+    "13": [
+      "Task",
+      "Support"
+    ],
+    "14": [
+      "High",
+      "Normal",
+      "Low"
+    ],
+    "15": [
+      "unassigned"
+    ],
+    "18": [
+      "DCI - 3. iterace",
+      "DCI - 4. iterace",
+      "DCI - 1. iterace",
+      "DCI - 5. iterace",
+      "DCI - 2. iterace"
+    ],
+    "19": [
+      "Closed"
+    ],
+    "20": [
+      "unassigned"
+    ],
+    "24": [
+      "implementace"
+    ],
+    "30": [
+      "docx"
+    ],
+    "32": [
+      "is author of",
+      "created by",
+      "is responsible for",
+      "is assigned to",
+      "has attached:RELATESTO:GENERAL",
+      "mentions:RELATESTO:GENERAL",
+      "mentioned by:RELATESTO:GENERAL",
+      "adds",
+      "added by",
+      "added",
+      "logtimes",
+      "logtimeed by",
+      "logtimeed",
+      "modifys",
+      "modifyed by",
+      "modifyed",
+      "comments",
+      "commented by",
+      "commented",
+      "attached to:RELATESTO:GENERAL",
+      "child of:CHILDOF:HIERARCHICAL",
+      "parent of:PARENTOF:HIERARCHICAL",
+      "last modified",
+      "last modified by"
+    ],
+    "33": [
+      "MENTOR",
+      "DEVELOPER",
+      "PROJECTMANAGER",
+      "STAKEHOLDER",
+      "STAKEHOLDER",
+      "TEAMMEMBER"
+    ],
+    "34": [
+      "STAKEHOLDER",
+      "TEAMMEMBER",
+      "MANAGEMENT",
+      "STAKEHOLDER",
+      "STAKEHOLDER"
+    ],
+    "35": [
+      "TASK",
+      "UNASSIGNED"
+    ],
+    "36": [
+      "HIGH",
+      "NORMAL",
+      "LOW"
+    ],
+    "37": [
+      "HIGH",
+      "NORMAL",
+      "LOW"
+    ],
+    "38": [
+      "HIGH",
+      "NORMAL",
+      "LOW"
+    ],
+    "39": [
+      "UNASSIGNED"
+    ],
+    "40": [
+      "DONE"
+    ],
+    "41": [
+      "CLOSED"
+    ],
+    "42": [
+      "UNASSIGNED"
+    ],
+    "43": [
+      "UNASSIGNED"
+    ]
+  },
+  "groups": [
+    {
+      "id": 1,
+      "name": "Group 1",
+      "verticesId": [
+        292,
+        294,
+        302,
+        296
+      ],
+      "verticesEdgeFromId": [],
+      "verticesEdgeToId": [],
+      "position": {
+        "x": 631.1818181818182,
+        "y": -6.272727272727292
+      }
+    }
+  ],
+  "sideBar": [
+    {
+      "id": "group-1",
+      "isIconsDisplayed": false
+    }
+  ],
+  "highlightedVertex": "",
+  "highlightedEdge": ""
+}
