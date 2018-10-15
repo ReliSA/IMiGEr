@@ -341,14 +341,16 @@ function App() {
 			loadGraphDataPromise = $.getJSON(self.API.loadGraphData);
 
 		} else {
-			getDiagramPromise = $.getJSON(self.API.getDiagram + '?id=' + diagramId);
-
-			loadGraphDataPromise = getDiagramPromise.then(function(data) {
+			loadGraphDataPromise = $.getJSON(self.API.getDiagram + '?id=' + diagramId).then(function(data) {
 				self.diagram = new Diagram(data);
 
 				document.title = self.NAME + ' - ' + self.diagram.name;
 
-				return $.getJSON(self.API.loadGraphData + '?diagramId=' + diagramId);
+				// return graph data as a new promise
+				var deferred = new $.Deferred();
+				deferred.resolve(JSON.parse(data.graph_json));
+
+				return deferred.promise();
 			});
 		}
 
