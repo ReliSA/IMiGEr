@@ -26,6 +26,7 @@
 		<script src="js/components/edgePopover.js"></script>
 		<script src="js/components/floatingPoint.js"></script>
 		<script src="js/components/group.js"></script>
+		<script src="js/components/groupVertexList.js"></script>
 		<script src="js/components/minimap.js"></script>
 		<script src="js/components/modalWindow.js"></script>
 		<script src="js/components/sidebar.js"></script>

@@ -12,6 +12,7 @@ function Group(props) {
 	this.symbol = app.markSymbol.getMarkSymbol();
 
 	var rootElement;
+	var vertexListComponent;
 
 	var position = new Coordinates(0, 0);
 	var size = {
@@ -82,6 +83,10 @@ function Group(props) {
 
 		app.viewportComponent.removeVertex(vertex);
 
+		if (vertexListComponent) {
+			vertexListComponent.appendChild(vertex);
+		}
+
 		vertexList.push(vertex);
         if(isIconShown) showIconClick.bind(this)(null);
 	};
@@ -111,6 +116,10 @@ function Group(props) {
 		}
 
 		app.viewportComponent.addVertex(vertex);
+
+		if (vertexListComponent) {
+			vertexListComponent.removeChild(vertex);
+		}
 
 		vertexList.splice(vertexList.indexOf(vertex), 1);
 	};
@@ -637,6 +646,14 @@ function Group(props) {
 		nameText.appendChild(document.createTextNode(this.name));
 		nameText.addEventListener('click', nameClick.bind(this));
 		rootElement.appendChild(nameText);
+
+		// vertex list
+		vertexListComponent = new GroupVertexList(this);
+		rootElement.appendChild(vertexListComponent.render());
+
+		vertexList.forEach(function(vertex) {
+			vertexListComponent.appendChild(vertex);
+		}, this);
 
 		// buttons
 		var buttonGroup = app.utils.createHtmlElement('div', {
