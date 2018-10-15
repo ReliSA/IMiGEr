@@ -510,12 +510,18 @@ function Group(props) {
 		}));
 
 		// name
-		var nameText = app.utils.createSvgElement('text', {
+		var nameTextInner = app.dom.createHtmlElement('span', {
 			'class': 'group-name',
-			'x': 5,
-			'y': 15,
 		});
-		nameText.appendChild(document.createTextNode(this.name));
+		nameTextInner.appendChild(app.dom.createTextElement(this.name));
+
+		var nameText = app.utils.createSvgElement('foreignObject', {
+			'x': 4,
+			'y': 4,
+			'width': 46,
+			'height': 16,
+		});
+		nameText.appendChild(nameTextInner);
 		nameText.addEventListener('click', nameClick.bind(this));
 		rootElement.appendChild(nameText);
 
@@ -535,21 +541,21 @@ function Group(props) {
 		dissolveButton.appendChild(app.utils.createSvgElement('rect', {
 			'rx': 4,
 			'ry': 4,
-			'x': 52,
+			'x': 54,
 			'y': 4,
 			'height': 14,
 			'width': 14,
 		}));
 		dissolveButton.appendChild(app.utils.createSvgElement('line', {
-			'x1': 55,
+			'x1': 57,
 			'y1': 7,
-			'x2': 63,
+			'x2': 65,
 			'y2': 15,
 		}));
 		dissolveButton.appendChild(app.utils.createSvgElement('line', {
-			'x1': 63,
+			'x1': 65,
 			'y1': 7,
-			'x2': 55,
+			'x2': 57,
 			'y2': 15,
 		}));
 		dissolveButton.addEventListener('click', dissolveClick.bind(this));
@@ -731,7 +737,7 @@ function Group(props) {
 		if (newValue !== null) {
 			this.name = newValue;
 
-			rootElement.querySelector('.group-name').textContent = this.name;
+			rootElement.querySelector('.group-name').innerText = this.name;
 		}
 	}
 

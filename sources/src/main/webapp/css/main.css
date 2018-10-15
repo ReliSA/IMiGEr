@@ -449,6 +449,11 @@ form input[type="checkbox"] {
 }
 
 .viewport .group .group-name {
+	display: inline-block;
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	cursor: text;
 }
 
@@ -607,11 +612,16 @@ form input[type="checkbox"] {
 }
 
 .sidebar .group-name {
-    position: absolute;
-    top: 0;
-    left: 70px;
-    font-size: 1.2em;
+	position: absolute;
+	top: 0;
+	left: 70px;
+	width: 230px;
+	font-size: 1.2em;
 	line-height: 1.6rem;
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	cursor: text;
 }
 
