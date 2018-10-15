@@ -21,8 +21,6 @@ function App() {
 	this.cookies = new Cookies;
 	/** @prop {MarkSymbol} markSymbol */
 	this.markSymbol = new MarkSymbol;
-	/** @prop {Filter} filter */
-	this.filter = new Filter;
 
 	/** @prop {string} NAME Application name. */
 	this.NAME = document.title;
@@ -94,7 +92,6 @@ function App() {
 	this.reset = function() {
 		app.viewportComponent.reset();
 		app.sidebarComponent.reset();
-        app.filter.resetSelectors();
 
 		app.edgeList = [];
 		app.nodeList = [];
@@ -164,34 +161,6 @@ function App() {
 
 		document.getElementById('zoomValue').innerText = Math.round(self.zoom.scale * 100) + '%';
 		document.getElementById('graph').setAttribute('transform', 'scale(' + self.zoom.scale + ')');
-
-		// filters
-		document.getElementById('toggleFilters').addEventListener('click', function(e) {
-			document.getElementById('filters').classList.toggle('hidden');
-		});
-
-
-		document.getElementById('filterTypeSelection').addEventListener('change', function (e) {
-			var selected = this.value;
-			if(selected === 'Archetype') {
-                document.getElementById('vertexArchetypeSelection').classList.remove('hidden');
-                document.getElementById('logicOperationSelection').classList.add('hidden');
-                document.getElementById('attributeTypeSelection').classList.add('hidden');
-                document.getElementById('matchTypeSelection').classList.remove('hidden');
-
-            } else if (selected === 'Attribute') {
-                document.getElementById('vertexArchetypeSelection').classList.add('hidden');
-                document.getElementById('logicOperationSelection').classList.add('hidden');
-                document.getElementById('attributeTypeSelection').classList.remove('hidden');
-                document.getElementById('matchTypeSelection').classList.remove('hidden');
-
-			} else if (selected === 'Logical') {
-                document.getElementById('vertexArchetypeSelection').classList.add('hidden');
-				document.getElementById('logicOperationSelection').classList.remove('hidden');
-                document.getElementById('attributeTypeSelection').classList.add('hidden');
-                document.getElementById('matchTypeSelection').classList.add('hidden');
-            }
-        });
 
 		// search
 		document.getElementById('searchText').addEventListener('keyup', function(e) {
@@ -360,8 +329,6 @@ function App() {
 			self.graphLoader.run(data);
 
 			self.loader.disable();
-
-			self.filter.initializeSelectors(self.archetype.vertex);
 
 		}, function(xhr) {
 			switch (xhr.status) {

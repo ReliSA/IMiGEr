@@ -199,13 +199,6 @@ form input[type="checkbox"] {
     height: 38px;
 }
 
-.navbar .btn.toggle-filters {
-	background-color: #cfeafe;
-	border: 1px solid gray;
-	padding: 0.5em;
-	outline: 0;
-}
-
 .navbar .btn.back-to-upload {
     background: url("./../images/icon_back.png") no-repeat scroll 0px 2px transparent;
 }

@@ -44,7 +44,6 @@
 		<script src="js/constants.js"></script>
 		<script src="js/coordinates.js"></script>
 		<script src="js/diagram.js"></script>
-		<script src="js/filter.js"></script>
 		<script src="js/forceDirected.js"></script>
 		<script src="js/graphLoader.js"></script>
 		<script src="js/graphExporter.js"></script>
@@ -75,12 +74,6 @@
 							<button class="btn zoom" id="zoomOut" title="zoom-"><img src="images/zoom_out.png" alt="zoom-"></button>
 							<span class="zoom-value" id="zoomValue"></span>
 							<button class="btn zoom" id="zoomIn" title="zoom+"><img src="images/zoom_in.png" alt="zoom+"></button>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<button class="btn toggle-filters" id="toggleFilters">Filters</button>
 						</li>
 						<li>
 							<hr class="navbar-separator">
@@ -168,44 +161,6 @@
 					</ul>
 				</nav>
 			</header>
-
-			<div class="filterBar hidden" id="filters">
-				<div class="filterbar-nav">
-					<button class="button buttonClassic" id="addFilter">Add filter</button>
-					<button class="button buttonClassic" id="deleteFilter">Delete filter</button>
-					<select id="filterTypeSelection">
-						<option value="Archetype"> Archetype </option>
-						<option value="Attribute"> Attribute </option>
-						<option value="Logical"> Logical </option>
-					</select>
-					<select id="vertexArchetypeSelection"></select>
-					<select class="hidden" id="attributeTypeSelection">
-						<option value="Enum"> Enum </option>
-						<option value="String"> String </option>
-						<option value="Number"> Number </option>
-						<option value="Date"> Date </option>
-					</select>
-					<select class="hidden" id="logicOperationSelection">
-						<option value="And"> And </option>
-						<option value="Or"> Or </option>
-						<option value="Xor"> Xor </option>
-					</select>
-					<select id="matchTypeSelection">
-						<option value="Match"> Match </option>
-						<option value="NotMatch"> Not Match </option>
-					</select>
-				</div>
-
-				<div class="vertex-tree" id="vertexTree">
-					<ul class="vertexTreeList">
-						<li class="vertexTreeItem" id="1">
-							<span>
-								Vertex Filters
-							</span>
-						</li>
-					</ul>
-				</div>
-			</div>
 
 			<main class="graph-content" id="content"></main>
 		</div>
