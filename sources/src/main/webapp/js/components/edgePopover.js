@@ -17,10 +17,10 @@ function EdgePopover() {
 		subedgeInfoList.filter(function(subedgeInfo) {
 			return subedgeInfo.attributes.length > 0;
 		}).forEach(function(subedgeInfo) {
-			var listItem = app.dom.createHtmlElement('li', {});
-			listItem.appendChild(app.dom.createTextElement(app.archetype.edge[subedgeInfo.archetype].name));
+			var listItem = DOM.createHtmlElement('li');
+			listItem.appendChild(DOM.createTextElement(app.archetype.edge[subedgeInfo.archetype].name));
 
-			var sublist = app.dom.createHtmlElement('ul', {});
+			var sublist = DOM.createHtmlElement('ul');
 			listItem.appendChild(sublist);
 
 			detailsListElement.appendChild(listItem);
@@ -61,25 +61,25 @@ function EdgePopover() {
 	 * @returns {Element} HTML DOM element.
 	 */
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
+		rootElement = DOM.createHtmlElement('div', {
 			'class': 'popover edge-popover hidden',
 		});
-		rootElement.addEventListener('wheel', app.utils.stopPropagation);
-		rootElement.addEventListener('mousedown', app.utils.stopPropagation);
+		rootElement.addEventListener('wheel', Utils.stopPropagation);
+		rootElement.addEventListener('mousedown', Utils.stopPropagation);
 		rootElement.addEventListener('mouseleave', this.close.bind(this));
 
-		var popoverTitle = app.utils.createHtmlElement('span', {
+		var popoverTitle = DOM.createHtmlElement('span', {
 			'class': 'popover-title',
 		});
 		popoverTitle.appendChild(document.createTextNode('Edge details'));
 		rootElement.appendChild(popoverTitle);
 
-		var popoverContent = app.utils.createHtmlElement('div', {
+		var popoverContent = DOM.createHtmlElement('div', {
 			'class': 'popover-content',
 		});
 		rootElement.appendChild(popoverContent);
 
-		detailsListElement = app.utils.createHtmlElement('ul', {});
+		detailsListElement = DOM.createHtmlElement('ul');
 		popoverContent.appendChild(detailsListElement);
 
 		return rootElement;

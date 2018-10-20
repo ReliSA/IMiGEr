@@ -36,20 +36,20 @@ function VertexContextMenuList() {
 			throw new Error('Vertex is already a member of some group.');
 		}
 
-		var nodeListItemElement = app.utils.createHtmlElement('li', {
+		var nodeListItemElement = DOM.createHtmlElement('li', {
 			'title': node.name,
 		});
 		nodeListItemElement.addEventListener('click', nodeListItemClick.bind(node));
 		listElement.appendChild(nodeListItemElement);
 
-		var nodeSymbolText = app.utils.createHtmlElement('span', {
+		var nodeSymbolText = DOM.createHtmlElement('span', {
 			'class': 'group-symbol',
 			'style': 'background-color: ' + node.symbol[1] + ';',
 		});
 		nodeSymbolText.appendChild(document.createTextNode(node.symbol[0]));
 		nodeListItemElement.appendChild(nodeSymbolText);
 
-		var nodeNameText = app.utils.createHtmlElement('span', {
+		var nodeNameText = DOM.createHtmlElement('span', {
 			'class': 'group-name',
 		});
 		nodeNameText.appendChild(document.createTextNode(node.name));
@@ -77,12 +77,12 @@ function VertexContextMenuList() {
 	 * @returns {Element} HTML DOM element.
 	 */
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
+		rootElement = DOM.createHtmlElement('div', {
 			'class': 'context-menu hidden',
 		});
-		rootElement.addEventListener('mousedown', app.utils.stopPropagation);
+		rootElement.addEventListener('mousedown', Utils.stopPropagation);
 
-		listElement = app.utils.createHtmlElement('ul', {});
+		listElement = DOM.createHtmlElement('ul');
 		rootElement.appendChild(listElement);
 
 		return rootElement;

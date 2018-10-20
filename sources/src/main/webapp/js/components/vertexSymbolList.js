@@ -13,12 +13,12 @@ function VertexSymbolList() {
 	 * @param {array} symbol Symbol to be added to the list.
 	 */
 	this.appendChild = function(symbol) {
-		var symbolGroup = app.utils.createSvgElement('g', {
+		var symbolGroup = DOM.createSvgElement('g', {
 			'class': `neighbour-node-symbol symbol-${symbol[0]}`,
 		});
 		rootElement.appendChild(symbolGroup);
 
-		symbolGroup.appendChild(app.utils.createSvgElement('rect', {
+		symbolGroup.appendChild(DOM.createSvgElement('rect', {
 			'x': 0,
 			'y': 0,
 			'width': width,
@@ -26,7 +26,7 @@ function VertexSymbolList() {
 			'fill': symbol[1],
 		}));
 
-		var symbolText = app.utils.createSvgElement('text', {
+		var symbolText = DOM.createSvgElement('text', {
 			'x': 6,
 			'y': 15,
 		});
@@ -53,7 +53,7 @@ function VertexSymbolList() {
 	 * @param {Element} symbol SVG DOM element.
 	 */
 	this.render = function(symbol) {
-		rootElement = app.utils.createSvgElement('g', {
+		rootElement = DOM.createSvgElement('g', {
 			'transform': 'translate(0, 30)',
 		});
 

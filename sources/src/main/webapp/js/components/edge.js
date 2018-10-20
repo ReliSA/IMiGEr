@@ -191,14 +191,14 @@ function Edge(props) {
 	 * @returns {Element} SVG DOM element.
 	 */
 	this.render = function() {
-		rootElement = app.utils.createSvgElement('g', {
+		rootElement = DOM.createSvgElement('g', {
 			'class': 'edge',
 			'data-id': props.id,
 			'data-from': props.from,
 			'data-to': props.to,
 		});
 
-		rootElement.appendChild(app.utils.createSvgElement('line', {
+		rootElement.appendChild(DOM.createSvgElement('line', {
 			'class': 'line',
 			'x1': start.x,
 			'y1': start.y,
@@ -208,7 +208,7 @@ function Edge(props) {
 			'stroke-width': 5,
 		}));
 		
-		rootElement.appendChild(app.utils.createSvgElement('line', {
+		rootElement.appendChild(DOM.createSvgElement('line', {
 			'class': 'line',
 			'x1': start.x,
 			'y1': start.y,
@@ -221,12 +221,12 @@ function Edge(props) {
 		var rotation = getArrowRotation.call(this);
 		
 		// arrow
-		var arrow = app.utils.createSvgElement('g', {
+		var arrow = DOM.createSvgElement('g', {
 			'class': 'arrow',
 			'data-edgeId': this.id,
 			'transform': `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`,
 		});
-		arrow.appendChild(app.utils.createSvgElement('polygon', {
+		arrow.appendChild(DOM.createSvgElement('polygon', {
 			'points': '0,-10 30,0 0,10',
 
 		}));

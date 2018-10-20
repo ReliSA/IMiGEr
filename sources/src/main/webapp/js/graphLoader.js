@@ -9,7 +9,7 @@ function GraphLoader() {
 	 * @throws {InvalidArgumentError} Thrown when either graph data are incomplete.
 	 */
 	this.run  = function(data) {
-		if (app.utils.isUndefined(data.vertices) || app.utils.isUndefined(data.edges)) {
+		if (Utils.isUndefined(data.vertices) || Utils.isUndefined(data.edges)) {
 			throw new InvalidArgumentError('Invalid data.');
 		}
 
@@ -23,21 +23,21 @@ function GraphLoader() {
 		app.possibleEnumValues = data.possibleEnumValues;
 
 		app.archetype.vertex.filter(function(vertexArchetype) {
-			return app.utils.isDefined(vertexArchetype.icon);
+			return Utils.isDefined(vertexArchetype.icon);
 		}).forEach(function(vertexArchetype) {
 			app.viewportComponent.addSvgDefinition('vertexArchetypeIcon-' + vertexArchetype.name, vertexArchetype.icon);
 		});
 
         var highlightedNodeId;
         var highlightedNodeType;
-        if (app.utils.isDefined(data.highlightedVertex) && data.highlightedVertex.length > 0) {
+        if (Utils.isDefined(data.highlightedVertex) && data.highlightedVertex.length > 0) {
             var highlightedNodeAttr = data.highlightedVertex.split("-");
             if (highlightedNodeAttr.length === 2) {
                 highlightedNodeType = highlightedNodeAttr[0];
                 highlightedNodeId = parseInt(highlightedNodeAttr[1], 10);
             }
         }
-        if (app.utils.isDefined(data.highlightedEdge) && data.highlightedEdge.length > 0) {
+        if (Utils.isDefined(data.highlightedEdge) && data.highlightedEdge.length > 0) {
             var highlightedEdgeId = parseInt(data.highlightedEdge, 10);
         }
 
@@ -55,7 +55,7 @@ function GraphLoader() {
 
 			var position = component.position;
 
-			if (position === null || app.utils.isUndefined(position)) {
+			if (position === null || Utils.isUndefined(position)) {
                 // set random
                 vertex.setPosition(new Coordinates(
                     Math.floor(Math.random() * canvasSize),
@@ -127,7 +127,7 @@ function GraphLoader() {
 
 			// position
 			var position = component.position;
-			if (position === null || app.utils.isUndefined(position)) {
+			if (position === null || Utils.isUndefined(position)) {
                 // set random
                 group.setPosition(new Coordinates(
                     Math.floor(Math.random() * canvasSize),
@@ -172,7 +172,7 @@ function GraphLoader() {
 				return idArr[0] === prefix && node.id === idArr[1];
 			});
 
-			if (app.utils.isDefined(node)) {
+			if (Utils.isDefined(node)) {
 				node.exclude(excludedNode.isIconsDisplayed);
 
 				app.sidebarComponent.excludedNodeListComponent.add(node);
@@ -185,12 +185,12 @@ function GraphLoader() {
 		// update status bar
 		app.sidebarComponent.statusBarComponent.setComponentCount(data.vertices.length);
 
-		if (app.utils.isDefined(highlightedEdge)) {
+		if (Utils.isDefined(highlightedEdge)) {
             highlightedEdge.setHighlighted(true);
             highlightedEdge.getFrom().setHighlighted(true);
             highlightedEdge.getTo().setHighlighted(true);
         }
-		if (app.utils.isDefined(highlightedNode)) highlightedNode.setHighlightedWithNeighbours(true);
+		if (Utils.isDefined(highlightedNode)) highlightedNode.setHighlightedWithNeighbours(true);
 	};
 
 }

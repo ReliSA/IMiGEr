@@ -12,8 +12,8 @@ function ModalWindow() {
 	this.open = function() {
 		rootElement.classList.remove('hidden');
 
-		diagramForm.appendChild(app.dom.createHtmlElement('div', { class: 'err_msg' }));
-		diagramForm.appendChild(app.dom.htmlStringToElement(`<table><tbody><tr><td><label for="diagramName">Diagram name:</label></td><td><input type="text" name="diagramName" value="${app.diagram !== null ? app.diagram.name : ''}" id="diagramName" required></td></tr><tr><td><label for="diagramPublic">Is public:</label></td><td><input type="checkbox" name="diagramPublic" value="1" id="diagramPublic" ${app.diagram !== null && app.diagram.public ? 'checked' : ''}></td></tr><tr><td></td><td><button type="submit" class="button">Save</button></td></tr></tbody></table>`));
+		diagramForm.appendChild(DOM.createHtmlElement('div', { class: 'err_msg' }));
+		diagramForm.appendChild(DOM.htmlStringToElement(`<table><tbody><tr><td><label for="diagramName">Diagram name:</label></td><td><input type="text" name="diagramName" value="${app.diagram !== null ? app.diagram.name : ''}" id="diagramName" required></td></tr><tr><td><label for="diagramPublic">Is public:</label></td><td><input type="checkbox" name="diagramPublic" value="1" id="diagramPublic" ${app.diagram !== null && app.diagram.public ? 'checked' : ''}></td></tr><tr><td></td><td><button type="submit" class="button">Save</button></td></tr></tbody></table>`));
 
 		diagramForm.diagramName.focus();
 	};
@@ -32,25 +32,25 @@ function ModalWindow() {
 	 * @returns {Element} HTML DOM element.
 	 */
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
+		rootElement = DOM.createHtmlElement('div', {
 			'class': 'modal hidden',
 		});
 		rootElement.addEventListener('click', this.close);
 
-		var modalContent = app.utils.createHtmlElement('div', {
+		var modalContent = DOM.createHtmlElement('div', {
 			'class': 'modal-content',
 		});
-		modalContent.addEventListener('click', app.utils.stopPropagation);
+		modalContent.addEventListener('click', Utils.stopPropagation);
 		rootElement.appendChild(modalContent);
 
-		var closeButton = app.utils.createHtmlElement('button', {
+		var closeButton = DOM.createHtmlElement('button', {
 			'class': 'close-button button',
 		});
-		closeButton.appendChild(app.utils.createTextElement('×'));
+		closeButton.appendChild(DOM.createTextElement('×'));
 		closeButton.addEventListener('click', closeButtonClick.bind(this));
 		modalContent.appendChild(closeButton);
 
-		diagramForm = app.dom.createHtmlElement('form', {});
+		diagramForm = DOM.createHtmlElement('form');
 		diagramForm.addEventListener('submit', saveDiagram.bind(this));
 		modalContent.appendChild(diagramForm);
 

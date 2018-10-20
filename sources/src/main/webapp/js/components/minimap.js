@@ -44,20 +44,20 @@ function Minimap() {
 	 * @returns {Element} HTML DOM element.
 	 */
 	this.render = function() {
-		rootElement = app.utils.createSvgElement('svg', {
+		rootElement = DOM.createSvgElement('svg', {
 			'class': 'minimap',
 			'id': 'minimapComponent',
 			'viewBox': `-100 -50 ${width} ${height}`,
 		});
 		rootElement.addEventListener('mousedown', onRootMouseDown.bind(this));
 
-		var graphElement = app.dom.createSvgElement('use', {
+		var graphElement = DOM.createSvgElement('use', {
 			'transform': `scale(${scale})`,
 		});
 		graphElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', useElement);
 		rootElement.appendChild(graphElement);
 
-		viewportElement = app.dom.createSvgElement('rect', {
+		viewportElement = DOM.createSvgElement('rect', {
 			'class': 'minimap-viewport',
 		});
 		viewportElement.addEventListener('mousedown', onViewportMouseDown.bind(this));

@@ -36,7 +36,7 @@ function SidebarUnconnectedNodeList(props) {
 		}
 
 		// unset remove hook
-		node.removeFromSidebarList = app.utils.noop;
+		node.removeFromSidebarList = Utils.noop;
 
 		nodeList.splice(nodeList.indexOf(node), 1);
 
@@ -46,7 +46,7 @@ function SidebarUnconnectedNodeList(props) {
 	};
 
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
+		rootElement = DOM.createHtmlElement('div', {
 			'id': props.id,
 			'class': 'node-container unconnected-nodes ' + (props.class ? props.class : ''),
 		});
@@ -55,20 +55,20 @@ function SidebarUnconnectedNodeList(props) {
 		});
 
 		// title
-		rootElement.appendChild(app.dom.htmlStringToElement('<h2 class="node-container-title">Unconnected vertices</h2>'));
+		rootElement.appendChild(DOM.htmlStringToElement('<h2 class="node-container-title">Unconnected vertices</h2>'));
 
 		// buttons
-		buttonGroup = app.utils.createHtmlElement('div', {
+		buttonGroup = DOM.createHtmlElement('div', {
 			'class': 'button-group',
 		});
 		rootElement.appendChild(buttonGroup);
 
 		// include all button
-		var includeAllButton = app.utils.createHtmlElement('button', {
+		var includeAllButton = DOM.createHtmlElement('button', {
 			'class': 'include-all-button button',
 			'title': 'Display all unconnected nodes in viewport',
 		});
-		includeAllButton.appendChild(app.utils.createHtmlElement('img', {
+		includeAllButton.appendChild(DOM.createHtmlElement('img', {
 			'src': 'images/unconnected/uncon_left.png',
 			'alt': 'Icon of "display all unconnected nodes in viewport" action',
 		}));
@@ -76,11 +76,11 @@ function SidebarUnconnectedNodeList(props) {
 		buttonGroup.appendChild(includeAllButton);
 
 		// exclude all button
-		var excludeAllButton = app.utils.createHtmlElement('button', {
+		var excludeAllButton = DOM.createHtmlElement('button', {
 			'class': 'exclude-all-button button',
 			'title': 'Display all unconnected nodes in sidebar',
 		});
-		excludeAllButton.appendChild(app.utils.createHtmlElement('img', {
+		excludeAllButton.appendChild(DOM.createHtmlElement('img', {
 			'src': 'images/unconnected/uncon_right.png',
 			'alt': 'Icon of "display all unconnected nodes in sidebar" action',
 		}));
@@ -88,7 +88,7 @@ function SidebarUnconnectedNodeList(props) {
 		buttonGroup.appendChild(excludeAllButton);
 
 		// list
-		nodeListElement = app.utils.createHtmlElement('ul', {
+		nodeListElement = DOM.createHtmlElement('ul', {
 			'class': 'node-list',
 		});
 		rootElement.appendChild(nodeListElement);

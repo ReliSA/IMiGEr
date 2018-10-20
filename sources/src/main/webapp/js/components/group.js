@@ -437,7 +437,7 @@ function Group(props) {
 	/**
 	 * Hook function used to remove the group from the sidebar list it is located in before it is moved to the viewport.
 	 */
-	this.removeFromSidebarList = app.utils.noop;
+	this.removeFromSidebarList = Utils.noop;
 
 	/**
 	 * Creates a new DOM element representing the group in memory. The element being created depends on whether the group
@@ -499,7 +499,7 @@ function Group(props) {
 	 * @returns {Element} SVG DOM element.
 	 */
 	function renderIncluded() {
-		rootElement = app.utils.createSvgElement('svg', {
+		rootElement = DOM.createSvgElement('svg', {
 			'class': 'node group',
 			'x': position.x,
 			'y': position.y,
@@ -508,7 +508,7 @@ function Group(props) {
 		rootElement.addEventListener('click', click.bind(this));
 		rootElement.addEventListener('mousedown', mouseDown.bind(this));
 
-		rootElement.appendChild(app.utils.createSvgElement('rect', {
+		rootElement.appendChild(DOM.createSvgElement('rect', {
 			'width': size.width,
 			'height': size.height,
 			'x': 1,
@@ -519,12 +519,12 @@ function Group(props) {
 		}));
 
 		// name
-		var nameTextInner = app.dom.createHtmlElement('span', {
+		var nameTextInner = DOM.createHtmlElement('span', {
 			'class': 'group-name',
 		});
-		nameTextInner.appendChild(app.dom.createTextElement(this.name));
+		nameTextInner.appendChild(DOM.createTextElement(this.name));
 
-		var nameText = app.utils.createSvgElement('foreignObject', {
+		var nameText = DOM.createSvgElement('foreignObject', {
 			'x': 4,
 			'y': 4,
 			'width': 46,
@@ -535,7 +535,7 @@ function Group(props) {
 		rootElement.appendChild(nameText);
 
 		// symbol
-		var symbolText = app.utils.createSvgElement('text', {
+		var symbolText = DOM.createSvgElement('text', {
 			'class': 'group-symbol',
 			'x': 10,
 			'y': 60,
@@ -544,10 +544,10 @@ function Group(props) {
 		rootElement.appendChild(symbolText);
 
 		// dissolve button
-		var dissolveButton = app.utils.createSvgElement('g', {
+		var dissolveButton = DOM.createSvgElement('g', {
 			'class': 'button dissolve-button',
 		});
-		dissolveButton.appendChild(app.utils.createSvgElement('rect', {
+		dissolveButton.appendChild(DOM.createSvgElement('rect', {
 			'rx': 4,
 			'ry': 4,
 			'x': 54,
@@ -555,13 +555,13 @@ function Group(props) {
 			'height': 14,
 			'width': 14,
 		}));
-		dissolveButton.appendChild(app.utils.createSvgElement('line', {
+		dissolveButton.appendChild(DOM.createSvgElement('line', {
 			'x1': 57,
 			'y1': 7,
 			'x2': 65,
 			'y2': 15,
 		}));
-		dissolveButton.appendChild(app.utils.createSvgElement('line', {
+		dissolveButton.appendChild(DOM.createSvgElement('line', {
 			'x1': 65,
 			'y1': 7,
 			'x2': 57,
@@ -577,12 +577,12 @@ function Group(props) {
 	 * @returns {Element} HTML DOM element.
 	 */
 	function renderExcluded() {
-		rootElement = app.utils.createHtmlElement('li', {
+		rootElement = DOM.createHtmlElement('li', {
 			'class': 'node group',
 			'data-id': this.id,
 		});
 
-		var svg = app.utils.createSvgElement('svg', {
+		var svg = DOM.createSvgElement('svg', {
 			'xmlns': 'http://www.w3.org/2000/svg',
 			'height': 60,
 			'width': 46,
@@ -590,26 +590,26 @@ function Group(props) {
 		rootElement.appendChild(svg);
 
 		// related archetypes
-		var relatedArchetypesGroup = app.dom.createSvgElement('g', {
+		var relatedArchetypesGroup = DOM.createSvgElement('g', {
 			'transform': 'translate(10, 15)',
 		});
 		svg.appendChild(relatedArchetypesGroup);
 
 		var archetypeIconOrder = 0;
 		for (var archetypeIndex in relatedArchetypeMap) {
-			var relatedArchetype = app.dom.createSvgElement('g', {
+			var relatedArchetype = DOM.createSvgElement('g', {
 				'class': 'related-archetype',
 				'transform': `translate(0, ${archetypeIconOrder * 20})`,
 			});
 			relatedArchetypesGroup.appendChild(relatedArchetype);
 
 			// counter
-			var relatedArchetypeCounter = app.dom.createSvgElement('text', {});
-			relatedArchetypeCounter.appendChild(app.dom.createTextElement(relatedArchetypeMap[archetypeIndex]));
+			var relatedArchetypeCounter = DOM.createSvgElement('text');
+			relatedArchetypeCounter.appendChild(DOM.createTextElement(relatedArchetypeMap[archetypeIndex]));
 			relatedArchetype.appendChild(relatedArchetypeCounter);
 
 			// icon
-			var relatedArchetypeIcon = app.dom.createSvgElement('use', {
+			var relatedArchetypeIcon = DOM.createSvgElement('use', {
 				'href': '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
 				'class': 'archetype-icon',
 				'transform': `translate(15, -10)`,
@@ -618,7 +618,7 @@ function Group(props) {
 			relatedArchetype.appendChild(relatedArchetypeIcon);
 
 			// line
-			relatedArchetype.appendChild(app.dom.createSvgElement('line', {
+			relatedArchetype.appendChild(DOM.createSvgElement('line', {
 				'x1': 30,
 				'y1': -5,
 				'x2': 36,
@@ -629,7 +629,7 @@ function Group(props) {
 		}
 
 		// symbol
-		var symbolText = app.utils.createHtmlElement('span', {
+		var symbolText = DOM.createHtmlElement('span', {
 			'class': 'group-symbol',
 			'style': 'background-color: ' + this.symbol[1] + ';',
 			'x': 10,
@@ -640,7 +640,7 @@ function Group(props) {
 		rootElement.appendChild(symbolText);
 
 		// name
-		var nameText = app.utils.createHtmlElement('span', {
+		var nameText = DOM.createHtmlElement('span', {
 			'class': 'group-name',
 		});
 		nameText.appendChild(document.createTextNode(this.name));
@@ -656,13 +656,13 @@ function Group(props) {
 		}, this);
 
 		// buttons
-		var buttonGroup = app.utils.createHtmlElement('div', {
+		var buttonGroup = DOM.createHtmlElement('div', {
 			'class': 'button-group',
 		});
 		rootElement.appendChild(buttonGroup);
 
         // show symbol button
-        var showSymbolButton = app.utils.createHtmlElement('button', {
+        var showSymbolButton = DOM.createHtmlElement('button', {
             'class': 'show-symbol-button button',
             'style': 'background-color: ' + this.symbol[1] + ';',
             'title': 'Show symbol next to all neighbouring components',
@@ -672,11 +672,11 @@ function Group(props) {
         buttonGroup.appendChild(showSymbolButton);
 
 		// include button
-		var includeButton = app.utils.createHtmlElement('button', {
+		var includeButton = DOM.createHtmlElement('button', {
 			'class': 'include-button button',
 			'title': 'Display group in viewport',
 		});
-		includeButton.appendChild(app.utils.createHtmlElement('img', {
+		includeButton.appendChild(DOM.createHtmlElement('img', {
 			'src': 'images/button_cancel.png',
 			'alt': 'Icon of "display group in viewport" action',
 		}));

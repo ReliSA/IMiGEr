@@ -17,9 +17,9 @@ function GroupVertexList(parentalGroup) {
 	this.appendChild = function(vertex) {
 		var listItemElement;
 		if (parentalGroup.isExcluded()) {
-			listItemElement = app.utils.createHtmlElement('li', {});
+			listItemElement = DOM.createHtmlElement('li');
 		} else {
-			listItemElement = app.utils.createSvgElement('text', {
+			listItemElement = DOM.createSvgElement('text', {
 				'y': listItemCounter * lineHeight,
 			});
 		}
@@ -49,9 +49,9 @@ function GroupVertexList(parentalGroup) {
 	 */
 	this.render = function() {
 		if (parentalGroup.isExcluded()) {
-			rootElement = app.utils.createHtmlElement('ul', {});
+			rootElement = DOM.createHtmlElement('ul');
 		} else {
-			rootElement = app.utils.createSvgElement('g', {
+			rootElement = DOM.createSvgElement('g', {
 				'transform': 'translate(70, 30)',
 			});
 		}

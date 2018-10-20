@@ -39,7 +39,7 @@ function SidebarExcludedNodeList(props) {
 		}
 
 		// unset remove hook
-		node.removeFromSidebarList = app.utils.noop;
+		node.removeFromSidebarList = Utils.noop;
 
 		nodeList.splice(nodeList.indexOf(node), 1);
 		node.remove(false);
@@ -50,7 +50,7 @@ function SidebarExcludedNodeList(props) {
 	};
 
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
+		rootElement = DOM.createHtmlElement('div', {
 			'id': props.id,
 			'class': 'node-container excluded-nodes ' + (props.class ? props.class : ''),
 		});
@@ -59,20 +59,20 @@ function SidebarExcludedNodeList(props) {
 		});
 
 		// title
-		rootElement.appendChild(app.dom.htmlStringToElement('<h2 class="node-container-title">Excluded components</h2>'));
+		rootElement.appendChild(DOM.htmlStringToElement('<h2 class="node-container-title">Excluded components</h2>'));
 
 		// buttons
-		buttonGroup = app.utils.createHtmlElement('div', {
+		buttonGroup = DOM.createHtmlElement('div', {
 			'class': 'button-group hidden',
 		});
 		rootElement.appendChild(buttonGroup);
 
 		// include all button
-		var includeAllButton = app.utils.createHtmlElement('button', {
+		var includeAllButton = DOM.createHtmlElement('button', {
 			'class': 'include-all-button button',
 			'title': 'Display all excluded nodes in viewport',
 		});
-		includeAllButton.appendChild(app.utils.createHtmlElement('img', {
+		includeAllButton.appendChild(DOM.createHtmlElement('img', {
 			'src': 'images/button_cancel.png',
 			'alt': 'Icon of "display all excluded nodes in viewport" action',
 		}));
@@ -80,41 +80,41 @@ function SidebarExcludedNodeList(props) {
 		buttonGroup.appendChild(includeAllButton);
 
 		// sorting options
-		sortListElement = app.utils.createHtmlElement('ul', {
+		sortListElement = DOM.createHtmlElement('ul', {
 			'class': 'sort-list hidden',
 		});
 		rootElement.appendChild(sortListElement);
 
-		var sortByNameAscListItem = app.utils.createHtmlElement('li', {
+		var sortByNameAscListItem = DOM.createHtmlElement('li', {
 			'class': 'sort-asc',
 		});
-		sortByNameAscListItem.appendChild(app.utils.createTextElement('name'));
+		sortByNameAscListItem.appendChild(DOM.createTextElement('name'));
 		sortByNameAscListItem.addEventListener('click', sortByName.bind(this, 1));
 		sortListElement.appendChild(sortByNameAscListItem);
 
-		var sortByNameDescListItem = app.utils.createHtmlElement('li', {
+		var sortByNameDescListItem = DOM.createHtmlElement('li', {
 			'class': 'sort-desc',
 		});
-		sortByNameDescListItem.appendChild(app.utils.createTextElement('name'));
+		sortByNameDescListItem.appendChild(DOM.createTextElement('name'));
 		sortByNameDescListItem.addEventListener('click', sortByName.bind(this, -1));
 		sortListElement.appendChild(sortByNameDescListItem);
 
-		var sortByCountAscListItem = app.utils.createHtmlElement('li', {
+		var sortByCountAscListItem = DOM.createHtmlElement('li', {
 			'class': 'sort-asc',
 		});
-		sortByCountAscListItem.appendChild(app.utils.createTextElement('#components'));
+		sortByCountAscListItem.appendChild(DOM.createTextElement('#components'));
 		sortByCountAscListItem.addEventListener('click', sortByCount.bind(this, 1));
 		sortListElement.appendChild(sortByCountAscListItem);
 
-		var sortByCountDescListItem = app.utils.createHtmlElement('li', {
+		var sortByCountDescListItem = DOM.createHtmlElement('li', {
 			'class': 'sort-desc',
 		});
-		sortByCountDescListItem.appendChild(app.utils.createTextElement('#components'));
+		sortByCountDescListItem.appendChild(DOM.createTextElement('#components'));
 		sortByCountDescListItem.addEventListener('click', sortByCount.bind(this, -1));
 		sortListElement.appendChild(sortByCountDescListItem);
 
 		// list
-		nodeListElement = app.utils.createHtmlElement('ul', {
+		nodeListElement = DOM.createHtmlElement('ul', {
 			'class': 'node-list',
 		});
 		rootElement.appendChild(nodeListElement);

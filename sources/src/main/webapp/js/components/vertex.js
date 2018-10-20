@@ -438,7 +438,7 @@ function Vertex(props) {
 	/**
 	 * Hook function used to remove the vertex from the sidebar list it is located in before it is moved to the viewport.
 	 */
-	this.removeFromSidebarList = app.utils.noop;
+	this.removeFromSidebarList = Utils.noop;
 
 	/**
 	 * @returns {boolean} True if the vertex is not connected to any other nodes.
@@ -501,7 +501,7 @@ function Vertex(props) {
 	 * @returns {Element} SVG DOM element.
 	 */
 	function renderIncluded() {
-		rootElement = app.utils.createSvgElement('svg', {
+		rootElement = DOM.createSvgElement('svg', {
 			'class': 'node vertex',
 			'x': position.x,
 			'y': position.y,
@@ -509,11 +509,11 @@ function Vertex(props) {
 			'data-name': this.name,
 		});
 		rootElement.addEventListener('click', click.bind(this));
-		rootElement.addEventListener('dblclick', app.utils.stopPropagation);
+		rootElement.addEventListener('dblclick', Utils.stopPropagation);
 		rootElement.addEventListener('contextmenu', contextMenu.bind(this));
 		rootElement.addEventListener('mousedown', mouseDown.bind(this));
 		
-		rootElement.appendChild(app.utils.createSvgElement('rect', {
+		rootElement.appendChild(DOM.createSvgElement('rect', {
 			'height': size.height,
 			'width': size.width + this.countRelatedArchetypes() * relatedArchetypeIconWidth,
 			'x': 1,
@@ -521,7 +521,7 @@ function Vertex(props) {
 		}));
 
 		// archetype icon
-		var archetypeIcon = app.dom.createSvgElement('use', {
+		var archetypeIcon = DOM.createSvgElement('use', {
 			'href': '#vertexArchetypeIcon-' + app.archetype.vertex[this.archetype].name,
 			'class': 'archetype-icon',
 			'transform': 'translate(8, 8)',
@@ -531,7 +531,7 @@ function Vertex(props) {
 		rootElement.appendChild(archetypeIcon);
 
 		// name
-		var nameText = app.utils.createSvgElement('text', {
+		var nameText = DOM.createSvgElement('text', {
 			'fill': 'black',
 			'x': 25,
 			'y': 20,
@@ -540,14 +540,14 @@ function Vertex(props) {
 		rootElement.appendChild(nameText);
 
 		// related archetype icons
-		var relatedArchetypeListContainer = app.dom.createSvgElement('g', {
+		var relatedArchetypeListContainer = DOM.createSvgElement('g', {
 			'transform': `translate(${size.width}, 0)`,
 		});
 		rootElement.appendChild(relatedArchetypeListContainer);
 
 		var archetypeIconOrder = 0;
 		for (var archetypeIndex in relatedArchetypeMap) {
-			var relatedArchetypeIcon = app.utils.createSvgElement('use', {
+			var relatedArchetypeIcon = DOM.createSvgElement('use', {
 				'href': '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
 				'class': 'archetype-icon',
 				'transform': `translate(${archetypeIconOrder * relatedArchetypeIconWidth}, 8)`,
@@ -574,12 +574,12 @@ function Vertex(props) {
 	 * @returns {Element} HTML DOM element.
 	 */
 	function renderExcluded() {
-		rootElement = app.dom.createHtmlElement('li', {
+		rootElement = DOM.createHtmlElement('li', {
 			'class': 'node vertex',
 			'data-id': this.id,
 		});
 
-		var svg = app.dom.createSvgElement('svg', {
+		var svg = DOM.createSvgElement('svg', {
 			'xmlns': 'http://www.w3.org/2000/svg',
 			'height': 60,
 			'width': 46,
@@ -587,26 +587,26 @@ function Vertex(props) {
 		rootElement.appendChild(svg);
 
 		// related archetypes
-		var relatedArchetypesGroup = app.dom.createSvgElement('g', {
+		var relatedArchetypesGroup = DOM.createSvgElement('g', {
 			'transform': 'translate(10, 15)',
 		});
 		svg.appendChild(relatedArchetypesGroup);
 
 		var archetypeIconOrder = 0;
 		for (var archetypeIndex in relatedArchetypeMap) {
-			var relatedArchetype = app.dom.createSvgElement('g', {
+			var relatedArchetype = DOM.createSvgElement('g', {
 				'class': 'related-archetype',
 				'transform': `translate(0, ${archetypeIconOrder * 20})`,
 			});
 			relatedArchetypesGroup.appendChild(relatedArchetype);
 
 			// counter
-			var relatedArchetypeCounter = app.dom.createSvgElement('text', {});
-			relatedArchetypeCounter.appendChild(app.dom.createTextElement(relatedArchetypeMap[archetypeIndex]));
+			var relatedArchetypeCounter = DOM.createSvgElement('text');
+			relatedArchetypeCounter.appendChild(DOM.createTextElement(relatedArchetypeMap[archetypeIndex]));
 			relatedArchetype.appendChild(relatedArchetypeCounter);
 
 			// icon
-			var relatedArchetypeIcon = app.dom.createSvgElement('use', {
+			var relatedArchetypeIcon = DOM.createSvgElement('use', {
 				'href': '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
 				'class': 'archetype-icon',
 				'transform': `translate(15, -10)`,
@@ -615,7 +615,7 @@ function Vertex(props) {
 			relatedArchetype.appendChild(relatedArchetypeIcon);
 
 			// line
-			relatedArchetype.appendChild(app.dom.createSvgElement('line', {
+			relatedArchetype.appendChild(DOM.createSvgElement('line', {
 				'x1': 30,
 				'y1': -5,
 				'x2': 36,
@@ -626,7 +626,7 @@ function Vertex(props) {
 		}
 
 		// name
-		var nameText = app.utils.createHtmlElement('div', {
+		var nameText = DOM.createHtmlElement('div', {
 			'class': 'vertex-name',
 			'title': this.name,
 		});
@@ -635,13 +635,13 @@ function Vertex(props) {
 		rootElement.appendChild(nameText);
 
 		// buttons
-		var buttonGroup = app.utils.createHtmlElement('div', {
+		var buttonGroup = DOM.createHtmlElement('div', {
 			'class': 'button-group',
 		});
 		rootElement.appendChild(buttonGroup);
 
 		// show symbol button
-		var showSymbolButton = app.utils.createHtmlElement('button', {
+		var showSymbolButton = DOM.createHtmlElement('button', {
 			'class': 'show-symbol-button button',
 			'style': 'background-color: ' + this.symbol[1] + ';',
 			'title': 'Show symbol next to all neighbouring components',
@@ -651,11 +651,11 @@ function Vertex(props) {
 		buttonGroup.appendChild(showSymbolButton);
 
 		// include button
-		var includeButton = app.utils.createHtmlElement('button', {
+		var includeButton = DOM.createHtmlElement('button', {
 			'class': 'include-button button',
 			'title': 'Display node in viewport',
 		});
-		includeButton.appendChild(app.utils.createHtmlElement('img', {
+		includeButton.appendChild(DOM.createHtmlElement('img', {
 			'src': 'images/button_cancel.png',
 			'alt': 'Icon of "Icon of "display node in viewport" action" action',
 		}));

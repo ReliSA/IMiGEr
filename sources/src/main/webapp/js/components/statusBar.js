@@ -12,7 +12,7 @@ function StatusBar() {
 	 */
 	this.setComponentCount = function(componentCount) {
 		componentCounterElement.innerHTML = '';
-		componentCounterElement.appendChild(app.utils.createTextElement('loaded components: ' + componentCount));
+		componentCounterElement.appendChild(DOM.createTextElement('loaded components: ' + componentCount));
 	};
 
 	/**
@@ -20,19 +20,19 @@ function StatusBar() {
 	 * @returns {Element} HTML DOM element.
 	 */
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('nav', {
+		rootElement = DOM.createHtmlElement('nav', {
 			'class': 'status-bar',
 		});
 
-		componentCounterElement = app.utils.createHtmlElement('span', {
+		componentCounterElement = DOM.createHtmlElement('span', {
 			'class': 'component-counter',
 		});
 		rootElement.appendChild(componentCounterElement);
 
-		minimapToggleElement = app.dom.createHtmlElement('span', {
+		minimapToggleElement = DOM.createHtmlElement('span', {
 			'class': 'link',
 		});
-		minimapToggleElement.appendChild(app.dom.createTextElement('toggle minimap'));
+		minimapToggleElement.appendChild(DOM.createTextElement('toggle minimap'));
 		minimapToggleElement.addEventListener('click', toggleMinimap.bind(this));
 		rootElement.appendChild(minimapToggleElement);
 

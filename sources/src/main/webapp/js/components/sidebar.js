@@ -35,28 +35,28 @@ function Sidebar() {
 	};
 
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
+		rootElement = DOM.createHtmlElement('div', {
 			'class': 'sidebar',
 			'id': 'sidebar',
 		});
 
-		var sidebarNav = app.utils.createHtmlElement('nav', {
+		var sidebarNav = DOM.createHtmlElement('nav', {
 			'class': 'sidebar-navbar',
 			'id': 'uploadMenu',
 		});
 		rootElement.appendChild(sidebarNav);
 
 		// unconnected
-		var unconnectedButton = app.utils.createHtmlElement('button', {
+		var unconnectedButton = DOM.createHtmlElement('button', {
 			'class': 'button',
 			'id': 'unconnectedButton',
 			'title': 'Unconnected vertices',
 		});
-		unconnectedButton.appendChild(app.dom.createHtmlElement('img', {
+		unconnectedButton.appendChild(DOM.createHtmlElement('img', {
 			'src': 'images/tochange/unconnected.gif',
 			'alt': 'Icon of "toggle unconnected vertices list" action',
 		}));
-		unconnectedButton.appendChild(app.dom.createTextElement('Unconnected vertices'));
+		unconnectedButton.appendChild(DOM.createTextElement('Unconnected vertices'));
 		unconnectedButton.addEventListener('click', function() {
 			document.getElementById('unconnectedNodeListComponent').classList.toggle('hidden');
 			app.redrawEdges();
@@ -64,7 +64,7 @@ function Sidebar() {
 		sidebarNav.appendChild(unconnectedButton);
 		
 
-		var sidebarContainer = app.utils.createHtmlElement('div', {
+		var sidebarContainer = DOM.createHtmlElement('div', {
 			'class': 'sidebar-container',
 		});
 		rootElement.appendChild(sidebarContainer);
@@ -83,7 +83,7 @@ function Sidebar() {
 		rootElement.appendChild(this.excludedNodeListComponent.render());
 
 
-		var sidebarBottom = app.utils.createHtmlElement('div', {
+		var sidebarBottom = DOM.createHtmlElement('div', {
 			'class': 'sidebar-bottom',
 		});
 		rootElement.appendChild(sidebarBottom);

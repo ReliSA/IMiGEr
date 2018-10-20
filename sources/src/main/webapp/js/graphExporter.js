@@ -26,7 +26,7 @@ function GraphExporter() {
 		var excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
 		var sideBar = excludedNodeList.map(function(node) {
 			return {
-				id: app.utils.getUniqueId(node),
+				id: Utils.getUniqueId(node),
                 isIconsDisplayed: node.isIconsDisplayed(),
 			};
 		});
@@ -36,7 +36,7 @@ function GraphExporter() {
         });
 
         // when edge is highlighted another vertex can not be highlighted
-        if (app.utils.isUndefined(highlightedEdge)) {
+        if (Utils.isUndefined(highlightedEdge)) {
             var highlightedVertex = app.nodeList.find(function (vertex) {
                 return vertex.isHighlighted()
             });
@@ -51,8 +51,8 @@ function GraphExporter() {
 			possibleEnumValues: app.possibleEnumValues,
 			groups: groups,
 			sideBar: sideBar,
-            highlightedVertex: app.utils.getUniqueId(highlightedVertex),
-			highlightedEdge: app.utils.isUndefined(highlightedEdge) ? '' : highlightedEdge.id,
+            highlightedVertex: Utils.getUniqueId(highlightedVertex),
+			highlightedEdge: Utils.isUndefined(highlightedEdge) ? '' : highlightedEdge.id,
 		};
 	}
 

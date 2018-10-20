@@ -96,7 +96,7 @@ function Viewport() {
 	};
 
 	this.addSvgDefinition = function(id, svgString) {
-		var g = app.dom.createSvgElement('g', {
+		var g = DOM.createSvgElement('g', {
 			'id': id,
 		});
 		g.innerHTML = svgString;
@@ -143,7 +143,7 @@ function Viewport() {
 	};
 	
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
+		rootElement = DOM.createHtmlElement('div', {
 			'class': 'viewport',
 			'id': 'viewport',
 		});
@@ -151,7 +151,7 @@ function Viewport() {
 		rootElement.addEventListener('mousedown', onMouseDown.bind(this));
 		rootElement.addEventListener('dblclick', onDoubleClick.bind(this));
 
-		var mainSvg = app.utils.createSvgElement('svg', {
+		var mainSvg = DOM.createSvgElement('svg', {
 			'xmlns': 'http://www.w3.org/2000/svg',
 			'width': '100%',
 			'height': '100%',
@@ -182,17 +182,17 @@ function Viewport() {
 		groupsContainer.setAttribute('data-id', 'groups');
 		graph.appendChild(groupsContainer);
 
-		definitions = app.utils.createSvgElement('defs', {});
+		definitions = DOM.createSvgElement('defs');
 		mainSvg.appendChild(definitions);
 
-		var linearGradient = app.utils.createSvgElement('linearGradient', {
+		var linearGradient = DOM.createSvgElement('linearGradient', {
 			'id': 'node--highlighted-required-provided',
 		});
-		linearGradient.appendChild(app.utils.createSvgElement('stop', {
+		linearGradient.appendChild(DOM.createSvgElement('stop', {
 			'offset': '0%',
 			'stop-color': 'red',
 		}));
-		linearGradient.appendChild(app.utils.createSvgElement('stop', {
+		linearGradient.appendChild(DOM.createSvgElement('stop', {
 			'offset': '100%',
 			'stop-color': '#5896ff',
 		}));

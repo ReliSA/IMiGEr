@@ -15,9 +15,9 @@ function Attribute(props) {
 	var rootElement;
 
 	this.render = function() {
-		rootElement = app.utils.createHtmlElement('li', {});
+		rootElement = DOM.createHtmlElement('li');
 
-		rootElement.appendChild(app.dom.createTextElement(this.name + ': '));
+		rootElement.appendChild(DOM.createTextElement(this.name + ': '));
 		rootElement.appendChild(renderValue.call(this));
 
 		return rootElement;
@@ -26,16 +26,16 @@ function Attribute(props) {
 	function renderValue() {
 		switch (this.name) {
 			case 'URL':
-				return app.dom.htmlStringToElement(`<a href="${this.value}" target="_blank">${this.value}</a>`);
+				return DOM.htmlStringToElement(`<a href="${this.value}" target="_blank">${this.value}</a>`);
 			case 'Size':
-				return app.dom.createTextElement(formatValue.call(this) + ' B');
+				return DOM.createTextElement(formatValue.call(this) + ' B');
 			case 'Estimate':
 			case 'Spent':
-				return app.dom.createTextElement(formatValue.call(this) + ' h');
+				return DOM.createTextElement(formatValue.call(this) + ' h');
 			case 'Progress':
-				return app.dom.createTextElement(formatValue.call(this) + '%');
+				return DOM.createTextElement(formatValue.call(this) + '%');
 			default:
-				return app.dom.createTextElement(formatValue.call(this));
+				return DOM.createTextElement(formatValue.call(this));
 		}
 	}
 
