@@ -75,7 +75,7 @@ function Viewport() {
 		}
 
 		nodeList.splice(nodeList.indexOf(group), 1);
-		groupList.splice(vertexList.indexOf(group), 1);
+		groupList.splice(groupList.indexOf(group), 1);
 	};
 	
 	this.getEdgeList = function() {
