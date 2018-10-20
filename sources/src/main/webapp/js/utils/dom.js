@@ -26,11 +26,11 @@ function DOM() {
 	 * @param {string} tagName Type of the newly created element (div, span, ...).
 	 * @param {object} attributes Attributes of the element.
 	 * @returns {Element} HTML DOM element.
-	 * @throws {InvalidArgumentException} Thrown when tagName is not a valid HTML tag.
+	 * @throws {InvalidArgumentError} Thrown when tagName is not a valid HTML tag.
 	 */
 	this.createHtmlElement = function(tagName, attributes) {
 		if (htmlTags.indexOf(tagName) === -1) {
-			throw new InvalidArgumentException(tagName, 'is not a valid HTML element');
+			throw new InvalidArgumentError(tagName + 'is not a valid HTML element');
 		}
 
 		var element = document.createElement(tagName);
@@ -47,11 +47,11 @@ function DOM() {
 	 * @param {string} tagName Type of the element (circle, rect, ...).
 	 * @param {object} attributes Attributes of the element.
 	 * @returns {Element} SVG DOM element.
-	 * @throws {InvalidArgumentException} Thrown when tagName is not a valid SVG tag.
+	 * @throws {InvalidArgumentError} Thrown when tagName is not a valid SVG tag.
 	 */
 	this.createSvgElement = function(tagName, attributes) {
 		if (svgTags.indexOf(tagName) === -1) {
-			throw new InvalidArgumentException(tagName, 'is not a valid SVG element');
+			throw new InvalidArgumentError(tagName + 'is not a valid SVG element');
 		}
 
 		var element = document.createElementNS('http://www.w3.org/2000/svg', tagName);

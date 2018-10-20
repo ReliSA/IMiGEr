@@ -39,7 +39,7 @@
 		<script src="js/components/vertexSymbolList.js"></script>
 		<script src="js/components/viewport.js"></script>
 
-		<script src="js/exceptions/invalidArgumentException.js"></script>
+		<script src="js/errors/invalidArgumentError.js"></script>
 
 		<script src="js/constants.js"></script>
 		<script src="js/coordinates.js"></script>

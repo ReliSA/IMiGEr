@@ -6,11 +6,11 @@ function GraphLoader() {
 	/**
 	 * Loads a new graph using graph data passed as parameters.
 	 * @param {object} data Data of the graph.
-	 * @throws {InvalidArgumentException} Thrown when either graph data are incomplete.
+	 * @throws {InvalidArgumentError} Thrown when either graph data are incomplete.
 	 */
 	this.run  = function(data) {
 		if (app.utils.isUndefined(data.vertices) || app.utils.isUndefined(data.edges)) {
-			throw new InvalidArgumentException('Invalid data.');
+			throw new InvalidArgumentError('Invalid data.');
 		}
 
 		var canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
