@@ -117,16 +117,20 @@ function Viewport() {
 		var sumOfCenters = new Coordinates(0, 0);
 		var bbox = rootElement.getBoundingClientRect();
 
-		var vertexList = app.viewportComponent.getVertexList();
-		vertexList.forEach(function(vertex) {
-			var center = vertex.getCenter();
+		var nodeList = app.viewportComponent.getNodeList();
+		nodeList.forEach(function(node) {
+			var center = node.getCenter();
 
 			sumOfCenters.x += center.x;
 			sumOfCenters.y += center.y;
 		});
 
-		innerSvgElement.setAttribute('x', -1 * sumOfCenters.x / vertexList.length + bbox.width / 2);
-		innerSvgElement.setAttribute('y', -1 * sumOfCenters.y / vertexList.length + bbox.height / 2);
+		var center = new Coordinates(-1 * sumOfCenters.x / nodeList.length + bbox.width / 2, -1 * sumOfCenters.y / nodeList.length + bbox.height / 2);
+
+		innerSvgElement.setAttribute('x', center.x);
+		innerSvgElement.setAttribute('y', center.y);
+
+		app.sidebarComponent.minimapComponent.setViewportPosition(center);
 	};
 	
 	this.render = function() {
