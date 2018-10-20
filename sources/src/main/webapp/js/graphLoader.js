@@ -119,13 +119,6 @@ function GraphLoader() {
                 highlightedNode = group;
             }
 
-			// vertices
-			app.vertexList.filter(function(vertex) {
-				return component.verticesId.indexOf(vertex.id) > -1;
-			}).forEach(function(vertex) {
-				group.addVertex(vertex);
-			});
-
 			// position
 			var position = component.position;
 			if (position === null || app.utils.isUndefined(position)) {
@@ -138,6 +131,13 @@ function GraphLoader() {
             } else {
                 group.setPosition(new Coordinates(position.x, position.y));
             }
+
+			// vertices
+			app.vertexList.filter(function(vertex) {
+				return component.verticesId.indexOf(vertex.id) > -1;
+			}).forEach(function(vertex) {
+				group.addVertex(vertex);
+			});
 
 			app.nodeList.push(group);
 			app.groupList.push(group);
