@@ -17,6 +17,7 @@ function Viewport() {
 	var edgesContainer;
 	var verticesContainer;
 	var groupsContainer;
+	var definitions;
 
 	var pan = false;
 
@@ -92,6 +93,14 @@ function Viewport() {
 	
 	this.getGroupList = function() {
 		return groupList;
+	};
+
+	this.addSvgDefinition = function(id, svgString) {
+		var g = app.dom.createSvgElement('g', {
+			'id': id,
+		});
+		g.innerHTML = svgString;
+		definitions.appendChild(g);
 	};
 
 	this.getSize = function() {
@@ -173,8 +182,8 @@ function Viewport() {
 		groupsContainer.setAttribute('data-id', 'groups');
 		graph.appendChild(groupsContainer);
 
-		var defs = app.utils.createSvgElement('defs', {});
-		mainSvg.appendChild(defs);
+		definitions = app.utils.createSvgElement('defs', {});
+		mainSvg.appendChild(definitions);
 
 		var linearGradient = app.utils.createSvgElement('linearGradient', {
 			'id': 'node--highlighted-required-provided',
@@ -187,7 +196,7 @@ function Viewport() {
 			'offset': '100%',
 			'stop-color': '#5896ff',
 		}));
-		defs.appendChild(linearGradient);
+		definitions.appendChild(linearGradient);
 
 		this.contextMenuComponent = new VertexContextMenuList;
 		rootElement.appendChild(this.contextMenuComponent.render());

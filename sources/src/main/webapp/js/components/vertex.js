@@ -521,13 +521,12 @@ function Vertex(props) {
 		}));
 
 		// archetype icon
-		var archetypeIcon = app.dom.createSvgElement('g', {
+		var archetypeIcon = app.dom.createSvgElement('use', {
+			'href': '#vertexArchetypeIcon-' + app.archetype.vertex[this.archetype].name,
 			'class': 'archetype-icon',
 			'transform': 'translate(8, 8)',
 		});
 		archetypeIcon.addEventListener('click', archetypeClick.bind(this)); // TODO when icon == null can not click on item
-
-		archetypeIcon.innerHTML = app.archetype.vertex[this.archetype].icon;
 
 		rootElement.appendChild(archetypeIcon);
 
@@ -548,15 +547,14 @@ function Vertex(props) {
 
 		var archetypeIconOrder = 0;
 		for (var archetypeIndex in relatedArchetypeMap) {
-			var relatedArchetype = app.utils.createSvgElement('g', {
+			var relatedArchetypeIcon = app.utils.createSvgElement('use', {
+				'href': '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
 				'class': 'archetype-icon',
 				'transform': `translate(${archetypeIconOrder * relatedArchetypeIconWidth}, 8)`,
 			});
-			relatedArchetype.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex))); // TODO when icon == null can not click on item
+			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex))); // TODO when icon == null can not click on item
 
-			relatedArchetype.innerHTML = app.archetype.vertex[archetypeIndex].icon;
-
-			relatedArchetypeListContainer.appendChild(relatedArchetype);
+			relatedArchetypeListContainer.appendChild(relatedArchetypeIcon);
 
 			archetypeIconOrder++;
 		}
@@ -608,12 +606,12 @@ function Vertex(props) {
 			relatedArchetype.appendChild(relatedArchetypeCounter);
 
 			// icon
-			var relatedArchetypeIcon = app.dom.createSvgElement('g', {
+			var relatedArchetypeIcon = app.dom.createSvgElement('use', {
+				'href': '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
 				'class': 'archetype-icon',
 				'transform': `translate(15, -10)`,
 			});
 			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex))); // TODO when icon == null can not click on item
-			relatedArchetypeIcon.innerHTML = app.archetype.vertex[archetypeIndex].icon;
 			relatedArchetype.appendChild(relatedArchetypeIcon);
 
 			// line

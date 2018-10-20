@@ -609,12 +609,12 @@ function Group(props) {
 			relatedArchetype.appendChild(relatedArchetypeCounter);
 
 			// icon
-			var relatedArchetypeIcon = app.dom.createSvgElement('g', {
+			var relatedArchetypeIcon = app.dom.createSvgElement('use', {
+				'href': '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
 				'class': 'archetype-icon',
 				'transform': `translate(15, -10)`,
 			});
 			relatedArchetypeIcon.addEventListener('click', relatedArchetypeClick.bind(this, parseInt(archetypeIndex))); // TODO when icon == null can not click on item
-			relatedArchetypeIcon.innerHTML = app.archetype.vertex[archetypeIndex].icon;
 			relatedArchetype.appendChild(relatedArchetypeIcon);
 
 			// line

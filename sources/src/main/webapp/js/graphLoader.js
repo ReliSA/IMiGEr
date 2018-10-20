@@ -22,6 +22,12 @@ function GraphLoader() {
 		app.attributeTypeList = data.attributeTypes;
 		app.possibleEnumValues = data.possibleEnumValues;
 
+		app.archetype.vertex.filter(function(vertexArchetype) {
+			return app.utils.isDefined(vertexArchetype.icon);
+		}).forEach(function(vertexArchetype) {
+			app.viewportComponent.addSvgDefinition('vertexArchetypeIcon-' + vertexArchetype.name, vertexArchetype.icon);
+		});
+
         var highlightedNodeId;
         var highlightedNodeType;
         if (app.utils.isDefined(data.highlightedVertex) && data.highlightedVertex.length > 0) {
