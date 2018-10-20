@@ -6,6 +6,8 @@ function Minimap() {
 	var rootElement;
 	var viewportElement;
 
+	var width = 350;
+	var height = 200;
 	var scale = 0.1;
 	var useElement = '#graph';
 
@@ -45,8 +47,9 @@ function Minimap() {
 		rootElement = app.utils.createSvgElement('svg', {
 			'class': 'minimap',
 			'id': 'minimapComponent',
-			'viewBox': '-100 -50 350 200',
+			'viewBox': `-100 -50 ${width} ${height}`,
 		});
+		rootElement.addEventListener('mousedown', onRootMouseDown.bind(this));
 
 		var graphElement = app.dom.createSvgElement('use', {
 			'transform': `scale(${scale})`,
@@ -63,7 +66,34 @@ function Minimap() {
 		return rootElement;
 	};
 
+	function onRootMouseDown(e) {
+		var start = new Coordinates(e.clientX, e.clientY);
+
+		var viewBox = rootElement.getAttribute('viewBox').split(' ');
+		var minimapRootPosition = new Coordinates(parseInt(viewBox[0]), parseInt(viewBox[1]));
+
+		document.body.addEventListener('mousemove', mouseMove);
+		document.body.addEventListener('mouseup', mouseUp);
+
+		function mouseMove(e) {
+			e.preventDefault();
+
+			var offset = new Coordinates(start.x - e.clientX, start.y - e.clientY);
+
+			rootElement.setAttribute('viewBox', `${minimapRootPosition.x + offset.x} ${minimapRootPosition.y + offset.y} ${width} ${height}`);
+		}
+
+		function mouseUp(e) {
+			start = null;
+
+			document.body.removeEventListener('mousemove', mouseMove);
+			document.body.removeEventListener('mouseup', mouseUp);
+		}
+	}
+
 	function onViewportMouseDown(e) {
+		e.stopPropagation();
+
 		var start = new Coordinates(e.clientX, e.clientY);
 		var minimapViewportPosition = this.getViewportPosition();
 		var viewportPosition = app.viewportComponent.getPosition();
