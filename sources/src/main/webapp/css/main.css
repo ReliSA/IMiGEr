@@ -353,11 +353,12 @@ form input[type="checkbox"] {
 
 .context-menu {
 	position: absolute;
+	z-index: 1;
 	font-family: 'Arial', sans-serif;
-    font-size: 1em;
+	font-size: 1em;
 	background-color: #f8fafa;
 	border: 1px solid #c8cbcc;
-    box-shadow: 0 0 5px #c8cbcc;
+	box-shadow: 0 0 5px #c8cbcc;
 }
 
 .context-menu ul {
@@ -612,7 +613,6 @@ form input[type="checkbox"] {
 	font-size: 1.2em;
 	line-height: 1.6rem;
 	white-space: nowrap;
-	width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	cursor: text;
