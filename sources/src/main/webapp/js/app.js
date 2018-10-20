@@ -13,12 +13,6 @@ function App() {
 	this.loader = new Loader;
 	/** @prop {Zoom} zoom */
 	this.zoom = new Zoom(0.8);
-	/** @prop {Utils} utils */
-	this.utils = new Utils;
-	/** @prop {DOM} dom */
-	this.dom = new DOM;
-	/** @prop {Cookies} cookies */
-	this.cookies = new Cookies;
 	/** @prop {MarkSymbol} markSymbol */
 	this.markSymbol = new MarkSymbol;
 

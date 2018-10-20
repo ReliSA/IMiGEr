@@ -1,20 +1,19 @@
 /**
  * Class containing common utility functions.
- * @constructor
  */
-function Utils() {
+class Utils {
 	/**
 	 * No operation function.
 	 */
-	this.noop = function() {};
+	static noop() {}
 
 	/**
 	 * Stops propagation of the mouse interaction to parental elements.
 	 * @param {MouseEvent} e Click/double-click event.
 	 */
-	this.stopPropagation = function(e) {
+	static stopPropagation(e) {
 		e.stopPropagation();
-	};
+	}
 
 	/**
 	 * Checks whether the variable passed as parameter is defined.
@@ -22,9 +21,9 @@ function Utils() {
 	 * @param variable Variable to be checked.
 	 * @return {boolean} true if the variable is defined, otherwise false
 	 */
-	this.isDefined = function(variable) {
+	static isDefined(variable) {
 		return typeof variable !== 'undefined';
-	};
+	}
 
 	/**
 	 * Checks whether the variable passed as parameter is not defined.
@@ -32,24 +31,9 @@ function Utils() {
 	 * @param variable Variable to be checked.
 	 * @return {boolean} true if the variable is NOT defined, otherwise false
 	 */
-	this.isUndefined = function(variable) {
+	static isUndefined(variable) {
 		return typeof variable === 'undefined';
-	};
-
-	// TODO: move to DOM class
-	this.createHtmlElement = function(tagName, attributes) {
-		return app.dom.createHtmlElement(tagName, attributes);
-	};
-
-	// TODO: move to DOM class
-	this.createSvgElement = function(tagName, attributes) {
-		return app.dom.createSvgElement(tagName, attributes);
-	};
-	
-	// TODO: move to DOM class
-	this.createTextElement = function(text) {
-		return app.dom.createTextElement(text);
-	};
+	}
 
 	/**
 	 * Returns a new promise that is resolved at the moment when all promises passed as function parameter are resolved.
@@ -58,7 +42,7 @@ function Utils() {
 	 * @param promises Array of promises to wait for.
 	 * @return New promise.
 	 */
-	this.promiseAll = function(promises) {
+	static promiseAll(promises) {
 		if (!Array.isArray(promises)) {
 			throw new TypeError('Parameter must be an array.');
 		}
@@ -71,7 +55,7 @@ function Utils() {
 				return Array.prototype.slice.call(arguments, 0);
 			}
 		})
-	};
+	}
 
 	/**
 	 * Extracts value of a query parameter from the current URL.
@@ -80,7 +64,7 @@ function Utils() {
 	 * @param {string} variable 
 	 * @returns value of the query parameter or false if the parameter does not exist
 	 */
-	this.getQueryVariable = function(variable) {
+	static getQueryVariable(variable) {
 		var query = window.location.search.substring(1);
 		var vars = query.split('&');
 
@@ -93,14 +77,14 @@ function Utils() {
 		}
 
 		return false;
-	};
+	}
 
     /**
      * @param {(Vertex|Group)} node Graph node.
      * @returns {string} Unique identifier of a graph node (group or vertex).
      */
-    this.getUniqueId = function(node) {
-    	if(this.isUndefined(node)) return '';
+    static getUniqueId(node) {
+    	if (Utils.isUndefined(node)) return '';
 
     	var prefix;
         if (node instanceof Vertex) {
@@ -112,5 +96,5 @@ function Utils() {
         }
 
         return prefix + node.id;
-    };
+    }
 }
