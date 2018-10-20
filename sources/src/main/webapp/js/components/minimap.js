@@ -57,20 +57,20 @@ function Minimap() {
 		viewportElement = app.dom.createSvgElement('rect', {
 			'class': 'minimap-viewport',
 		});
-		viewportElement.addEventListener('mousedown', onMouseDown.bind(this));
+		viewportElement.addEventListener('mousedown', onViewportMouseDown.bind(this));
 		rootElement.appendChild(viewportElement);
 
 		return rootElement;
 	};
 
-	function onMouseDown(e) {
+	function onViewportMouseDown(e) {
 		var start = new Coordinates(e.clientX, e.clientY);
 		var minimapViewportPosition = this.getViewportPosition();
 		var viewportPosition = app.viewportComponent.getPosition();
 
-		viewportElement.addEventListener('mousemove', mouseMove);
-		viewportElement.addEventListener('mouseup', mouseUp);
-		
+		document.body.addEventListener('mousemove', mouseMove);
+		document.body.addEventListener('mouseup', mouseUp);
+
 		function mouseMove(e) {
 			e.preventDefault();
 
@@ -87,8 +87,8 @@ function Minimap() {
 			minimapViewportPosition = null;
 			viewportPosition = null;
 
-			viewportElement.removeEventListener('mousemove', mouseMove);
-			viewportElement.removeEventListener('mouseup', mouseUp);
+			document.body.removeEventListener('mousemove', mouseMove);
+			document.body.removeEventListener('mouseup', mouseUp);
 		}
 	}
 }
