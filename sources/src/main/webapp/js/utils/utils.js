@@ -36,28 +36,6 @@ class Utils {
 	}
 
 	/**
-	 * Returns a new promise that is resolved at the moment when all promises passed as function parameter are resolved.
-	 * {@link https://stackoverflow.com/a/35825493}
-	 * 
-	 * @param promises Array of promises to wait for.
-	 * @return New promise.
-	 */
-	static promiseAll(promises) {
-		if (!Array.isArray(promises)) {
-			throw new TypeError('Parameter must be an array.');
-		}
-
-		return $.when.apply($, promises).then(function () {
-			// if single argument was expanded into multiple arguments, then put it back into an array for consistency
-			if (promises.length === 1 && arguments.length > 1) {
-				return [ Array.prototype.slice.call(arguments, 0) ];
-			} else {
-				return Array.prototype.slice.call(arguments, 0);
-			}
-		})
-	}
-
-	/**
 	 * Extracts value of a query parameter from the current URL.
 	 * {@link https://css-tricks.com/snippets/javascript/get-url-variables/}
 	 * 
