@@ -104,10 +104,10 @@ function Viewport() {
 	};
 
 	this.getSize = function() {
-		return {
-			'width': rootElement.offsetWidth,
-			'height': rootElement.offsetHeight,
-		};
+		return new Dimensions(
+			rootElement.offsetWidth,
+			rootElement.offsetHeight,
+		);
 	};
 
 	this.getPosition = function() {

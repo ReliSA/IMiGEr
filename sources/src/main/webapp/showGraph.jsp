@@ -53,6 +53,7 @@
 
 		<script src="js/valueObjects/coordinates.js"></script>
 		<script src="js/valueObjects/diagram.js"></script>
+		<script src="js/valueObjects/dimensions.js"></script>
 
 		<script src="js/userMenu.js"></script>
 		<script src="js/markSymbol.js"></script>

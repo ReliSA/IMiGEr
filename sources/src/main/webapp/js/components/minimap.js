@@ -13,11 +13,11 @@ function Minimap() {
 
 	/**
 	 * Resizes the minimap viewport using current viewport size and minimap scale.
-	 * @param {object} size Object holding current dimensions of the viewport component.
+	 * @param {Dimensions} dimensions Object holding current dimensions of the viewport component.
 	 */
-	this.setViewportSize = function(size) {
-		viewportElement.setAttribute('width', size.width * scale);
-		viewportElement.setAttribute('height', size.height * scale);
+	this.setViewportSize = function(dimensions) {
+		viewportElement.setAttribute('width', dimensions.width * scale);
+		viewportElement.setAttribute('height', dimensions.height * scale);
 	};
 
 	/**
