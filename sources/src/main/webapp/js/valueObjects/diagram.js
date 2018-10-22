@@ -1,13 +1,14 @@
 /**
  * Class representing a saved diagram.
- * @constructor
- * @param {object} props Properties of the diagram.
  */
-function Diagram(props) {
-	/** @prop {int} id Identifier of the diagram. */
-	this.id = parseInt(props.id);
-	/** @prop {string} name Name of the diagram. */
-	this.name = props.name;
-	/** @prop {bool} public True if the diagram is public, otherwise false. */
-	this.public = props.public === '1';
+class Diagram {
+	/**
+	 * @constructor
+	 * @param {object} props Object loaded from database holding properties of the diagram.
+	 */
+	constructor(props) {
+		this.id = parseInt(props.id);
+		this.name = props.name;
+		this.public = props.public === '1';
+	}
 }
