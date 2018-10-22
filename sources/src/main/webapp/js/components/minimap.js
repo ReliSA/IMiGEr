@@ -119,6 +119,8 @@ function Minimap() {
 
 			document.body.removeEventListener('mousemove', mouseMove);
 			document.body.removeEventListener('mouseup', mouseUp);
+			
+			app.redrawEdges();
 		}
 	}
 }
