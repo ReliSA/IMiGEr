@@ -293,49 +293,49 @@ function App() {
 	 * Loads graph data of a diagram.
 	 * @param {string} diagramId Identifier of the diagram to be loaded.
 	 */
-	function loadGraphData(diagramId) {
-		var self = this;
+	async function loadGraphData(diagramId) {
+		this.loader.enable();
 
-		self.loader.enable();
-
-		var loadGraphDataPromise;
+		let loadGraphDataPromise;
 
 		if (diagramId === '') {
-			loadGraphDataPromise = $.getJSON(self.API.loadGraphData);
+			loadGraphDataPromise = AJAX.getJSON(this.API.loadGraphData);
 
 		} else {
-			loadGraphDataPromise = $.getJSON(self.API.getDiagram + '?id=' + diagramId).then(function(data) {
-				self.diagram = new Diagram(data);
+			const diagramData = await AJAX.getJSON(this.API.getDiagram + '?id=' + diagramId);
 
-				document.title = self.NAME + ' - ' + self.diagram.name;
+			this.diagram = new Diagram(diagramData);
 
-				// return graph data as a new promise
-				var deferred = new $.Deferred();
-				deferred.resolve(JSON.parse(data.graph_json));
+			document.title = this.NAME + ' - ' + this.diagram.name;
 
-				return deferred.promise();
-			});
+			loadGraphDataPromise = Promise.resolve(JSON.parse(diagramData.graph_json));
 		}
 
-		// get vertex position data
-		loadGraphDataPromise.then(function(data) {
+		try {
+			// get vertex position data
+			const graphData = await loadGraphDataPromise;
+
 			// construct graph
-			self.graphLoader.run(data);
+			this.graphLoader.run(graphData);
 
-			self.loader.disable();
+			this.loader.disable();
 
-		}, function(xhr) {
-			switch (xhr.status) {
-				case 401:
-					alert('You are not allowed to view the diagram.');
-					break;
-				default:
-					alert('Something went wrong.');
+		} catch (error) {
+			if (error instanceof HttpError) {
+				switch (error.response.status) {
+					case 401:
+						alert('You are not allowed to view the diagram.');
+						break;
+					default:
+						alert('Something went wrong.');
+				}
+			} else {
+				alert('Server has probably gone away.');
 			}
 
 			// go to the upload page
 			window.location.replace('./');
-		});
+		}
 	}
 
 	/**

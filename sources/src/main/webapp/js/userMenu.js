@@ -24,50 +24,57 @@ document.addEventListener('DOMContentLoaded', function() {
 		registerForm.name.focus();
 	});
 
-	logoutButton.addEventListener('click', function(e) {
+	logoutButton.addEventListener('click', async function(e) {
 		e.preventDefault();
 
-		$.ajax({
-			'type': 'GET',
-			'url': logoutButton.href,
-			'success': function() {
-				document.dispatchEvent(new CustomEvent('imiger.userLoggedOut'));
+		try {
+			await AJAX.get(logoutButton.href);
 
-				usernameLabel.innerText = '';
+			document.dispatchEvent(new CustomEvent('imiger.userLoggedOut'));
 
-				document.body.classList.remove('loggedIn');
-				document.body.classList.add('loggedOut');
-			},
-			'error': function() {
+			usernameLabel.innerText = '';
+
+			document.body.classList.remove('loggedIn');
+			document.body.classList.add('loggedOut');
+
+		} catch (error) {
+			if (error instanceof HttpError) {
 				alert('Something went wrong.');
-			},
-		});
+			} else {
+				alert('Server has probably gone away.');
+			}
+		}
 	});
 
-	loginForm.addEventListener('submit', function(e) {
+	loginForm.addEventListener('submit', async function(e) {
 		e.preventDefault();
 
-		$.ajax({
-			'type': loginForm.method,
-			'url': loginForm.action,
-			'data': {
-				'username': loginForm.username.value,
-				'password': loginForm.password.value,
-			},
-			'success': function(data) {
-				document.dispatchEvent(new CustomEvent('imiger.userLoggedIn'));
+		const body = new URLSearchParams;
+		body.set('username', loginForm.username.value);
+		body.set('password', loginForm.password.value);
 
-				usernameLabel.innerText = data.user.username;
+		try {
+			const response = await AJAX.do(loginForm.action, {
+				method: loginForm.method,
+				credentials: 'same-origin',
+				body,
+			});
+			const data = await response.json();
 
-				document.body.classList.remove('loggedOut');
-				document.body.classList.add('loggedIn');
+			document.dispatchEvent(new CustomEvent('imiger.userLoggedIn'));
 
-				loginPopup.classList.add('hidden');
-			},
-			'error': function(xhr) {
-				switch (xhr.status) {
+			usernameLabel.innerText = data.user.username;
+
+			document.body.classList.remove('loggedOut');
+			document.body.classList.add('loggedIn');
+
+			loginPopup.classList.add('hidden');
+
+		} catch (error) {
+			if (error instanceof HttpError) {
+				switch (error.response.status) {
 					case 400:
-						printErrors(xhr);
+						printErrors(error.response);
 						break;
 					case 401:
 						alert('Invalid credentials.');
@@ -75,47 +82,54 @@ document.addEventListener('DOMContentLoaded', function() {
 					default:
 						alert('Something went wrong.');
 				}
-			},
-		});
+			} else {
+				alert('Server has probably gone away.');
+			}
+		}
 	});
 
-	registerForm.addEventListener('submit', function(e) {
+	registerForm.addEventListener('submit', async function(e) {
 		e.preventDefault();
 
-		$.ajax({
-			'type': registerForm.method,
-			'url': registerForm.action,
-			'data': {
-				'name': registerForm.name.value,
-				'email': registerForm.email.value,
-				'username': registerForm.username.value,
-				'password': registerForm.password.value,
-				'passwordCheck': registerForm.passwordCheck.value,
-			},
-			'success': function() {
-				document.dispatchEvent(new CustomEvent('imiger.userRegistered'));
+		const body = new URLSearchParams;
+		body.set('name', registerForm.name.value);
+		body.set('email', registerForm.email.value);
+		body.set('username', registerForm.username.value);
+		body.set('password', registerForm.password.value);
+		body.set('passwordCheck', registerForm.passwordCheck.value);
 
-				registerPopup.classList.add('hidden');
-				alert('You were successfully registered.');
-			},
-			'error': function(xhr) {
-				switch (xhr.status) {
+		try {
+			await AJAX.do(registerForm.action, {
+				method: registerForm.method,
+				credentials: 'same-origin',
+				body,
+			});
+
+			document.dispatchEvent(new CustomEvent('imiger.userRegistered'));
+
+			registerPopup.classList.add('hidden');
+			alert('You were successfully registered.');
+
+		} catch (error) {
+			if (error instanceof HttpError) {
+				switch (error.response.status) {
 					case 400:
-						printErrors(xhr);
+						printErrors(error.response);
 						break;
 					default:
 						alert('Something went wrong.');
 				}
-			},
-		});
+			} else {
+				alert('Server has probably gone away.');
+			}
+		}
 	});
 });
 
-function printErrors(xhr) {
-	var data = JSON.parse(xhr.responseText);
-
-	for (var key in data.error) {
-		if (!data.error.hasOwnProperty(key)) continue;
+async function printErrors(response) {
+	const data = await response.json();
+	for (let key in data.error) {
+		if (data.error.hasOwnProperty(key) === false) continue;
 
 		alert(data.error[key]);
 	}

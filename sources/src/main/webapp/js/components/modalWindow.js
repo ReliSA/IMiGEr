@@ -69,38 +69,39 @@ function ModalWindow() {
 	 * Saves diagram.
 	 * @param {Event} e Submit event.
 	 */
-	function saveDiagram(e) {
+	async function saveDiagram(e) {
 		e.preventDefault();
 
-		var self = this;
+		const body = new URLSearchParams;
+		body.set('id', app.diagram === null ? '' : app.diagram.id);
+		body.set('name', e.target.diagramName.value);
+		body.set('graphJson', JSON.stringify(app.graphExporter.run()));
+		body.set('public', (e.target.diagramPublic.checked | 0).toString());
 
-		$.ajax({
-			'type': 'POST',
-			'url': app.API.saveDiagram,
-			'data': {
-				'id': app.diagram === null ? '' : app.diagram.id,
-				'name': e.target.diagramName.value,
-				'graphJson': JSON.stringify(app.graphExporter.run()),
-				'public': (e.target.diagramPublic.checked | 0).toString(),
-			},
-			'success': function(data) {
-				app.diagram = new Diagram(data);
+		try {
+			const response = await AJAX.post(app.API.saveDiagram, body);
+			const data = await response.json();
 
-				document.title = app.NAME + ' - ' + app.diagram.name;
-				history.replaceState({} , document.title, app.HOME_URL + 'graph?diagramId=' + app.diagram.id);
+			app.diagram = new Diagram(data);
 
-				self.close();
-				alert('Diagram was successfully saved.');
-			},
-			'error': function(xhr) {
-				switch (xhr.status) {
+			document.title = app.NAME + ' - ' + app.diagram.name;
+			history.replaceState({} , document.title, app.HOME_URL + 'graph?diagramId=' + app.diagram.id);
+
+			this.close();
+			alert('Diagram was successfully saved.');
+
+		} catch (error) {
+			if (error instanceof HttpError) {
+				switch (error.response.status) {
 					case 401:
 						alert('You are either not logged in or not an owner of this diagram.');
 						break;
 					default:
 						alert('Something went wrong.');
 				}
-			},
-		});
+			} else {
+				alert('Server has probably gone away.');
+			}
+		}
 	}
 }

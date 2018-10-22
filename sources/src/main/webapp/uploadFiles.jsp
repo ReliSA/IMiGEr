@@ -13,6 +13,10 @@
 		<link rel="stylesheet" href="css/main.css">
 
 		<script src="js/libs/jquery-3.3.1.min.js"></script>
+		<script src="js/errors/httpError.js"></script>
+		<script src="js/utils/ajax.js"></script>
+		<script src="js/constants.js"></script>
+		<script src="js/uploadFiles.js"></script>
 		<script src="js/userMenu.js"></script>
 
 		<title>IMiGEr</title>
@@ -58,7 +62,7 @@
 					<c:forEach items="${diagramsPrivate}" var="diagram">
 						<li>
 							<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
-							<button class="removeDiagramButton" data-name="${diagram.name}" data-id="${diagram.id}"><img src="images/button_cancel.png" alt="odstranit"></button>
+							<button class="remove-diagram-button" data-id="${diagram.id}" data-name="${diagram.name}"><img src="images/button_cancel.png" alt="odstranit"></button>
 						</li>
 					</c:forEach>
 				</ul>
@@ -76,60 +80,5 @@
 				</ul>
 			</div>
 		</main>
-
-		<script>
-			var privateDiagramList = document.getElementById('privateDiagramList');
-
-			$(privateDiagramList).on('click', '.removeDiagramButton', function(e) {
-				if (confirm('Do you really want to delete ' + $(this).data('name') + '?')) {
-					$.ajax({
-						'type': 'delete',
-						'url': 'api/remove-diagram?diagramId=' + $(this).data('id'),
-						'success': function () {
-							location.reload(true);
-						},
-						'error': function (xhr) {
-							switch (xhr.status) {
-								case 401:
-									alert('You are either not logged in or not an owner of this diagram.');
-									break;
-								default:
-									alert('Something went wrong.');
-							}
-						},
-					});
-				}
-			});
-
-			document.addEventListener('imiger.userLoggedIn', function() {
-				$.getJSON('api/get-private-diagrams').then(function(data) {
-					data.forEach(function(diagram) {
-						var openDiagramLink = document.createElement('a');
-						openDiagramLink.setAttribute('href', './graph?diagramId=' + diagram.id);
-						openDiagramLink.innerText = diagram.name;
-
-						var removeDiagramIcon = document.createElement('img');
-						removeDiagramIcon.setAttribute('src', 'images/button_cancel.png');
-						removeDiagramIcon.setAttribute('alt', 'odstranit');
-
-						var removeDiagramButton = document.createElement('button');
-						removeDiagramButton.setAttribute('class', 'removeDiagramButton');
-						removeDiagramButton.setAttribute('data-id', diagram.id);
-						removeDiagramButton.setAttribute('data-name', diagram.name);
-						removeDiagramButton.appendChild(removeDiagramIcon);
-
-						var diagramListItem = document.createElement('li');
-						diagramListItem.appendChild(openDiagramLink);
-						diagramListItem.appendChild(removeDiagramButton);
-
-						privateDiagramList.appendChild(diagramListItem);
-					});
-				});
-			});
-
-			document.addEventListener('imiger.userLoggedOut', function() {
-				privateDiagramList.innerHTML = '';
-			});
-		</script>
 	</body>
 </html>
