@@ -39,6 +39,7 @@
 		<script src="js/components/vertexSymbolList.js"></script>
 		<script src="js/components/viewport.js"></script>
 
+		<script src="js/errors/httpError.js"></script>
 		<script src="js/errors/invalidArgumentError.js"></script>
 
 		<script src="js/services/forceDirected.js"></script>
@@ -47,6 +48,7 @@
 		<script src="js/services/loader.js"></script>
 		<script src="js/services/zoom.js"></script>
 
+		<script src="js/utils/ajax.js"></script>
 		<script src="js/utils/cookies.js"></script>
 		<script src="js/utils/dom.js"></script>
 		<script src="js/utils/utils.js"></script>
