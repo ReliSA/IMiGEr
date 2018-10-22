@@ -60,7 +60,7 @@
 		<script src="js/userMenu.js"></script>
 		<script src="js/markSymbol.js"></script>
 		<script src="js/constants.js"></script>
-		<script src="js/app.js"></script>
+		<script src="js/showGraphApp.js"></script>
 
 		<title>IMiGEr</title>
 	</head>
@@ -178,7 +178,7 @@
 		</div>
 
 		<script>
-		var app = new App;
+		var app = new ShowGraphApp;
 		app.HOME_URL = '${HOME_URL}';
 
 		document.addEventListener('DOMContentLoaded', function() {

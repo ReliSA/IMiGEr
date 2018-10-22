@@ -2,7 +2,7 @@
  * Main class of the application.
  * @constructor
  */
-function App() {
+function ShowGraphApp() {
 	/** @prop {Constants} constants */
 	this.constants = new Constants;
 	/** @prop {GraphLoader} graphLoader */
