@@ -1,19 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
-	var privateDiagramList = document.getElementById('privateDiagramList');
+/**
+ * Application running on the Upload files page.
+ * @constructor
+ */
+class UploadFilesApp extends App {
+	/**
+	 * Application startup method. It hooks event listeners to elements already present on the page and add listeners of auth events.
+	 */
+	run() {
+		console.log('running...');
 
-	privateDiagramList.querySelectorAll('.remove-diagram-button').forEach(function(button) {
-		button.addEventListener('click', removeDiagram);
-	});
+		let privateDiagramList = document.getElementById('privateDiagramList');
+		privateDiagramList.querySelectorAll('.remove-diagram-button').forEach(button => {
+			button.addEventListener('click', this._removeDiagram);
+		});
 
-	document.addEventListener('imiger.userLoggedIn', function() {
-		loadPrivateDiagrams();
-	});
+		document.addEventListener('imiger.userLoggedIn', () => this._loadPrivateDiagrams());
+		document.addEventListener('imiger.userLoggedOut', () => privateDiagramList.innerHTML = '');
+	}
 
-	document.addEventListener('imiger.userLoggedOut', function() {
-		privateDiagramList.innerHTML = '';
-	});
-
-	async function loadPrivateDiagrams() {
+	/**
+	 * Loads private diagrams of the logged in user and adds them to a list.
+	 */
+	async _loadPrivateDiagrams() {
 		try {
 			const data = await AJAX.getJSON(Constants.API.getPrivateDiagrams);
 
@@ -30,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				removeDiagramButton.setAttribute('class', 'remove-diagram-button');
 				removeDiagramButton.setAttribute('data-id', diagram.id);
 				removeDiagramButton.setAttribute('data-name', diagram.name);
-				removeDiagramButton.addEventListener('click', removeDiagram);
+				removeDiagramButton.addEventListener('click', this._removeDiagram);
 				removeDiagramButton.appendChild(removeDiagramIcon);
 
 				var diagramListItem = document.createElement('li');
@@ -48,7 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	async function removeDiagram() {
+	/**
+	 * Removes diagram from DB and reloads the page.
+	 */
+	async _removeDiagram() {
 		let diagramId = this.getAttribute('data-id');
 		let diagramName = this.getAttribute('data-name');
 
@@ -73,4 +84,4 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 	}
-});
+}

@@ -1,7 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
+<c:set var="APP_NAME" value="IMiGEr"/>
+<c:set var="APP_HOME_URL" value="${initParam.HOME_URL}"/>
 <c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
 <c:set var="user" value="${sessionScope.user}"/>
 
@@ -12,13 +13,19 @@
 
 		<link rel="stylesheet" href="css/main.css">
 
+		<script src="js/errors/abstractMethodError.js"></script>
 		<script src="js/errors/httpError.js"></script>
+
 		<script src="js/utils/ajax.js"></script>
+
 		<script src="js/constants.js"></script>
-		<script src="js/uploadFiles.js"></script>
+
+		<script src="js/app.js"></script>
+		<script src="js/uploadFilesApp.js"></script>
+
 		<script src="js/userMenu.js"></script>
 
-		<title>IMiGEr</title>
+		<title>${APP_NAME}</title>
 	</head>
 
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
@@ -61,7 +68,10 @@
 					<c:forEach items="${diagramsPrivate}" var="diagram">
 						<li>
 							<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
-							<button class="remove-diagram-button" data-id="${diagram.id}" data-name="${diagram.name}"><img src="images/button_cancel.png" alt="odstranit"></button>
+
+							<button class="button remove-diagram-button" data-id="${diagram.id}" data-name="${diagram.name}">
+								<img src="images/button_cancel.png" alt="odstranit">
+							</button>
 						</li>
 					</c:forEach>
 				</ul>
@@ -79,5 +89,13 @@
 				</ul>
 			</div>
 		</main>
+	
+		<script>
+			const app = new UploadFilesApp('${APP_NAME}', '${APP_HOME_URL}');
+
+			document.addEventListener('DOMContentLoaded', () => {
+				app.run();
+			});
+		</script>
 	</body>
 </html>
