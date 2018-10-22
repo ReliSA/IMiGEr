@@ -78,7 +78,7 @@ function ModalWindow() {
 			'type': 'POST',
 			'url': app.API.saveDiagram,
 			'data': {
-				'id': app.diagram === null ? null : app.diagram.id,
+				'id': app.diagram === null ? '' : app.diagram.id,
 				'name': e.target.diagramName.value,
 				'graphJson': JSON.stringify(app.graphExporter.run()),
 				'public': (e.target.diagramPublic.checked | 0).toString(),
