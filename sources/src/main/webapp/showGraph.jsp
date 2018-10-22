@@ -41,20 +41,23 @@
 
 		<script src="js/errors/invalidArgumentError.js"></script>
 
-		<script src="js/constants.js"></script>
-		<script src="js/coordinates.js"></script>
-		<script src="js/diagram.js"></script>
-		<script src="js/forceDirected.js"></script>
-		<script src="js/graphLoader.js"></script>
-		<script src="js/graphExporter.js"></script>
-		<script src="js/loader.js"></script>
-		<script src="js/markSymbol.js"></script>
+		<script src="js/services/forceDirected.js"></script>
+		<script src="js/services/graphLoader.js"></script>
+		<script src="js/services/graphExporter.js"></script>
+		<script src="js/services/loader.js"></script>
+		<script src="js/services/zoom.js"></script>
+
 		<script src="js/utils/cookies.js"></script>
 		<script src="js/utils/dom.js"></script>
 		<script src="js/utils/utils.js"></script>
-		<script src="js/zoom.js"></script>
-		<script src="js/app.js"></script>
+
+		<script src="js/valueObjects/coordinates.js"></script>
+		<script src="js/valueObjects/diagram.js"></script>
+
 		<script src="js/userMenu.js"></script>
+		<script src="js/markSymbol.js"></script>
+		<script src="js/constants.js"></script>
+		<script src="js/app.js"></script>
 
 		<title>IMiGEr</title>
 	</head>
