@@ -125,7 +125,7 @@ function SidebarExcludedNodeList(props) {
 	this.reset = function() {
 		nodeList = [];
 
-		$(nodeListElement).empty();
+		nodeListElement.innerHTML = '';
 
 		toggleControls.call(this);
 	};

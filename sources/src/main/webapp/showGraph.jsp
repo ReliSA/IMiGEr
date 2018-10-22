@@ -181,7 +181,7 @@
 		var app = new App;
 		app.HOME_URL = '${HOME_URL}';
 
-		$(document).ready(function() {
+		document.addEventListener('DOMContentLoaded', function() {
 			var loaderFn = app.diagramLoader('${param.diagramId}');
 
 			app.run(loaderFn);

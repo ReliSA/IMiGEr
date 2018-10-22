@@ -12,7 +12,6 @@
 
 		<link rel="stylesheet" href="css/main.css">
 
-		<script src="js/libs/jquery-3.3.1.min.js"></script>
 		<script src="js/errors/httpError.js"></script>
 		<script src="js/utils/ajax.js"></script>
 		<script src="js/constants.js"></script>

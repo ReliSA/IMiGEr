@@ -216,9 +216,9 @@ function Viewport() {
 		vertexList = [];
 		groupList = [];
 
-		$(edgesContainer).empty();
-		$(verticesContainer).empty();
-		$(groupsContainer).empty();
+		edgesContainer.innerHTML = '';
+		verticesContainer.innerHTML = '';
+		groupsContainer.innerHTML = '';
 	};
 
 	function onMouseWheel(e) {
