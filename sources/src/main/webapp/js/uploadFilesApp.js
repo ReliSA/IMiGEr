@@ -9,7 +9,7 @@ class UploadFilesApp extends App {
 	run() {
 		console.log('running...');
 
-		let privateDiagramList = document.getElementById('privateDiagramList');
+		const privateDiagramList = document.getElementById('privateDiagramList');
 		privateDiagramList.querySelectorAll('.remove-diagram-button').forEach(button => {
 			button.addEventListener('click', this._removeDiagram);
 		});
@@ -34,28 +34,26 @@ class UploadFilesApp extends App {
 		try {
 			const data = await AJAX.getJSON(Constants.API.getPrivateDiagrams);
 
-			data.forEach(function(diagram) {
-				var openDiagramLink = document.createElement('a');
-				openDiagramLink.setAttribute('href', './graph?diagramId=' + diagram.id);
-				openDiagramLink.innerText = diagram.name;
-
-				var removeDiagramIcon = document.createElement('img');
-				removeDiagramIcon.setAttribute('src', 'images/button_cancel.png');
-				removeDiagramIcon.setAttribute('alt', 'odstranit');
-
-				var removeDiagramButton = document.createElement('button');
-				removeDiagramButton.setAttribute('class', 'remove-diagram-button');
-				removeDiagramButton.setAttribute('data-id', diagram.id);
-				removeDiagramButton.setAttribute('data-name', diagram.name);
-				removeDiagramButton.addEventListener('click', this._removeDiagram);
-				removeDiagramButton.appendChild(removeDiagramIcon);
-
-				var diagramListItem = document.createElement('li');
-				diagramListItem.appendChild(openDiagramLink);
-				diagramListItem.appendChild(removeDiagramButton);
-
-				privateDiagramList.appendChild(diagramListItem);
+			data.forEach(diagram => {
+				privateDiagramList.appendChild(DOM.h('li', {}, [
+					DOM.h('a', {
+						href: app.homeUrl + 'graph?diagramId=' + diagram.id,
+						innerText: diagram.name,
+					}),
+					DOM.h('button', {
+						class: 'button remove-diagram-button',
+						'data-id': diagram.id,
+						'data-name': diagram.name,
+						onClick: this._removeDiagram,
+					}, [
+						DOM.h('img', {
+							src: 'images/button_cancel.png',
+							alt: 'Odstranit',
+						}),
+					]),
+				]));
 			});
+
 		} catch (error) {
 			if (error instanceof HttpError) {
 				alert('Something went wrong.');
