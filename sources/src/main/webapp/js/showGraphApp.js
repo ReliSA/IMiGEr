@@ -35,7 +35,7 @@ function ShowGraphApp() {
 	this.sidebarComponent = null;
 	/** @prop {Viewport} viewportComponent */
 	this.viewportComponent = null;
-	/** @prop {ModalWindow} modalWindowComponent */
+	/** @prop {SaveDiagramModalWindow} modalWindowComponent */
 	this.modalWindowComponent = null;
 
 	/** @prop {array<Edge>} edgeList */
@@ -136,7 +136,7 @@ function ShowGraphApp() {
 		content.appendChild(self.sidebarComponent.render());
 		self.sidebarComponent.minimapComponent.setViewportSize(self.viewportComponent.getSize());
 
-		self.modalWindowComponent = new ModalWindow;
+		self.modalWindowComponent = new SaveDiagramModalWindow;
 		content.appendChild(self.modalWindowComponent.render());
 
 		// auth events
@@ -147,6 +147,14 @@ function ShowGraphApp() {
 		});
 		document.addEventListener('imiger.userLoggedOut', () => {
 			usernameLabel.innerText = '';
+		});
+
+		// diagram
+		document.addEventListener('imiger.diagramUpdated', e => {
+			this.diagram = new Diagram(e.detail);
+
+			document.title = this.name + ' - ' + this.diagram.name;
+			history.replaceState({} , document.title, this.homeUrl + 'graph?diagramId=' + this.diagram.id);
 		});
 
 		// context menu

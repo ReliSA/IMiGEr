@@ -32,8 +32,8 @@
 		<script src="js/components/groupVertexList.js"></script>
 		<script src="js/components/loginPopup.js"></script>
 		<script src="js/components/minimap.js"></script>
-		<script src="js/components/modalWindow.js"></script>
 		<script src="js/components/registerPopup.js"></script>
+		<script src="js/components/saveDiagramModalWindow.js"></script>
 		<script src="js/components/sidebar.js"></script>
 		<script src="js/components/sidebarExcludedNodeList.js"></script>
 		<script src="js/components/sidebarUnconnectedNodeList.js"></script>
