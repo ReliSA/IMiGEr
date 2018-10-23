@@ -1,88 +1,42 @@
 /**
  * Class representing a popover revealed on edge click to display its compatibility information.
  * @see Edge
- * @constructor
  */
-function EdgePopover() {
-	var rootElement;
-	var detailsListElement;
+class EdgePopover extends Popover {
+	/**
+	 * @inheritdoc
+	 */
+	render() {
+		super.render();
+
+		this._titleElement.innerText = 'Edge details';
+
+		this._detailsListElement = DOM.h('ul');
+		this._bodyElement.appendChild(this._detailsListElement);
+
+		return this._rootElement;
+	}
 
 	/**
 	 * Sets the contents of the popover.
 	 * @param {array} subedgeInfoList List of various edge information.
 	 */
-	this.setContent = function(subedgeInfoList) {
+	set body(subedgeInfoList) {
 		if (subedgeInfoList.length === 0) return;
 
-		subedgeInfoList.filter(function(subedgeInfo) {
+		subedgeInfoList.filter(subedgeInfo => {
 			return subedgeInfo.attributes.length > 0;
-		}).forEach(function(subedgeInfo) {
-			var listItem = DOM.createHtmlElement('li');
-			listItem.appendChild(DOM.createTextElement(app.archetype.edge[subedgeInfo.archetype].name));
-
-			var sublist = DOM.createHtmlElement('ul');
-			listItem.appendChild(sublist);
-
-			detailsListElement.appendChild(listItem);
-
-			subedgeInfo.attributes.forEach(function(attribute) {
-				sublist.appendChild(new Attribute(attribute).render());
+		}).forEach(subedgeInfo => {
+			const sublistElement = DOM.h('ul');
+			subedgeInfo.attributes.forEach(attribute => {
+				sublistElement.appendChild(new Attribute(attribute).render());
 			});
+
+			this._detailsListElement.appendChild(DOM.h('li', {
+				innerText: app.archetype.edge[subedgeInfo.archetype].name,
+			}, [
+				sublistElement,
+			]));
 		});
-	};
-
-	/**
-	 * Moves the popover to the coordinates.
-	 * @param {Coordinates} coords Coordinates to display the popover at.
-	 */
-	this.setPosition = function(coords) {
-		rootElement.style.top = coords.y + 'px';
-		rootElement.style.left = coords.x + 'px';
-	};
-
-	/**
-	 * Opens the popover.
-	 */
-	this.open = function() {
-		rootElement.classList.remove('hidden');
-	};
-
-	/**
-	 * Closes the popover.
-	 */
-	this.close = function() {
-		rootElement.classList.add('hidden');
-
-		detailsListElement.innerHTML = '';
-	};
-
-	/**
-	 * Creates a new DOM element representing the popover in memory. Binds user interactions to local handler functions.
-	 * @returns {Element} HTML DOM element.
-	 */
-	this.render = function() {
-		rootElement = DOM.createHtmlElement('div', {
-			'class': 'popover edge-popover hidden',
-		});
-		rootElement.addEventListener('wheel', Utils.stopPropagation);
-		rootElement.addEventListener('mousedown', Utils.stopPropagation);
-		rootElement.addEventListener('mouseleave', this.close.bind(this));
-
-		var popoverTitle = DOM.createHtmlElement('span', {
-			'class': 'popover-title',
-		});
-		popoverTitle.appendChild(document.createTextNode('Edge details'));
-		rootElement.appendChild(popoverTitle);
-
-		var popoverContent = DOM.createHtmlElement('div', {
-			'class': 'popover-content',
-		});
-		rootElement.appendChild(popoverContent);
-
-		detailsListElement = DOM.createHtmlElement('ul');
-		popoverContent.appendChild(detailsListElement);
-
-		return rootElement;
-	};
-
+	}
 }

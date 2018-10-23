@@ -411,7 +411,7 @@ form input[type="checkbox"] {
 	border-bottom: 1px solid #c8cbcc;
 }
 
-.popover-content {
+.popover-body {
 	max-height: 400px;
 	overflow: auto;
 	padding: 0 0.5em 0.5em 0.5em;

@@ -731,8 +731,9 @@ function Vertex(props) {
 	function archetypeClick(e) {
 		e.stopPropagation();
 
-		app.viewportComponent.vertexPopoverComponent.setContent(this.name + ` (${app.archetype.vertex[this.archetype].name})`, props.attributes);
-		app.viewportComponent.vertexPopoverComponent.setPosition(new Coordinates(e.clientX, e.clientY));
+		app.viewportComponent.vertexPopoverComponent.title = this.name + ` (${app.archetype.vertex[this.archetype].name})`;
+		app.viewportComponent.vertexPopoverComponent.body = props.attributes;
+		app.viewportComponent.vertexPopoverComponent.position = new Coordinates(e.clientX, e.clientY);
 		app.viewportComponent.vertexPopoverComponent.open();
 	}
 	

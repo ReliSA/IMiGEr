@@ -262,8 +262,8 @@ function Edge(props) {
 	 * @param {Event} e Click event.
 	 */
 	function click(e) {
-		app.viewportComponent.edgePopoverComponent.setContent(props.subedgeInfo);
-		app.viewportComponent.edgePopoverComponent.setPosition(new Coordinates(e.clientX, e.clientY));
+		app.viewportComponent.edgePopoverComponent.body = props.subedgeInfo;
+		app.viewportComponent.edgePopoverComponent.position = new Coordinates(e.clientX, e.clientY);
 		app.viewportComponent.edgePopoverComponent.open();
 
 		// unhighlight other edges
