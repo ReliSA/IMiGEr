@@ -25,7 +25,7 @@
 	</context-param>
 	<context-param>
 		<param-name>configLocation</param-name>
-		<param-value>C:\Users\fidra\Work\imiger\config</param-value>
+		<param-value>C:\Users\Tomas\Sources\swi\IMiGEr\config</param-value>
 	</context-param>
 
 	<context-param>
@@ -80,6 +80,10 @@
 		<servlet-name>GetPrivateDiagrams</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetPrivateDiagrams</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>RestRawInput</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.rest.RawInput</servlet-class>
+	</servlet>
 
 	<!--
 	URL-to-servlet mappings
@@ -123,6 +127,10 @@
 	<servlet-mapping>
 		<servlet-name>GetPrivateDiagrams</servlet-name>
 		<url-pattern>/api/get-private-diagrams</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RestRawInput</servlet-name>
+		<url-pattern>/rest/raw-input</url-pattern>
 	</servlet-mapping>
 
 	<session-config>
