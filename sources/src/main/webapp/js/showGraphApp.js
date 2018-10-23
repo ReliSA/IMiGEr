@@ -139,6 +139,16 @@ function ShowGraphApp() {
 		self.modalWindowComponent = new ModalWindow;
 		content.appendChild(self.modalWindowComponent.render());
 
+		// auth events
+		const usernameLabel = document.getElementById('usernameLabel');
+
+		document.addEventListener('imiger.userLoggedIn', e => {
+			usernameLabel.innerText = e.detail.user.username;
+		});
+		document.addEventListener('imiger.userLoggedOut', () => {
+			usernameLabel.innerText = '';
+		});
+
 		// context menu
 		document.body.addEventListener('mousedown', function() {
 			self.closeFloatingComponents();

@@ -13,10 +13,18 @@
 
 		<link rel="stylesheet" href="css/main.css">
 
+		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
+		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
+
+		<script src="js/components/generic/popup.js"></script>
+		<script src="js/components/loginPopup.js"></script>
+		<script src="js/components/registerPopup.js"></script>
+
 		<script src="js/errors/abstractMethodError.js"></script>
 		<script src="js/errors/httpError.js"></script>
 
 		<script src="js/utils/ajax.js"></script>
+		<script src="js/utils/dom.js"></script>
 
 		<script src="js/constants.js"></script>
 

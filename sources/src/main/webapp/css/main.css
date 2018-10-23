@@ -17,6 +17,7 @@ td {
 }
 
 form input[type="text"],
+form input[type="email"],
 form input[type="password"] {
 	width: 150px;
 }

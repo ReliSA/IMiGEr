@@ -14,8 +14,17 @@ class UploadFilesApp extends App {
 			button.addEventListener('click', this._removeDiagram);
 		});
 
-		document.addEventListener('imiger.userLoggedIn', () => this._loadPrivateDiagrams());
-		document.addEventListener('imiger.userLoggedOut', () => privateDiagramList.innerHTML = '');
+		// auth events
+		const usernameLabel = document.getElementById('usernameLabel');
+
+		document.addEventListener('imiger.userLoggedIn', e => {
+			this._loadPrivateDiagrams();
+			usernameLabel.innerText = e.detail.user.username;
+		});
+		document.addEventListener('imiger.userLoggedOut', () => {
+			privateDiagramList.innerHTML = '';
+			usernameLabel.innerText = '';
+		});
 	}
 
 	/**

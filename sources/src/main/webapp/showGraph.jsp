@@ -21,14 +21,19 @@
 		<script src="js/libs/saveSvgAsPng.js"></script>
 		<script src="js/libs/jstree.min.js"></script>
 
+		<script src="js/components/generic/modalWindow.js"></script>
+		<script src="js/components/generic/popover.js"></script>
+		<script src="js/components/generic/popup.js"></script>
 		<script src="js/components/attribute.js"></script>
 		<script src="js/components/edge.js"></script>
 		<script src="js/components/edgePopover.js"></script>
 		<script src="js/components/floatingPoint.js"></script>
 		<script src="js/components/group.js"></script>
 		<script src="js/components/groupVertexList.js"></script>
+		<script src="js/components/loginPopup.js"></script>
 		<script src="js/components/minimap.js"></script>
 		<script src="js/components/modalWindow.js"></script>
+		<script src="js/components/registerPopup.js"></script>
 		<script src="js/components/sidebar.js"></script>
 		<script src="js/components/sidebarExcludedNodeList.js"></script>
 		<script src="js/components/sidebarUnconnectedNodeList.js"></script>
