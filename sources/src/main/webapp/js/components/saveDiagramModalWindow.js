@@ -9,7 +9,7 @@ class SaveDiagramModalWindow extends ModalWindow {
 		super.render();
 
 		this._form = DOM.h('form', {
-			action: app.API.saveDiagram,
+			action: Constants.API.saveDiagram,
 			method: 'post',
 			onSubmit: this._saveDiagram.bind(this),
 		}, [

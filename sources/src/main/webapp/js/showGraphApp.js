@@ -20,13 +20,6 @@ function ShowGraphApp() {
 	this.NAME = document.title;
 	/** @prop {string} HOME_URL Application home URL. */
 	this.HOME_URL = null;
-	/** @prop {object} API Application programming interface paths. */
-	this.API = {
-		loadGraphData: 'api/load-graph-data',
-		getDiagram: 'api/get-diagram',
-		saveDiagram: 'api/save-diagram',
-		removeDiagram: 'api/remove-diagram',
-	};
 
 	/** @prop {float} headerHeight Current height of the application header. */
 	this.headerHeight = getHeaderHeight();
@@ -317,10 +310,10 @@ function ShowGraphApp() {
 		let loadGraphDataPromise;
 
 		if (diagramId === '') {
-			loadGraphDataPromise = AJAX.getJSON(this.API.loadGraphData);
+			loadGraphDataPromise = AJAX.getJSON(Constants.API.loadGraphData);
 
 		} else {
-			const diagramData = await AJAX.getJSON(this.API.getDiagram + '?id=' + diagramId);
+			const diagramData = await AJAX.getJSON(Constants.API.getDiagram + '?id=' + diagramId);
 
 			this.diagram = new Diagram(diagramData);
 
