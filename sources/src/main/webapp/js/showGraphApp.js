@@ -2,7 +2,7 @@
  * Main class of the application.
  * @constructor
  */
-function ShowGraphApp() {
+function ShowGraphApp(appName, appHomeUrl) {
 	/** @prop {Constants} constants */
 	this.constants = new Constants;
 	/** @prop {GraphLoader} graphLoader */
@@ -17,9 +17,9 @@ function ShowGraphApp() {
 	this.markSymbol = new MarkSymbol;
 
 	/** @prop {string} NAME Application name. */
-	this.NAME = document.title;
+	this.NAME = appName;
 	/** @prop {string} HOME_URL Application home URL. */
-	this.HOME_URL = null;
+	this.HOME_URL = appHomeUrl;
 
 	/** @prop {float} headerHeight Current height of the application header. */
 	this.headerHeight = getHeaderHeight();

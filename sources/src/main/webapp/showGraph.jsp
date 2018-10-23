@@ -183,10 +183,9 @@
 		</div>
 
 		<script>
-		var app = new ShowGraphApp;
-		app.HOME_URL = '${HOME_URL}';
+		const app = new ShowGraphApp('${APP_NAME}', '${APP_HOME_URL}');
 
-		document.addEventListener('DOMContentLoaded', function() {
+		document.addEventListener('DOMContentLoaded', () => {
 			var loaderFn = app.diagramLoader('${param.diagramId}');
 
 			app.run(loaderFn);
