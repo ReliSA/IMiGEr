@@ -31,8 +31,6 @@
 		<script src="js/app.js"></script>
 		<script src="js/uploadFilesApp.js"></script>
 
-		<script src="js/userMenu.js"></script>
-
 		<title>${APP_NAME}</title>
 	</head>
 
@@ -42,7 +40,15 @@
 
 			<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 
-			<%@ include file="userMenu.jsp" %>
+			<div class="user-menu loggedInOnly">
+				<span id="usernameLabel">${user.username}</span>
+				<button class="button" id="logoutButton">Log out</button>
+			</div>
+
+			<div class="user-menu loggedOutOnly">
+				<button class="button" id="toggleLoginPopupButton">Log in</button>
+				<button class="button" id="toggleRegisterPopupButton">Register</button>
+			</div>
 		</header>
 
 		<main>

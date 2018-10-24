@@ -9,6 +9,31 @@ class UploadFilesApp extends App {
 	run() {
 		console.log('running...');
 
+		// auth popup
+		const header = document.getElementById('header');
+
+		const loginPopup = new LoginPopup;
+		header.appendChild(loginPopup.render());
+
+		const registerPopup = new RegisterPopup;
+		header.appendChild(registerPopup.render());
+
+		document.getElementById('toggleLoginPopupButton').addEventListener('click', () => {
+			registerPopup.close();
+			loginPopup.toggle();
+		});
+
+		document.getElementById('toggleRegisterPopupButton').addEventListener('click', () => {
+			loginPopup.close();
+			registerPopup.toggle();
+		});
+
+		document.getElementById('logoutButton').addEventListener('click', e => {
+			e.preventDefault();
+			this._logOut();
+		});
+
+		// private diagrams list
 		const privateDiagramList = document.getElementById('privateDiagramList');
 		privateDiagramList.querySelectorAll('.remove-diagram-button').forEach(button => {
 			button.addEventListener('click', this._removeDiagram);
@@ -25,6 +50,27 @@ class UploadFilesApp extends App {
 			privateDiagramList.innerHTML = '';
 			usernameLabel.innerText = '';
 		});
+	}
+
+	/**
+	 * Logs user out.
+	 */
+	async _logOut() {
+		try {
+			await AJAX.get(Constants.API.logOut);
+
+			document.dispatchEvent(new CustomEvent('imiger.userLoggedOut'));
+
+			document.body.classList.remove('loggedIn');
+			document.body.classList.add('loggedOut');
+
+		} catch (error) {
+			if (error instanceof HttpError) {
+				alert('Something went wrong.');
+			} else {
+				alert('Server has probably gone away.');
+			}
+		}
 	}
 
 	/**
