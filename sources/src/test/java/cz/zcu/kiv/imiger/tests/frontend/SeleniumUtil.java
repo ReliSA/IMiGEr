@@ -25,7 +25,7 @@ public class SeleniumUtil {
 
     private static final String GECKO_PATH = TEST_DIRECTORY + "\\geckodriver.exe";
 
-    private static final String URL = "http://localhost:8080";
+    private static final String URL = "http://localhost:8080/imiger/";
 
     private static final int DATA_LOAD_TIMEOUT = 20;
 
@@ -39,12 +39,12 @@ public class SeleniumUtil {
     }
 
     public static void loadGraphData(String filename) {
-        WebElement fileInput = browser.findElement(By.id("hidden_input"));
+        WebElement fileInput = browser.findElement(By.id("file"));
         fileInput.sendKeys(TEST_DIRECTORY + "\\data\\" + filename );
-        browser.findElement(By.className("load")).click();
+        browser.findElement(By.id("btnLoad")).click();
 
         WebDriverWait wait = new WebDriverWait(browser, DATA_LOAD_TIMEOUT);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("vertices")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("viewport")));
 
         try {
             Thread.sleep(1000);

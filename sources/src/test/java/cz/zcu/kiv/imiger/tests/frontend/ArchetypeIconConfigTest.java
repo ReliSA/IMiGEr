@@ -21,72 +21,59 @@ public class ArchetypeIconConfigTest {
     }
 
     @Test
-    public void SpecifiedIcon1(){
-        locateTestingArchetypeIcon("vertex1");
+    public void SpecifiedValueDefinition(){
+        WebElement iconDef = browser.findElement(By.id("vertexArchetypeIcon-SpecifiedIcon"));
+
+        System.out.println("Trying to locate an element with class 'testingArchetypeIcon'");
+        iconDef.findElement(By.className("testingArchetypeIcon"));
+        System.out.println("Element found.");
     }
 
     @Test
-    public void SpecifiedIcon2(){
-        Assertions.assertThrows(NoSuchElementException.class,
-                () -> checkUnspecifiedArchetypeSymbol("vertex1", "S"));
-
-        System.out.println("Default value not found on the vertex with specified archetype icon.");
+    public void UnspecifiedValueDefinition(){
+        emptyIconDefinition("UnspecifiedIcon");
     }
 
     @Test
-    public void UnspecifiedIcon1(){
-        Assertions.assertThrows(NoSuchElementException.class,
-                () -> locateTestingArchetypeIcon("vertex2"));
-
-        System.out.println("Element not found.");
+    public void SmileyValueDefinition(){
+        emptyIconDefinition("☺Smiley");
     }
 
     @Test
-    public void UnspecifiedIcon2(){
-        Assertions.assertThrows(NoSuchElementException.class,
-                () -> locateTestingArchetypeIcon("vertex3"));
-
-        System.out.println("Element not found.");
+    public void SpecifiedIcon(){
+        locateTestingArchetypeIcon("1","#vertexArchetypeIcon-SpecifiedIcon");
     }
 
     @Test
-    public void UnspecifiedIcon3(){
-        checkUnspecifiedArchetypeSymbol("vertex2", "U");
+    public void UnspecifiedIcon(){
+        locateTestingArchetypeIcon("2","#vertexArchetypeIcon-UnspecifiedIcon");
     }
 
     @Test
-    public void UnspecifiedIcon4(){
-        checkUnspecifiedArchetypeSymbol("vertex3", "☺");
+    public void SmileyIcon(){
+        locateTestingArchetypeIcon("3","#vertexArchetypeIcon-☺Smiley");
     }
 
     /**
      * Utility method for checking of the presence of the specified icon element
      * @param elementId Id of the element in which the search is done
+     * @param expectedHref expected href to icon in founded element
      */
-    private void locateTestingArchetypeIcon(String elementId) {
-        WebElement icon = browser.findElement(By.id(elementId))
-                .findElement(By.className("archetype"));
+    private void locateTestingArchetypeIcon(String elementId, String expectedHref) {
+        WebElement icon = browser.findElement(By.cssSelector("[data-id='vertices']"))
+                .findElement(By.cssSelector("[data-id='" + elementId + "']"))
+                .findElement(By.className("archetype-icon"));
 
-        System.out.println("Trying to locate an element with class 'testingArchetypeIcon'");
-        icon.findElement(By.className("testingArchetypeIcon"));
-        System.out.println("Element found.");
+        Assertions.assertEquals(expectedHref, icon.getAttribute("href"));
     }
 
-    /**
-     * Utility method for checking whether specified element contains the default archetype icon
-     * @param elementId Id of the element in which the test is done
-     * @param expectedText Expected text present in the icon
-     */
-    private void checkUnspecifiedArchetypeSymbol(String elementId, String expectedText) {
-        WebElement icon = browser.findElement(By.id(elementId))
-                .findElement(By.className("archetype"));
+    private void emptyIconDefinition(String iconName){
+        WebElement iconDef = browser.findElement(By.id("vertexArchetypeIcon-" + iconName))
+                .findElement(By.tagName("text"));
 
-        System.out.println("Checking text of unspecified archetype icon");
-        Assertions.assertEquals(expectedText, icon.findElement(By.tagName("text")).getText(),
-                "Text of unspecified icon is different from the expected.");
-        System.out.println("Default text found.");
+        System.out.println("Testing if icon contains specific text");
+        Assertions.assertEquals(iconName.substring(0,1), iconDef.getText());
     }
-
 
     @AfterAll
     public static void finishTest() {

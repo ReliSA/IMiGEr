@@ -47,7 +47,7 @@
 						<label for="raw"><input type="radio" name="jsonFileFormat" value="raw" id="raw"> Raw JSON</label><br>
 					</div>
 
-					<button type="submit">Start visualization</button>
+					<button id="btnLoad" type="submit">Start visualization</button>
 				</form>
 			</div>
 
