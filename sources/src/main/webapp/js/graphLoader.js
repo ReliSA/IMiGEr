@@ -22,6 +22,18 @@ function GraphLoader() {
 		app.attributeTypeList = data.attributeTypes;
 		app.possibleEnumValues = data.possibleEnumValues;
 
+		app.archetype.vertex.forEach(function (vertexArchetype) {
+
+			var icon = "";
+			if(app.utils.isDefined(vertexArchetype.icon) && vertexArchetype.icon !== "") {
+                icon = vertexArchetype.icon;
+            } else {
+                // TODO: solve duplicate icons when name starts with the same letter
+                icon = "<text fill='black' x='0' y='7'>" + vertexArchetype.name.substring(0,1) + "</text>"
+			}
+            app.viewportComponent.addSvgDefinition('vertexArchetypeIcon-' + vertexArchetype.name, icon);
+		});
+
 		app.archetype.vertex.filter(function(vertexArchetype) {
 			return app.utils.isDefined(vertexArchetype.icon);
 		}).forEach(function(vertexArchetype) {
