@@ -125,7 +125,8 @@ class SaveDiagramModalWindow extends ModalWindow {
 						alert('Something went wrong.');
 				}
 			} else {
-				alert('Server has probably gone away.');
+				alert('Something went wrong. Check console for more details.');
+				console.error(error);
 			}
 		}
 	}

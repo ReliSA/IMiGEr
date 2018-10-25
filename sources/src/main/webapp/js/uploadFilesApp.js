@@ -68,7 +68,8 @@ class UploadFilesApp extends App {
 			if (error instanceof HttpError) {
 				alert('Something went wrong.');
 			} else {
-				alert('Server has probably gone away.');
+				alert('Something went wrong. Check console for more details.');
+				console.error(error);
 			}
 		}
 	}
@@ -104,7 +105,8 @@ class UploadFilesApp extends App {
 			if (error instanceof HttpError) {
 				alert('Something went wrong.');
 			} else {
-				alert('Server has probably gone away.');
+				alert('Something went wrong. Check console for more details.');
+				console.error(error);
 			}
 		}
 	}
@@ -132,7 +134,8 @@ class UploadFilesApp extends App {
 							alert('Something went wrong.');
 					}
 				} else {
-					alert('Server has probably gone away.');
+					alert('Something went wrong. Check console for more details.');
+					console.error(error);
 				}
 			}
 		}
