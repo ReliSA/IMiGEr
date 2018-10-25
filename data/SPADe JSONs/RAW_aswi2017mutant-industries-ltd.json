@@ -294,15 +294,11 @@
       "attributes": [
         [
           "Name",
-          "Petr Pícha"
+          "PP"
         ],
         [
           "Identities",
-          "Petr Pícha, petrpicha48, ppicha"
-        ],
-        [
-          "Emails",
-          "petrpicha48@seznam.cz"
+          "PP"
         ],
         [
           "Roles",
@@ -319,7 +315,7 @@
       ],
       "id": 0,
       "text": "",
-      "name": "Petr Pícha",
+      "name": "PP",
       "position": {
         "x": 1283,
         "y": 146
@@ -330,15 +326,11 @@
       "attributes": [
         [
           "Name",
-          "Jan Albl"
+          "JA"
         ],
         [
           "Identities",
-          "Jan Albl, alblj"
-        ],
-        [
-          "Emails",
-          "Jan Albl, alblj@students.zcu.cz"
+          "JA"
         ],
         [
           "Roles",
@@ -355,7 +347,7 @@
       ],
       "id": 1,
       "text": "",
-      "name": "Jan Albl",
+      "name": "JA",
       "position": {
         "x": 1094,
         "y": 1037
@@ -366,15 +358,11 @@
       "attributes": [
         [
           "Name",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Identities",
-          "Petr Mayr, pmayr"
-        ],
-        [
-          "Emails",
-          "Petr Mayr, pmayr@students.zcu.cz"
+          "PM"
         ],
         [
           "Roles",
@@ -391,7 +379,7 @@
       ],
       "id": 2,
       "text": "",
-      "name": "Petr Mayr",
+      "name": "PM",
       "position": {
         "x": 776.909090909091,
         "y": 303.6363636363636
@@ -402,15 +390,11 @@
       "attributes": [
         [
           "Name",
-          "Tomáš Matějka"
+          "TM"
         ],
         [
           "Identities",
-          "Tomáš Matějka, matejka"
-        ],
-        [
-          "Emails",
-          "Tomáš Matějka, matejka@students.zcu.cz"
+          "TM"
         ],
         [
           "Roles",
@@ -427,7 +411,7 @@
       ],
       "id": 3,
       "text": "",
-      "name": "Tomáš Matějka",
+      "name": "TM",
       "position": {
         "x": 843,
         "y": 680
@@ -442,7 +426,7 @@
         ],
         [
           "Author",
-          "Milan Široký"
+          "MS"
         ],
         [
           "Created",
@@ -466,15 +450,11 @@
       "attributes": [
         [
           "Name",
-          "Milan Široký"
+          "MS"
         ],
         [
           "Identities",
-          "Milan Široký, milan.siroky, milan2"
-        ],
-        [
-          "Emails",
-          "Milan Široký, milan2@students.zcu.cz"
+          "MS"
         ],
         [
           "Roles",
@@ -491,7 +471,7 @@
       ],
       "id": 4,
       "text": "",
-      "name": "Milan Široký",
+      "name": "MS",
       "position": {
         "x": 0.1818181818182092,
         "y": 503.1818181818183
@@ -506,7 +486,7 @@
         ],
         [
           "Author",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Created",
@@ -534,7 +514,7 @@
         ],
         [
           "Author",
-          "Milan Široký"
+          "MS"
         ],
         [
           "Created",
@@ -634,7 +614,7 @@
         ],
         [
           "Author",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Created",
@@ -662,7 +642,7 @@
         ],
         [
           "Author",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Created",
@@ -690,7 +670,7 @@
         ],
         [
           "Author",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Created",
@@ -718,7 +698,7 @@
         ],
         [
           "Author",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Created",
@@ -746,7 +726,7 @@
         ],
         [
           "Author",
-          "Milan Široký"
+          "MS"
         ],
         [
           "Created",
@@ -774,7 +754,7 @@
         ],
         [
           "Author",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Created",
@@ -802,7 +782,7 @@
         ],
         [
           "Author",
-          "Milan Široký"
+          "MS"
         ],
         [
           "Created",
@@ -830,7 +810,7 @@
         ],
         [
           "Author",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Created",
@@ -858,7 +838,7 @@
         ],
         [
           "Author",
-          "Petr Mayr"
+          "PM"
         ],
         [
           "Created",
@@ -1470,16 +1450,16 @@
       "member"
     ],
     "8": [
-      "Milan Široký",
-      "Petr Mayr",
-      "Jan Albl",
-      "Tomáš Matějka"
+      "MS",
+      "PM",
+      "JA",
+      "TM"
     ],
     "12": [
-      "Tomáš Matějka",
-      "Milan Široký",
-      "Jan Albl",
-      "Petr Mayr",
+      "TM",
+      "MS",
+      "JA",
+      "PM",
       "unknown"
     ],
     "13": [

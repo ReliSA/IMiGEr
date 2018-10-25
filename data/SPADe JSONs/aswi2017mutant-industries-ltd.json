@@ -292,7 +292,7 @@
      "STAKEHOLDER",
      "STAKEHOLDER"
     ],
-    "1": "Petr Pícha",
+    "1": "PP",
     "34": [
      "STAKEHOLDER",
      "TEAMMEMBER",
@@ -301,11 +301,10 @@
      "STAKEHOLDER"
     ],
     "5": [
-     "Petr Pícha",
-     "petrpicha48",
-     "ppicha"
+     "PP",
+     "PP",
+     "PP"
     ],
-    "6": ["petrpicha48@seznam.cz"],
     "7": [
      "Mentor",
      "Developer",
@@ -316,27 +315,26 @@
    },
    "id": 0,
    "text": "",
-   "title": "Petr Pícha"
+   "title": "PP"
   },
   {
    "archetype": 0,
    "attributes": {
     "33": ["DEVELOPER"],
-    "1": "Jan Albl",
+    "1": "JA",
     "34": ["TEAMMEMBER"],
     "5": [
-     "Jan Albl",
-     "alblj"
+     "JA",
+     "JA"
     ],
     "6": [
-     "Jan Albl",
-     "alblj@students.zcu.cz"
+     "JA"
     ],
     "7": ["Developer"]
    },
    "id": 1,
    "text": "",
-   "title": "Jan Albl"
+   "title": "JA"
   },
   {
    "archetype": 0,
@@ -345,18 +343,17 @@
      "DEVELOPER",
      "PROJECTMANAGER"
     ],
-    "1": "Petr Mayr",
+    "1": "PM",
     "34": [
      "TEAMMEMBER",
      "MANAGEMENT"
     ],
     "5": [
-     "Petr Mayr",
-     "pmayr"
+     "PM",
+     "PM"
     ],
     "6": [
-     "Petr Mayr",
-     "pmayr@students.zcu.cz"
+     "PM"
     ],
     "7": [
      "Developer",
@@ -365,66 +362,63 @@
    },
    "id": 2,
    "text": "",
-   "title": "Petr Mayr"
+   "title": "PM"
   },
   {
    "archetype": 0,
    "attributes": {
     "33": ["DEVELOPER"],
-    "1": "Tomáš Matějka",
+    "1": "TM",
     "34": ["TEAMMEMBER"],
     "5": [
-     "Tomáš Matějka",
-     "matejka"
+     "TM",
+     "TM"
     ],
     "6": [
-     "Tomáš Matějka",
-     "matejka@students.zcu.cz"
+     "TM"
     ],
     "7": ["Developer"]
    },
    "id": 3,
    "text": "",
-   "title": "Tomáš Matějka"
+   "title": "TM"
   },
   {
    "archetype": 0,
    "attributes": {
     "33": ["DEVELOPER"],
-    "1": "Milan Široký",
+    "1": "MS",
     "34": ["TEAMMEMBER"],
     "5": [
      "",
-     "Milan Široký",
-     "milan.siroky",
-     "milan2"
+     "MS",
+     "MS",
+     "MS"
     ],
     "6": [
-     "Milan Široký",
-     "milan2@students.zcu.cz"
+     "MS"
     ],
     "7": ["Developer"]
    },
    "id": 4,
    "text": "",
-   "title": "Milan Široký"
+   "title": "MS"
   },
   {
    "archetype": 0,
    "attributes": {
     "33": ["MENTOR"],
-    "1": "Premek Brada",
+    "1": "PB",
     "34": ["STAKEHOLDER"],
     "5": [
-     "Premek Brada",
-     "brada"
+     "PB",
+     "PB"
     ],
-    "6": ["brada@kiv.zcu.cz"],
     "7": ["Mentor"]
    },
    "id": 5,
    "text": "",
-   "title": "Premek Brada"
+   "title": "PB"
   },
   {
    "archetype": 0,
@@ -451,7 +445,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5184",
     "11": "5184",
-    "12": ["Tomáš Matějka"],
+    "12": ["TM"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -467,7 +461,7 @@
     "0": "5184",
     "1": "jsp pro zobrazení výsledku",
     "2": "Příprava jsp pro zobrazení výsledku porovnání dvou definic",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:09:24",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -488,7 +482,7 @@
     "24": [],
     "10": "https://students.kiv.zcu.cz:3443/issues/5185",
     "11": "5185",
-    "12": ["Milan Široký"],
+    "12": ["MS"],
     "13": ["Support"],
     "35": ["UNASSIGNED"],
     "14": ["Normal"],
@@ -502,7 +496,7 @@
     "0": "5185",
     "1": "Administrace Redmine (práce s redmine)",
     "2": "",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:22:43",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -523,7 +517,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5515",
     "11": "5515",
-    "12": ["Jan Albl"],
+    "12": ["JA"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -539,7 +533,7 @@
     "0": "5515",
     "1": "Formátování porovnávaných xml",
     "2": "Xml popisující definici příkazu databáze vrací neformátované (tj. celé na jednom řádku) a bylo by tedy vhodné ho před porovnáním přeformátovat. Lze na to použít třídu cz.aimtec.dci.util.XMLFormatter.",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 12:42:26",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -560,7 +554,7 @@
     "24": [],
     "10": "https://students.kiv.zcu.cz:3443/issues/5163",
     "11": "5163",
-    "12": ["Milan Široký"],
+    "12": ["MS"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["Normal"],
@@ -576,7 +570,7 @@
     "0": "5163",
     "1": "Sepsání vize projektu",
     "2": "Po první schůzce se zákazníkem vytvořena vize produktu. ",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-20 18:36:38",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -597,7 +591,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5516",
     "11": "5516",
-    "12": ["Tomáš Matějka"],
+    "12": ["TM"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -613,7 +607,7 @@
     "0": "5516",
     "1": "Validace správné funkcionality",
     "2": "Bude třeba otestovat správnou funkcionalitu tlačítka a okrajové případy (špatný počet vybraných definic). Dále se bude testovat zda se nerozbila nějaká stávající funkcionalita (hlavně porovnání transakcí) a případné chyby opravit.",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:10:07",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -634,7 +628,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5517",
     "11": "5517",
-    "12": ["Petr Mayr"],
+    "12": ["PM"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -650,7 +644,7 @@
     "0": "5517",
     "1": "Refactoring a finální úpravy",
     "2": "- OrderDefinitionCompareForm bude obsahovat atribut typu String[], ve kterém budou uloženy jména definic příkazů k porovnání\r\n- handler tlačítka bude posílat parametr compare jako pole (tj ...?compare[]=name1&compare[]=name2...)\r\n- kód bude připraven k předání\r\n- orderDefCompare.jsp by nemělo odkazovat na transDefCompareXP.css",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:17:38",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -671,7 +665,7 @@
     "24": [],
     "10": "https://students.kiv.zcu.cz:3443/issues/5651",
     "11": "5651",
-    "12": ["Petr Mayr"],
+    "12": ["PM"],
     "13": ["Support"],
     "35": ["UNASSIGNED"],
     "14": ["Normal"],
@@ -687,7 +681,7 @@
     "0": "5651",
     "1": "Předání projektu",
     "2": "Finální prezentace, předání, případné získání předávacího protokolu",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 15:03:53",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -708,7 +702,7 @@
     "24": [],
     "10": "https://students.kiv.zcu.cz:3443/issues/5142",
     "11": "5142",
-    "12": ["Milan Široký"],
+    "12": ["MS"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["Normal"],
@@ -722,7 +716,7 @@
     "0": "5142",
     "1": "Schůzky se zákazníkem",
     "2": "",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-20 11:30:12",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -743,7 +737,7 @@
     "24": [],
     "10": "https://students.kiv.zcu.cz:3443/issues/5143",
     "11": "5143",
-    "12": ["Milan Široký"],
+    "12": ["MS"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["Low"],
@@ -757,7 +751,7 @@
     "0": "5143",
     "1": "Schůzky týmu",
     "2": "",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-20 11:31:35",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -778,7 +772,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5656",
     "11": "5656",
-    "12": ["Jan Albl"],
+    "12": ["JA"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -794,7 +788,7 @@
     "0": "5656",
     "1": "Titulek okna s porovnáním",
     "2": "Modální okno bude obsahovat titulek, ve kterém budou jména porovnávaných příkazů a legenda (tj. co která barva znamená podobně jako u transakcí). Texty budou v jazykovém bundle, stačí doplnit česky a anglicky.",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:38:03",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -831,7 +825,7 @@
     "0": "5177",
     "1": "Orientace v aplikaci DCIx ",
     "2": "Zorientování se v současné aplikaci a v používaných technologiích (struts, ajax, js)",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 09:53:58",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -852,7 +846,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5658",
     "11": "5658",
-    "12": ["Petr Mayr"],
+    "12": ["PM"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -868,7 +862,7 @@
     "0": "5658",
     "1": "DCI konvence zdrojových kódů",
     "2": "Jedna z konvencí v DCI říká, že každé jsp musí mít vlastní css. Bude tedy nutné vytvořit css pro jsp s porovnáním, obsah bude stejný jako css aktuálně použitého jsp (transDefCompareXP.css).",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:46:21",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -889,7 +883,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5178",
     "11": "5178",
-    "12": ["Tomáš Matějka"],
+    "12": ["TM"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -905,7 +899,7 @@
     "0": "5178",
     "1": "Tlačítko na porovnání",
     "2": "Přidání tlačítka na porovnání do přehledu definic příkazů (text 'compare') nad výpis. Tlačítko bude mít třídu '.compareButton'.",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 09:56:09",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -926,7 +920,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5179",
     "11": "5179",
-    "12": ["Jan Albl"],
+    "12": ["JA"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -942,7 +936,7 @@
     "0": "5179",
     "1": "JS ajaxová obsluha tlačítka",
     "2": "Handler na click na tlačítku porovnání (třída .compareButton), který zavolá $base/compareOrderDefs.do?param a výsledek zobrazí do modálního okna. Param bude jeden a bude obsahovat id vybraných definicí příkazů oddělené čárkou. Jako inspiraci lze použít handler porovnání transakcí v mainTransDefColl.jsp, řádek 41. Skript by neměl být součástí template, což prozatím není nutné řešit.",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 09:58:32",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -963,7 +957,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5180",
     "11": "5180",
-    "12": ["Petr Mayr"],
+    "12": ["PM"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -979,7 +973,7 @@
     "0": "5180",
     "1": "Backend - controller a mapování na url",
     "2": "Vytvoření provizorního controlleru (s prázdnou metodou execute()), přidání jeho mapování na kontext /compareOrderDefs a přidání jsp, které vypíše nějaký testovací obsah. Bude také třeba vytvořit třídu form, která bude obalovat request. Jako inspirace může posloužit controller na porovnáním definic transakcí.",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:00:06",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -1000,7 +994,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5181",
     "11": "5181",
-    "12": ["Jan Albl"],
+    "12": ["JA"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -1016,7 +1010,7 @@
     "0": "5181",
     "1": "Validace requestu",
     "2": "Provedení validace, zda došlo k vybrání správného počtu definic (2 definice) a případně vrácení chybové zprávy, pokud došlo k vybrání jen jedné nebo více definic",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:02:42",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -1037,7 +1031,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5182",
     "11": "5182",
-    "12": ["Petr Mayr"],
+    "12": ["PM"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -1053,7 +1047,7 @@
     "0": "5182",
     "1": "Načtení definic příkazů z databáze",
     "2": "Načtení definic uložených v databázi pro následné porovnání",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:04:03",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -1074,7 +1068,7 @@
     "24": ["implementace"],
     "10": "https://students.kiv.zcu.cz:3443/issues/5183",
     "11": "5183",
-    "12": ["Jan Albl"],
+    "12": ["JA"],
     "13": ["Task"],
     "35": ["TASK"],
     "14": ["High"],
@@ -1090,7 +1084,7 @@
     "0": "5183",
     "1": "Porovnání definic příkazů",
     "2": "Provede porovnání vybraných definic použitím stávající knihovny z porovnávání transakčních definic a následně vygeneruje HTML porovnaných definic (komparátu)",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:08:38",
     "40": ["DONE"],
     "41": ["CLOSED"],
@@ -1109,7 +1103,7 @@
     "1": "",
     "3": "",
     "27": "ADD DCI konvence zdrojových kódů\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:46:21",
     "10": ""
    },
@@ -1125,7 +1119,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-19 18:08:04",
     "27": "LOGTIME DCI konvence zdrojových kódů - spentTime: 0.0 -> 1.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 00:00:00",
     "10": ""
    },
@@ -1140,7 +1134,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY DCI konvence zdrojových kódů - status: Accepted -> Assigned\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:47:00",
     "10": ""
    },
@@ -1155,7 +1149,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY DCI konvence zdrojových kódů - name: Duplikovat css příslušící oknu s porovnáním -> DCI konvence zdrojových kódů\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:55:00",
     "10": ""
    },
@@ -1170,7 +1164,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY DCI konvence zdrojových kódů - status: Assigned -> Resolved\nMODIFY DCI konvence zdrojových kódů - progress: 0 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 18:08:00",
     "10": ""
    },
@@ -1185,7 +1179,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY DCI konvence zdrojových kódů - status: Resolved -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-22 18:13:00",
     "10": ""
    },
@@ -1199,7 +1193,7 @@
     "1": "",
     "3": "",
     "27": "ADD Titulek okna s porovnáním\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:38:03",
     "10": ""
    },
@@ -1215,7 +1209,7 @@
     "3": "Už jen přidám commit a hotovo\n\nActivity: Implementation",
     "26": "2017-04-21 11:09:49",
     "27": "LOGTIME Titulek okna s porovnáním - spentTime: 0.0 -> 2.0\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-21 00:00:00",
     "10": ""
    },
@@ -1231,7 +1225,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-20 19:28:53",
     "27": "LOGTIME Titulek okna s porovnáním - spentTime: 2.0 -> 3.0\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-20 00:00:00",
     "10": ""
    },
@@ -1246,7 +1240,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Titulek okna s porovnáním - status: Accepted -> Assigned\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:47:00",
     "10": ""
    },
@@ -1261,7 +1255,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Titulek okna s porovnáním - progress: 0 -> 30\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-20 16:15:00",
     "10": ""
    },
@@ -1276,7 +1270,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Titulek okna s porovnáním - progress: 30 -> 0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-20 18:50:00",
     "10": ""
    },
@@ -1291,7 +1285,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Titulek okna s porovnáním - progress: 0 -> 30\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-20 19:29:00",
     "10": ""
    },
@@ -1306,7 +1300,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Titulek okna s porovnáním - progress: 30 -> 90\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-21 11:10:00",
     "10": ""
    },
@@ -1321,7 +1315,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Titulek okna s porovnáním - progress: 90 -> 100\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-22 13:27:00",
     "10": ""
    },
@@ -1336,7 +1330,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Titulek okna s porovnáním - status: Assigned -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-22 18:13:00",
     "10": ""
    },
@@ -1350,7 +1344,7 @@
     "1": "",
     "3": "",
     "27": "ADD Předání projektu\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 15:03:53",
     "10": ""
    },
@@ -1366,7 +1360,7 @@
     "3": "Předání zákazníkovi, podpis předávacího protokolu, poslední retrospektiva za celý projekt\n\nActivity: Verification",
     "26": "2017-04-27 17:41:27",
     "27": "LOGTIME Předání projektu - spentTime: 0.0 -> 0.5\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-27 00:00:00",
     "10": ""
    },
@@ -1381,7 +1375,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Předání projektu - status: Accepted -> Assigned\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:47:00",
     "10": ""
    },
@@ -1396,7 +1390,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Předání projektu - status: Assigned -> Closed\nMODIFY Předání projektu - progress: 0 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-27 22:47:00",
     "10": ""
    },
@@ -1410,7 +1404,7 @@
     "1": "",
     "3": "",
     "27": "ADD Refactoring a finální úpravy\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:17:38",
     "10": ""
    },
@@ -1426,7 +1420,7 @@
     "3": "\n\nActivity: Implementation",
     "26": "2017-04-19 00:06:52",
     "27": "LOGTIME Refactoring a finální úpravy - spentTime: 0.0 -> 2.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 00:00:00",
     "10": ""
    },
@@ -1442,7 +1436,7 @@
     "3": "\n\nActivity: Implementation",
     "26": "2017-04-14 10:13:08",
     "27": "LOGTIME Refactoring a finální úpravy - spentTime: 2.0 -> 4.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-14 00:00:00",
     "10": ""
    },
@@ -1457,7 +1451,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - iteration:  -> DCI - 4. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:19:00",
     "10": ""
    },
@@ -1472,7 +1466,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - status: New -> Accepted\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:20:00",
     "10": ""
    },
@@ -1486,8 +1480,8 @@
     "0": "change-16408",
     "1": "",
     "3": "",
-    "27": "MODIFY Refactoring a finální úpravy - status: Accepted -> Assigned\nMODIFY Refactoring a finální úpravy - assignee:  -> Petr Mayr\n",
-    "8": ["Petr Mayr"],
+    "27": "MODIFY Refactoring a finální úpravy - status: Accepted -> Assigned\nMODIFY Refactoring a finální úpravy - assignee:  -> PM\n",
+    "8": ["PM"],
     "9": "2017-04-11 13:20:00",
     "10": ""
    },
@@ -1502,7 +1496,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - description: \n - OrderDefinitionCompareForm bude obsahovat atribut typu String[], ve kterém budou uloženy jména definic příkazů k porovnání  - handler tlačítka bude posílat parametr compare jako pole (tj ...?compare[]=name1&amp;compare[]=name2...)  - kód bude připraven k předání   -> \n - OrderDefinitionCompareForm bude obsahovat atribut typu String[], ve kterém budou uloženy jména definic příkazů k porovnání  - handler tlačítka bude posílat parametr compare jako pole (tj ...?compare[]=name1&amp;compare[]=name2...)  - kód bude připraven k předání - orderDefCompare.jsp by nemělo odkazovat na transDefCompareXP.css \n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:29:00",
     "10": ""
    },
@@ -1517,7 +1511,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - dueDate:  -> 2017-04-18\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:46:00",
     "10": ""
    },
@@ -1532,7 +1526,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - priority: Normal -> High\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:47:00",
     "10": ""
    },
@@ -1547,7 +1541,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - dueDate: 2017-04-18 -> 2017-04-19\nMODIFY Refactoring a finální úpravy - startDate: 2017-04-11 -> 2017-04-12\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-12 11:14:00",
     "10": ""
    },
@@ -1562,7 +1556,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - progress: 0 -> 60\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-14 10:13:00",
     "10": ""
    },
@@ -1577,7 +1571,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - progress: 60 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 00:06:00",
     "10": ""
    },
@@ -1592,7 +1586,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - status: Assigned -> Resolved\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 13:50:00",
     "10": ""
    },
@@ -1607,7 +1601,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Refactoring a finální úpravy - status: Resolved -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 13:51:00",
     "10": ""
    },
@@ -1621,7 +1615,7 @@
     "1": "",
     "3": "",
     "27": "ADD Validace správné funkcionality\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:10:07",
     "10": ""
    },
@@ -1637,7 +1631,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-19 12:38:25",
     "27": "LOGTIME Validace správné funkcionality - spentTime: 0.0 -> 0.30000001192092896\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-19 00:00:00",
     "10": ""
    },
@@ -1653,7 +1647,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-18 17:47:59",
     "27": "LOGTIME Validace správné funkcionality - spentTime: 0.30000001192092896 -> 1.300000011920929\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-18 00:00:00",
     "10": ""
    },
@@ -1669,7 +1663,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-17 22:27:48",
     "27": "LOGTIME Validace správné funkcionality - spentTime: 1.300000011920929 -> 2.800000011920929\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-17 00:00:00",
     "10": ""
    },
@@ -1685,7 +1679,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-17 00:03:29",
     "27": "LOGTIME Validace správné funkcionality - spentTime: 2.800000011920929 -> 3.800000011920929\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-17 00:00:00",
     "10": ""
    },
@@ -1700,7 +1694,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - iteration:  -> DCI - 4. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:19:00",
     "10": ""
    },
@@ -1715,7 +1709,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - status: New -> Accepted\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:20:00",
     "10": ""
    },
@@ -1730,7 +1724,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - dueDate:  -> 2017-04-18\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:46:00",
     "10": ""
    },
@@ -1745,7 +1739,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - priority: Normal -> High\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:47:00",
     "10": ""
    },
@@ -1760,7 +1754,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - dueDate: 2017-04-18 -> 2017-04-19\nMODIFY Validace správné funkcionality - startDate: 2017-04-11 -> 2017-04-12\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-12 11:14:00",
     "10": ""
    },
@@ -1774,8 +1768,8 @@
     "0": "change-16720",
     "1": "",
     "3": "",
-    "27": "MODIFY Validace správné funkcionality - assignee:  -> Tomáš Matějka\n",
-    "8": ["Tomáš Matějka"],
+    "27": "MODIFY Validace správné funkcionality - assignee:  -> TM\n",
+    "8": ["TM"],
     "9": "2017-04-16 23:55:00",
     "10": ""
    },
@@ -1790,7 +1784,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - progress: 0 -> 20\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-17 00:03:00",
     "10": ""
    },
@@ -1805,7 +1799,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - progress: 20 -> 50\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-17 22:27:00",
     "10": ""
    },
@@ -1820,7 +1814,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - progress: 50 -> 80\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-18 17:47:00",
     "10": ""
    },
@@ -1835,7 +1829,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - progress: 80 -> 100\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-19 12:38:00",
     "10": ""
    },
@@ -1850,7 +1844,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - status: Accepted -> Resolved\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 13:50:00",
     "10": ""
    },
@@ -1865,7 +1859,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace správné funkcionality - status: Resolved -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 13:51:00",
     "10": ""
    },
@@ -1879,7 +1873,7 @@
     "1": "",
     "3": "",
     "27": "ADD Formátování porovnávaných xml\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 12:42:26",
     "10": ""
    },
@@ -1895,7 +1889,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-15 23:07:25",
     "27": "LOGTIME Formátování porovnávaných xml - spentTime: 0.0 -> 0.44999998807907104\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-15 00:00:00",
     "10": ""
    },
@@ -1911,7 +1905,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-14 19:26:42",
     "27": "LOGTIME Formátování porovnávaných xml - spentTime: 0.44999998807907104 -> 1.949999988079071\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-14 00:00:00",
     "10": ""
    },
@@ -1926,7 +1920,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Formátování porovnávaných xml - iteration:  -> DCI - 4. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:19:00",
     "10": ""
    },
@@ -1941,7 +1935,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Formátování porovnávaných xml - dueDate:  -> 2017-04-18\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:46:00",
     "10": ""
    },
@@ -1956,7 +1950,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Formátování porovnávaných xml - priority: Normal -> High\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:47:00",
     "10": ""
    },
@@ -1971,7 +1965,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Formátování porovnávaných xml - dueDate: 2017-04-18 -> 2017-04-19\nMODIFY Formátování porovnávaných xml - startDate: 2017-04-11 -> 2017-04-12\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-12 11:14:00",
     "10": ""
    },
@@ -1985,8 +1979,8 @@
     "0": "change-16507",
     "1": "",
     "3": "",
-    "27": "MODIFY Formátování porovnávaných xml - assignee:  -> Jan Albl\n",
-    "8": ["Jan Albl"],
+    "27": "MODIFY Formátování porovnávaných xml - assignee:  -> JA\n",
+    "8": ["JA"],
     "9": "2017-04-12 19:05:00",
     "10": ""
    },
@@ -2001,7 +1995,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Formátování porovnávaných xml - progress: 0 -> 70\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-14 19:26:00",
     "10": ""
    },
@@ -2016,7 +2010,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Formátování porovnávaných xml - progress: 70 -> 100\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-15 23:08:00",
     "10": ""
    },
@@ -2030,7 +2024,7 @@
     "0": "change-16716",
     "1": "",
     "3": "Protože výstup z metody doCompare není validní xml nejde použít třída XMLFormatter pro formátování. Použil jsem pouze odřádkování po konci elementu.",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-16 22:25:00",
     "10": ""
    },
@@ -2045,7 +2039,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Formátování porovnávaných xml - status: Accepted -> Resolved\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 13:50:00",
     "10": ""
    },
@@ -2060,7 +2054,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Formátování porovnávaných xml - status: Resolved -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 13:50:00",
     "10": ""
    },
@@ -2074,7 +2068,7 @@
     "1": "",
     "3": "",
     "27": "ADD Administrace Redmine (práce s redmine)\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:22:43",
     "10": ""
    },
@@ -2090,7 +2084,7 @@
     "3": "\n\nActivity: Administrative",
     "26": "2017-04-27 22:48:29",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 0.0 -> 0.5\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-27 00:00:00",
     "10": ""
    },
@@ -2106,7 +2100,7 @@
     "3": "\n\nActivity: Administrative",
     "26": "2017-04-19 17:31:29",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 0.5 -> 2.5\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 00:00:00",
     "10": ""
    },
@@ -2122,7 +2116,7 @@
     "3": "Opravena už. dokumentace\n\nActivity: Documentation",
     "26": "2017-04-14 11:57:22",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 2.5 -> 2.6500000059604645\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-14 00:00:00",
     "10": ""
    },
@@ -2138,7 +2132,7 @@
     "3": "\n\nActivity: Documentation",
     "26": "2017-04-13 19:06:53",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 2.6500000059604645 -> 3.9499999582767487\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 00:00:00",
     "10": ""
    },
@@ -2154,7 +2148,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-11 13:47:04",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 3.9499999582767487 -> 5.199999958276749\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 00:00:00",
     "10": ""
    },
@@ -2170,7 +2164,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-05 17:54:49",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 5.199999958276749 -> 5.699999958276749\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 00:00:00",
     "10": ""
    },
@@ -2186,7 +2180,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-03 18:42:53",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 5.699999958276749 -> 6.199999958276749\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-03 00:00:00",
     "10": ""
    },
@@ -2202,7 +2196,7 @@
     "3": "Přidání priorit k úkolům, vytvořen časový odhad pro dlouhé úkoly, přidán tag pro snadnější filtraci backlogu, přidán popis iterací + jejich předělání do dvou iterací\n\nActivity: Administrative",
     "26": "2017-04-02 10:08:18",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 6.199999958276749 -> 6.949999958276749\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-01 00:00:00",
     "10": ""
    },
@@ -2218,7 +2212,7 @@
     "3": "Úprava iterací, přidány časové odhady k dlouhodobým úkolům, přidán tag pro vyfiltrování backlogu, přidány priority k úkolům\n\nActivity: Administrative",
     "26": "2017-04-01 16:07:44",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 6.949999958276749 -> 7.449999958276749\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-31 00:00:00",
     "10": ""
    },
@@ -2234,7 +2228,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-03-30 23:14:34",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 7.449999958276749 -> 8.449999958276749\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 00:00:00",
     "10": ""
    },
@@ -2250,7 +2244,7 @@
     "3": "Vytvořeny úkoly podle dohody po včerejší schůzce zákazníkem.\n\nActivity: Administrative",
     "26": "2017-03-23 10:23:41",
     "27": "LOGTIME Administrace Redmine (práce s redmine) - spentTime: 8.449999958276749 -> 8.949999958276749\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 00:00:00",
     "10": ""
    },
@@ -2292,7 +2286,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Administrace Redmine (práce s redmine) - status: Assigned -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-28 18:49:00",
     "10": ""
    },
@@ -2307,7 +2301,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Administrace Redmine (práce s redmine) - progress: 0 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-28 18:49:00",
     "10": ""
    },
@@ -2321,7 +2315,7 @@
     "1": "",
     "3": "",
     "27": "ADD jsp pro zobrazení výsledku\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:09:24",
     "10": ""
    },
@@ -2337,7 +2331,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-11 09:28:25",
     "27": "LOGTIME jsp pro zobrazení výsledku - spentTime: 0.0 -> 4.0\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-11 00:00:00",
     "10": ""
    },
@@ -2353,7 +2347,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-10 12:11:19",
     "27": "LOGTIME jsp pro zobrazení výsledku - spentTime: 4.0 -> 8.0\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-10 00:00:00",
     "10": ""
    },
@@ -2368,7 +2362,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - name: Tvorba jsp pro zobrazení výsledku -> jsp pro zobrazení výsledku\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 14:39:00",
     "10": ""
    },
@@ -2425,7 +2419,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - dueDate:  -> 2017-04-12\nMODIFY jsp pro zobrazení výsledku - status: New -> Accepted\nMODIFY jsp pro zobrazení výsledku - startDate: 2017-03-23 -> 2017-04-05\nMODIFY jsp pro zobrazení výsledku - estimatedTime: 20.00 -> 10.00\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:13:00",
     "10": ""
    },
@@ -2440,7 +2434,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - priority: Normal -> High\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:17:00",
     "10": ""
    },
@@ -2455,7 +2449,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - iteration:  -> DCI - 3. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:21:00",
     "10": ""
    },
@@ -2469,8 +2463,8 @@
     "0": "change-16041",
     "1": "",
     "3": "",
-    "27": "MODIFY jsp pro zobrazení výsledku - status: Accepted -> Assigned\nMODIFY jsp pro zobrazení výsledku - assignee:  -> Tomáš Matějka\n",
-    "8": ["Petr Mayr"],
+    "27": "MODIFY jsp pro zobrazení výsledku - status: Accepted -> Assigned\nMODIFY jsp pro zobrazení výsledku - assignee:  -> TM\n",
+    "8": ["PM"],
     "9": "2017-04-05 17:29:00",
     "10": ""
    },
@@ -2485,7 +2479,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - progress: 0 -> 40\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-10 12:11:00",
     "10": ""
    },
@@ -2500,7 +2494,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - progress: 40 -> 100\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-11 09:28:00",
     "10": ""
    },
@@ -2515,7 +2509,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - status: Assigned -> Resolved\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 12:36:00",
     "10": ""
    },
@@ -2530,7 +2524,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - status: Resolved -> Verified\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:21:00",
     "10": ""
    },
@@ -2545,7 +2539,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY jsp pro zobrazení výsledku - status: Verified -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:43:00",
     "10": ""
    },
@@ -2559,7 +2553,7 @@
     "1": "",
     "3": "",
     "27": "ADD Porovnání definic příkazů\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:08:38",
     "10": ""
    },
@@ -2575,7 +2569,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-10 11:41:48",
     "27": "LOGTIME Porovnání definic příkazů - spentTime: 0.0 -> 2.5\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-10 00:00:00",
     "10": ""
    },
@@ -2590,7 +2584,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Porovnání definic příkazů - name: Porovnání definic -> Porovnání definic příkazů\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 14:38:00",
     "10": ""
    },
@@ -2619,7 +2613,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Porovnání definic příkazů - dueDate:  -> 2017-04-12\nMODIFY Porovnání definic příkazů - status: New -> Accepted\nMODIFY Porovnání definic příkazů - iteration:  -> DCI - 3. iterace\nMODIFY Porovnání definic příkazů - startDate: 2017-03-23 -> 2017-04-05\nMODIFY Porovnání definic příkazů - estimatedTime: 6.00 -> 3.00\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:12:00",
     "10": ""
    },
@@ -2634,7 +2628,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Porovnání definic příkazů - priority: Normal -> High\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:17:00",
     "10": ""
    },
@@ -2648,8 +2642,8 @@
     "0": "change-16042",
     "1": "",
     "3": "",
-    "27": "MODIFY Porovnání definic příkazů - status: Accepted -> Assigned\nMODIFY Porovnání definic příkazů - assignee:  -> Jan Albl\n",
-    "8": ["Petr Mayr"],
+    "27": "MODIFY Porovnání definic příkazů - status: Accepted -> Assigned\nMODIFY Porovnání definic příkazů - assignee:  -> JA\n",
+    "8": ["PM"],
     "9": "2017-04-05 17:29:00",
     "10": ""
    },
@@ -2664,7 +2658,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Porovnání definic příkazů - status: Assigned -> Accepted\nMODIFY Porovnání definic příkazů - progress: 0 -> 100\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-10 11:42:00",
     "10": ""
    },
@@ -2679,7 +2673,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Porovnání definic příkazů - status: Accepted -> Resolved\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 12:36:00",
     "10": ""
    },
@@ -2694,7 +2688,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Porovnání definic příkazů - status: Resolved -> Verified\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:21:00",
     "10": ""
    },
@@ -2709,7 +2703,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Porovnání definic příkazů - status: Verified -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:43:00",
     "10": ""
    },
@@ -2723,7 +2717,7 @@
     "1": "",
     "3": "",
     "27": "ADD Načtení definic příkazů z databáze\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:04:03",
     "10": ""
    },
@@ -2739,7 +2733,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-08 15:11:50",
     "27": "LOGTIME Načtení definic příkazů z databáze - spentTime: 0.0 -> 1.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-08 00:00:00",
     "10": ""
    },
@@ -2755,7 +2749,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-08 11:05:17",
     "27": "LOGTIME Načtení definic příkazů z databáze - spentTime: 1.0 -> 2.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-08 00:00:00",
     "10": ""
    },
@@ -2771,7 +2765,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-07 13:19:51",
     "27": "LOGTIME Načtení definic příkazů z databáze - spentTime: 2.0 -> 6.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-07 00:00:00",
     "10": ""
    },
@@ -2787,7 +2781,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-06 16:27:57",
     "27": "LOGTIME Načtení definic příkazů z databáze - spentTime: 6.0 -> 9.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-06 00:00:00",
     "10": ""
    },
@@ -2802,7 +2796,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - name: Načtení definic -> Načtení definic příkazů z databáze podle id\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 14:38:00",
     "10": ""
    },
@@ -2831,7 +2825,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - dueDate:  -> 2017-04-12\nMODIFY Načtení definic příkazů z databáze - status: New -> Accepted\nMODIFY Načtení definic příkazů z databáze - iteration:  -> DCI - 3. iterace\nMODIFY Načtení definic příkazů z databáze - startDate: 2017-03-23 -> 2017-04-05\nMODIFY Načtení definic příkazů z databáze - estimatedTime: 20.00 -> 10.00\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:11:00",
     "10": ""
    },
@@ -2846,7 +2840,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - name: Načtení definic příkazů z databáze podle id -> Načtení definic příkazů z databáze\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:16:00",
     "10": ""
    },
@@ -2861,7 +2855,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - priority: Normal -> High\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:17:00",
     "10": ""
    },
@@ -2875,8 +2869,8 @@
     "0": "change-16043",
     "1": "",
     "3": "",
-    "27": "MODIFY Načtení definic příkazů z databáze - status: Accepted -> Assigned\nMODIFY Načtení definic příkazů z databáze - assignee:  -> Petr Mayr\n",
-    "8": ["Petr Mayr"],
+    "27": "MODIFY Načtení definic příkazů z databáze - status: Accepted -> Assigned\nMODIFY Načtení definic příkazů z databáze - assignee:  -> PM\n",
+    "8": ["PM"],
     "9": "2017-04-05 17:30:00",
     "10": ""
    },
@@ -2891,7 +2885,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - progress: 0 -> 30\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-06 16:27:00",
     "10": ""
    },
@@ -2906,7 +2900,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - progress: 30 -> 80\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-07 13:19:00",
     "10": ""
    },
@@ -2921,7 +2915,7 @@
     "1": "",
     "3": "Bude nutné upravit handler na tlačítku tak, aby neodesílal id příkazu, ale jeho jméno. Pak lze příkazy načíst pomocí funkce OrderDefinitionCache.getOrderDefinition().",
     "27": "MODIFY Načtení definic příkazů z databáze - progress: 80 -> 90\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-08 11:03:00",
     "10": ""
    },
@@ -2936,7 +2930,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - status: Assigned -> Resolved\nMODIFY Načtení definic příkazů z databáze - progress: 90 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-08 15:11:00",
     "10": ""
    },
@@ -2951,7 +2945,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - status: Resolved -> Verified\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:21:00",
     "10": ""
    },
@@ -2966,7 +2960,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Načtení definic příkazů z databáze - status: Verified -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:43:00",
     "10": ""
    },
@@ -2980,7 +2974,7 @@
     "1": "",
     "3": "",
     "27": "ADD Validace requestu\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:02:42",
     "10": ""
    },
@@ -2996,7 +2990,7 @@
     "3": "\n\nActivity: Implementation",
     "26": "2017-04-19 12:26:13",
     "27": "LOGTIME Validace requestu - spentTime: 0.0 -> 0.44999998807907104\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-19 00:00:00",
     "10": ""
    },
@@ -3012,7 +3006,7 @@
     "3": "Musím ještě zjistit jak má výstup vypadat\n\nActivity: Implementation",
     "26": "2017-04-16 23:15:21",
     "27": "LOGTIME Validace requestu - spentTime: 0.44999998807907104 -> 2.449999988079071\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-16 00:00:00",
     "10": ""
    },
@@ -3041,7 +3035,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - name: Validace správného výběru orders definitions -> Validace requestu\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 14:37:00",
     "10": ""
    },
@@ -3070,7 +3064,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - estimatedTime: 6.00 -> 3.00\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:37:00",
     "10": ""
    },
@@ -3085,7 +3079,7 @@
     "1": "",
     "3": "Bude nutné probrat se zákazníkem, zda mu při neplatném vstupu stačí funkcionalita jako u porovnání transakcí (tj. při špatném počtu definic nic nezobrazit) nebo jestli bude chtít zobrazovat chybové hlášky. V druhém případě bude muset dodat texty chybových hlášení.",
     "27": "MODIFY Validace requestu - status: New -> Accepted\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:05:00",
     "10": ""
    },
@@ -3100,7 +3094,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - iteration:  -> DCI - 4. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:19:00",
     "10": ""
    },
@@ -3115,7 +3109,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - dueDate:  -> 2017-04-18\nMODIFY Validace requestu - startDate: 2017-03-23 -> 2017-04-11\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:45:00",
     "10": ""
    },
@@ -3130,7 +3124,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - priority: Normal -> High\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-11 13:47:00",
     "10": ""
    },
@@ -3145,7 +3139,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - dueDate: 2017-04-18 -> 2017-04-19\nMODIFY Validace requestu - startDate: 2017-04-11 -> 2017-04-12\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-12 11:14:00",
     "10": ""
    },
@@ -3159,8 +3153,8 @@
     "0": "change-16508",
     "1": "",
     "3": "",
-    "27": "MODIFY Validace requestu - assignee:  -> Jan Albl\n",
-    "8": ["Jan Albl"],
+    "27": "MODIFY Validace requestu - assignee:  -> JA\n",
+    "8": ["JA"],
     "9": "2017-04-12 19:08:00",
     "10": ""
    },
@@ -3175,7 +3169,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - progress: 0 -> 80\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-16 23:15:00",
     "10": ""
    },
@@ -3190,7 +3184,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - progress: 80 -> 100\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-19 12:26:00",
     "10": ""
    },
@@ -3205,7 +3199,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - status: Accepted -> Resolved\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 13:50:00",
     "10": ""
    },
@@ -3220,7 +3214,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Validace requestu - status: Resolved -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 13:50:00",
     "10": ""
    },
@@ -3234,7 +3228,7 @@
     "1": "",
     "3": "",
     "27": "ADD Backend - controller a mapování na url\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 10:00:06",
     "10": ""
    },
@@ -3250,7 +3244,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-05 16:57:36",
     "27": "LOGTIME Backend - controller a mapování na url - spentTime: 0.0 -> 0.5\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 00:00:00",
     "10": ""
    },
@@ -3266,7 +3260,7 @@
     "3": "Zbývá nahodit proměnnou ${base} v orderDefinitions.jsp\n\nActivity: Unspecified",
     "26": "2017-04-04 18:56:23",
     "27": "LOGTIME Backend - controller a mapování na url - spentTime: 0.5 -> 4.5\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-04 00:00:00",
     "10": ""
    },
@@ -3295,7 +3289,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Backend - controller a mapování na url - name: Rozšíření serveru -> Backend - controller a mapování na url\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 14:36:00",
     "10": ""
    },
@@ -3309,8 +3303,8 @@
     "0": "change-15601",
     "1": "",
     "3": "",
-    "27": "MODIFY Backend - controller a mapování na url - status: New -> Accepted\nMODIFY Backend - controller a mapování na url - assignee:  -> Petr Mayr\n",
-    "8": ["Petr Mayr"],
+    "27": "MODIFY Backend - controller a mapování na url - status: New -> Accepted\nMODIFY Backend - controller a mapování na url - assignee:  -> PM\n",
+    "8": ["PM"],
     "9": "2017-03-29 19:45:00",
     "10": ""
    },
@@ -3325,7 +3319,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Backend - controller a mapování na url - iteration:  -> DCI - 2. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 20:57:00",
     "10": ""
    },
@@ -3340,7 +3334,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Backend - controller a mapování na url - dueDate:  -> 2017-04-05\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 21:01:00",
     "10": ""
    },
@@ -3355,7 +3349,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Backend - controller a mapování na url - description:   Přidání controleru na  server, který vykoná akci po přijetí zprávy z klienta po stisku tlačítka  ->  Vytvoření provizorního controlleru (s prázdnou metodou execute()), přidání jeho mapování  na kontext /compareOrderDefs a přidání jsp, které vypíše nějaký testovací obsah. Bude také třeba vytvořit třídu form, která bude obalovat request. Jako inspirace může posloužit controller na porovnáním definic transakcí.  \n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 23:12:00",
     "10": ""
    },
@@ -3370,7 +3364,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Backend - controller a mapování na url - status: Accepted -> Assigned\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 23:16:00",
     "10": ""
    },
@@ -3413,7 +3407,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Backend - controller a mapování na url - progress: 0 -> 90\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-04 18:56:00",
     "10": ""
    },
@@ -3428,7 +3422,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Backend - controller a mapování na url - progress: 90 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 16:57:00",
     "10": ""
    },
@@ -3443,7 +3437,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Backend - controller a mapování na url - status: Assigned -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:14:00",
     "10": ""
    },
@@ -3457,7 +3451,7 @@
     "1": "",
     "3": "",
     "27": "ADD JS ajaxová obsluha tlačítka\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 09:58:32",
     "10": ""
    },
@@ -3473,7 +3467,7 @@
     "3": "Přidání handleru pro obsluhu tlačítka s třídou \"compareButton\". Testováno v aplikaci přidáním vlastního tlačítka (protože tlačítko ještě není v aplikaci vytvořeno).\n\nActivity: Implementation",
     "26": "2017-04-01 07:28:41",
     "27": "LOGTIME JS ajaxová obsluha tlačítka - spentTime: 0.0 -> 5.0\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-01 00:00:00",
     "10": ""
    },
@@ -3502,7 +3496,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - name: Úprava JS - tvorba funkce pro tlačítko -> JS ajaxová obsluha tlačítka\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 14:35:00",
     "10": ""
    },
@@ -3516,8 +3510,8 @@
     "0": "change-15595",
     "1": "",
     "3": "",
-    "27": "MODIFY JS ajaxová obsluha tlačítka - assignee:  -> Jan Albl\n",
-    "8": ["Jan Albl"],
+    "27": "MODIFY JS ajaxová obsluha tlačítka - assignee:  -> JA\n",
+    "8": ["JA"],
     "9": "2017-03-29 19:06:00",
     "10": ""
    },
@@ -3532,7 +3526,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - status: New -> Accepted\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 19:44:00",
     "10": ""
    },
@@ -3547,7 +3541,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - iteration:  -> DCI - 2. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 20:57:00",
     "10": ""
    },
@@ -3562,7 +3556,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - dueDate:  -> 2017-04-05\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 21:01:00",
     "10": ""
    },
@@ -3577,7 +3571,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - description:   Tvorba JS handleru, který  se postará o vykonání příslušné akce po stisku tlačítka (zavolá handler)  ->  Handler na click na tlačítku porovnání (třída .compareButton),  který zavolá $base/compareTransDefs.do?param a výsledek zobrazí do modálního okna. Param bude jeden a bude obsahovat id vybraných definicí příkazů oddělené čárkou. Jako inspiraci lze použít handler porovnání transakcí v mainTransDefColl.jsp, řádek 41. Skript by neměl být součástí template, což prozatím není nutné řešit.  \n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 22:59:00",
     "10": ""
    },
@@ -3592,7 +3586,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - description: \n Handler na click na tlačítku porovnání (třída .compareButton), který zavolá  $base/compareTransDefs.do?param a výsledek zobrazí do modálního okna. Param bude jeden a bude obsahovat id vybraných definicí příkazů oddělené čárkou. Jako inspiraci lze použít handler porovnání transakcí v mainTransDefColl.jsp, řádek 41. Skript by neměl být součástí template, což prozatím není nutné řešit.  -> \n Handler na click na tlačítku porovnání (třída .compareButton), který zavolá $base/compareOrderDefs.do?param  a výsledek zobrazí do modálního okna. Param bude jeden a bude obsahovat id vybraných definicí příkazů oddělené čárkou. Jako inspiraci lze použít handler porovnání transakcí v mainTransDefColl.jsp, řádek 41. Skript by neměl být součástí template, což prozatím není nutné řešit. \n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 23:08:00",
     "10": ""
    },
@@ -3607,7 +3601,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - status: Accepted -> Assigned\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 23:16:00",
     "10": ""
    },
@@ -3650,7 +3644,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - progress: 0 -> 100\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-01 07:30:00",
     "10": ""
    },
@@ -3665,7 +3659,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY JS ajaxová obsluha tlačítka - status: Assigned -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:13:00",
     "10": ""
    },
@@ -3679,7 +3673,7 @@
     "1": "",
     "3": "",
     "27": "ADD Tlačítko na porovnání\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 09:56:09",
     "10": ""
    },
@@ -3695,7 +3689,7 @@
     "3": "Přidal jsem tam tlačítko, na kterým je napsáno Compare. Snad je to správně.\n\nActivity: Implementation",
     "26": "2017-04-01 14:09:54",
     "27": "LOGTIME Tlačítko na porovnání - spentTime: 0.0 -> 1.5\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-01 00:00:00",
     "10": ""
    },
@@ -3738,7 +3732,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Tlačítko na porovnání - name: Interface url a parametry -> Tlačítko na porovnání\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 14:34:00",
     "10": ""
    },
@@ -3752,8 +3746,8 @@
     "0": "change-15599",
     "1": "",
     "3": "",
-    "27": "MODIFY Tlačítko na porovnání - status: New -> Accepted\nMODIFY Tlačítko na porovnání - assignee:  -> Tomáš Matějka\n",
-    "8": ["Petr Mayr"],
+    "27": "MODIFY Tlačítko na porovnání - status: New -> Accepted\nMODIFY Tlačítko na porovnání - assignee:  -> TM\n",
+    "8": ["PM"],
     "9": "2017-03-29 19:44:00",
     "10": ""
    },
@@ -3768,7 +3762,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Tlačítko na porovnání - iteration:  -> DCI - 2. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 20:58:00",
     "10": ""
    },
@@ -3783,7 +3777,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Tlačítko na porovnání - dueDate:  -> 2017-04-05\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 21:01:00",
     "10": ""
    },
@@ -3798,7 +3792,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Tlačítko na porovnání - description:   Rozšíření funkcionality klienta - úprava jsp o přidání tlačítka  &quot;Compare&quot;  ->  Přidání  tlačítka na porovnání do přehledu definic příkazů (text 'compare') nad výpis. Tlačítko bude mít třídu '.compareButton'.  \n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 23:02:00",
     "10": ""
    },
@@ -3813,7 +3807,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Tlačítko na porovnání - status: Accepted -> Assigned\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 23:17:00",
     "10": ""
    },
@@ -3856,7 +3850,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Tlačítko na porovnání - progress: 0 -> 100\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-04-02 21:02:00",
     "10": ""
    },
@@ -3871,7 +3865,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Tlačítko na porovnání - status: Assigned -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 17:13:00",
     "10": ""
    },
@@ -3885,7 +3879,7 @@
     "1": "",
     "3": "",
     "27": "ADD Orientace v aplikaci DCIx \n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-23 09:53:58",
     "10": ""
    },
@@ -3901,7 +3895,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-03-27 11:45:10",
     "27": "LOGTIME Orientace v aplikaci DCIx  - spentTime: 0.0 -> 2.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-27 00:00:00",
     "10": ""
    },
@@ -3916,7 +3910,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Orientace v aplikaci DCIx  - progress: 0 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-27 11:44:00",
     "10": ""
    },
@@ -3931,7 +3925,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Orientace v aplikaci DCIx  - status: New -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 23:18:00",
     "10": ""
    },
@@ -3960,7 +3954,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Orientace v aplikaci DCIx  - name: Orientace v aplikace DCIx -> Orientace v aplikaci DCIx\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-03 12:59:00",
     "10": ""
    },
@@ -3974,7 +3968,7 @@
     "1": "",
     "3": "",
     "27": "ADD Sepsání vize projektu\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-20 18:36:38",
     "10": ""
    },
@@ -3990,7 +3984,7 @@
     "3": "\n\nActivity: Documentation",
     "26": "2017-03-20 18:38:52",
     "27": "LOGTIME Sepsání vize projektu - spentTime: 0.0 -> 1.8300000429153442\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-20 00:00:00",
     "10": ""
    },
@@ -4019,7 +4013,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Sepsání vize projektu - status: Resolved -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-22 15:37:00",
     "10": ""
    },
@@ -4047,7 +4041,7 @@
     "1": "",
     "3": "",
     "27": "ADD Schůzky týmu\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-20 11:31:35",
     "10": ""
    },
@@ -4063,7 +4057,7 @@
     "3": "\n\nActivity: Administrative",
     "26": "2017-04-27 22:50:18",
     "27": "LOGTIME Schůzky týmu - spentTime: 0.0 -> 1.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-24 00:00:00",
     "10": ""
    },
@@ -4079,7 +4073,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-19 15:00:03",
     "27": "LOGTIME Schůzky týmu - spentTime: 1.0 -> 1.5\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 00:00:00",
     "10": ""
    },
@@ -4095,7 +4089,7 @@
     "3": "Schůzka v rámci týmu\n\nActivity: Administrative",
     "26": "2017-04-18 20:07:33",
     "27": "LOGTIME Schůzky týmu - spentTime: 1.5 -> 1.7000000029802322\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-18 00:00:00",
     "10": ""
    },
@@ -4111,7 +4105,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-04-18 12:14:30",
     "27": "LOGTIME Schůzky týmu - spentTime: 1.7000000029802322 -> 2.2000000029802322\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-18 00:00:00",
     "10": ""
    },
@@ -4127,7 +4121,7 @@
     "3": "problém s repozitářem\n\nActivity: Unspecified",
     "26": "2017-04-03 18:42:43",
     "27": "LOGTIME Schůzky týmu - spentTime: 2.2000000029802322 -> 2.7000000029802322\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-03 00:00:00",
     "10": ""
    },
@@ -4143,7 +4137,7 @@
     "3": "Začátek iterace - schůzka ohledně redmine a ujasnění úkolu pro přidání ajaxové obsluhy tlačítka - Task #5179 \n\nActivity: Unspecified",
     "26": "2017-03-31 17:31:42",
     "27": "LOGTIME Schůzky týmu - spentTime: 2.7000000029802322 -> 3.7000000029802322\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-03-31 00:00:00",
     "10": ""
    },
@@ -4159,7 +4153,7 @@
     "3": "Druhá schůzka týmu. O kódu a v jakých třídách se co nachází.\n\nActivity: Analysis",
     "26": "2017-03-30 21:17:28",
     "27": "LOGTIME Schůzky týmu - spentTime: 3.7000000029802322 -> 4.700000002980232\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-03-30 00:00:00",
     "10": ""
    },
@@ -4175,7 +4169,7 @@
     "3": "První schůzka týmu\n\nActivity: Administrative",
     "26": "2017-03-29 12:27:38",
     "27": "LOGTIME Schůzky týmu - spentTime: 4.700000002980232 -> 5.700000002980232\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-03-29 00:00:00",
     "10": ""
    },
@@ -4191,7 +4185,7 @@
     "3": "Schůzka v rámci týmu\n\nActivity: Administrative",
     "26": "2017-03-30 08:08:08",
     "27": "LOGTIME Schůzky týmu - spentTime: 5.700000002980232 -> 6.700000002980232\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-27 00:00:00",
     "10": ""
    },
@@ -4207,7 +4201,7 @@
     "3": "Schůzka, kde jsme procházeli kód (jak projekt funguje) a řešili co bude následovat v další iteraci\n\nActivity: Unspecified",
     "26": "2017-03-27 14:20:34",
     "27": "LOGTIME Schůzky týmu - spentTime: 6.700000002980232 -> 7.700000002980232\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-03-27 00:00:00",
     "10": ""
    },
@@ -4223,7 +4217,7 @@
     "3": "\n\nActivity: Unspecified",
     "26": "2017-03-21 07:57:19",
     "27": "LOGTIME Schůzky týmu - spentTime: 7.700000002980232 -> 8.700000002980232\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-03-21 00:00:00",
     "10": ""
    },
@@ -4239,7 +4233,7 @@
     "3": "Schůzka v rámci týmu (weekly standup)\n\nActivity: Administrative",
     "26": "2017-03-20 18:42:30",
     "27": "LOGTIME Schůzky týmu - spentTime: 8.700000002980232 -> 9.700000002980232\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-20 00:00:00",
     "10": ""
    },
@@ -4255,7 +4249,7 @@
     "3": "vize\n\nActivity: Analysis",
     "26": "2017-03-20 11:33:15",
     "27": "LOGTIME Schůzky týmu - spentTime: 9.700000002980232 -> 10.700000002980232\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-20 00:00:00",
     "10": ""
    },
@@ -4270,7 +4264,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Schůzky týmu - type: Bug -> Task\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-30 23:15:00",
     "10": ""
    },
@@ -4298,7 +4292,7 @@
     "0": "change-15764",
     "1": "",
     "3": "",
-    "27": "MODIFY Schůzky týmu - assignee:  -> Milan Široký\nMODIFY Schůzky týmu - estimatedTime:  -> 28.00\n",
+    "27": "MODIFY Schůzky týmu - assignee:  -> MS\nMODIFY Schůzky týmu - estimatedTime:  -> 28.00\n",
     "9": "2017-03-31 17:39:00",
     "10": ""
    },
@@ -4313,7 +4307,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Schůzky týmu - status: Accepted -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-28 18:49:00",
     "10": ""
    },
@@ -4328,7 +4322,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Schůzky týmu - progress: 0 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-28 18:49:00",
     "10": ""
    },
@@ -4342,7 +4336,7 @@
     "1": "",
     "3": "",
     "27": "ADD Schůzky se zákazníkem\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-20 11:30:12",
     "10": ""
    },
@@ -4358,7 +4352,7 @@
     "3": "\n\nActivity: Administrative",
     "26": "2017-04-28 12:27:19",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 0.0 -> 0.5\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-04-28 00:00:00",
     "10": ""
    },
@@ -4374,7 +4368,7 @@
     "3": "\n\nActivity: Verification",
     "26": "2017-04-19 17:30:31",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 0.5 -> 1.5\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 00:00:00",
     "10": ""
    },
@@ -4390,7 +4384,7 @@
     "3": "Schůzka se zákazníkem \n\nActivity: Administrative",
     "26": "2017-04-06 13:48:04",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 1.5 -> 2.5\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-05 00:00:00",
     "10": ""
    },
@@ -4406,7 +4400,7 @@
     "3": "\n\nActivity: Verification",
     "26": "2017-04-05 17:04:23",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 2.5 -> 3.5\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-05 00:00:00",
     "10": ""
    },
@@ -4422,7 +4416,7 @@
     "3": "\n\nActivity: Analysis",
     "26": "2017-03-29 19:53:28",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 3.5 -> 4.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-29 00:00:00",
     "10": ""
    },
@@ -4438,7 +4432,7 @@
     "3": "První schůzka se zákazníkem\n\nActivity: Administrative",
     "26": "2017-03-29 12:26:35",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 4.0 -> 5.0\n",
-    "8": ["Tomáš Matějka"],
+    "8": ["TM"],
     "9": "2017-03-29 00:00:00",
     "10": ""
    },
@@ -4454,7 +4448,7 @@
     "3": "Schůzka se zákazníkem \n\nActivity: Analysis",
     "26": "2017-03-30 08:09:06",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 5.0 -> 6.0\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-22 00:00:00",
     "10": ""
    },
@@ -4470,7 +4464,7 @@
     "3": "První schůzka se zákazníkem\n\nActivity: Unspecified",
     "26": "2017-03-21 07:57:47",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 6.0 -> 7.0\n",
-    "8": ["Jan Albl"],
+    "8": ["JA"],
     "9": "2017-03-21 00:00:00",
     "10": ""
    },
@@ -4486,7 +4480,7 @@
     "3": "První schůzka se zákazníkem\n\nActivity: Analysis",
     "26": "2017-03-20 18:42:59",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 7.0 -> 8.0\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-15 00:00:00",
     "10": ""
    },
@@ -4502,7 +4496,7 @@
     "3": "úvodní schůzka\n\nActivity: Administrative",
     "26": "2017-03-20 11:30:55",
     "27": "LOGTIME Schůzky se zákazníkem - spentTime: 8.0 -> 9.0\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-15 00:00:00",
     "10": ""
    },
@@ -4516,7 +4510,7 @@
     "0": "change-15763",
     "1": "",
     "3": "",
-    "27": "MODIFY Schůzky se zákazníkem - assignee:  -> Milan Široký\nMODIFY Schůzky se zákazníkem - estimatedTime:  -> 28.00\n",
+    "27": "MODIFY Schůzky se zákazníkem - assignee:  -> MS\nMODIFY Schůzky se zákazníkem - estimatedTime:  -> 28.00\n",
     "9": "2017-03-31 17:38:00",
     "10": ""
    },
@@ -4531,7 +4525,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Schůzky se zákazníkem - status: Accepted -> Closed\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-28 18:48:00",
     "10": ""
    },
@@ -4546,7 +4540,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Schůzky se zákazníkem - progress: 0 -> 100\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-28 18:49:00",
     "10": ""
    },
@@ -4560,7 +4554,7 @@
     "1": "",
     "3": "",
     "27": "ADD 1_iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:01:03",
     "10": ""
    },
@@ -4574,7 +4568,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY 1_iterace - description: 1. iterace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly. -> h2. *1. terace*\r\n\r\n* Sběr požadavků\r\n* Analýza problému\r\n* Vize projektu\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:16:00",
     "10": ""
    },
@@ -4588,7 +4582,7 @@
     "1": "",
     "3": "",
     "27": "ADD 1_terace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 16:47:07",
     "10": ""
    },
@@ -4602,7 +4596,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY 1_terace - description: 1 terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly. -> h1. 1. iterace\r\n\r\nV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly. \n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 16:55:00",
     "10": ""
    },
@@ -4616,7 +4610,7 @@
     "1": "",
     "3": "",
     "27": "ADD 2_iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:14:10",
     "10": ""
    },
@@ -4630,7 +4624,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY 2_iterace - description: 2. terace\n\n\n\t\n\tTlačítko pro porovnání definic v záložce Orders, js handler\n\t\tProvizorní backend, testovací obsah -> h2. *2. terace*\r\n\r\n* Tlačítko pro porovnání definic v záložce Orders, js handler\r\n* Provizorní backend, testovací obsah\r\n\r\nh5. *[[2. iterace - retrospektiva]]*\r\n\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:17:00",
     "10": ""
    },
@@ -4644,7 +4638,7 @@
     "1": "",
     "3": "",
     "27": "ADD 2_iterace_-_retrospektiva\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:22:55",
     "10": ""
    },
@@ -4658,7 +4652,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY 2_iterace_-_retrospektiva - description: 2. iterace - retrospektiva\n\n\n\tUpravili jsme odhady následujících úkolů na polovinu vzhledem k nepoměru stráveného a odhadnutého času během této iterace. Časové odhady jsou relativní. -> h2. 2. iterace - retrospektiva\r\n\r\nUpravili jsme odhady následujících úkolů na polovinu vzhledem k nepoměru stráveného a odhadnutého času během této iterace. Časové odhady jsou relativní.\r\n\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:23:00",
     "10": ""
    },
@@ -4672,7 +4666,7 @@
     "1": "",
     "3": "",
     "27": "ADD 3_iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:10:29",
     "10": ""
    },
@@ -4686,7 +4680,7 @@
     "1": "",
     "3": "",
     "27": "ADD 4_iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:01:28",
     "10": ""
    },
@@ -4700,7 +4694,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY 4_iterace - description: 4. iterace\n\n\n\t\n\tFormátování vrácených definic příkazů z databáze před jejich porovnáváním\n\t\tRefactoring a finální úpravy, příprava na předání\n\t\tValidace vstupu\n\t\tTestování správné funkcionality -> h2. 4. iterace\r\n\r\n* Formátování vrácených definic příkazů z databáze před jejich porovnáváním\r\n* Validace vstupu\r\n* Refactoring a finální úpravy, příprava na předání\r\n* Testování správné funkcionality\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:24:00",
     "10": ""
    },
@@ -4714,7 +4708,7 @@
     "1": "",
     "3": "",
     "27": "ADD 4_terace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 16:59:40",
     "10": ""
    },
@@ -4728,7 +4722,7 @@
     "1": "",
     "3": "",
     "27": "ADD 5_iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:24:50",
     "10": ""
    },
@@ -4742,7 +4736,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY 5_iterace - description: 5 iterace\n\n\n\tneco -> h2. 5 iterace\r\n\r\n* Titulek okna s porovnáním\r\n* Předání projektu\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 18:16:00",
     "10": ""
    },
@@ -4756,7 +4750,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY 5_iterace - description: 5 iterace\n\n\n\tneco -> 5 iterace\n\n\n\tneco\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:25:00",
     "10": ""
    },
@@ -4783,7 +4777,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Akceptační_scénáře - description: Akceptační scénáře\n\n\n\t\n\tVýběr dvou definic\n\t\n\n\n\t\n\tVýběr jiného počtu definic -> Akceptační scénáře\n\n\n\t\n\tVýběr dvou definic\n\t\n\n\n\n\n\t\n\tNejprve přepnutí na záložku Orders v aplikaci DCIx\n\t\tPoté vybrání 2 definic příkazů pomocí zaškrtávacího políčka\n\t\tPo stisku tlačítka \u201cCompare\u201d dojde k odeslání vybraných definic na server\n\t\tNásledně se otevře nové modální okno s výsledkem porovnání dvou definic s vyznačenými rozdíly\n\t\n\n\n\n\n\t\n\tVýběr jiného počtu definic\n\t\n\n\n\n\n\t\n\tZačátek je stejný jako výše\n\t\tPokud nedojde k vybrání žádné definice nebo jiného počtu než dvě definice, zobrazí se chybová hláška a k porovnání nedojde\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 19:04:00",
     "10": ""
    },
@@ -4810,7 +4804,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Popis_iterací_v_rámci_projektu - description: Popis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\t\n2. terace\n\n\n\t\n3. terace\n\n\n\t\n4. terace\n\n\n\t\n5. terace -> Popis iterací v rámci projektu\n\n\n\t\n1. iterace\n\n\n\t\n2. iterace\n\n\n\t\n3. iterace\n\n\n\t\n4. iterace\n\n\n\t\n5. iterace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:00:00",
     "10": ""
    },
@@ -4824,7 +4818,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Popis_iterací_v_rámci_projektu - description: Popis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\t\n2. terace\n\n\n\t\n3. terace\n\n\n\t\n4. terace -> Popis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\t\n2. terace\n\n\n\t\n3. terace\n\n\n\t\n4. terace\n\n\n\t\n5. terace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 16:55:00",
     "10": ""
    },
@@ -4838,7 +4832,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Popis_iterací_v_rámci_projektu - description: Popis iterací v rámci projektu\n\n\n\t\n1. teraceh3. 2. teraceh3. 3. teraceh3. [[4. terace}} -> Popis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\t\n2. terace\n\n\n\t\n3. terace\n\n\n\t\n4. terace\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 16:46:00",
     "10": ""
    },
@@ -4852,7 +4846,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Popis_iterací_v_rámci_projektu - description: Popis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n\n\n\t\n3. terace\n\n\n\t\n\tProvedena implementace funkcionality zajišťující načtení Orders definic z databáze\n\t\tImplementace porovnání definic příkazů s využiím existující knihovny\n\t\tPříprava jsp pro zobrazení výsledku porovnání dvou definic\n\t\n\n\n\t\n4. terace\n\n\n\t\n\tProvedení testů na ověení správné funkcionality porovnávání definic\n\t\tNaformátování vrácených definic příkazů z databáze před jejich porovnáváním\n\t\tPřidání validace zajišťující vybrání správného počtu definic (dvou definic) a v případě jiného počtu definic dojde k vrácení chybové zprávy\n\t\tJako poslední byl proveden refactoring a finální úpravy před předáním zákazníkovi -> Popis iterací v rámci projektu\n\n\n\t\n1. teraceh3. 2. teraceh3. 3. teraceh3. [[4. terace}}\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 16:45:00",
     "10": ""
    },
@@ -4866,7 +4860,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Popis_iterací_v_rámci_projektu - description: Popis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi. -> Popis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n\n\n\t\n3. terace\n\n\n\t\n\tProvedena implementace funkcionality zajišťující načtení Orders definic z databáze\n\t\tImplementace porovnání definic příkazů s využiím existující knihovny\n\t\tPříprava jsp pro zobrazení výsledku porovnání dvou definic\n\t\n\n\n\t\n4. terace\n\n\n\t\n\tProvedení testů na ověení správné funkcionality porovnávání definic\n\t\tNaformátování vrácených definic příkazů z databáze před jejich porovnáváním\n\t\tPřidání validace zajišťující vybrání správného počtu definic (dvou definic) a v případě jiného počtu definic dojde k vrácení chybové zprávy\n\t\tJako poslední byl proveden refactoring a finální úpravy před předáním zákazníkovi\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 12:06:00",
     "10": ""
    },
@@ -4893,7 +4887,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Uživatelská_dokumentace - description: Uživatelská dokumentace\n\n\n\tDo aplikace DCix do záložky bylo přidáno tlačítko \u201cCompare\u201d, které nabízí stejnou funkcionalitu jako stejné tlačítko v záložce Transaction Definitions a to porovnání dvou definic příkazů (Order Definitions). Nejprve je nutné ze seznamu vybrat dvě definice příkazu zaškrtnutím checkboxu u příslušné definice a poté stisknout tlačítko \u201cCompare\u201d. Po jeho stisku se otevře nové okno s výsledným porovnáním dvou vybraných definic, ve kterém budu zvýrazněny rozdíly mezi těmito definicemi. Definice lze vybrat pouze dvě, při výběru žádné a nebo jiného počtu srovnání po stisknutí tlačítka vrátí chybovou hlášku zobrazenou v novém okně. -> Uživatelská dokumentace\n\n\n\tDo aplikace DCix do záložky \u201cSettings / Master data\u201d do formuláře \u201cOrders definitions\u201d bylo přidáno tlačítko \u201cCompare\u201d, které nabízí stejnou funkcionalitu jako stejné tlačítko v záložce Transaction Definitions a to porovnání dvou definic příkazů (Order Definitions). Po otevření formuláře nejsou vidět žádné definice, proto je nutné nejprve stisknout tlačítko \u201cSearch\u201d, které zobrazí všechny dostupné definice. Dále je možné ze seznamu vybrat dvě definice příkazu zaškrtnutím checkboxu u příslušné definice a poté stisknout tlačítko \u201cCompare\u201d. Po jeho stisku se otevře nové okno s výsledným porovnáním dvou vybraných definic, ve kterém budu zvýrazněny rozdíly mezi těmito definicemi. Definice lze vybrat pouze dvě, při výběru žádné a nebo jiného počtu srovnání po stisknutí tlačítka vrátí chybovou hlášku zobrazenou v novém okně.\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-14 11:56:00",
     "10": ""
    },
@@ -4907,7 +4901,7 @@
     "1": "",
     "3": "",
     "27": "ADD Wiki\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-20 11:45:37",
     "10": ""
    },
@@ -4921,7 +4915,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\nAkceptační scénáře\n\n\n\t\nUživatelská dokumentace -> h2. *Popis projektu*\r\n\r\nV rámci projektu dojde k přidání jedné funkcionality do již existující aplikace DCix, která slouží zákazníkům zejména pro evidenci činností ve skladu (příjemky, výdejky, atd.). V aplikaci je tato funkčnost přítomna pro porovnání dvou transakčních definic, ale již chybí u objednávkových definic (Orders Definition), kde její absence přidělává konzultantům práci a zdržuje je od další práce. Proto provedeme implementaci tohoto porovnání dvou definic příkazů i do záložky Orders Definition tak, že výsledné ovládání a funkčnost se nebude lišit od již existujícího porovnání transakčních definic. Po úspěšné implementaci již bude možné přímo porovnávat dvě definice příkazů přímo z příslušné obrazovky pro Order Definition. Po provedení porovnání se zobrazí nové okno se zobrazením rozdílů v těchto definicích.   \r\n\r\nh2. *Pojmy*\r\n\r\n*  příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\r\n* hlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\r\n* definice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\r\n* stavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\r\n\r\nh2. *Cíl projektu*\r\n\r\nSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.\r\nV současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. \r\nNaším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (Orders Definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\r\n\r\nh2. *Funkční požadavky*\r\n\r\nDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\r\n\r\nh2. *Rizika v projektu* \r\n\r\n* Nedostatek času z důvodu dalšího vytížení týmu (studium)\r\n** Zde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\r\n* Značně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\r\n** Zde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\r\n* Připojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\r\n** Je potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.  \r\n\r\nh2. *[[Popis iterací v rámci projektu]]*\r\n\r\nh2. *[[Akceptační scénáře]]*\r\n\r\nh2. *[[Uživatelská dokumentace]]*\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-21 09:35:00",
     "10": ""
    },
@@ -4935,7 +4929,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\nAkceptační scénáře -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\nAkceptační scénáře\n\n\n\t\nUživatelská dokumentace\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 11:49:00",
     "10": ""
    },
@@ -4949,7 +4943,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\tPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n\n\n\tAkceptační scénáře -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\nAkceptační scénáře\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 11:32:00",
     "10": ""
    },
@@ -4963,7 +4957,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n\n\n\tAkceptační scénáře -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\tPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n\n\n\tAkceptační scénáře\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 11:31:00",
     "10": ""
    },
@@ -4977,7 +4971,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi. -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n\n\n\tAkceptační scénáře\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 11:29:00",
     "10": ""
    },
@@ -4991,7 +4985,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: PojmyCíl projektu\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi. -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-10 15:36:00",
     "10": ""
    },
@@ -5005,7 +4999,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi. -> PojmyCíl projektu\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-10 11:55:00",
     "10": ""
    },
@@ -5019,7 +5013,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi. -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\n\tNedostatek času z důvodu dalšího vytížení týmu (studium)\n\t\n\tZde je opatření spočívající v průběžné práci a nenechávání všeho na poslední chvíli na konec iterace, aby jsme vždy mohli zákazníkovi ukázat progress projektu.\n\t\n\t\n\t\tZnačně rozsáhlá aplikace, kterou tým nezná a pochopení toho, kde a co nastavit, popřípadě doplnit, může zabrat více času než bylo odhadnuto\n\t\n\tZde nám vychází zákazník maximálně vstříc a na každé schůzce nám vždy ukáže potřebné třídy a soubory, které se nám budou při vývoji hodit.\n\t\n\t\n\t\tPřipojení k aplikaci a vývojovým prostředím jen pomocí virtuálního serveru zřízeného u zákazníka - v případě výpadku nelze provádět žádnou činnost\n\t\n\tJe potřeba provádět pravidelně práci na virtuálním stroji a nenechávat vše až na konec iterace. Pokud totiž přijdeme na nefunkčnost stroje, zákazník jí po našem nahlášení může rychle opravit.\n\t\n\t\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-02 10:28:00",
     "10": ""
    },
@@ -5033,7 +5027,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace. -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n\n\n\t\nRizika v projektu\n\n\n\t\nPopis iterací v rámci projektu\n\n\n\t\n1. terace\n\n\n\tV první iteraci jsme se soustředili výhradně na sběr požadavků a časté 1 týdenní schůzky se zákazníkem. Díky tomu jsme si velmi brzy ujasnili požadavky na úpravu stávajícího produktu DCIx. Po dvou schůzkách byla napsána vize projektu, která byla na následující 3. schůzce schválena zákazníkem. Dále jsme se seznámili s produktem DCIx, s čím nám opět pomohl zákazník. Po této iteraci jsme také ve spolupráci se zákazníkem sestavili jednotlivé dílčí požadavky, které jsme si následně na Redmine vložili jako úkoly.\n\n\n\t\n2. terace\n\n\n\tVe druhé iteraci již řešíme vybrané tři úkoly, opět po dohodě se zákazníkem. Po konci iterace bude hotové tlačítko pro porovnání definic v záložce Orders v aplikaci DCIx. Dále bude implementován handler pro toto tlačítko, který zavolá příslušnou třídu a zatím vrátí do nově otevřeného modálního okna testovací text, který ale po dalším vývoji již bude obsahovat porovnané dvě Order definice. Jako poslední bude vytvořen provizorní controler, který se bude mapovat na kontext /compareOrderDefs. Ještě bude přidán jsp, který opět prozatím zobrazí testovací obsah. Po skončení této iterace bude hotová základní funkčnost, která bude předvedena zákazníkovi.\n",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-01 18:30:00",
     "10": ""
    },
@@ -5047,7 +5041,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Orders v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace. -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Order definitions v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-22 15:40:00",
     "10": ""
    },
@@ -5061,7 +5055,7 @@
     "1": "",
     "3": "",
     "27": "MODIFY Wiki - description: Pojmy\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektuSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavkyDo záložky Orders v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace. -> Pojmy\n\n\n\t\n\t příkaz - který lze chápat jako doklad, který je použit ve skladu a může být např. ve formě výdejky nebo příjemky. Tento doklad se skládá ze dvou částí, a to z hlavičky a řádků. Tyto příkazy se ale vytvářejí až na místě a na míru konkrétního zákazníka, protože každý zákazník požaduje v příkazu různé atributy.\n\t\thlavička - typ dokladu, jakému zákazníkovi je určeno vydávané zboží a identifikace tohoto zákazníka. V jednotlivých řádcích jsou poté uvedeny položky nebo produkty a jejich popis, cena a vydávané množství.\n\t\tdefinice příkazu - je uložena nejčastěji v XML a udává strukturu toho, co se bude nacházet na konkrétním příkazu a jeho stavový diagram.\n\t\tstavový diagram - slouží pro evidenci stavu, ve kterém se zrovna doklad nachází (zda byl přijat, vydán atd.).\n\t\n\n\n\t\nCíl projektu\n\n\n\tSoučasný stav aplikace, kdy nelze porovnávat dvě definice příkazů přidělává práci zejména konzultantům, kteří nasazují aplikaci DCIx u zákazníka a potřebovali by porovnat dvě existující definice příkazů, zda se v něčem neliší. Lišit se mohou z důvodu, že se nejprve u zákazníka nasadí cvičná verze, kterou zákazník testuje a zkouší si v ní svoje postupy a procesy. Po ověření, že cvičná verze funguje správně, je provedeno nasazení ostré verze, při kterém se ale může stát, že se nepřenesou správně všechny definice příkazů a zákazníkovi tak můžou chybět v definicích některé ￼atributy. Ruční porovnávání je pro konzultanty pracné a časově náročně, proto by jim velmi pomohla možnost porovnat dvě vybrané definice příkazů.V současné verzi aplikace také funguje porovnávání definic transakcí, kde dojde ke zvýraznění rozdílů v těchto definicí. Naším cílem je tedy přidat tuto funkčnost pro porovnání dvou definic objednávek (orders definitions) do aplikace do části pro objednávky, aby bylo umožněno jejich snadné porovnání.\n\n\n\t\nFunkční požadavky\n\n\n\tDo záložky Orders v aplikaci DCIx přidat tlačítko Compare, kterým po vybrání dvou definic příkazů získá konzultant v nově otevřeném okně informace o tom, které části příkazu se od sebe liší. Půjde tedy o úpravu klientské části webové aplikace, do které bude přidáno tlačítko pro porovnání a úpravu serverové části, do které bude přidána funkčnost, která zjistí z načtených definic rozdíly a vrátí je zpět do klientské aplikace.\n",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-03-20 11:46:00",
     "10": ""
    },
@@ -5073,7 +5067,7 @@
    "archetype": 3,
    "attributes": {
     "1": "Uživatelská_dokumentace",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 14:31:36",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/Uživatelská_dokumentace"
    },
@@ -5085,7 +5079,7 @@
    "archetype": 3,
    "attributes": {
     "1": "2_iterace_-_retrospektiva",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:22:55",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/2_iterace_-_retrospektiva"
    },
@@ -5097,7 +5091,7 @@
    "archetype": 3,
    "attributes": {
     "1": "Akceptační_scénáře",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 11:30:11",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/Akceptační_scénáře"
    },
@@ -5123,7 +5117,7 @@
    "archetype": 3,
    "attributes": {
     "1": "5_iterace",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:24:50",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/5_iterace"
    },
@@ -5135,7 +5129,7 @@
    "archetype": 3,
    "attributes": {
     "1": "4_terace",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 16:59:40",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/4_terace"
    },
@@ -5147,7 +5141,7 @@
    "archetype": 3,
    "attributes": {
     "1": "4_iterace",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:01:28",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/4_iterace"
    },
@@ -5159,7 +5153,7 @@
    "archetype": 3,
    "attributes": {
     "1": "1_iterace",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:01:03",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/1_iterace"
    },
@@ -5171,7 +5165,7 @@
    "archetype": 3,
    "attributes": {
     "1": "Wiki",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-03-20 11:45:37",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/Wiki"
    },
@@ -5183,7 +5177,7 @@
    "archetype": 3,
    "attributes": {
     "1": "3_iterace",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:10:29",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/3_iterace"
    },
@@ -5195,7 +5189,7 @@
    "archetype": 3,
    "attributes": {
     "1": "Popis_iterací_v_rámci_projektu",
-    "8": ["Milan Široký"],
+    "8": ["MS"],
     "9": "2017-04-13 11:31:43",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/Popis_iterací_v_rámci_projektu"
    },
@@ -5207,7 +5201,7 @@
    "archetype": 3,
    "attributes": {
     "1": "1_terace",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 16:47:07",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/1_terace"
    },
@@ -5219,7 +5213,7 @@
    "archetype": 3,
    "attributes": {
     "1": "2_iterace",
-    "8": ["Petr Mayr"],
+    "8": ["PM"],
     "9": "2017-04-19 17:14:10",
     "10": "https://students.kiv.zcu.cz:3443/projects/aswi2017mutant-industries-ltd/wiki/2_iterace"
    },
