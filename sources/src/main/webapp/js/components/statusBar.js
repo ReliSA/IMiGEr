@@ -1,52 +1,52 @@
 /**
  * Class representing the sidebar status bar. It displays number of components loaded in the diagram.
- * @constructor
  */
-function StatusBar() {
-	var rootElement;
-	var componentCounterElement;
+class StatusBar {
+	/**
+	 * Creates a new DOM element representing the status bar in memory.
+	 * @public
+	 * @returns {HTMLElement} HTML DOM element.
+	 */
+	render() {
+		this._componentCounterElement = DOM.h('span', {
+			class: 'component-counter',
+		});
+
+		this._rootElement = DOM.h('nav', {
+			class: 'status-bar',
+		}, [
+			this._componentCounterElement,
+			DOM.h('span', {
+				class: 'link',
+				innerText: 'toggle minimap',
+				onClick: this._toggleMinimap.bind(this),
+			}),
+		]);
+
+		return this._rootElement;
+	}
 
 	/**
 	 * Sets a new count of components loaded in the diagram.
-	 * @param {integer} componentCount New count of components.
+	 * @public
+	 * @param {integer} count New count of components.
 	 */
-	this.setComponentCount = function(componentCount) {
-		componentCounterElement.innerHTML = '';
-		componentCounterElement.appendChild(DOM.createTextElement('loaded components: ' + componentCount));
-	};
-
-	/**
-	 * Creates a new DOM element representing the status bar in memory.
-	 * @returns {Element} HTML DOM element.
-	 */
-	this.render = function() {
-		rootElement = DOM.createHtmlElement('nav', {
-			'class': 'status-bar',
-		});
-
-		componentCounterElement = DOM.createHtmlElement('span', {
-			'class': 'component-counter',
-		});
-		rootElement.appendChild(componentCounterElement);
-
-		minimapToggleElement = DOM.createHtmlElement('span', {
-			'class': 'link',
-		});
-		minimapToggleElement.appendChild(DOM.createTextElement('toggle minimap'));
-		minimapToggleElement.addEventListener('click', toggleMinimap.bind(this));
-		rootElement.appendChild(minimapToggleElement);
-
-		return rootElement;
-	};
+	set componentCount(count) {
+		this._componentCounterElement.innerText = 'loaded components: ' + count;
+	}
 
 	/**
 	 * Resets the information displayed in the status bar.
+	 * @public
 	 */
-	this.reset = function() {
-		componentCounterElement.innerHTML = '';
+	reset() {
+		this._componentCounterElement.innerText = '';
 	};
 
-	function toggleMinimap(e) {
+	/**
+	 * @private
+	 */
+	_toggleMinimap(e) {
 		e.preventDefault();
 
 		document.getElementById('minimapComponent').classList.toggle('hidden');

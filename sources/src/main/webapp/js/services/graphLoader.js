@@ -183,7 +183,7 @@ function GraphLoader() {
 		app.viewportComponent.center();
 
 		// update status bar
-		app.sidebarComponent.statusBarComponent.setComponentCount(data.vertices.length);
+		app.sidebarComponent.statusBarComponent.componentCount = data.vertices.length;
 
 		if (Utils.isDefined(highlightedEdge)) {
             highlightedEdge.setHighlighted(true);
