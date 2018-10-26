@@ -17,6 +17,7 @@ function MarkSymbol() {
 	"#FFD700", "#B7B7B7", "#FF8000"];
 
 	var removeMarkSymbolList = [];
+	var index = 0;
 	var symbolIndex = -1;
 	var colorIndex = -1;
 	var startColorIndex = 0;
@@ -46,7 +47,7 @@ function MarkSymbol() {
 			colorIndex = startColorIndex;
 		}
 		
-		return [CONST_MARK_SYMBOLS[symbolIndex], CONST_MARK_COLORS[colorIndex]];
+		return [CONST_MARK_SYMBOLS[symbolIndex], CONST_MARK_COLORS[colorIndex], 'symbol-' + index++];
 	};
 
 	/**

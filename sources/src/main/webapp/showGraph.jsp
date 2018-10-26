@@ -59,6 +59,7 @@
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>
 		<script src="js/services/loader.js"></script>
+		<script src="js/services/markSymbol.js"></script>
 		<script src="js/services/zoom.js"></script>
 
 		<script src="js/utils/ajax.js"></script>
@@ -70,7 +71,6 @@
 		<script src="js/valueObjects/diagram.js"></script>
 		<script src="js/valueObjects/dimensions.js"></script>
 
-		<script src="js/markSymbol.js"></script>
 		<script src="js/constants.js"></script>
 
 		<script src="js/app.js"></script>
