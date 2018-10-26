@@ -40,7 +40,7 @@
 
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
 		<header class="header" id="header">
-			<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
+			<img src="images/logo_cs.svg" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
 
 			<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 

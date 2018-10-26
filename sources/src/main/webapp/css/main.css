@@ -91,7 +91,7 @@ form input[type="checkbox"] {
 .header-logo {
     float: left;
     margin: 5px 20px;
-    width: 100px;
+    height: 50px;
 }
 
 .header-title {

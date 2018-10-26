@@ -20,7 +20,7 @@ class Header {
 			class: 'header',
 		}, [
 			DOM.h('img', {
-				src: 'images/logo.png',
+				src: 'images/logo_cs.svg',
 				class: 'header-logo',
 				alt: 'logo of University of West Bohemia',
 				title: 'University of West Bohemia',
