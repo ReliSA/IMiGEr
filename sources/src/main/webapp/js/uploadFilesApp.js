@@ -44,7 +44,7 @@ class UploadFilesApp extends App {
 
 		document.addEventListener(LoggedInEvent.name, e => {
 			this._loadPrivateDiagrams();
-			usernameLabel.innerText = e.detail.user.username;
+			usernameLabel.innerText = e.detail.username;
 		});
 		document.addEventListener(LoggedOutEvent.name, () => {
 			privateDiagramList.innerHTML = '';
