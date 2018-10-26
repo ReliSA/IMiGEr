@@ -17,7 +17,6 @@
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
 
-		<script src="js/libs/jquery-3.3.1.min.js"></script>
 		<script src="node_modules/save-svg-as-png/lib/saveSvgAsPng.js"></script>
 
 		<script src="js/components/generic/modalWindow.js"></script>
