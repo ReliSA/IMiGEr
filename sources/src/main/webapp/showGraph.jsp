@@ -71,9 +71,6 @@
 
 		<script src="js/constants.js"></script>
 
-		<script src="js/app.js"></script>
-		<script src="js/showGraphApp.js"></script>
-
 		<title>IMiGEr</title>
 	</head>
 
@@ -85,9 +82,10 @@
 				<p>Loading graph...</p>
 			</div>
 		</div>
+		<script type="module">
+			import ShowGraphApp from './js/showGraphApp.js';
 
-		<script>
-			const app = new ShowGraphApp('${APP_NAME}', '${APP_HOME_URL}');
+			window.app = new ShowGraphApp('${APP_NAME}', '${APP_HOME_URL}');
 
 			document.addEventListener('DOMContentLoaded', () => {
 				app.run('${param.diagramId}');

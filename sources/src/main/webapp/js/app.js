@@ -19,3 +19,5 @@ class App {
 		throw new AbstractMethodError;
 	}
 }
+
+export default App;

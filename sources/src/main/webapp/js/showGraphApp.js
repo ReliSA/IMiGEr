@@ -1,3 +1,5 @@
+import App from './app.js';
+
 /**
  * Application running on the ShowGraph page.
  */
@@ -188,3 +190,5 @@ class ShowGraphApp extends App {
 		}
 	}
 }
+
+export default ShowGraphApp;

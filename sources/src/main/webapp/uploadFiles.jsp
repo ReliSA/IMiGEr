@@ -32,9 +32,6 @@
 
 		<script src="js/constants.js"></script>
 
-		<script src="js/app.js"></script>
-		<script src="js/uploadFilesApp.js"></script>
-
 		<title>${APP_NAME}</title>
 	</head>
 
@@ -108,8 +105,10 @@
 			</div>
 		</main>
 	
-		<script>
-			const app = new UploadFilesApp('${APP_NAME}', '${APP_HOME_URL}');
+		<script type="module">
+			import UploadFilesApp from './js/uploadFilesApp.js';
+	
+			window.app = new UploadFilesApp('${APP_NAME}', '${APP_HOME_URL}');
 
 			document.addEventListener('DOMContentLoaded', () => {
 				app.run();

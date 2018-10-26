@@ -1,6 +1,7 @@
+import App from './app.js';
+
 /**
- * Application running on the Upload files page.
- * @constructor
+ * Application running on the UploadFiles page.
  */
 class UploadFilesApp extends App {
 	/**
@@ -134,3 +135,5 @@ class UploadFilesApp extends App {
 		}
 	}
 }
+
+export default UploadFilesApp;
