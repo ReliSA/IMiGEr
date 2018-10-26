@@ -175,11 +175,12 @@ class ShowGraphApp extends App {
 						alert('You are not allowed to view the diagram.');
 						break;
 					default:
-						alert('Something went wrong.');
+						console.error(error);
+						alert('Something went wrong. Check console for more details.');
 				}
 			} else {
-				alert('Something went wrong. Check console for more details.');
 				console.error(error);
+				alert('Something went wrong. Check console for more details.');
 			}
 
 			// go to the upload page

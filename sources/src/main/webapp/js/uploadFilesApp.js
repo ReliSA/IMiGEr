@@ -65,12 +65,8 @@ class UploadFilesApp extends App {
 			document.body.classList.add('loggedOut');
 
 		} catch (error) {
-			if (error instanceof HttpError) {
-				alert('Something went wrong.');
-			} else {
-				alert('Something went wrong. Check console for more details.');
-				console.error(error);
-			}
+			console.error(error);
+			alert('Something went wrong. Check console for more details.');
 		}
 	}
 
@@ -102,12 +98,8 @@ class UploadFilesApp extends App {
 			});
 
 		} catch (error) {
-			if (error instanceof HttpError) {
-				alert('Something went wrong.');
-			} else {
-				alert('Something went wrong. Check console for more details.');
-				console.error(error);
-			}
+			console.error(error);
+			alert('Something went wrong. Check console for more details.');
 		}
 	}
 
@@ -131,11 +123,12 @@ class UploadFilesApp extends App {
 							alert('You are either not logged in or not an owner of this diagram.');
 							break;
 						default:
-							alert('Something went wrong.');
+							console.error(error);
+							alert('Something went wrong. Check console for more details.');
 					}
 				} else {
-					alert('Something went wrong. Check console for more details.');
 					console.error(error);
+					alert('Something went wrong. Check console for more details.');
 				}
 			}
 		}
