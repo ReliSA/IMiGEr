@@ -42,11 +42,11 @@ class UploadFilesApp extends App {
 		// auth events
 		const usernameLabel = document.getElementById('usernameLabel');
 
-		document.addEventListener('imiger.userLoggedIn', e => {
+		document.addEventListener(LoggedInEvent.name, e => {
 			this._loadPrivateDiagrams();
 			usernameLabel.innerText = e.detail.user.username;
 		});
-		document.addEventListener('imiger.userLoggedOut', () => {
+		document.addEventListener(LoggedOutEvent.name, () => {
 			privateDiagramList.innerHTML = '';
 			usernameLabel.innerText = '';
 		});
@@ -59,7 +59,7 @@ class UploadFilesApp extends App {
 		try {
 			await AJAX.get(Constants.API.logOut);
 
-			document.dispatchEvent(new CustomEvent('imiger.userLoggedOut'));
+			document.dispatchEvent(new LoggedOutEvent);
 
 			document.body.classList.remove('loggedIn');
 			document.body.classList.add('loggedOut');

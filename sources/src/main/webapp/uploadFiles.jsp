@@ -23,6 +23,10 @@
 		<script src="js/errors/abstractMethodError.js"></script>
 		<script src="js/errors/httpError.js"></script>
 
+		<script src="js/events/loggedInEvent.js"></script>
+		<script src="js/events/loggedOutEvent.js"></script>
+		<script src="js/events/registeredEvent.js"></script>
+
 		<script src="js/utils/ajax.js"></script>
 		<script src="js/utils/dom.js"></script>
 

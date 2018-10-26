@@ -50,6 +50,11 @@
 		<script src="js/errors/httpError.js"></script>
 		<script src="js/errors/invalidArgumentError.js"></script>
 
+		<script src="js/events/diagramUpdatedEvent.js"></script>
+		<script src="js/events/loggedInEvent.js"></script>
+		<script src="js/events/loggedOutEvent.js"></script>
+		<script src="js/events/registeredEvent.js"></script>
+
 		<script src="js/services/forceDirected.js"></script>
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>

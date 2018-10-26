@@ -136,7 +136,7 @@ function ShowGraphApp(appName, appHomeUrl) {
 		this.sidebarComponent.minimapComponent.setViewportSize(this.viewportComponent.getSize());
 
 		// diagram
-		document.addEventListener('imiger.diagramUpdated', e => {
+		document.addEventListener(DiagramUpdatedEvent.name, e => {
 			this.diagram = new Diagram(e.detail);
 
 			document.title = this.NAME + ' - ' + this.diagram.name;

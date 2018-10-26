@@ -136,7 +136,7 @@ class RegisterPopup extends Popup {
 				body,
 			});
 
-			document.dispatchEvent(new CustomEvent('imiger.userRegistered'));
+			document.dispatchEvent(new RegisteredEvent);
 
 			this.close();
 			alert('You were successfully registered.');

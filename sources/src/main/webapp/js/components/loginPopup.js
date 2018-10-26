@@ -89,9 +89,7 @@ class LoginPopup extends Popup {
 			});
 			const data = await response.json();
 
-			document.dispatchEvent(new CustomEvent('imiger.userLoggedIn', {
-				detail: data,
-			}));
+			document.dispatchEvent(new LoggedInEvent(data));
 
 			document.body.classList.remove('loggedOut');
 			document.body.classList.add('loggedIn');

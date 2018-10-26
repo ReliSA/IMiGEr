@@ -108,9 +108,7 @@ class SaveDiagramModalWindow extends ModalWindow {
 			});
 			const data = await response.json();
 
-			document.dispatchEvent(new CustomEvent('imiger.diagramUpdated', {
-				detail: data,
-			}));
+			document.dispatchEvent(new DiagramUpdatedEvent(data));
 
 			this.close();
 			alert('Diagram was successfully saved.');
