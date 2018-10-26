@@ -231,28 +231,13 @@ form input[type="checkbox"] {
  * LOADER
  */
 
-.loader {
+.spinloader {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background: rgba(0,0,0,0.5);
-}
-
-.loader-content {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 200px;
-    height: 200px;
-    margin: auto;
-}
-
-.loader-content p {
-	display: none;
 }
 
 /**

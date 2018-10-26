@@ -1,4 +1,5 @@
 import App from './app.js';
+import SpinLoader from './components/spinLoader.js';
 
 /**
  * Application running on the ShowGraph page.
@@ -13,7 +14,6 @@ class ShowGraphApp extends App {
 		this.constants = new Constants;
 		this.graphLoader = new GraphLoader;
 		this.graphExporter = new GraphExporter;
-		this.loader = new Loader;
 		this.zoom = new Zoom(0.8);
 		this.markSymbol = new MarkSymbol;
 
@@ -100,6 +100,7 @@ class ShowGraphApp extends App {
 		this.viewportComponent = new Viewport;
 		this.sidebarComponent = new Sidebar;
 		this.modalWindowComponent = new SaveDiagramModalWindow;
+		this.spinLoaderComponent = new SpinLoader;
 
 		const appElement = document.getElementById('app');
 		appElement.appendChild(this.headerComponent.render());
@@ -112,6 +113,7 @@ class ShowGraphApp extends App {
 			this.sidebarComponent.render(),
 		]));
 		appElement.appendChild(this.modalWindowComponent.render());
+		appElement.appendChild(this.spinLoaderComponent.render());
 
 		this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.getSize();
 
@@ -144,7 +146,7 @@ class ShowGraphApp extends App {
 	 * @param {string} diagramId Identifier of the diagram to be loaded.
 	 */
 	async _loadGraphData(diagramId) {
-		this.loader.enable();
+		this.spinLoaderComponent.enable();
 
 		let loadGraphDataPromise;
 
@@ -168,7 +170,7 @@ class ShowGraphApp extends App {
 			// construct graph
 			this.graphLoader.run(graphData);
 
-			this.loader.disable();
+			this.spinLoaderComponent.disable();
 
 		} catch (error) {
 			if (error instanceof HttpError) {

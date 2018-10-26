@@ -12,12 +12,12 @@
 		<meta charset="utf-8">
 
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="node_modules/spin.js/spin.css">
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
 
 		<script src="js/libs/jquery-3.3.1.min.js"></script>
-		<script src="js/libs/spin.js"></script>
 		<script src="node_modules/save-svg-as-png/lib/saveSvgAsPng.js"></script>
 
 		<script src="js/components/generic/modalWindow.js"></script>
@@ -38,6 +38,7 @@
 		<script src="js/components/sidebar.js"></script>
 		<script src="js/components/sidebarExcludedNodeList.js"></script>
 		<script src="js/components/sidebarUnconnectedNodeList.js"></script>
+		<script src="js/components/spinLoader.js" type="module"></script>
 		<script src="js/components/statusBar.js"></script>
 		<script src="js/components/vertex.js"></script>
 		<script src="js/components/vertexContextMenuList.js"></script>
@@ -56,7 +57,6 @@
 		<script src="js/services/forceDirected.js"></script>
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>
-		<script src="js/services/loader.js"></script>
 		<script src="js/services/markSymbol.js"></script>
 		<script src="js/services/zoom.js"></script>
 
@@ -77,11 +77,6 @@
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
 		<div id="app"></div>
 
-		<div class="loader" id="loader">
-			<div class="loader-content" id="spinLoader">
-				<p>Loading graph...</p>
-			</div>
-		</div>
 		<script type="module">
 			import ShowGraphApp from './js/showGraphApp.js';
 
@@ -91,7 +86,7 @@
 				app.run('${param.diagramId}');
 
 				// user is logged in
-				if ('${user}' !== '') {
+				if ('${isLoggedIn}' === 'true') {
 					document.dispatchEvent(new LoggedInEvent({
 						id: '${user.id}',
 						username: '${user.username}',
