@@ -1,120 +1,98 @@
 /**
- * Main class of the application.
- * @constructor
+ * Application running on the ShowGraph page.
  */
-function ShowGraphApp(appName, appHomeUrl) {
-	/** @prop {Constants} constants */
-	this.constants = new Constants;
-	/** @prop {GraphLoader} graphLoader */
-	this.graphLoader = new GraphLoader;
-	/** @prop {GraphExporter} graphExporter */
-	this.graphExporter = new GraphExporter;
-	/** @prop {Loader} loader */
-	this.loader = new Loader;
-	/** @prop {Zoom} zoom */
-	this.zoom = new Zoom(0.8);
-	/** @prop {MarkSymbol} markSymbol */
-	this.markSymbol = new MarkSymbol;
-
-	/** @prop {string} NAME Application name. */
-	this.NAME = appName;
-	/** @prop {string} HOME_URL Application home URL. */
-	this.HOME_URL = appHomeUrl;
-
-	/** @prop {Sidebar} sidebarComponent */
-	this.sidebarComponent = null;
-	/** @prop {Viewport} viewportComponent */
-	this.viewportComponent = null;
-	/** @prop {SaveDiagramModalWindow} modalWindowComponent */
-	this.modalWindowComponent = null;
-
-	/** @prop {array<Edge>} edgeList */
-	this.edgeList = [];
-	/** @prop {array<(Vertex|Group)>} nodeList */
-	this.nodeList = [];
-	/** @prop {array<Vertex>} vertexList */
-	this.vertexList = [];
-	/** @prop {array<Group>} groupList */
-	this.groupList = [];
-
-	/** @prop {Diagram} diagram */
-	this.diagram = null;
-
-	/** @prop {object} archetype Object containing all vertex and edge archetypes used in currently displayed diagram. */
-	this.archetype = {
-		vertex: [],
-		edge: [],
-	};
-
-	/** @prop {array} attributeTypeList Array containing all possible types of vertex/edge attributes. */
-	this.attributeTypeList = [];
-	/** @prop {array} possibleEnumValues Array containing all possible values of attributes with datatype ENUM. */
-	this.possibleEnumValues = {};
-
+class ShowGraphApp extends App {
 	/**
-	 * Loads graph using diagram (if available).
-	 * @param diagramId Diagram identifier.
+	 * @inheritdoc
 	 */
-	this.diagramLoader = function(diagramId) {
-		return loadGraphData.bind(this, diagramId);
-	};
+	constructor(appName, appHomeUrl) {
+		super(appName, appHomeUrl);
+
+		this.constants = new Constants;
+		this.graphLoader = new GraphLoader;
+		this.graphExporter = new GraphExporter;
+		this.loader = new Loader;
+		this.zoom = new Zoom(0.8);
+		this.markSymbol = new MarkSymbol;
+
+		/** @prop {array<Edge>} edgeList */
+		this.edgeList = [];
+		/** @prop {array<(Vertex|Group)>} nodeList */
+		this.nodeList = [];
+		/** @prop {array<Vertex>} vertexList */
+		this.vertexList = [];
+		/** @prop {array<Group>} groupList */
+		this.groupList = [];
+
+		/** @prop {Diagram} diagram */
+		this.diagram = null;
+
+		/** @prop {object} archetype Object containing all vertex and edge archetypes used in currently displayed diagram. */
+		this.archetype = {
+			vertex: [],
+			edge: [],
+		};
+
+		/** @prop {array} attributeTypeList Array containing all possible types of vertex/edge attributes. */
+		this.attributeTypeList = [];
+		/** @prop {array} possibleEnumValues Array containing all possible values of attributes with datatype ENUM. */
+		this.possibleEnumValues = {};
+	}
 
 	/**
 	 * Initiates the application.
 	 * @param {function} startFn Function to be run to load graph data.
 	 */
-	this.run = function(startFn) {
+	run(diagramId) {
 		console.log('running...');
 
-		bootstrap.call(this);
-		startFn.call(this);
-	};
+		this._bootstrap();
+		this._loadGraphData(diagramId);
+	}
 
 	/**
 	 * Resets the application to the state as it was when the graph was loaded for the first time.
 	 */
-	this.reset = function() {
-		app.viewportComponent.reset();
-		app.sidebarComponent.reset();
+	reset() {
+		this.viewportComponent.reset();
+		this.sidebarComponent.reset();
 
-		app.edgeList = [];
-		app.nodeList = [];
-		app.vertexList = [];
-		app.groupList = [];
-	};
+		this.edgeList = [];
+		this.nodeList = [];
+		this.vertexList = [];
+		this.groupList = [];
+	}
 
 	/**
 	 * Finds a vertex by its name.
 	 * @param {string} name Name of the searched vertex.
 	 */
-	this.findVertexByName = function(name) {
-		return app.vertexList.find(function(existingVertex) {
-			return existingVertex.name == this;
-		}, name);
+	findVertexByName(name) {
+		return this.vertexList.find(existingVertex => {
+			return existingVertex.name == name;
+		});
 	}
 
 	/**
 	 * Closes components floating above viewport (context menu and popovers).
 	 */
-	this.closeFloatingComponents = function() {
-		app.viewportComponent.contextMenuComponent.close();
-		app.viewportComponent.vertexPopoverComponent.close();
-		app.viewportComponent.edgePopoverComponent.close();
-	};
+	closeFloatingComponents() {
+		this.viewportComponent.contextMenuComponent.close();
+		this.viewportComponent.vertexPopoverComponent.close();
+		this.viewportComponent.edgePopoverComponent.close();
+	}
 
 	/**
 	 * Redraws edges leading from viewport to sidebar.
 	 */
-	this.redrawEdges = function() {
-		app.sidebarComponent.refreshFloaters();
-	};
+	redrawEdges() {
+		this.sidebarComponent.refreshFloaters();
+	}
 
 	/**
 	 * Binds user interactions to local handler functions.
 	 */
-	function bootstrap() {
-		this.loader.enable();
-
+	_bootstrap() {
 		this.headerComponent = new Header;
 		this.navbarComponent = new Navbar;
 		this.viewportComponent = new Viewport;
@@ -139,8 +117,8 @@ function ShowGraphApp(appName, appHomeUrl) {
 		document.addEventListener(DiagramUpdatedEvent.name, e => {
 			this.diagram = new Diagram(e.detail);
 
-			document.title = this.NAME + ' - ' + this.diagram.name;
-			history.replaceState({} , document.title, this.HOME_URL + 'graph?diagramId=' + this.diagram.id);
+			document.title = this.name + ' - ' + this.diagram.name;
+			history.replaceState({} , document.title, this.homeUrl + 'graph?diagramId=' + this.diagram.id);
 		});
 
 		// context menu
@@ -163,7 +141,7 @@ function ShowGraphApp(appName, appHomeUrl) {
 	 * Loads graph data of a diagram.
 	 * @param {string} diagramId Identifier of the diagram to be loaded.
 	 */
-	async function loadGraphData(diagramId) {
+	async _loadGraphData(diagramId) {
 		this.loader.enable();
 
 		let loadGraphDataPromise;
@@ -176,7 +154,7 @@ function ShowGraphApp(appName, appHomeUrl) {
 
 			this.diagram = new Diagram(diagramData);
 
-			document.title = this.NAME + ' - ' + this.diagram.name;
+			document.title = this.name + ' - ' + this.diagram.name;
 
 			loadGraphDataPromise = Promise.resolve(JSON.parse(diagramData.graph_json));
 		}

@@ -72,6 +72,8 @@
 
 		<script src="js/markSymbol.js"></script>
 		<script src="js/constants.js"></script>
+
+		<script src="js/app.js"></script>
 		<script src="js/showGraphApp.js"></script>
 
 		<title>IMiGEr</title>
@@ -90,9 +92,7 @@
 			const app = new ShowGraphApp('${APP_NAME}', '${APP_HOME_URL}');
 
 			document.addEventListener('DOMContentLoaded', () => {
-				let loaderFn = app.diagramLoader('${param.diagramId}');
-
-				app.run(loaderFn);
+				app.run('${param.diagramId}');
 
 				// user is logged in
 				if ('${user}' !== '') {

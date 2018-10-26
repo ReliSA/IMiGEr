@@ -281,7 +281,7 @@ class Navbar {
 	_createBackToUploadListItem() {
 		return DOM.h('li', {}, [
 			DOM.h('a', {
-				href: app.HOME_URL,
+				href: app.homeUrl,
 				class: 'btn btn-block back-to-upload',
 				id: 'backToUpload',
 				title: 'Back to upload',
@@ -362,7 +362,7 @@ class Navbar {
 		});
 
 		document.addEventListener(DiagramUpdatedEvent.name, e => {
-			refreshDiagramLink.setAttribute('href', app.HOME_URL + 'graph?diagramId=' + e.detail.id);
+			refreshDiagramLink.setAttribute('href', app.homeUrl + 'graph?diagramId=' + e.detail.id);
 		});
 
 		return DOM.h('li', {}, [
