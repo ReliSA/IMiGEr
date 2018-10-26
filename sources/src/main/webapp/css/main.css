@@ -844,30 +844,6 @@ form input[type="checkbox"] {
 }
 
 /**
- * TREE LIST
- **/
-
-.jstree-anchor {
-	cursor: default;
-	pointer-events: none;
-}
-
-.jstree-anchor .jstree-icon {
-	display: none !important;
-}
-
-.jstree-anchor .entity {
-	padding: 3px 5px;
-	border: 1px solid;
-}
-
-.jstree-default .jstree-hovered,
-.jstree-default .jstree-clicked {
-	background: none !important;
-	box-shadow: none !important;
-}
-
-/**
  * USER AUTHENTICATION
  **/
 

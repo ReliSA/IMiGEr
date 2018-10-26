@@ -12,7 +12,6 @@
 		<meta charset="utf-8">
 
 		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/jstree/themes/default/style.min.css">
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
@@ -20,7 +19,6 @@
 		<script src="js/libs/jquery-3.3.1.min.js"></script>
 		<script src="js/libs/spin.js"></script>
 		<script src="js/libs/saveSvgAsPng.js"></script>
-		<script src="js/libs/jstree.min.js"></script>
 
 		<script src="js/components/generic/modalWindow.js"></script>
 		<script src="js/components/generic/popover.js"></script>
