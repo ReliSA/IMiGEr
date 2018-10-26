@@ -139,7 +139,7 @@ function Viewport() {
 		innerSvgElement.setAttribute('x', center.x);
 		innerSvgElement.setAttribute('y', center.y);
 
-		app.sidebarComponent.minimapComponent.setViewportPosition(center);
+		app.sidebarComponent.minimapComponent.viewportPosition = center;
 	};
 	
 	this.render = function() {
@@ -255,7 +255,7 @@ function Viewport() {
 			innerSvgElement.setAttribute('x', coords.x);
 			innerSvgElement.setAttribute('y', coords.y);
 
-			app.sidebarComponent.minimapComponent.setViewportPosition(coords);
+			app.sidebarComponent.minimapComponent.viewportPosition = coords;
 		}
 
 		function mouseUp(e) {

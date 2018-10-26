@@ -111,7 +111,7 @@ class ShowGraphApp extends App {
 		]));
 		appElement.appendChild(this.modalWindowComponent.render());
 
-		this.sidebarComponent.minimapComponent.setViewportSize(this.viewportComponent.getSize());
+		this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.getSize();
 
 		// diagram
 		document.addEventListener(DiagramUpdatedEvent.name, e => {
@@ -133,7 +133,7 @@ class ShowGraphApp extends App {
 		// window resize
 		window.addEventListener('resize', e => {
 			this.redrawEdges();
-			this.sidebarComponent.minimapComponent.setViewportSize(this.viewportComponent.getSize());
+			this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.getSize();
 		});
 	}
 

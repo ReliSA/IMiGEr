@@ -89,7 +89,7 @@ function Sidebar() {
 		rootElement.appendChild(sidebarBottom);
 
 		// minimap
-		this.minimapComponent = new Minimap;
+		this.minimapComponent = new Minimap('#graph');
 		sidebarBottom.appendChild(this.minimapComponent.render());
 
 		// status bar
