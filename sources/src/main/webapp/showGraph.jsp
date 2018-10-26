@@ -18,7 +18,7 @@
 
 		<script src="js/libs/jquery-3.3.1.min.js"></script>
 		<script src="js/libs/spin.js"></script>
-		<script src="js/libs/saveSvgAsPng.js"></script>
+		<script src="node_modules/save-svg-as-png/lib/saveSvgAsPng.js"></script>
 
 		<script src="js/components/generic/modalWindow.js"></script>
 		<script src="js/components/generic/popover.js"></script>
