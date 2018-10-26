@@ -1,71 +1,79 @@
 /**
  * Class representing a list of vertices added to a group.
  * @see Group
- * @constructor
- * @param {Group} parentalGroup Group this vertex list is bound to.
  */
-function GroupVertexList(parentalGroup) {
-	const lineHeight = 18;
+class GroupVertexList {
+	/**
+	 * @constructor
+	 * @param {Group} group Group this vertex list is bound to.
+	 */
+	constructor(group) {
+		this._group = group;
 
-	var rootElement;
-	var listItemCounter = 0;
+		this._lineHeight = 18;
+		this._listItemCounter = 0;
+	}
+
+	/**
+	 * Creates a new DOM element representing the list in memory.
+	 * @public
+	 * @returns {Element} HTML or SVG DOM element depending on whether the group is excluded.
+	 */
+	render() {
+		if (this._group.isExcluded()) {
+			this._rootElement = DOM.h('ul');
+		} else {
+			this._rootElement = DOM.s('g', {
+				transform: 'translate(70, 30)',
+			});
+		}
+
+		this._rootElement.setAttribute('class', 'group-vertex-list');
+
+		return this._rootElement;
+	};
 
 	/**
 	 * Adds a new vertex to the list. Binds user interactions to local handler functions.
+	 * @public
 	 * @param {vertex} vertex Vertex to be added to this list.
 	 */
-	this.appendChild = function(vertex) {
-		var listItemElement;
-		if (parentalGroup.isExcluded()) {
-			listItemElement = DOM.createHtmlElement('li');
+	appendChild(vertex) {
+		let listItemElement;
+		if (this._group.isExcluded()) {
+			listItemElement = DOM.h('li');
 		} else {
-			listItemElement = DOM.createSvgElement('text', {
-				'y': listItemCounter * lineHeight,
+			listItemElement = DOM.s('text', {
+				y: this._listItemCounter * this._lineHeight,
 			});
 		}
 
 		listItemElement.setAttribute('data-id', vertex.id);
 		listItemElement.appendChild(document.createTextNode(vertex.name));
-		listItemElement.addEventListener('click', listItemClick.bind(vertex));
+		listItemElement.addEventListener('click', this._listItemClick.bind(vertex));
 
-		rootElement.appendChild(listItemElement);
+		this._rootElement.appendChild(listItemElement);
 
-		listItemCounter++;
-	};
+		this._listItemCounter++;
+	}
 
 	/**
 	 * Removes a vertex from the list.
+	 * @public
 	 * @param {Vertex} vertex Vertex to be removed from this list.
 	 */
-	this.removeChild = function(vertex) {
-		var listItemElement = rootElement.querySelector('[data-id="' + vertex.id + '"]');
+	removeChild(vertex) {
+		let listItemElement = this._rootElement.querySelector('[data-id="' + vertex.id + '"]');
 
 		listItemElement.remove();
-	};
-
-	/**
-	 * Creates a new DOM element representing the list in memory.
-	 * @returns {Element} HTML or SVG DOM element depending on whether the group is excluded.
-	 */
-	this.render = function() {
-		if (parentalGroup.isExcluded()) {
-			rootElement = DOM.createHtmlElement('ul');
-		} else {
-			rootElement = DOM.createSvgElement('g', {
-				'transform': 'translate(70, 30)',
-			});
-		}
-
-		rootElement.setAttribute('class', 'group-vertex-list');
-
-		return rootElement;
-	};
+	}
 
 	/**
 	 * Vertex list item click interaction.
+	 * @private
 	 * @param {Event} e Click event.
 	 */
-	function listItemClick(e) {
+	_listItemClick(e) {
 		e.stopPropagation();
 
 		console.log('TODO: highlight vertex on click');
