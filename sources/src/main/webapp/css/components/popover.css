@@ -1,0 +1,22 @@
+.popover {
+	position: absolute;
+	z-index: 1;
+	font-family: 'Arial', sans-serif;
+	font-size: 1em;
+	background-color: #f8fafa;
+	border: 1px solid #c8cbcc;
+	box-shadow: 0 0 5px #c8cbcc;
+}
+
+.popover-title {
+	display: block;
+	font-weight: bold;
+	padding: 0.5em;
+	border-bottom: 1px solid #c8cbcc;
+}
+
+.popover-body {
+	max-height: 400px;
+	overflow: auto;
+	padding: 0 0.5em 0.5em 0.5em;
+}

@@ -1,0 +1,37 @@
+.context-menu {
+	position: absolute;
+	z-index: 1;
+	font-family: 'Arial', sans-serif;
+	font-size: 1em;
+	background-color: #f8fafa;
+	border: 1px solid #c8cbcc;
+	box-shadow: 0 0 5px #c8cbcc;
+}
+
+.context-menu ul {
+	list-style: none;
+	margin: 0.5em 0;
+	padding-left: 0;
+}
+
+.context-menu ul > li {
+	width: 200px;
+	padding: 0 0.5em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: default;
+}
+
+.context-menu ul > li:hover {
+	background-color: #c8cbcc;
+}
+
+.context-menu .group-symbol {
+	display: inline-block;
+	width: 28px;
+	font-size: 24px;
+	text-align: center;
+	margin-right: 0.5rem;
+	vertical-align: -3px;
+}

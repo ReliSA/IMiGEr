@@ -11,7 +11,11 @@
 	<head>
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/upload-files.css">
+
+		<link rel="stylesheet" href="css/components/header.css">
+		<link rel="stylesheet" href="css/components/popup.css">
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
@@ -104,10 +108,10 @@
 				</ul>
 			</div>
 		</main>
-	
+
 		<script type="module">
 			import UploadFilesApp from './js/uploadFilesApp.js';
-	
+
 			window.app = new UploadFilesApp('${APP_NAME}', '${APP_HOME_URL}');
 
 			document.addEventListener('DOMContentLoaded', () => {

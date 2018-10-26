@@ -11,8 +11,23 @@
 	<head>
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="node_modules/spin.js/spin.css">
+
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/show-graph.css">
+
+		<link rel="stylesheet" href="css/components/context-menu.css">
+		<link rel="stylesheet" href="css/components/header.css">
+		<link rel="stylesheet" href="css/components/minimap.css">
+		<link rel="stylesheet" href="css/components/modal-window.css">
+		<link rel="stylesheet" href="css/components/navbar.css">
+		<link rel="stylesheet" href="css/components/popover.css">
+		<link rel="stylesheet" href="css/components/popup.css">
+		<link rel="stylesheet" href="css/components/sidebar.css">
+		<link rel="stylesheet" href="css/components/spinloader.css">
+		<link rel="stylesheet" href="css/components/status-bar.css">
+		<link rel="stylesheet" href="css/components/tooltip.css">
+		<link rel="stylesheet" href="css/components/viewport.css">
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
