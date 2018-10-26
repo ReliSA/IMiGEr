@@ -9,12 +9,23 @@ class EdgePopover extends Popover {
 	render() {
 		super.render();
 
+		this._rootElement.classList.add('edge-popover');
+
 		this._titleElement.innerText = 'Edge details';
 
 		this._detailsListElement = DOM.h('ul');
 		this._bodyElement.appendChild(this._detailsListElement);
 
 		return this._rootElement;
+	}
+
+	/**
+	 * Closes the popover and removes its content.
+	 */
+	close() {
+		super.close();
+
+		this._detailsListElement.innerHTML = '';
 	}
 
 	/**
