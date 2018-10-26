@@ -2,118 +2,123 @@
  * Class representing a context menu of a vertex displayed on right clicking the vertex in viewport. The menu displays a list of
  * groups and excluded vertices that the parental vertex can be added to.
  * @see Vertex
- * @constructor
  */
-function VertexContextMenuList() {
-	var rootElement;
-	var listElement;
+class VertexContextMenuList {
+	/**
+	 * @constructor
+	 */
+	constructor() {
+		this._vertex = null;
+	}
 
-	var vertex;
+	/**
+	 * Creates a new DOM element representing the context menu in memory.
+	 * @public
+	 * @returns {HTMLElement} HTML DOM element.
+	 */
+	render() {
+		this._listElement = DOM.h('ul');
+
+		this._rootElement = DOM.h('div', {
+			class: 'context-menu hidden',
+			onMouseDown: Utils.stopPropagation,
+		}, [
+			this._listElement,
+		]);
+
+		return this._rootElement;
+	};
 
 	/**
 	 * Sets a vertex that this context menu is bound to. The vertex is then added to a group.
+	 * @public
 	 * @param {Vertex} newValue Vertex this context menu is bound to.
 	 */
-	this.setVertex = function(newValue) {
-		vertex = newValue;
-	};
+	set vertex(newValue) {
+		this._vertex = newValue;
+	}
 
 	/**
 	 * Moves the context menu to the coordinates.
+	 * @public
 	 * @param {Coordinates} coords Coordinates to display the context menu at.
 	 */
-	this.setPosition = function(coords) {
-		rootElement.style.top = coords.y + 'px';
-		rootElement.style.left = coords.x + 'px';
-	};
+	set position(coords) {
+		this._rootElement.style.top = coords.y + 'px';
+		this._rootElement.style.left = coords.x + 'px';
+	}
 
 	/**
 	 * Adds a new graph node (vertex or group) to be displayed in the context menu.
+	 * @public
 	 * @param {(Vertex|Group)} node Graph node to be displayed in the context menu.
 	 */
-	this.addNode = function(node) {
+	addNode(node) {
 		if (node instanceof Vertex && node.getGroup() !== null) {
 			throw new Error('Vertex is already a member of some group.');
 		}
 
-		var nodeListItemElement = DOM.createHtmlElement('li', {
-			'title': node.name,
-		});
-		nodeListItemElement.addEventListener('click', nodeListItemClick.bind(node));
-		listElement.appendChild(nodeListItemElement);
-
-		var nodeSymbolText = DOM.createHtmlElement('span', {
-			'class': 'group-symbol',
-			'style': 'background-color: ' + node.symbol[1] + ';',
-		});
-		nodeSymbolText.appendChild(document.createTextNode(node.symbol[0]));
-		nodeListItemElement.appendChild(nodeSymbolText);
-
-		var nodeNameText = DOM.createHtmlElement('span', {
-			'class': 'group-name',
-		});
-		nodeNameText.appendChild(document.createTextNode(node.name));
-		nodeListItemElement.appendChild(nodeNameText);
-	};
+		this._listElement.appendChild(DOM.h('li', {
+			title: node.name,
+			onClick: this._nodeListItemClick.bind(this, node),
+		}, [
+			DOM.h('span', {
+				class: 'group-symbol',
+				style: 'background-color: ' + node.symbol[1] + ';',
+				innerText: node.symbol[0],
+			}),
+			DOM.h('span', {
+				class: 'group-name',
+				innerText: node.name,
+			}),
+		]));
+	}
 
 	/**
 	 * Opens the context menu.
+	 * @public
 	 */
-	this.open = function() {
-		rootElement.classList.remove('hidden');
-	};
+	open() {
+		this._rootElement.classList.remove('hidden');
+	}
 
 	/**
 	 * Closes the menu and clears its content.
+	 * @public
 	 */
-	this.close = function() {
-		rootElement.classList.add('hidden');
+	close() {
+		this._rootElement.classList.add('hidden');
 
-		listElement.innerHTML = '';
-	};
-
-	/**
-	 * Creates a new DOM element representing the context menu in memory.
-	 * @returns {Element} HTML DOM element.
-	 */
-	this.render = function() {
-		rootElement = DOM.createHtmlElement('div', {
-			'class': 'context-menu hidden',
-		});
-		rootElement.addEventListener('mousedown', Utils.stopPropagation);
-
-		listElement = DOM.createHtmlElement('ul');
-		rootElement.appendChild(listElement);
-
-		return rootElement;
-	};
+		this._listElement.innerHTML = '';
+	}
 
 	/**
 	 * Context menu item click interaction. The vertex this context menu is bound to is either added to the group or merged 
 	 * with the vertex to created a new group.
-	 * @param {Event} e Click event.
+	 * @private
 	 */
-	function nodeListItemClick(e) {
-		if (this instanceof Vertex) {
+	_nodeListItemClick(node) {
+		let group;
+		if (node instanceof Vertex) {
 			// create a new group
-			var group = new Group({});
+			group = new Group({});
 			group.setExcluded(true);
-			group.addVertex(this);
+			group.addVertex(node);
 
 			app.nodeList.push(group);
 			app.groupList.push(group);
 
 			app.sidebarComponent.excludedNodeListComponent.add(group);
-			app.sidebarComponent.excludedNodeListComponent.remove(this);
+			app.sidebarComponent.excludedNodeListComponent.remove(node);
 
-			this.remove(true);
+			node.remove(true);
 
 		} else {
-			var group = this;
+			group = node;
 		}
 
 		// add the vertex to the group
-		group.addVertex(vertex);
+		group.addVertex(this._vertex);
 
 		app.viewportComponent.contextMenuComponent.close();
 	}
