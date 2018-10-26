@@ -41,7 +41,7 @@
 			<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 
 			<div class="user-menu loggedInOnly">
-				<span id="usernameLabel">${user.username}</span>
+				<span class="username" id="usernameLabel">${user.username}</span>
 				<button class="button" id="logoutButton">Log out</button>
 			</div>
 

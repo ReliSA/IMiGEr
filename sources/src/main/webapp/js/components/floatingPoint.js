@@ -87,7 +87,7 @@ function FloatingPoint() {
 		var viewportPosition = app.viewportComponent.getPosition();
 
 		position.x = (bbox.left - viewportPosition.x);
-		position.y = (bbox.top - viewportPosition.y - app.headerHeight);
+		position.y = (bbox.top - viewportPosition.y - app.headerComponent.height - app.navbarComponent.height);
 
 		if (node instanceof Vertex) {
 			var edgeOffsetY = 10;

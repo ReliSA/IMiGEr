@@ -715,7 +715,7 @@ function Group(props) {
 			return;
 		}
 
-		switch (document.actionForm.actionMove.value) {
+		switch (document.modeForm.mode.value) {
 			case 'move':
 				this.setHighlightedWithNeighbours(!highlighted);
 				break;

@@ -21,9 +21,6 @@ function ShowGraphApp(appName, appHomeUrl) {
 	/** @prop {string} HOME_URL Application home URL. */
 	this.HOME_URL = appHomeUrl;
 
-	/** @prop {float} headerHeight Current height of the application header. */
-	this.headerHeight = getHeaderHeight();
-
 	/** @prop {Sidebar} sidebarComponent */
 	this.sidebarComponent = null;
 	/** @prop {Viewport} viewportComponent */
@@ -116,187 +113,49 @@ function ShowGraphApp(appName, appHomeUrl) {
 	 * Binds user interactions to local handler functions.
 	 */
 	function bootstrap() {
-		var self = this;
+		this.loader.enable();
 
-		self.loader.enable();
+		this.headerComponent = new Header;
+		this.navbarComponent = new Navbar;
+		this.viewportComponent = new Viewport;
+		this.sidebarComponent = new Sidebar;
+		this.modalWindowComponent = new SaveDiagramModalWindow;
 
-		var content = document.getElementById('content');
+		const appElement = document.getElementById('app');
+		appElement.appendChild(this.headerComponent.render());
+		appElement.appendChild(this.navbarComponent.render());
+		appElement.appendChild(DOM.h('main', {
+			class: 'graph-content',
+			id: 'content',
+		}, [
+			this.viewportComponent.render(),
+			this.sidebarComponent.render(),
+		]));
+		appElement.appendChild(this.modalWindowComponent.render());
 
-		self.viewportComponent = new Viewport;
-		content.appendChild(self.viewportComponent.render());
-
-		self.sidebarComponent = new Sidebar;
-		content.appendChild(self.sidebarComponent.render());
-		self.sidebarComponent.minimapComponent.setViewportSize(self.viewportComponent.getSize());
-
-		self.modalWindowComponent = new SaveDiagramModalWindow;
-		content.appendChild(self.modalWindowComponent.render());
-
-		// auth events
-		const usernameLabel = document.getElementById('usernameLabel');
-
-		document.addEventListener('imiger.userLoggedIn', e => {
-			usernameLabel.innerText = e.detail.user.username;
-		});
-		document.addEventListener('imiger.userLoggedOut', () => {
-			usernameLabel.innerText = '';
-		});
+		this.sidebarComponent.minimapComponent.setViewportSize(this.viewportComponent.getSize());
 
 		// diagram
 		document.addEventListener('imiger.diagramUpdated', e => {
 			this.diagram = new Diagram(e.detail);
 
-			document.title = this.name + ' - ' + this.diagram.name;
-			history.replaceState({} , document.title, this.homeUrl + 'graph?diagramId=' + this.diagram.id);
+			document.title = this.NAME + ' - ' + this.diagram.name;
+			history.replaceState({} , document.title, this.HOME_URL + 'graph?diagramId=' + this.diagram.id);
 		});
 
 		// context menu
-		document.body.addEventListener('mousedown', function() {
-			self.closeFloatingComponents();
+		document.body.addEventListener('mousedown', () => {
+			this.closeFloatingComponents();
 		});
 
 		// zoom
-		document.getElementById('zoomIn').addEventListener('click', function(e) {
-			self.zoom.zoomIn();
-		});
-		
-		document.getElementById('zoomOut').addEventListener('click', function(e) {
-			self.zoom.zoomOut();
-		});
-
-		document.getElementById('zoomValue').innerText = Math.round(self.zoom.scale * 100) + '%';
-		document.getElementById('graph').setAttribute('transform', 'scale(' + self.zoom.scale + ')');
-
-		// search
-		document.getElementById('searchText').addEventListener('keyup', function(e) {
-			// enter key
-			if (e.keyCode === 13) {
-				search(this.value);
-				return;
-			}
-
-			// escape key
-			if (e.keyCode === 27) {
-				resetSearch();
-				return;
-			}
-		});
-		
-		document.getElementById('search').addEventListener('click', function(e) {
-			search(document.getElementById('searchText').value);
-		});
-		
-		document.getElementById('countOfFound').addEventListener('click', resetSearch);
-		
-		function search(term) {
-			if (term.length < 2) return;
-
-			var found = 0;
-			
-			var nodeList = self.viewportComponent.getNodeList();
-			nodeList.forEach(function(node) {
-				if (!node.name.toLowerCase().includes(term.toLowerCase())) {
-					node.setFound(false);
-
-				} else {
-					node.setFound(true);
-
-					found++;
-				}
-			});
-			
-			document.getElementById('countOfFound').innerText = found;
-		}
-
-		function resetSearch(e) {
-			var nodeList = self.viewportComponent.getNodeList();
-			nodeList.forEach(function(node) {
-				node.setFound(false);
-			});
-
-			document.getElementById('searchText').value = '';
-			document.getElementById('countOfFound').innerText = 0;
-		}
-		
-		// exclude vertices with most edges button
-		document.getElementById('mostEdge').addEventListener('click', function(e) {
-			var vertexList = self.viewportComponent.getVertexList();
-			if (vertexList.length === 0) return;
-
-			var vertexWithMostEdges = vertexList.reduce(function(prev, vertex) {
-				return vertex.countEdges() > prev.countEdges() ? vertex : prev;
-			});
-			
-			if (vertexWithMostEdges !== null) {
-				vertexWithMostEdges.exclude();
-				self.sidebarComponent.excludedNodeListComponent.add(vertexWithMostEdges);
-			}
-		});
-		
-		// exclude vertices with most edges to group button
-		document.getElementById('vertexToGroup').addEventListener('click', function(e) {
-			var vertexList = self.viewportComponent.getVertexList();
-			if (vertexList.length === 0) return;
-
-			var vertexWithMostEdges = vertexList.reduce(function(prev, vertex) {
-				return vertex.countEdges() > prev.countEdges() ? vertex : prev;
-			});
-
-			var verticesWithMostEdges = vertexList.filter(function(vertex) {
-				return vertex.countEdges() === vertexWithMostEdges.countEdges();
-			});
-
-			if (verticesWithMostEdges.length > 0) {
-				var group = new Group({});
-
-				verticesWithMostEdges.forEach(function(vertex) {
-					group.addVertex(vertex);
-				});
-
-				self.nodeList.push(group);
-				self.groupList.push(group);
-
-				self.viewportComponent.addGroup(group);
-			}
-		});
-
-		// apply force-directed layout
-		var layouting = false;
-		var layoutingInterval;
-
-		document.getElementById('applyLayout').addEventListener('click', function() {
-			if (layouting) {
-				document.getElementById('applyLayoutImg').setAttribute('src', 'images/layout_off.png');
-
-				layouting = false;
-				clearInterval(layoutingInterval);
-
-			} else {
-				document.getElementById('applyLayoutImg').setAttribute('src', 'images/layout_on.png');
-
-				layouting = true;
-				layoutingInterval = window.setInterval(self.viewportComponent.forceDirected.run, 10);
-			}
-		});
-		
-		// save as PNG button
-		document.getElementById('btnSaveDiagram').addEventListener('click', function(e) {
-			saveSvgAsPng(document.getElementById('svg1'), 'diagram.png', {
-				scale: 1,
-			});
-		});
-
-		// save to database button
-		document.getElementById('btnSaveDiagramToDatabase').addEventListener('click', function(e) {
-			self.modalWindowComponent.open();
-		});
+		document.getElementById('zoomValue').innerText = Math.round(this.zoom.scale * 100) + '%';
+		document.getElementById('graph').setAttribute('transform', 'scale(' + this.zoom.scale + ')');
 
 		// window resize
-		window.addEventListener('resize', function(e) {
-			self.headerHeight = getHeaderHeight();
-			self.redrawEdges();
-
-			self.sidebarComponent.minimapComponent.setViewportSize(self.viewportComponent.getSize());
+		window.addEventListener('resize', e => {
+			this.redrawEdges();
+			this.sidebarComponent.minimapComponent.setViewportSize(this.viewportComponent.getSize());
 		});
 	}
 
@@ -348,12 +207,5 @@ function ShowGraphApp(appName, appHomeUrl) {
 			// go to the upload page
 			window.location.replace('./');
 		}
-	}
-
-	/**
-	 * @returns {integer} Height of the header.
-	 */
-	function getHeaderHeight() {
-		return document.getElementById('header').offsetHeight;
 	}
 }

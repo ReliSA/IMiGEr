@@ -120,6 +120,10 @@ form input[type="checkbox"] {
 	cursor: pointer;
 }
 
+.header .username {
+	margin-right: 5px;
+}
+
 /* login popup */
 
 .header .login_popup {

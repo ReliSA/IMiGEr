@@ -1,7 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
+<c:set var="APP_NAME" value="IMiGEr"/>
+<c:set var="APP_HOME_URL" value="${initParam.HOME_URL}"/>
 <c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
 <c:set var="user" value="${sessionScope.user}"/>
 
@@ -30,8 +31,10 @@
 		<script src="js/components/floatingPoint.js"></script>
 		<script src="js/components/group.js"></script>
 		<script src="js/components/groupVertexList.js"></script>
+		<script src="js/components/header.js"></script>
 		<script src="js/components/loginPopup.js"></script>
 		<script src="js/components/minimap.js"></script>
+		<script src="js/components/navbar.js"></script>
 		<script src="js/components/registerPopup.js"></script>
 		<script src="js/components/saveDiagramModalWindow.js"></script>
 		<script src="js/components/sidebar.js"></script>
@@ -62,7 +65,6 @@
 		<script src="js/valueObjects/diagram.js"></script>
 		<script src="js/valueObjects/dimensions.js"></script>
 
-		<script src="js/userMenu.js"></script>
 		<script src="js/markSymbol.js"></script>
 		<script src="js/constants.js"></script>
 		<script src="js/showGraphApp.js"></script>
@@ -71,110 +73,7 @@
 	</head>
 
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
-		<div class="wrapper">
-			<header class="header" id="header">
-				<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
-
-				<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
-
-				<%@ include file="userMenu.jsp" %>
-
-				<nav class="navbar" id="navigation">
-					<ul>
-						<li>
-							<button class="btn zoom" id="zoomOut" title="zoom-"><img src="images/zoom_out.png" alt="zoom-"></button>
-							<span class="zoom-value" id="zoomValue"></span>
-							<button class="btn zoom" id="zoomIn" title="zoom+"><img src="images/zoom_in.png" alt="zoom+"></button>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<input class="search-text" id="searchText" type="text" placeholder="Search components...">
-							<button class="btn search" id="search"><img src="images/search.png" title="search" alt="search"></button>
-							<span class="search-count" id="countOfFound" title="Count of components found">0</span>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<form name="actionForm">
-								<label for="move">
-									<input type="radio" name="actionMove" value="move" id="move" checked>
-									move
-									<img class="navbar-image" src="images/move.png" alt="move">
-								</label>
-								<label for="remove">
-									<input type="radio" name="actionMove" value="exclude" id="remove">
-									exclude
-									<img class="navbar-image" src="images/remove2.png" alt="remove">
-								</label>
-							</form>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<button id="mostEdge" class="btn exclude-separately" title="Exclude components with the most count of edges separately.">
-								<img src="images/excludeSeparately.png" alt="excludeSeparately">
-							</button>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<button id="vertexToGroup" class="btn exclude-to-group" title="Exclude components with the most count of edges to group.">
-								<img src="images/package.png" alt="Exclude components to group">
-							</button>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<a href="${HOME_URL}" class="btn btn-block back-to-upload" id="view_back_to_upload" title="Back to upload"></a>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<button class="btn" id="applyLayout" title="Apply layout to current graph">
-								<img src="images/layout_off.png" id="applyLayoutImg" alt="Apply layout to current graph.">
-							</button>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<button class="btn save-diagram" id="btnSaveDiagram" title="Save diagram as PNG">
-								<img src="images/png_save.png" id="applyLayoutImg" alt="Save diagram as PNG.">
-							</button>
-						</li>
-						<li class="loggedInOnly">
-							<hr class="navbar-separator">
-						</li>
-						<li class="loggedInOnly">
-							<button class="btn save-diagram" id="btnSaveDiagramToDatabase" title="Save diagram">
-								<img src="images/icon_save.png" id="applyLayoutImg" alt="Save diagram">
-							</button>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<a href="${HOME_URL}graph?diagramId=${param.diagramId}" class="btn btn-block view-refresh-diagram" id="view_refresh_diagram" title="Refresh diagram"></a>
-						</li>
-						<li>
-							<hr class="navbar-separator">
-						</li>
-						<li>
-							<button class="btn btn-block view-refresh-reset-diagram" id="view_refresh_reset_diagram" title="Refresh diagram - reset position"></button>
-						</li>
-					</ul>
-				</nav>
-			</header>
-
-			<main class="graph-content" id="content"></main>
-		</div>
+		<div id="app"></div>
 
 		<div class="loader" id="loader">
 			<div class="loader-content" id="spinLoader">
@@ -183,13 +82,21 @@
 		</div>
 
 		<script>
-		const app = new ShowGraphApp('${APP_NAME}', '${APP_HOME_URL}');
+			const app = new ShowGraphApp('${APP_NAME}', '${APP_HOME_URL}');
 
-		document.addEventListener('DOMContentLoaded', () => {
-			var loaderFn = app.diagramLoader('${param.diagramId}');
+			document.addEventListener('DOMContentLoaded', () => {
+				let loaderFn = app.diagramLoader('${param.diagramId}');
 
-			app.run(loaderFn);
-		});
+				app.run(loaderFn);
+
+				// user is logged in
+				if ('${user}' !== '') {
+					document.dispatchEvent(new LoggedInEvent({
+						id: '${user.id}',
+						username: '${user.username}',
+					}));
+				}
+			});
 		</script>
 	</body>
 </html>
