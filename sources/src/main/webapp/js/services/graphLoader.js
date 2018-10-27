@@ -50,7 +50,7 @@ function GraphLoader() {
 			var vertex = new Vertex(component);
 
 			if (highlightedNodeType === 'vertex' && highlightedNodeId === vertex.id ){
-                highlightedNode = vertex;
+				highlightedNode = vertex;
 			}
 
 			var position = component.position;
@@ -76,9 +76,9 @@ function GraphLoader() {
 		data.edges.forEach(component => {
 			var edge = new Edge(component);
 
-            if (highlightedEdgeId === edge.id ){
-                highlightedEdge = edge;
-            }
+			if (highlightedEdgeId === edge.id) {
+				highlightedEdge = edge;
+			}
 
 			var fromNode = vertexMap[component.from];
 			if (fromNode) {
@@ -121,9 +121,9 @@ function GraphLoader() {
 		data.groups.forEach(component => {
 			var group = new Group(component);
 
-			if (highlightedNodeType === 'group' && highlightedNodeId === group.id ){
-                highlightedNode = group;
-            }
+			if (highlightedNodeType === 'group' && highlightedNodeId === group.id) {
+				highlightedNode = group;
+			}
 
 			// position
 			var position = component.position;
@@ -153,14 +153,12 @@ function GraphLoader() {
 
 		// exclude nodes
 		data.sideBar.forEach(excludedNode => {
-            if(typeof excludedNode.id !== 'string' && !(excludedNode.id instanceof String)) {
-            	return;
-            }
-            var idArr = excludedNode.id.split("-");
-            if(idArr.length !== 2){
-				return;
-            }
-            idArr[1] = parseInt(idArr[1], 10);
+			if (typeof excludedNode.id !== 'string' && !(excludedNode.id instanceof String)) return;
+
+			let idArr = excludedNode.id.split('-');
+			if (idArr.length !== 2) return;
+
+			idArr[1] = parseInt(idArr[1], 10);
 
 			let node = app.nodeList.find(node => {
 				let prefix = '';
@@ -169,6 +167,7 @@ function GraphLoader() {
 				} else if (node instanceof Group) {
 					prefix = 'group';
 				}
+
 				return idArr[0] === prefix && node.id === idArr[1];
 			});
 

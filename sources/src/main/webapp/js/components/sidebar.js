@@ -3,7 +3,6 @@
  */
 function Sidebar() {
 	var rootElement;
-	var activeChangeElement;
 
 	/** @prop {SidebarUnconnectedNodeList} unconnectedNodeListComponent */
 	this.unconnectedNodeListComponent = null;

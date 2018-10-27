@@ -66,16 +66,6 @@ class ShowGraphApp extends App {
 	}
 
 	/**
-	 * Finds a vertex by its name.
-	 * @param {string} name Name of the searched vertex.
-	 */
-	findVertexByName(name) {
-		return this.vertexList.find(existingVertex => {
-			return existingVertex.name == name;
-		});
-	}
-
-	/**
 	 * Closes components floating above viewport (context menu and popovers).
 	 */
 	closeFloatingComponents() {
