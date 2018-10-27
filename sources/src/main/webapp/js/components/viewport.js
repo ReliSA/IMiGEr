@@ -28,7 +28,7 @@ function Viewport() {
 
 	this.addEdge = function(edge) {
 		if (!(edge instanceof Edge)) {
-			throw new TypeError(edge.toString() + 'is not instance of Edge');
+			throw new TypeError(edge.toString() + ' is not an instance of Edge');
 		}
 
 		edgeList.push(edge);

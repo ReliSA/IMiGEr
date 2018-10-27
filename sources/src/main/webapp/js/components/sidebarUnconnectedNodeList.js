@@ -18,7 +18,7 @@ function SidebarUnconnectedNodeList(props) {
 
 	this.add = function(node) {
 		if (!(node instanceof Vertex)) {
-			throw new TypeError(node.toString() + 'is not instance of Vertex');
+			throw new TypeError(node.toString() + ' is not an instance of Vertex');
 		}
 
 		// set remove hook
@@ -32,7 +32,7 @@ function SidebarUnconnectedNodeList(props) {
 
 	this.remove = function(node) {
 		if (!(node instanceof Vertex)) {
-			throw new TypeError(node.toString() + 'is not instance of Vertex');
+			throw new TypeError(node.toString() + ' is not an instance of Vertex');
 		}
 
 		// unset remove hook

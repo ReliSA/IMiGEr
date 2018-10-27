@@ -26,7 +26,7 @@ class DOM {
 	 */
 	static createHtmlElement(tagName, attributes = {}) {
 		if (DOM.validHTMLTags.indexOf(tagName) === -1) {
-			throw new InvalidArgumentError(tagName + 'is not a valid HTML element');
+			throw new InvalidArgumentError(tagName + ' is not a valid HTML element');
 		}
 
 		const element = document.createElement(tagName);
@@ -47,7 +47,7 @@ class DOM {
 	 */
 	static createSvgElement(tagName, attributes = {}) {
 		if (DOM.validSVGTags.indexOf(tagName) === -1) {
-			throw new InvalidArgumentError(tagName + 'is not a valid SVG element');
+			throw new InvalidArgumentError(tagName + ' is not a valid SVG element');
 		}
 
 		const element = document.createElementNS('http://www.w3.org/2000/svg', tagName);
@@ -79,7 +79,7 @@ class DOM {
 	 */
 	static h(tagName, attributes = {}, children = [], options = null) {
 		if (DOM.validHTMLTags.indexOf(tagName) === -1) {
-			throw new InvalidArgumentError(tagName + 'is not a valid HTML element');
+			throw new InvalidArgumentError(tagName + ' is not a valid HTML element');
 		}
 
 		const element = document.createElement(tagName, options);
@@ -117,7 +117,7 @@ class DOM {
 	 */
 	static s(tagName, attributes = {}, children = [], options = null) {
 		if (DOM.validSVGTags.indexOf(tagName) === -1) {
-			throw new InvalidArgumentError(tagName + 'is not a valid SVG element');
+			throw new InvalidArgumentError(tagName + ' is not a valid SVG element');
 		}
 
 		const element = document.createElementNS('http://www.w3.org/2000/svg', tagName, options);
