@@ -180,7 +180,7 @@ class Navbar {
 						id: 'move',
 						checked: 'checked',
 					}),
-					DOM.createTextElement('move'),
+					DOM.t('move'),
 					DOM.h('img', {
 						src: 'images/move.png',
 						alt: 'move',
@@ -196,7 +196,7 @@ class Navbar {
 						value: 'exclude',
 						id: 'exclude',
 					}),
-					DOM.createTextElement('exclude'),
+					DOM.t('exclude'),
 					DOM.h('img', {
 						src: 'images/remove2.png',
 						alt: 'exclude',

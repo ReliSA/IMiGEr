@@ -33,16 +33,20 @@ class Attribute {
 	_renderValue() {
 		switch (this.name) {
 			case 'URL':
-				return DOM.htmlStringToElement(`<a href="${this.value}" target="_blank">${this.value}</a>`);
+				return DOM.h('a', {
+					href: this.value,
+					target: '_blank',
+					innerText: this.value,
+				});
 			case 'Size':
-				return DOM.createTextElement(this._formatValue() + ' B');
+				return DOM.t(this._formatValue() + ' B');
 			case 'Estimate':
 			case 'Spent':
-				return DOM.createTextElement(this._formatValue() + ' h');
+				return DOM.t(this._formatValue() + ' h');
 			case 'Progress':
-				return DOM.createTextElement(this._formatValue() + '%');
+				return DOM.t(this._formatValue() + '%');
 			default:
-				return DOM.createTextElement(this._formatValue());
+				return DOM.t(this._formatValue());
 		}
 	}
 
