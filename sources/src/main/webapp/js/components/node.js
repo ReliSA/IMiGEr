@@ -279,8 +279,7 @@ class Node {
 
 		if (newValue) {
 			// set floater
-			this._proxy = new FloatingPoint;
-			this._proxy.setNode(this);
+			this._proxy = new NodeProxy(this);
 			app.sidebarComponent.addFloater(this._proxy);
 
 		} else {

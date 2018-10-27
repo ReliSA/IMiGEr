@@ -38,10 +38,10 @@
 		<script src="js/components/generic/popover.js"></script>
 		<script src="js/components/generic/popup.js"></script>
 		<script src="js/components/node.js"></script>
+		<script src="js/components/nodeProxy.js"></script>
 		<script src="js/components/attribute.js"></script>
 		<script src="js/components/edge.js"></script>
 		<script src="js/components/edgePopover.js"></script>
-		<script src="js/components/floatingPoint.js"></script>
 		<script src="js/components/group.js"></script>
 		<script src="js/components/groupVertexList.js"></script>
 		<script src="js/components/header.js"></script>

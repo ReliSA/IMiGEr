@@ -364,7 +364,7 @@ class Vertex extends Node {
 		]);
 
 		// set floater element
-		this._proxy.setElement(this._rootElement);
+		this._proxy.element = this._rootElement;
 
 		// set edges' ends
 		let inEdgeList = this.inEdgeList;

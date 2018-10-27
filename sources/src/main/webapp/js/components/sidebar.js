@@ -21,7 +21,7 @@ function Sidebar() {
 
 	this.refreshFloaters = function() {
 		floaterList.forEach(floater => {
-			floater.setPosition();
+			floater.updatePosition();
 		});
 	};
 
