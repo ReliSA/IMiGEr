@@ -137,12 +137,12 @@ class Navbar {
 
 			var found = 0;
 			
-			app.viewportComponent.nodeList.forEach(function(node) {
+			app.viewportComponent.getNodeList().forEach(node => {
 				if (node.name.toLowerCase().includes(term.toLowerCase())) {
-					node.setFound(true);
+					node.isFound = true;
 					found++;
 				} else {
-					node.setFound(false);
+					node.isFound = false;
 				}
 			});
 
@@ -150,8 +150,8 @@ class Navbar {
 		}
 
 		function resetSearch() {
-			app.viewportComponent.nodeList.forEach(function(node) {
-				node.setFound(false);
+			app.viewportComponent.getNodeList().forEach(node => {
+				node.isFound = false;
 			});
 
 			searchInput.value = '';
@@ -257,7 +257,7 @@ class Navbar {
 					});
 
 					if (verticesWithMostEdges.length > 0) {
-						var group = new Group({});
+						let group = Group.create();
 
 						verticesWithMostEdges.forEach(function(vertex) {
 							group.addVertex(vertex);
@@ -266,7 +266,7 @@ class Navbar {
 						app.nodeList.push(group);
 						app.groupList.push(group);
 
-						app.viewportComponent.addGroup(group);
+						app.viewportComponent.addNode(group);
 					}
 				},
 			}, [

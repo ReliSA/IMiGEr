@@ -111,7 +111,7 @@ function SidebarUnconnectedNodeList(props) {
 
 	function excludeAll() {
 		app.vertexList.filter(function(vertex) {
-			return vertex.isUnconnected();
+			return vertex.isUnconnected;
 		}).forEach(function(vertex) {
 			vertex.exclude();
 			this.add(vertex);

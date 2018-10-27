@@ -20,13 +20,18 @@ class GroupVertexList {
 	 * @returns {Element} HTML or SVG DOM element depending on whether the group is excluded.
 	 */
 	render() {
-		if (this._group.isExcluded()) {
+		if (this._group.isExcluded) {
 			this._rootElement = DOM.h('ul');
 		} else {
 			this._rootElement = DOM.s('g', {
 				transform: 'translate(70, 30)',
 			});
 		}
+
+		let vertexList = this._group.vertexList;
+		vertexList.forEach(vertex => {
+			this.appendChild(vertex);
+		});
 
 		this._rootElement.setAttribute('class', 'group-vertex-list');
 
@@ -40,7 +45,7 @@ class GroupVertexList {
 	 */
 	appendChild(vertex) {
 		let listItemElement;
-		if (this._group.isExcluded()) {
+		if (this._group.isExcluded) {
 			listItemElement = DOM.h('li');
 		} else {
 			listItemElement = DOM.s('text', {

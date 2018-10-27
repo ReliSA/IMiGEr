@@ -1,8 +1,8 @@
 /**
- * Class representing list of symbols displayed next to a vertex to marks its relation to other an other, excluded vertices.
- * @see Vertex
+ * Class representing list of symbols displayed next to a node to mark its relation to another, excluded node.
+ * @see Node
  */
-class VertexSymbolList {
+class NodeSymbolList {
 	/**
 	 * @constructor
 	 */

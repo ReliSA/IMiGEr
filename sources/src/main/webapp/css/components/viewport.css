@@ -20,12 +20,12 @@
 	stroke: red;
 }
 
-.viewport .edge--highlighted-required {
+.viewport .edge--highlighted-as-required {
 	stroke: red;
     stroke-width: 2;
 }
 
-.viewport .edge--highlighted-provided {
+.viewport .edge--highlighted-as-provided {
 	stroke: #5896FF;
     stroke-width: 2;
 }
@@ -60,20 +60,20 @@
 	stroke-width: 3;
 }
 
-.viewport .node--highlighted-required > rect {
+.viewport .node--highlighted-as-required > rect {
 	fill: red;
 }
 
-.viewport .node--highlighted-provided > rect {
+.viewport .node--highlighted-as-provided > rect {
 	fill: #5896FF;
 }
 
-.viewport .node--highlighted-archetype > rect {
+.viewport .node--highlighted-as-archetype > rect {
 	fill: yellowgreen;
 }
 
-.viewport .node--highlighted-required.node--highlighted-provided > rect {
-	fill: url(#node--highlighted-required-provided);
+.viewport .node--highlighted-as-required.node--highlighted-as-provided > rect {
+	fill: url(#node--highlighted-as-required-provided);
 }
 
 .viewport .node--dragged > rect {

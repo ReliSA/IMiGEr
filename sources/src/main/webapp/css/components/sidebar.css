@@ -194,29 +194,29 @@
 	border: 3px solid red;
 }
 
-.sidebar .node--highlighted-required .vertex-name,
-.sidebar .node--highlighted-required .group-name {
+.sidebar .node--highlighted-as-required .vertex-name,
+.sidebar .node--highlighted-as-required .group-name {
 	background: red;
 }
 
-.sidebar .node--highlighted-provided .vertex-name,
-.sidebar .node--highlighted-provided .group-name {
+.sidebar .node--highlighted-as-provided .vertex-name,
+.sidebar .node--highlighted-as-provided .group-name {
 	background: #5896FF;
 }
 
-.sidebar .node--highlighted-required.node--highlighted-provided .vertex-name,
-.sidebar .node--highlighted-required.node--highlighted-provided .group-name {
+.sidebar .node--highlighted-as-required.node--highlighted-as-provided .vertex-name,
+.sidebar .node--highlighted-as-required.node--highlighted-as-provided .group-name {
 	background: linear-gradient(to right, red, #5896FF);
 }
 
-.sidebar .node--highlighted-required .provided-counter .outer-floater,
-.sidebar .node--highlighted-required-neighbours .required-counter .outer-floater,
-.sidebar .node--highlighted-provided .required-counter .outer-floater,
-.sidebar .node--highlighted-provided-neighbours .provided-counter .outer-floater,
-.sidebar .node--highlighted-required .provided-counter .outer-port,
-.sidebar .node--highlighted-required-neighbours .required-counter .outer-port,
-.sidebar .node--highlighted-provided .required-counter .outer-port,
-.sidebar .node--highlighted-provided-neighbours .provided-counter .outer-port {
+.sidebar .node--highlighted-as-required .provided-counter .outer-floater,
+.sidebar .node--highlighted-as-required-neighbours .required-counter .outer-floater,
+.sidebar .node--highlighted-as-provided .required-counter .outer-floater,
+.sidebar .node--highlighted-as-provided-neighbours .provided-counter .outer-floater,
+.sidebar .node--highlighted-as-required .provided-counter .outer-port,
+.sidebar .node--highlighted-as-required-neighbours .required-counter .outer-port,
+.sidebar .node--highlighted-as-provided .required-counter .outer-port,
+.sidebar .node--highlighted-as-provided-neighbours .provided-counter .outer-port {
 	display: block;
 }
 

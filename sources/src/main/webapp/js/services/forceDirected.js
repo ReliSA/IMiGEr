@@ -66,11 +66,12 @@ function ForceDirected() {
 		for (i = 0; i < visibleNodes.length; i++){
 			var currNode = visibleNodes[i];
 
-			for (j = 0; j < currNode.getInEdgeList().length; j++) {
-				var otherNode = currNode.getInEdgeList()[j].getFrom();
+			let inEdgeList = currNode.inEdgeList;
+			for (let j = 0; j < inEdgeList.length; j++) {
+				let otherNode = inEdgeList[j].from;
 
-				var currPosition = currNode.getPosition();
-				var otherPosition = otherNode.getPosition();
+				var currPosition = currNode.position;
+				var otherPosition = otherNode.position;
 
 				// calculate force
 				var x = currPosition.x - otherPosition.x;
@@ -83,11 +84,12 @@ function ForceDirected() {
 				forceField[Utils.getUniqueId(currNode)][1] += Math.round(-1 * y * (distance / attractiveStrength));
 			}
 
-			for (j = 0; j < currNode.getOutEdgeList().length; j++) {
-				var otherNode = currNode.getOutEdgeList()[j].getTo();
+			let outEdgeList = currNode.outEdgeList;
+			for (let j = 0; j < outEdgeList.length; j++) {
+				let otherNode = outEdgeList[j].to;
 
-				var currPosition = currNode.getPosition();
-				var otherPosition = otherNode.getPosition();
+				var currPosition = currNode.position;
+				var otherPosition = otherNode.position;
 
 				// calculate force
 				var x = currPosition.x - otherPosition.x;
@@ -156,7 +158,7 @@ function ForceDirected() {
 					currNode.getPosition().y + forceY,
 				);
 
-				currNode.setPosition(coords);
+				currNode.position = coords;
 				currNode.move(coords);
 			}
 		}

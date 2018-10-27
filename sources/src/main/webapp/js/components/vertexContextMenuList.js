@@ -54,7 +54,7 @@ class VertexContextMenuList {
 	 * @param {(Vertex|Group)} node Graph node to be displayed in the context menu.
 	 */
 	addNode(node) {
-		if (node instanceof Vertex && node.getGroup() !== null) {
+		if (node instanceof Vertex && node.group !== null) {
 			throw new Error('Vertex is already a member of some group.');
 		}
 
@@ -101,7 +101,7 @@ class VertexContextMenuList {
 		let group;
 		if (node instanceof Vertex) {
 			// create a new group
-			group = new Group({});
+			group = Group.create();
 			group.setExcluded(true);
 			group.addVertex(node);
 

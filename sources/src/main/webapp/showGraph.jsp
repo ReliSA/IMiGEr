@@ -37,6 +37,7 @@
 		<script src="js/components/generic/modalWindow.js"></script>
 		<script src="js/components/generic/popover.js"></script>
 		<script src="js/components/generic/popup.js"></script>
+		<script src="js/components/node.js"></script>
 		<script src="js/components/attribute.js"></script>
 		<script src="js/components/edge.js"></script>
 		<script src="js/components/edgePopover.js"></script>
@@ -47,6 +48,7 @@
 		<script src="js/components/loginPopup.js"></script>
 		<script src="js/components/minimap.js"></script>
 		<script src="js/components/navbar.js"></script>
+		<script src="js/components/nodeSymbolList.js"></script>
 		<script src="js/components/registerPopup.js"></script>
 		<script src="js/components/saveDiagramModalWindow.js"></script>
 		<script src="js/components/sidebar.js"></script>
@@ -57,7 +59,6 @@
 		<script src="js/components/vertex.js"></script>
 		<script src="js/components/vertexContextMenuList.js"></script>
 		<script src="js/components/vertexPopover.js"></script>
-		<script src="js/components/vertexSymbolList.js"></script>
 		<script src="js/components/viewport.js"></script>
 
 		<script src="js/errors/httpError.js"></script>

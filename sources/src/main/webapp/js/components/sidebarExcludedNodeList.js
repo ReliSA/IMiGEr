@@ -18,8 +18,8 @@ function SidebarExcludedNodeList(props) {
 	};
 
 	this.add = function(node) {
-		if (!(node instanceof Vertex) && !(node instanceof Group)) {
-			throw new TypeError(node.toString() + 'is instance of neither Vertex nor Group');
+		if (!(node instanceof Node)) {
+			throw new TypeError(node.toString() + ' is not an instance of Node');
 		}
 
 		// set remove hook
@@ -34,8 +34,8 @@ function SidebarExcludedNodeList(props) {
 	};
 
 	this.remove = function(node) {
-		if (!(node instanceof Vertex) && !(node instanceof Group)) {
-			throw new TypeError(node.toString() + 'is instance of neither Vertex nor Group');
+		if (!(node instanceof Node)) {
+			throw new TypeError(node.toString() + ' is not an instance of Node');
 		}
 
 		// unset remove hook

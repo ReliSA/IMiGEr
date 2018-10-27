@@ -39,7 +39,7 @@ function FloatingPoint() {
 			throw new TypeError(edge.toString() + 'is not instance of Edge');
 		}
 
-		edge.moveEnd(this.getPosition());
+		edge.end = this.getPosition();
 		
 		inEdgeList.push(edge);
 	};
@@ -53,7 +53,7 @@ function FloatingPoint() {
 			throw new TypeError(edge.toString() + 'is not instance of Edge');
 		}
 
-		edge.moveStart(this.getPosition());
+		edge.start = this.getPosition();
 		
 		outEdgeList.push(edge);
 	};
@@ -97,29 +97,29 @@ function FloatingPoint() {
 			var edgeOffsetY = 0;
 		}
 
-		var archetypeList = Object.keys(node.getRelatedArchetypeMap()).map(function(archetypeIndex) {
+		var archetypeList = Object.keys(node.relatedArchetypeMap).map(function(archetypeIndex) {
 			return parseInt(archetypeIndex);
 		});
 		var archetypeIconOrder;
 
 		// redraw dependent edges
 		inEdgeList.forEach(function(edge) {
-			archetypeIconOrder = archetypeList.indexOf(edge.getFrom().archetype);
+			archetypeIconOrder = archetypeList.indexOf(edge.from.archetype);
 
-			edge.moveEnd(new Coordinates(
+			edge.end = new Coordinates(
 				position.x / app.zoom.scale,
 				(position.y + edgeOffsetY + archetypeIconOrder * 20) / app.zoom.scale,
-			));
 		}, this);
+			);
 
 		outEdgeList.forEach(function(edge) {
-			archetypeIconOrder = archetypeList.indexOf(edge.getTo().archetype);
+			archetypeIconOrder = archetypeList.indexOf(edge.to.archetype);
 
-			edge.moveStart(new Coordinates(
+			edge.start = new Coordinates(
 				position.x / app.zoom.scale,
 				(position.y + edgeOffsetY + archetypeIconOrder * 20) / app.zoom.scale,
-			));
 		}, this);
+			);
 	};
 
 	/**
@@ -152,7 +152,7 @@ function FloatingPoint() {
 	 * @param {boolean} newValue True to highlight the node as required, otherwise false.
 	 */
 	this.setHighlightedRequired = function(newValue) {
-		node.setHighlightedRequired(newValue);
+		node.isHighlightedAsRequired = newValue;
 	};
 
 	/**
@@ -160,6 +160,6 @@ function FloatingPoint() {
 	 * @param {boolean} newValue True to highlight the node as provided, otherwise false.
 	 */
 	this.setHighlightedProvided = function(newValue) {
-		node.setHighlightedProvided(newValue);
+		node.isHighlightedAsProvided = newValue;
 	};
 }

@@ -33,50 +33,40 @@ function Viewport() {
 
 		edgeList.push(edge);
 
-		if (edge.getFrom() === null || edge.getFrom().isExcluded()) return;
-		if (edge.getTo() === null || edge.getTo().isExcluded()) return;
+		if (edge.from === null || edge.from.isExcluded) return;
+		if (edge.to === null || edge.to.isExcluded) return;
 
 		edgesContainer.appendChild(edge.render());
 	};
 
-	this.addVertex = function(vertex) {
-		if (!(vertex instanceof Vertex)) {
-			throw new TypeError(vertex.toString() + 'is not instance of Vertex');
+	this.addNode = function(node) {
+		if (!(node instanceof Node)) {
+			throw new TypeError(node.toString() + ' is not an instance of Node');
 		}
 
-		nodeList.push(vertex);
-		vertexList.push(vertex);
+		nodeList.push(node);
 
-		verticesContainer.appendChild(vertex.render());
+		if (node instanceof Vertex) {
+			vertexList.push(node);
+			verticesContainer.appendChild(node.render());
+		} else if (node instanceof Group) {
+			groupList.push(node);
+			groupsContainer.appendChild(node.render());
+		}
 	};
 
-	this.removeVertex = function(vertex) {
-		if (!(vertex instanceof Vertex)) {
-			throw new TypeError(vertex.toString() + 'is not instance of Vertex');
+	this.removeNode = function(node) {
+		if (!(node instanceof Node)) {
+			throw new TypeError(node.toString() + ' is not an instance of Node');
 		}
 
-		nodeList.splice(nodeList.indexOf(vertex), 1);
-		vertexList.splice(vertexList.indexOf(vertex), 1);
-	};
+		nodeList.splice(nodeList.indexOf(node), 1);
 
-	this.addGroup = function(group) {
-		if (!(group instanceof Group)) {
-			throw new TypeError(group.toString() + 'is not instance of Group');
+		if (node instanceof Vertex) {
+			vertexList.splice(vertexList.indexOf(node), 1);
+		} else if (node instanceof Group) {
+			groupList.splice(groupList.indexOf(node), 1);
 		}
-
-		nodeList.push(group);
-		groupList.push(group);
-
-		groupsContainer.appendChild(group.render());
-	};
-
-	this.removeGroup = function(group) {
-		if (!(group instanceof Group)) {
-			throw new TypeError(group.toString() + 'is not instance of Group');
-		}
-
-		nodeList.splice(nodeList.indexOf(group), 1);
-		groupList.splice(groupList.indexOf(group), 1);
 	};
 	
 	this.getEdgeList = function() {
@@ -96,11 +86,10 @@ function Viewport() {
 	};
 
 	this.addSvgDefinition = function(id, svgString) {
-		var g = DOM.createSvgElement('g', {
-			'id': id,
-		});
-		g.innerHTML = svgString;
-		definitions.appendChild(g);
+		definitions.appendChild(DOM.s('g', {
+			id,
+			innerHTML: svgString,
+		}));
 	};
 
 	this.getSize = function() {
@@ -128,7 +117,7 @@ function Viewport() {
 
 		var nodeList = app.viewportComponent.getNodeList();
 		nodeList.forEach(function(node) {
-			var center = node.getCenter();
+			var center = node.center;
 
 			sumOfCenters.x += center.x;
 			sumOfCenters.y += center.y;
@@ -186,7 +175,7 @@ function Viewport() {
 		mainSvg.appendChild(definitions);
 
 		var linearGradient = DOM.createSvgElement('linearGradient', {
-			'id': 'node--highlighted-required-provided',
+			'id': 'node--highlighted-as-required-provided',
 		});
 		linearGradient.appendChild(DOM.createSvgElement('stop', {
 			'offset': '0%',

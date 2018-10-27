@@ -28,23 +28,23 @@ function GraphLoader() {
 			app.viewportComponent.addSvgDefinition('vertexArchetypeIcon-' + vertexArchetype.name, vertexArchetype.icon);
 		});
 
-        var highlightedNodeId;
-        var highlightedNodeType;
-        if (Utils.isDefined(data.highlightedVertex) && data.highlightedVertex.length > 0) {
-            var highlightedNodeAttr = data.highlightedVertex.split("-");
-            if (highlightedNodeAttr.length === 2) {
-                highlightedNodeType = highlightedNodeAttr[0];
-                highlightedNodeId = parseInt(highlightedNodeAttr[1], 10);
-            }
-        }
-        if (Utils.isDefined(data.highlightedEdge) && data.highlightedEdge.length > 0) {
-            var highlightedEdgeId = parseInt(data.highlightedEdge, 10);
-        }
+		var highlightedNodeId;
+		var highlightedNodeType;
+		if (Utils.isDefined(data.highlightedVertex) && data.highlightedVertex.length > 0) {
+			var highlightedNodeAttr = data.highlightedVertex.split("-");
+			if (highlightedNodeAttr.length === 2) {
+				highlightedNodeType = highlightedNodeAttr[0];
+				highlightedNodeId = parseInt(highlightedNodeAttr[1], 10);
+			}
+		}
+		if (Utils.isDefined(data.highlightedEdge) && data.highlightedEdge.length > 0) {
+			var highlightedEdgeId = parseInt(data.highlightedEdge, 10);
+		}
 
-        var highlightedNode = undefined;
-        var highlightedEdge = undefined;
+		var highlightedNode = undefined;
+		var highlightedEdge = undefined;
 
-        // construct vertices
+		// construct vertices
 		var vertexMap = {};
 		data.vertices.forEach(function(component) {
 			var vertex = new Vertex(component);
@@ -56,14 +56,14 @@ function GraphLoader() {
 			var position = component.position;
 
 			if (position === null || Utils.isUndefined(position)) {
-                // set random
-                vertex.setPosition(new Coordinates(
-                    Math.floor(Math.random() * canvasSize),
-                    Math.floor(Math.random() * canvasSize),
-                ));
+				// set random
+				vertex.position = new Coordinates(
+					Math.floor(Math.random() * canvasSize),
+					Math.floor(Math.random() * canvasSize),
+				);
 
-            } else {
-                vertex.setPosition(new Coordinates(position.x, position.y));
+			} else {
+				vertex.position = new Coordinates(position.x, position.y);
 			}
 
 			app.nodeList.push(vertex);
@@ -111,7 +111,7 @@ function GraphLoader() {
 
 		// find unconnected vertices
 		app.vertexList.filter(function(vertex) {
-			return vertex.isUnconnected();
+			return vertex.isUnconnected;
 		}).forEach(function(vertex) {
 			vertex.exclude();
 			app.sidebarComponent.unconnectedNodeListComponent.add(vertex);
@@ -128,15 +128,15 @@ function GraphLoader() {
 			// position
 			var position = component.position;
 			if (position === null || Utils.isUndefined(position)) {
-                // set random
-                group.setPosition(new Coordinates(
-                    Math.floor(Math.random() * canvasSize),
-                    Math.floor(Math.random() * canvasSize),
-                ));
+				// set random
+				group.position = new Coordinates(
+					Math.floor(Math.random() * canvasSize),
+					Math.floor(Math.random() * canvasSize),
+				);
 
-            } else {
-                group.setPosition(new Coordinates(position.x, position.y));
-            }
+			} else {
+				group.position = new Coordinates(position.x, position.y);
+			}
 
 			// vertices
 			app.vertexList.filter(function(vertex) {
@@ -148,7 +148,7 @@ function GraphLoader() {
 			app.nodeList.push(group);
 			app.groupList.push(group);
 
-			app.viewportComponent.addGroup(group);
+			app.viewportComponent.addNode(group);
 		});
 
 		// exclude nodes
@@ -173,7 +173,7 @@ function GraphLoader() {
 			});
 
 			if (Utils.isDefined(node)) {
-				node.exclude(excludedNode.isIconsDisplayed);
+				node.exclude();
 
 				app.sidebarComponent.excludedNodeListComponent.add(node);
 			}
@@ -186,11 +186,14 @@ function GraphLoader() {
 		app.sidebarComponent.statusBarComponent.componentCount = data.vertices.length;
 
 		if (Utils.isDefined(highlightedEdge)) {
-            highlightedEdge.setHighlighted(true);
-            highlightedEdge.getFrom().setHighlighted(true);
-            highlightedEdge.getTo().setHighlighted(true);
-        }
-		if (Utils.isDefined(highlightedNode)) highlightedNode.setHighlightedWithNeighbours(true);
+			highlightedEdge.isHighlighted = true;
+			highlightedEdge.from.isHighlighted = true;
+			highlightedEdge.to.isHighlighted = true;
+		}
+
+		if (Utils.isDefined(highlightedNode)) {
+			highlightedNode.highlightWithNeighbours(true);
+		}
 	};
 
 }
