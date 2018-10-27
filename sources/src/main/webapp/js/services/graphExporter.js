@@ -1,12 +1,8 @@
-/**
- * @constructor
- */
-function GraphExporter() {
-
+class GraphExporter {
 	/**
 	 * Exports graph to JSON.
 	 */
-	this.run = function() {
+	run() {
 		// nodes excluded to the sidebar
 		let excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
 		let sideBar = excludedNodeList.map(node => {
@@ -32,5 +28,4 @@ function GraphExporter() {
 			highlightedEdge: Utils.isUndefined(highlightedEdge) ? '' : highlightedEdge.id,
 		};
 	}
-
 }
