@@ -135,7 +135,7 @@ class Navbar {
 		function search(term) {
 			if (term.length < 2) return;
 
-			var found = 0;
+			let found = 0;
 			
 			app.viewportComponent.getNodeList().forEach(node => {
 				if (node.name.toLowerCase().includes(term.toLowerCase())) {
@@ -214,11 +214,11 @@ class Navbar {
 				id: 'mostEdge',
 				title: 'Exclude components with the most count of edges separately.',
 				onClick: () => {
-					var vertexList = app.viewportComponent.getVertexList();
+					let vertexList = app.viewportComponent.getVertexList();
 					if (vertexList.length === 0) return;
 
 					// find vertex with most edges
-					var vertexWithMostEdges = vertexList.reduce(function(prev, vertex) {
+					let vertexWithMostEdges = vertexList.reduce((prev, vertex) => {
 						return vertex.countEdges() > prev.countEdges() ? vertex : prev;
 					});
 
@@ -243,23 +243,23 @@ class Navbar {
 				id: 'vertexToGroup',
 				title: 'Exclude components with the most count of edges to group.',
 				onClick: () => {
-					var vertexList = app.viewportComponent.getVertexList();
+					let vertexList = app.viewportComponent.getVertexList();
 					if (vertexList.length === 0) return;
 
 					// find vertex with most edges
-					var vertexWithMostEdges = vertexList.reduce(function(prev, vertex) {
+					let vertexWithMostEdges = vertexList.reduce((prev, vertex) => {
 						return vertex.countEdges() > prev.countEdges() ? vertex : prev;
 					});
 
 					// filter vertices with most edges
-					var verticesWithMostEdges = vertexList.filter(function(vertex) {
+					let verticesWithMostEdges = vertexList.filter(vertex => {
 						return vertex.countEdges() === vertexWithMostEdges.countEdges();
 					});
 
 					if (verticesWithMostEdges.length > 0) {
 						let group = Group.create();
 
-						verticesWithMostEdges.forEach(function(vertex) {
+						verticesWithMostEdges.forEach(vertex => {
 							group.addVertex(vertex);
 						});
 

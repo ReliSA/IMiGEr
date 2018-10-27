@@ -116,7 +116,7 @@ function Viewport() {
 		var bbox = rootElement.getBoundingClientRect();
 
 		var nodeList = app.viewportComponent.getNodeList();
-		nodeList.forEach(function(node) {
+		nodeList.forEach(node => {
 			var center = node.center;
 
 			sumOfCenters.x += center.x;

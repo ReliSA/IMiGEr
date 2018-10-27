@@ -7,24 +7,9 @@ function GraphExporter() {
 	 * Exports graph to JSON.
 	 */
 	this.run = function() {
-		// vertices
-		var vertices = app.vertexList.map(function(vertex) {
-			return vertex.export();
-		});
-
-		// edges
-		var edges = app.edgeList.map(function(edge) {
-			return edge.export();
-		});
-
-		// groups
-		var groups = app.groupList.map(function(group) {
-			return group.export();
-		});
-
 		// nodes excluded to the sidebar
-		var excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
-		var sideBar = excludedNodeList.map(function(node) {
+		let excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
+		let sideBar = excludedNodeList.map(node => {
 			return {
 				id: Utils.getUniqueId(node),
 				isIconsDisplayed: node.isIconsDisplayed,
@@ -38,10 +23,10 @@ function GraphExporter() {
 			attributeTypes: app.attributeTypeList,
 			edgeArchetypes: app.archetype.edge,
 			vertexArchetypes: app.archetype.vertex,
-			vertices: vertices,
-			edges: edges,
+			vertices: app.vertexList.map(vertex => vertex.export()),
+			edges: app.edgeList.map(edge => edge.export()),
 			possibleEnumValues: app.possibleEnumValues,
-			groups: groups,
+			groups: app.groupList.map(group => group.export()),
 			sideBar: sideBar,
 			highlightedVertex: Utils.isUndefined(highlightedVertex) ? '' : Utils.getUniqueId(highlightedVertex),
 			highlightedEdge: Utils.isUndefined(highlightedEdge) ? '' : highlightedEdge.id,

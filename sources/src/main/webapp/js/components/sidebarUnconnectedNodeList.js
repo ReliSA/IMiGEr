@@ -104,17 +104,17 @@ function SidebarUnconnectedNodeList(props) {
 
 	function includeAll() {
 		var nodeListCopy = nodeList.slice(0);
-		nodeListCopy.forEach(function(node) {
+		nodeListCopy.forEach(node => {
 			node.include();
-		}, this);
+		});
 	}
 
 	function excludeAll() {
-		app.vertexList.filter(function(vertex) {
+		app.vertexList.filter(vertex => {
 			return vertex.isUnconnected;
-		}).forEach(function(vertex) {
+		}).forEach(vertex => {
 			vertex.exclude();
 			this.add(vertex);
-		}, this);
+		});
 	}
 }

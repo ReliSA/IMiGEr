@@ -24,25 +24,22 @@ function ForceDirected() {
 		var visibleNodes = app.viewportComponent.getNodeList(),
 			otherVisibleNodes = [];
 
-		var i = 0,
-			j = 0;
-
-		for (i = 0; i < visibleNodes.length; i++) {
+		for (let i = 0; i < visibleNodes.length; i++) {
 			forceField[Utils.getUniqueId(visibleNodes[i])] = [0, 0];
 		}
 
 		// calculate repulsive force
-		for (i = 0; i < visibleNodes.length; i++) {
-			var currNode = visibleNodes[i];
+		for (let i = 0; i < visibleNodes.length; i++) {
+			let currNode = visibleNodes[i];
 
 			// other nodes
-			for (var j = 0; j < visibleNodes.length; j++){
+			for (let j = 0; j < visibleNodes.length; j++){
 				otherVisibleNodes[j] = visibleNodes[j];
 			}
 			otherVisibleNodes.splice(i, 1);
 
 			// iterate over other nodes
-			for (j = 0; j < otherVisibleNodes.length; j++) {
+			for (let j = 0; j < otherVisibleNodes.length; j++) {
 				var otherNode = otherVisibleNodes[j];
 
 				var currPosition = currNode.getPosition();
@@ -63,8 +60,8 @@ function ForceDirected() {
 		}
 
 		// calculate attractive forces
-		for (i = 0; i < visibleNodes.length; i++){
-			var currNode = visibleNodes[i];
+		for (let i = 0; i < visibleNodes.length; i++){
+			let currNode = visibleNodes[i];
 
 			let inEdgeList = currNode.inEdgeList;
 			for (let j = 0; j < inEdgeList.length; j++) {
@@ -104,7 +101,7 @@ function ForceDirected() {
 		}
 
 		// applying the force
-		for (i = 0; i < visibleNodes.length; i++){
+		for (let i = 0; i < visibleNodes.length; i++){
 			var currNode = visibleNodes[i],
 
 				halfCan = canvas / 2,
@@ -153,7 +150,7 @@ function ForceDirected() {
 
 			// moving a component
 			if (Math.abs(forceX) > 1 || Math.abs(forceY) > 1) {
-				var coords = new Coordinates(
+				let coords = new Coordinates(
 					currNode.getPosition().x + forceX,
 					currNode.getPosition().y + forceY,
 				);

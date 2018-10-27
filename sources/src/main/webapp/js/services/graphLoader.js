@@ -22,9 +22,9 @@ function GraphLoader() {
 		app.attributeTypeList = data.attributeTypes;
 		app.possibleEnumValues = data.possibleEnumValues;
 
-		app.archetype.vertex.filter(function(vertexArchetype) {
+		app.archetype.vertex.filter(vertexArchetype => {
 			return Utils.isDefined(vertexArchetype.icon);
-		}).forEach(function(vertexArchetype) {
+		}).forEach(vertexArchetype => {
 			app.viewportComponent.addSvgDefinition('vertexArchetypeIcon-' + vertexArchetype.name, vertexArchetype.icon);
 		});
 
@@ -46,7 +46,7 @@ function GraphLoader() {
 
 		// construct vertices
 		var vertexMap = {};
-		data.vertices.forEach(function(component) {
+		data.vertices.forEach(component => {
 			var vertex = new Vertex(component);
 
 			if (highlightedNodeType === 'vertex' && highlightedNodeId === vertex.id ){
@@ -73,7 +73,7 @@ function GraphLoader() {
 		});
 
 		// construct edges
-		data.edges.forEach(function(component) {
+		data.edges.forEach(component => {
 			var edge = new Edge(component);
 
             if (highlightedEdgeId === edge.id ){
@@ -101,24 +101,24 @@ function GraphLoader() {
 		delete vertexMap;
 
 		// render components
-		app.vertexList.forEach(function(vertex) {
-			app.viewportComponent.addVertex(vertex);
+		app.vertexList.forEach(vertex => {
+			app.viewportComponent.addNode(vertex);
 		});
 
-		app.edgeList.forEach(function(edge) {
+		app.edgeList.forEach(edge => {
 			app.viewportComponent.addEdge(edge);
 		});
 
 		// find unconnected vertices
-		app.vertexList.filter(function(vertex) {
+		app.vertexList.filter(vertex => {
 			return vertex.isUnconnected;
-		}).forEach(function(vertex) {
+		}).forEach(vertex => {
 			vertex.exclude();
 			app.sidebarComponent.unconnectedNodeListComponent.add(vertex);
 		});
 
 		// construct groups
-		data.groups.forEach(function(component) {
+		data.groups.forEach(component => {
 			var group = new Group(component);
 
 			if (highlightedNodeType === 'group' && highlightedNodeId === group.id ){
@@ -139,9 +139,9 @@ function GraphLoader() {
 			}
 
 			// vertices
-			app.vertexList.filter(function(vertex) {
+			app.vertexList.filter(vertex => {
 				return component.verticesId.indexOf(vertex.id) > -1;
-			}).forEach(function(vertex) {
+			}).forEach(vertex => {
 				group.addVertex(vertex);
 			});
 
@@ -152,7 +152,7 @@ function GraphLoader() {
 		});
 
 		// exclude nodes
-		data.sideBar.forEach(function(excludedNode) {
+		data.sideBar.forEach(excludedNode => {
             if(typeof excludedNode.id !== 'string' && !(excludedNode.id instanceof String)) {
             	return;
             }
@@ -162,8 +162,8 @@ function GraphLoader() {
             }
             idArr[1] = parseInt(idArr[1], 10);
 
-			var node = app.nodeList.find(function(node) {
-				var prefix = '';
+			let node = app.nodeList.find(node => {
+				let prefix = '';
 				if (node instanceof Vertex) {
 					prefix = 'vertex';
 				} else if (node instanceof Group) {

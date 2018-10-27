@@ -132,9 +132,9 @@ function SidebarExcludedNodeList(props) {
 
 	function includeAll() {
 		var nodeListCopy = nodeList.slice(0);
-		nodeListCopy.forEach(function(node) {
+		nodeListCopy.forEach(node => {
 			node.include();
-		}, this);
+		});
 
 		toggleControls.call(this);
 	}
@@ -159,7 +159,7 @@ function SidebarExcludedNodeList(props) {
 	}
 
 	function sort() {
-		nodeList.forEach(function(node) {
+		nodeList.forEach(node => {
 			node.remove(true);
 			nodeListElement.appendChild(node.render());
 		});
