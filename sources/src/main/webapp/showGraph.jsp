@@ -31,7 +31,9 @@
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
+		<script id="imigerRawInputSchema" type="application/json"><%@ include file="imiger-raw-input-schema.json" %></script>
 
+		<script src="node_modules/ajv/dist/ajv.min.js"></script>
 		<script src="node_modules/save-svg-as-png/lib/saveSvgAsPng.js"></script>
 
 		<script src="js/components/generic/modalWindow.js"></script>
@@ -61,6 +63,7 @@
 		<script src="js/components/vertexPopover.js"></script>
 		<script src="js/components/viewport.js"></script>
 
+		<script src="js/errors/ajvValidationError.js"></script>
 		<script src="js/errors/httpError.js"></script>
 		<script src="js/errors/invalidArgumentError.js"></script>
 

@@ -172,6 +172,11 @@ class ShowGraphApp extends App {
 						console.error(error);
 						alert('Something went wrong. Check console for more details.');
 				}
+
+			} else if (error instanceof AJVValidationError) {
+				console.error(error);
+				alert('Invalid input data: ' + error.message + '. Check console for more details.');
+
 			} else {
 				console.error(error);
 				alert('Something went wrong. Check console for more details.');

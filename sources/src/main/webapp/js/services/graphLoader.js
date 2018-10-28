@@ -1,13 +1,20 @@
 class GraphLoader {
+	/**
+	 * @constructor
+	 */
+	constructor() {
+		this._ajv = new Ajv();
+	}
 
 	/**
 	 * Loads a new graph using graph data passed as parameters.
 	 * @param {object} data Data of the graph.
-	 * @throws {InvalidArgumentError} Thrown when either graph data are incomplete.
+	 * @throws {AJVValidationError} Thrown when graph data are incomplete.
 	 */
 	run(data) {
-		if (Utils.isUndefined(data.vertices) || Utils.isUndefined(data.edges)) {
-			throw new InvalidArgumentError('Invalid data.');
+		let isValid = this._ajv.validate(GraphLoader.rawInputSchema, data);
+		if (isValid === false) {
+			throw new AJVValidationError(this._ajv.errorsText(), this._ajv.errors);
 		}
 
 		const canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
@@ -190,3 +197,4 @@ class GraphLoader {
 	}
 }
 
+GraphLoader.rawInputSchema = JSON.parse(document.getElementById('imigerRawInputSchema').textContent);
