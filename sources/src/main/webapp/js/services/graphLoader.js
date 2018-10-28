@@ -1,19 +1,16 @@
-/**
- * @constructor
- */
-function GraphLoader() {
+class GraphLoader {
 
 	/**
 	 * Loads a new graph using graph data passed as parameters.
 	 * @param {object} data Data of the graph.
 	 * @throws {InvalidArgumentError} Thrown when either graph data are incomplete.
 	 */
-	this.run  = function(data) {
+	run(data) {
 		if (Utils.isUndefined(data.vertices) || Utils.isUndefined(data.edges)) {
 			throw new InvalidArgumentError('Invalid data.');
 		}
 
-		var canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
+		const canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
 
 		// store archetypes
 		app.archetype.vertex = data.vertexArchetypes;
@@ -28,64 +25,65 @@ function GraphLoader() {
 			app.viewportComponent.addSvgDefinition('vertexArchetypeIcon-' + vertexArchetype.name, vertexArchetype.icon);
 		});
 
-		var highlightedNodeId;
-		var highlightedNodeType;
+		// highlighted node
+		let highlightedNodeId;
+		let highlightedNodeType;
 		if (Utils.isDefined(data.highlightedVertex) && data.highlightedVertex.length > 0) {
-			var highlightedNodeAttr = data.highlightedVertex.split("-");
+			let highlightedNodeAttr = data.highlightedVertex.split('-');
 			if (highlightedNodeAttr.length === 2) {
 				highlightedNodeType = highlightedNodeAttr[0];
 				highlightedNodeId = parseInt(highlightedNodeAttr[1], 10);
 			}
 		}
+
+		// highlighted edge
+		let highlightedEdgeId;
 		if (Utils.isDefined(data.highlightedEdge) && data.highlightedEdge.length > 0) {
-			var highlightedEdgeId = parseInt(data.highlightedEdge, 10);
+			highlightedEdgeId = parseInt(data.highlightedEdge, 10);
 		}
 
-		var highlightedNode = undefined;
-		var highlightedEdge = undefined;
+		let highlightedNode = undefined;
+		let highlightedEdge = undefined;
 
 		// construct vertices
-		var vertexMap = {};
+		let vertexMap = new Map;
 		data.vertices.forEach(component => {
-			var vertex = new Vertex(component);
+			let vertex = new Vertex(component);
 
 			if (highlightedNodeType === 'vertex' && highlightedNodeId === vertex.id ){
 				highlightedNode = vertex;
 			}
 
-			var position = component.position;
-
-			if (position === null || Utils.isUndefined(position)) {
+			if (component.position === null || Utils.isUndefined(component.position)) {
 				// set random
 				vertex.position = new Coordinates(
 					Math.floor(Math.random() * canvasSize),
 					Math.floor(Math.random() * canvasSize),
 				);
-
 			} else {
-				vertex.position = new Coordinates(position.x, position.y);
+				vertex.position = new Coordinates(component.position.x, component.position.y);
 			}
 
 			app.nodeList.push(vertex);
 			app.vertexList.push(vertex);
 
-			vertexMap[component.id] = vertex;
+			vertexMap.set(component.id, vertex);
 		});
 
 		// construct edges
 		data.edges.forEach(component => {
-			var edge = new Edge(component);
+			let edge = new Edge(component);
 
 			if (highlightedEdgeId === edge.id) {
 				highlightedEdge = edge;
 			}
 
-			var fromNode = vertexMap[component.from];
+			let fromNode = vertexMap.get(component.from);
 			if (fromNode) {
 				fromNode.addOutEdge(edge);
 			}
 
-			var toNode = vertexMap[component.to];
+			let toNode = vertexMap.get(component.to);
 			if (toNode) {
 				toNode.addInEdge(edge);
 			}
@@ -97,8 +95,6 @@ function GraphLoader() {
 
 			app.edgeList.push(edge);
 		});
-
-		delete vertexMap;
 
 		// render components
 		app.vertexList.forEach(vertex => {
@@ -119,23 +115,21 @@ function GraphLoader() {
 
 		// construct groups
 		data.groups.forEach(component => {
-			var group = new Group(component);
+			let group = new Group(component);
 
 			if (highlightedNodeType === 'group' && highlightedNodeId === group.id) {
 				highlightedNode = group;
 			}
 
 			// position
-			var position = component.position;
-			if (position === null || Utils.isUndefined(position)) {
+			if (component.position === null || Utils.isUndefined(component.position)) {
 				// set random
 				group.position = new Coordinates(
 					Math.floor(Math.random() * canvasSize),
 					Math.floor(Math.random() * canvasSize),
 				);
-
 			} else {
-				group.position = new Coordinates(position.x, position.y);
+				group.position = new Coordinates(component.position.x, component.position.y);
 			}
 
 			// vertices
@@ -193,6 +187,6 @@ function GraphLoader() {
 		if (Utils.isDefined(highlightedNode)) {
 			highlightedNode.highlightWithNeighbours(true);
 		}
-	};
-
+	}
 }
+
