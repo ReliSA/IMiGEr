@@ -86,7 +86,7 @@ class NodeProxy {
 	 */
 	updatePosition() {
 		let bbox = this._rootElement.getBoundingClientRect();
-		let viewportPosition = app.viewportComponent.getPosition();
+		let viewportPosition = app.viewportComponent.position;
 
 		this._position.x = (bbox.left - viewportPosition.x);
 		this._position.y = (bbox.top - viewportPosition.y - app.headerComponent.height - app.navbarComponent.height);

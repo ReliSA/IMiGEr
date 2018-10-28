@@ -108,7 +108,7 @@ class Minimap {
 
 		let start = new Coordinates(e.clientX, e.clientY);
 		let minimapViewportPosition = this.viewportPosition;
-		let viewportPosition = app.viewportComponent.getPosition();
+		let viewportPosition = app.viewportComponent.position;
 
 		let that = this;
 
@@ -123,7 +123,7 @@ class Minimap {
 			that._viewportElement.setAttribute('x', minimapViewportPosition.x - offset.x);
 			that._viewportElement.setAttribute('y', minimapViewportPosition.y - offset.y);
 
-			app.viewportComponent.setPosition(new Coordinates(viewportPosition.x + (1 / that._scale) * offset.x, viewportPosition.y + (1 / that._scale) * offset.y));
+			app.viewportComponent.position = new Coordinates(viewportPosition.x + (1 / that._scale) * offset.x, viewportPosition.y + (1 / that._scale) * offset.y);
 		}
 
 		function mouseUp() {

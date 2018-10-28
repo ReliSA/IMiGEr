@@ -137,7 +137,8 @@ class Navbar {
 
 			let found = 0;
 			
-			app.viewportComponent.getNodeList().forEach(node => {
+			let nodeList = app.viewportComponent.nodeList;
+			nodeList.forEach(node => {
 				if (node.name.toLowerCase().includes(term.toLowerCase())) {
 					node.isFound = true;
 					found++;
@@ -150,7 +151,8 @@ class Navbar {
 		}
 
 		function resetSearch() {
-			app.viewportComponent.getNodeList().forEach(node => {
+			let nodeList = app.viewportComponent.nodeList;
+			nodeList.forEach(node => {
 				node.isFound = false;
 			});
 
@@ -214,7 +216,7 @@ class Navbar {
 				id: 'mostEdge',
 				title: 'Exclude components with the most count of edges separately.',
 				onClick: () => {
-					let vertexList = app.viewportComponent.getVertexList();
+					let vertexList = app.viewportComponent.vertexList;
 					if (vertexList.length === 0) return;
 
 					// find vertex with most edges
@@ -243,7 +245,7 @@ class Navbar {
 				id: 'vertexToGroup',
 				title: 'Exclude components with the most count of edges to group.',
 				onClick: () => {
-					let vertexList = app.viewportComponent.getVertexList();
+					let vertexList = app.viewportComponent.vertexList;
 					if (vertexList.length === 0) return;
 
 					// find vertex with most edges

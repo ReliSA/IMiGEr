@@ -21,7 +21,7 @@ function ForceDirected() {
 	this.run = function() {
 		var border = canvas / borderRatio;
 
-		var visibleNodes = app.viewportComponent.getNodeList(),
+		var visibleNodes = app.viewportComponent.nodeList,
 			otherVisibleNodes = [];
 
 		for (let i = 0; i < visibleNodes.length; i++) {

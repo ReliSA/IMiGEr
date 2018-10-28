@@ -401,7 +401,7 @@ class Vertex extends Node {
 		e.preventDefault();
 
 		let excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
-		let includedGroupList = app.viewportComponent.getGroupList();
+		let includedGroupList = app.viewportComponent.groupList;
 
 		let nodeList = [].concat(excludedNodeList, includedGroupList);
 		if (nodeList.length === 0) return;
