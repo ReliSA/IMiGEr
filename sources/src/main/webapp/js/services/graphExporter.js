@@ -4,7 +4,7 @@ class GraphExporter {
 	 */
 	run() {
 		// nodes excluded to the sidebar
-		let excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
+		let excludedNodeList = app.sidebarComponent.excludedNodeListComponent.nodeList;
 		let sideBar = excludedNodeList.map(node => {
 			return {
 				id: Utils.getUniqueId(node),

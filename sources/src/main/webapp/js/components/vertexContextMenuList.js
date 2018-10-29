@@ -108,8 +108,8 @@ class VertexContextMenuList {
 			app.nodeList.push(group);
 			app.groupList.push(group);
 
-			app.sidebarComponent.excludedNodeListComponent.add(group);
-			app.sidebarComponent.excludedNodeListComponent.remove(node);
+			app.sidebarComponent.excludedNodeListComponent.addNode(group);
+			app.sidebarComponent.excludedNodeListComponent.removeNode(node);
 
 			node.remove(true);
 

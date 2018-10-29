@@ -54,6 +54,7 @@
 		<script src="js/components/registerPopup.js"></script>
 		<script src="js/components/saveDiagramModalWindow.js"></script>
 		<script src="js/components/sidebar.js"></script>
+		<script src="js/components/sidebarNodeList.js"></script>
 		<script src="js/components/sidebarExcludedNodeList.js"></script>
 		<script src="js/components/sidebarUnconnectedNodeList.js"></script>
 		<script src="js/components/spinLoader.js" type="module"></script>

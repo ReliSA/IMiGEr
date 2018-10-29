@@ -25,6 +25,8 @@ class ShowGraphApp extends App {
 		this.vertexList = [];
 		/** @prop {array<Group>} groupList */
 		this.groupList = [];
+		/** @prop {array<NodeProxy>} proxyList */
+		this.proxyList = [];
 
 		/** @prop {Diagram} diagram */
 		this.diagram = null;
@@ -63,6 +65,7 @@ class ShowGraphApp extends App {
 		this.nodeList = [];
 		this.vertexList = [];
 		this.groupList = [];
+		this.proxyList = [];
 	}
 
 	/**
@@ -78,7 +81,9 @@ class ShowGraphApp extends App {
 	 * Redraws edges leading from viewport to sidebar.
 	 */
 	redrawEdges() {
-		this.sidebarComponent.refreshFloaters();
+		this.proxyList.forEach(proxy => {
+			proxy.updatePosition();
+		});
 	}
 
 	/**

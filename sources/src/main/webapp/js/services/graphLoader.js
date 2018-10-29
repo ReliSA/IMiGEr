@@ -117,7 +117,7 @@ class GraphLoader {
 			return vertex.isUnconnected;
 		}).forEach(vertex => {
 			vertex.exclude();
-			app.sidebarComponent.unconnectedNodeListComponent.add(vertex);
+			app.sidebarComponent.unconnectedNodeListComponent.addNode(vertex);
 		});
 
 		// construct groups
@@ -175,7 +175,7 @@ class GraphLoader {
 			if (Utils.isDefined(node)) {
 				node.exclude();
 
-				app.sidebarComponent.excludedNodeListComponent.add(node);
+				app.sidebarComponent.excludedNodeListComponent.addNode(node);
 			}
 		});
 

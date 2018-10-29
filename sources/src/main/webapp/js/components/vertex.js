@@ -133,8 +133,8 @@ class Vertex extends Node {
 		this._group = newValue;
 
 		if (newValue && this.isExcluded) {
-			// remove floater
-			app.sidebarComponent.removeFloater(this._proxy);
+			// remove proxy
+			app.proxyList.splice(app.proxyList.indexOf(proxy), 1);
 			this._proxy = null;
 		}
 	}
@@ -400,7 +400,7 @@ class Vertex extends Node {
 	_onNodeContextMenu(e) {
 		e.preventDefault();
 
-		let excludedNodeList = app.sidebarComponent.excludedNodeListComponent.getNodeList();
+		let excludedNodeList = app.sidebarComponent.excludedNodeListComponent.nodeList;
 		let includedGroupList = app.viewportComponent.groupList;
 
 		let nodeList = [].concat(excludedNodeList, includedGroupList);

@@ -278,13 +278,13 @@ class Node {
 		if (this instanceof Vertex && this._group !== null) return;
 
 		if (newValue) {
-			// set floater
+			// set proxy
 			this._proxy = new NodeProxy(this);
-			app.sidebarComponent.addFloater(this._proxy);
+			app.proxyList.push(this._proxy);
 
 		} else {
-			// remove floater
-			app.sidebarComponent.removeFloater(this._proxy);
+			// remove proxy
+			app.proxyList.splice(app.proxyList.indexOf(this._proxy), 1);
 			this._proxy = null;
 		}
 	}
@@ -399,7 +399,7 @@ class Node {
 				case 'exclude':
 					this.exclude();
 
-					app.sidebarComponent.excludedNodeListComponent.add(this);
+					app.sidebarComponent.excludedNodeListComponent.addNode(this);
 					break;
 			}
 		}

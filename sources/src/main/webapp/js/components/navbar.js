@@ -226,7 +226,7 @@ class Navbar {
 
 					if (vertexWithMostEdges !== null) {
 						vertexWithMostEdges.exclude();
-						app.sidebarComponent.excludedNodeListComponent.add(vertexWithMostEdges);
+						app.sidebarComponent.excludedNodeListComponent.addNode(vertexWithMostEdges);
 					}
 				},
 			}, [
