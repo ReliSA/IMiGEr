@@ -96,14 +96,12 @@ class Navbar {
 			class: 'search-text',
 			id: 'searchText',
 			onKeyUp: e => {
-				switch (e.keyCode) {
-					// enter key
-					case 13:
+				switch (e.key) {
+					case 'Enter':
 						search(e.target.value);
 						break;
 
-					// escape key
-					case 27:
+					case 'Escape':
 						resetSearch();
 						break;
 				}
