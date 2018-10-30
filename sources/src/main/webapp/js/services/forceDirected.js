@@ -42,8 +42,8 @@ function ForceDirected() {
 			for (let j = 0; j < otherVisibleNodes.length; j++) {
 				var otherNode = otherVisibleNodes[j];
 
-				var currPosition = currNode.getPosition();
-				var otherPosition = otherNode.getPosition();
+				var currPosition = currNode.position;
+				var otherPosition = otherNode.position;
 
 				// calculate force
 				var x = currPosition.x - otherPosition.x;
@@ -106,20 +106,20 @@ function ForceDirected() {
 
 				halfCan = canvas / 2,
 
-				deltaX = currNode.getPosition().x - halfCan,
-				deltaY = currNode.getPosition().y - halfCan;
+				deltaX = currNode.position.x - halfCan,
+				deltaY = currNode.position.y - halfCan;
 
 			// tohle drzi layout uprostred, chtelo by to vymyslet nejak lip, docela ho to kurvi
 			/*
 			 if (deltaX > 0) {
-			 currNode.x = Math.min(currNode.getPosition().x, (canvas/2)+border);
+			 currNode.x = Math.min(currNode.position.x, (canvas/2)+border);
 			 } else {
-			 currNode.x = Math.max(currNode.getPosition().x, (canvas/2)-border);
+			 currNode.x = Math.max(currNode.position.x, (canvas/2)-border);
 			 }
 			 if (deltaY > 0) {
-			 currNode.y = Math.min(currNode.getPosition().y, (canvas/2)+border);
+			 currNode.y = Math.min(currNode.position.y, (canvas/2)+border);
 			 } else {
-			 currNode.y = Math.max(currNode.getPosition().y, (canvas/2)-border);
+			 currNode.y = Math.max(currNode.position.y, (canvas/2)-border);
 			 }
 			 */
 
@@ -151,8 +151,8 @@ function ForceDirected() {
 			// moving a component
 			if (Math.abs(forceX) > 1 || Math.abs(forceY) > 1) {
 				let coords = new Coordinates(
-					currNode.getPosition().x + forceX,
-					currNode.getPosition().y + forceY,
+					currNode.position.x + forceX,
+					currNode.position.y + forceY,
 				);
 
 				currNode.position = coords;
