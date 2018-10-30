@@ -122,7 +122,7 @@ class Vertex extends Node {
 	}
 
 	/**
-	 * Sets a new group that the vertex is added to. If the vertex is currently excluded, its floating point is destroyed.
+	 * Sets a new group that the vertex is added to. If the vertex is currently excluded, its proxy is destroyed.
 	 * @param {Group} newValue Group this vertex is a part of.
 	 */
 	set group(newValue) {
@@ -134,7 +134,7 @@ class Vertex extends Node {
 
 		if (newValue && this.isExcluded) {
 			// remove proxy
-			app.proxyList.splice(app.proxyList.indexOf(proxy), 1);
+			app.proxyList.splice(app.proxyList.indexOf(this._proxy), 1);
 			this._proxy = null;
 		}
 	}
@@ -363,7 +363,7 @@ class Vertex extends Node {
 			]),
 		]);
 
-		// set floater element
+		// set proxy element
 		this._proxy.element = this._rootElement;
 
 		// set edges' ends

@@ -44,7 +44,7 @@ class Group extends Node {
 		let inEdgeList = vertex.inEdgeList;
 		inEdgeList.forEach(edge => {
 			if (this.isExcluded) {
-				floater.addInEdge(edge);
+				this._proxy.addInEdge(edge);
 			} else {
 				edge.end = this.center;
 			}
@@ -53,7 +53,7 @@ class Group extends Node {
 		let outEdgeList = vertex.outEdgeList;
 		outEdgeList.forEach(edge => {
 			if (this.isExcluded) {
-				floater.addOutEdge(edge);
+				this._proxy.addOutEdge(edge);
 			} else {
 				edge.start = this.center;
 			}
@@ -171,9 +171,7 @@ class Group extends Node {
 	}
 
 	/**
-	 * Toggles excluded state of the group. If the group is set excluded, a new floating point is created to connect it with 
-	 * related nodes in the viewport. Otherwise, the floating point is deleted.
-	 * Any node is called excluded when it is not visible in the viewport but instead in the sidebar.
+	 * Toggles excluded state of the group. All vertices currently added to the group are excluded as well.
 	 * @param {boolean} newValue True to set the group as excluded, otherwise false.
 	 */
 	set isExcluded(newValue) {
@@ -395,7 +393,7 @@ class Group extends Node {
 			]),
 		]);
 
-		// set floater
+		// set proxy
 		this._proxy.element = this._rootElement;
 
 		// set edges' ends

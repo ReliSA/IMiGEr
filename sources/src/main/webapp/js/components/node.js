@@ -267,8 +267,8 @@ class Node {
 	}
 
 	/**
-	 * Toggles excluded state of the node. If the node is set excluded, a new floating point is created to connect it with 
-	 * related nodes in the viewport. Otherwise, the floating point is deleted.
+	 * Toggles excluded state of the node. If the node is set excluded, a new proxy is created to connect it with 
+	 * related nodes in the viewport. Otherwise, the proxy is destroyed.
 	 * Any node is called excluded when it is not visible in the viewport but instead in the sidebar.
 	 * @param {boolean} newValue True to set the node as excluded, otherwise false.
 	 */
