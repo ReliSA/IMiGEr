@@ -7,16 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class DetailsTest {
 
     static WebDriver browser;
-
-    public static final String VISIBLE_Q_TIP_XPATH = "//div[contains(@class, 'qtip') and @aria-hidden='false']";
 
     @BeforeAll
     public static void initTest() {
@@ -27,89 +21,44 @@ public class DetailsTest {
 
     @Test
     public void vertexDetail(){
-        checkQTip(
-                vertexQTip("vertex1"),
-                "V1 (3)",
-                Arrays.asList("D: E", "B: W", "A: Q")
-        );
+        checkPopover(vertexPopover("V1"),"V1 (3)\nD: E\nB: W\nA: Q");
 
-        checkQTip(
-                vertexQTip("vertex2"),
-                "V2 (2)",
-                Arrays.asList("D: E", "C: Q", "B: W")
-        );
+        checkPopover(vertexPopover("V2"),"V2 (2)\nD: E\nC: Q\nB: W");
 
-        checkQTip(
-                vertexQTip("vertex3"),
-                "V3 (1)",
-                Arrays.asList("D: Q", "C: W", "A: E")
-        );
+        checkPopover(vertexPopover("V3"),"V3 (1)\nD: Q\nC: W\nA: E");
     }
 
     @Test
     public void edgeDetail() {
-        checkQTip(
-                edgeQTip("e1"),
-                "Edge Details",
-                Arrays.asList(
-                        "edgeArchetype1", "D : E", "C : W"
-                )
-        );
+        checkPopover(edgePopover("1"),"Edge details\nedgeArchetype1\nD: E\nC: W");
 
-        checkQTip(
-                edgeQTip("e2"),
-                "Edge Details",
-                Arrays.asList(
-                        "edgeArchetype1", "D : E", "B : W", "A : Q",
-                        "edgeArchetype2", "D : D", "B : S", "A : A"
-                )
-        );
+        checkPopover(edgePopover("2"),"Edge details\nedgeArchetype1\nD: E\nB: W\nA: Q\nedgeArchetype2\nD: D\nB: S\nA: A");
 
-        checkQTip(
-                edgeQTip("e3"),
-                "Edge Details",
-                Arrays.asList(
-                        "edgeArchetype2", "C : T", "B : R"
-                )
-        );
+        checkPopover(edgePopover("3"),"Edge details\nedgeArchetype2\nC: T\nB: R");
     }
 
 
-    private WebElement edgeQTip(String edgeElementId) {
-        WebElement arrow = browser.findElement(By.id(edgeElementId))
+    private WebElement edgePopover(String edgeId) {
+        WebElement arrow = browser.findElement(By.cssSelector("[data-id='edges']"))
+                .findElement(By.cssSelector("[data-id='" + edgeId + "']"))
                 .findElement(By.className("arrow"));
 
-        return getQTipElement(arrow);
+        SeleniumUtil.svgClick(arrow);
+        return browser.findElement(By.className("edge-popover"));
     }
 
-    private WebElement vertexQTip(String vertexElementId) {
-        WebElement archetypeIcon = browser.findElement(By.id(vertexElementId))
-                .findElement(By.className("archetype"));
+    private WebElement vertexPopover(String vertexElementName) {
+        WebElement archetypeIcon = browser.findElement(By.cssSelector("[data-id='vertices']"))
+                .findElement(By.cssSelector("[data-name='" + vertexElementName + "']"))
+                .findElement(By.className("archetype-icon"));
 
-        return getQTipElement(archetypeIcon);
+        SeleniumUtil.svgClick(archetypeIcon);
+        return browser.findElement(By.className("vertex-popover"));
     }
 
-    private WebElement getQTipElement(WebElement toClick) {
-        SeleniumUtil.svgClick(toClick);
-
-        return browser.findElement(By.xpath(VISIBLE_Q_TIP_XPATH));
-    }
-
-    private void checkQTip(WebElement qTipElement, String expectedTitle, List<String> expectedAttributes) {
-        QTip qtip = new QTip(qTipElement);
-
-        System.out.println("Title: " + qtip.getTitle());
-        Assertions.assertEquals(expectedTitle, qtip.getTitle());
-
-        List<String> attributes = qtip.getAttributes();
-        System.out.println("Attributes:");
-        for (String attr : attributes) {
-            System.out.println(attr);
-        }
-        Assertions.assertEquals(expectedAttributes, attributes);
-
-        qtip.close();
-        Assertions.assertFalse(qtip.isVisible());
+    private void checkPopover(WebElement popoverElement, String expectedText) {
+        String text = popoverElement.getText();
+        Assertions.assertEquals(expectedText, text);
     }
 
     @AfterAll
