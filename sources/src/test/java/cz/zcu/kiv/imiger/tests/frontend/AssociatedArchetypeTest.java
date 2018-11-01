@@ -12,6 +12,9 @@ import org.openqa.selenium.WebElement;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+ * Tests are not working because new graph is out of actual visible view.
+ */
 public class AssociatedArchetypeTest {
     static WebDriver browser;
 
