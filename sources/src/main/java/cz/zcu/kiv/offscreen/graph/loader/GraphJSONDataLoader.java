@@ -89,6 +89,7 @@ public class GraphJSONDataLoader {
 
         JsonArray attributeTypes = json.getAsJsonArray("attributeTypes");
         for (JsonElement attributeTypeElement : attributeTypes) {
+            if (attributeTypeElement.isJsonNull()) continue;
 
             JsonObject attributeType = attributeTypeElement.getAsJsonObject();
             String dataTypeString = attributeType.get("dataType").getAsString();
@@ -109,6 +110,7 @@ public class GraphJSONDataLoader {
         JsonArray vertexArchetypes = json.getAsJsonArray("vertexArchetypes");
 
         for (JsonElement vertexArchetypeElement : vertexArchetypes){
+            if(vertexArchetypeElement.isJsonNull()) continue;
 
             JsonObject vertexArchetype = vertexArchetypeElement.getAsJsonObject();
             graphManager.addVertexArchetype(vertexArchetype.get("name").getAsString(), vertexArchetype.get("text").getAsString());
@@ -122,6 +124,7 @@ public class GraphJSONDataLoader {
     private void loadEdgeArchetypes(JsonObject json) {
         JsonArray edgeArchetypes = json.getAsJsonArray("edgeArchetypes");
         for (JsonElement edgeArchetypeElement : edgeArchetypes) {
+            if (edgeArchetypeElement.isJsonNull()) continue;
             JsonObject edgeArchetype = edgeArchetypeElement.getAsJsonObject();
 
             graphManager.addEdgeArchetype(edgeArchetype.get("name").getAsString(), edgeArchetype.get("text").getAsString());
@@ -136,6 +139,7 @@ public class GraphJSONDataLoader {
     private void loadVertices(JsonArray attributeTypes, JsonObject json) {
         JsonArray verticesObject = json.getAsJsonArray("vertices");
         for (JsonElement vertexElement : verticesObject) {
+            if (vertexElement.isJsonNull()) continue;
             JsonObject vertexObject = vertexElement.getAsJsonObject();
 
             String name = vertexObject.get("title").getAsString();
@@ -161,6 +165,7 @@ public class GraphJSONDataLoader {
         JsonArray edgesObject = json.getAsJsonArray("edges");
 
         for (JsonElement edgeElement : edgesObject) {
+            if (edgeElement.isJsonNull()) continue;
             JsonObject edgeObject = edgeElement.getAsJsonObject();
 
             int edgeId = edgeObject.get("id").getAsInt();
