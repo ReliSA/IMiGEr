@@ -8,19 +8,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class DetailsTest {
+class DetailsTest {
 
-    static WebDriver browser;
+    private static WebDriver browser;
 
     @BeforeAll
-    public static void initTest() {
+    static void initTest() {
         SeleniumUtil.prepareConfigFile("emptyConfig.json");
         browser = SeleniumUtil.init();
-        SeleniumUtil.loadGraphData("detailTest.json");
+        SeleniumUtil.switchToRaw();
+        SeleniumUtil.loadGraphData("RawDetailTest.json");
     }
 
     @Test
-    public void vertexDetail(){
+    void vertexDetail(){
         checkPopover(vertexPopover("V1"),"V1 (3)\nD: E\nB: W\nA: Q");
 
         checkPopover(vertexPopover("V2"),"V2 (2)\nD: E\nC: Q\nB: W");
@@ -29,7 +30,7 @@ public class DetailsTest {
     }
 
     @Test
-    public void edgeDetail() {
+    void edgeDetail() {
         checkPopover(edgePopover("1"),"Edge details\nedgeArchetype1\nD: E\nC: W");
 
         checkPopover(edgePopover("2"),"Edge details\nedgeArchetype1\nD: E\nB: W\nA: Q\nedgeArchetype2\nD: D\nB: S\nA: A");
@@ -43,7 +44,7 @@ public class DetailsTest {
                 .findElement(By.cssSelector("[data-id='" + edgeId + "']"))
                 .findElement(By.className("arrow"));
 
-        SeleniumUtil.svgClick(arrow);
+        SeleniumUtil.svgClickWithOffset(arrow, 3, 0);
         return browser.findElement(By.className("edge-popover"));
     }
 
@@ -62,7 +63,7 @@ public class DetailsTest {
     }
 
     @AfterAll
-    public static void finishTest() {
+    static void finishTest() {
         SeleniumUtil.clear();
     }
 }

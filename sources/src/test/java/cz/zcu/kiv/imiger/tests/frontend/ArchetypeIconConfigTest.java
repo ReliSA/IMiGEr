@@ -5,23 +5,22 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.opentest4j.AssertionFailedError;
 
-public class ArchetypeIconConfigTest {
-    static WebDriver browser;
+class ArchetypeIconConfigTest {
+    private static WebDriver browser;
 
     @BeforeAll
-    public static void initTest() {
+    static void initTest() {
         SeleniumUtil.prepareConfigFile("archetypeIconConfigTest.json");
         browser = SeleniumUtil.init();
-        SeleniumUtil.loadGraphData("archetypeIconTest.json");
+        SeleniumUtil.switchToRaw();
+        SeleniumUtil.loadGraphData("RawArchetypeIconTest.json");
     }
 
     @Test
-    public void SpecifiedValueDefinition(){
+    void SpecifiedValueDefinition(){
         WebElement iconDef = browser.findElement(By.id("vertexArchetypeIcon-SpecifiedIcon"));
 
         System.out.println("Trying to locate an element with class 'testingArchetypeIcon'");
@@ -30,27 +29,27 @@ public class ArchetypeIconConfigTest {
     }
 
     @Test
-    public void UnspecifiedValueDefinition(){
+    void UnspecifiedValueDefinition(){
         emptyIconDefinition("UnspecifiedIcon");
     }
 
     @Test
-    public void SmileyValueDefinition(){
+    void SmileyValueDefinition(){
         emptyIconDefinition("☺Smiley");
     }
 
     @Test
-    public void SpecifiedIcon(){
+    void SpecifiedIcon(){
         locateTestingArchetypeIcon("1","#vertexArchetypeIcon-SpecifiedIcon");
     }
 
     @Test
-    public void UnspecifiedIcon(){
+    void UnspecifiedIcon(){
         locateTestingArchetypeIcon("2","#vertexArchetypeIcon-UnspecifiedIcon");
     }
 
     @Test
-    public void SmileyIcon(){
+    void SmileyIcon(){
         locateTestingArchetypeIcon("3","#vertexArchetypeIcon-☺Smiley");
     }
 
@@ -76,7 +75,7 @@ public class ArchetypeIconConfigTest {
     }
 
     @AfterAll
-    public static void finishTest() {
+    static void finishTest() {
         SeleniumUtil.clear();
     }
 }

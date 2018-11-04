@@ -8,24 +8,24 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutomaticGroupingTest {
-    static WebDriver browser;
+class AutomaticGroupingTest {
+    private static WebDriver browser;
 
     @BeforeEach
-    public void initTest() {
+    void initTest() {
         SeleniumUtil.prepareConfigFile("automaticGroupingConfigTest.json");
         browser = SeleniumUtil.init();
         SeleniumUtil.loadGraphData("automaticGroupingTest.json");
     }
 
     @Test
-    public void groupIncluded(){
+    void groupIncluded(){
         String groupName = "FirstGroupArchetype";
         checkGroupExist(browser, groupName);
     }
 
     @Test
-    public void groupExcluded(){
+    void groupExcluded(){
         String groupName = "FirstGroupArchetype";
         List<String> verticesNames = new ArrayList<>();
         verticesNames.add("First vertex from first group");
@@ -64,32 +64,16 @@ public class AutomaticGroupingTest {
     }
 
     private void excludeFirstGroup(WebDriver browser){
-        List<WebElement> navList = browser.findElement(By.tagName("nav")).findElements(By.tagName("ul"));
-
-        for( WebElement item : navList){
-            WebElement form = item.findElement(By.tagName("form"));
-            if (form != null){
-                String formName = form.getAttribute("name");
-                if (formName.equals("actionForm")) {
-                    item.findElements(By.tagName("label")).get(1).click();
-                    break;
-                }
-            }
-        }
+        SeleniumUtil.switchToExcludeMode();
 
         List<WebElement> groups = browser.findElement(By.cssSelector("[data-id='groups']"))
                 .findElements(By.className("node"));
 
-        groups.get(0).findElement(By.tagName("rect")).click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        SeleniumUtil.svgRectClick(groups.get(0));
     }
 
     @AfterEach
-    public void finishTest() {
+    void finishTest() {
         SeleniumUtil.clear();
     }
 }

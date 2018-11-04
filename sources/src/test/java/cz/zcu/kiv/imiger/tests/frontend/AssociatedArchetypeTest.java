@@ -5,28 +5,26 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.Arrays;
 import java.util.List;
 
-/*
- * Tests are not working because new graph is out of actual visible view.
- */
-public class AssociatedArchetypeTest {
-    static WebDriver browser;
+
+class AssociatedArchetypeTest {
+    private static WebDriver browser;
 
     @BeforeAll
-    public static void initTest() {
+    static void initTest() {
         SeleniumUtil.prepareConfigFile("emptyConfig.json");
         browser = SeleniumUtil.init();
-        SeleniumUtil.loadGraphData("associatedArchetypeTest.json");
+        SeleniumUtil.switchToRaw();
+        SeleniumUtil.loadGraphData("RawAssociatedArchetypeTest.json");
     }
 
     @Test
-    public void visibilityOfAllIcons() {
+    void visibilityOfAllIcons() {
         checkVisibilityOfIcons("1", Arrays.asList("2", "4"), Arrays.asList("2", "4"));
 
         checkVisibilityOfIcons("2", Arrays.asList("1"), Arrays.asList("1"));
@@ -39,7 +37,7 @@ public class AssociatedArchetypeTest {
     }
 
     @Test
-    public void vertexHighlighting() {
+    void vertexHighlighting() {
         //associated vertices to V1
         checkHighlightedVertices("1", "2", Arrays.asList("2", "3"));
         checkHighlightedVertices("1", "4", Arrays.asList("4"));
@@ -131,7 +129,7 @@ public class AssociatedArchetypeTest {
     }
 
     @AfterAll
-    public static void finishTest() {
+    static void finishTest() {
         SeleniumUtil.clear();
     }
 }

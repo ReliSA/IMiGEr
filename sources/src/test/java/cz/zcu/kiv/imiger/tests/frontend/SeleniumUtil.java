@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class SeleniumUtil {
+class SeleniumUtil {
 
     private static final String TEST_DIRECTORY = System.getProperty("user.dir") + "\\..\\test";
 
@@ -31,14 +31,14 @@ public class SeleniumUtil {
 
     private static WebDriver browser;
 
-    public static WebDriver init() {
+    static WebDriver init() {
         System.setProperty("webdriver.gecko.driver", GECKO_PATH);
         browser = new FirefoxDriver();
         browser.get(URL);
         return browser;
     }
 
-    public static void loadGraphData(String filename) {
+    static void loadGraphData(String filename) {
         WebElement fileInput = browser.findElement(By.id("file"));
         fileInput.sendKeys(TEST_DIRECTORY + "\\data\\" + filename );
         browser.findElement(By.id("btnLoad")).click();
@@ -53,7 +53,7 @@ public class SeleniumUtil {
         }
     }
 
-    public static void prepareConfigFile(String configFile) {
+    static void prepareConfigFile(String configFile) {
         try {
             Files.deleteIfExists(Paths.get(APP_CONFIG_LOCATION + "\\config.json"));
             Files.createLink(Paths.get(APP_CONFIG_LOCATION + "\\config.json"),
@@ -63,9 +63,51 @@ public class SeleniumUtil {
         }
     }
 
-    public static void svgClick(WebElement toClick) {
+    static void switchToRaw(){
+        browser.findElement(By.id("raw")).click();
+    }
+
+    /**
+     * Turn on exclude mode for vertex exclude
+     */
+    static void switchToExcludeMode(){
+        browser.findElement(By.id("remove")).click();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void svgRectClick(WebElement toClick){
+        toClick.findElement(By.tagName("rect")).click();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void svgRectContextClick(WebElement toClick){
         Actions builder = new Actions(browser);
-        builder.click(toClick).build().perform();
+        builder.contextClick(toClick.findElement(By.tagName("rect"))).build().perform();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void svgClick(WebElement toClick) {
+        svgClickWithOffset(toClick, 0, 0);
+    }
+
+    static void svgClickWithOffset(WebElement toClick, int xOffset, int yOffset) {
+        Actions builder = new Actions(browser);
+        builder.moveToElement(toClick).moveByOffset(xOffset,yOffset).click().build().perform();
 
         try {
             Thread.sleep(1000);
@@ -78,9 +120,9 @@ public class SeleniumUtil {
      * Right mouse click
      * @param toClick element for click
      */
-    public static void svgContexClick(WebElement toClick) {
+    static void svgContextClick(WebElement toClick) {
         Actions builder = new Actions(browser);
-        builder.contextClick(toClick).build().perform();
+        builder.moveToElement(toClick).contextClick().build().perform();
 
         try {
             Thread.sleep(1000);
@@ -89,7 +131,7 @@ public class SeleniumUtil {
         }
     }
 
-    public static void clear() {
+    static void clear() {
         browser.close();
     }
 }
