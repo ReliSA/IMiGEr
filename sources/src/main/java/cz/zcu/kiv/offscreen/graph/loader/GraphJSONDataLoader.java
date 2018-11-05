@@ -248,6 +248,7 @@ public class GraphJSONDataLoader {
                 if (attribute.getValue().isJsonArray()){
 
                     for (JsonElement element : attribute.getValue().getAsJsonArray()){
+                        if (element.isJsonNull()) continue;
                         if (elements.length() != 0) {
                             elements.append(", ");
                         }
