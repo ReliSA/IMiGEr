@@ -1,0 +1,45 @@
+{
+  "defaultFilter": {
+    "vertexArchetypeFilter": {
+      "archetypes": [ ],
+      "matchType": "non_matching"
+    },
+
+    "edgeArchetypeFilter": {
+      "archetypes": [
+        
+      ],
+      "matchType": "non_matching"
+    },
+
+    "vertexAttributeFilters": [
+      {
+        "archetype": "Ticket",
+        "attributeName": "Start",
+        "filter": {
+          "min": "2017-04-12 00:00:00",
+          "max": "2017-04-19 00:00:00",
+          "minInclusive": true,
+          "maxInclusive": false,
+          "matchType": "non_matching"
+        }
+      },
+      {
+        "archetype": "Person",
+        "attributeName": "Name",
+        "filter": {
+          "value": "Petr Mayr",
+          "matchType": "exact_match"
+        }
+      }
+    ],
+
+    "edgeAttributeFilters": [
+      
+    ]
+  },
+  
+  "defaultGroupArchetypes": [],
+  
+  "archetypeIcons": []
+}

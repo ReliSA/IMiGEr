@@ -1,0 +1,108 @@
+{
+ "attributeTypes": [
+
+ ],
+ "vertexArchetypes": [
+  {
+   "name": "FirstGroupArchetype",
+   "text": ""
+  },
+  {
+   "name": "NonGroupArchetype",
+   "text": ""
+  }
+ ],
+ "edgeArchetypes": [
+	{
+		"name": "edge",
+		"text": ""
+	}
+ ],
+ "vertices": [
+  {
+   "archetype": 0,
+   "attributes": {},
+   "id": 1,
+   "text": "",
+   "title": "First vertex from first group"
+  },
+  {
+   "archetype": 1,
+   "attributes": {},
+   "id": 2,
+   "text": "",
+   "title": "Non group vertex"
+  },
+  {
+   "archetype": 0,
+   "attributes": {},
+   "id": 3,
+   "text": "",
+   "title": "Second vertex from first group"
+  },  
+   {
+   "archetype": 1,
+   "attributes": {},
+   "id": 4,
+   "text": "",
+   "title": "Non group vertex"
+  },
+  {
+   "archetype": 1,
+   "attributes": {},
+   "id": 5,
+   "text": "",
+   "title": "Non group vertex"
+  }
+ ],
+ "edges": [
+	{
+	   "archetype": 0,
+	   "from": 1,
+	   "attributes": {},
+	   "id": 0,
+	   "to": 2,
+	   "text": ""
+	},
+	{
+	   "archetype": 0,
+	   "from": 1,
+	   "attributes": {},
+	   "id": 1,
+	   "to": 3,
+	   "text": ""
+	},
+  {
+	   "archetype": 0,
+	   "from": 2,
+	   "attributes": {},
+	   "id": 1,
+	   "to": 5,
+	   "text": ""
+	},
+  {
+	   "archetype": 0,
+	   "from": 2,
+	   "attributes": {},
+	   "id": 1,
+	   "to": 4,
+	   "text": ""
+	},
+  {
+	   "archetype": 0,
+	   "from": 5,
+	   "attributes": {},
+	   "id": 1,
+	   "to": 4,
+	   "text": ""
+	},
+  {
+	   "archetype": 0,
+	   "from": 4,
+	   "attributes": {},
+	   "id": 1,
+	   "to": 2,
+	   "text": ""
+	},
+ ]
+}

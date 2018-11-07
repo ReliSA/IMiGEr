@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.md</title><script type="text/javascript">
+//<![CDATA[
+window.__cfRocketOptions = {byc:0,p:0,petok:"c53cad5b13ba49e5fc2df1f941c70af8296d137a-1525024313-1800"};
+//]]>
+</script>
+<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/935cb224/cloudflare-static/rocket.min.js"></script>
+<style></style></head><body id="preview">
+<h1><a id="UI_Tests_0"></a>UI Tests</h1>
+<p>This folder contains a test suite for various UI interactions. Tests are written and run by <a href="http://robotframework.org">Robot Framework</a>.</p>
+<h2><a id="How_to_Run_It_4"></a>How to Run It</h2>
+<h3><a id="1_Install_pip_6"></a>1. Install pip</h3>
+<p>pip is a Python package management system which can be used to install Robot Framework. Get it at <a href="https://pip.pypa.io/en/stable/quickstart/">https://pip.pypa.io/en/stable/quickstart/</a>.</p>
+<h3><a id="2_Install_Robot_Framework_using_pip_10"></a>2. Install Robot Framework using pip</h3>
+<p><code>pip install robotframework</code><br>
+<code>pip install robotframework-selenium2library</code></p>
+<h3><a id="3_Install_browser_controlling_driver_15"></a>3. Install browser controlling driver</h3>
+<p>Tests written in Robot Framework have Selenium under cover. Selenium uses a headless browser to automatically interact with a webpage like a normal user would. For that, browser controller must be installed.</p>
+<p>There are basically two options:</p>
+<ol>
+<li><a href="https://github.com/mozilla/geckodriver/releases">geckodriver</a></li>
+<li><strong><a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">chromedriver</a></strong> (default)</li>
+</ol>
+<p>You should put path to the driver folder to your <code>Path</code>. Obviously, you should have Firefox or Chrome installed too for geckodriver/chromedriver to work.</p>
+<h3><a id="4_Run_Robot_Framework_25"></a>4. Run Robot Framework</h3>
+<p>Assuming you have Python’s Scripts folder added to your <code>Path</code>, you should be able to run all test suits:</p>
+<p><code>robot ./</code></p>
+<p>To set a custom output folder, use option <code>--outputdir</code>:</p>
+<p><code>robot --outputdir ./output ./</code></p>
+<p>To run a single test suit, point to that file:</p>
+<p><code>robot --outputdir ./output ./graph.robot</code></p>
+<p>To run a particular test from a test suite, use option <code>--test</code>:</p>
+<p><code>robot --outputdir ./output --test &quot;General&quot; ./graph.robot</code></p>
+<h3><a id="5_Check_results_43"></a>5. Check results</h3>
+<p>In your output folder (<code>./</code> by default), there should be a HTML file called <code>report.html</code>. It contains additional details about executed test runs.</p>
+
+</body></html>

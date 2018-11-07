@@ -1,0 +1,23 @@
+{
+  "defaultFilter": {
+    "vertexArchetypeFilter": {
+      "archetypes": [ ],
+      "matchType": "non_matching"
+    },
+
+    "edgeArchetypeFilter": {
+      "archetypes": [
+        
+      ],
+      "matchType": "non_matching"
+    },
+
+    "vertexAttributeFilters": [],
+
+    "edgeAttributeFilters": []
+  },
+  
+  "defaultGroupArchetypes": ["FirstGroupArchetype"],
+  
+  "archetypeIcons": []
+}

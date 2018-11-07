@@ -1,0 +1,23 @@
+{
+  "name": "cocaex-compatibility",
+  "version": "1.0.0",
+  "description": "Visualization of large component diagrams",
+  "main": "js/app.js",
+  "directories": {
+    "test": "tests",
+    "doc": "docs"
+  },
+  "scripts": {
+    "docs": "jsdoc ./js --recurse --configure ./jsdoc.conf --destination ./docs",
+    "test": "robot --outputdir ./tests/output --nostatusrc ./tests"
+  },
+  "author": "Pavel Fidransky <pfidrans@students.zcu.cz>",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
+  },
+  "dependencies": {
+    "html-tags": "^2.0.0",
+    "svg-tags": "^1.0.0"
+  }
+}

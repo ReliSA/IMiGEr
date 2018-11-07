@@ -1,0 +1,1590 @@
+{
+  "vertexArchetypes": [
+    {
+      "name": "person",
+      "text": "not used"
+    },
+    {
+      "name": "device",
+      "text": "not used"
+    },
+    {
+      "name": "theory",
+      "text": "not used"
+    }
+  ],
+
+  "edgeArchetypes": [
+    {
+      "name": "relationship",
+      "text": "not used"
+    }
+  ],
+
+  "attributeTypes": [
+    {
+      "name": "description",
+      "dataType": "string",
+      "text": "not used"
+    },
+    {
+      "name": "begin",
+      "dataType": "date",
+      "text": "not used"
+    },
+    {
+      "name": "end",
+      "dataType": "date",
+      "text": "not used"
+    },
+    {
+      "name": "relation",
+      "dataType": "string",
+      "text": "not used"
+    }
+  ],
+
+  "vertices": [
+    {
+      "id": 0,
+      "archetype": 0, "text": "not used",
+      "title": "Blaise Pascal",
+
+      "attributes": {
+        "0": "francouzský matematik, fyzik, spisovatel, teolog a náboženský filosof ",
+        "1": "1623-01-01 00:00:00",
+        "2": "1662-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 1,
+      "archetype": 1, "text": "not used",
+      "title": "Pascaline",
+
+      "attributes": {
+        "0": "Mechanický počítač umožňující základní operace",
+        "1": "1645-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 2,
+      "archetype": 0, "text": "not used",
+      "title": "Gottfried Wilhelm Leibniz",
+
+      "attributes": {
+        "0": "německý filosof, vědec, matematik a teolog píšící převážně v latině a francouzštině. Je považován za polyhistora a univerzálního génia",
+        "1": "1646-01-01 00:00:00",
+        "2": "1716-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 3,
+      "archetype": 1, "text": "not used",
+      "title": "Leibnitzova kola",
+
+      "attributes": {
+        "0": "Pokročilejší mechanický počítač, princip využíván až do 20. století",
+        "1": "1673-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 4,
+      "archetype": 0, "text": "not used",
+      "title": "Charles Stanhope",
+
+      "attributes": {
+        "0": "britský cestovatel, státník a vědec",
+        "1": "1753-01-01 00:00:00",
+        "2": "1816-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 5,
+      "archetype": 1, "text": "not used",
+      "title": "Zubové počítadlo",
+
+      "attributes": {
+        "0": "Mechanický počítač oblíbený v 19. a 20. století",
+        "1": "1775-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 6,
+      "archetype": 0, "text": "not used",
+      "title": "Charles Xavier Thomas",
+
+      "attributes": {
+        "0": "francouzský vynálezce a podnikatel, vynálezce prvního komerčně úspěšného počítače",
+        "1": "1785-01-01 00:00:00",
+        "2": "1870-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 7,
+      "archetype": 1, "text": "not used",
+      "title": "Arithmometer",
+
+      "attributes": {
+        "0": "Mechanický počítací stroj. Po různých zdokonaleních jej začal roku 1851 vyrábět a až do roku 1887 neměl konkurenta. Arithmometr se vyráběl v řadě variant a uměl sečítat a odečítat šesti- nebo osmimístná čísla, střadač měl deset až dvacet míst. Posuvný vozík se střadačem umožňoval i poloautomatické násobení a dělení.",
+        "1": "1820-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 8,
+      "archetype": 0, "text": "not used",
+      "title": "Curt Herzstark",
+
+      "attributes": {
+        "0": "Rakouský inženýr. Syn Marie a Samuel Jakob Herzstark. Jeho otec vlastnil továrnu Rechenmaschinenwerk AUSTRIA Herzstark & Co.",
+        "1": "1902-01-01 00:00:00",
+        "2": "1988-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 9,
+      "archetype": 1, "text": "not used",
+      "title": "Curta",
+
+      "attributes": {
+        "0": "Mechanická kapesní kalkulačka, kterou vytvořil Curt Herzstark (1902–1988) v roce 1948. Umí sčítat, odčítat, násobit a dělit. Lze s ní počítat i odmocniny a další operace. Je velmi kompaktní, vejde se do dlaně.",
+        "1": "1948-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 10,
+      "archetype": 0, "text": "not used",
+      "title": "Dorr Eugene Felt",
+
+      "attributes": {
+        "0": "Americký vynálezce a průmyslník, tvůrce několika mechanických pokladen",
+        "1": "1862-01-01 00:00:00",
+        "2": "1930-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 11,
+      "archetype": 1, "text": "not used",
+      "title": "Comptometer",
+
+      "attributes": {
+        "0": "První komerčně úspěšná tlačítková mechanická počítačka.",
+        "1": "1887-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 12,
+      "archetype": 1, "text": "not used",
+      "title": "Comptograph",
+
+      "attributes": {
+        "0": "První mechanická počítačka s tiskem vstupů a výsledků.",
+        "1": "1889-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 13,
+      "archetype": 0, "text": "not used",
+      "title": "Charles Babbage",
+
+      "attributes": {
+        "0": "Anglický matematik, filozof, vynálezce a strojní inženýr, který jako první přišel s nápadem sestrojit programovatelný počítač. Části jeho nedokončených strojů jsou vystaveny v Londýnském vědeckém muzeu. V roce 1991 byl podle Babbageových originálních plánů sestaven plně funkční diferenční stroj, za pomoci prostředků dostupných v 19. století. Tím se ukázalo, že by skutečně fungoval už tehdy.",
+        "1": "1791-01-01 00:00:00",
+        "2": "1871-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 14,
+      "archetype": 1, "text": "not used",
+      "title": "Návrh na Difference engine",
+
+      "attributes": {
+        "0": "Návrh na samočinný mechanický počítač schopný generovat tabulky polynomických funkcí.",
+        "1": "1822-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 15,
+      "archetype": 1, "text": "not used",
+      "title": "Návrh na Analytical Engine",
+
+      "attributes": {
+        "0": "Návrh samočinného mechanického počítače programovatelného děrnými štítky.",
+        "1": "1837-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 16,
+      "archetype": 1, "text": "not used",
+      "title": "Difference engine",
+
+      "attributes": {
+        "0": "Mechanický počítač schopný generovat tabulky polynomických funkcí postavený londýnským muzeem.",
+        "1": "1991-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 17,
+      "archetype": 0, "text": "not used",
+      "title": "Ada Lovelace",
+
+      "attributes": {
+        "0": "Narozená jako Augusta Ada Byronová a nyní známá jako Ada Lovelaceová, byla anglická matematička a první programátorka, která je známá především detailním popisem fungování Babbageova mechanického počítače (analytického stroje), jehož vývoj podporovala i finančně. Mezi jejími poznámkami k analytickému stroji byl i algoritmus, který je považován za první algoritmus zpracovatelný počítačem. Proto je často uváděna jako první programátorka.",
+        "1": "1815-01-01 00:00:00",
+        "2": "1852-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 18,
+      "archetype": 2, "text": "not used",
+      "title": "První program",
+
+      "attributes": {
+        "0": "Poznámky popisující program pro Analytický stroj a první publikovaný algoritmus - výpočet Bernulliho čísel",
+        "1": "1842-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 19,
+      "archetype": 0, "text": "not used",
+      "title": "George Boole",
+
+      "attributes": {
+        "0": "Britský matematik a filosof, známý jako objevitel základů moderní aritmetiky, nazvané později Booleovou algebrou. Je považován za zakladatele informatiky, ačkoli v jeho době nebylo o počítačích ani uvažováno.",
+        "1": "1815-01-01 00:00:00",
+        "2": "1864-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 20,
+      "archetype": 2, "text": "not used",
+      "title": "Booleova algebra",
+
+      "attributes": {
+        "0": "Algebraická struktura, která zobecňuje vlastnosti množinových a logických operací. Poprvé publikována v knize The Mathematical Analysis of Logic.",
+        "1": "1847-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 21,
+      "archetype": 0, "text": "not used",
+      "title": "Herman Hollerith",
+
+      "attributes": {
+        "0": "Americký statistik a vynálezce. Pro sčítání lidu USA v roce 1890 vynalezl počítací stroj, který používal děrné štítky a umožňoval tak hromadné zpracování dat. Zakladatel Tabulating Machine Company ze které se později stává IBM.",
+        "1": "1860-01-01 00:00:00",
+        "2": "1929-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 22,
+      "archetype": 1, "text": "not used",
+      "title": "Tabulátor 1880",
+
+      "attributes": {
+        "0": "Mechanckýc stroj schopný sčítat a řadit data zaznamenaná na velkých sadách děrných štítků, využitý ke sčítání lidu v USA v roce 1890.",
+        "1": "1890-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 23,
+      "archetype": 0, "text": "not used",
+      "title": "Vannevar Bush",
+
+      "attributes": {
+        "0": "Americký vědec, státní úředník, vizionář a profesor elektronického inženýrství. Vykonával funkci viceprezidenta Massachusettského technologického institutu (MIT), prezidenta Carnegie Institution ve Washingtonu DC v USA. Působil jako vedoucí National Defense Research Committee, administrativně vedl projekt Manhattan.",
+        "1": "1890-01-01 00:00:00",
+        "2": "1974-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 24,
+      "archetype": 1, "text": "not used",
+      "title": "Diferenciální analyzátor",
+
+      "attributes": {
+        "0": "Pokročilý mechanický počítač k řešení diferenciálních rovnic.",
+        "1": "1927-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 25,
+      "archetype": 1, "text": "not used",
+      "title": "Rockefellerův diferenciální analyzátor",
+
+      "attributes": {
+        "0": "Pokročilý elektro-mechanický počítač k řešení diferenciálních rovnic, pravděpodobně největší a nejkomplexnější mechanické zařízení svého druhu",
+        "1": "1935-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 26,
+      "archetype": 2, "text": "not used",
+      "title": "Memex",
+
+      "attributes": {
+        "0": "Návrh organizace dat na mikrofilmech v mechanickém začízení které umožní jejich provázání",
+        "1": "1930-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 27,
+      "archetype": 0, "text": "not used",
+      "title": "James Thomson",
+
+      "attributes": {
+        "0": "Britský inženýr a fyzik, bratr Williama Thomsona (lorda Kelvina). Zabával se především vodními zařízeními.",
+        "1": "1822-01-01 00:00:00",
+        "2": "1892-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 28,
+      "archetype": 1, "text": "not used",
+      "title": "Integrátor s koulí a diskem",
+
+      "attributes": {
+        "0": "Základní mechanický integrátor, využitý lordem Kelvinem k modelování slapových sil a sloužící jako základ složitých mechanických počítačů zejména mechanických zaměřovacích syytémů.",
+        "1": "1886-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 29,
+      "archetype": 0, "text": "not used",
+      "title": "William Phillips",
+
+      "attributes": {
+        "0": "Novozélandský ekonom, známý zejména Phillipsovou křivkou (vztah nezaměstnanosti a inflace).",
+        "1": "1914-01-01 00:00:00",
+        "2": "1975-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 30,
+      "archetype": 1, "text": "not used",
+      "title": "MONIAC",
+
+      "attributes": {
+        "0": "Analogový počítač založený na modelování ekonomiky jako hydraulické soustavy.",
+        "1": "1949-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 31,
+      "archetype": 0, "text": "not used",
+      "title": "Konrád Zuse",
+
+      "attributes": {
+        "0": "Německý inženýr a počítačový průkopník. Jeho největším úspěchem byl počítač Z3, světově první funkční turingovsky úplný počítač řízený programem. Jeho první zdokumentovaný vliv na společnosti Spojených Států je asi až přání společnosti IBM na jeho patenty v roce 1946. Na sklonku šedesátých let dvacátého století Zuse navrhl koncept „počítajícího vesmíru“ (rechnender Raum) neboli vesmíru jakožto obrovského počítače.",
+        "1": "1910-01-01 00:00:00",
+        "2": "1995-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 32,
+      "archetype": 1, "text": "not used",
+      "title": "Z1 (V1)",
+
+      "attributes": {
+        "0": "První Binární číslicový programovatelný mechanický počítač. Využívá Boolovu algebru a výpočty v plovoucí řádové čárce. Na Z1 přejmenován po druhé světové válce, kvůli raketám V1.",
+        "1": "1938-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 33,
+      "archetype": 1, "text": "not used",
+      "title": "Z2 (V2)",
+
+      "attributes": {
+        "0": "Binární číslicový programovatelný elektro-mechanický počítač. Využívá Boolovu algebru a výpočty s fixed point aritmetikou (16b). Na Z2 přejmenován po druhé světové válce, kvůli raketám V1. Paměť na 64 čísel, rychlost 0.8 operace za vteřinu.",
+        "1": "1939-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 34,
+      "archetype": 1, "text": "not used",
+      "title": "Z3 (V3)",
+
+      "attributes": {
+        "0": "Analogový elektro-mechanický počítač, využívaný k výpočtům spojeným s letectvím. Stále neobsahuje podmíněné skoky, používá float point aritmetiku (22 bit), implementováno sčítání, odečítání, násobení, dělení a odmocnina.",
+        "1": "1941-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 35,
+      "archetype": 1, "text": "not used",
+      "title": "Z4",
+
+      "attributes": {
+        "0": "První komerční číslicový počítač, s 32 bitovou přesností. Na začátku 50. let jediný funkční počítač v Evropě",
+        "1": "1945-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 36,
+      "archetype": 0, "text": "not used",
+      "title": "John Vincent Atanasoff",
+
+      "attributes": {
+        "0": "Americký fyzik a vynálezce, který se nejvíce proslavil vynálezem prvního digitálního počítače.",
+        "1": "1903-01-01 00:00:00",
+        "2": "1995-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 37,
+      "archetype": 1, "text": "not used",
+      "title": "ABC (Atanasoff-Berry COmputer) počítač",
+
+      "attributes": {
+        "0": "První binární elektronický číslicový počítač v USA, s rychlostí až 30 operací za vteřinu. Určen k řešení lineárních diferenciálních rovnic, nebyl programovatelný.",
+        "1": "1937-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 38,
+      "archetype": 0, "text": "not used",
+      "title": "Clifford Berry",
+
+      "attributes": {
+        "0": "Americký elektrický inženýr.",
+        "1": "1918-01-01 00:00:00",
+        "2": "1963-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 39,
+      "archetype": 0, "text": "not used",
+      "title": "Howard Hathaway Aiken",
+
+      "attributes": {
+        "0": "Americký elektrický inženýr. Hlavní inženýr při stavbě jednoho z prvních počítačů firmy IBM: Harvard Mark I.",
+        "1": "1900-01-01 00:00:00",
+        "2": "1973-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 40,
+      "archetype": 1, "text": "not used",
+      "title": "Harvard Mark I",
+
+      "attributes": {
+        "0": "Jde o komplikované elektromechanické zařízení, dnes označované jako nultá generace počítačů. Byl postaven Howardem H. Aikenem v únoru 1944 za spolupráce firmy IBM a americké Harvardovy univerzity (kam byl poté převezen). Aiken vycházel ze svých teoretických prací i z prací Charlese Babbageho. Původně neobsahoval instrukce pro podmíněný skok, doplněny později.",
+        "1": "1944-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 41,
+      "archetype": 0, "text": "not used",
+      "title": "John von Neumann",
+
+      "attributes": {
+        "0": "Rakousko-uherský a později americký matematik židovského původu, který značnou mírou přispěl k oborům jako jsou kvantová fyzika, funkcionální analýza, teorie množin, ekonomika, informatika, numerická analýza, hydrodynamika, statistika a mnoho dalších matematických disciplín. Nejvýznamnější jsou jeho objevy jako průkopníka digitálních počítačů a operační teorie kvantové mechaniky (takzvaná Von Neumannova algebra), tvůrce teorie her a konceptu buňkového automatu.",
+        "1": "1903-01-01 00:00:00",
+        "2": "1957-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 42,
+      "archetype": 0, "text": "not used",
+      "title": "Lee de Forest",
+
+      "attributes": {
+        "0": "Americký fyzik a vynálezce. Patentoval 180 objevů. Roku 1906 vynalezl elektronku se třemi elektrodami, kterou nazval audion, první efektivní zesilovač elektrického signálu. Do vynálezu tranzistoru v roce 1947 byla součástí všech rozhlasových a televizních přijímačů, radarů a telefonů. Patent později prodal firmě AT&T and the Bell System, aby odvrátil svůj bankrot (byl v té době svými věřiteli dokonce obviněn ze zpronevěry a podvodu).",
+        "1": "1873-01-01 00:00:00",
+        "2": "1961-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 43,
+      "archetype": 2, "text": "not used",
+      "title": "Elektronka",
+
+      "attributes": {
+        "0": "Elektronka je elektrotechnická součástka využívající pro svoji činnost vedení elektrického proudu ve vakuu. Elektronky byly součástí prakticky veškeré elektroniky první poloviny dvacátého století. Elektronkami byly osazeny i první počítače (například ENIAC).",
+        "1": "1907-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 44,
+      "archetype": 0, "text": "not used",
+      "title": "Samuel Morse",
+
+      "attributes": {
+        "0": "Americký sochař, malíř a vynálezce. Vyvinul první prakticky použitelný elektrický telegraf a z toho vyplývající morseovu abecedu, čímž se zasloužil o výrazný rozvoj telegrafické komunikace v devatenáctém století.",
+        "1": "1791-01-01 00:00:00",
+        "2": "1872-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 45,
+      "archetype": 2, "text": "not used",
+      "title": "Moresova abeceda",
+
+      "attributes": {
+        "0": "Skupina symbolů, která je používána v telegrafii. Kóduje znaky latinské abecedy, číslice a speciální znaky do kombinací krátkých a dlouhých signálů. Ty je možné přenášet na dálku jednodušším způsobem než všechny znaky abecedy. Jde o první široce využívaný binární kód.",
+        "1": "1836-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 46,
+      "archetype": 2, "text": "not used",
+      "title": "Relé",
+
+      "attributes": {
+        "0": "Elektromagnetické relé je elektrotechnická součástka, která obsahuje elektromagneticky ovládané kontakty. Vynálezce ve skutečnosti není jednoznačně jasný, nárokují si ho i Joseph Henry a Edward Davy",
+        "1": "1840-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 47,
+      "archetype": 0, "text": "not used",
+      "title": "John Mauchly",
+
+      "attributes": {
+        "0": "Americký fyzik pracující na první generaci počítačů. Jeden ze zakladatelů EMCC, předchůdce dnešní Unisys.",
+        "1": "1907-01-01 00:00:00",
+        "2": "1980-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 48,
+      "archetype": 0, "text": "not used",
+      "title": "John Adam Presper Eckert, Jr.",
+
+      "attributes": {
+        "0": "Americký elektrický inženýr pracující na první generaci počítačů. Jeden ze zakladatelů EMCC, předchůdce dnešní Unisys.",
+        "1": "1919-01-01 00:00:00",
+        "2": "1995-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 49,
+      "archetype": 1, "text": "not used",
+      "title": "EDVAC (Electronic Discrete Variable Automatic Computer)",
+
+      "attributes": {
+        "0": "Jeden z prvních elektronických počítačů, s binární reprezentací čísel a schopností udržet program ve vlastní paměti místo na děrných štítcích. Využíván až do 60. let pro balistické výpočty.",
+        "1": "1949-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 50,
+      "archetype": 1, "text": "not used",
+      "title": "ENIAC  (Electronic Numerical Integrator And Computer)",
+
+      "attributes": {
+        "0": "Historicky první, navíc turingovsky úplný, elektronkový počítač. Jeho vývoj byl zahájen v roce 1943 v Penn State University v Pensylvánii ve Spojených státech amerických, dokončen byl po téměř třech letech v roce 1946 a pracoval až do roku 1955 pro americkou armádu ve státě Maryland. Chlazení zajišťovaly dva letecké motory. ENIAC dokázal provádět podmíněné výpočty, iterace (loopy), odskakovat do podprogramů. Program byl nejdříve navržen na papíře a teprve poté nakonfigurován (před rokem 1948 pouze pomocí přepínačů, poté pomocí děrných štítků). Takovéto „programování“ trvalo mnoho hodin až několik týdnů. Využívá dekadickou reprezentaci čísel.",
+        "1": "1946-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 51,
+      "archetype": 2, "text": "not used",
+      "title": "Rtuťová zpožďovací smyčka",
+
+      "attributes": {
+        "0": "Paměť se zpožďovací linkou (anglicky delay line memory) je elektronická paměť, která se používala v prvních počítačích. Její obsah se musel pravidelně obnovovat (anglicky refresh) avšak na rozdíl od moderních pamětí RAM k ní byl přístup sériový. V původní implementaci se elektrické pulzy měnily na mechanické, které se relativně pomalu šířily válcem naplněným rtutí, magnetorestriktivní cívkou nebo piezoelektrickým krystalem. Médium mohlo přenášet v kterémkoliv okamžiku stovky nebo tisíce vln.",
+        "1": "1947-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 52,
+      "archetype": 2, "text": "not used",
+      "title": "Základní konstrukce počítače",
+
+      "attributes": {
+        "0": "Využití dvojkové soustavy, programy a data ve společné operační paměti, přímé adresování paměti, oddělená ALU a řádící jednotka, vstupní zařízení a výstupní zařízení. Koncept využívaný ve většině současných počítačů.",
+        "1": "1945-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 53,
+      "archetype": 0, "text": "not used",
+      "title": "Alan Turing",
+
+      "attributes": {
+        "0": "Významný britský matematik, logik, kryptoanalytik a zakladatel moderní informatiky. Za druhé světové války byl Turing jedním z nejdůležitějších vědců, kteří v Bletchley Parku luštili německé tajné kódy šifrované stroji Enigma a Tunny. Toto úsilí bylo velice úspěšné a Angličané měli po větší část války k dispozici tajné nepřátelské komunikace. Po druhé světové válce byly myšlenky Turingova stroje využity při konstrukci prvních počítačů řízených programem uloženým ve vnitřní paměti. Tyto počítače Turing prakticky využíval v 50. letech, kdy pracoval na teoretickém vysvětlení morfogeneze.",
+        "1": "1912-01-01 00:00:00",
+        "2": "1954-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 54,
+      "archetype": 2, "text": "not used",
+      "title": "Turingův stroj",
+
+      "attributes": {
+        "0": "Teoretický model počítače popsaný matematikem Alanem Turingem. Skládá se z procesorové jednotky, tvořené konečným automatem, programu ve tvaru pravidel přechodové funkce a pravostranně nekonečné pásky pro zápis mezivýsledků. Využívá se pro modelování algoritmů v teorii vyčíslitelnosti. Jeden ze způsobu vyjádření Churchovy-Turingovy teze říká, že ke každému algoritmu existuje ekvivalentní Turingův stroj. Od výpočetní síly Turingova stroje se odvozuje turingovská úplnost: turingovsky úplné jsou právě ty programovací jazyky nebo počítače, které mají stejnou výpočetní sílu jako Turingův stroj.",
+        "1": "1936-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 55,
+      "archetype": 0, "text": "not used",
+      "title": "Arthur Scherbius",
+
+      "attributes": {
+        "0": "Německý elektrický inženýr, vynálezce šifrovacích strojů.",
+        "1": "1878-01-01 00:00:00",
+        "2": "1929-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 56,
+      "archetype": 1, "text": "not used",
+      "title": "Enigma",
+
+      "attributes": {
+        "0": "Enigma byl přenosný šifrovací stroj (mechanismus), používaný k šifrování a dešifrování tajných údajů. Využíval se od počátku dvacátých let dvacátého století, nejdříve pro šifrování civilních zpráv, později jej začaly používat i armády a vlády některých zemí, například Německo ve druhé světové válce.",
+        "1": "1920-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 57,
+      "archetype": 0, "text": "not used",
+      "title": "Joseph Marie Jacquard",
+
+      "attributes": {
+        "0": "Francouzský tkadlec s vynálezce. Ve 22 letech (1774) převzal dílnu svého otce, se kterou však nedokázal uživit rodinu. V roce 1789 musel živnost prodat a rozešel se s manželkou a s 12 letým synem. Po několika letech práce jako dělník ve vápence a po vojenské službě dostal ve 42 letech zaměstnání jako tkadlec a mechanik ve velkém lyonském textilním podniku. Zabýval se pak intenzivně konstrukcí textilních strojů. V roce 1803 mu přinesl vynález uzlovacího stroje na sítě odměnu 3000 franků.",
+        "1": "1752-01-01 00:00:00",
+        "2": "1834-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 58,
+      "archetype": 1, "text": "not used",
+      "title": "Jacquardův stav",
+
+      "attributes": {
+        "0": "Plně automatický stav vytkávající vzory na základě informace na děrném štítku.",
+        "1": "1804-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 59,
+      "archetype": 2, "text": "not used",
+      "title": "Děrný štítek",
+
+      "attributes": {
+        "0": "Štítky pro programování automatických mechanismů v 19. a první polovině 20. století.",
+        "1": "1804-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 60,
+      "archetype": 0, "text": "not used",
+      "title": "Basile Bouchon",
+
+      "attributes": {
+        "0": "Francouzský tkadlec s vynálezce. Konstruktér prvního stavu programovaného děrnými štítky.",
+        "1": "1700-01-01 00:00:00",
+        "2": "1760-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 61,
+      "archetype": 1, "text": "not used",
+      "title": "Bouchonův stav",
+
+      "attributes": {
+        "0": "Poloautomatický stav vytkávající vzory na základě informace na děrném štítku. Nemohl fungovat bez lidského tkalce, které ho obsluhoval.",
+        "1": "1725-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 62,
+      "archetype": 0, "text": "not used",
+      "title": "Claude Elwood Shannon",
+
+      "attributes": {
+        "0": "Americký elektronik a matematik, zvaný „otec teorie informace“. Byl také zakladatelem teorie návrhu digitálních elektrických obvodů. Již v dětství byl nadšeným radioamatérem. Vystudoval University of Michigan a v roce 1936 stal se asistentem na MIT. Roku 1936 získal magisterský titul za diplomovou práci o využití Booleovy algebry při návrhu reléových sítí. Všiml si totiž, že jak Booloeva algebra (počítající na množině o 2 prvcích), tak relé mají dva prvky. Tímto založil nový vědní obor - teorii logických sítí, čímž otevřel prostor pro teorii konečných automatů a následně k teorii číslicových počítačů. Později napsal dizertaci, ve které použil podobný postup na genetiku.",
+        "1": "1916-01-01 00:00:00",
+        "2": "2001-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 63,
+      "archetype": 2, "text": "not used",
+      "title": "Logické sítě",
+
+      "attributes": {
+        "0": "Teorie využití relé ke konstrukcí obvodů napodobujících rovnice booleovské algebry",
+        "1": "1937-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 64,
+      "archetype": 2, "text": "not used",
+      "title": "Informační entropie",
+
+      "attributes": {
+        "0": "Teorie popisující chování signálu v zašuměném kanálu, základní teorie pro převod mezi analogovým a číslicovým signálem a tedy i pro konstrukci počítačových sítí. Vychází ze Shannonovi práce na kryptografii.",
+        "1": "1948-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 65,
+      "archetype": 0, "text": "not used",
+      "title": "Claude Elwood Shannon",
+
+      "attributes": {
+        "0": "Americký elektronik a fyzik pracující v Bellových laboratořích. Získal dvě Nobelovy ceny, jednu za vynález prvního použitelného tranzistoru a jednu za teorii supravodivosti.",
+        "1": "1908-01-01 00:00:00",
+        "2": "1991-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 66,
+      "archetype": 0, "text": "not used",
+      "title": "Walter Houser Brattain",
+
+      "attributes": {
+        "0": "Americký fyzik v Bellových laboratořích. Získal Nobelovu cenu za vynález tranzistoru, později pracoval na vlastnostech povrchového napětí.",
+        "1": "1902-01-01 00:00:00",
+        "2": "1987-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 67,
+      "archetype": 0, "text": "not used",
+      "title": "William Shockley",
+
+      "attributes": {
+        "0": "Americký fyzik a vynálezce. Spolu s Johnem Bardeenem a Valterem H. Brattainem, objevil tranzistor, za který všichni získali v roce 1956 Nobelovu cenu za fyziku. Shockleyovy pokusy obchodně využít tento objev vedly ke vzniku Silicon Valley v Kalifornii, které se stalo ohniskem elektrotechnické inovace. Ve svém pozdějším životě, byl Shockley profesorem ve Stanfordu, a také se stal neochvějným zastáncem eugeniky.",
+        "1": "1910-01-01 00:00:00",
+        "2": "1989-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 68,
+      "archetype": 2, "text": "not used",
+      "title": "Tranzistor",
+
+      "attributes": {
+        "0": "Tranzistor je polovodičová součástka, kterou tvoří dvojice přechodů PN. Tranzistory jsou základní aktivní součástky, které se používají jako zesilovače, spínače a invertory. Jsou základem všech dnešních integrovaných obvodů, jako např. procesorů, pamětí atd.",
+        "1": "1947-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 69,
+      "archetype": 0, "text": "not used",
+      "title": "Jack Kilby",
+
+      "attributes": {
+        "0": "Významný americký elektroinženýr, který v roce 2000 obdržel Nobelovu cenu za fyziku (společně s dalšími dvěma vědci). Během práce ve společnosti Texas Instruments (TI) v roce 1958 vynalezl integrovaný obvod. V téže době učinil tentýž objev Robert Noyce pracující ve společnosti Fairchild Semiconductor.",
+        "1": "1923-01-01 00:00:00",
+        "2": "2005-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 70,
+      "archetype": 2, "text": "not used",
+      "title": "Integrovaný obvod",
+
+      "attributes": {
+        "0": "Jedná se o spojení (integraci) mnoha jednoduchých elektrických součástek, které společně tvoří elektrický obvod vykonávající nějakou složitější funkci. Integrované obvody dělíme na monolitické a hybridní. V Československu se mezi profesionály i amatéry vžil zajímavý termín pro integrovaný obvod a to slovo je „šváb“ podle jeho vzhledu.",
+        "1": "1958-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 71,
+      "archetype": 1, "text": "not used",
+      "title": "Přenosná elektronická kalkulačka",
+
+      "attributes": {
+        "0": "Patent na první čistě elektronickou přenosnou kalkulačku.",
+        "1": "1974-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 72,
+      "archetype": 1, "text": "not used",
+      "title": "Colossus",
+
+      "attributes": {
+        "0": "Colossus byl tajný britský počítač, navržený a postavený roku 1943 pro analýzu zachycených německých rádiových depeší zakódovaných přístroji typu Lorenz SZ. Počítač obsahoval 1500 elektronek (verze Colossus Mark II jich měla 2500), což znamená, že Colossus byl největším počítačem své doby (jeho nejbližší konkurent měl 150 elektronek). Uvedení počítače do provozu v roce 1944 zkrátilo luštění zachycených zpráv z týdnů na hodiny. Vylepšená verze Colossus Mark II je považována za první programovatelný elektronický počítač vůbec.",
+        "1": "1943-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 73,
+      "archetype": 1, "text": "not used",
+      "title": "Procesor 8080",
+
+      "attributes": {
+        "0": " procesor firmy Intel, vyvinutý v roce 1974. Po několika měsících výroby byl nahrazen zdokonalenou verzí 8080A s posílenými výstupy. Obvykle se procesorem 8080 myslí tato vylepšená verze. Procesor byl často slangově nazýván BOBO. Jedná se o 8bitový procesor technologie NMOS, s adresovatelným paměťovým prostorem 64 KB, 256 adresovatelnými V/V bránami. Taktovací frekvence procesoru je cca 1–2 MHz, čas potřebný k vykonání instrukce je minimálně 4 hodinové takty. Byl to jeden z nejrozšířenějších procesorů své doby, který měl široké využití od průmyslových aplikací po první domácí počítače.",
+        "1": "1974-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 74,
+      "archetype": 1, "text": "not used",
+      "title": "Altair 8800",
+
+      "attributes": {
+        "0": "Altair 8800 byl 8bitový mikropočítač založený na procesoru Intel 8080 a vyráběný společností MITS od konce roku 1974 ve stavebnicové verzi. Sběrnice Altairu se později stala de facto standardem jako sběrnice S-100. Počítač používal programovací jazyk Altair BASIC, který pro MITS vytvořil Microsoft. Díky své nízké ceně (400$) se stal oblíbeným.",
+        "1": "1975-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 75,
+      "archetype": 1, "text": "not used",
+      "title": "MOS Technology 6502",
+
+      "attributes": {
+        "0": "MOS Technology 6502 je osmibitový mikroprocesor, který navrhli Chuck Peddle a Bill Mensch pro firmu MOS Technology v roce 1975. V té době se jednalo o nejlevnější plně vybavený mikroprocesor na trhu. Stál okolo 20 $, což bylo méně než šestina ceny konkurenčních návrhů z větších společností, jako např. Motorola a Intel. Byl s nimi plně srovnatelný a stejně jako Z80 Zilog uvedený na trh v roce 1976 vyvolal řadu počítačových projektů, které nakonec vedly k éře domácích počítačů v 80. letech. 6502 měl asi 4000 tranzistorů a byl vyráběn i v provedení pro embedded systémy.",
+        "1": "1974-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 76,
+      "archetype": 1, "text": "not used",
+      "title": "Apple Computer 1",
+
+      "attributes": {
+        "0": "Apple I. je někdy posuzován jako první osobní počítač, který ve firmě Apple vznikl. Navrhl jej Stephen G. Wozniak a Steve Jobs pro osobní účely. Apple I. byl první produkt firmy Apple, představený v dubnu roku 1976 na exhibici (Homebrew Computer Club) ve městě Los Altos v Kalifornii v USA. Bylo vyrobeno asi dvě stě těchto počítačů. Skromné technické vybavení počítače Apple I. vypovídá o pokroku té doby. Původní maloobchodní cena za jeden počítač se 4kB RAM činila $500.",
+        "1": "1976-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 77,
+      "archetype": 0, "text": "not used",
+      "title": "Steve Wozniak",
+
+      "attributes": {
+        "0": "Americký počítačový inženýr a filantrop. V letech 1973–1976 pracoval ve firmě Hewlett-Packard, kde navrhoval kalkulátory. Roku 1976 založil se Stevem Jobsem firmu Apple Computer, kde pracoval do roku 1985. Poté s pár přáteli založil vlastní společnost CL 9, která vyvinula a uvedla do prodeje první univerzální dálková ovládání. Později pracoval jako učitel a věnoval se charitativním akcím v oblasti školství.",
+        "1": "1950-01-01 00:00:00",
+        "2": "2018-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 78,
+      "archetype": 1, "text": "not used",
+      "title": "Procesor 8086",
+
+      "attributes": {
+        "0": "Intel 8086 je 16bitový mikroprocesor firmy Intel uvedený na trh v roce 1978. Je prvním mikroprocesorem řady x86, která se díky použití jeho levnější varianty Intel 8088 v počítačích IBM-PC stala nejrozšířenější architekturou stolních osobních počítačů. Intel 8086 pracuje s hodinovým signálem 5-10 MHz a při kmitočtu hodin 10 MHz poskytuje výpočetní výkon asi 0,75 MIPS; může adresovat až 1 MB paměti, 64 K vstupních/výstupních registrů a používat až 256 hardwarových přerušení. Využíván až do 90. let",
+        "1": "1978-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 79,
+      "archetype": 1, "text": "not used",
+      "title": "Apple Computer 2",
+
+      "attributes": {
+        "0": "Osmibitový domácí počítač, první masově vyráběný a velmi úspěšný.",
+        "1": "1977-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 80,
+      "archetype": 0, "text": "not used",
+      "title": "Steve Jobs",
+
+      "attributes": {
+        "0": "Zakladatel, výkonný ředitel (CEO) a předseda představenstva firmy Apple a zároveň jedna z nejvýraznějších osobností počítačového průmyslu posledních čtyřiceti let. V roce 1976 spolu se Stevem Wozniakem založil firmu Apple, která vyvinula jedny z prvních úspěšných osobních počítačů, založil také firmu NeXT a pod jeho vedením se proslavila i filmová studia Pixar.",
+        "1": "1955-01-01 00:00:00",
+        "2": "2011-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 81,
+      "archetype": 0, "text": "not used",
+      "title": "Dennis MacAlistair Ritchie",
+
+      "attributes": {
+        "0": "Americký programátor, tvůrce programovacího jazyka C a spolutvůrce operačního systému UNIX. Vystudoval fyziku a aplikovanou matematiku na Harvardově univerzitě. V roce 1967 nastoupil do zaměstnání v počítačovém výzkumném středisku Bell Labs, pracoval jako ředitel oddělení výzkumu systémového software u společnosti Lucent Technologies.",
+        "1": "1941-01-01 00:00:00",
+        "2": "2011-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 82,
+      "archetype": 2, "text": "not used",
+      "title": "Jazyk C",
+
+      "attributes": {
+        "0": "C je nízkoúrovňový, kompilovaný, relativně minimalistický programovací jazyk. Je dostatečně mocný na většinu systémového programování (ovladače a jádro OS), přičemž zbytek lze dořešit tzv. inline assemblerem, tedy metodou zápisu assembleru přímo do kódu. Zdrojový kód C je přitom mnohem čitelnější než assembler, je jednodušší ho zapsat a navíc je daleko snáze přenositelný na jiné procesory a počítačové architektury. Proto jsou často operační systémy, překladače, knihovny a interprety vysokoúrovňových jazyků implementovány právě v C. Mnoho dalších moderních programovacích jazyků přebírá způsob zápisu (neboli syntaxi) z jazyka C, například C++, Java, Perl a PHP.",
+        "1": "1972-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 83,
+      "archetype": 0, "text": "not used",
+      "title": "Grace Brewster Murray Hopper",
+
+      "attributes": {
+        "0": "Americká matematička, počítačová vědkyně a důstojnice námořnictva Spojených států. Byla programátorkou prvních počítačů ve firmě Harvard Mark I a vyvinula první kompilátor pro počítačový programovací jazyk. Díky šíři jejích schopností byla někdy označována jako „úžasná Grace“ (Amazing Grace). Námořní hodnost kontradmirála v záloze dosáhla v roce 1986 jako první žena v historii.",
+        "1": "1906-01-01 00:00:00",
+        "2": "1992-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 84,
+      "archetype": 2, "text": "not used",
+      "title": "A-0 systém",
+
+      "attributes": {
+        "0": "V informatice úplně prvním překladačem vyvinutým pro elektronický počítač. Napsala ho Grace Hopper v roce 1952 pro UNIVAC I. A-0 fungoval spíše jako zavaděč nebo linker než jako překladač v dnešním slova smyslu. Program byl definován jako sekvence podprogramů a argumentů. Podprogramy byly rozpoznány pomoci číselného kódu a argumenty podprogramů byly napsány přímo za kódem každého podprogramu. A-0 system převedl tuto specifikaci do strojového kódu, který byl ve druhém kroku do počítače zaveden, aby mohl být program spuštěn.",
+        "1": "1951-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 85,
+      "archetype": 1, "text": "not used",
+      "title": "UNIVAC I",
+
+      "attributes": {
+        "0": "UNIVAC I (UNIVersal Automatic Computer I) byl první komerční, sériově vyráběný počítač vyrobený v USA. Na návrhu UNIVACu I pracovali hlavně J. Presper Eckert a John Mauchly, vynálezci ENIACu. Jejich společnost (Eckert-Mauchly Computer Corporation) zahájila projekční práce, ale tento projekt byl dokončen až poté, co se spojili se společností Remington Rand. V době vzniku UNIVACu I byl tento stroj znám pouze jako UNIVAC. Označení UNIVAC I se dočkal až v době vzniku jeho novější verze UNIVAC II.",
+        "1": "1951-01-01 00:00:00"
+      }
+    },
+    {
+      "id": 86,
+      "archetype": 1, "text": "not used",
+      "title": "Whirlwind I",
+
+      "attributes": {
+        "0": "Whirlwind I byl elektronkový počítač využívaný americkým letectvem. Tento počítač byl jako první vybaven přímým vstupem z klávesnice.",
+        "1": "1951-01-01 00:00:00"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "archetype": 0, "text": "not used",
+      "from": 0,
+      "to": 1,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 2,
+      "archetype": 0, "text": "not used",
+      "from": 2,
+      "to": 3,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 3,
+      "archetype": 0, "text": "not used",
+      "from": 4,
+      "to": 5,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 4,
+      "archetype": 0, "text": "not used",
+      "from": 6,
+      "to": 7,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 5,
+      "archetype": 0, "text": "not used",
+      "from": 8,
+      "to": 9,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 6,
+      "archetype": 0, "text": "not used",
+      "from": 10,
+      "to": 11,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 7,
+      "archetype": 0, "text": "not used",
+      "from": 10,
+      "to": 12,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 8,
+      "archetype": 0, "text": "not used",
+      "from": 13,
+      "to": 14,
+      "attributes": { "3": "navrhl" }
+    },
+    {
+      "id": 9,
+      "archetype": 0, "text": "not used",
+      "from": 13,
+      "to": 15,
+      "attributes": { "3": "navrhl" }
+    },
+    {
+      "id": 10,
+      "archetype": 0, "text": "not used",
+      "from": 13,
+      "to": 16,
+      "attributes": { "3": "navrhl" }
+    },
+    {
+      "id": 11,
+      "archetype": 0, "text": "not used",
+      "from": 14,
+      "to": 16,
+      "attributes": { "3": "popisuje" }
+    },
+    {
+      "id": 12,
+      "archetype": 0, "text": "not used",
+      "from": 17,
+      "to": 15,
+      "attributes": { "3": "popisuje" }
+    },
+    {
+      "id": 13,
+      "archetype": 0, "text": "not used",
+      "from": 17,
+      "to": 18,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 14,
+      "archetype": 0, "text": "not used",
+      "from": 18,
+      "to": 15,
+      "attributes": { "3": "ovládá" }
+    },
+    {
+      "id": 15,
+      "archetype": 0, "text": "not used",
+      "from": 19,
+      "to": 20,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 16,
+      "archetype": 0, "text": "not used",
+      "from": 21,
+      "to": 22,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 17,
+      "archetype": 0, "text": "not used",
+      "from": 23,
+      "to": 24,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 18,
+      "archetype": 0, "text": "not used",
+      "from": 23,
+      "to": 25,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 19,
+      "archetype": 0, "text": "not used",
+      "from": 24,
+      "to": 25,
+      "attributes": { "3": "je zdokonalením" }
+    },
+    {
+      "id": 20,
+      "archetype": 0, "text": "not used",
+      "from": 23,
+      "to": 26,
+      "attributes": { "3": "navrhuje" }
+    },
+    {
+      "id": 21,
+      "archetype": 0, "text": "not used",
+      "from": 27,
+      "to": 28,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 22,
+      "archetype": 0, "text": "not used",
+      "from": 28,
+      "to": 24,
+      "attributes": { "3": "je zdokonalením" }
+    },
+    {
+      "id": 23,
+      "archetype": 0, "text": "not used",
+      "from": 29,
+      "to": 30,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 24,
+      "archetype": 0, "text": "not used",
+      "from": 11,
+      "to": 12,
+      "attributes": { "3": "je zdokonalením" }
+    },
+    {
+      "id": 25,
+      "archetype": 0, "text": "not used",
+      "from": 31,
+      "to": 32,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 26,
+      "archetype": 0, "text": "not used",
+      "from": 31,
+      "to": 33,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 27,
+      "archetype": 0, "text": "not used",
+      "from": 31,
+      "to": 34,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 28,
+      "archetype": 0, "text": "not used",
+      "from": 31,
+      "to": 35,
+      "attributes": { "3": "vytváří" }
+    },
+    {
+      "id": 29,
+      "archetype": 0, "text": "not used",
+      "from": 32,
+      "to": 33,
+      "attributes": { "3": "je zdokonalením" }
+    },
+    {
+      "id": 30,
+      "archetype": 0, "text": "not used",
+      "from": 33,
+      "to": 34,
+      "attributes": { "3": "je zdokonalením" }
+    },
+    {
+      "id": 31,
+      "archetype": 0, "text": "not used",
+      "from": 34,
+      "to": 35,
+      "attributes": { "3": "je zdokonalením" }
+    },
+    {
+      "id": 32,
+      "archetype": 0, "text": "not used",
+      "from": 32,
+      "to": 20,
+      "attributes": { "3": "založen na" }
+    },
+    {
+      "id": 33,
+      "archetype": 0, "text": "not used",
+      "from": 36,
+      "to": 37,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 34,
+      "archetype": 0, "text": "not used",
+      "from": 38,
+      "to": 37,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 35,
+      "archetype": 0, "text": "not used",
+      "from": 36,
+      "to": 38,
+      "attributes": { "3": "učil" }
+    },
+    {
+      "id": 36,
+      "archetype": 0, "text": "not used",
+      "from": 37,
+      "to": 20,
+      "attributes": { "3": "založen na" }
+    },
+    {
+      "id": 37,
+      "archetype": 0, "text": "not used",
+      "from": 39,
+      "to": 40,
+      "attributes": { "3": "vytvořil" }
+    },
+    {
+      "id": 38,
+      "archetype": 0, "text": "not used",
+      "from": 14,
+      "to": 40,
+      "attributes": { "3": "inspiroval" }
+    },
+    {
+      "id": 39,
+      "archetype": 0, "text": "not used",
+      "from": 41,
+      "to": 40,
+      "attributes": { "3": "využíval v projektu Manhattan" }
+    },
+    {
+      "id": 40,
+      "archetype": 0, "text": "not used",
+      "from": 42,
+      "to": 43,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 41,
+      "archetype": 0, "text": "not used",
+      "from": 40,
+      "to": 43,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 42,
+      "archetype": 0, "text": "not used",
+      "from": 15,
+      "to": 40,
+      "attributes": { "3": "inspiroval" }
+    },
+    {
+      "id": 43,
+      "archetype": 0, "text": "not used",
+      "from": 44,
+      "to": 45,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 44,
+      "archetype": 0, "text": "not used",
+      "from": 44,
+      "to": 46,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 45,
+      "archetype": 0, "text": "not used",
+      "from": 33,
+      "to": 46,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 46,
+      "archetype": 0, "text": "not used",
+      "from": 33,
+      "to": 46,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 47,
+      "archetype": 0, "text": "not used",
+      "from": 37,
+      "to": 43,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 48,
+      "archetype": 0, "text": "not used",
+      "from": 47,
+      "to": 49,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 49,
+      "archetype": 0, "text": "not used",
+      "from": 48,
+      "to": 49,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 50,
+      "archetype": 0, "text": "not used",
+      "from": 49,
+      "to": 46,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 51,
+      "archetype": 0, "text": "not used",
+      "from": 41,
+      "to": 49,
+      "attributes": { "3": "navrhuje" }
+    },
+    {
+      "id": 52,
+      "archetype": 0, "text": "not used",
+      "from": 47,
+      "to": 50,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 53,
+      "archetype": 0, "text": "not used",
+      "from": 48,
+      "to": 50,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 54,
+      "archetype": 0, "text": "not used",
+      "from": 50,
+      "to": 46,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 55,
+      "archetype": 0, "text": "not used",
+      "from": 48,
+      "to": 51,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 56,
+      "archetype": 0, "text": "not used",
+      "from": 49,
+      "to": 51,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 57,
+      "archetype": 0, "text": "not used",
+      "from": 53,
+      "to": 54,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 58,
+      "archetype": 0, "text": "not used",
+      "from": 55,
+      "to": 56,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 59,
+      "archetype": 0, "text": "not used",
+      "from": 57,
+      "to": 58,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 60,
+      "archetype": 0, "text": "not used",
+      "from": 60,
+      "to": 61,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 61,
+      "archetype": 0, "text": "not used",
+      "from": 58,
+      "to": 61,
+      "attributes": { "3": "je zdokonalením" }
+    },
+    {
+      "id": 62,
+      "archetype": 0, "text": "not used",
+      "from": 60,
+      "to": 59,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 63,
+      "archetype": 0, "text": "not used",
+      "from": 58,
+      "to": 59,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 64,
+      "archetype": 0, "text": "not used",
+      "from": 61,
+      "to": 59,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 65,
+      "archetype": 0, "text": "not used",
+      "from": 14,
+      "to": 59,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 66,
+      "archetype": 0, "text": "not used",
+      "from": 15,
+      "to": 59,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 67,
+      "archetype": 0, "text": "not used",
+      "from": 22,
+      "to": 59,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 68,
+      "archetype": 0, "text": "not used",
+      "from": 62,
+      "to": 63,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 69,
+      "archetype": 0, "text": "not used",
+      "from": 63,
+      "to": 20,
+      "attributes": { "3": "založeno na" }
+    },
+    {
+      "id": 70,
+      "archetype": 0, "text": "not used",
+      "from": 63,
+      "to": 46,
+      "attributes": { "3": "založeno na" }
+    },
+    {
+      "id": 71,
+      "archetype": 0, "text": "not used",
+      "from": 62,
+      "to": 25,
+      "attributes": { "3": "spolupracuje na" }
+    },
+    {
+      "id": 72,
+      "archetype": 0, "text": "not used",
+      "from": 62,
+      "to": 64,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 73,
+      "archetype": 0, "text": "not used",
+      "from": 65,
+      "to": 68,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 74,
+      "archetype": 0, "text": "not used",
+      "from": 66,
+      "to": 68,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 75,
+      "archetype": 0, "text": "not used",
+      "from": 67,
+      "to": 68,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 76,
+      "archetype": 0, "text": "not used",
+      "from": 41,
+      "to": 52,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 77,
+      "archetype": 0, "text": "not used",
+      "from": 69,
+      "to": 70,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 78,
+      "archetype": 0, "text": "not used",
+      "from": 69,
+      "to": 71,
+      "attributes": { "3": "vymyslel" }
+    },
+    {
+      "id": 79,
+      "archetype": 0, "text": "not used",
+      "from": 53,
+      "to": 72,
+      "attributes": { "3": "podílí se na konstrukci" }
+    },
+    {
+      "id": 80,
+      "archetype": 0, "text": "not used",
+      "from": 72,
+      "to": 43,
+      "attributes": { "3": "využívá" }
+    },
+    {
+      "id": 81,
+      "archetype": 0, "text": "not used",
+      "from": 73,
+      "to": 74,
+      "attributes": { "3": "umožňuje konstrukci" }
+    },
+    {
+      "id": 82,
+      "archetype": 0, "text": "not used",
+      "from": 75,
+      "to": 76,
+      "attributes": { "3": "umožňuje konstrukci" }
+    },
+    {
+      "id": 83,
+      "archetype": 0, "text": "not used",
+      "from": 77,
+      "to": 76,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 84,
+      "archetype": 0, "text": "not used",
+      "from": 78,
+      "to": 73,
+      "attributes": { "3": "je vylepšením" }
+    },
+    {
+      "id": 85,
+      "archetype": 0, "text": "not used",
+      "from": 77,
+      "to": 79,
+      "attributes": { "3": "konstruuje" }
+    },
+    {
+      "id": 86,
+      "archetype": 0, "text": "not used",
+      "from": 80,
+      "to": 79,
+      "attributes": { "3": "spolupracuje na" }
+    },
+    {
+      "id": 87,
+      "archetype": 0, "text": "not used",
+      "from": 81,
+      "to": 82,
+      "attributes": { "3": "navrhuje" }
+    },
+    {
+      "id": 88,
+      "archetype": 0, "text": "not used",
+      "from": 83,
+      "to": 84,
+      "attributes": { "3": "navrhuje" }
+    },
+    {
+      "id": 89,
+      "archetype": 0, "text": "not used",
+      "from": 84,
+      "to": 85,
+      "attributes": { "3": "využíván k programování" }
+    },
+    {
+      "id": 90,
+      "archetype": 0, "text": "not used",
+      "from": 79,
+      "to": 76,
+      "attributes": { "3": "navazuje na" }
+    }
+
+
+
+
+  ]
+}
