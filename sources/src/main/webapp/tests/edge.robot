@@ -32,11 +32,11 @@ Hide Edge Popover By Moving Mouse Out
 	Click Element		${edge38}${edgeArrow}
 	Mouse Out			${edgePopover}
 	Element Should Not Be Visible	${edgePopover}
-	Element Should Have Class		${edgePopover}	hidden
+	Element Should Have Attribute	${edgePopover}	hidden
 
 
 Hide Edge Popover By Clicking Elsewhere
 	Click Element		${edge38}${edgeArrow}
 	Click Element		//body
 	Element Should Not Be Visible	${edgePopover}
-	Element Should Have Class		${edgePopover}	hidden
+	Element Should Have Attribute	${edgePopover}	hidden

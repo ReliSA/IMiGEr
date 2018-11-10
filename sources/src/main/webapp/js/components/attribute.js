@@ -1,45 +1,59 @@
 /**
  * Class representing an attribute of vertex/edge. Output is formatted based on attribute name and datatype of its value.
- * @constructor
- * @param {array} props Details of the attribute.
  */
-function Attribute(props) {
-	var attributeType = app.attributeTypeList.find(function(attributeType) {
-		return attributeType.name === props[0];
-	});
+class Attribute {
+	/**
+	 * @constructor
+	 * @param {array} props Details of the attribute.
+	 */
+	constructor(props) {
+		let attributeType = app.attributeTypeList.find(attributeType => attributeType.name === props[0]);
 
-	this.name = props[0];
-	this.value = props[1];
-	this.dataType = attributeType.dataType;
+		this.name = props[0];
+		this.value = props[1];
+		this.dataType = attributeType.dataType;
+	}
 
-	var rootElement;
+	/**
+	 * @public
+	 * @returns {HTMLElement} HTML DOM element.
+	 */
+	render() {
+		this._rootElement = DOM.h('li', {}, [
+			DOM.t(this.name + ': '),
+			this._renderValue(),
+		]);
 
-	this.render = function() {
-		rootElement = app.utils.createHtmlElement('li', {});
+		return this._rootElement;
+	}
 
-		rootElement.appendChild(app.dom.createTextElement(this.name + ': '));
-		rootElement.appendChild(renderValue.call(this));
-
-		return rootElement;
-	};
-
-	function renderValue() {
+	/**
+	 * @private
+	 */
+	_renderValue() {
 		switch (this.name) {
 			case 'URL':
-				return app.dom.htmlStringToElement(`<a href="${this.value}" target="_blank">${this.value}</a>`);
+				return DOM.h('a', {
+					href: this.value,
+					target: '_blank',
+					innerText: this.value,
+				});
 			case 'Size':
-				return app.dom.createTextElement(formatValue.call(this) + ' B');
+				return DOM.t(this._formatValue() + ' B');
 			case 'Estimate':
 			case 'Spent':
-				return app.dom.createTextElement(formatValue.call(this) + ' h');
+				return DOM.t(this._formatValue() + ' h');
 			case 'Progress':
-				return app.dom.createTextElement(formatValue.call(this) + '%');
+				return DOM.t(this._formatValue() + '%');
 			default:
-				return app.dom.createTextElement(formatValue.call(this));
+				return DOM.t(this._formatValue());
 		}
 	}
 
-	function formatValue() {
+	/**
+	 * @private
+	 */
+	_formatValue() {
 		switch (this.dataType) {
 			case 'DATE':
 				var date = new Date(parseInt(this.value));
@@ -47,12 +61,10 @@ function Attribute(props) {
 			default:
 			case 'STRING':
 				if (Array.isArray(this.value)) {
-					return this.value.filter(function(value) {
-						return value !== '';
-					}).join(', ');
+					return this.value.filter(value => value !== '').join(', ');
 				} else {
 					return this.value;
 				}
-			}
+		}
 	}
 }

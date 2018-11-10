@@ -1,0 +1,243 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "http://example.com/product.schema.json",
+	"title": "IMiGEr - raw input schema",
+	"description": "Diagram displayable by IMiGEr tool using raw input",
+	"type": "object",
+	"properties": {
+		"attributeTypes": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"dataType": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"text": {
+						"type": "string"
+					}
+				},
+				"required": [ "dataType", "name" ]
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"edgeArchetypes": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"text": {
+						"type": "string"
+					}
+				},
+				"required": [ "name" ]
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"vertexArchetypes": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"icon": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"text": {
+						"type": "string"
+					}
+				},
+				"required": [ "name" ]
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"vertices": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"archetype": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"attributes": {
+						"type": "array",
+						"items": {
+							"type": "array",
+							"minItems": 2,
+							"maxItems": 2
+						}
+					},
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"text": {
+						"type": "string"
+					},
+					"position": {
+						"anyOf": [
+							{
+								"type": "object",
+								"properties": {
+									"x": {
+										"type": "number"
+									},
+									"y": {
+										"type": "number"
+									}
+								},
+								"required": [ "x", "y" ]
+							}, {
+								"type": "null"
+							}
+						]
+					}
+				},
+				"required": [ "id", "name" ]
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"edges": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"subedgeInfo": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "integer"
+								},
+								"archetype": {
+									"type": "integer",
+									"minimum": 0
+								},
+								"attributes": {
+									"type": "array",
+									"items": {
+										"type": "array",
+										"minItems": 2,
+										"maxItems": 2
+									}
+								}
+							},
+							"required": [ "id", "archetype", "attributes" ]
+						}
+					},
+					"id": {
+						"type": "integer"
+					},
+					"text": {
+						"type": "string"
+					},
+					"from": {
+						"type": "integer"
+					},
+					"to": {
+						"type": "integer"
+					}
+				},
+				"required": [ "subedgeInfo", "id", "from", "to" ]
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"possibleEnumValues": {
+			"type": "object"
+		},
+		"groups": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"verticesId": {
+						"type": "array",
+						"items": {
+							"type": "integer"
+						},
+						"minItems": 1
+					},
+					"verticesEdgeFromId": {
+						"type": "array",
+						"items": {
+							"type": "integer"
+						}
+					},
+					"verticesEdgeToId": {
+						"type": "array",
+						"items": {
+							"type": "integer"
+						}
+					},
+					"position": {
+						"anyOf": [
+							{
+								"type": "object",
+								"properties": {
+									"x": {
+										"type": "number"
+									},
+									"y": {
+										"type": "number"
+									}
+								},
+								"required": [ "x", "y" ]
+							}, {
+								"type": "null"
+							}
+						]
+					}
+				},
+				"required": [ "id", "name", "verticesId" ]
+			},
+			"uniqueItems": true
+		},
+		"sideBar": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"pattern": "^(group|vertex)-[0-9]+$"
+					},
+					"isIconsDisplayed": {
+						"type": "boolean"
+					}
+				},
+				"required": [ "id", "isIconsDisplayed" ]
+			},
+			"uniqueItems": true
+		},
+		"highlightedVertex": {
+			"type": "string"
+		},
+		"highlightedEdge": {
+			"type": "string"
+		}
+	},
+	"required": [ "attributeTypes", "edgeArchetypes", "vertexArchetypes", "vertices", "edges", "possibleEnumValues", "groups", "sideBar", "highlightedVertex", "highlightedEdge" ]
+}

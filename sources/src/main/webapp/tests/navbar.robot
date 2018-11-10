@@ -9,12 +9,12 @@ Resource		common.robot
 
 
 *** Variables ***
-${navbar}				//div[@id="navigation"]
+${navbar}				//div[@class="navbar"]
 ${graphWrapper}			//*[name()="g"][@id="graph"]
 
 ${mostEdgeButton}		//button[@id="mostEdge"]
 ${vertexToGroupButton}	//button[@id="vertexToGroup"]
-${backToUploadButton}	//a[@id="view_back_to_upload"]
+${backToUploadButton}	//a[@id="backToUpload"]
 
 ${excludedNodeList}		//div[@id="excludedNodeListComponent"]
 

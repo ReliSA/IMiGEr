@@ -1,227 +1,220 @@
-/**
- * @constructor
- */
-function Viewport() {
-	/** @prop {VertexContextMenuList} contextMenuComponent */
-	this.contextMenuComponent = null;
-	/** @prop {VertexPopoverComponent} vertexPopoverComponent */
-	this.vertexPopoverComponent = null;
-	/** @prop {EdgePopoverComponent} edgePopoverComponent */
-	this.edgePopoverComponent = null;
+class Viewport {
+	/**
+	 * @constructor
+	 */
+	constructor() {
+		/** @prop {VertexContextMenuList} contextMenuComponent */
+		this.contextMenuComponent = null;
+		/** @prop {VertexPopoverComponent} vertexPopoverComponent */
+		this.vertexPopoverComponent = null;
+		/** @prop {EdgePopoverComponent} edgePopoverComponent */
+		this.edgePopoverComponent = null;
 
-	/** @prop {ForceDirected} forceDirected */
-	this.forceDirected = new ForceDirected;
+		/** @prop {ForceDirected} forceDirected */
+		this.forceDirected = new ForceDirected;
 
-	var rootElement;
-	var innerSvgElement;
-	var edgesContainer;
-	var verticesContainer;
-	var groupsContainer;
-	var definitions;
+		this._edgeList = [];
+		this._nodeList = [];
+		this._vertexList = [];
+		this._groupList = [];
+	}
 
-	var pan = false;
-
-	var edgeList = [];
-	var nodeList = [];
-	var vertexList = [];
-	var groupList = [];
-
-	this.addEdge = function(edge) {
+	addEdge(edge) {
 		if (!(edge instanceof Edge)) {
-			throw new TypeError(edge.toString() + 'is not instance of Edge');
+			throw new TypeError(edge.toString() + ' is not an instance of Edge');
 		}
 
-		edgeList.push(edge);
+		this._edgeList.push(edge);
 
-		if (edge.getFrom() === null || edge.getFrom().isExcluded()) return;
-		if (edge.getTo() === null || edge.getTo().isExcluded()) return;
+		if (edge.from === null || edge.from.isExcluded) return;
+		if (edge.to === null || edge.to.isExcluded) return;
 
-		edgesContainer.appendChild(edge.render());
-	};
+		this._edgesContainer.appendChild(edge.render());
+	}
 
-	this.addVertex = function(vertex) {
-		if (!(vertex instanceof Vertex)) {
-			throw new TypeError(vertex.toString() + 'is not instance of Vertex');
+	addNode(node) {
+		if (!(node instanceof Node)) {
+			throw new TypeError(node.toString() + ' is not an instance of Node');
 		}
 
-		nodeList.push(vertex);
-		vertexList.push(vertex);
+		this._nodeList.push(node);
 
-		verticesContainer.appendChild(vertex.render());
-	};
+		if (node instanceof Vertex) {
+			this._vertexList.push(node);
+			this._verticesContainer.appendChild(node.render());
+		} else if (node instanceof Group) {
+			this._groupList.push(node);
+			this._groupsContainer.appendChild(node.render());
+		}
+	}
 
-	this.removeVertex = function(vertex) {
-		if (!(vertex instanceof Vertex)) {
-			throw new TypeError(vertex.toString() + 'is not instance of Vertex');
+	removeNode(node) {
+		if (!(node instanceof Node)) {
+			throw new TypeError(node.toString() + ' is not an instance of Node');
 		}
 
-		nodeList.splice(nodeList.indexOf(vertex), 1);
-		vertexList.splice(vertexList.indexOf(vertex), 1);
-	};
+		this._nodeList.splice(this._nodeList.indexOf(node), 1);
 
-	this.addGroup = function(group) {
-		if (!(group instanceof Group)) {
-			throw new TypeError(group.toString() + 'is not instance of Group');
+		if (node instanceof Vertex) {
+			this._vertexList.splice(this._vertexList.indexOf(node), 1);
+		} else if (node instanceof Group) {
+			this._groupList.splice(this._groupList.indexOf(node), 1);
 		}
+	}
 
-		nodeList.push(group);
-		groupList.push(group);
-
-		groupsContainer.appendChild(group.render());
-	};
-
-	this.removeGroup = function(group) {
-		if (!(group instanceof Group)) {
-			throw new TypeError(group.toString() + 'is not instance of Group');
-		}
-
-		nodeList.splice(nodeList.indexOf(group), 1);
-		groupList.splice(groupList.indexOf(group), 1);
-	};
+	get edgeList() {
+		return this._edgeList;
+	}
 	
-	this.getEdgeList = function() {
-		return edgeList;
-	};
-	
-	this.getNodeList = function() {
-		return nodeList;
-	};
-	
-	this.getVertexList = function() {
-		return vertexList;
-	};
-	
-	this.getGroupList = function() {
-		return groupList;
-	};
+	get nodeList() {
+		return this._nodeList;
+	}
 
-	this.addSvgDefinition = function(id, svgString) {
-		var g = app.dom.createSvgElement('g', {
-			'id': id,
-		});
-		g.innerHTML = svgString;
-		definitions.appendChild(g);
-	};
+	get vertexList() {
+		return this._vertexList;
+	}
 
-	this.getSize = function() {
-		return {
-			'width': rootElement.offsetWidth,
-			'height': rootElement.offsetHeight,
-		};
-	};
+	get groupList() {
+		return this._groupList;
+	}
 
-	this.getPosition = function() {
-		return new Coordinates(
-			+innerSvgElement.getAttribute('x'),
-			+innerSvgElement.getAttribute('y'),
+	addSvgDefinition(id, svgString) {
+		this._definitions.appendChild(DOM.s('g', {
+			id,
+			innerHTML: svgString,
+		}));
+	}
+
+	get size() {
+		return new Dimensions(
+			this._rootElement.offsetWidth,
+			this._rootElement.offsetHeight,
 		);
-	};
+	}
 
-	this.setPosition = function(coords) {
-		innerSvgElement.setAttribute('x', coords.x);
-		innerSvgElement.setAttribute('y', coords.y);
-	};
+	get position() {
+		return new Coordinates(
+			+this._innerSvgElement.getAttribute('x'),
+			+this._innerSvgElement.getAttribute('y'),
+		);
+	}
 
-	this.center = function() {
-		var sumOfCenters = new Coordinates(0, 0);
-		var bbox = rootElement.getBoundingClientRect();
+	set position(coords) {
+		this._innerSvgElement.setAttribute('x', coords.x);
+		this._innerSvgElement.setAttribute('y', coords.y);
+	}
 
-		var nodeList = app.viewportComponent.getNodeList();
-		nodeList.forEach(function(node) {
-			var center = node.getCenter();
+	center() {
+		let sumOfCenters = new Coordinates(0, 0);
+		let bbox = this._rootElement.getBoundingClientRect();
+
+		let nodeList = this.nodeList;
+		nodeList.forEach(node => {
+			let center = node.center;
 
 			sumOfCenters.x += center.x;
 			sumOfCenters.y += center.y;
 		});
 
-		var center = new Coordinates(-1 * sumOfCenters.x / nodeList.length + bbox.width / 2, -1 * sumOfCenters.y / nodeList.length + bbox.height / 2);
+		let center = new Coordinates(
+			-1 * sumOfCenters.x / nodeList.length + (bbox.width / 2),
+			-1 * sumOfCenters.y / nodeList.length + bbox.height / 2,
+		);
 
-		innerSvgElement.setAttribute('x', center.x);
-		innerSvgElement.setAttribute('y', center.y);
+		this._innerSvgElement.setAttribute('x', center.x);
+		this._innerSvgElement.setAttribute('y', center.y);
 
-		app.sidebarComponent.minimapComponent.setViewportPosition(center);
-	};
-	
-	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
-			'class': 'viewport',
-			'id': 'viewport',
-		});
-		rootElement.addEventListener('wheel', onMouseWheel.bind(this));
-		rootElement.addEventListener('mousedown', onMouseDown.bind(this));
-		rootElement.addEventListener('dblclick', onDoubleClick.bind(this));
+		app.sidebarComponent.minimapComponent.viewportPosition = center;
+	}
 
-		var mainSvg = app.utils.createSvgElement('svg', {
-			'xmlns': 'http://www.w3.org/2000/svg',
-			'width': '100%',
-			'height': '100%',
-			'style': 'margin-bottom: -4px;',
-		})
-		rootElement.appendChild(mainSvg);
-		
-		innerSvgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-		innerSvgElement.setAttribute('x', 0);
-		innerSvgElement.setAttribute('y', 0);
-		innerSvgElement.setAttribute('id', 'svg1');
-		innerSvgElement.setAttribute('style', 'overflow: visible;');
-		mainSvg.appendChild(innerSvgElement);
-		
-		var graph = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-		graph.setAttribute('id', 'graph');
-		innerSvgElement.appendChild(graph);
-		
-		edgesContainer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-		edgesContainer.setAttribute('data-id', 'edges');
-		graph.appendChild(edgesContainer);
-
-		verticesContainer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-		verticesContainer.setAttribute('data-id', 'vertices');
-		graph.appendChild(verticesContainer);
-
-		groupsContainer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-		groupsContainer.setAttribute('data-id', 'groups');
-		graph.appendChild(groupsContainer);
-
-		definitions = app.utils.createSvgElement('defs', {});
-		mainSvg.appendChild(definitions);
-
-		var linearGradient = app.utils.createSvgElement('linearGradient', {
-			'id': 'node--highlighted-required-provided',
-		});
-		linearGradient.appendChild(app.utils.createSvgElement('stop', {
-			'offset': '0%',
-			'stop-color': 'red',
-		}));
-		linearGradient.appendChild(app.utils.createSvgElement('stop', {
-			'offset': '100%',
-			'stop-color': '#5896ff',
-		}));
-		definitions.appendChild(linearGradient);
-
+	render() {
 		this.contextMenuComponent = new VertexContextMenuList;
-		rootElement.appendChild(this.contextMenuComponent.render());
-
 		this.vertexPopoverComponent = new VertexPopover;
-		rootElement.appendChild(this.vertexPopoverComponent.render());
-
 		this.edgePopoverComponent = new EdgePopover;
-		rootElement.appendChild(this.edgePopoverComponent.render());
 
-		return rootElement;
-	};
+		// graph canvas
+		const mainSvg = DOM.s('svg', {
+			width: '100%',
+			height: '100%',
+			style: 'margin-bottom: -4px;',
+		});
+		
+		this._innerSvgElement = DOM.s('svg', {
+			x: 0,
+			y: 0,
+			id: 'svg1',
+			style: 'overflow: visible;',
+		});
+		mainSvg.appendChild(this._innerSvgElement);
 
-	this.reset = function() {
-		edgeList = [];
-		nodeList = [];
-		vertexList = [];
-		groupList = [];
+		const graph = DOM.s('g', {
+			id: 'graph',
+		});
+		this._innerSvgElement.appendChild(graph);
 
-		$(edgesContainer).empty();
-		$(verticesContainer).empty();
-		$(groupsContainer).empty();
-	};
+		// graph feature containers
+		this._edgesContainer = DOM.s('g', {
+			'data-id': 'edges',
+		});
+		graph.appendChild(this._edgesContainer);
 
-	function onMouseWheel(e) {
+		this._verticesContainer = DOM.s('g', {
+			'data-id': 'vertices',
+		});
+		graph.appendChild(this._verticesContainer);
+
+		this._groupsContainer = DOM.s('g', {
+			'data-id': 'groups',
+		});
+		graph.appendChild(this._groupsContainer);
+
+		// reusable definitions
+		this._definitions = DOM.s('defs', {}, [
+			// linear gradient
+			DOM.s('linearGradient', {
+				id: 'node--highlighted-as-required-provided',
+			}, [
+				DOM.s('stop', {
+					offset: '0%',
+					'stop-color': 'red',
+				}),
+				DOM.s('stop', {
+					offset: '100%',
+					'stop-color': '#5896ff',
+				}),
+			]),
+		]);
+		graph.appendChild(this._definitions);
+
+		// root
+		this._rootElement = DOM.h('div', {
+			class: 'viewport',
+			id: 'viewport',
+			onWheel: this._onRootWheel.bind(this),
+			onMouseDown: this._onRootMouseDown.bind(this),
+			onDblClick: this._onRootDoubleClick.bind(this),
+		}, [
+			mainSvg,
+			this.contextMenuComponent.render(),
+			this.vertexPopoverComponent.render(),
+			this.edgePopoverComponent.render(),
+		]);
+
+		return this._rootElement;
+	}
+
+	reset() {
+		this._edgeList = [];
+		this._nodeList = [];
+		this._vertexList = [];
+		this._groupList = [];
+
+		this._edgesContainer.innerHTML = '';
+		this._verticesContainer.innerHTML = '';
+		this._groupsContainer.innerHTML = '';
+	}
+
+	_onRootWheel(e) {
 		app.closeFloatingComponents();
 
 		// prevent pinch-to-zoom gesture from zooming the whole page
@@ -236,42 +229,33 @@ function Viewport() {
 		}
 	}
 
-	function onMouseDown(e) {
-		pan = true;
+	_onRootMouseDown(e) {
+		let start = new Coordinates(e.clientX, e.clientY);
+		let viewportPosition = this.position;
 
-		var start = new Coordinates(e.clientX, e.clientY);
-		var position = this.getPosition();
+		let that = this;
 
 		document.body.addEventListener('mousemove', mouseMove);
 		document.body.addEventListener('mouseup', mouseUp);
-		
+
 		function mouseMove(e) {
-			if (!pan) return;
+			let offset = new Coordinates(start.x - e.clientX, start.y - e.clientY);
 
-			e.preventDefault();
+			that._innerSvgElement.setAttribute('x', viewportPosition.x - offset.x);
+			that._innerSvgElement.setAttribute('y', viewportPosition.y - offset.y);
 
-			var coords = new Coordinates(position.x - (start.x - e.clientX), position.y - (start.y - e.clientY));
-
-			innerSvgElement.setAttribute('x', coords.x);
-			innerSvgElement.setAttribute('y', coords.y);
-
-			app.sidebarComponent.minimapComponent.setViewportPosition(coords);
+			app.sidebarComponent.minimapComponent.viewportPosition = new Coordinates(viewportPosition.x - offset.x, viewportPosition.y - offset.y);
 		}
 
-		function mouseUp(e) {
-			pan = false;
-			
-			start = null;
-			position = null;
-
+		function mouseUp() {
 			document.body.removeEventListener('mousemove', mouseMove);
 			document.body.removeEventListener('mouseup', mouseUp);
-			
+
 			app.redrawEdges();
 		}
 	}
 
-	function onDoubleClick(e) {
+	_onRootDoubleClick(e) {
 		app.closeFloatingComponents();
 
 		app.zoom.zoomIn(new Coordinates(e.offsetX, e.offsetY));

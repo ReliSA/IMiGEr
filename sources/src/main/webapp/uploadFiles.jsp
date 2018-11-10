@@ -1,7 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="HOME_URL" value="${initParam.HOME_URL}"/>
+<c:set var="APP_NAME" value="IMiGEr"/>
+<c:set var="APP_HOME_URL" value="${initParam.HOME_URL}"/>
 <c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
 <c:set var="user" value="${sessionScope.user}"/>
 
@@ -10,21 +11,49 @@
 	<head>
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/upload-files.css">
 
-		<script src="js/libs/jquery-3.3.1.min.js"></script>
-		<script src="js/userMenu.js"></script>
+		<link rel="stylesheet" href="css/components/header.css">
+		<link rel="stylesheet" href="css/components/popup.css">
 
-		<title>IMiGEr</title>
+		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
+		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
+
+		<script src="js/components/generic/popup.js"></script>
+		<script src="js/components/loginPopup.js"></script>
+		<script src="js/components/registerPopup.js"></script>
+
+		<script src="js/errors/abstractMethodError.js"></script>
+		<script src="js/errors/httpError.js"></script>
+
+		<script src="js/events/loggedInEvent.js"></script>
+		<script src="js/events/loggedOutEvent.js"></script>
+		<script src="js/events/registeredEvent.js"></script>
+
+		<script src="js/utils/ajax.js"></script>
+		<script src="js/utils/dom.js"></script>
+
+		<script src="js/constants.js"></script>
+
+		<title>${APP_NAME}</title>
 	</head>
 
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
 		<header class="header" id="header">
-			<img src="images/logo.png" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
+			<img src="images/logo_cs.svg" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
 
 			<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
 
-			<%@ include file="userMenu.jsp" %>
+			<div class="user-menu loggedInOnly">
+				<span class="username" id="usernameLabel">${user.username}</span>
+				<button class="button" id="logoutButton">Log out</button>
+			</div>
+
+			<div class="user-menu loggedOutOnly">
+				<button class="button" id="toggleLoginPopupButton">Log in</button>
+				<button class="button" id="toggleRegisterPopupButton">Register</button>
+			</div>
 		</header>
 
 		<main>
@@ -58,7 +87,10 @@
 					<c:forEach items="${diagramsPrivate}" var="diagram">
 						<li>
 							<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
-							<button class="removeDiagramButton" data-name="${diagram.name}" data-id="${diagram.id}"><img src="images/button_cancel.png" alt="odstranit"></button>
+
+							<button class="button remove-diagram-button" data-id="${diagram.id}" data-name="${diagram.name}">
+								<img src="images/button_cancel.png" alt="odstranit">
+							</button>
 						</li>
 					</c:forEach>
 				</ul>
@@ -77,58 +109,13 @@
 			</div>
 		</main>
 
-		<script>
-			var privateDiagramList = document.getElementById('privateDiagramList');
+		<script type="module">
+			import UploadFilesApp from './js/uploadFilesApp.js';
 
-			$(privateDiagramList).on('click', '.removeDiagramButton', function(e) {
-				if (confirm('Do you really want to delete ' + $(this).data('name') + '?')) {
-					$.ajax({
-						'type': 'delete',
-						'url': 'api/remove-diagram?diagramId=' + $(this).data('id'),
-						'success': function () {
-							location.reload(true);
-						},
-						'error': function (xhr) {
-							switch (xhr.status) {
-								case 401:
-									alert('You are either not logged in or not an owner of this diagram.');
-									break;
-								default:
-									alert('Something went wrong.');
-							}
-						},
-					});
-				}
-			});
+			window.app = new UploadFilesApp('${APP_NAME}', '${APP_HOME_URL}');
 
-			document.addEventListener('imiger.userLoggedIn', function() {
-				$.getJSON('api/get-private-diagrams').then(function(data) {
-					data.forEach(function(diagram) {
-						var openDiagramLink = document.createElement('a');
-						openDiagramLink.setAttribute('href', './graph?diagramId=' + diagram.id);
-						openDiagramLink.innerText = diagram.name;
-
-						var removeDiagramIcon = document.createElement('img');
-						removeDiagramIcon.setAttribute('src', 'images/button_cancel.png');
-						removeDiagramIcon.setAttribute('alt', 'odstranit');
-
-						var removeDiagramButton = document.createElement('button');
-						removeDiagramButton.setAttribute('class', 'removeDiagramButton');
-						removeDiagramButton.setAttribute('data-id', diagram.id);
-						removeDiagramButton.setAttribute('data-name', diagram.name);
-						removeDiagramButton.appendChild(removeDiagramIcon);
-
-						var diagramListItem = document.createElement('li');
-						diagramListItem.appendChild(openDiagramLink);
-						diagramListItem.appendChild(removeDiagramButton);
-
-						privateDiagramList.appendChild(diagramListItem);
-					});
-				});
-			});
-
-			document.addEventListener('imiger.userLoggedOut', function() {
-				privateDiagramList.innerHTML = '';
+			document.addEventListener('DOMContentLoaded', () => {
+				app.run();
 			});
 		</script>
 	</body>

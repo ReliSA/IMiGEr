@@ -1,0 +1,10 @@
+.graph-content {
+	display: flex;
+	height: calc(100vh - 60px - 43px);
+    background-color: #fff;
+}
+
+.archetype-icon {
+	dominant-baseline: central;
+	pointer-events: bounding-box;
+}

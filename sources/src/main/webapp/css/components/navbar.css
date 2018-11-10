@@ -1,0 +1,69 @@
+.navbar {
+	height: 43px;
+	background: -webkit-linear-gradient(top, #1e5799 0%,#7db9e8 100%);
+	color: #cceefc;
+}
+
+.navbar label {
+	display: inline-block;
+}
+
+.navbar label img {
+	vertical-align: middle;
+}
+
+.navbar > ul {
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+	white-space: nowrap;
+	overflow-x: auto;
+}
+
+.navbar > ul > li {
+	display: inline-block;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.navbar .btn {
+	display: inline-block;
+	border: none;
+	background: none;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.navbar .btn.disabled {
+	pointer-events: none;
+	cursor: default;
+}
+
+.navbar .btn-block {
+	display: inline-block;
+	width: 38px;
+	height: 38px;
+}
+
+.navbar .btn.back-to-upload {
+	background: url("../../images/icon_back.png") no-repeat scroll 0px 2px transparent;
+}
+
+.navbar .btn.view-refresh-diagram {
+	background: url("../../images/icon_refresh.png") no-repeat scroll 0px 2px transparent;
+}
+
+.navbar .btn.view-refresh-reset-diagram {
+	background: url("../../images/icon_refresh_reset.png") no-repeat scroll 0px 2px transparent;
+}
+
+.navbar-separator {
+	display: inline-block;
+	height: 25px;
+	border: none;
+	border-left: 1px solid #cceefc;
+	margin-left: 5px;
+	margin-right: 5px;
+	line-height: 40px;
+	vertical-align: middle;
+}

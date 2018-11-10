@@ -10,8 +10,8 @@ Resource		common.robot
 
 *** Variables ***
 ${searchInputField}	//input[@id="searchText"]
-${searchButton}		//button[@id="search"]
-${searchCounter}	//span[@id="countOfFound"]
+${searchButton}		//button[@id="searchButton"]
+${searchCounter}	//span[@id="searchCount"]
 
 ${vertex2015}		//*[name()="svg"][@data-id="2015"]
 ${vertex2039}		//*[name()="svg"][@data-id="2039"]

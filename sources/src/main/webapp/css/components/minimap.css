@@ -1,0 +1,16 @@
+.minimap {
+	border-top: 1px solid #7db9e8;
+	background-color: #fff;
+}
+
+.minimap-viewport {
+	stroke: #999;
+	stroke-width: 1px;
+	fill-opacity: 0;
+	shape-rendering: crispedges;
+	transition: stroke .4s;
+}
+
+.minimap-viewport:hover {
+	stroke: #000;
+}

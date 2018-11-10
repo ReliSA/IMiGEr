@@ -1,325 +1,307 @@
 /**
  * Class representing an edge of a graph in viewport.
- * @constructor
- * @param {object} props Properties of the edge.
  */
-function Edge(props) {
-	/** @prop {integer} id Unique identifier of the edge. */
-	this.id = props.id;
+class Edge {
+	/**
+	 * @constructor
+	 * @param {object} props Properties of the edge.
+	 */
+	constructor(props) {
+		/** @prop {integer} id Unique identifier of the edge. */
+		this.id = props.id;
+		/** @prop {array} subedgeInfo */
+		this.subedgeInfo = props.subedgeInfo;
 
-	var rootElement;
+		this._isHidden = false;
+		this._isDimmed = false;
+		this._isHighlighted = false;
+		this._isHighlightedAsRequired = false;
+		this._isHighlightedAsProvided = false;
 
-	var hidden = false;
-	var dimmed = false;
-	var highlighted = false;
-	var highlightedRequired = false;
-	var highlightedProvided = false;
+		this._fromNode = null;
+		this._toNode = null;
 
-	var fromNode = null;
-	var toNode = null;
+		this._start = null;
+		this._end = null;
+	}
 
-	var start = new Coordinates(0, 0);
-	var end = new Coordinates(0, 0);
-	
 	/**
 	 * Sets origin vertex of the edge without moving the starting point.
 	 * @param {Vertex} node Vertex that this edge is going from.
 	 */
-	this.setFrom = function(node) {
+	set from(node) {
 		if (!(node instanceof Vertex)) {
-			throw new TypeError(node.toString() + 'is not instance of Vertex');
+			throw new TypeError(node.toString() + ' is not an instance of Vertex');
 		}
 
-		fromNode = node;
+		this._fromNode = node;
+		this._start = node.center;
+	}
 
-		setStart(node.getCenter());
-	};
-	
 	/**
-	 * Returns origin vertex of the edge.
+	 * @returns {Vertex} origin vertex of the edge.
 	 */
-	this.getFrom = function() {
-		return fromNode;
-	};
+	get from() {
+		return this._fromNode;
+	}
 	
 	/**
 	 * Sets target vertex of the edge without moving the ending point.
 	 * @param {Vertex} node Vertex that this edge is going to.
 	 */
-	this.setTo = function(node) {
+	set to(node) {
 		if (!(node instanceof Vertex)) {
-			throw new TypeError(node.toString() + 'is not instance of Vertex');
+			throw new TypeError(node.toString() + ' is not an instance of Vertex');
 		}
 
-		toNode = node;
-
-		setEnd(node.getCenter());
-	};
+		this._toNode = node;
+		this._end = node.center;
+	}
 	
 	/**
-	 * Returns target vertex of the edge.
+	 * @returns {Vertex} target vertex of the edge
 	 */
-	this.getTo = function() {
-		return toNode;
-	};
+	get to() {
+		return this._toNode;
+	}
 	
 	/**
 	 * Moves starting point of the edge to new coordinates and rotates the lollipop.
 	 * @param {Coordinates} coords New starting coordinates of the edge.
 	 */
-	this.moveStart = function(coords) {
-		setStart(coords);
-		
-		var lines = rootElement.querySelectorAll('.line');
-		lines.forEach(function(line) {
-			line.setAttribute('x1', start.x);
-			line.setAttribute('y1', start.y);
-		});
-		
-		// arrow position and rotation
-		var position = getArrowPosition.call(this);
-		var rotation = getArrowRotation.call(this);
+	set start(coords) {
+		if (!(coords instanceof Coordinates)) {
+			throw new TypeError(coords.toString() + ' is not an instance of Coordinates');
+		}
 
-		var arrow = rootElement.querySelector('.arrow');
-		arrow.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
-	};
-	
+		this._start = coords;
+
+		this._lineElements.forEach(line => {
+			line.setAttribute('x1', this._start.x);
+			line.setAttribute('y1', this._start.y);
+		});
+
+		// icon position and rotation
+		let position = this._iconPosition;
+		let rotation = this._iconRotation;
+
+		this._iconElement.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
+	}
+
 	/**
 	 * Moved ending point of the edge to new coordinates and rotates the arrow.
 	 * @param {Coordinates} coords New ending coordinates of the edge.
 	 */
-	this.moveEnd = function(coords) {
-		setEnd(coords);
-		
-		var lines = rootElement.querySelectorAll('.line');
-		lines.forEach(function(line) {
-			line.setAttribute('x2', end.x);
-			line.setAttribute('y2', end.y);
+	set end(coords) {
+		if (!(coords instanceof Coordinates)) {
+			throw new TypeError(coords.toString() + ' is not an instance of Coordinates');
+		}
+
+		this._end = coords;
+
+		this._lineElements.forEach(line => {
+			line.setAttribute('x2', this._end.x);
+			line.setAttribute('y2', this._end.y);
 		});
 		
-		// arrow position and rotation
-		var position = getArrowPosition.call(this);
-		var rotation = getArrowRotation.call(this);
+		// icon position and rotation
+		let position = this._iconPosition;
+		let rotation = this._iconRotation;
 
-		var arrow = rootElement.querySelector('.arrow');
-		arrow.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
-	};
+		this._iconElement.setAttribute('transform', `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`);
+	}
 
 	/**
 	 * Toggles visibility of the edge.
 	 * @param {boolean} newValue True to hide the edge, false to display it.
 	 */
-	this.setHidden = function(newValue) {
-		hidden = newValue;
+	set isHidden(newValue) {
+		this._isHidden = newValue;
 
 		if (newValue) {
-			rootElement.classList.add('hidden');
+			this._rootElement.classList.add('hidden');
 		} else {
-			rootElement.classList.remove('hidden');
+			this._rootElement.classList.remove('hidden');
 		}
-	};
+	}
 
 	/**
 	 * Toggles transparency of the edge.
 	 * @param {boolean} newValue True to set the edge semitransparent, false to display it normally.
 	 */
-	this.setDimmed = function(newValue) {
-		dimmed = newValue;
+	set isDimmed(newValue) {
+		this._isDimmed = newValue;
 
 		if (newValue) {
-			rootElement.classList.add('edge--dimmed');
+			this._rootElement.classList.add('edge--dimmed');
 		} else {
-			rootElement.classList.remove('edge--dimmed');
+			this._rootElement.classList.remove('edge--dimmed');
 		}
-	};
+	}
 
-    /**
-     * @returns true if the edge is currently highlighted (in any way), otherwise false
-     */
-	this.isHighlighted = function () {
-		return highlighted;
-    };
+	/**
+	 * @returns true if the edge is currently highlighted (in any way), otherwise false
+	 */
+	get isHighlighted() {
+		return this._isHighlighted;
+	}
 
 	/**
 	 * Toggles highlighting of the edge.
 	 * @param {boolean} newValue True to highlight the edge, false to unhighlight.
 	 */
-	this.setHighlighted = function(newValue) {
-		highlighted = newValue;
+	set isHighlighted(newValue) {
+		this._isHighlighted = newValue;
 
 		if (newValue) {
-			rootElement.classList.add('edge--highlighted');
+			this._rootElement.classList.add('edge--highlighted');
 		} else {
-			rootElement.classList.remove('edge--highlighted');
+			this._rootElement.classList.remove('edge--highlighted');
 		}
-	};
+	}
 	
 	/**
 	 * Toggles highlighting of the edge between vertex and its requirement.
 	 * @param {boolean} newValue True to highlight the edge as required, false to unhighlight.
 	 */
-	this.setHighlightedRequired = function(newValue) {
-		highlightedRequired = newValue;
+	set isHighlightedAsRequired(newValue) {
+		this._isHighlightedAsRequired = newValue;
 
 		if (newValue) {
-			rootElement.classList.add('edge--highlighted-required');
-			rootElement.classList.remove('edge--highlighted-provided');
+			this._rootElement.classList.add('edge--highlighted-as-required');
+			this._rootElement.classList.remove('edge--highlighted-as-provided');
 
 		} else {
-			rootElement.classList.remove('edge--highlighted-required');
+			this._rootElement.classList.remove('edge--highlighted-as-required');
 		}
-	};
+	}
 	
 	/**
 	 * Toggles highlighting of the edge between vertex and its dependent.
 	 * @param {boolean} newValue True to highlight the edge as provided, false to unhighlight.
 	 */
-	this.setHighlightedProvided = function(newValue) {
-		highlightedProvided = newValue;
+	set isHighlightedAsProvided(newValue) {
+		this._isHighlightedAsProvided = newValue;
 
 		if (newValue) {
-			rootElement.classList.remove('edge--highlighted-required');
-			rootElement.classList.add('edge--highlighted-provided');
+			this._rootElement.classList.remove('edge--highlighted-as-required');
+			this._rootElement.classList.add('edge--highlighted-as-provided');
 
 		} else {
-			rootElement.classList.remove('edge--highlighted-provided');
+			this._rootElement.classList.remove('edge--highlighted-as-provided');
 		}
-	};
-	
+	}
+
 	/**
 	 * Creates a new DOM element representing the edge in memory. Binds user interactions to local handler functions.
 	 * @returns {Element} SVG DOM element.
 	 */
-	this.render = function() {
-		rootElement = app.utils.createSvgElement('g', {
-			'class': 'edge',
-			'data-id': props.id,
-			'data-from': props.from,
-			'data-to': props.to,
-		});
+	render() {
+		// icon
+		let position = this._iconPosition;
+		let rotation = this._iconRotation;
 
-		rootElement.appendChild(app.utils.createSvgElement('line', {
-			'class': 'line',
-			'x1': start.x,
-			'y1': start.y,
-			'x2': end.x,
-			'y2': end.y,
-			'stroke': 'white',
-			'stroke-width': 5,
-		}));
-		
-		rootElement.appendChild(app.utils.createSvgElement('line', {
-			'class': 'line',
-			'x1': start.x,
-			'y1': start.y,
-			'x2': end.x,
-			'y2': end.y,
-		}));
+		this._iconElement = DOM.s('g', {
+			class: 'arrow',
+			transform: `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`,
+			onClick: this._onEdgeClick.bind(this),
+		}, [
+			DOM.s('polygon', {
+				points: '0,-10 30,0 0,10',
+			}),
+		]);
 
-		// arrow position and rotation
-		var position = getArrowPosition.call(this);
-		var rotation = getArrowRotation.call(this);
-		
-		// arrow
-		var arrow = app.utils.createSvgElement('g', {
-			'class': 'arrow',
-			'data-edgeId': this.id,
-			'transform': `rotate(${rotation}, ${position.x},${position.y}) translate(${position.x},${position.y})`,
-		});
-		arrow.appendChild(app.utils.createSvgElement('polygon', {
-			'points': '0,-10 30,0 0,10',
+		// lines
+		this._lineElements = [
+			DOM.s('line', {
+				class: 'line',
+				x1: this._start.x,
+				y1: this._start.y,
+				x2: this._end.x,
+				y2: this._end.y,
+				stroke: 'white',
+				'stroke-width': 5,
+			}),
+			DOM.s('line', {
+				class: 'line',
+				x1: this._start.x,
+				y1: this._start.y,
+				x2: this._end.x,
+				y2: this._end.y,
+			}),
+		];
 
-		}));
-		arrow.addEventListener('click', click.bind(this));
-		rootElement.appendChild(arrow);
+		// root
+		this._rootElement = DOM.s('g', {
+			class: 'edge',
+			'data-id': this.id,
+			'data-from': this.from.name,
+			'data-to': this.to.name,
+		}, [].concat(this._lineElements, this._iconElement));
 
-		return rootElement;
-	};
+		return this._rootElement;
+	}
 	
 	/**
 	 * Removes the DOM element representing the edge from document.
 	 */
-	this.remove = function() {
-		rootElement.remove();
-	};
+	remove() {
+		this._rootElement.remove();
+	}
 
 	/**
 	 * Exports the edge to a new, plain JS object.
 	 * @returns {Object} exported edge
 	 */
-	this.export = function() {
+	export() {
 		return {
-			subedgeInfo: props.subedgeInfo,
-			from: this.getFrom().id,
-			to: this.getTo().id,
+			subedgeInfo: this.subedgeInfo,
+			from: this.from.id,
+			to: this.to.id,
 			text: '',
 			id: this.id,
 		};
-	};
+	}
 
 	/**
 	 * Edge click interaction. Highlights the edge and vertices related to it. Reveals edge popover.
 	 * @param {Event} e Click event.
 	 */
-	function click(e) {
-		app.viewportComponent.edgePopoverComponent.setContent(props.subedgeInfo);
-		app.viewportComponent.edgePopoverComponent.setPosition(new Coordinates(e.clientX, e.clientY));
+	_onEdgeClick(e) {
+		app.viewportComponent.edgePopoverComponent.body = this.subedgeInfo;
+		app.viewportComponent.edgePopoverComponent.position = new Coordinates(e.clientX, e.clientY);
 		app.viewportComponent.edgePopoverComponent.open();
 
 		// unhighlight other edges
-		app.edgeList.filter(function(edge) {
+		app.edgeList.filter(edge => {
 			return edge !== this;
-		}, this).forEach(function(edge) {
-			edge.setHighlighted(false);
-			edge.getFrom().setHighlighted(false);
-			edge.getTo().setHighlighted(false);
+		}).forEach(edge => {
+			edge.from.isHighlighted = false;
+			edge.to.isHighlighted = false;
+			edge.isHighlighted = false;
 		});
 
 		// highlight this edge
-		this.setHighlighted(!highlighted);
-		this.getFrom().setHighlighted(highlighted);
-		this.getTo().setHighlighted(highlighted);
+		this.from.isHighlighted = !this.isHighlighted;
+		this.to.isHighlighted = !this.isHighlighted;
+		this.isHighlighted = !this.isHighlighted;
 	}
-	
-	/**
-	 * Sets new coordinates of the starting point of the edge.
-	 * @param {Coordinates} coords New starting coordinates of the edge.
-	 */
-	function setStart(coords) {
-		if (!(coords instanceof Coordinates)) {
-			throw new TypeError(coords.toString() + 'is not instance of Coordinates');
-		}
 
-		start = coords;
-	}
-	
 	/**
-	 * Sets new coordinates of the ending point of the edge.
-	 * @param {Coordinates} coords New ending coordinates of the edge.
+	 * @returns {Coordinates} Current position of the icon.
 	 */
-	function setEnd(coords) {
-		if (!(coords instanceof Coordinates)) {
-			throw new TypeError(coords.toString() + 'is not instance of Coordinates');
-		}
-
-		end = coords;
-	}
-	
-	/**
-	 * @returns {Coordinates} Current position of the arrow.
-	 */
-	function getArrowPosition() {
-		// arrow is placed at 2/3 of the distance from start to end
+	get _iconPosition() {
+		// icon is placed at 2/3 of the distance from start to end
 		return new Coordinates(
-			(start.x + 2 * end.x) / 3,
-			(start.y + 2 * end.y) / 3,
+			(this._start.x + 2 * this._end.x) / 3,
+			(this._start.y + 2 * this._end.y) / 3,
 		);
 	}
-	
+
 	/**
-	 * @returns {float} Current rotation of the arrow in degrees.
+	 * @returns {float} Current rotation of the icon in degrees.
 	 */
-	function getArrowRotation() {
-		return -1 * Math.atan2(end.x - start.x, end.y - start.y) * 180 / Math.PI + 90;
+	get _iconRotation() {
+		return -1 * Math.atan2(this._end.x - this._start.x, this._end.y - this._start.y) * 180 / Math.PI + 90;
 	}
 }

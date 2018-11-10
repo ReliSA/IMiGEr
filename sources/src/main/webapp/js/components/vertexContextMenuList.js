@@ -2,118 +2,123 @@
  * Class representing a context menu of a vertex displayed on right clicking the vertex in viewport. The menu displays a list of
  * groups and excluded vertices that the parental vertex can be added to.
  * @see Vertex
- * @constructor
  */
-function VertexContextMenuList() {
-	var rootElement;
-	var listElement;
-
-	var vertex;
-
+class VertexContextMenuList {
 	/**
-	 * Sets a vertex that this context menu is bound to. The vertex is then added to a group.
-	 * @param {Vertex} newValue Vertex this context menu is bound to.
+	 * @constructor
 	 */
-	this.setVertex = function(newValue) {
-		vertex = newValue;
-	};
-
-	/**
-	 * Moves the context menu to the coordinates.
-	 * @param {Coordinates} coords Coordinates to display the context menu at.
-	 */
-	this.setPosition = function(coords) {
-		rootElement.style.top = coords.y + 'px';
-		rootElement.style.left = coords.x + 'px';
-	};
-
-	/**
-	 * Adds a new graph node (vertex or group) to be displayed in the context menu.
-	 * @param {(Vertex|Group)} node Graph node to be displayed in the context menu.
-	 */
-	this.addNode = function(node) {
-		if (node instanceof Vertex && node.getGroup() !== null) {
-			throw new Error('Vertex is already a member of some group.');
-		}
-
-		var nodeListItemElement = app.utils.createHtmlElement('li', {
-			'title': node.name,
-		});
-		nodeListItemElement.addEventListener('click', nodeListItemClick.bind(node));
-		listElement.appendChild(nodeListItemElement);
-
-		var nodeSymbolText = app.utils.createHtmlElement('span', {
-			'class': 'group-symbol',
-			'style': 'background-color: ' + node.symbol[1] + ';',
-		});
-		nodeSymbolText.appendChild(document.createTextNode(node.symbol[0]));
-		nodeListItemElement.appendChild(nodeSymbolText);
-
-		var nodeNameText = app.utils.createHtmlElement('span', {
-			'class': 'group-name',
-		});
-		nodeNameText.appendChild(document.createTextNode(node.name));
-		nodeListItemElement.appendChild(nodeNameText);
-	};
-
-	/**
-	 * Opens the context menu.
-	 */
-	this.open = function() {
-		rootElement.classList.remove('hidden');
-	};
-
-	/**
-	 * Closes the menu and clears its content.
-	 */
-	this.close = function() {
-		rootElement.classList.add('hidden');
-
-		listElement.innerHTML = '';
-	};
+	constructor() {
+		this._vertex = null;
+	}
 
 	/**
 	 * Creates a new DOM element representing the context menu in memory.
-	 * @returns {Element} HTML DOM element.
+	 * @public
+	 * @returns {HTMLElement} HTML DOM element.
 	 */
-	this.render = function() {
-		rootElement = app.utils.createHtmlElement('div', {
-			'class': 'context-menu hidden',
-		});
-		rootElement.addEventListener('mousedown', app.utils.stopPropagation);
+	render() {
+		this._listElement = DOM.h('ul');
 
-		listElement = app.utils.createHtmlElement('ul', {});
-		rootElement.appendChild(listElement);
+		this._rootElement = DOM.h('div', {
+			class: 'context-menu hidden',
+			onMouseDown: Utils.stopPropagation,
+		}, [
+			this._listElement,
+		]);
 
-		return rootElement;
-	};
+		return this._rootElement;
+	}
+
+	/**
+	 * Sets a vertex that this context menu is bound to. The vertex is then added to a group.
+	 * @public
+	 * @param {Vertex} newValue Vertex this context menu is bound to.
+	 */
+	set vertex(newValue) {
+		this._vertex = newValue;
+	}
+
+	/**
+	 * Moves the context menu to the coordinates.
+	 * @public
+	 * @param {Coordinates} coords Coordinates to display the context menu at.
+	 */
+	set position(coords) {
+		this._rootElement.style.top = coords.y + 'px';
+		this._rootElement.style.left = coords.x + 'px';
+	}
+
+	/**
+	 * Adds a new graph node (vertex or group) to be displayed in the context menu.
+	 * @public
+	 * @param {(Vertex|Group)} node Graph node to be displayed in the context menu.
+	 */
+	addNode(node) {
+		if (node instanceof Vertex && node.group !== null) {
+			throw new Error('Vertex is already a member of some group.');
+		}
+
+		this._listElement.appendChild(DOM.h('li', {
+			title: node.name,
+			onClick: this._nodeListItemClick.bind(this, node),
+		}, [
+			DOM.h('span', {
+				class: 'group-symbol',
+				style: 'background-color: ' + node.symbol[1] + ';',
+				innerText: node.symbol[0],
+			}),
+			DOM.h('span', {
+				class: 'group-name',
+				innerText: node.name,
+			}),
+		]));
+	}
+
+	/**
+	 * Opens the context menu.
+	 * @public
+	 */
+	open() {
+		this._rootElement.classList.remove('hidden');
+	}
+
+	/**
+	 * Closes the menu and clears its content.
+	 * @public
+	 */
+	close() {
+		this._rootElement.classList.add('hidden');
+
+		this._listElement.innerHTML = '';
+	}
 
 	/**
 	 * Context menu item click interaction. The vertex this context menu is bound to is either added to the group or merged 
 	 * with the vertex to created a new group.
-	 * @param {Event} e Click event.
+	 * @private
 	 */
-	function nodeListItemClick(e) {
-		if (this instanceof Vertex) {
+	_nodeListItemClick(node) {
+		let group;
+		if (node instanceof Vertex) {
 			// create a new group
-			var group = new Group({});
+			group = Group.create();
 			group.setExcluded(true);
-			group.addVertex(this);
+			group.addVertex(node);
 
 			app.nodeList.push(group);
 			app.groupList.push(group);
 
-			app.sidebarComponent.excludedNodeListComponent.add(group);
-			app.sidebarComponent.excludedNodeListComponent.remove(this);
+			app.sidebarComponent.excludedNodeListComponent.addNode(group);
+			app.sidebarComponent.excludedNodeListComponent.removeNode(node);
 
-			this.remove(true);
+			node.remove(true);
 
 		} else {
-			var group = this;
+			group = node;
 		}
 
 		// add the vertex to the group
-		group.addVertex(vertex);
+		group.addVertex(this._vertex);
 
 		app.viewportComponent.contextMenuComponent.close();
 	}

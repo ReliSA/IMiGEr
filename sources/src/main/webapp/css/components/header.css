@@ -1,0 +1,57 @@
+.header {
+	position: relative;
+	width: 100%;
+	height: 60px;
+	background: -webkit-linear-gradient(top, #f0f9ff 0%,#cbebff 47%,#a1dbff 100%);
+}
+
+.header-logo {
+	float: left;
+	margin: 5px 20px;
+	height: 50px;
+}
+
+.header-title {
+	width: 60%;
+	color: #0b548a;
+	margin: 0;
+	line-height: 60px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.header .diagram-name:not(:empty)::before {
+	content: " - ";
+}
+
+.header .user-menu {
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-left: 25px;
+	margin-right: 25px;
+	line-height: 60px;
+}
+
+.header .user-menu .button {
+	color: #0B548A;
+	font-size: 14px;
+	font-weight: bold;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.header .username {
+	margin-right: 5px;
+}
+
+.header .login_popup,
+.header .register_popup {
+	right: 4px;
+	top: 45px;
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 35px;
+}

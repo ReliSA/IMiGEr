@@ -48,8 +48,7 @@ public class Login extends BaseServlet {
                 userMap.put("id", user.getId());
                 userMap.put("username", user.getNick());
 
-                JSONObject json = new JSONObject();
-                json.put("user", new JSONObject(userMap));
+                JSONObject json = new JSONObject(userMap);
 
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
