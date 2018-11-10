@@ -18,6 +18,7 @@ class Node {
 
 		// components
 		this._symbolListComponent = new NodeSymbolList;
+		this._relatedArchetypeListComponent = new NodeRelatedArchetypeList(this);
 
 		this._position = null;
 		this._size = null;
@@ -33,8 +34,6 @@ class Node {
 		this._isProvidedNeighboursHighlighted = false;
 		this._isArchetypeNeighboursHighlighted = false;
 		this._isNeighbourIconsDisplayed = false;
-
-		this._relatedArchetypeMap = {};
 	}
 
 	/**
@@ -142,7 +141,7 @@ class Node {
 	 * @returns {object} Map with archetype indexes as keys and counters of their instances as values.
 	 */
 	get relatedArchetypeMap() {
-		return this._relatedArchetypeMap;
+		return this._relatedArchetypeListComponent.map;
 	}
 
 	/**
@@ -508,7 +507,7 @@ class Node {
 	 * @param {integer} archetypeIndex Index of the vertex archetype.
 	 * @param {MouseEvent} e Click event.
 	 */
-	_onRelatedArchetypeIconClick(archetypeIndex, e) {
+	onRelatedArchetypeIconClick(archetypeIndex, e) {
 		e.stopPropagation();
 
 		this.isArchetypeNeighboursHighlighted = !this.isHighlighted;

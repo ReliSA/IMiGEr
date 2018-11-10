@@ -60,13 +60,9 @@ class Group extends Node {
 		});
 
 		let vertexRelatedArchetypeMap = vertex.relatedArchetypeMap;
-		for (let archetypeIndex in vertexRelatedArchetypeMap) {
-			if (this.relatedArchetypeMap.hasOwnProperty(archetypeIndex) === false) {
-				this.relatedArchetypeMap[archetypeIndex] = 0;
-			}
-
-			this.relatedArchetypeMap[archetypeIndex] += vertexRelatedArchetypeMap[archetypeIndex];
-		}
+		vertexRelatedArchetypeMap.forEach((value, key) => {
+			this._relatedArchetypeListComponent.add(key, value);
+		});
 
 		app.viewportComponent.removeNode(vertex);
 
@@ -99,9 +95,9 @@ class Group extends Node {
 		});
 
 		let vertexRelatedArchetypeMap = vertex.relatedArchetypeMap;
-		for (let archetypeIndex in vertexRelatedArchetypeMap) {
-			this.relatedArchetypeMap[archetypeIndex] -= vertexRelatedArchetypeMap[archetypeIndex];
-		}
+		vertexRelatedArchetypeMap.forEach((value, key) => {
+			this._relatedArchetypeListComponent.remove(key, value);
+		});
 
 		app.viewportComponent.addNode(vertex);
 
@@ -295,47 +291,6 @@ class Group extends Node {
 	 * @returns {HTMLElement} HTML DOM element.
 	 */
 	_renderExcluded() {
-		const svg = DOM.s('svg', {
-			xmlns: 'http://www.w3.org/2000/svg',
-			height: 60,
-			width: 46,
-		});
-
-		// related archetypes
-		const relatedArchetypesGroup = DOM.s('g', {
-			transform: 'translate(10, 15)',
-		});
-		svg.appendChild(relatedArchetypesGroup);
-
-		let archetypeIconOrder = 0;
-		for (let archetypeIndex in this.relatedArchetypeMap) {
-			relatedArchetypesGroup.appendChild(DOM.s('g', {
-				class: 'related-archetype',
-				transform: `translate(0, ${archetypeIconOrder * 20})`,
-			}, [
-				// counter
-				DOM.s('text', {}, [
-					DOM.t(this.relatedArchetypeMap[archetypeIndex]),
-				]),
-				// icon
-				DOM.s('use', {
-					href: '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
-					class: 'archetype-icon',
-					transform: `translate(15, -10)`,
-					onClick: this._onRelatedArchetypeIconClick.bind(this, parseInt(archetypeIndex)), // TODO when icon == null can not click on item
-				}),
-				// line
-				DOM.s('line', {
-					x1: 30,
-					y1: -5,
-					x2: 36,
-					y2: -5,
-				}),
-			]));
-
-			archetypeIconOrder++;
-		}
-
 		// vertex list
 		this._vertexListComponent = new GroupVertexList(this);
 
@@ -344,7 +299,13 @@ class Group extends Node {
 			class: 'node group',
 			'data-id': this.id,
 		}, [
-			svg,
+			// related archetypes
+			DOM.s('svg', {
+				height: this._relatedArchetypeListComponent.size.height,
+				width: 46,
+			}, [
+				this._relatedArchetypeListComponent.render(),
+			]),
 			// symbol
 			DOM.h('span', {
 				class: 'group-symbol',

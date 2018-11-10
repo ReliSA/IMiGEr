@@ -50,6 +50,7 @@
 		<script src="js/components/loginPopup.js"></script>
 		<script src="js/components/minimap.js"></script>
 		<script src="js/components/navbar.js"></script>
+		<script src="js/components/nodeRelatedArchetypeList.js"></script>
 		<script src="js/components/nodeSymbolList.js"></script>
 		<script src="js/components/registerPopup.js"></script>
 		<script src="js/components/saveDiagramModalWindow.js"></script>

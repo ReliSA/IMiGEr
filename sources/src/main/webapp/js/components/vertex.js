@@ -12,7 +12,6 @@ class Vertex extends Node {
 		// constants
 		this._oneCharacterWidth = 8.3;	// approximate width (in pixels) of one character using Consolas at 15px font size
 		this._minimumWidth = 200;
-		this._relatedArchetypeIconWidth = 20;
 
 		// properties
 		/** @prop {integer} archetype Identifier of the vertex archetype. */
@@ -107,11 +106,7 @@ class Vertex extends Node {
 	 * @param {integer} archetypeIndex Index of the vertex archetype.
 	 */
 	incrementRelatedArchetype(archetypeIndex) {
-		if (this.relatedArchetypeMap.hasOwnProperty(archetypeIndex) === false) {
-			this.relatedArchetypeMap[archetypeIndex] = 0;
-		}
-
-		this.relatedArchetypeMap[archetypeIndex]++;
+		this._relatedArchetypeListComponent.add(archetypeIndex);
 	}
 
 	/**
@@ -231,7 +226,7 @@ class Vertex extends Node {
 			onMouseDown: this._onNodeMouseDown.bind(this),
 		}, [
 			DOM.s('rect', {
-				width: this.size.width + Object.keys(this.relatedArchetypeMap).length * this._relatedArchetypeIconWidth,
+				width: this.size.width + this._relatedArchetypeListComponent.size.width,
 				height: this.size.height,
 				x: 1,
 				y: 1,
@@ -253,25 +248,9 @@ class Vertex extends Node {
 			]),
 			// symbol list
 			this._symbolListComponent.render(),
+			// related archetype list
+			this._relatedArchetypeListComponent.render(),
 		]);
-
-		// related archetype icons
-		const relatedArchetypeListContainer = DOM.s('g', {
-			transform: `translate(${this.size.width}, 0)`,
-		});
-		this._rootElement.appendChild(relatedArchetypeListContainer);
-
-		let archetypeIconOrder = 0;
-		for (let archetypeIndex in this.relatedArchetypeMap) {
-			relatedArchetypeListContainer.appendChild(DOM.s('use', {
-				href: '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
-				class: 'archetype-icon',
-				transform: `translate(${archetypeIconOrder * this._relatedArchetypeIconWidth}, 8)`,
-				onClick: this._onRelatedArchetypeIconClick.bind(this, parseInt(archetypeIndex)), // TODO when icon == null can not click on item
-			}));
-
-			archetypeIconOrder++;
-		}
 
 		return this._rootElement;
 	}
@@ -280,53 +259,18 @@ class Vertex extends Node {
 	 * @returns {HTMLElement} HTML DOM element.
 	 */
 	_renderExcluded() {
-		const svg = DOM.s('svg', {
-			xmlns: 'http://www.w3.org/2000/svg',
-			height: 60,
-			width: 46,
-		});
-
-		// related archetypes
-		const relatedArchetypesGroup = DOM.s('g', {
-			transform: 'translate(10, 15)',
-		});
-		svg.appendChild(relatedArchetypesGroup);
-
-		let archetypeIconOrder = 0;
-		for (let archetypeIndex in this.relatedArchetypeMap) {
-			relatedArchetypesGroup.appendChild(DOM.s('g', {
-				class: 'related-archetype',
-				transform: `translate(0, ${archetypeIconOrder * 20})`,
-			}, [
-				// counter
-				DOM.s('text', {}, [
-					DOM.t(this.relatedArchetypeMap[archetypeIndex]),
-				]),
-				// icon
-				DOM.s('use', {
-					href: '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
-					class: 'archetype-icon',
-					transform: `translate(15, -10)`,
-					onClick: this._onRelatedArchetypeIconClick.bind(this, parseInt(archetypeIndex)), // TODO when icon == null can not click on item
-				}),
-				// line
-				DOM.s('line', {
-					x1: 30,
-					y1: -5,
-					x2: 36,
-					y2: -5,
-				}),
-			]));
-
-			archetypeIconOrder++;
-		}
-
 		// root
 		this._rootElement = DOM.h('li', {
 			class: 'node vertex',
 			'data-id': this.id,
 		}, [
-			svg,
+			// related archetypes
+			DOM.s('svg', {
+				height: this._relatedArchetypeListComponent.size.height,
+				width: 46,
+			}, [
+				this._relatedArchetypeListComponent.render(),
+			]),
 			// name
 			DOM.h('div', {
 				class: 'vertex-name',

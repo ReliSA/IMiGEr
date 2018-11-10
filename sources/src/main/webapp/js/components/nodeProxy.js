@@ -100,7 +100,7 @@ class NodeProxy {
 			edgeOffsetY = 0;
 		}
 
-		let archetypeList = Object.keys(this._node.relatedArchetypeMap).map(archetypeIndex => parseInt(archetypeIndex));
+		let archetypeList = Array.from(this._node.relatedArchetypeMap.keys());
 		let archetypeIconOrder;
 
 		// redraw dependent edges
