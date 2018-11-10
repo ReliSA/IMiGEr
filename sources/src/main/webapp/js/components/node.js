@@ -16,6 +16,9 @@ class Node {
 		/** @prop {function} removeFromSidebarList Hook function used to remove the node from the sidebar list it is located in before it is moved to the viewport. */
 		this.removeFromSidebarList = Utils.noop;
 
+		// components
+		this._symbolListComponent = new NodeSymbolList;
+
 		this._position = null;
 		this._size = null;
 		this._proxy = null;
@@ -31,7 +34,6 @@ class Node {
 		this._isArchetypeNeighboursHighlighted = false;
 		this._isNeighbourIconsDisplayed = false;
 
-		this._symbolList = [];
 		this._relatedArchetypeMap = {};
 	}
 
@@ -40,11 +42,9 @@ class Node {
 	 * @param {array} symbol Node symbol to be added.
 	 */
 	addSymbol(symbol) {
-		this._symbolList.push(symbol);
-
 		if (this.isExcluded) return;
 
-		this._symbolListComponent.appendChild(symbol);
+		this._symbolListComponent.add(symbol);
 	}
 
 	/**
@@ -52,11 +52,9 @@ class Node {
 	 * @param {array} symbol Node symbol to be removed.
 	 */
 	removeSymbol(symbol) {
-		this._symbolList.splice(this._symbolList.indexOf(symbol), 1);
-
 		if (this.isExcluded) return;
 
-		this._symbolListComponent.removeChild(symbol);
+		this._symbolListComponent.remove(symbol);
 	}
 
 	/**

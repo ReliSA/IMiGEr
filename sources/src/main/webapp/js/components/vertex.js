@@ -218,6 +218,7 @@ class Vertex extends Node {
 	 * @returns {SVGElement} SVG DOM element.
 	 */
 	_renderIncluded() {
+		// root
 		this._rootElement = DOM.s('svg', {
 			class: 'node vertex',
 			x: this.position.x,
@@ -250,15 +251,9 @@ class Vertex extends Node {
 			}, [
 				DOM.t(this.name),
 			]),
+			// symbol list
+			this._symbolListComponent.render(),
 		]);
-
-		// symbol list
-		this._symbolListComponent = new NodeSymbolList;
-		this._rootElement.appendChild(this._symbolListComponent.render());
-
-		this._symbolList.forEach(symbol => {
-			this._symbolListComponent.appendChild(symbol);
-		});
 
 		// related archetype icons
 		const relatedArchetypeListContainer = DOM.s('g', {

@@ -7,6 +7,8 @@ class NodeSymbolList {
 	 * @constructor
 	 */
 	constructor() {
+		this._symbolList = [];
+
 		this._width = 20;
 		this._height = 20;
 	}
@@ -29,7 +31,9 @@ class NodeSymbolList {
 	 * @public
 	 * @param {array} symbol Symbol to be added to the list.
 	 */
-	appendChild(symbol) {
+	add(symbol) {
+		this._symbolList.push(symbol);
+
 		this._rootElement.appendChild(DOM.s('g', {
 			class: 'neighbour-node-symbol ' + symbol[2],
 		}, [
@@ -56,7 +60,9 @@ class NodeSymbolList {
 	 * @public
 	 * @param {array} symbol Symbol to be removed from the list.
 	 */
-	removeChild(symbol) {
+	remove(symbol) {
+		this._symbolList.splice(this._symbolList.indexOf(symbol), 1);
+
 		let symbolGroup = this._rootElement.querySelector('.' + symbol[2]);
 
 		symbolGroup.remove();
