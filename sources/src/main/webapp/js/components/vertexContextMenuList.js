@@ -102,7 +102,7 @@ class VertexContextMenuList {
 		if (node instanceof Vertex) {
 			// create a new group
 			group = Group.create();
-			group.setExcluded(true);
+			group.isExcluded = true;
 			group.addVertex(node);
 
 			app.nodeList.push(group);
