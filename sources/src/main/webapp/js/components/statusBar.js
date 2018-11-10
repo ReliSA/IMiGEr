@@ -41,7 +41,7 @@ class StatusBar {
 	 */
 	reset() {
 		this._componentCounterElement.innerText = '';
-	};
+	}
 
 	/**
 	 * @private

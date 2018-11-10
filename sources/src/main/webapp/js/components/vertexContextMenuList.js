@@ -27,7 +27,7 @@ class VertexContextMenuList {
 		]);
 
 		return this._rootElement;
-	};
+	}
 
 	/**
 	 * Sets a vertex that this context menu is bound to. The vertex is then added to a group.

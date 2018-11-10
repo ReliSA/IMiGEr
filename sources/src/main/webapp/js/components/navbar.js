@@ -313,7 +313,7 @@ class Navbar {
 						applyLayoutImg.setAttribute('src', 'images/layout_on.png');
 
 						layouting = true;
-						layoutingInterval = window.setInterval(app.viewportComponent.forceDirected.run, 10);
+						layoutingInterval = window.setInterval(() => app.viewportComponent.forceDirected.run(), 10);
 					}
 				},
 			}, [

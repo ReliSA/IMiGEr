@@ -60,6 +60,22 @@ class Node {
 	}
 
 	/**
+	 * @returns {string} Unique identifier of a graph node (group or vertex).
+	 */
+	get uniqueId() {
+		let prefix;
+		if (this instanceof Vertex) {
+			prefix = 'vertex-';
+		} else if (this instanceof Group) {
+			prefix = 'group-';
+		} else {
+			prefix = '';
+		}
+
+		return prefix + this.id;
+	}
+
+	/**
 	 * @returns {Coordinates} Current position of the node.
 	 */
 	get position() {

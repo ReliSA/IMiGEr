@@ -1,4 +1,5 @@
 .sidebar {
+    z-index: 0;
 	display: flex;
 	flex-basis: 350px;
 	flex-direction: column;
@@ -18,43 +19,22 @@
 	max-width: 100%;
 }
 
-.sidebar-navbar {
-    position: fixed;
-    width: 350px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.sidebar-navbar .button {
-	height: 30px;
-}
-
-.sidebar-navbar .button img {
-	max-height: 20px;
-	margin-top: -4px;
-	margin-right: 5px;
-	vertical-align: -4px;
-}
-
-.sidebar-container {
-	margin-top: 50px;
-	overflow-y: overlay;
-}
-
 .sidebar .node-container {
 	position: relative;
+	overflow-y: overlay;
 }
 
 .sidebar .node-container-title {
 	font-size: 1.2em;
 	padding-left: 0.5em;
 	padding-right: 0.5em;
+	cursor: pointer;
 }
 
 .sidebar .button-group {
 	position: absolute;
-	top: 0;
-	right: 1em;
+    top: 1em;
+	right: 1.5em;
 }
 
 .sidebar .button-group > * {
@@ -94,7 +74,6 @@
 .sidebar .excluded-nodes {
     min-height: 20%;
     border-top: 1px solid #7db9e8;
-    overflow-y: auto;
 }
 
 .sidebar .excluded-nodes .button-group {

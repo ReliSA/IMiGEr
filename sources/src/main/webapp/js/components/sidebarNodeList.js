@@ -79,6 +79,16 @@ class SidebarNodeList {
 		this._nodeListElement = DOM.h('ul', {
 			class: 'node-list',
 		});
+		
+		// content
+		const containerContent = DOM.h('div', {
+			class: 'node-container-content',
+			hidden: 'hidden',
+		}, [
+			this._buttonGroupElement,
+			this._sortOptionsElement,
+			this._nodeListElement,
+		]);
 
 		// root
 		this._rootElement = DOM.h('div', {
@@ -90,10 +100,18 @@ class SidebarNodeList {
 			DOM.h('h2', {
 				class: 'node-container-title',
 				innerText: this._properties.title,
+				onClick: () => {
+					if (containerContent.hasAttribute('hidden')) {
+						containerContent.removeAttribute('hidden');
+					} else {
+						containerContent.setAttribute('hidden', 'hidden');
+					}
+
+					app.redrawEdges();
+				},
 			}),
-			this._buttonGroupElement,
-			this._sortOptionsElement,
-			this._nodeListElement,
+			// content
+			containerContent,
 		]);
 
 		return this._rootElement;
@@ -115,9 +133,9 @@ class SidebarNodeList {
 	}
 
 	_sortByCount(sortOrder) {
-		nodeList.sort((a, b) => {
-			var aCount = (a instanceof Group) ? a.countVertices : 1;
-			var bCount = (b instanceof Group) ? b.countVertices : 1;
+		this._nodeList.sort((a, b) => {
+			var aCount = (a instanceof Group) ? a.countVertices() : 1;
+			var bCount = (b instanceof Group) ? b.countVertices() : 1;
 
 			return sortOrder * (aCount - bCount);
 		});

@@ -36,7 +36,7 @@ class GroupVertexList {
 		this._rootElement.setAttribute('class', 'group-vertex-list');
 
 		return this._rootElement;
-	};
+	}
 
 	/**
 	 * Adds a new vertex to the list. Binds user interactions to local handler functions.

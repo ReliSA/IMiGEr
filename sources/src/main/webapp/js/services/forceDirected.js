@@ -1,31 +1,30 @@
-/**
- * @constructor
- */
-function ForceDirected() {
+class ForceDirected {
+	/**
+	 * @constructor
+	 */
+	constructor() {
+		this._forceField = {};
+		this._canvas = 0;
 
-	var forceField = {};
-	var canvas = 0;
-
-	// parametry layoutu
-	var inumber = 30; // pocet iteraci; default 300
-	var inumberClick = 20; // pocet iteraci u tlacitka
-	var repulsiveStrength = 400; // odpudiva sila (prima umera); default 450
-	var attractiveStrength = 510; // pritazliva sila (neprima umera, nesmi byt 0); default 110
-	var dampeningEffect = 1000; // tlumeni sily (nesmi byt 0); default 200
-	var borderRatio = 1; // hranice layoutu (cislo kterym se deli velikost canvasu)
-	// tahle funkce se mi nelibi, je treba to vyresit jinak, nici to layout (nechat na 1)
+		// parametry layoutu
+		this._repulsiveStrength = 400; // odpudiva sila (prima umera); default 450
+		this._attractiveStrength = 510; // pritazliva sila (neprima umera, nesmi byt 0); default 110
+		this._dampeningEffect = 1000; // tlumeni sily (nesmi byt 0); default 200
+		this._borderRatio = 1; // hranice layoutu (cislo kterym se deli velikost canvasu)
+		// tahle funkce se mi nelibi, je treba to vyresit jinak, nici to layout (nechat na 1)
+	}
 
 	/**
 	 * Force directed layout for visible components.
 	 */
-	this.run = function() {
-		var border = canvas / borderRatio;
+	run() {
+		var border = this._canvas / this._borderRatio;
 
-		var visibleNodes = app.viewportComponent.nodeList,
-			otherVisibleNodes = [];
+		var visibleNodes = app.viewportComponent.nodeList;
+		var otherVisibleNodes = [];
 
 		for (let i = 0; i < visibleNodes.length; i++) {
-			forceField[Utils.getUniqueId(visibleNodes[i])] = [0, 0];
+			this._forceField[visibleNodes[i].uniqueId] = [0, 0];
 		}
 
 		// calculate repulsive force
@@ -53,14 +52,14 @@ function ForceDirected() {
 				var distance = Math.sqrt(sum);
 
 				if (distance !== 0) {
-					forceField[Utils.getUniqueId(currNode)][0] += Math.floor(x * (repulsiveStrength / distance));
-					forceField[Utils.getUniqueId(currNode)][1] += Math.floor(y * (repulsiveStrength / distance));
+					this._forceField[currNode.uniqueId][0] += Math.floor(x * (this._repulsiveStrength / distance));
+					this._forceField[currNode.uniqueId][1] += Math.floor(y * (this._repulsiveStrength / distance));
 				}
 			}
 		}
 
 		// calculate attractive forces
-		for (let i = 0; i < visibleNodes.length; i++){
+		for (let i = 0; i < visibleNodes.length; i++) {
 			let currNode = visibleNodes[i];
 
 			let inEdgeList = currNode.inEdgeList;
@@ -77,8 +76,8 @@ function ForceDirected() {
 				var sum = Math.pow(x, 2) + Math.pow(y, 2);
 				var distance = Math.sqrt(sum);
 
-				forceField[Utils.getUniqueId(currNode)][0] += Math.round(-1 * x * (distance / attractiveStrength));
-				forceField[Utils.getUniqueId(currNode)][1] += Math.round(-1 * y * (distance / attractiveStrength));
+				this._forceField[currNode.uniqueId][0] += Math.round(-1 * x * (distance / this._attractiveStrength));
+				this._forceField[currNode.uniqueId][1] += Math.round(-1 * y * (distance / this._attractiveStrength));
 			}
 
 			let outEdgeList = currNode.outEdgeList;
@@ -95,8 +94,8 @@ function ForceDirected() {
 				var sum = Math.pow(x, 2) + Math.pow(y, 2);
 				var distance = Math.sqrt(sum);
 
-				forceField[Utils.getUniqueId(currNode)][0] += Math.round(-1 * x * (distance / attractiveStrength));
-				forceField[Utils.getUniqueId(currNode)][1] += Math.round(-1 * y * (distance / attractiveStrength));
+				this._forceField[currNode.uniqueId][0] += Math.round(-1 * x * (distance / this._attractiveStrength));
+				this._forceField[currNode.uniqueId][1] += Math.round(-1 * y * (distance / this._attractiveStrength));
 			}
 		}
 
@@ -104,7 +103,7 @@ function ForceDirected() {
 		for (let i = 0; i < visibleNodes.length; i++){
 			var currNode = visibleNodes[i],
 
-				halfCan = canvas / 2,
+				halfCan = this._canvas / 2,
 
 				deltaX = currNode.position.x - halfCan,
 				deltaY = currNode.position.y - halfCan;
@@ -112,14 +111,14 @@ function ForceDirected() {
 			// tohle drzi layout uprostred, chtelo by to vymyslet nejak lip, docela ho to kurvi
 			/*
 			 if (deltaX > 0) {
-			 currNode.x = Math.min(currNode.position.x, (canvas/2)+border);
+			 currNode.x = Math.min(currNode.position.x, (this._canvas/2)+border);
 			 } else {
-			 currNode.x = Math.max(currNode.position.x, (canvas/2)-border);
+			 currNode.x = Math.max(currNode.position.x, (this._canvas/2)-border);
 			 }
 			 if (deltaY > 0) {
-			 currNode.y = Math.min(currNode.position.y, (canvas/2)+border);
+			 currNode.y = Math.min(currNode.position.y, (this._canvas/2)+border);
 			 } else {
-			 currNode.y = Math.max(currNode.position.y, (canvas/2)-border);
+			 currNode.y = Math.max(currNode.position.y, (this._canvas/2)-border);
 			 }
 			 */
 
@@ -138,8 +137,8 @@ function ForceDirected() {
 			}
 
 			// force dampening
-			var forceX = Math.floor(forceField[Utils.getUniqueId(currNode)][0] / dampeningEffect),
-				forceY = Math.floor(forceField[Utils.getUniqueId(currNode)][1] / dampeningEffect);
+			var forceX = Math.floor(this._forceField[currNode.uniqueId][0] / this._dampeningEffect),
+				forceY = Math.floor(this._forceField[currNode.uniqueId][1] / this._dampeningEffect);
 
 			// adding a random effect
 			/*
@@ -159,5 +158,5 @@ function ForceDirected() {
 				currNode.move(coords);
 			}
 		}
-	};
+	}
 }

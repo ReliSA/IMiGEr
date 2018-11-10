@@ -25,7 +25,7 @@ class Attribute {
 		]);
 
 		return this._rootElement;
-	};
+	}
 
 	/**
 	 * @private

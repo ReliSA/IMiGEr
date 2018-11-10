@@ -10,7 +10,7 @@ class SidebarExcludedNodeList extends SidebarNodeList {
 		super({
 			title: 'Excluded nodes',
 			class: 'node-container excluded-nodes',
-			id: '',	// TODO: remove as soon as Sidebar is reworked
+			id: 'excludedNodeListComponent',
 		});
 	}
 

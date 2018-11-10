@@ -56,23 +56,4 @@ class Utils {
 
 		return false;
 	}
-
-    /**
-     * @param {(Vertex|Group)} node Graph node.
-     * @returns {string} Unique identifier of a graph node (group or vertex).
-     */
-    static getUniqueId(node) {
-    	if (Utils.isUndefined(node)) return '';
-
-    	var prefix;
-        if (node instanceof Vertex) {
-            prefix = 'vertex-';
-        } else if (node instanceof Group) {
-            prefix = 'group-';
-        } else {
-            prefix = '';
-        }
-
-        return prefix + node.id;
-    }
 }

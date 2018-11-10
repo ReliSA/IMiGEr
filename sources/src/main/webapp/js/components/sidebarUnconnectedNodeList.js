@@ -7,7 +7,6 @@ class SidebarUnconnectedNodeList extends SidebarNodeList {
 			title: 'Unconnected vertices',
 			class: 'node-container unconnected-nodes',
 			id: 'unconnectedNodeListComponent',
-			hidden: 'hidden',
 		});
 	}
 

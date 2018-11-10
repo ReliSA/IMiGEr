@@ -1,4 +1,5 @@
 .navbar {
+	height: 43px;
 	background: -webkit-linear-gradient(top, #1e5799 0%,#7db9e8 100%);
 	color: #cceefc;
 }
