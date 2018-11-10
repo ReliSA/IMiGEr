@@ -184,7 +184,7 @@ class Viewport {
 				}),
 			]),
 		]);
-		mainSvg.appendChild(this._definitions);
+		graph.appendChild(this._definitions);
 
 		// root
 		this._rootElement = DOM.h('div', {

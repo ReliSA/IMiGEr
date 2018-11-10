@@ -33,7 +33,7 @@ class Group extends Node {
 			throw new TypeError(vertex.toString() + ' is not an instance of Vertex');
 		}
 
-		if (this._vertexList.length === 0) {
+		if (this.position === null && this._vertexList.length === 0) {
 			this.position = vertex.position;
 		}
 

@@ -327,7 +327,16 @@ class Navbar {
 			DOM.h('button', {
 				class: 'btn save-diagram',
 				title: 'Save diagram as PNG',
-				onClick: () => saveSvgAsPng(document.getElementById('svg1'), 'diagram.png', { scale: 1 }),
+				onClick: () => {
+					let fileName = `imiger-${app.diagram === null ? 'diagram' : app.diagram.name}.png`;
+
+					saveSvgAsPng(document.getElementById('svg1'), fileName, {
+						backgroundColor: '#fff',
+						selectorRemap: function(s) {
+							return s.replace('.viewport ', '');
+						},
+					});
+				},
 			}, [
 				DOM.h('img', {
 					src: 'images/png_save.png',
