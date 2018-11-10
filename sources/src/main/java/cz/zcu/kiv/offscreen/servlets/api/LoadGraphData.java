@@ -6,7 +6,6 @@ import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.loader.DemoDiagramLoader;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
-import cz.zcu.kiv.offscreen.configuration.ConfigurationLoader;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
@@ -58,8 +57,7 @@ public class LoadGraphData extends BaseServlet {
 
             switch (jsonType) {
                 case "spade":
-                    String configLocation = ConfigurationLoader.getConfigLocation(request.getServletContext());
-                    rawJson = convertSpadeToRawJson(jsonToDisplay, configLocation);
+                    rawJson = convertSpadeToRawJson(jsonToDisplay);
                     break;
                 default:
                     rawJson = jsonToDisplay;
@@ -77,10 +75,9 @@ public class LoadGraphData extends BaseServlet {
     /**
      * Convert input spade JSON to frontend backend JSON and return it.
      */
-    private String convertSpadeToRawJson(String spadeJson, String configLocation){
+    private String convertSpadeToRawJson(String spadeJson) {
         GraphManager graphManager = new GraphJSONDataLoader(spadeJson).LoadData();
-
-        JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
+        JSONConfigLoader configLoader = new JSONConfigLoader(graphManager);
 
         Graph graph = graphManager.createGraph(configLoader);
         JSONObject json = JSONObject.fromObject(graph);

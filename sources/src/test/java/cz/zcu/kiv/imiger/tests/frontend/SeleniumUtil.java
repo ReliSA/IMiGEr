@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 class SeleniumUtil {
 
-    private static final String TEST_DIRECTORY = System.getProperty("user.dir") + "\\..\\test";
+    private static final String TEST_DIRECTORY = System.getProperty("user.dir") + "\\src\\test\\resources";
 
     /**
      * Path to the config location folder
@@ -71,7 +71,7 @@ class SeleniumUtil {
      * Turn on exclude mode for vertex exclude
      */
     static void switchToExcludeMode(){
-        browser.findElement(By.id("remove")).click();
+        browser.findElement(By.id("exclude")).click();
 
         try {
             Thread.sleep(1000);

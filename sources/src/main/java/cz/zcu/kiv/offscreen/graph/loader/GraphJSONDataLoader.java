@@ -9,7 +9,7 @@ import cz.zcu.kiv.offscreen.graph.Attribute;
 import cz.zcu.kiv.offscreen.api.AttributeDataType;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +26,6 @@ public class GraphJSONDataLoader {
 
     static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    private File file;
     private String loadedJSON;
     private GraphManager graphManager;
 
@@ -37,20 +36,15 @@ public class GraphJSONDataLoader {
 
 
     public GraphJSONDataLoader(File file) {
-        this.file = file;
-        loadJSON();
+        try {
+            loadedJSON = IOUtils.toString(getClass().getClassLoader().getResourceAsStream(file.getPath()), "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public GraphJSONDataLoader(String json){
         loadedJSON = json;
-    }
-
-    private void loadJSON() {
-        try {
-            loadedJSON = FileUtils.readFileToString(file, "UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

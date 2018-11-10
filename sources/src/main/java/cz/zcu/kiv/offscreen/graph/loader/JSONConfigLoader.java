@@ -7,7 +7,7 @@ import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.filter.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,17 +27,15 @@ public class JSONConfigLoader {
 
     private GraphManager graphManager;
     private JSONObject json;
+    private File configFile;
 
-    /**
-     * Path to the directory with configuration file.
-     */
-    private String pathToConfig;
+    public JSONConfigLoader(GraphManager graphManager) {
+        this(graphManager, new File("config.json"));
+    }
 
-    public static String configFilename = "config.json";
-
-    public JSONConfigLoader(GraphManager graphManager, String pathToConfig) {
+    public JSONConfigLoader(GraphManager graphManager, File configFile) {
         this.graphManager = graphManager;
-        this.pathToConfig = pathToConfig;
+        this.configFile = configFile;
     }
 
     /**
@@ -48,8 +46,7 @@ public class JSONConfigLoader {
         GraphFilter filter = new GraphFilter();
 
         try {
-            //String filterJson = FileUtils.readFileToString(new File("D:\\aswi-git\\aswi\\config\\empty_filter.json"), "UTF-8");
-            String filterJson = FileUtils.readFileToString(new File(pathToConfig + File.separator + configFilename), "UTF-8");
+            String filterJson = IOUtils.toString(getClass().getClassLoader().getResourceAsStream(configFile.getPath()), "UTF-8");
 
             json = JSONObject.fromObject(filterJson);
 

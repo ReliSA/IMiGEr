@@ -17,22 +17,16 @@ import java.util.List;
 
 public class GraphFilterTest {
 
-    private static String testDirectory;
-
     private static GraphManager graphManager;
 
     @BeforeAll
     static void initTest() {
-        testDirectory = System.getProperty("user.dir") + "\\..\\test";
-
-        File graphFile = new File(testDirectory + "\\data\\test1.json");
-
-        graphManager = new GraphJSONDataLoader(graphFile).LoadData();
+        graphManager = new GraphJSONDataLoader(new File("data/test1.json")).LoadData();
     }
 
     @Test
     void testFilter1a() {
-        Graph graph = createGraph("test1a.json");
+        Graph graph = createGraph("config/test1a.json");
 
         List<Integer> vertexIds = new ArrayList<>();
         vertexIds.add(32);
@@ -59,7 +53,7 @@ public class GraphFilterTest {
 
     @Test
     void testFilter1b() {
-        Graph graph = createGraph("test1b.json");
+        Graph graph = createGraph("config/test1b.json");
 
         List<Integer> vertexIds = new ArrayList<>();
         vertexIds.add(2);
@@ -81,7 +75,7 @@ public class GraphFilterTest {
 
     @Test
     void testFilter1c() {
-        Graph graph = createGraph("test1c.json");
+        Graph graph = createGraph("config/test1c.json");
 
         List<Integer> vertexIds = new ArrayList<>();
         vertexIds.add(2);
@@ -103,7 +97,7 @@ public class GraphFilterTest {
 
     @Test
     void testFilter1d() {
-        Graph graph = createGraph("test1d.json");
+        Graph graph = createGraph("config/test1d.json");
 
         List<Integer> vertexIds = new ArrayList<>();
         vertexIds.add(1);
@@ -125,7 +119,7 @@ public class GraphFilterTest {
 
     @Test
     void testFilter1e() {
-        Graph graph = createGraph("test1e.json");
+        Graph graph = createGraph("config/test1e.json");
 
         List<Integer> vertexIds = new ArrayList<>();
         vertexIds.add(1);
@@ -147,7 +141,7 @@ public class GraphFilterTest {
 
     @Test
     void testFilter1f() {
-        Graph graph = createGraph("test1f.json");
+        Graph graph = createGraph("config/test1f.json");
 
         List<Integer> vertexIds = new ArrayList<>();
         vertexIds.add(1);
@@ -164,10 +158,7 @@ public class GraphFilterTest {
     }
 
     private Graph createGraph(String configFilename) {
-        String configLocation = testDirectory + "\\config";
-        JSONConfigLoader configLoader = new JSONConfigLoader(graphManager, configLocation);
-        JSONConfigLoader.configFilename = configFilename;
-        return graphManager.createGraph(configLoader);
+        return graphManager.createGraph(new JSONConfigLoader(graphManager, new File(configFilename)));
     }
 
     private SubedgeInfo createTestSubEdge(int id) {
