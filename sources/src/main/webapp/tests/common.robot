@@ -59,3 +59,13 @@ Element Should Have Class
 Element Should Not Have Class
 	[Arguments]		${element}		${className}
 	Page Should Not Contain Element	${element}[contains(@class, "${className}")]
+
+
+Element Should Have Attribute
+	[Arguments]		${element}		${attributeName}
+	Page Should Contain Element		${element}[@${attributeName}]
+
+
+Element Should Not Have Attribute
+	[Arguments]		${element}		${attributeName}
+	Page Should Not Contain Element	${element}[@${attributeName}]

@@ -14,7 +14,7 @@ ${vertex9}				//*[name()="svg"][contains(@class, "vertex")][@data-id="9"]
 ${vertex58}				//*[name()="svg"][contains(@class, "vertex")][@data-id="58"]
 ${vertex2014}			//*[name()="svg"][contains(@class, "vertex")][@data-id="2014"]
 
-${vertexArchetypeIcon}	/*[name()="g"][@class="archetype-icon"]
+${vertexArchetypeIcon}	/*[name()="use"][@class="archetype-icon"]
 
 ${vertexPopover}		//div[contains(@class, "vertex-popover")]
 
@@ -23,13 +23,13 @@ ${vertexPopover}		//div[contains(@class, "vertex-popover")]
 Highlight Vertex
 	Click Element					${vertex58}
 	# check that other vertices are either highlighted or dimmed
-	Element Should Have Class		${vertex9}		node--highlighted-required
+	Element Should Have Class		${vertex9}		node--highlighted-as-required
 	Element Should Have Class		${vertex58}		node--highlighted
 	Element Should Have Class		${vertex2014}	node--dimmed
 	# unhighlight
 	Click Element					${vertex58}
 	# check that other vertices are back to normal
-	Element Should Not Have Class	${vertex9}		node--highlighted-required
+	Element Should Not Have Class	${vertex9}		node--highlighted-as-required
 	Element Should Not Have Class	${vertex58}		node--highlighted
 	Element Should Not Have Class	${vertex2014}	node--dimmed
 
@@ -64,8 +64,8 @@ Drag Vertex
 
 Display Vertex Popover
 	Click Element		${vertex2014}${vertexArchetypeIcon}
-	Element Should Be Visible		${vertexPopover}
-	Element Should Not Have Class	${vertexPopover}	hidden
+	Element Should Be Visible			${vertexPopover}
+	Element Should Not Have Attribute	${vertexPopover}	hidden
 	Mouse Out			${vertexPopover}
 
 
@@ -73,11 +73,11 @@ Hide Vertex Popover By Moving Mouse Out
 	Click Element		${vertex2014}${vertexArchetypeIcon}
 	Mouse Out			${vertexPopover}
 	Element Should Not Be Visible	${vertexPopover}
-	Element Should Have Class		${vertexPopover}	hidden
+	Element Should Have Attribute	${vertexPopover}	hidden
 
 
 Hide Vertex Popover By Clicking Elsewhere
 	Click Element		${vertex2014}${vertexArchetypeIcon}
 	Click Element		//body
 	Element Should Not Be Visible	${vertexPopover}
-	Element Should Have Class		${vertexPopover}	hidden
+	Element Should Have Attribute	${vertexPopover}	hidden

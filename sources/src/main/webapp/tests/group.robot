@@ -17,8 +17,7 @@ ${vertex2019}		//*[name()="svg"][contains(@class, "vertex")][@data-id="2019"]
 
 ${group1}			//*[name()="svg"][contains(@class, "group")][@data-id="1"]
 
-${groupName}			/*[name()="text"][@class="group-name"]
-${groupDissolveButton}	/*[name()="g"][contains(@class, "dissolve-button")]
+${groupName}			//span[@class="group-name"]
 
 ${vertexContextMenu}	//div[contains(@class, "context-menu")]
 
@@ -55,17 +54,10 @@ Drag Group
 Rename Group
 	Element Should Contain			${group1}${groupName}	File
 	# trigger group rename prompt
-	Click Element					${group1}/*[name()="text"]
+	Click Element					${group1}${groupName}
 	Input Text Into Alert			Lorem Ipsum
 	# check that group name was changed
 	Element Should Contain			${group1}${groupName}	Lorem Ipsum
-
-
-Dissolve Group
-	Click Element					${group1}${groupDissolveButton}
-	# check that group is not visible while its vertex is
-	Element Should Not Be Visible	${group1}
-	Element Should Be Visible		${vertex2019}
 
 
 Add Vertex To Group

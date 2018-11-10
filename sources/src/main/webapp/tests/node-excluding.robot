@@ -3,7 +3,7 @@ Documentation	A test suite with tests of node excluding functionality.
 
 Suite Setup		Open Browser To Demo Diagram
 Suite Teardown	Close Browser
-Test Setup		Select Radio Button		actionMove	exclude
+Test Setup		Select Radio Button		mode	exclude
 Test Teardown	Reload Diagram Screen
 
 Resource		common.robot
