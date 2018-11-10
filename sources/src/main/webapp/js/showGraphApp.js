@@ -151,9 +151,7 @@ class ShowGraphApp extends App {
 		} else {
 			const diagramData = await AJAX.getJSON(Constants.API.getDiagram + '?id=' + diagramId);
 
-			this.diagram = new Diagram(diagramData);
-
-			document.title = this.name + ' - ' + this.diagram.name;
+			document.dispatchEvent(new DiagramUpdatedEvent(diagramData));
 
 			loadGraphDataPromise = Promise.resolve(JSON.parse(diagramData.graph_json));
 		}

@@ -83,7 +83,6 @@ class SidebarNodeList {
 		// content
 		const containerContent = DOM.h('div', {
 			class: 'node-container-content',
-			hidden: 'hidden',
 		}, [
 			this._buttonGroupElement,
 			this._sortOptionsElement,

@@ -1,5 +1,9 @@
 class Header {
 	constructor() {
+		document.addEventListener(DiagramUpdatedEvent.name, e => {
+			this._diagramNameLabel.innerText = e.detail.name;
+		});
+
 		document.addEventListener(LoggedInEvent.name, e => {
 			this._loggedInUserLabel.innerText = e.detail.username;
 		});
@@ -10,6 +14,9 @@ class Header {
 	}
 
 	render() {
+		this._diagramNameLabel = DOM.h('span', {
+			class: 'diagram-name',
+		});
 		this._loggedInUserLabel = DOM.h('span', {
 			class: 'username',
 		});
@@ -28,7 +35,9 @@ class Header {
 			DOM.h('h2', {
 				class: 'header-title',
 				innerText: 'Interactive Multimodal Graph Explorer',
-			}),
+			}, [
+				this._diagramNameLabel,
+			]),
 			DOM.h('div', {
 				class: 'user-menu loggedInOnly',
 			}, [

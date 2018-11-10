@@ -12,9 +12,17 @@
 }
 
 .header-title {
+	width: 60%;
 	color: #0b548a;
 	margin: 0;
 	line-height: 60px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.header .diagram-name:not(:empty)::before {
+	content: " - ";
 }
 
 .header .user-menu {
