@@ -9,9 +9,46 @@ class GroupVertexList {
 	 */
 	constructor(group) {
 		this._group = group;
+		this._vertexList = [];
 
 		this._lineHeight = 18;
-		this._listItemCounter = 0;
+	}
+
+	/**
+	 * Adds a new vertex to the list. Binds user interactions to local handler functions.
+	 * @public
+	 * @param {vertex} vertex Vertex to be added to this list.
+	 */
+	add(vertex) {
+		this._vertexList.push(vertex);
+
+		if (this.isRendered) {
+			this._rootElement.appendChild(this._renderVertex(vertex));
+		}
+	}
+
+	/**
+	 * Removes a vertex from the list.
+	 * @public
+	 * @param {Vertex} vertex Vertex to be removed from this list.
+	 */
+	remove(vertex) {
+		this._vertexList.splice(this._vertexList.indexOf(vertex), 1);
+
+		if (this.isRendered) {
+			this._rootElement.childNodes.forEach(child => {
+				if (child.getAttribute('data-id') === vertex.id) {
+					child.remove();
+				}
+			});
+		}
+	}
+
+	/**
+	 * @returns {array<Vertex>} List of vertices added to the related group.
+	 */
+	get data() {
+		return this._vertexList;
 	}
 
 	/**
@@ -20,67 +57,52 @@ class GroupVertexList {
 	 * @returns {Element} HTML or SVG DOM element depending on whether the group is excluded.
 	 */
 	render() {
-		if (this._group.isExcluded) {
-			this._rootElement = DOM.h('ul');
-		} else {
-			this._rootElement = DOM.s('g', {
-				transform: 'translate(70, 30)',
-			});
-		}
+		this._rootElement = this._renderRoot();
 
-		let vertexList = this._group.vertexList;
-		vertexList.forEach(vertex => {
-			this.appendChild(vertex);
+		this._vertexList.forEach(vertex => {
+			this._rootElement.appendChild(this._renderVertex(vertex));
 		});
-
-		this._rootElement.setAttribute('class', 'group-vertex-list');
 
 		return this._rootElement;
 	}
 
 	/**
-	 * Adds a new vertex to the list. Binds user interactions to local handler functions.
-	 * @public
-	 * @param {vertex} vertex Vertex to be added to this list.
+	 * @returns {boolean} true if this component has been already rendered, otherwise false
 	 */
-	appendChild(vertex) {
-		let listItemElement;
+	get isRendered() {
+		return Utils.isDefined(this._rootElement);
+	}
+
+	_renderRoot() {
 		if (this._group.isExcluded) {
-			listItemElement = DOM.h('li');
+			return DOM.h('ul', {
+				class: 'group-vertex-list',
+			});
+
 		} else {
-			listItemElement = DOM.s('text', {
-				y: this._listItemCounter * this._lineHeight,
+			return DOM.s('g', {
+				transform: 'translate(70, 30)',
+				class: 'group-vertex-list',
 			});
 		}
-
-		listItemElement.setAttribute('data-id', vertex.id);
-		listItemElement.appendChild(document.createTextNode(vertex.name));
-		listItemElement.addEventListener('click', this._listItemClick.bind(vertex));
-
-		this._rootElement.appendChild(listItemElement);
-
-		this._listItemCounter++;
 	}
 
-	/**
-	 * Removes a vertex from the list.
-	 * @public
-	 * @param {Vertex} vertex Vertex to be removed from this list.
-	 */
-	removeChild(vertex) {
-		let listItemElement = this._rootElement.querySelector('[data-id="' + vertex.id + '"]');
+	_renderVertex(vertex) {
+		if (this._group.isExcluded) {
+			return DOM.h('li', {
+				'data-id': vertex.id,
+				innerText: vertex.name,
+				onClick: this._group.onVertexClick.bind(this._group),
+			});
 
-		listItemElement.remove();
-	}
-
-	/**
-	 * Vertex list item click interaction.
-	 * @private
-	 * @param {Event} e Click event.
-	 */
-	_listItemClick(e) {
-		e.stopPropagation();
-
-		console.log('TODO: highlight vertex on click');
+		} else {
+			return DOM.s('text', {
+				y: this._rootElement.childNodes.lenght * this._lineHeight,
+				'data-id': vertex.id,
+				onClick: this._group.onVertexClick.bind(this._group),
+			}, [
+				DOM.t(vertex.name),
+			]);
+		}
 	}
 }

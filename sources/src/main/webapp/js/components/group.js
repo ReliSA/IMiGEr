@@ -9,9 +9,10 @@ class Group extends Node {
 	constructor(props) {
 		super(props);
 
-		this._size = new Dimensions(70, 70);
+		// components
+		this._vertexListComponent = new GroupVertexList(this);
 
-		this._vertexList = [];
+		this._size = new Dimensions(70, 70);
 	}
 
 	/**
@@ -33,7 +34,7 @@ class Group extends Node {
 			throw new TypeError(vertex.toString() + ' is not an instance of Vertex');
 		}
 
-		if (this.position === null && this._vertexList.length === 0) {
+		if (this.position === null && this.vertexList.length === 0) {
 			this.position = vertex.position;
 		}
 
@@ -65,12 +66,7 @@ class Group extends Node {
 		});
 
 		app.viewportComponent.removeNode(vertex);
-
-		if (this._vertexListComponent) {
-			this._vertexListComponent.appendChild(vertex);
-		}
-
-		this._vertexList.push(vertex);
+		this._vertexListComponent.add(vertex);
 	}
 
 	/**
@@ -100,26 +96,14 @@ class Group extends Node {
 		});
 
 		app.viewportComponent.addNode(vertex);
-
-		if (this._vertexListComponent) {
-			this._vertexListComponent.removeChild(vertex);
-		}
-
-		this._vertexList.splice(this._vertexList.indexOf(vertex), 1);
+		this._vertexListComponent.remove(vertex);
 	}
 
 	/**
 	 * @returns {array<Vertex>} List of vertices added to this group.
 	 */
 	get vertexList() {
-		return this._vertexList;
-	}
-
-	/**
-	 * @returns {integer} Number of vertices added to this group.
-	 */
-	countVertices() {
-		return this._vertexList.length;
+		return this._vertexListComponent.data;
 	}
 
 	/**
@@ -128,7 +112,7 @@ class Group extends Node {
 	get inEdgeList() {
 		let edgeList = [];
 
-		this._vertexList.forEach(vertex => {
+		this.vertexList.forEach(vertex => {
 			let inEdgeList = vertex.inEdgeList;
 			inEdgeList.filter(edge => {
 				return edgeList.indexOf(edge) === -1;
@@ -146,7 +130,7 @@ class Group extends Node {
 	get outEdgeList() {
 		let edgeList = [];
 
-		this._vertexList.forEach(vertex => {
+		this.vertexList.forEach(vertex => {
 			let outEdgeList = vertex.outEdgeList;
 			outEdgeList.filter(edge => {
 				return edgeList.indexOf(edge) === -1;
@@ -173,7 +157,7 @@ class Group extends Node {
 	set isExcluded(newValue) {
 		super.isExcluded = newValue;
 
-		this._vertexList.forEach(vertex => {
+		this.vertexList.forEach(vertex => {
 			vertex.isExcluded = newValue;
 		});
 	}
@@ -291,21 +275,13 @@ class Group extends Node {
 	 * @returns {HTMLElement} HTML DOM element.
 	 */
 	_renderExcluded() {
-		// vertex list
-		this._vertexListComponent = new GroupVertexList(this);
-
 		// root
 		this._rootElement = DOM.h('li', {
 			class: 'node group',
 			'data-id': this.id,
 		}, [
 			// related archetypes
-			DOM.s('svg', {
-				height: this._relatedArchetypeListComponent.size.height,
-				width: 46,
-			}, [
-				this._relatedArchetypeListComponent.render(),
-			]),
+			this._relatedArchetypeListComponent.render(),
 			// symbol
 			DOM.h('span', {
 				class: 'group-symbol',
@@ -390,7 +366,7 @@ class Group extends Node {
 
 		this.remove(false);
 
-		let vertexListCopy = this._vertexList.slice(0);
+		let vertexListCopy = this.vertexList.slice(0);
 		vertexListCopy.forEach(vertex => {
 			this.removeVertex(vertex);
 		});
@@ -398,5 +374,15 @@ class Group extends Node {
 		app.viewportComponent.removeNode(this);
 
 		app.groupList.splice(app.groupList.indexOf(this), 1);
+	}
+
+	/**
+	 * Vertex list item click interaction.
+	 * @param {Event} e Click event.
+	 */
+	onVertexClick(e) {
+		e.stopPropagation();
+
+		console.log('TODO: highlight vertex on click');
 	}
 }

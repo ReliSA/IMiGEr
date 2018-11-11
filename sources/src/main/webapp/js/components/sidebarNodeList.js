@@ -133,8 +133,8 @@ class SidebarNodeList {
 
 	_sortByCount(sortOrder) {
 		this._nodeList.sort((a, b) => {
-			var aCount = (a instanceof Group) ? a.countVertices() : 1;
-			var bCount = (b instanceof Group) ? b.countVertices() : 1;
+			var aCount = (a instanceof Group) ? a.vertexList.length : 1;
+			var bCount = (b instanceof Group) ? b.vertexList.length : 1;
 
 			return sortOrder * (aCount - bCount);
 		});
