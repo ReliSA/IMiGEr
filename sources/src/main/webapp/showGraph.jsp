@@ -88,6 +88,7 @@
 		<script src="js/valueObjects/coordinates.js"></script>
 		<script src="js/valueObjects/diagram.js"></script>
 		<script src="js/valueObjects/dimensions.js"></script>
+		<script src="js/valueObjects/nodeSymbol.js"></script>
 
 		<script src="js/constants.js"></script>
 

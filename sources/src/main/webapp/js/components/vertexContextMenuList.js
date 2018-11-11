@@ -64,8 +64,8 @@ class VertexContextMenuList {
 		}, [
 			DOM.h('span', {
 				class: 'group-symbol',
-				style: 'background-color: ' + node.symbol[1] + ';',
-				innerText: node.symbol[0],
+				style: 'background-color: ' + node.symbol.color + ';',
+				innerText: node.symbol.character,
 			}),
 			DOM.h('span', {
 				class: 'group-name',

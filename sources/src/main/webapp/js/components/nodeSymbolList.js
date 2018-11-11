@@ -5,12 +5,35 @@
 class NodeSymbolList {
 	/**
 	 * @constructor
+	 * @param {Node} node Node this symbol list is bound to.
 	 */
-	constructor() {
-		this._symbolList = [];
+	constructor(node) {
+		this._node = node;
+		this._symbolList = new Set;
 
-		this._width = 20;
-		this._height = 20;
+		this._symbolSize = 20;
+	}
+
+	/**
+	 * Adds a new symbol to the list.
+	 * @public
+	 * @param {array} symbol Symbol to be added to the list.
+	 */
+	add(symbol) {
+		this._symbolList.add(symbol);
+
+		this._rerender();
+	}
+
+	/**
+	 * Removes a symbol from the list.
+	 * @public
+	 * @param {array} symbol Symbol to be removed from the list.
+	 */
+	remove(symbol) {
+		this._symbolList.delete(symbol);
+
+		this._rerender();
 	}
 
 	/**
@@ -20,65 +43,38 @@ class NodeSymbolList {
 	 */
 	render() {
 		this._rootElement = DOM.s('g', {
-			transform: 'translate(0, 30)',
+			transform: `translate(0, ${this._node.size.height})`,
 		});
 
 		return this._rootElement;
 	}
 
-	/**
-	 * Adds a new symbol to the list.
-	 * @public
-	 * @param {array} symbol Symbol to be added to the list.
-	 */
-	add(symbol) {
-		this._symbolList.push(symbol);
+	_rerender() {
+		this._rootElement.innerHTML = '';
 
-		this._rootElement.appendChild(DOM.s('g', {
-			class: 'neighbour-node-symbol ' + symbol[2],
+		this._symbolList.forEach(symbol => {
+			this._rootElement.appendChild(this._renderNodeSymbol(symbol));
+		});
+	}
+
+	_renderNodeSymbol(symbol) {
+		return DOM.s('g', {
+			class: 'neighbour-node-symbol ' + symbol.cssClass,
+			transform: `translate(${1 + this._rootElement.childNodes.length * this._symbolSize}, 1)`,
 		}, [
 			DOM.s('rect', {
 				x: 0,
 				y: 0,
-				width: this._width,
-				height: this._height,
-				fill: symbol[1],
+				width: this._symbolSize,
+				height: this._symbolSize,
+				fill: symbol.color,
 			}),
 			DOM.s('text', {
 				x: 6,
 				y: 15,
 			}, [
-				DOM.t(symbol[0]),
+				DOM.t(symbol.character),
 			]),
-		]));
-
-		this._reorderSymbols();
-	}
-
-	/**
-	 * Removes a symbol from the list.
-	 * @public
-	 * @param {array} symbol Symbol to be removed from the list.
-	 */
-	remove(symbol) {
-		this._symbolList.splice(this._symbolList.indexOf(symbol), 1);
-
-		let symbolGroup = this._rootElement.querySelector('.' + symbol[2]);
-
-		symbolGroup.remove();
-
-		this._reorderSymbols();
-	}
-
-	/**
-	 * Changes the order of symbols displayed in the list. It is used to refresh their position after one is added or removed.
-	 * @private
-	 */
-	_reorderSymbols() {
-		for (var i = 0; i < this._rootElement.children.length; i++) {
-			let symbolGroup = this._rootElement.children[i];
-
-			symbolGroup.setAttribute('transform', `translate(${i * this._width + 1}, 1)`);
-		}
+		]);
 	}
 }

@@ -229,7 +229,7 @@ class Group extends Node {
 				height: this.size.height,
 				x: 1,
 				y: 1,
-				fill: this.symbol[1],
+				fill: this.symbol.color,
 				stroke: 'black',
 				'stroke-width': 1,
 			}),
@@ -252,7 +252,7 @@ class Group extends Node {
 				x: 10,
 				y: 60,
 			}, [
-				DOM.t(this.symbol[0]),
+				DOM.t(this.symbol.character),
 			]),
 			// dissolve button
 			DOM.s('g', {
@@ -309,10 +309,10 @@ class Group extends Node {
 			// symbol
 			DOM.h('span', {
 				class: 'group-symbol',
-				style: 'background-color: ' + this.symbol[1] + ';',
+				style: 'background-color: ' + this.symbol.color + ';',
 				x: 10,
 				y: 55,
-				innerText: this.symbol[0],
+				innerText: this.symbol.character,
 				onClick: this._onNodeClick.bind(this),
 			}),
 			// name
@@ -330,9 +330,9 @@ class Group extends Node {
 				// show symbol button
 				DOM.h('button', {
 					class: 'show-symbol-button button',
-					style: 'background-color: ' + this.symbol[1] + ';',
+					style: 'background-color: ' + this.symbol.color + ';',
 					title: 'Show symbol next to all neighbouring components',
-					innerText: this.symbol[0],
+					innerText: this.symbol.character,
 					onClick: this._onShowNeighbourIconsClick.bind(this),
 				}),
 				// include button

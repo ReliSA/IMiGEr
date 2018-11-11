@@ -38,11 +38,11 @@ class MarkSymbol {
 			this._colorIndex = this._startColorIndex;
 		}
 		
-		return [
+		return new NodeSymbol(
 			MarkSymbol.CONST_MARK_SYMBOLS[this._symbolIndex],
 			MarkSymbol.CONST_MARK_COLORS[this._colorIndex],
 			'symbol-' + this._index++,
-		];
+		);
 	}
 
 	/**

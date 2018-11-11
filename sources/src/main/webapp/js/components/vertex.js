@@ -284,9 +284,9 @@ class Vertex extends Node {
 			}, [
 				DOM.h('button', {
 					class: 'show-symbol-button button',
-					style: 'background-color: ' + this.symbol[1] + ';',
+					style: 'background-color: ' + this.symbol.color + ';',
 					title: 'Show symbol next to all neighbouring components',
-					innerText: this.symbol[0],
+					innerText: this.symbol.character,
 					onClick: this._onShowNeighbourIconsClick.bind(this),
 				}),
 				DOM.h('button', {

@@ -17,7 +17,7 @@ class Node {
 		this.removeFromSidebarList = Utils.noop;
 
 		// components
-		this._symbolListComponent = new NodeSymbolList;
+		this._symbolListComponent = new NodeSymbolList(this);
 		this._relatedArchetypeListComponent = new NodeRelatedArchetypeList(this);
 
 		this._position = null;
