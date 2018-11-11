@@ -82,16 +82,17 @@
 
 .sidebar .node {
     position: relative;
+    display: flex;
 	margin-top: 1em;
 	margin-bottom: 1em;
-    padding-left: 40px;
 	user-select: none;
 }
 
 .sidebar .node > svg {
-    position: absolute;
-    left: -6px;
+    position: relative;
     display: inline-block;
+    margin-left: -6px;
+    vertical-align: top;
 }
 
 .sidebar .node .related-archetype > text {
@@ -215,10 +216,6 @@
 
 .sidebar .group .button-group {
 	top: 2em;
-}
-
-.unconnected-nodes .node > svg {
-    display: none;
 }
 
 .unconnected-nodes .button-group .show-symbol-button {

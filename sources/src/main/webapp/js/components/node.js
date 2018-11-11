@@ -141,7 +141,7 @@ class Node {
 	 * @returns {object} Map with archetype indexes as keys and counters of their instances as values.
 	 */
 	get relatedArchetypeMap() {
-		return this._relatedArchetypeListComponent.map;
+		return this._relatedArchetypeListComponent.data;
 	}
 
 	/**

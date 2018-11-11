@@ -265,12 +265,7 @@ class Vertex extends Node {
 			'data-id': this.id,
 		}, [
 			// related archetypes
-			DOM.s('svg', {
-				height: this._relatedArchetypeListComponent.size.height,
-				width: 46,
-			}, [
-				this._relatedArchetypeListComponent.render(),
-			]),
+			this._relatedArchetypeListComponent.render(),
 			// name
 			DOM.h('div', {
 				class: 'vertex-name',

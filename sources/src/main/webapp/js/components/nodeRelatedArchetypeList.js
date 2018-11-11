@@ -5,14 +5,16 @@
 class NodeRelatedArchetypeList {
 	/**
 	 * @constructor
+	 * @param {Node} node Node this archetype list is bound to.
 	 */
 	constructor(node) {
 		this._node = node;
 		this._map = new Map;
+
 		this._iconSize = 20;
 	}
 
-	get map() {
+	get data() {
 		return this._map;
 	}
 
@@ -32,8 +34,10 @@ class NodeRelatedArchetypeList {
 		}
 
 		this._map.set(key, currentValue + value);
-		
-		this._renderIcons();
+
+		if (this.isRendered) {
+			this._rerender();
+		}
 	}
 
 	remove(key, value = 1) {
@@ -46,66 +50,95 @@ class NodeRelatedArchetypeList {
 
 		this._map.set(key, currentValue - value);
 
-		this._renderIcons();
+		if (this.isRendered) {
+			this._rerender();
+		}
 	}
 
+	/**
+	 * Creates a new DOM element representing the list in memory.
+	 * @public
+	 * @returns {SVGElement} SVG DOM element
+	 */
 	render() {
-		if (this._node.isExcluded === true) {
-			this._rootElement = DOM.s('g', {
-				transform: 'translate(10, 15)',
-			});
-		} else {
-			this._rootElement = DOM.s('g', {
-				transform: `translate(${this._node.size.width}, 0)`,
-			});
-		}
+		this._rootElement = this._renderRoot();
 
-		this._renderIcons();
+		this._map.forEach((value, key) => {
+			this._rootElement.appendChild(this._renderArchetypeIcon(key, value));
+		});
 
 		return this._rootElement;
 	}
-	
-	_renderIcons() {
-		if (Utils.isUndefined(this._rootElement)) return;
-		
+
+	/**
+	 * @returns {boolean} true if this component has been already rendered, otherwise false
+	 */
+	get isRendered() {
+		return Utils.isDefined(this._rootElement);
+	}
+
+	_rerender() {
 		this._rootElement.innerHTML = '';
 
-		let iconOrder = 0;
 		this._map.forEach((value, key) => {
-			if (this._node.isExcluded === true) {
-				this._rootElement.appendChild(DOM.s('g', {
-					class: 'related-archetype',
-					transform: `translate(0, ${iconOrder * this._iconSize})`,
-				}, [
-					// counter
-					DOM.s('text', {}, [
-						DOM.t(value),
-					]),
-					// icon
-					DOM.s('use', {
-						href: '#vertexArchetypeIcon-' + app.archetype.vertex[key].name,
-						class: 'archetype-icon',
-						transform: `translate(15, -10)`,
-						onClick: this._node.onRelatedArchetypeIconClick.bind(this._node, key), // TODO: when icon == null can not click on item
-					}),
-					// line
-					DOM.s('line', {
-						x1: 30,
-						y1: -5,
-						x2: 36,
-						y2: -5,
-					}),
-				]));
-			} else {
-				this._rootElement.appendChild(DOM.s('use', {
-					href: '#vertexArchetypeIcon-' + app.archetype.vertex[key].name,
-					class: 'archetype-icon',
-					transform: `translate(${iconOrder * this._iconSize}, 8)`,
-					onClick: this._node.onRelatedArchetypeIconClick.bind(this._node, key), // TODO: when icon == null can not click on item
-				}));
-			}
-
-			iconOrder++;
+			this._rootElement.appendChild(this._renderArchetypeIcon(key, value));
 		});
+		
+		if (this._node.isExcluded) {
+			this._rootElement.setAttribute('height', this.size.height);
+		}
+	}
+
+	_renderRoot() {
+		if (this._node.isExcluded) {
+			return DOM.s('svg', {
+				height: this.size.height,
+				width: 46,
+			});
+
+		} else {
+			return DOM.s('g', {
+				transform: `translate(${this._node.size.width}, 0)`,
+			});
+		}
+	}
+
+	_renderArchetypeIcon(archetypeIndex, counter) {
+		if (this._node.isExcluded) {
+			return DOM.s('g', {
+				class: 'related-archetype',
+				'data-index': archetypeIndex,
+				transform: `translate(10, ${15 + this._rootElement.childNodes.length * this._iconSize})`,
+			}, [
+				// counter
+				DOM.s('text', {}, [
+					DOM.t(counter),
+				]),
+				// icon
+				DOM.s('use', {
+					href: '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
+					class: 'archetype-icon',
+					transform: `translate(15, -10)`,
+					onClick: this._node.onRelatedArchetypeIconClick.bind(this._node, archetypeIndex), // TODO: when icon == null can not click on item
+				}),
+				// line
+				DOM.s('line', {
+					x1: 30,
+					y1: -5,
+					x2: 36,
+					y2: -5,
+				}),
+			]);
+
+		} else {
+			// icon
+			return DOM.s('use', {
+				href: '#vertexArchetypeIcon-' + app.archetype.vertex[archetypeIndex].name,
+				class: 'archetype-icon',
+				'data-index': archetypeIndex,
+				transform: `translate(${this._rootElement.childNodes.length * this._iconSize}, 8)`,
+				onClick: this._node.onRelatedArchetypeIconClick.bind(this._node, archetypeIndex), // TODO: when icon == null can not click on item
+			});
+		}
 	}
 }
