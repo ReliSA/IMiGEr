@@ -171,33 +171,18 @@ public class Diagram {
      * Method deletes diagram from database.
      */
     public void delete() {
-        if (id == 0) return;
+        if (this.id == 0) return;
 
-        String qy = "DELETE FROM diagram WHERE id = '" + this.id + "' LIMIT 1";
-        db.executeStatement(qy);
-    }
-
-    /**
-     * Method change graph_json in diagram and return number of affected rows in database.
-     *
-     * @param graphJson json of diagram
-     * @return number of affected rows in database
-     */
-    public int updateGraphJson(String graphJson){
-        if(this.id == 0) return 0;
-
-        String qy = "UPDATE diagram SET graph_json = ? WHERE id = ?";
+        String qy = "DELETE FROM diagram WHERE id = ? LIMIT 1";
 
         try {
             PreparedStatement pst = db.getPreparedStatement(qy, false);
-            pst.setString(1, graphJson);
-            pst.setInt(2, this.id);
-            return db.executeStatement(pst);
+            pst.setInt(1, this.id);
+            db.executeStatement(pst);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
     }
 
     /**

@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="APP_NAME" value="IMiGEr"/>
-<c:set var="APP_HOME_URL" value="${initParam.HOME_URL}"/>
+<c:set var="APP_NAME" value="${initParam.APP_NAME}"/>
+<c:set var="APP_HOME_URL" value="${initParam.APP_HOME_URL}"/>
 <c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
 <c:set var="user" value="${sessionScope.user}"/>
 
@@ -91,7 +91,7 @@
 
 		<script src="js/constants.js"></script>
 
-		<title>IMiGEr</title>
+		<title>${APP_NAME}</title>
 	</head>
 
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">

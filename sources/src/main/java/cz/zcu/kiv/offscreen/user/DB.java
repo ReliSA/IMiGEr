@@ -13,26 +13,24 @@ import javax.servlet.ServletContext;
  */
 
 public class DB {
-	private Connection conn = null;
+	private Connection connection;
 	
 	/**
-	 * Constructor opens connection do database. Access data must be save in ServletContext as InitParameter( DbUrl, DbName, DbUser, DbPsw ).
+	 * Constructor opens connection do database. Access credentials must be stored in ServletContext as InitParameter.
 	 */
-	public DB(ServletContext context){	
-		    
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
+	public DB(ServletContext context) {
+		String driverClassName = context.getInitParameter("jdbc.driverClassName");
+		String url = context.getInitParameter("jdbc.url");
+		String username = context.getInitParameter("jdbc.username");
+		String password = context.getInitParameter("jdbc.password");
 
-				String dbUrl = context.getInitParameter("DbUrl");
-				String dbName = context.getInitParameter("DbName");
-				String dbUser = context.getInitParameter("DbUser");
-				String dbPsw = context.getInitParameter("DbPsw");
-
-				conn = DriverManager.getConnection(dbUrl + dbName + "?user=" + dbUser + "&password=" + dbPsw + "&useUnicode=true&characterEncoding=UTF-8");
-				conn.setAutoCommit(true);
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
+		try {
+			Class.forName(driverClassName);
+			connection = DriverManager.getConnection(url, username, password);
+			connection.setAutoCommit(true);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -42,10 +40,11 @@ public class DB {
 	 * @param returnGeneratedKeys true - RETURN_GENERATED_KEYS flag is set, false - no flag is set
 	 */
 	PreparedStatement getPreparedStatement(String query, boolean returnGeneratedKeys) throws SQLException {
-		if(returnGeneratedKeys)
-			return conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-		else
-			return conn.prepareStatement(query);
+		if (returnGeneratedKeys) {
+			return connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+		} else {
+			return connection.prepareStatement(query);
+		}
 	}
 
 	/**
@@ -54,7 +53,7 @@ public class DB {
 	 * @param preparedStatement prepared statement with query and set all parameters.
 	 * @return ResultSet - data from database.
 	 */
-	ResultSet executeQuery(PreparedStatement preparedStatement){
+	ResultSet executeQuery(PreparedStatement preparedStatement) {
 		try {
 			preparedStatement.execute();
 			return preparedStatement.getResultSet();
@@ -69,7 +68,7 @@ public class DB {
 	 * @param preparedStatement prepared statement with query and set all parameters.
 	 * @return ResultSet - generated keys or null.
 	 */
-	ResultSet executeUpdate(PreparedStatement preparedStatement){
+	ResultSet executeUpdate(PreparedStatement preparedStatement) {
 		try {
 			preparedStatement.executeUpdate();
 			return preparedStatement.getGeneratedKeys();
@@ -84,13 +83,13 @@ public class DB {
 	 * @param sql - completed sql query
 	 * @return ResultSet - data from database
 	 */
-	ResultSet executeQuery(String sql){
-		try{
-			Statement stat = conn.createStatement();
+	ResultSet executeQuery(String sql) {
+		try {
+			Statement stat = connection.createStatement();
 			stat.execute(sql);
 			return stat.getResultSet();
 
-		}catch(SQLException | NullPointerException e){
+		} catch(SQLException | NullPointerException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -102,33 +101,12 @@ public class DB {
 	 * @return count of affected rows or -1 on SQLException and -2 on NullPointerException
 	 * */
 	int executeStatement(PreparedStatement preparedStatement) {
-
-		try{
+		try {
 			return preparedStatement.executeUpdate();
-		}catch(SQLException e){
+		} catch(SQLException e) {
 			e.printStackTrace();
 			return -1;
-		}catch (NullPointerException e){
-			e.printStackTrace();
-			return -2;
-		}
-	}
-
-
-	/**
-	 * Method execute sql query. Sql query can be INSERT, DELETE, UPDATE
-	 *
-	 * @return count of affected rows or -1 on SQLException and -2 on NullPointerException
-	 * */
-	int executeStatement(String sql) {
-
-		try{
-			Statement stat = conn.createStatement();
-			return stat.executeUpdate(sql);
-		}catch(SQLException e){
-			e.printStackTrace();
-			return -1;
-		}catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 			return -2;
 		}

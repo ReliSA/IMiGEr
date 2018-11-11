@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="APP_NAME" value="IMiGEr"/>
-<c:set var="APP_HOME_URL" value="${initParam.HOME_URL}"/>
+<c:set var="APP_NAME" value="${initParam.APP_NAME}"/>
+<c:set var="APP_HOME_URL" value="${initParam.APP_HOME_URL}"/>
 <c:set var="isLoggedIn" value="${sessionScope.isLoggedIn}"/>
 <c:set var="user" value="${sessionScope.user}"/>
 
@@ -86,7 +86,7 @@
 				<ul id="privateDiagramList">
 					<c:forEach items="${diagramsPrivate}" var="diagram">
 						<li>
-							<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
+							<a href="${APP_HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
 
 							<button class="button remove-diagram-button" data-id="${diagram.id}" data-name="${diagram.name}">
 								<img src="images/button_cancel.png" alt="odstranit">
@@ -102,7 +102,7 @@
 				<ul id="publicDiagramList">
 					<c:forEach items="${diagramsPublic}" var="diagram">
 						<li>
-							<a href="${HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
+							<a href="${APP_HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
 						</li>
 					</c:forEach>
 				</ul>

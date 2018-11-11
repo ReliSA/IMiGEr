@@ -55,7 +55,7 @@ public class UploadFiles extends BaseServlet {
         } else {
             request.getSession().setAttribute("json_graph", jsonData.get("file"));
             request.getSession().setAttribute("json_graph_type", jsonData.get("jsonFileFormat"));
-            response.sendRedirect(getServletContext().getInitParameter("HOME_URL") + "graph");
+            response.sendRedirect(getServletContext().getInitParameter("APP_HOME_URL") + "graph");
         }
     }
 }
