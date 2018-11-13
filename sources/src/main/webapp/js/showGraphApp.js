@@ -16,6 +16,7 @@ class ShowGraphApp extends App {
 		this.graphExporter = new GraphExporter;
 		this.zoom = new Zoom(0.8);
 		this.markSymbol = new MarkSymbol;
+		this.filter = new Filter;
 
 		/** @prop {array<Edge>} edgeList */
 		this.edgeList = [];
@@ -94,7 +95,8 @@ class ShowGraphApp extends App {
 		this.navbarComponent = new Navbar;
 		this.viewportComponent = new Viewport;
 		this.sidebarComponent = new Sidebar;
-		this.modalWindowComponent = new SaveDiagramModalWindow;
+		this.saveDiagramModalWindowComponent = new SaveDiagramModalWindow;
+		this.filterModalWindowComponent = new FilterModalWindow;
 		this.spinLoaderComponent = new SpinLoader;
 
 		const appElement = document.getElementById('app');
@@ -107,7 +109,8 @@ class ShowGraphApp extends App {
 			this.viewportComponent.render(),
 			this.sidebarComponent.render(),
 		]));
-		appElement.appendChild(this.modalWindowComponent.render());
+		appElement.appendChild(this.saveDiagramModalWindowComponent.render());
+		appElement.appendChild(this.filterModalWindowComponent.render());
 		appElement.appendChild(this.spinLoaderComponent.render());
 
 		this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.size;

@@ -44,6 +44,7 @@
 		<script src="js/components/attribute.js"></script>
 		<script src="js/components/edge.js"></script>
 		<script src="js/components/edgePopover.js"></script>
+		<script src="js/components/filterModalWindow.js"></script>
 		<script src="js/components/group.js"></script>
 		<script src="js/components/groupVertexList.js"></script>
 		<script src="js/components/header.js"></script>
@@ -74,6 +75,7 @@
 		<script src="js/events/loggedOutEvent.js"></script>
 		<script src="js/events/registeredEvent.js"></script>
 
+		<script src="js/services/filter.js"></script>
 		<script src="js/services/forceDirected.js"></script>
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>

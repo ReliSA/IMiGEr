@@ -13,6 +13,9 @@ class Navbar {
 			this._createSearchListItem(),
 			this._createSeparatorListItem(),
 
+			this._createFilterListItem(),
+			this._createSeparatorListItem(),
+
 			this._createSwitchModeListItem(),
 			this._createSeparatorListItem(),
 
@@ -162,6 +165,19 @@ class Navbar {
 			searchInput,
 			searchButton,
 			searchCounter,
+		]);
+	}
+
+	_createFilterListItem() {
+		const filterButton = DOM.h('button', {
+			class: 'filter',
+			id: 'filterButton',
+			innerText: 'Filter nodes',
+			onClick: () => app.filterModalWindowComponent.open(),
+		});
+
+		return DOM.h('li', {}, [
+			filterButton,
 		]);
 	}
 
@@ -353,7 +369,7 @@ class Navbar {
 			DOM.h('button', {
 				class: 'btn save-diagram',
 				title: 'Save diagram',
-				onClick: () => app.modalWindowComponent.open(),
+				onClick: () => app.saveDiagramModalWindowComponent.open(),
 			}, [
 				DOM.h('img', {
 					src: 'images/icon_save.png',

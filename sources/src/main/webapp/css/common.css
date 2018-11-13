@@ -14,11 +14,14 @@ ul {
 td {
 	padding: 0 0.8em;
 	line-height: 35px;
+	vertical-align: top;
 }
 
 form input[type="text"],
 form input[type="email"],
-form input[type="password"] {
+form input[type="number"],
+form input[type="password"],
+form select {
 	width: 150px;
 }
 
