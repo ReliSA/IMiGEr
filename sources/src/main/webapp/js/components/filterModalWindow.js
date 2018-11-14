@@ -529,6 +529,7 @@ class FilterModalWindow extends ModalWindow {
 									const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
 									const attributeValues = attribute[1].split(', ');
 
+									// some (at least one) of the attribute items should be contained in the filters
 									return attributeValues.some(attributeValue => {
 										return values.indexOf(attributeValue) > -1;
 									});
@@ -540,7 +541,8 @@ class FilterModalWindow extends ModalWindow {
 									const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
 									const attributeValues = attribute[1].split(', ');
 
-									return attributeValues.some(attributeValue => {
+									// every of the attribute items should not be contained in the filters (translated: none of the items should be contained in the filters)
+									return attributeValues.every(attributeValue => {
 										return values.indexOf(attributeValue) < 0;
 									});
 								};
@@ -553,7 +555,7 @@ class FilterModalWindow extends ModalWindow {
 							filterFunction = vertex => {
 								const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
 								const a = parseInt(attribute[1]);
-								const b = formData.get('value-from') !== '' ? Date.parse(formData.get('value-from')) : Date.now();
+								const b = formData.get('value-from') !== '' ? Date.parse(formData.get('value-from')) : 0;
 								const c = formData.get('value-to') !== '' ? Date.parse(formData.get('value-to')) : Date.now();
 								return (a >= b) && (a <= c);
 							};
@@ -571,7 +573,7 @@ class FilterModalWindow extends ModalWindow {
 
 							filterFunction = vertex => {
 								const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
-								return comparatorFn(new Date(attribute[1]), new Date(formData.get('value')));
+								return comparatorFn(new Date(parseInt(attribute[1])), new Date(formData.get('value')));
 							};
 						}
 						break;
