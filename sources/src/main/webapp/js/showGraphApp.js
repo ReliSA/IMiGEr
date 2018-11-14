@@ -16,7 +16,6 @@ class ShowGraphApp extends App {
 		this.graphExporter = new GraphExporter;
 		this.zoom = new Zoom(0.8);
 		this.markSymbol = new MarkSymbol;
-		this.filter = new Filter;
 
 		/** @prop {array<Edge>} edgeList */
 		this.edgeList = [];

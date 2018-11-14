@@ -75,7 +75,15 @@
 		<script src="js/events/loggedOutEvent.js"></script>
 		<script src="js/events/registeredEvent.js"></script>
 
-		<script src="js/services/filter.js"></script>
+		<script src="js/services/filters/AbstractFilter.js"></script>
+		<script src="js/services/filters/DateFilterOperation.js"></script>
+		<script src="js/services/filters/EnumFilterOperation.js"></script>
+		<script src="js/services/filters/FilterDataType.js"></script>
+		<script src="js/services/filters/NodeTypeFilter.js"></script>
+		<script src="js/services/filters/NumberFilterOperation.js"></script>
+		<script src="js/services/filters/StringFilterOperation.js"></script>
+		<script src="js/services/filters/VertexArchetypeFilter.js"></script>
+		<script src="js/services/filters/VertexAttributeFilter.js"></script>
 		<script src="js/services/forceDirected.js"></script>
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>

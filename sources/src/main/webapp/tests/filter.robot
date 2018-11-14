@@ -15,7 +15,7 @@ ${filterButton}						//button[@id="filterButton"]
 ${filterModalWindow}				//div[contains(@class, "filter-modal")]
 ${filterModalWindowCloseButton}		${filterModalWindow}//button[contains(@class, "close-button")]
 
-${baseFilterDropdown}				${filterModalWindow}//select[@name="filter"]
+${baseFilterDropdown}				${filterModalWindow}//select[@name="baseFilter"]
 ${additionalFilterDropdown}			${filterModalWindow}//select[@name="additionalFilter"]
 ${operationDropdown}				${filterModalWindow}//select[@name="operation"]
 
@@ -54,7 +54,7 @@ Close filter modal by backdrop click
 
 Focus form fields
 	Click Button					${filterButton}
-	Click Element					${filterModalWindow}//label[@for="filter"]
+	Click Element					${filterModalWindow}//label[@for="baseFilter"]
 	Element Should Be Focused		${baseFilterDropdown}
 	Click Element					${filterModalWindow}//label[@for="operation"]
 	Element Should Be Focused		${operationDropdown}
