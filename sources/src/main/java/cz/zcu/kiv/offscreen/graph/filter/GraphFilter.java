@@ -3,6 +3,7 @@ package cz.zcu.kiv.offscreen.graph.filter;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -88,8 +89,8 @@ public class GraphFilter {
         REGULAR_EXPRESSION
     }
 
-    private VertexArchetypeFilter vertexArchetypeFilter;
-    private EdgeArchetypeFilter edgeArchetypeFilter;
+    private VertexArchetypeFilter vertexArchetypeFilter = new VertexArchetypeFilter(new ArrayList<>(), ArchetypeMatchType.NON_MATCHING);
+    private EdgeArchetypeFilter edgeArchetypeFilter = new EdgeArchetypeFilter(new ArrayList<>(), ArchetypeMatchType.NON_MATCHING);
 
     /**
      * key is the vertex archetype index, value is the filter object
@@ -118,11 +119,15 @@ public class GraphFilter {
     }
 
     public void setVertexArchetypeFilter(List<Integer> archetypeIndices, ArchetypeMatchType matchType) {
-        vertexArchetypeFilter = new VertexArchetypeFilter(archetypeIndices, matchType);
+        vertexArchetypeFilter.archetypeIndeces.clear();
+        vertexArchetypeFilter.archetypeIndeces.addAll(archetypeIndices);
+        vertexArchetypeFilter.matchType = matchType;
     }
 
     public void setEdgeArchetypeFilter(List<EdgeArchetypeInfo> archetypeIndices, ArchetypeMatchType matchType) {
-        edgeArchetypeFilter = new EdgeArchetypeFilter(archetypeIndices, matchType);
+        edgeArchetypeFilter.archetypeIndeces.clear();
+        edgeArchetypeFilter.archetypeIndeces.addAll(archetypeIndices);
+        edgeArchetypeFilter.matchType = matchType;
     }
 
     public void setVertexNumberAttributeFilter(int archetypeIndex, int attributeTypeIndex, BigDecimal min, BigDecimal max, boolean minInclusive, boolean maxInclusive, NumberMatchType matchType) {

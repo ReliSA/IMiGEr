@@ -67,7 +67,7 @@ public class JSONConfigLoader {
 
             createEdgeAttributeFilters(filter, edgeAttributeFilterStrings);
 
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -347,15 +347,16 @@ public class JSONConfigLoader {
     public Map<String, String> loadArchetypeIcons() {
         Map<String, String> archetypeIcons = new HashMap<>();
 
-        JSONArray archetypeIconsJson = json.getJSONArray("archetypeIcons");
-        for (int i = 0; i < archetypeIconsJson.size(); i++) {
-            JSONObject icon = archetypeIconsJson.getJSONObject(i);
-            String archetypeName = icon.getString("name");
-            String iconSvg = icon.getString("value");
+        if (json != null){
+            JSONArray archetypeIconsJson = json.getJSONArray("archetypeIcons");
+            for (int i = 0; i < archetypeIconsJson.size(); i++) {
+                JSONObject icon = archetypeIconsJson.getJSONObject(i);
+                String archetypeName = icon.getString("name");
+                String iconSvg = icon.getString("value");
 
-            archetypeIcons.put(archetypeName, iconSvg);
+                archetypeIcons.put(archetypeName, iconSvg);
+            }
         }
-
         return archetypeIcons;
     }
 
@@ -366,10 +367,12 @@ public class JSONConfigLoader {
     public List<Integer> loadGroupArchetypes() {
         List<Integer> defaultGroupArchetypes = new ArrayList<>();
 
-        JSONArray defaultGroupArchetypesJson = json.getJSONArray("defaultGroupArchetypes");
-        for (int i = 0; i < defaultGroupArchetypesJson.size(); i++) {
-            String archetype = defaultGroupArchetypesJson.get(i).toString();
-            defaultGroupArchetypes.add(graphManager.getVertexArchetypeIndex(archetype));
+        if(json != null) {
+            JSONArray defaultGroupArchetypesJson = json.getJSONArray("defaultGroupArchetypes");
+            for (int i = 0; i < defaultGroupArchetypesJson.size(); i++) {
+                String archetype = defaultGroupArchetypesJson.get(i).toString();
+                defaultGroupArchetypes.add(graphManager.getVertexArchetypeIndex(archetype));
+            }
         }
 
         return defaultGroupArchetypes;
@@ -382,9 +385,11 @@ public class JSONConfigLoader {
     public List<String> loadGroupArchetypesStrings(){
         List<String> groupArchetypes = new ArrayList<>();
 
-        JSONArray defaultGroupArchetypesJson = json.getJSONArray("defaultGroupArchetypes");
-        for (Object jsonItem : defaultGroupArchetypesJson) {
-            groupArchetypes.add(jsonItem.toString());
+        if (json != null) {
+            JSONArray defaultGroupArchetypesJson = json.getJSONArray("defaultGroupArchetypes");
+            for (Object jsonItem : defaultGroupArchetypesJson) {
+                groupArchetypes.add(jsonItem.toString());
+            }
         }
         return groupArchetypes;
     }
