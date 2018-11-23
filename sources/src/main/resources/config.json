@@ -1,0 +1,97 @@
+{
+  "defaultFilter": {
+    "vertexArchetypeFilter": {
+      "archetypes": [ "Ticket", "Person", "Wiki", "File"],
+      "matchType": "matching"
+    },
+
+    "edgeArchetypeFilter": {
+      "archetypes": [
+        {
+          "fromArchetypes": [ "Person" ],
+          "edgeArchetypes": [ "Authorship" ],
+          "toArchetypes": [ "Ticket", "File" ]
+        },
+        {
+          "fromArchetypes": [ "Person" ],
+          "edgeArchetypes": [ "Assignment" ],
+          "toArchetypes": [ "Ticket" ]
+        },
+        {
+          "fromArchetypes": [ "File", "Ticket", "Wiki" ],
+          "edgeArchetypes": [ "ItemRelation" ],
+          "toArchetypes": [ "File", "Ticket", "Wiki" ]
+        },
+        {
+          "fromArchetypes": [ "Person" ],
+          "edgeArchetypes": [ "Modification" ],
+          "toArchetypes": [ "Wiki" ]
+        }
+      ],
+      "matchType": "matching"
+    },
+
+    "vertexAttributeFilters": [
+      {
+        "archetype": "Ticket",
+        "attributeName": "Status super class",
+        "filter": {
+          "values": [ "OPEN" ],
+          "matchType": "any"
+        }
+      },
+      {
+        "archetype": "Person",
+        "attributeName": "Role super classes",
+        "filter": {
+          "values": [ "TEAMMEMBER" ],
+          "matchType": "any"
+        }
+      }
+    ],
+
+    "edgeAttributeFilters": [
+      {
+        "archetype": "Modification",
+        "attributeName": "Relation",
+        "filter": {
+          "values": [ "last modified by", "last modified" ],
+          "matchType": "any"
+        }
+      }
+    ]
+  },
+
+  "defaultGroupArchetypes": [ "File", "Commit", "RepoFile"],
+
+  "archetypeIcons": [
+    {
+      "name" : "Person",
+      "value" : "<circle r=\"3\" cx=\"6\" cy=\"3\" fill=\"black\" stroke-width=\"0\"\/><path d=\"M 1 10 A 6 4 0 0 1 11 10 L 11 15 L 1 15\" fill=\"black\" stroke-width=\"0\"\/>"
+    },
+    {
+      "name" : "Wiki",
+      "value" : "<text x=\"6\" y=\"7\" font-weight=\"bold\" style=\"font-family: serif !important; text-anchor: middle\">W<\/text>"
+    },
+    {
+      "name" : "Commit",
+      "value" : "<circle r=\"4\" cx=\"6\" cy=\"7.5\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"2\"\/><line x1=\"6\" y1=\"1\" x2=\"6\" y2=\"3.5\" stroke=\"black\" stroke-width=\"2\" stroke-linecap=\"round\"\/><line x1=\"6\" y1=\"11.5\" x2=\"6\" y2=\"14\" stroke=\"black\" stroke-width=\"2\" stroke-linecap=\"round\"\/>"
+    },
+    {
+      "name" : "File",
+      "value" : "<polygon points=\"0.5,0.5 7.5,0.5 11.5,4.5 11.5,14.5 0.5,14.5\" fill=\"white\" stroke=\"black\" stroke-linejoin=\"round\" \/><polygon points=\"7.5,0.5 11.5,4.5 7.5,4.5\" fill=\"gray\" stroke=\"black\" stroke-linejoin=\"round\" \/>"
+    },
+    {
+      "name" : "RepoFile",
+      "value" :"<polygon points=\"0.5,0.5 7.5,0.5 11.5,4.5 11.5,14.5 0.5,14.5\" fill=\"white\" stroke=\"black\" stroke-linejoin=\"round\" \/><polygon points=\"7.5,0.5 11.5,4.5 7.5,4.5\" fill=\"gray\" stroke=\"black\" stroke-linejoin=\"round\" \/><ellipse cx=\"5\" cy=\"7\" rx=\"3\" ry=\"1\" stroke=\"black\" fill=\"transparent\" stroke-width=\"0.5\"\/><path d=\"M 2 7 L 2 12 A 3 1 0 0 0 8 12 L 8 7\" stroke-width=\"0.5\" stroke=\"black\" fill=\"transparent\"\/><path d=\"M 2 8.66 A 3 1 0 0 0 8 8.66\" stroke-width=\"0.5\" stroke=\"black\" fill=\"transparent\"\/><path d=\"M 2 10.33 A 3 1 0 0 0 8 10.33\" stroke-width=\"0.5\" stroke=\"black\" fill=\"transparent\"\/>"
+    },
+    {
+      "name" : "Ticket",
+      "value" : "<path d=\"M 1 0 L 3 0 A 2 1 0 0 0 9 0 L 11 0, 11 15, 9 15 A 2 1 0 0 0 3 15 L 1 15 Z\" stroke=\"black\" fill=\"none\" stroke-linejoin=\"round\"\/><line x1=\"1\" y1=\"6\" x2=\"11\" y2=\"6\" stroke=\"black\" stroke-width=\"0.5\" stroke-dasharray=\"1,1\" stroke-linecap=\"round\"\/>"
+    },
+    {
+      "name" : "Change",
+      "value" : "<polygon points=\"1,4 5,4 3,1\" fill=\"black\" stroke=\"black\" stroke-linejoin=\"round\" \/><line x1=\"3\" y1=\"2\" x2=\"3\" y2=\"13\" stroke=\"black\"\/><polygon points=\"7,11 11,11 9,14\" fill=\"black\" stroke=\"black\" stroke-linejoin=\"round\" \/><line x1=\"9\" y1=\"2\" x2=\"9\" y2=\"13\" stroke=\"black\"\/>"
+    }
+  ]
+}
