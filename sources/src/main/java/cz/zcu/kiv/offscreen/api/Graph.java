@@ -1,6 +1,7 @@
 package cz.zcu.kiv.offscreen.api;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class Graph {
     private String highlightedVertex; // group-ID, vertex-ID
     private String highlightedEdge;
 
-    private Logger logger = Logger.getLogger(Graph.class);
+    private static final Logger logger = LogManager.getLogger();
 
     public Graph() {
         vertices = new HashSet<>();

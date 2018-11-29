@@ -1,6 +1,7 @@
 package cz.zcu.kiv.offscreen.session;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.*;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import java.util.Arrays;
  */
 public class SessionManager implements HttpSessionListener {
 
-    private static Logger logger = Logger.getLogger(SessionManager.class);
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * Get session value.

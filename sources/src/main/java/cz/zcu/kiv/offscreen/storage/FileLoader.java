@@ -3,7 +3,8 @@ package cz.zcu.kiv.offscreen.storage;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ public class FileLoader {
     private static final int MAX_FILE_SIZE = 512000000;
     private static final String ACCEPTED_EXTENSION_FILE = "json";
 
-    private Logger logger = Logger.getLogger(FileLoader.class);
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * Get multipart data from request which was send and return it as a map where key is field name from form and
