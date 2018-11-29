@@ -29,7 +29,11 @@ public class EdgeArchetypeInfo {
 
     @Override
     public boolean equals(Object obj) {
+        if(!(obj instanceof  EdgeArchetypeInfo)) return false;
+        
         EdgeArchetypeInfo info = (EdgeArchetypeInfo)obj;
-        return (info.fromArchetypeIndex == fromArchetypeIndex) && (info.edgeArchetypeIndex == edgeArchetypeIndex) && (info.toArchetypeIndex == toArchetypeIndex);
+        return (info.fromArchetypeIndex == fromArchetypeIndex) &&
+                (info.edgeArchetypeIndex == edgeArchetypeIndex) &&
+                (info.toArchetypeIndex == toArchetypeIndex);
     }
 }

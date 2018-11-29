@@ -361,16 +361,16 @@ public class GraphManager {
         List<Integer> archetypesFiltered = vertexArchetypeFilter.archetypeIndeces;
         switch (vertexArchetypeFilter.matchType) {
             case MATCHING:
-                for (Integer vertexArchetypeIndex : vertices.keySet()){
-                    if (archetypesFiltered.contains(vertexArchetypeIndex)) {
-                        resultVertices.addAll(vertices.get(vertexArchetypeIndex));
+                for (Map.Entry<Integer, HashSet<VertexImpl>> vertexArchetypeEntry : vertices.entrySet()){
+                    if (archetypesFiltered.contains(vertexArchetypeEntry.getKey())) {
+                        resultVertices.addAll(vertexArchetypeEntry.getValue());
                     }
                 }
                 break;
             case NON_MATCHING:
-                for (Integer vertexArchetypeIndex : vertices.keySet()){
-                    if (!archetypesFiltered.contains(vertexArchetypeIndex)) {
-                        resultVertices.addAll(vertices.get(vertexArchetypeIndex));
+                for (Map.Entry<Integer, HashSet<VertexImpl>> vertexArchetypeEntry : vertices.entrySet()){
+                    if (!archetypesFiltered.contains(vertexArchetypeEntry.getKey())) {
+                        resultVertices.addAll(vertexArchetypeEntry.getValue());
                     }
                 }
                 break;
@@ -394,16 +394,16 @@ public class GraphManager {
         List<EdgeArchetypeInfo> edgeInfosFiltered = edgeArchetypeFilter.archetypeIndeces;
         switch (edgeArchetypeFilter.matchType) {
             case MATCHING:
-                for (EdgeArchetypeInfo edgeInfo : edges.keySet()){
-                    if (edgeInfosFiltered.contains(edgeInfo)) {
-                        resultEdges.addAll(edges.get(edgeInfo));
+                for (Map.Entry<EdgeArchetypeInfo, List<EdgeImpl>> edgeEntry : edges.entrySet()){
+                    if (edgeInfosFiltered.contains(edgeEntry.getKey())) {
+                        resultEdges.addAll(edgeEntry.getValue());
                     }
                 }
                 break;
             case NON_MATCHING:
-                for (EdgeArchetypeInfo edgeInfo : edges.keySet()){
-                    if (!edgeInfosFiltered.contains(edgeInfo)) {
-                        resultEdges.addAll(edges.get(edgeInfo));
+                for (Map.Entry<EdgeArchetypeInfo, List<EdgeImpl>> edgeEntry : edges.entrySet()){
+                    if (!edgeInfosFiltered.contains(edgeEntry.getKey())) {
+                        resultEdges.addAll(edgeEntry.getValue());
                     }
                 }
                 break;
@@ -450,8 +450,9 @@ public class GraphManager {
         }
 
         int idCounter = 1;
-        for (EdgeImpl edgeImpl : edgeSet.keySet()) {
-            Edge edge = new Edge(idCounter++, edgeImpl.getFrom(), edgeImpl.getTo(), edgeImpl.getText(), edgeSet.get(edgeImpl));
+        for (Map.Entry<EdgeImpl, List<SubedgeInfo>> edgeEntry : edgeSet.entrySet()) {
+            EdgeImpl edgeImpl = edgeEntry.getKey();
+            Edge edge = new Edge(idCounter++, edgeImpl.getFrom(), edgeImpl.getTo(), edgeImpl.getText(), edgeEntry.getValue());
             graph.getEdges().add(edge);
         }
     }
@@ -465,10 +466,10 @@ public class GraphManager {
     private void addVertexArchetypes(Graph graph, Map<String, String> archetypeIcons){
 
         for(VertexArchetype archetype : vertexArchetypes){
-            for(String archetypeName : archetypeIcons.keySet()){
+            for(Map.Entry<String, String> archetypeIconEntry : archetypeIcons.entrySet()){
 
-                if(archetype.name.equals(archetypeName)){
-                    archetype.icon = archetypeIcons.get(archetypeName);
+                if(archetype.name.equals(archetypeIconEntry.getKey())){
+                    archetype.icon = archetypeIconEntry.getValue();
                     break;
                 }
             }

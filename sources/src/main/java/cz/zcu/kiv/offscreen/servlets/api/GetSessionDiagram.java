@@ -67,7 +67,7 @@ public class GetSessionDiagram extends BaseServlet {
      * Convert input spade JSON to frontend backend JSON and return it.
      */
     private String convertSpadeToRawJson(String spadeJson) {
-        GraphManager graphManager = new GraphJSONDataLoader(spadeJson).LoadData();
+        GraphManager graphManager = new GraphJSONDataLoader(spadeJson).loadData();
         JSONConfigLoader configLoader = new JSONConfigLoader(graphManager);
 
         Graph graph = graphManager.createGraph(configLoader);

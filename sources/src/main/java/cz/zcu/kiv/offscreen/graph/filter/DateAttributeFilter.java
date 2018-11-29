@@ -10,8 +10,8 @@ public class DateAttributeFilter implements ITypeAttributeFilter {
     private GraphFilter.DateMatchType matchType;
 
     public DateAttributeFilter(Date min, Date max, boolean minInclusive, boolean maxInclusive, GraphFilter.DateMatchType matchType) {
-        this.min = min;
-        this.max = max;
+        this.min = new Date(min.getTime());
+        this.max = new Date(max.getTime());
         this.minInclusive = minInclusive;
         this.maxInclusive = maxInclusive;
         this.matchType = matchType;
@@ -36,11 +36,11 @@ public class DateAttributeFilter implements ITypeAttributeFilter {
     }
 
     public Date getMin() {
-        return min;
+        return new Date(min.getTime());
     }
 
     public Date getMax() {
-        return max;
+        return new Date(max.getTime());
     }
 
     public boolean isMinInclusive() {

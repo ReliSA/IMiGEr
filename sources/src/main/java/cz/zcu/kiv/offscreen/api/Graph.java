@@ -1,8 +1,8 @@
 package cz.zcu.kiv.offscreen.api;
 
-import java.util.*;
-
 import org.apache.log4j.Logger;
+
+import java.util.*;
 
 /**
  * Class represents graph with all information about graph plus information about state in which used store graph.
@@ -87,8 +87,8 @@ public class Graph {
 
     public void setPossibleEnumValues(Map<Integer, List<String>> possibleEnumValues) {
         this.possibleEnumValues = new HashMap<>();
-        for (Integer index : possibleEnumValues.keySet()) {
-            this.possibleEnumValues.put("" + index, possibleEnumValues.get(index));
+        for (Map.Entry<Integer, List<String>> entry : possibleEnumValues.entrySet()) {
+            this.possibleEnumValues.put("" + entry.getKey(), entry.getValue());
         }
     }
 

@@ -21,7 +21,7 @@ public class GraphFilterTest {
 
     @BeforeAll
     static void initTest() {
-        graphManager = new GraphJSONDataLoader(new File("data/test1.json")).LoadData();
+        graphManager = new GraphJSONDataLoader(new File("data/test1.json")).loadData();
     }
 
     @Test

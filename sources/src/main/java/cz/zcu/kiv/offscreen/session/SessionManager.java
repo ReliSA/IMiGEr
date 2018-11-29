@@ -3,6 +3,7 @@ package cz.zcu.kiv.offscreen.session;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.*;
+import java.util.Arrays;
 
 /**
  *
@@ -21,7 +22,7 @@ public class SessionManager implements HttpSessionListener {
     public static String getSessionValue(HttpServletRequest request, String sessionName) {
         String sessionValue = "";
         Cookie[] cookies = request.getCookies();
-        logger.debug("*" + cookies + "*");
+        logger.debug("*" + Arrays.toString(cookies)+ "*");
 
         if (cookies != null) {
             logger.debug(cookies.length);

@@ -52,7 +52,7 @@ public class GraphJSONDataLoader {
      *
      * @return GraphManager of loaded graph or null.
      */
-    public GraphManager LoadData() {
+    public GraphManager loadData() {
         this.graphManager = new GraphManager();
 
         if(Strings.isNullOrEmpty(loadedJSON)) {
