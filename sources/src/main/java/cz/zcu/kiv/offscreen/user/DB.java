@@ -1,5 +1,8 @@
 package cz.zcu.kiv.offscreen.user;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.servlet.ServletContext;
 import java.sql.*;
 
@@ -11,6 +14,8 @@ import java.sql.*;
  */
 
 public class DB {
+
+	private static final Logger logger = LogManager.getLogger();
 	private Connection connection;
 	
 	/**
@@ -27,7 +32,7 @@ public class DB {
 			connection = DriverManager.getConnection(url, username, password);
 			connection.setAutoCommit(true);
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			logger.error("Can not open database connection: ", e);
 		}
 	}
 
@@ -56,7 +61,7 @@ public class DB {
 			preparedStatement.execute();
 			return preparedStatement.getResultSet();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Can not execute database query: ", e);
 		}
 		return null;
 	}
@@ -71,7 +76,7 @@ public class DB {
 			preparedStatement.executeUpdate();
 			return preparedStatement.getGeneratedKeys();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Can not execute database query: ", e);
 		}
 		return null;
 	}
@@ -88,7 +93,7 @@ public class DB {
 			return stat.getResultSet();
 
 		} catch(SQLException | NullPointerException e) {
-			e.printStackTrace();
+			logger.error("Can not execute database query: ", e);
 		}
 		return null;
 	}
@@ -102,10 +107,10 @@ public class DB {
 		try {
 			return preparedStatement.executeUpdate();
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.error("Can not execute database query: ", e);
 			return -1;
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+			logger.error("Can not execute database query: ", e);
 			return -2;
 		}
 	}

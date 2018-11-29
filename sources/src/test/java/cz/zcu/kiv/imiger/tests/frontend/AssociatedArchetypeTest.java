@@ -1,5 +1,7 @@
 package cz.zcu.kiv.imiger.tests.frontend;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,6 +15,7 @@ import java.util.List;
 
 
 class AssociatedArchetypeTest {
+    private static final Logger logger = LogManager.getLogger();
     private static WebDriver browser;
 
     @BeforeAll
@@ -63,27 +66,27 @@ class AssociatedArchetypeTest {
      * @param expectedArchetypeIconTexts Texts of all the associated archetype icons that are expected to occur
      */
     private void checkVisibilityOfIcons(String elementId, List<String> expectedArchetypes, List<String> expectedArchetypeIconTexts) {
-        System.out.println("Checking element " + elementId);
+        logger.debug("Checking element " + elementId);
         WebElement vertex = browser.findElement(By.cssSelector("[data-id='vertices']"))
                 .findElement(By.cssSelector("[data-id='" + elementId + "']"));
 
         List<WebElement> associatedArchetypeIcons = vertex.findElement(By.tagName("g")).
                 findElements(By.className("archetype-icon"));
 
-        System.out.println("Associated archetypes: \n");
+        logger.debug("Associated archetypes: \n");
         Assertions.assertEquals(associatedArchetypeIcons.size(), expectedArchetypeIconTexts.size());
 
         for (int i = 0; i < expectedArchetypeIconTexts.size(); i++) {
             WebElement icon = associatedArchetypeIcons.get(i);
 
             String iconHref = icon.getAttribute("href");
-            System.out.println("Icon href: " + iconHref+"\n");
+            logger.debug("Icon href: " + iconHref+"\n");
             Assertions.assertEquals("#vertexArchetypeIcon-" + expectedArchetypes.get(i), iconHref);
 
 
             WebElement iconDef = browser.findElement(By.id("vertexArchetypeIcon-" + expectedArchetypes.get(i)));
 
-            System.out.println("Testing if icon contains specific text");
+            logger.debug("Testing if icon contains specific text");
             Assertions.assertEquals(expectedArchetypeIconTexts.get(i), iconDef.getText());
         }
     }
@@ -95,7 +98,7 @@ class AssociatedArchetypeTest {
      * @param expectedHighlightedVertexIds Ids of all the vertices that are expected to be highlighted
      */
     private void checkHighlightedVertices(String vertexId, String archetypeName, List<String> expectedHighlightedVertexIds) {
-        System.out.println("\nChecking associated vertices of vertex: " + vertexId + " for archetype icon with : " + archetypeName);
+        logger.debug("\nChecking associated vertices of vertex: " + vertexId + " for archetype icon with : " + archetypeName);
 
         WebElement vertex = browser.findElement(By.cssSelector("[data-id='vertices']"))
                 .findElement(By.cssSelector("[data-id='" + vertexId + "']"));
@@ -115,12 +118,12 @@ class AssociatedArchetypeTest {
 
         List<WebElement> highlightedVertices = browser.findElements(By.className("node--highlighted-archetype"));
 
-        System.out.println("Number of highlighted vertices: " + highlightedVertices.size());
+        logger.debug("Number of highlighted vertices: " + highlightedVertices.size());
         Assertions.assertEquals(expectedHighlightedVertexIds.size(), highlightedVertices.size());
 
         for(int i = 0; i < highlightedVertices.size(); i++) {
             String id = highlightedVertices.get(i).getAttribute("data-id");
-            System.out.println(id);
+            logger.debug(id);
 
             Assertions.assertEquals(expectedHighlightedVertexIds.get(i), id);
         }

@@ -1,5 +1,7 @@
 package cz.zcu.kiv.imiger.tests.frontend;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 class ArchetypeIconConfigTest {
+    private static final Logger logger = LogManager.getLogger();
     private static WebDriver browser;
 
     @BeforeAll
@@ -23,9 +26,9 @@ class ArchetypeIconConfigTest {
     void SpecifiedValueDefinition(){
         WebElement iconDef = browser.findElement(By.id("vertexArchetypeIcon-SpecifiedIcon"));
 
-        System.out.println("Trying to locate an element with class 'testingArchetypeIcon'");
+        logger.debug("Trying to locate an element with class 'testingArchetypeIcon'");
         iconDef.findElement(By.className("testingArchetypeIcon"));
-        System.out.println("Element found.");
+        logger.debug("Element found.");
     }
 
     @Test
@@ -70,7 +73,7 @@ class ArchetypeIconConfigTest {
         WebElement iconDef = browser.findElement(By.id("vertexArchetypeIcon-" + iconName))
                 .findElement(By.tagName("text"));
 
-        System.out.println("Testing if icon contains specific text");
+        logger.debug("Testing if icon contains specific text");
         Assertions.assertEquals(iconName.substring(0,1), iconDef.getText());
     }
 

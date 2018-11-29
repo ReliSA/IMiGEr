@@ -1,5 +1,8 @@
 package cz.zcu.kiv.offscreen.user;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +18,8 @@ import java.util.Map;
  * @author Tomáš Šimandl
  */
 public class Diagram {
+    private static final Logger logger = LogManager.getLogger();
+
     private DB db = null;
     private int id = 0;
 
@@ -52,7 +57,7 @@ public class Diagram {
                 return rs.getInt("user_id");
             }
         }  catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Can not get owner id: ", e);
         }
         return -1;
     }
@@ -72,7 +77,7 @@ public class Diagram {
                 return rs.getString("public").equals("1");
             }
         }  catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Can not check if diagram is public: ", e);
         }
         return false;
     }
@@ -91,7 +96,7 @@ public class Diagram {
                 return rs.getString("graph_json");
             }
         }  catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Can not get json of diagram: ", e);
         }
         return "";
     }
@@ -114,7 +119,7 @@ public class Diagram {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can not get diagram: ", e);
         }
 
         return Collections.emptyMap();
@@ -166,7 +171,7 @@ public class Diagram {
                 db.executeStatement(pst);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can not update diagram: ", e);
         }
     }
 
@@ -184,7 +189,7 @@ public class Diagram {
             db.executeStatement(pst);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can not delete diagram: ", e);
         }
     }
 
@@ -229,7 +234,7 @@ public class Diagram {
             return diagram_list;
 
         } catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Can not create map from input result set: ", e);
         }
 
         return new ArrayList<>();

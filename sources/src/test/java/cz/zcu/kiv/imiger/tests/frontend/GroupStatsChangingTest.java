@@ -1,5 +1,7 @@
 package cz.zcu.kiv.imiger.tests.frontend;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import java.util.*;
 
 class GroupStatsChangingTest {
+    private static final Logger logger = LogManager.getLogger();
     private static WebDriver browser;
 
     @BeforeAll
@@ -29,10 +32,10 @@ class GroupStatsChangingTest {
                 .findElement(By.cssSelector("[data-id='3']"));
 
         SeleniumUtil.svgRectClick(firstExcludedVertex);
-        System.out.println("Exclude vertex3 to group as first vertex of group");
+        logger.debug("Exclude vertex3 to group as first vertex of group");
 
         excludeToExistingGroup("2");
-        System.out.println("Exclude vertex2 to group");
+        logger.debug("Exclude vertex2 to group");
 
         //get data-id of fgroup
         groupId = browser.findElement(By.id("excludedNodeListComponent"))
@@ -46,21 +49,21 @@ class GroupStatsChangingTest {
 //        EXCLUDING VERTICES FROM GROUPS IS NOT SUPPORTED YET
 //        excludeToExistingGroup("1");
 //        compareExpectedValues(groupId, new ArrayList<String>(Arrays.asList("2","2","0","2")));
-//        System.out.println("Exclude vertex1 to group");
+//        logger.debug("Exclude vertex1 to group");
 //
-//        System.out.println("Remove vertex2 to group");
+//        logger.debug("Remove vertex2 to group");
 //        removeVertexFromGroup("li2");
 //        compareExpectedValues(groupId, new ArrayList<String>(Arrays.asList("1","2","0","2")));
 //
-//        System.out.println("Switch off stats for vertex1");
+//        logger.debug("Switch off stats for vertex1");
 //        toogleVertexInGroup("li1");
 //        compareExpectedValues(groupId, new ArrayList<String>(Arrays.asList("1","0","0","0")));
 //
-//        System.out.println("Switch off stats for vertex3");
+//        logger.debug("Switch off stats for vertex3");
 //        toogleVertexInGroup("li3");
 //        compareExpectedValues(groupId, new ArrayList<String>(Arrays.asList("0","0","0","0")));
 //
-//        System.out.println("Switch on stats for vertex1");
+//        logger.debug("Switch on stats for vertex1");
 //        toogleVertexInGroup("li3");
 //        excludeToExistingGroup("vertex2");
 //        compareExpectedValues(groupId, new ArrayList<String>(Arrays.asList("2","0","0","0")));
@@ -69,17 +72,17 @@ class GroupStatsChangingTest {
 //        String archetypePrefix = "v_archetype_4_";
 //        SeleniumUtil.switchToExcludeMode();
 //        WebElement singleEcludedVertex = browser.findElement(By.id("vertex4"));
-//        System.out.println("Exclude vertex4 to group as first vertex of group");
+//        logger.debug("Exclude vertex4 to group as first vertex of group");
 //        SeleniumUtil.svgClick(singleEcludedVertex);
 //
-//        System.out.println("Checking group statistics");
+//        logger.debug("Checking group statistics");
 //        String actualValue1 = browser.findElement(By.id(archetypePrefix + "0")).findElement(By.tagName("text")).getText();
 //        String actualValue2 = browser.findElement(By.id(archetypePrefix + "2")).findElement(By.tagName("text")).getText();
 //        Assertions.assertEquals(actualValue1, "2");
 //        Assertions.assertEquals(actualValue2, "1");
 //
-//        System.out.println("Expected: 2 - Real: " + actualValue1);
-//        System.out.println("Expected: 1 - Real: " + actualValue2);
+//        logger.debug("Expected: 2 - Real: " + actualValue1);
+//        logger.debug("Expected: 1 - Real: " + actualValue2);
 
     }
 
@@ -120,7 +123,7 @@ class GroupStatsChangingTest {
      * @param expectedValues list of expected values
      */
     private void compareExpectedValues(String groupId, Map<String, String> expectedValues){
-        System.out.println("Checking group statistics");
+        logger.debug("Checking group statistics");
         String archetypePrefix = "#vertexArchetypeIcon-";
 
         WebElement nodeList = browser.findElement(By.id("excludedNodeListComponent"))

@@ -1,4 +1,7 @@
 package cz.zcu.kiv.offscreen.user;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +16,9 @@ import java.util.Map;
  *
  */
 public class User {
+
+	private static final Logger logger = LogManager.getLogger();
+
 	private DB db = null;
 	private int id = 0;
 
@@ -55,7 +61,7 @@ public class User {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Can not login user: ", e);
 		}
 
 		return false;
@@ -91,7 +97,7 @@ public class User {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Can not register user: ", e);
 		}
 	}
 
@@ -123,7 +129,7 @@ public class User {
 				this.id = 0;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Can not get user: ", e);
 		}
 
 		return Collections.emptyMap();
@@ -152,7 +158,7 @@ public class User {
 				db.executeStatement(pst);
 
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("Can not get user session: ", e);
 			}
 		}
 	}
@@ -174,7 +180,7 @@ public class User {
 
 				db.executeStatement(pst);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("Can not update user: ", e);
 			}
 		}
 	}
@@ -192,7 +198,7 @@ public class User {
 					return rs.getString("nick");
 				}
 			}  catch (SQLException e){
-				e.printStackTrace();
+				logger.error("Can not get users nick name: ", e);
 			}
 		}
 
@@ -234,7 +240,7 @@ public class User {
 				return true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("Can not check if user exits: ", e);
 		}
 
 		return false;

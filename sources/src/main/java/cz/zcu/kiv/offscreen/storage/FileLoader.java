@@ -51,7 +51,7 @@ public class FileLoader {
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("Can not load file from request: ", ex);
         }
         return resultMap;
     }

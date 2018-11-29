@@ -8,6 +8,8 @@ import cz.zcu.kiv.offscreen.graph.filter.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +26,7 @@ import java.util.*;
  * @author Stepan Baratta
  */
 public class JSONConfigLoader {
+    private static final Logger logger = LogManager.getLogger();
 
     private GraphManager graphManager;
     private JSONObject json;
@@ -68,7 +71,7 @@ public class JSONConfigLoader {
             createEdgeAttributeFilters(filter, edgeAttributeFilterStrings);
 
         } catch (IOException | NullPointerException e) {
-            e.printStackTrace();
+            logger.warn("Can not load file with configuration. No configuration will be used. Exception: ", e);
         }
 
         return filter;

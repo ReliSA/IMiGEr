@@ -1,5 +1,7 @@
 package cz.zcu.kiv.imiger.tests.frontend;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 class SeleniumUtil {
-
+    private static final Logger logger = LogManager.getLogger();
     private static final String TEST_DIRECTORY = System.getProperty("user.dir") + "\\src\\test\\resources";
 
     /**
@@ -49,7 +51,7 @@ class SeleniumUtil {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.warn("Thread.sleep caused exception: ", e);
         }
     }
 
@@ -59,7 +61,7 @@ class SeleniumUtil {
             Files.createLink(Paths.get(APP_CONFIG_LOCATION + "\\config.json"),
                     Paths.get(TEST_DIRECTORY + "\\config\\" + configFile));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Can not prepare configuration file: ", e);
         }
     }
 
@@ -76,7 +78,7 @@ class SeleniumUtil {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.warn("Thread.sleep caused exception: ", e);
         }
     }
 
@@ -86,7 +88,7 @@ class SeleniumUtil {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.warn("Thread.sleep caused exception: ", e);
         }
     }
 
@@ -97,7 +99,7 @@ class SeleniumUtil {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.warn("Thread.sleep caused exception: ", e);
         }
     }
 
@@ -112,7 +114,7 @@ class SeleniumUtil {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.warn("Thread.sleep caused exception: ", e);
         }
     }
 
@@ -127,7 +129,7 @@ class SeleniumUtil {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.warn("Thread.sleep caused exception: ", e);
         }
     }
 
