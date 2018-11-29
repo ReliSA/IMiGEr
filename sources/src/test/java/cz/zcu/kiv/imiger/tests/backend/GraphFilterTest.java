@@ -7,11 +7,13 @@ import cz.zcu.kiv.offscreen.api.Vertex;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
+import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +22,9 @@ public class GraphFilterTest {
     private static GraphManager graphManager;
 
     @BeforeAll
-    static void initTest() {
-        graphManager = new GraphJSONDataLoader(new File("data/test1.json")).loadData();
+    static void initTest() throws IOException {
+        String loadedJSON = IOUtils.toString(GraphFilterTest.class.getClassLoader().getResourceAsStream("data/test1.json"), "UTF-8");
+        graphManager = new GraphJSONDataLoader(loadedJSON).loadData();
     }
 
     @Test

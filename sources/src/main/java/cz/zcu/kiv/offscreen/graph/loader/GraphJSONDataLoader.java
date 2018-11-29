@@ -9,10 +9,7 @@ import cz.zcu.kiv.offscreen.api.AttributeDataType;
 import cz.zcu.kiv.offscreen.graph.Attribute;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
-import org.apache.commons.io.IOUtils;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -37,14 +34,6 @@ public class GraphJSONDataLoader {
      */
     private HashMap<Integer, Integer> vertexArchetypes = new HashMap<>();
 
-
-    public GraphJSONDataLoader(File file) {
-        try {
-            loadedJSON = IOUtils.toString(getClass().getClassLoader().getResourceAsStream(file.getPath()), "UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public GraphJSONDataLoader(String json){
         loadedJSON = json;
