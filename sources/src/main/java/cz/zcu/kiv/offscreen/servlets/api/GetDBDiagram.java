@@ -4,6 +4,8 @@ import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +17,16 @@ import java.io.IOException;
  */
 public class GetDBDiagram extends BaseServlet {
 
+    private static final Logger logger = LogManager.getLogger();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.debug("Processing request");
         String diagramId = request.getParameter("id");
 
         if (Strings.isNullOrEmpty(diagramId)) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            logger.debug("Diagram id is empty");
             return;
         }
 
@@ -29,6 +35,7 @@ public class GetDBDiagram extends BaseServlet {
 
         if (!diagram.isPublic() && (!isLoggedIn(request) || (isLoggedIn(request) && diagram.getUserId() != getUserId(request)))) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            logger.debug("User is unauthorized");
             return;
         }
 
@@ -39,5 +46,6 @@ public class GetDBDiagram extends BaseServlet {
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().write(json.toString());
         response.getWriter().flush();
+        logger.debug("Response OK");
     }
 }

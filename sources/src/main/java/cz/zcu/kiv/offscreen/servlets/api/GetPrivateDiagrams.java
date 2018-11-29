@@ -3,6 +3,8 @@ package cz.zcu.kiv.offscreen.servlets.api;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -14,10 +16,15 @@ import java.util.Map;
 
 public class GetPrivateDiagrams extends BaseServlet {
 
+    private static final Logger logger = LogManager.getLogger();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.debug("Processing request");
+
         if (!isLoggedIn(request)) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            logger.debug("User is unauthorized");
             return;
         }
 
@@ -37,5 +44,7 @@ public class GetPrivateDiagrams extends BaseServlet {
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().write(json.toString());
         response.getWriter().flush();
+        logger.debug("Response OK");
+
     }
 }

@@ -4,6 +4,8 @@ import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +15,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SaveDiagram extends BaseServlet {
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.debug("Processing request");
+
         if (!isLoggedIn(request)) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            logger.debug("User is unauthorized");
             return;
         }
 
@@ -33,6 +39,7 @@ public class SaveDiagram extends BaseServlet {
         // input parameters are invalid
         if (Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(graphJson)) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            logger.debug("Input name or json is empty");
             return;
         }
 
@@ -40,16 +47,16 @@ public class SaveDiagram extends BaseServlet {
         Diagram diagram;
 
         if (Strings.isNullOrEmpty(diagramId)) {
-            // new diagram
+            logger.debug("Creating new diagram");
             diagram = new Diagram(db);
 
         } else {
-            // diagram exists
+            logger.debug("Getting existing diagram from database");
             diagram = new Diagram(db, Integer.parseInt(diagramId));
 
-            // user is not owner of the diagram
             if (loggedUserId != diagram.getUserId()) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                logger.debug("User is not owner of diagram");
                 return;
             }
         }
@@ -61,6 +68,7 @@ public class SaveDiagram extends BaseServlet {
         diagramParams.put("user_id", Integer.toString(loggedUserId));
 
         diagram.update(diagramParams);
+        logger.debug("Diagram created or updated.");
 
         // send response
         JSONObject json = new JSONObject(diagram.getDiagram());
@@ -70,5 +78,6 @@ public class SaveDiagram extends BaseServlet {
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().write(json.toString());
         response.getWriter().flush();
+        logger.debug("Response OK");
     }
 }

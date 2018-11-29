@@ -5,6 +5,8 @@ import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.User;
 import cz.zcu.kiv.offscreen.vo.UserVO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends BaseServlet {
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.debug("Processing request");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -24,10 +28,12 @@ public class Login extends BaseServlet {
 
         if (Strings.isNullOrEmpty(username)) {
             errors.put("username", "Please enter username.");
+            logger.debug("Empty user name");
         }
 
         if (Strings.isNullOrEmpty(password)) {
             errors.put("password", "Please enter password.");
+            logger.debug("Empty password");
         }
 
         if (errors.isEmpty()) {
@@ -54,6 +60,7 @@ public class Login extends BaseServlet {
                 response.setStatus(HttpServletResponse.SC_ACCEPTED);
                 response.getWriter().write(json.toString());
                 response.getWriter().flush();
+                logger.debug("Response ACCEPTED");
 
             } else {
                 request.getSession().setAttribute("isLoggedIn", false);
@@ -61,6 +68,7 @@ public class Login extends BaseServlet {
                 request.getSession().setAttribute("user", null);
 
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                logger.debug("Response UNAUTHORIZED");
             }
 
         } else {
@@ -71,6 +79,7 @@ public class Login extends BaseServlet {
             response.setContentType("application/json");
             response.getWriter().write(json.toString());
             response.getWriter().flush();
+            logger.debug("Response BAD REQUEST");
         }
     }
 }

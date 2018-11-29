@@ -8,6 +8,8 @@ import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import net.sf.json.JSONObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,7 @@ import java.io.IOException;
  * This class is used for loading diagrams from session.
  */
 public class GetSessionDiagram extends BaseServlet {
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * Constructs graph data using either the current graph version or the version set in query parameter. Resulting
@@ -24,6 +27,8 @@ public class GetSessionDiagram extends BaseServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.debug("Processing request");
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
@@ -44,9 +49,11 @@ public class GetSessionDiagram extends BaseServlet {
 
             switch (jsonType) {
                 case "spade":
+                    logger.debug("Processing Spade json");
                     rawJson = convertSpadeToRawJson(jsonToDisplay);
                     break;
                 default:
+                    logger.debug("Processing Raw json");
                     rawJson = jsonToDisplay;
             }
 
@@ -57,10 +64,12 @@ public class GetSessionDiagram extends BaseServlet {
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write(jsonObject.toString());
             response.getWriter().flush();
+            logger.debug("Response OK");
             return;
         }
 
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        logger.debug("Response BAD REQUEST");
     }
 
     /**

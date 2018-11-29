@@ -28,6 +28,7 @@ public class DB {
 		String password = context.getInitParameter("jdbc.password");
 
 		try {
+			logger.debug("Opening database connection");
 			Class.forName(driverClassName);
 			connection = DriverManager.getConnection(url, username, password);
 			connection.setAutoCommit(true);
