@@ -39,6 +39,7 @@ public class FileLoader {
                 if (item.isFormField()) {
                     resultMap.put(item.getFieldName(), item.getString());
                 } else {
+                    resultMap.put("filename", item.getName());
                     if (isAcceptedExtension(item.getName()) && item.getSize() > 0) {
                         logger.debug(item.getName() + " - " + item.getContentType());
                         resultMap.put(item.getFieldName(), item.getString("UTF-8"));

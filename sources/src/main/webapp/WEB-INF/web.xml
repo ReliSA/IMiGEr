@@ -53,7 +53,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>GetDiagram</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetDiagram</servlet-class>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetDBDiagram</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SaveDiagram</servlet-name>
@@ -65,7 +65,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>LoadGraphData</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.LoadGraphData</servlet-class>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetSessionDiagram</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>GetPrivateDiagrams</servlet-name>
