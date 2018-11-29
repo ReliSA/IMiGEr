@@ -1,8 +1,5 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
@@ -10,6 +7,8 @@ import cz.zcu.kiv.offscreen.user.User;
 import cz.zcu.kiv.offscreen.vo.UserVO;
 import org.json.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;

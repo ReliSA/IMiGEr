@@ -1,6 +1,7 @@
 package cz.zcu.kiv.offscreen.graph;
 
 import cz.zcu.kiv.offscreen.api.BaseVertex;
+
 import java.util.*;
 
 /**

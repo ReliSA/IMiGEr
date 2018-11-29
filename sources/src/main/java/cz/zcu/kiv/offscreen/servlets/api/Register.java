@@ -1,19 +1,18 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
+import com.google.common.base.Strings;
+import cz.zcu.kiv.offscreen.servlets.BaseServlet;
+import cz.zcu.kiv.offscreen.user.DB;
+import cz.zcu.kiv.offscreen.user.User;
+import org.json.JSONObject;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.google.common.base.Strings;
-import org.json.JSONObject;
-
-import cz.zcu.kiv.offscreen.servlets.BaseServlet;
-import cz.zcu.kiv.offscreen.user.DB;
-import cz.zcu.kiv.offscreen.user.User;
 
 public class Register extends BaseServlet {
     

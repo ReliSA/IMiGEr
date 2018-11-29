@@ -1,9 +1,9 @@
 package cz.zcu.kiv.offscreen.servlets;
 
+import cz.zcu.kiv.offscreen.vo.UserVO;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-
-import cz.zcu.kiv.offscreen.vo.UserVO;
 
 public abstract class BaseServlet extends HttpServlet {
     /**

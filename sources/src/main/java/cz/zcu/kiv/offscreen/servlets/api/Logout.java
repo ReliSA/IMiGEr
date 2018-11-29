@@ -1,9 +1,9 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
+import cz.zcu.kiv.offscreen.servlets.BaseServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 
 public class Logout extends BaseServlet {
 	

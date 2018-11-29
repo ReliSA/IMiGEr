@@ -3,7 +3,10 @@ package cz.zcu.kiv.offscreen.user;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class is used for saving and loading diagram params from database.

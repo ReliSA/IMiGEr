@@ -5,8 +5,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import cz.zcu.kiv.offscreen.graph.Attribute;
 import cz.zcu.kiv.offscreen.api.AttributeDataType;
+import cz.zcu.kiv.offscreen.graph.Attribute;
 import cz.zcu.kiv.offscreen.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import org.apache.commons.io.IOUtils;
@@ -16,7 +16,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Class loads json file with graph data.

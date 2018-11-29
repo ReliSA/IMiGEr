@@ -1,9 +1,7 @@
 package cz.zcu.kiv.offscreen.user;
 
-import java.sql.*;
-
-
 import javax.servlet.ServletContext;
+import java.sql.*;
 
 /**
  * Class Db is useful for communication with mysql database.
