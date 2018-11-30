@@ -1,6 +1,7 @@
 package cz.zcu.kiv.offscreen.user;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,21 +47,20 @@ public class User {
 	 * 		   false - login failed
 	 */
 	public boolean login(String nick, String psw){
-		String qy = "SELECT * FROM user WHERE nick LIKE ? AND psw LIKE ? AND active = '1' LIMIT 1";
+		String qy = "SELECT * FROM user WHERE nick LIKE ? AND active = '1' LIMIT 1";
 
 		try{
 			PreparedStatement pst = db.getPreparedStatement(qy, false);
 			pst.setString(1, nick);
-			pst.setString(2, Util.MD5(psw));
 			ResultSet rs = db.executeQuery(pst);
 
 			if ( rs != null && rs.next() ) {
-				if(rs.getInt("id") > 0){
+				if(rs.getInt("id") > 0 && BCrypt.checkpw(psw, rs.getString("psw"))){
 					this.id = rs.getInt("id");
 					return true;
 				}
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | IllegalArgumentException e) {
 			logger.error("Can not login user: ", e);
 		}
 
@@ -85,7 +85,7 @@ public class User {
 				pst.setInt(2, 1);
 				pst.setString(3, param.get("nick"));
 				pst.setString(4, param.get("name"));
-				pst.setString(5, Util.MD5(param.get("password")));
+				pst.setString(5, BCrypt.hashpw(param.get("password"), BCrypt.gensalt()));
 				pst.setString(6, param.get("session"));
 				pst.setString(7, param.get("email"));
 

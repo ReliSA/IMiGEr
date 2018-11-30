@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nick` varchar(50) COLLATE utf8_czech_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_czech_ci NOT NULL DEFAULT '',
-  `psw` varchar(32) COLLATE utf8_czech_ci NOT NULL,
+  `psw` varchar(60) COLLATE utf8_czech_ci NOT NULL,
   `session` varchar(50) COLLATE utf8_czech_ci NOT NULL,
   `active` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
