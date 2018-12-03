@@ -70,10 +70,8 @@ class SaveDiagramModalWindow extends ModalWindow {
 	open() {
 		super.open();
 
-		if (app.diagram !== null) {
-			this._form.diagramName.value = app.diagram.name;
-			this._form.diagramPublic.checked = app.diagram.public;
-		}
+		this._form.diagramName.value = app.diagram.name !== null ? app.diagram.name : '';
+		this._form.diagramPublic.checked = app.diagram.public !== null ? app.diagram.public : false;
 
 		this._form.diagramName.focus();
 	}
@@ -95,7 +93,7 @@ class SaveDiagramModalWindow extends ModalWindow {
 		e.preventDefault();
 
 		const body = new URLSearchParams;
-		body.set('id', app.diagram === null ? '' : app.diagram.id);
+		body.set('id', app.diagram.id !== null ? app.diagram.id : '');
 		body.set('name', e.target.diagramName.value);
 		body.set('graphJson', JSON.stringify(app.graphExporter.run()));
 		body.set('public', (e.target.diagramPublic.checked | 0).toString());

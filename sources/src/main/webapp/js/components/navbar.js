@@ -344,7 +344,7 @@ class Navbar {
 				class: 'btn save-diagram',
 				title: 'Save diagram as PNG',
 				onClick: () => {
-					let fileName = `imiger-${app.diagram === null ? 'diagram' : app.diagram.name}.png`;
+					let fileName = `imiger-${app.diagram.name !== null ? app.diagram.name : 'diagram'}.png`;
 
 					saveSvgAsPng(document.getElementById('svg1'), fileName, {
 						backgroundColor: '#fff',
@@ -387,7 +387,9 @@ class Navbar {
 		});
 
 		document.addEventListener(DiagramUpdatedEvent.name, e => {
-			refreshDiagramLink.setAttribute('href', app.homeUrl + 'graph?diagramId=' + e.detail.id);
+			if (Utils.isDefined(e.detail.id)) {
+				refreshDiagramLink.setAttribute('href', app.homeUrl + 'graph?diagramId=' + e.detail.id);
+			}
 		});
 
 		return DOM.h('li', {}, [

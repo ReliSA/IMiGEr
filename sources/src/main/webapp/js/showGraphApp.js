@@ -118,8 +118,13 @@ class ShowGraphApp extends App {
 		document.addEventListener(DiagramUpdatedEvent.name, e => {
 			this.diagram = new Diagram(e.detail);
 
-			document.title = this.name + ' - ' + this.diagram.name;
-			history.replaceState({} , document.title, this.homeUrl + 'graph?diagramId=' + this.diagram.id);
+			if (this.diagram.name !== null) {
+				document.title = this.name + ' - ' + this.diagram.name;
+			}
+
+			if (this.diagram.id !== null) {
+				history.replaceState({} , document.title, this.homeUrl + 'graph?diagramId=' + this.diagram.id);
+			}
 		});
 
 		// context menu
@@ -146,24 +151,21 @@ class ShowGraphApp extends App {
 		this.spinLoaderComponent.enable();
 
 		let loadGraphDataPromise;
-
 		if (diagramId === '') {
 			loadGraphDataPromise = AJAX.getJSON(Constants.API.loadGraphData);
-
 		} else {
-			const diagramData = await AJAX.getJSON(Constants.API.getDiagram + '?id=' + diagramId);
-
-			document.dispatchEvent(new DiagramUpdatedEvent(diagramData));
-
-			loadGraphDataPromise = Promise.resolve(JSON.parse(diagramData.graph_json));
+			loadGraphDataPromise = AJAX.getJSON(Constants.API.getDiagram + '?id=' + diagramId);
 		}
 
 		try {
-			// get vertex position data
+			// get graph data
 			const graphData = await loadGraphDataPromise;
 
+			// update diagram information in the app
+			document.dispatchEvent(new DiagramUpdatedEvent(graphData));
+
 			// construct graph
-			this.graphLoader.run(graphData);
+			this.graphLoader.run(JSON.parse(graphData.graph_json));
 
 			this.spinLoaderComponent.disable();
 
