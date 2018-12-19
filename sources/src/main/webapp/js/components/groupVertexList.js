@@ -97,7 +97,7 @@ class GroupVertexList {
 
 		} else {
 			return DOM.s('text', {
-				y: this._rootElement.childNodes.lenght * this._lineHeight,
+				y: this._rootElement.childNodes.length * this._lineHeight,
 				'data-id': vertex.id,
 				onClick: this._group.onVertexClick.bind(this._group),
 			}, [
