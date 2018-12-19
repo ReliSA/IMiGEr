@@ -20,11 +20,11 @@ class GraphLoader {
 		const canvasSize = ((data.vertices.length * 75) / Math.round(Math.sqrt(data.vertices.length))) + 1000;
 
 		// store archetypes
-		app.archetype.vertex = data.vertexArchetypes;
-		app.archetype.edge = data.edgeArchetypes;
+		app.archetype.vertex = Utils.isDefined(data.vertexArchetypes) ? data.vertexArchetypes : [];
+		app.archetype.edge = Utils.isDefined(data.edgeArchetypes) ? data.edgeArchetypes : [];
 
-		app.attributeTypeList = data.attributeTypes;
-		app.possibleEnumValues = data.possibleEnumValues;
+		app.attributeTypeList = Utils.isDefined(data.attributeTypes) ? data.attributeTypes : [];
+		app.possibleEnumValues = Utils.isDefined(data.possibleEnumValues) ? data.possibleEnumValues : {};
 
 		app.archetype.vertex.filter(vertexArchetype => {
 			return Utils.isDefined(vertexArchetype.icon);
@@ -49,8 +49,8 @@ class GraphLoader {
 			highlightedEdgeId = parseInt(data.highlightedEdge, 10);
 		}
 
-		let highlightedNode = undefined;
-		let highlightedEdge = undefined;
+		let highlightedNode;
+		let highlightedEdge;
 
 		// construct vertices
 		let vertexMap = new Map;
@@ -121,63 +121,67 @@ class GraphLoader {
 		});
 
 		// construct groups
-		data.groups.forEach(component => {
-			let group = new Group(component);
+		if (Utils.isDefined(data.groups)) {
+			data.groups.forEach(component => {
+				let group = new Group(component);
 
-			if (highlightedNodeType === 'group' && highlightedNodeId === group.id) {
-				highlightedNode = group;
-			}
-
-			// position
-			if (component.position === null || Utils.isUndefined(component.position)) {
-				// set random
-				group.position = new Coordinates(
-					Math.floor(Math.random() * canvasSize),
-					Math.floor(Math.random() * canvasSize),
-				);
-			} else {
-				group.position = new Coordinates(component.position.x, component.position.y);
-			}
-
-			// vertices
-			app.vertexList.filter(vertex => {
-				return component.verticesId.indexOf(vertex.id) > -1;
-			}).forEach(vertex => {
-				group.addVertex(vertex);
-			});
-
-			app.nodeList.push(group);
-			app.groupList.push(group);
-
-			app.viewportComponent.addNode(group);
-		});
-
-		// exclude nodes
-		data.sideBar.forEach(excludedNode => {
-			if (typeof excludedNode.id !== 'string' && !(excludedNode.id instanceof String)) return;
-
-			let idArr = excludedNode.id.split('-');
-			if (idArr.length !== 2) return;
-
-			idArr[1] = parseInt(idArr[1], 10);
-
-			let node = app.nodeList.find(node => {
-				let prefix = '';
-				if (node instanceof Vertex) {
-					prefix = 'vertex';
-				} else if (node instanceof Group) {
-					prefix = 'group';
+				if (highlightedNodeType === 'group' && highlightedNodeId === group.id) {
+					highlightedNode = group;
 				}
 
-				return idArr[0] === prefix && node.id === idArr[1];
+				// position
+				if (component.position === null || Utils.isUndefined(component.position)) {
+					// set random
+					group.position = new Coordinates(
+						Math.floor(Math.random() * canvasSize),
+						Math.floor(Math.random() * canvasSize),
+					);
+				} else {
+					group.position = new Coordinates(component.position.x, component.position.y);
+				}
+
+				// vertices
+				app.vertexList.filter(vertex => {
+					return component.verticesId.indexOf(vertex.id) > -1;
+				}).forEach(vertex => {
+					group.addVertex(vertex);
+				});
+
+				app.nodeList.push(group);
+				app.groupList.push(group);
+
+				app.viewportComponent.addNode(group);
 			});
+		}
 
-			if (Utils.isDefined(node)) {
-				node.exclude();
+		// exclude nodes
+		if (Utils.isDefined(data.sideBar)) {
+			data.sideBar.forEach(excludedNode => {
+				if (typeof excludedNode.id !== 'string' && !(excludedNode.id instanceof String)) return;
 
-				app.sidebarComponent.excludedNodeListComponent.addNode(node);
-			}
-		});
+				let idArr = excludedNode.id.split('-');
+				if (idArr.length !== 2) return;
+
+				idArr[1] = parseInt(idArr[1], 10);
+
+				let node = app.nodeList.find(node => {
+					let prefix = '';
+					if (node instanceof Vertex) {
+						prefix = 'vertex';
+					} else if (node instanceof Group) {
+						prefix = 'group';
+					}
+
+					return idArr[0] === prefix && node.id === idArr[1];
+				});
+
+				if (Utils.isDefined(node)) {
+					node.exclude();
+
+					app.sidebarComponent.excludedNodeListComponent.addNode(node);
+				}
+			});
+		}
 
 		// center viewport
 		app.viewportComponent.center();

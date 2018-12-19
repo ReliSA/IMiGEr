@@ -22,7 +22,6 @@
 				},
 				"required": [ "dataType", "name" ]
 			},
-			"minItems": 1,
 			"uniqueItems": true
 		},
 		"edgeArchetypes": {
@@ -39,7 +38,6 @@
 				},
 				"required": [ "name" ]
 			},
-			"minItems": 1,
 			"uniqueItems": true
 		},
 		"vertexArchetypes": {
@@ -59,7 +57,6 @@
 				},
 				"required": [ "name" ]
 			},
-			"minItems": 1,
 			"uniqueItems": true
 		},
 		"vertices": {
@@ -239,5 +236,5 @@
 			"type": "string"
 		}
 	},
-	"required": [ "attributeTypes", "edgeArchetypes", "vertexArchetypes", "vertices", "edges", "possibleEnumValues", "groups", "sideBar", "highlightedVertex", "highlightedEdge" ]
+	"required": [ "vertices", "edges" ]
 }
