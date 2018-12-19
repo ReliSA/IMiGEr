@@ -151,8 +151,6 @@ class Node {
 	set isFound(newValue) {
 		this._isFound = newValue;
 
-		if (this.isExcluded) return;
-		
 		if (newValue) {
 			this._rootElement.classList.add('node--found');
 		} else {

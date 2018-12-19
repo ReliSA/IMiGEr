@@ -138,7 +138,7 @@ class Navbar {
 
 			let found = 0;
 			
-			let nodeList = app.viewportComponent.nodeList;
+			let nodeList = app.nodeList;
 			nodeList.forEach(node => {
 				if (node.name.toLowerCase().includes(term.toLowerCase())) {
 					node.isFound = true;
@@ -152,7 +152,7 @@ class Navbar {
 		}
 
 		function resetSearch() {
-			let nodeList = app.viewportComponent.nodeList;
+			let nodeList = app.nodeList;
 			nodeList.forEach(node => {
 				node.isFound = false;
 			});

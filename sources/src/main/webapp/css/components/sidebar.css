@@ -167,6 +167,10 @@
 	display: none;
 }
 
+.sidebar .node--found .vertex-name {
+	background-color: orange;
+}
+
 .sidebar .node--highlighted .vertex-name {
 	line-height: 56px;
 	padding: 0 5px;
