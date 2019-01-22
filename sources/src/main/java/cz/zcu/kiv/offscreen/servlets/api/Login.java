@@ -1,20 +1,18 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.common.base.Strings;
+import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.User;
 import cz.zcu.kiv.offscreen.vo.UserVO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Login extends BaseServlet {
     private static final Logger logger = LogManager.getLogger();
 
@@ -24,19 +22,19 @@ public class Login extends BaseServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        Map<String, String> errors = new HashMap<>();
+        JsonObject errors = new JsonObject();
 
         if (Strings.isNullOrEmpty(username)) {
-            errors.put("username", "Please enter username.");
+            errors.addProperty("username", "Please enter username.");
             logger.debug("Empty user name");
         }
 
         if (Strings.isNullOrEmpty(password)) {
-            errors.put("password", "Please enter password.");
+            errors.addProperty("password", "Please enter password.");
             logger.debug("Empty password");
         }
 
-        if (errors.isEmpty()) {
+        if (errors.size() == 0) {
             DB db = new DB(getServletContext());
             User user = new User(db);
 
@@ -49,11 +47,10 @@ public class Login extends BaseServlet {
                 request.getSession().setAttribute("userId", userVO.getId());
                 request.getSession().setAttribute("user", userVO);
 
-                Map<String, Object> userMap = new HashMap<>();
-                userMap.put("id", user.getId());
-                userMap.put("username", user.getNick());
+                JsonObject json = new JsonObject();
+                json.addProperty("id", user.getId());
+                json.addProperty("username", user.getNick());
 
-                JSONObject json = new JSONObject(userMap);
 
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
@@ -72,8 +69,8 @@ public class Login extends BaseServlet {
             }
 
         } else {
-            JSONObject json = new JSONObject();
-            json.put("error", new JSONObject(errors));
+            JsonObject json = new JsonObject();
+            json.add("error", errors);
 
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.setContentType("application/json");

@@ -1,12 +1,13 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.common.base.Strings;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -71,12 +72,13 @@ public class SaveDiagram extends BaseServlet {
         logger.debug("Diagram created or updated.");
 
         // send response
-        JSONObject json = new JSONObject(diagram.getDiagram());
+
+        String json = new Gson().toJson(diagram.getDiagram());
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().write(json.toString());
+        response.getWriter().write(json);
         response.getWriter().flush();
         logger.debug("Response OK");
     }

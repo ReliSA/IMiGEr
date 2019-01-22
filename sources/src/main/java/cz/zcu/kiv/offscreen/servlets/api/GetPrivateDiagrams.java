@@ -1,12 +1,12 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,15 +34,20 @@ public class GetPrivateDiagrams extends BaseServlet {
         int loggedUserId = getUserId(request);
         List<Map<String, String>> userDiagramList = diagram.getDiagramListByUserId(loggedUserId);
 
-        JSONArray json = new JSONArray();
+        JsonArray jsonArray = new JsonArray();
         for (Map<String, String> userDiagram : userDiagramList) {
-            json.put(new JSONObject(userDiagram));
+
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("id", userDiagram.get("id"));
+            jsonObject.addProperty("name", userDiagram.get("name"));
+
+            jsonArray.add(jsonObject);
         }
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().write(json.toString());
+        response.getWriter().write(jsonArray.toString());
         response.getWriter().flush();
         logger.debug("Response OK");
 

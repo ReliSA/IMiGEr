@@ -151,14 +151,7 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20180813</version>
-        </dependency>
-
-
+        
 
         <!-- Database -->
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
