@@ -7,7 +7,7 @@ class GraphExporter {
 		let excludedNodeList = app.sidebarComponent.excludedNodeListComponent.nodeList;
 		let sideBar = excludedNodeList.map(node => {
 			return {
-				id: Utils.getUniqueId(node),
+				id: node.uniqueId,
 				isIconsDisplayed: node.isIconsDisplayed,
 			};
 		});
@@ -24,7 +24,7 @@ class GraphExporter {
 			possibleEnumValues: app.possibleEnumValues,
 			groups: app.groupList.map(group => group.export()),
 			sideBar: sideBar,
-			highlightedVertex: Utils.isUndefined(highlightedVertex) ? '' : Utils.getUniqueId(highlightedVertex),
+			highlightedVertex: Utils.isUndefined(highlightedVertex) ? '' : highlightedVertex.uniqueId,
 			highlightedEdge: Utils.isUndefined(highlightedEdge) ? '' : highlightedEdge.id,
 		};
 	}
