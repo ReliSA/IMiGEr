@@ -90,6 +90,9 @@
 						<li>
 							<a href="${APP_HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
 
+							<a href="${APP_HOME_URL}api/get-diagram-data?id=${diagram.id}" download="${diagram.name}.json" class="button download-diagram-button">
+								<img src="images/button_cancel.png" alt="stáhnout">
+							</a>
 							<button class="button remove-diagram-button" data-id="${diagram.id}" data-name="${diagram.name}">
 								<img src="images/button_cancel.png" alt="odstranit">
 							</button>

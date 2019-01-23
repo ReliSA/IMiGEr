@@ -84,6 +84,16 @@ class UploadFilesApp extends App {
 						href: app.homeUrl + 'graph?diagramId=' + diagram.id,
 						innerText: diagram.name,
 					}),
+					DOM.h('a', {
+						href: app.homeUrl + 'api/get-diagram-data?id=' + diagram.id,
+						download: diagram.name + '.json',
+						class: 'button download-diagram-button',
+					}, [
+						DOM.h('img', {
+							src: 'images/button_cancel.png',
+							alt: 'stáhnout',
+						}),
+					]),
 					DOM.h('button', {
 						class: 'button remove-diagram-button',
 						'data-id': diagram.id,
@@ -92,7 +102,7 @@ class UploadFilesApp extends App {
 					}, [
 						DOM.h('img', {
 							src: 'images/button_cancel.png',
-							alt: 'Odstranit',
+							alt: 'odstranit',
 						}),
 					]),
 				]));

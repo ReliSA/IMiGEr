@@ -53,8 +53,12 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.Logout</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>GetDiagram</servlet-name>
+		<servlet-name>GetDBDiagram</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetDBDiagram</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetDBDiagramData</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetDBDiagramData</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SaveDiagram</servlet-name>
@@ -65,7 +69,7 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.RemoveDiagram</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>LoadGraphData</servlet-name>
+		<servlet-name>GetSessionDiagram</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetSessionDiagram</servlet-class>
 	</servlet>
 	<servlet>
@@ -101,8 +105,12 @@
 		<url-pattern>/api/log-out</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>GetDiagram</servlet-name>
+		<servlet-name>GetDBDiagram</servlet-name>
 		<url-pattern>/api/get-diagram</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetDBDiagramData</servlet-name>
+		<url-pattern>/api/get-diagram-data</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SaveDiagram</servlet-name>
@@ -113,7 +121,7 @@
 		<url-pattern>/api/remove-diagram</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>LoadGraphData</servlet-name>
+		<servlet-name>GetSessionDiagram</servlet-name>
 		<url-pattern>/api/load-graph-data</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
