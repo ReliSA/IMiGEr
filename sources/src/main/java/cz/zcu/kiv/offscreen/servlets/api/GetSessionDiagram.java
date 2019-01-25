@@ -6,7 +6,10 @@ import cz.zcu.kiv.offscreen.api.Graph;
 import cz.zcu.kiv.offscreen.graph.GraphManager;
 import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
+import cz.zcu.kiv.offscreen.modularization.IModule;
+import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
+import javafx.util.Pair;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,14 +50,19 @@ public class GetSessionDiagram extends BaseServlet {
 
             String rawJson;
 
-            switch (jsonType) {
-                case "spade":
-                    logger.debug("Processing Spade json");
-                    rawJson = convertSpadeToRawJson(jsonToDisplay);
-                    break;
-                default:
-                    logger.debug("Processing Raw json");
-                    rawJson = jsonToDisplay;
+            if (jsonType.equals("raw")) {
+                logger.debug("Processing Raw json");
+                rawJson = jsonToDisplay;
+            } else {
+                logger.debug("Processing json with module");
+
+                Pair<String, IModule> module = ModuleProvider.getInstance().getModules().get(jsonType);
+                if (module == null){
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    logger.debug("No loader available for type: " + jsonType + ". Response BAD REQUEST");
+                    return;
+                }
+                rawJson = module.getValue().getRawJson(jsonToDisplay);
             }
 
             JsonObject jsonObject = new JsonObject();

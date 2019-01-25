@@ -72,8 +72,10 @@
 
 					<div class="form-field">
 						Select type of data file:<br>
-						<label for="spade"><input type="radio" name="jsonFileFormat" value="spade" id="spade" checked> Spade JSON</label><br>
-						<label for="raw"><input type="radio" name="jsonFileFormat" value="raw" id="raw"> Raw JSON</label><br>
+						<label for="raw"><input type="radio" name="jsonFileFormat" value="raw" id="raw" checked> Raw JSON</label><br>
+						<c:forEach items="${processingModules}" var="module">
+							<label for="${module.key}"><input type="radio" name="jsonFileFormat" value="${module.key}" id="${module.key}">${module.value.key}</label><br>
+						</c:forEach>
 					</div>
 
 					<button id="btnLoad" type="submit">Start visualization</button>

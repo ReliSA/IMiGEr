@@ -1,6 +1,7 @@
 package cz.zcu.kiv.offscreen.servlets;
 
 import com.google.common.base.Strings;
+import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.storage.FileLoader;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
@@ -40,6 +41,7 @@ public class UploadFiles extends BaseServlet {
 
         List<Map<String, String>> publicDiagramList = diagram.getDiagramPublicList();
         request.setAttribute("diagramsPublic", publicDiagramList);
+        request.setAttribute("processingModules", ModuleProvider.getInstance().getModules());
 
         // render
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/uploadFiles.jsp");
