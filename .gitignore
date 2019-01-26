@@ -1,5 +1,9 @@
 sources/.idea/
 sources/target/
+sources/logs/
 sources/src/main/webapp/node_modules/
+plugins/*/.idea/
+plugins/*/target/
+plugins/*/logs/
 /storage/
 *.iml
