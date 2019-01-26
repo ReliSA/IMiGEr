@@ -18,7 +18,6 @@ public class Spade {
         Graph graph = graphManager.createGraph(configLoader);
         JSONObject json = JSONObject.fromObject(graph);
 
-        throw new NullPointerException();
-        //return json.toString();
+        return json.toString();
     }
 }
