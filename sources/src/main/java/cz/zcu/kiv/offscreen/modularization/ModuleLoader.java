@@ -81,8 +81,9 @@ public class ModuleLoader {
     }
 
     private Optional<Pair<String, Class>> loadModule(File moduleFile) {
+        JarInputStream jis = null;
         try {
-            final JarInputStream jis = new JarInputStream(new FileInputStream(moduleFile));
+            jis = new JarInputStream(new FileInputStream(moduleFile));
             final Manifest mf = jis.getManifest();
             final Attributes attributes = mf.getMainAttributes();
             final String moduleClassName = attributes.getValue(MODULE_CLASS_IDENTIFIER);
@@ -98,6 +99,12 @@ public class ModuleLoader {
         } catch (Exception e) {
             logger.debug("Invalid module throw exception: ", e);
             return Optional.empty();
+        } finally {
+            try {
+                if (jis != null) jis.close();
+            } catch (IOException e) {
+                logger.error("Can not close opened jar file: ", e);
+            }
         }
     }
 }

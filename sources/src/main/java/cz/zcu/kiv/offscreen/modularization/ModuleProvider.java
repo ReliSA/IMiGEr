@@ -48,7 +48,7 @@ public class ModuleProvider {
         logger.debug("Scheduling Modules Watcher thread.");
         // task will be scheduled after 1 minute
         // When task ends (on failure) after one minute will be planed again
-        scheduledFuture = executor.scheduleWithFixedDelay(task, 1, 1, TimeUnit.MINUTES);
+        scheduledFuture = executor.scheduleWithFixedDelay(task, 0, 1, TimeUnit.MINUTES);
     }
 
     public void stopWatcher() {
