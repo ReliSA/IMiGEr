@@ -131,6 +131,9 @@
 	<listener>
 		<listener-class>cz.zcu.kiv.offscreen.session.SessionManager</listener-class>
 	</listener>
+	<listener>
+		<listener-class>cz.zcu.kiv.offscreen.ApplicationListener</listener-class>
+	</listener>
 
 	<!-- Tomcat CORS filter; https://tomcat.apache.org/tomcat-8.0-doc/config/filter.html#CORS_Filter -->
 	<filter>

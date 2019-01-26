@@ -6,8 +6,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +15,20 @@ import java.util.concurrent.*;
 
 public class ModuleProvider {
 
+    public static final String METHOD_NAME = "getRawJson";
+    public static final Class METHOD_PARAMETER_CLASS = String.class;
+
     private static final Logger logger = LogManager.getLogger();
     private static final String MODULES_PATH = "modules";
     private static ModuleProvider instance = null;
 
-    private ConcurrentMap<String, Pair<String, IModule>> modules = new ConcurrentHashMap<>();
+    private ConcurrentMap<String, Pair<String, Class>> modules = new ConcurrentHashMap<>();
     private final ModuleLoader loader;
     private boolean watch = true;
+
+    private ScheduledExecutorService executor;
+    private ScheduledFuture scheduledFuture;
+    private WatchService watcher = null;
 
 
     public static ModuleProvider getInstance() {
@@ -34,16 +39,34 @@ public class ModuleProvider {
     }
 
     private ModuleProvider() {
-        this.loader = new ModuleLoader(MODULES_PATH);
+        this.loader = new ModuleLoader(MODULES_PATH, METHOD_NAME, METHOD_PARAMETER_CLASS);
 
         processModules(loader.loadModules());
 
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        executor = Executors.newSingleThreadScheduledExecutor();
         Runnable task = this::initModulesWatcher;
         logger.debug("Scheduling Modules Watcher thread.");
         // task will be scheduled after 1 minute
         // When task ends (on failure) after one minute will be planed again
-        executor.scheduleWithFixedDelay(task, 1, 1, TimeUnit.MINUTES);
+        scheduledFuture = executor.scheduleWithFixedDelay(task, 1, 1, TimeUnit.MINUTES);
+    }
+
+    public void stopWatcher() {
+        logger.debug("Stopping WatcherProvider");
+        watch = false;
+
+        try {
+            logger.info("Closing WatcherService");
+            if (watcher != null) watcher.close();
+        } catch (IOException e) {
+            logger.debug("Closing watcher throw exception: ", e);
+        }
+
+        logger.info("Canceling scheduler");
+        if (scheduledFuture != null) scheduledFuture.cancel(true);
+
+        logger.info("Shutting down an ScheduledExecutorService");
+        if (executor != null) executor.shutdown();
     }
 
     private void initModulesWatcher() {
@@ -56,7 +79,7 @@ public class ModuleProvider {
             }
 
             Path path = folderFileOptional.get().toPath();
-            WatchService watcher = FileSystems.getDefault().newWatchService();
+            watcher = FileSystems.getDefault().newWatchService();
             path.register(watcher,
                     StandardWatchEventKinds.ENTRY_CREATE,
                     StandardWatchEventKinds.ENTRY_DELETE,
@@ -89,21 +112,22 @@ public class ModuleProvider {
         }
     }
 
-    private void processModules(Set<Pair<String, IModule>> unprocessedModules) {
-        Map<String, Pair<String, IModule>> localModules = new HashMap<>();
+    private void processModules(Set<Pair<String, Class>> unprocessedModules) {
+        long startTime = System.nanoTime();
+        Map<String, Pair<String, Class>> localModules = new HashMap<>();
 
-        logger.info("Processing " + localModules.size() + " modules.");
+        logger.info("Processing " + unprocessedModules.size() + " modules.");
 
-        for (Pair<String, IModule> pair : unprocessedModules) {
+        for (Pair<String, Class> pair : unprocessedModules) {
             localModules.put(String.valueOf(pair.getKey().hashCode()), pair);
         }
 
         modules.clear();
         modules.putAll(localModules);
-        logger.debug("Modules were processed");
+        logger.debug("Modules were loaded and processed in " + (System.nanoTime() - startTime) / 1000000d + " milliseconds");
     }
 
-    public Map<String, Pair<String, IModule>> getModules() {
+    public Map<String, Pair<String, Class>> getModules() {
         return modules;
     }
 }

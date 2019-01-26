@@ -52,21 +52,21 @@ public class UploadFiles extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.debug("Processing request");
-        Map<String, String> jsonData = new FileLoader().loadFile(request);
+        Map<String, String> data = new FileLoader().loadFile(request);
 
-        if(!jsonData.containsKey("file") || !jsonData.containsKey("jsonFileFormat")) {
+        if(!data.containsKey("file") || !data.containsKey("fileFormat")) {
             request.setAttribute("errorMessage", "<strong>Invalid request!</strong><br/>");
             logger.debug("Invalid request");
             doGet(request, response);
 
-        } else if (Strings.isNullOrEmpty(jsonData.get("file"))) {
+        } else if (Strings.isNullOrEmpty(data.get("file"))) {
             request.setAttribute("errorMessage", "<strong>Unsupported file</strong><br/>");
-            logger.debug("Empty diagram json");
+            logger.debug("Empty diagram string");
             doGet(request, response);
         } else {
-            request.getSession().setAttribute("json_graph", jsonData.get("file"));
-            request.getSession().setAttribute("json_graph_type", jsonData.get("jsonFileFormat"));
-            request.getSession().setAttribute("graph_filename", jsonData.get("filename"));
+            request.getSession().setAttribute("diagram_string", data.get("file"));
+            request.getSession().setAttribute("diagram_type", data.get("fileFormat"));
+            request.getSession().setAttribute("diagram_filename", data.get("filename"));
             response.sendRedirect(getServletContext().getInitParameter("APP_HOME_URL") + "graph");
             logger.debug("send redirect to /graph");
         }

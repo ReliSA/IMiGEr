@@ -2,21 +2,18 @@ package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.common.base.Strings;
 import com.google.gson.JsonObject;
-import cz.zcu.kiv.offscreen.api.Graph;
-import cz.zcu.kiv.offscreen.graph.GraphManager;
-import cz.zcu.kiv.offscreen.graph.loader.GraphJSONDataLoader;
-import cz.zcu.kiv.offscreen.graph.loader.JSONConfigLoader;
-import cz.zcu.kiv.offscreen.modularization.IModule;
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import javafx.util.Pair;
-import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.Optional;
 
 /**
  * This class is used for loading diagrams from session.
@@ -42,27 +39,25 @@ public class GetSessionDiagram extends BaseServlet {
      * Add file which was uploaded and is stored in session to response or set http status code to BAD_REQUEST.
      */
     private void getDiagramFromSession(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String jsonToDisplay = (String) request.getSession().getAttribute("json_graph");
-        String jsonType = (String) request.getSession().getAttribute("json_graph_type");
-        String filename = (String) request.getSession().getAttribute("graph_filename");
+        String diagramToDisplay = (String) request.getSession().getAttribute("diagram_string");
+        String diagramType = (String) request.getSession().getAttribute("diagram_type");
+        String filename = (String) request.getSession().getAttribute("diagram_filename");
 
-        if (!Strings.isNullOrEmpty(jsonToDisplay) && jsonType != null) {
+        if (!Strings.isNullOrEmpty(diagramToDisplay) && diagramType != null) {
 
             String rawJson;
 
-            if (jsonType.equals("raw")) {
+            if (diagramType.equals("raw")) {
                 logger.debug("Processing Raw json");
-                rawJson = jsonToDisplay;
+                rawJson = diagramToDisplay;
             } else {
-                logger.debug("Processing json with module");
-
-                Pair<String, IModule> module = ModuleProvider.getInstance().getModules().get(jsonType);
-                if (module == null){
+                Optional<String> optional = callModuleConverter(diagramType, diagramToDisplay);
+                if(optional.isPresent()){
+                    rawJson = optional.get();
+                } else {
                     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                    logger.debug("No loader available for type: " + jsonType + ". Response BAD REQUEST");
                     return;
                 }
-                rawJson = module.getValue().getRawJson(jsonToDisplay);
             }
 
             JsonObject jsonObject = new JsonObject();
@@ -81,15 +76,43 @@ public class GetSessionDiagram extends BaseServlet {
     }
 
     /**
-     * Convert input spade JSON to frontend backend JSON and return it.
+     * Method find module by type and call method for getting RAW JSON from module. If result is null, empty or
+     * blank, method returns empty Optional.
+     *
+     * @param type type of converter which is key to map of modules
+     * @param stringToConvert string which will be converted
+     * @return Optional of RAW JSON or empty Optional
      */
-    private String convertSpadeToRawJson(String spadeJson) {
-        GraphManager graphManager = new GraphJSONDataLoader(spadeJson).loadData();
-        JSONConfigLoader configLoader = new JSONConfigLoader(graphManager);
+    private Optional<String> callModuleConverter(String type, String stringToConvert){
+        logger.debug("Processing json with module");
 
-        Graph graph = graphManager.createGraph(configLoader);
-        JSONObject json = JSONObject.fromObject(graph);
+        Pair<String, Class> module = ModuleProvider.getInstance().getModules().get(type);
+        if (module == null){
+            logger.debug("No loader available for type: " + type + ". Response BAD REQUEST");
+            return Optional.empty();
+        }
 
-        return json.toString();
+        try {
+            final Class<?> moduleClass = module.getValue();
+            // switching to class loader of module
+            final ClassLoader appClassLoader = Thread.currentThread().getContextClassLoader();
+            Thread.currentThread().setContextClassLoader(moduleClass.getClassLoader());
+
+            final Method moduleMethod = moduleClass.getMethod(ModuleProvider.METHOD_NAME, ModuleProvider.METHOD_PARAMETER_CLASS);
+            String rawJson = String.valueOf(moduleMethod.invoke(moduleClass.newInstance(), stringToConvert));
+
+            // switching back to application class loader
+            Thread.currentThread().setContextClassLoader(appClassLoader);
+
+            if(StringUtils.isBlank(rawJson)){
+                return Optional.empty();
+            } else {
+                return Optional.of(rawJson);
+            }
+
+        } catch (Exception e) {
+            logger.error("Can not call convert method in module. Module name: " + module.getKey(), e);
+            return Optional.empty();
+        }
     }
 }

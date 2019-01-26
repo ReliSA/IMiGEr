@@ -1,6 +1,5 @@
 package cz.zcu.kiv.offscreen.modularization;
 
-import com.sun.jndi.toolkit.url.Uri;
 import javafx.util.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -28,13 +26,17 @@ public class ModuleLoader {
     private static final String MODULE_NAME_IDENTIFIER = "Module-Name";
 
     private final String modulesPath;
+    private final String methodName;
+    private final Class methodParamClass;
 
-    public ModuleLoader(String modulesPath) {
+    public ModuleLoader(String modulesPath, String methodName, Class methodParamClass) {
         this.modulesPath = modulesPath;
+        this.methodName = methodName;
+        this.methodParamClass = methodParamClass;
         logger.info("Initializing new ModuleLoader with folder path: " + modulesPath);
     }
 
-    public Set<Pair<String, IModule>> loadModules() {
+    public Set<Pair<String, Class>> loadModules() {
         logger.info("Loading all modules from file.");
         final File[] modules = loadJarFiles();
         return Arrays.stream(modules)
@@ -44,10 +46,10 @@ public class ModuleLoader {
                 .collect(Collectors.toSet());
     }
 
-    public Optional<File> getModulesFolder(){
+    public Optional<File> getModulesFolder() {
 
         final URL fileURL = getClass().getClassLoader().getResource(modulesPath);
-        if (fileURL == null){
+        if (fileURL == null) {
             logger.warn("Can not open modules directory.");
             return Optional.empty();
         }
@@ -70,14 +72,15 @@ public class ModuleLoader {
     private File[] loadJarFiles() {
 
         Optional<File> folderOptional = getModulesFolder();
-        if(folderOptional.isPresent()){
-            logger.info(folderOptional.get().length() + " modules were read from file");
-            return folderOptional.get().listFiles(MODULE_FILTER);
+        if (folderOptional.isPresent()) {
+            File[] files = folderOptional.get().listFiles(MODULE_FILTER);
+            logger.info(files == null ? 0 : files.length + " modules were read from file");
+            return files;
         }
         return new File[0];
     }
 
-    private Optional<Pair<String, IModule>> loadModule(File moduleFile) {
+    private Optional<Pair<String, Class>> loadModule(File moduleFile) {
         try {
             final JarInputStream jis = new JarInputStream(new FileInputStream(moduleFile));
             final Manifest mf = jis.getManifest();
@@ -86,10 +89,11 @@ public class ModuleLoader {
             final String moduleVisibleName = attributes.getValue(MODULE_NAME_IDENTIFIER);
 
             final ClassLoader loader = URLClassLoader.newInstance(new URL[]{moduleFile.toURI().toURL()});
-            final Class clazz = Class.forName(moduleClassName, true, loader);
-            final IModule module = (IModule) clazz.asSubclass(IModule.class).newInstance();
+            final Class<?> clazz = Class.forName(moduleClassName, true, loader);
+            // checking if method exists, if not throw exception
+            clazz.getMethod(methodName, methodParamClass);
 
-            return Optional.of(new Pair<>(moduleVisibleName, module));
+            return Optional.of(new Pair<>(moduleVisibleName, clazz));
 
         } catch (Exception e) {
             logger.debug("Invalid module throw exception: ", e);
