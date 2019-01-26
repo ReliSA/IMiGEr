@@ -1,0 +1,48 @@
+{
+  "defaultFilter": {
+    "vertexArchetypeFilter": {
+      "archetypes": [ "Person", "Ticket" ],
+      "matchType": "matching"
+    },
+
+    "edgeArchetypeFilter": {
+      "archetypes": [
+        {
+          "fromArchetypes": [ "Person" ],
+          "edgeArchetypes": [ "Modification" ],
+          "toArchetypes": [ "Ticket" ]
+        },
+        {
+          "fromArchetypes": [ "Person" ],
+          "edgeArchetypes": [ "Modification" ],
+          "toArchetypes": [ "Change" ]
+        },
+        {
+          "fromArchetypes": [ "Change" ],
+          "edgeArchetypes": [ "Modification" ],
+          "toArchetypes": [ "Person" ]
+        }
+      ],
+      "matchType": "non_matching"
+    },
+
+    "vertexAttributeFilters": [
+      {
+        "archetype": "Ticket",
+        "attributeName": "Description",
+        "filter": {
+          "value": ".*css.*",
+          "matchType": "regular_expression"
+        }
+      }
+    ],
+
+    "edgeAttributeFilters": [
+      
+    ]
+  },
+  
+  "defaultGroupArchetypes": [],
+  
+  "archetypeIcons": []
+}

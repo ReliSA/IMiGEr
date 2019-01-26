@@ -1,0 +1,54 @@
+{
+  "defaultFilter": {
+    "vertexArchetypeFilter": {
+      "archetypes": [ "Person", "Ticket", "Change" ],
+      "matchType": "matching"
+    },
+
+    "edgeArchetypeFilter": {
+      "archetypes": [
+        {
+          "fromArchetypes": [ "Person" ],
+          "edgeArchetypes": [ "Authorship" ],
+          "toArchetypes": [ "Change" ]
+        },
+        {
+          "fromArchetypes": [ "Person" ],
+          "edgeArchetypes": [ "Assignment" ],
+          "toArchetypes": [ "Ticket" ]
+        }
+      ],
+      "matchType": "matching"
+    },
+
+    "vertexAttributeFilters": [
+      {
+        "archetype": "Ticket",
+        "attributeName": "Spent",
+        "filter": {
+          "min": 1.0,
+          "max": 2.0,
+          "minInclusive": false,
+          "maxInclusive": true,
+          "matchType": "matching"
+        }
+      },
+      {
+        "archetype": "Person",
+        "attributeName": "Name",
+        "filter": {
+          "value": "Petr Mayr",
+          "matchType": "exact_mismatch"
+        }
+      }
+    ],
+
+    "edgeAttributeFilters": [
+      
+    ]
+  },
+  
+  "defaultGroupArchetypes": [],
+  
+  "archetypeIcons": []
+}
