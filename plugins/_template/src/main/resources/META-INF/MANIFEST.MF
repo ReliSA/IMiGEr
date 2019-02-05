@@ -2,4 +2,5 @@ Manifest-Version: 1.0
 Created-By: Apache Maven ${maven.version}
 Built-By: ${user.name}
 Build-Jdk: ${java.version}
+Module-Class: cz.zcu.kiv.imiger.plugin.spade.Converter
 Module-Name: My Convertor
