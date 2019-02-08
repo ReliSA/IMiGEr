@@ -1,4 +1,4 @@
-package cz.zcu.kiv.offscreen.api;
+package cz.zcu.kiv.imiger.vo;
 
 public class EdgeArchetype {
     public String name;

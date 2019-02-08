@@ -1,4 +1,4 @@
-package cz.zcu.kiv.offscreen.api;
+package cz.zcu.kiv.imiger.vo;
 
 import java.util.List;
 

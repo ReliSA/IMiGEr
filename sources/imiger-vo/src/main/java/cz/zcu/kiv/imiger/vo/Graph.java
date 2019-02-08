@@ -1,4 +1,4 @@
-package cz.zcu.kiv.offscreen.api;
+package cz.zcu.kiv.imiger.vo;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

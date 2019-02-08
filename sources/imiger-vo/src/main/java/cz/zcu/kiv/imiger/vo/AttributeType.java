@@ -1,4 +1,4 @@
-package cz.zcu.kiv.offscreen.api;
+package cz.zcu.kiv.imiger.vo;
 
 /**
  * Class represents one attribute type which is used in input JSON file and in output JSON file (file between frontend

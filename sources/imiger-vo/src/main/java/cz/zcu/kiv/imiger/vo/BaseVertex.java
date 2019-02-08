@@ -1,4 +1,4 @@
-package cz.zcu.kiv.offscreen.api;
+package cz.zcu.kiv.imiger.vo;
 
 /**
  * Class represents vertex. Class contains attributes which are common for input JSON format and for
