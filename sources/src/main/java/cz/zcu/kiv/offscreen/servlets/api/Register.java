@@ -5,27 +5,24 @@ import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.User;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Register extends BaseServlet {
+
 	private static final Logger logger = LogManager.getLogger();
-	private static final String EMAIL_ADDRESS_PATTERN = "^[A-Za-z0-9-\\+_]+(\\.[A-Za-z0-9-_]+)*@" +
-    											"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*" +
-    											"(\\.[A-Za-z]{2,})$";
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		logger.debug("Processing request");
+
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String username = request.getParameter("username");
@@ -46,7 +43,7 @@ public class Register extends BaseServlet {
 			errors.addProperty("email", "Please enter e-mail address.");
 			logger.debug("Empty e-mail address");
 
-		} else if (!isEmailAddressValid(email)) {
+		} else if (!EmailValidator.getInstance().isValid(email)) {
 			errors.addProperty("email", "Please enter valid e-mail address.");
 			logger.debug("Invalid e-mail address");
 
@@ -100,19 +97,6 @@ public class Register extends BaseServlet {
 			response.getWriter().flush();
 			logger.debug("Response BAD REQUEST");
 		}
-    }
-    
-    /**
-     * Method verify validity of email address
-     * 
-     * @param emailAddress - email address
-     * @return true - email address is ok
-     * 		   false - email address is not correct
-     */
-    private boolean isEmailAddressValid(String emailAddress) {
-    	Pattern pattern = Pattern.compile(EMAIL_ADDRESS_PATTERN);
-    	Matcher matcher = pattern.matcher(emailAddress);
-		return matcher.matches();
     }
 	
 }
