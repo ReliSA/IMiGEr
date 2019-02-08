@@ -5,11 +5,11 @@
 		 version="3.0">
 	<context-param>
 		<param-name>jdbc.driverClassName</param-name>
-		<param-value>com.mysql.jdbc.Driver</param-value>
+		<param-value>com.mysql.cj.jdbc.Driver</param-value>
 	</context-param>
 	<context-param>
 		<param-name>jdbc.url</param-name>
-		<param-value>jdbc:mysql://localhost/visualization_tool?useUnicode=true&amp;characterEncoding=UTF-8</param-value>
+		<param-value>jdbc:mysql://localhost/visualization_tool?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</param-value>
 	</context-param>
 	<context-param>
 		<param-name>jdbc.username</param-name>
