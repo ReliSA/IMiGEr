@@ -4,12 +4,11 @@ import javafx.util.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.*;
 
@@ -24,8 +23,6 @@ public class ModuleProvider {
     public static final Class METHOD_PARAMETER_CLASS = String.class;
 
     private static final Logger logger = LogManager.getLogger();
-    /** Path to folder with modules relative to resources */
-    private static final String MODULES_PATH = "modules";
     /** Instance of this class used for singleton pattern. */
     private static ModuleProvider instance = null;
 
@@ -63,7 +60,7 @@ public class ModuleProvider {
      * When watcher fails than is automatically starts new watcher after 5 minutes timeout.
      */
     private ModuleProvider() {
-        this.loader = new ModuleLoader(MODULES_PATH, METHOD_NAME, METHOD_PARAMETER_CLASS);
+        this.loader = new ModuleLoader(METHOD_NAME, METHOD_PARAMETER_CLASS);
 
         processModules(loader.loadModules());
 
@@ -104,12 +101,7 @@ public class ModuleProvider {
         try {
             logger.debug("Initializing new WatcherService for modules directory");
 
-            Optional<File> folderFileOptional = loader.getModulesFolder();
-            if (!folderFileOptional.isPresent()) {
-                return;
-            }
-
-            Path path = folderFileOptional.get().toPath();
+            Path path = Paths.get(getClass().getClassLoader().getResource("/../lib/").toURI());
             watcher = FileSystems.getDefault().newWatchService();
             path.register(watcher,
                     StandardWatchEventKinds.ENTRY_CREATE,
@@ -138,7 +130,7 @@ public class ModuleProvider {
                 }
             }
 
-        } catch (IOException | InterruptedException e) {
+        } catch (URISyntaxException | IOException | InterruptedException e) {
             logger.error("Modules directory watcher throw an exception: ", e);
         }
     }
