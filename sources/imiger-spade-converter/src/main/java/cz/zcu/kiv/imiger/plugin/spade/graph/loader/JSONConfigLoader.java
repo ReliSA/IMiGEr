@@ -1,7 +1,7 @@
 package cz.zcu.kiv.imiger.plugin.spade.graph.loader;
 
-import cz.zcu.kiv.imiger.plugin.spade.api.AttributeDataType;
-import cz.zcu.kiv.imiger.plugin.spade.api.AttributeType;
+import cz.zcu.kiv.imiger.vo.AttributeDataType;
+import cz.zcu.kiv.imiger.vo.AttributeType;
 import cz.zcu.kiv.imiger.plugin.spade.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.imiger.plugin.spade.graph.GraphManager;
 import cz.zcu.kiv.imiger.plugin.spade.graph.filter.*;

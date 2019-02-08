@@ -1,12 +1,12 @@
 package cz.zcu.kiv.imiger.plugin.spade.backend;
 
-import cz.zcu.kiv.imiger.plugin.spade.api.Edge;
-import cz.zcu.kiv.imiger.plugin.spade.api.Graph;
-import cz.zcu.kiv.imiger.plugin.spade.api.Vertex;
+import cz.zcu.kiv.imiger.vo.Edge;
+import cz.zcu.kiv.imiger.vo.Graph;
+import cz.zcu.kiv.imiger.vo.Vertex;
 import cz.zcu.kiv.imiger.plugin.spade.graph.GraphManager;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.JSONConfigLoader;
-import cz.zcu.kiv.imiger.plugin.spade.api.SubedgeInfo;
+import cz.zcu.kiv.imiger.vo.SubedgeInfo;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

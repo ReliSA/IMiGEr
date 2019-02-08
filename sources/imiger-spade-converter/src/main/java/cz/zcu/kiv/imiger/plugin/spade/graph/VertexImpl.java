@@ -1,6 +1,6 @@
 package cz.zcu.kiv.imiger.plugin.spade.graph;
 
-import cz.zcu.kiv.imiger.plugin.spade.api.BaseVertex;
+import cz.zcu.kiv.imiger.vo.BaseVertex;
 
 import java.util.*;
 

@@ -1,8 +1,8 @@
 package cz.zcu.kiv.imiger.plugin.spade.graph;
 
-import cz.zcu.kiv.imiger.plugin.spade.api.*;
 import cz.zcu.kiv.imiger.plugin.spade.graph.filter.*;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.JSONConfigLoader;
+import cz.zcu.kiv.imiger.vo.*;
 
 import java.util.*;
 

@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import cz.zcu.kiv.imiger.plugin.spade.api.AttributeDataType;
+import cz.zcu.kiv.imiger.vo.AttributeDataType;
 import cz.zcu.kiv.imiger.plugin.spade.graph.Attribute;
 import cz.zcu.kiv.imiger.plugin.spade.graph.EdgeArchetypeInfo;
 import cz.zcu.kiv.imiger.plugin.spade.graph.GraphManager;

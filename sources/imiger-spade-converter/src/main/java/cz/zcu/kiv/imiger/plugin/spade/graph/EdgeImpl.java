@@ -1,6 +1,6 @@
 package cz.zcu.kiv.imiger.plugin.spade.graph;
 
-import cz.zcu.kiv.imiger.plugin.spade.api.BaseEdge;
+import cz.zcu.kiv.imiger.vo.BaseEdge;
 
 import java.util.*;
 

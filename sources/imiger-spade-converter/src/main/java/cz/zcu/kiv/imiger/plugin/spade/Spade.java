@@ -1,6 +1,6 @@
 package cz.zcu.kiv.imiger.plugin.spade;
 
-import cz.zcu.kiv.imiger.plugin.spade.api.Graph;
+import cz.zcu.kiv.imiger.vo.Graph;
 import cz.zcu.kiv.imiger.plugin.spade.graph.GraphManager;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.JSONConfigLoader;
