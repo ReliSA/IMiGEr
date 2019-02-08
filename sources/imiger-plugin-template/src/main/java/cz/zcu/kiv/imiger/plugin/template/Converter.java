@@ -1,7 +1,7 @@
-package cz.zcu.kiv.imiger.plugin.spade;
+package cz.zcu.kiv.imiger.plugin.template;
 
 import com.google.gson.Gson;
-import cz.zcu.kiv.imiger.plugin.spade.api.Graph;
+import cz.zcu.kiv.imiger.vo.Graph;
 
 public class Converter {
 
