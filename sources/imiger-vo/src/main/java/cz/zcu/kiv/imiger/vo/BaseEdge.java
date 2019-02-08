@@ -4,7 +4,7 @@ package cz.zcu.kiv.imiger.vo;
  * Class represents edge. Class contains attributes which are common for input JSON format and for
  * output JSON format (JSON between frontend and backend)
  */
-public class BaseEdge {
+public abstract class BaseEdge {
     /** identification number of edge */
     private int id;
     /** original ID of vertex from edge leads */

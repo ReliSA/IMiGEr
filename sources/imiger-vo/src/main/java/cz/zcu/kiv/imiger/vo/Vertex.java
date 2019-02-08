@@ -26,6 +26,15 @@ public class Vertex extends BaseVertex {
         this.position = null;
     }
 
+    /**
+     * Create new vertex.
+     * @param vertex instance of BaseVertex with set all parameters
+     * @param attributes ist of all attributes. Every attribute is stored in String array in pair as {attribute name, attribute value}.
+     */
+    public Vertex(BaseVertex vertex, List<String[]> attributes){
+        this(vertex.getId(), vertex.getName(), vertex.getArchetype(), vertex.getText(), attributes);
+    }
+
     public List<String[]> getAttributes() {
         return attributes;
     }

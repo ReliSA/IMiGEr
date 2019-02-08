@@ -4,7 +4,7 @@ package cz.zcu.kiv.imiger.vo;
  * Class represents vertex. Class contains attributes which are common for input JSON format and for
  * output JSON format (JSON between frontend and backend)
  */
-public class BaseVertex {
+public abstract class BaseVertex {
 
     /** New generated identification number. */
     private int id;
