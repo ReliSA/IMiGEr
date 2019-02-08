@@ -1,11 +1,10 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
-import com.google.common.base.Strings;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,7 +37,7 @@ public class SaveDiagram extends BaseServlet {
         String isPublic = request.getParameter("public");
 
         // input parameters are invalid
-        if (Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(graphJson)) {
+        if (StringUtils.isBlank(name) || StringUtils.isBlank(graphJson)) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             logger.debug("Input name or json is empty");
             return;
@@ -47,7 +46,7 @@ public class SaveDiagram extends BaseServlet {
         DB db = new DB(getServletContext());
         Diagram diagram;
 
-        if (Strings.isNullOrEmpty(diagramId)) {
+        if (StringUtils.isBlank(diagramId)) {
             logger.debug("Creating new diagram");
             diagram = new Diagram(db);
 

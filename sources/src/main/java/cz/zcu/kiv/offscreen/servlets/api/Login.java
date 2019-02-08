@@ -1,18 +1,18 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
-import com.google.common.base.Strings;
 import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.User;
 import cz.zcu.kiv.offscreen.vo.UserVO;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 public class Login extends BaseServlet {
     private static final Logger logger = LogManager.getLogger();
 
@@ -24,12 +24,12 @@ public class Login extends BaseServlet {
 
         JsonObject errors = new JsonObject();
 
-        if (Strings.isNullOrEmpty(username)) {
+        if (StringUtils.isBlank(username)) {
             errors.addProperty("username", "Please enter username.");
             logger.debug("Empty user name");
         }
 
-        if (Strings.isNullOrEmpty(password)) {
+        if (StringUtils.isBlank(password)) {
             errors.addProperty("password", "Please enter password.");
             logger.debug("Empty password");
         }

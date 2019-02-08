@@ -1,10 +1,10 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
-import com.google.common.base.Strings;
 import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.User;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,12 +37,12 @@ public class Register extends BaseServlet {
 
 		JsonObject errors = new JsonObject();
 
-		if (Strings.isNullOrEmpty(name)) {
+		if (StringUtils.isBlank(name)) {
 			errors.addProperty("name", "Please enter name.");
 			logger.debug("Empty name");
 		}
 
-		if (Strings.isNullOrEmpty(email)) {
+		if (StringUtils.isBlank(email)) {
 			errors.addProperty("email", "Please enter e-mail address.");
 			logger.debug("Empty e-mail address");
 
@@ -55,7 +55,7 @@ public class Register extends BaseServlet {
 			logger.debug("E-mail exists");
 		}
 
-		if (Strings.isNullOrEmpty(username)) {
+		if (StringUtils.isBlank(username)) {
 			errors.addProperty("username", "Please enter username.");
 			logger.debug("Empty user name");
 
@@ -64,7 +64,7 @@ public class Register extends BaseServlet {
 			logger.debug("Username(nickname) exists");
 		}
     	
-    	if (Strings.isNullOrEmpty(password) || Strings.isNullOrEmpty(passwordCheck)) {
+    	if (StringUtils.isBlank(password) || StringUtils.isBlank(passwordCheck)) {
     		errors.addProperty("password", "Please enter password.");
 			logger.debug("Empty password");
 

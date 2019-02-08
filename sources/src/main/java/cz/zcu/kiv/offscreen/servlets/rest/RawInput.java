@@ -1,7 +1,7 @@
 package cz.zcu.kiv.offscreen.servlets.rest;
 
-import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +23,7 @@ public class RawInput extends BaseServlet {
         String diagram = request.getParameter("rawDiagram");
         String type = "raw";
 
-        if (Strings.isNullOrEmpty(diagram)) {
+        if (StringUtils.isBlank(diagram)) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             logger.debug("Diagram json is empty");
             return;

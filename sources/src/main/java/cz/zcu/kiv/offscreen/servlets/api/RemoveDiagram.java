@@ -1,9 +1,9 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
-import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +27,7 @@ public class RemoveDiagram extends BaseServlet {
 
         String diagramId = request.getParameter("diagramId");
 
-        if (Strings.isNullOrEmpty(diagramId)) {
+        if (StringUtils.isBlank(diagramId)) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             logger.debug("Empty diagram id");
             return;

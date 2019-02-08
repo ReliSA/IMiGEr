@@ -1,13 +1,12 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
-import com.google.common.base.Strings;
 import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import javafx.util.Pair;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.maven.shared.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +42,7 @@ public class GetSessionDiagram extends BaseServlet {
         String diagramType = (String) request.getSession().getAttribute("diagram_type");
         String filename = (String) request.getSession().getAttribute("diagram_filename");
 
-        if (!Strings.isNullOrEmpty(diagramToDisplay) && diagramType != null) {
+        if (StringUtils.isNotBlank(diagramToDisplay) && diagramType != null) {
 
             String rawJson;
 

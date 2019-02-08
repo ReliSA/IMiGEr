@@ -1,10 +1,10 @@
 package cz.zcu.kiv.offscreen.servlets;
 
-import com.google.common.base.Strings;
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.storage.FileLoader;
 import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.Diagram;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -59,7 +59,7 @@ public class UploadFiles extends BaseServlet {
             logger.debug("Invalid request");
             doGet(request, response);
 
-        } else if (Strings.isNullOrEmpty(data.get("file"))) {
+        } else if (StringUtils.isBlank(data.get("file"))) {
             request.setAttribute("errorMessage", "<strong>Unsupported file</strong><br/>");
             logger.debug("Empty diagram string");
             doGet(request, response);
