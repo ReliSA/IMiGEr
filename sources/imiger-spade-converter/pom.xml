@@ -21,19 +21,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.1.1</version>
-                <configuration>
-                    <archive>
-                        <manifestSections>
-                            <manifestSection>
-                                <name>cz.zcu.kiv.imiger.plugin</name>
-                                <manifestEntries>
-                                    <Module-Class>cz.zcu.kiv.imiger.plugin.spade.Spade</Module-Class>
-                                    <Module-Name>Spade JSON</Module-Name>
-                                </manifestEntries>
-                            </manifestSection>
-                        </manifestSections>
-                    </archive>
-                </configuration>
             </plugin>
         </plugins>
     </build>
