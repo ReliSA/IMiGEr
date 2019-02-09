@@ -36,11 +36,11 @@ public class GetPrivateDiagrams extends BaseServlet {
 
         JsonArray jsonArray = new JsonArray();
         for (Map<String, String> userDiagram : userDiagramList) {
-
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("id", userDiagram.get("id"));
             jsonObject.addProperty("name", userDiagram.get("name"));
-
+            jsonObject.addProperty("created", userDiagram.get("created"));
+            jsonObject.addProperty("last_update", userDiagram.get("last_update"));
             jsonArray.add(jsonObject);
         }
 

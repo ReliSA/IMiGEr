@@ -1,35 +1,91 @@
-.upload-form {
-    width: 200px;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: #CFEAFE;
-    box-shadow: 3px 3px 10px #888;
+.content {
+	max-width: 480px;
+	margin-top: 45px;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1.8;
 }
 
-.upload-form button[type="submit"] {
+.section {
+	margin-bottom: 45px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.section h2 {
+	font-size: 1.4em;
+	font-weight: normal;
+	color: #0b548a;
+	margin-top: 15px;
+	margin-bottom: 30px;
+	border-bottom: 1px solid;
+}
+
+.diagram-form button[type="submit"] {
 	display: block;
 	width: 100%;
 }
-
-.diagrams-menu {
-	width: 200px;
-    margin: 20px auto;
-	padding: 10px;
-	background-color: #CFEAFE;
-	box-shadow: 3px 3px 10px #888;
+.diagram-list-item {
+	position: relative;
 }
 
-.diagrams-menu li {
+.diagram-list-item:not(:last-child) {
+	margin-bottom: 15px;
+}
+
+.diagram-list-item a {
+	display: block;
+	color: #000;
+	text-decoration: none;
+}
+
+.diagram-details {
+	color: gray;
+	font-size: 0.8em;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.diagram-details dt,
+.diagram-details dd {
+	display: inline;
+}
+
+.diagram-details dd {
+	margin-left: 0;
+	margin-right: 15px;
+}
+
+.diagram-button-group {
+	display: none;
+	position: absolute;
+	top: 5px;
+	right: 0;
+}
+
+.diagram-list-item:focus .diagram-button-group,
+.diagram-list-item:hover .diagram-button-group {
+	display: block;
+}
+
+.diagram-button-group li {
+	display: inline-block;
+}
+
+.diagram-button-group .button {
+	width: 20px;
 	height: 20px;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
 }
 
-.diagrams-menu li button {
-	float: right;
-    width: 20px;
-    height: 20px;
-    padding: 0;
+.diagram-button-group .delete-diagram-button {
+	padding: 1px;
+	vertical-align: 1px;
 }
 
-.diagrams-menu li img {
+.diagram-button-group .button img {
 	max-width: 100%;
 }

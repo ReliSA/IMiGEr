@@ -1,7 +1,11 @@
+body {
+	overflow: hidden;
+}
+
 .graph-content {
 	display: flex;
 	height: calc(100vh - 60px - 43px);
-    background-color: #fff;
+	background-color: #fff;
 }
 
 .archetype-icon {

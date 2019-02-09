@@ -36,7 +36,7 @@ class UploadFilesApp extends App {
 
 		// private diagrams list
 		const privateDiagramList = document.getElementById('privateDiagramList');
-		privateDiagramList.querySelectorAll('.remove-diagram-button').forEach(button => {
+		privateDiagramList.querySelectorAll('.delete-diagram-button').forEach(button => {
 			button.addEventListener('click', this._removeDiagram);
 		});
 
@@ -79,31 +79,64 @@ class UploadFilesApp extends App {
 			const data = await AJAX.getJSON(Constants.API.getPrivateDiagrams);
 
 			data.forEach(diagram => {
-				privateDiagramList.appendChild(DOM.h('li', {}, [
+				privateDiagramList.appendChild(DOM.h('li', {
+					class: 'diagram-list-item',
+				}, [
 					DOM.h('a', {
 						href: app.homeUrl + 'graph?diagramId=' + diagram.id,
 						innerText: diagram.name,
 					}),
-					DOM.h('a', {
-						href: app.homeUrl + 'api/get-diagram-data?id=' + diagram.id,
-						download: diagram.name + '.json',
-						class: 'button download-diagram-button',
+					DOM.h('dl', {
+						class: 'diagram-details',
 					}, [
-						DOM.h('img', {
-							src: 'images/button_cancel.png',
-							alt: 'stáhnout',
+						DOM.h('dt', {
+							innerText: 'created:',
 						}),
+						DOM.h('dd', {}, [
+							DOM.h('time', {
+								innerText: diagram.created,
+							}),
+						]),
+						DOM.h('dt', {
+							innerText: 'updated:',
+						}),
+						DOM.h('dd', {}, [
+							DOM.h('time', {
+								innerText: diagram.last_update,
+							}),
+						]),
 					]),
-					DOM.h('button', {
-						class: 'button remove-diagram-button',
-						'data-id': diagram.id,
-						'data-name': diagram.name,
-						onClick: this._removeDiagram,
+					DOM.h('ul', {
+						class: 'diagram-button-group',
 					}, [
-						DOM.h('img', {
-							src: 'images/button_cancel.png',
-							alt: 'odstranit',
-						}),
+						DOM.h('li', {}, [
+							DOM.h('a', {
+								href: app.homeUrl + 'api/get-diagram-data?id=' + diagram.id,
+								download: diagram.name + '.json',
+								title: 'download diagram as raw JSON',
+								class: 'button download-diagram-button',
+							}, [
+								DOM.h('img', {
+									src: 'images/icomoon/download3.svg',
+									alt: 'download diagram icon',
+								}),
+							]),
+						]),
+						DOM.t(' '),
+						DOM.h('li', {}, [
+							DOM.h('button', {
+								class: 'button delete-diagram-button',
+								title: 'delete diagram',
+								'data-id': diagram.id,
+								'data-name': diagram.name,
+								onClick: this._removeDiagram,
+							}, [
+								DOM.h('img', {
+									src: 'images/icomoon/cross.svg',
+									alt: 'delete diagram icon',
+								}),
+							]),
+						]),
 					]),
 				]));
 			});

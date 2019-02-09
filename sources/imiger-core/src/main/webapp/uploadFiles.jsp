@@ -43,7 +43,7 @@
 		<header class="header" id="header">
 			<img src="images/logo_cs.svg" class="header-logo" alt="logo of University of West Bohemia" title="University of West Bohemia">
 
-			<h2 class="header-title">Interactive Multimodal Graph Explorer</h2>
+			<h1 class="header-title">Interactive Multimodal Graph Explorer</h1>
 
 			<div class="user-menu loggedInOnly">
 				<span class="username" id="usernameLabel">${user.username}</span>
@@ -56,15 +56,15 @@
 			</div>
 		</header>
 
-		<main>
-			<div class="upload-form">
-				<h3>New diagram</h3>
+		<main class="content">
+			<section class="section">
+				<h2>New diagram</h2>
 
 				<c:if test="${not empty errorMessage}">
 					<p class="alert">${errorMessage}</p>
 				</c:if>
 
-				<form method="post" enctype="multipart/form-data">
+				<form method="post" enctype="multipart/form-data" class="diagram-form">
 					<div class="form-field">
 						<label for="file">Select JSON data file:</label><br>
 						<input type="file" name="file" id="file">
@@ -80,38 +80,68 @@
 
 					<button id="btnLoad" type="submit">Start visualization</button>
 				</form>
-			</div>
+			</section>
 
-			<div class="diagrams-menu loggedInOnly">
-				<h3>My diagrams</h3>
+			<section class="section loggedInOnly">
+				<h2>My diagrams</h2>
 
-				<ul id="privateDiagramList">
+				<ul class="diagram-list" id="privateDiagramList">
 					<c:forEach items="${diagramsPrivate}" var="diagram">
-						<li>
+						<li class="diagram-list-item">
 							<a href="${APP_HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
 
-							<a href="${APP_HOME_URL}api/get-diagram-data?id=${diagram.id}" download="${diagram.name}.json" class="button download-diagram-button">
-								<img src="images/button_cancel.png" alt="stáhnout">
-							</a>
-							<button class="button remove-diagram-button" data-id="${diagram.id}" data-name="${diagram.name}">
-								<img src="images/button_cancel.png" alt="odstranit">
-							</button>
+							<dl class="diagram-details">
+								<dt>created:</dt>
+								<dd><time>${diagram.created}</time></dd>
+
+								<dt>updated:</dt>
+								<dd><time>${diagram.last_update}</time></dd>
+							</dl>
+
+							<ul class="diagram-button-group">
+								<li>
+									<a href="${APP_HOME_URL}api/get-diagram-data?id=${diagram.id}" download="${diagram.name}.json" title="download diagram as raw JSON" class="button download-diagram-button">
+										<img src="images/icomoon/download3.svg" alt="download diagram icon">
+									</a>
+								</li>
+								<li>
+									<button class="button delete-diagram-button" title="delete diagram" data-id="${diagram.id}" data-name="${diagram.name}">
+										<img src="images/icomoon/cross.svg" alt="delete diagram icon">
+									</button>
+								</li>
+							</ul>
 						</li>
 					</c:forEach>
 				</ul>
-			</div>
+			</section>
 
-			<div class="diagrams-menu">
-				<h3>Public diagrams</h3>
+			<section class="section">
+				<h2>Public diagrams</h2>
 
-				<ul id="publicDiagramList">
+				<ul class="diagram-list" id="publicDiagramList">
 					<c:forEach items="${diagramsPublic}" var="diagram">
-						<li>
+						<li class="diagram-list-item">
 							<a href="${APP_HOME_URL}graph?diagramId=${diagram.id}">${diagram.name}</a>
+
+							<dl class="diagram-details">
+								<dt>created:</dt>
+								<dd><time>${diagram.created}</time></dd>
+
+								<dt>updated:</dt>
+								<dd><time>${diagram.last_update}</time></dd>
+							</dl>
+
+							<ul class="diagram-button-group">
+								<li>
+									<a href="${APP_HOME_URL}api/get-diagram-data?id=${diagram.id}" download="${diagram.name}.json" title="download diagram as raw JSON" class="button download-diagram-button">
+										<img src="images/icomoon/download3.svg" alt="download diagram icon">
+									</a>
+								</li>
+							</ul>
 						</li>
 					</c:forEach>
 				</ul>
-			</div>
+			</section>
 		</main>
 
 		<script type="module">
