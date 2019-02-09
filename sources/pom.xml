@@ -14,7 +14,7 @@
 
     <modules>
         <module>imiger-core</module>
-        <module>imiger-vo</module>
+        <module>imiger-module</module>
         <module>imiger-spade-converter</module>
     </modules>
 

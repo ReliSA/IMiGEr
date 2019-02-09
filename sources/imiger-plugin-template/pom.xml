@@ -51,7 +51,7 @@
     <dependencies>
         <dependency>
             <groupId>cz.zcu.kiv</groupId>
-            <artifactId>imiger-vo</artifactId>
+            <artifactId>imiger-module</artifactId>
             <version>0.1.2-SNAPSHOT</version>
         </dependency>
 
