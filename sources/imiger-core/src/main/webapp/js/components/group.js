@@ -318,7 +318,7 @@ class Group extends Node {
 					onClick: this.include.bind(this),
 				}, [
 					DOM.h('img', {
-						src: 'images/button_cancel.png',
+						src: 'images/icomoon/cross.svg',
 						alt: 'Icon of "display group in viewport" action',
 					}),
 				]),

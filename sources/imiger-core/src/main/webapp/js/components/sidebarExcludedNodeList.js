@@ -22,7 +22,7 @@ class SidebarExcludedNodeList extends SidebarNodeList {
 				onClick: this._onIncludeAllClick.bind(this),
 			}, [
 				DOM.h('img', {
-					src: 'images/button_cancel.png',
+					src: 'images/icomoon/cross.svg',
 					alt: 'Icon of "display all excluded nodes in viewport" action',
 				}),
 			])

@@ -290,7 +290,7 @@ class Vertex extends Node {
 					onClick: this.include.bind(this),
 				}, [
 					DOM.h('img', {
-						src: 'images/button_cancel.png',
+						src: 'images/icomoon/cross.svg',
 						alt: 'Icon of "Icon of "display node in viewport" action" action',
 					}),
 				]),

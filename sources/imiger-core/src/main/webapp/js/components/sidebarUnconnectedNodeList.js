@@ -34,7 +34,7 @@ class SidebarUnconnectedNodeList extends SidebarNodeList {
 				onClick: this._onIncludeAllClick.bind(this),
 			}, [
 				DOM.h('img', {
-					src: 'images/unconnected/uncon_left.png',
+					src: 'images/icomoon/arrow-left.svg',
 					alt: 'Icon of "display all unconnected nodes in viewport" action',
 				}),
 			]),
@@ -45,7 +45,7 @@ class SidebarUnconnectedNodeList extends SidebarNodeList {
 				onClick: this._onExcludeAllClick.bind(this),
 			}, [
 				DOM.h('img', {
-					src: 'images/unconnected/uncon_right.png',
+					src: 'images/icomoon/arrow-right.svg',
 					alt: 'Icon of "display all unconnected nodes in sidebar" action',
 				})
 			]),
