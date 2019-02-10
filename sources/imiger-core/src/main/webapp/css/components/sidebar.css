@@ -169,7 +169,7 @@
 
 .sidebar .node--found .vertex-name,
 .sidebar .node--found .group-name {
-	background-color: orange;
+	box-shadow: 0 0 16px 2px #ffa500;
 }
 
 .sidebar .node--highlighted .vertex-name {

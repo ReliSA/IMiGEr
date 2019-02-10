@@ -151,9 +151,17 @@ class Node {
 		this._isFound = newValue;
 
 		if (newValue) {
-			this._rootElement.classList.add('node--found');
+			if (this.isExcluded) {
+				this._rootElement.classList.add('node--found');
+			} else {
+				this._rootElement.setAttribute('filter', 'url(#node--found)');
+			}
 		} else {
-			this._rootElement.classList.remove('node--found');
+			if (this.isExcluded) {
+				this._rootElement.classList.remove('node--found');
+			} else {
+				this._rootElement.removeAttribute('filter');
+			}
 		}
 	}
 

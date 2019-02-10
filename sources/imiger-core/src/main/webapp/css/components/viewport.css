@@ -47,10 +47,6 @@
 	stroke-width: 1;
 }
 
-.viewport .node--found > rect {
-	fill: orange;
-}
-
 .viewport .node--dimmed {
 	opacity: 0.5;
 }

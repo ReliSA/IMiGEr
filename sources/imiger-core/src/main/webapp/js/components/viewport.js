@@ -183,6 +183,39 @@ class Viewport {
 					'stop-color': '#5896ff',
 				}),
 			]),
+			// drop shadow for found nodes
+			DOM.s('filter', {
+				id: 'node--found',
+				width: '200%',
+				height: '200%',
+				x: '-50%',
+				y: '-50%',
+			}, [
+				// use feDropShadow once supported in all major browsers
+				DOM.s('feGaussianBlur', {
+					in: 'SourceAlpha',
+					stdDeviation: '16 8',
+				}),
+				DOM.s('feOffset', {
+					dx: 0,
+					dy: 0,
+					result: 'offsetBlur',
+				}),
+				DOM.s('feFlood', {
+					'flood-color': '#ffa500',
+					'flood-opacity': 1,
+				}),
+				DOM.s('feComposite', {
+					in2: 'offsetBlur',
+					operator: 'in',
+				}),
+				DOM.s('feMerge', {}, [
+					DOM.s('feMergeNode'),
+					DOM.s('feMergeNode', {
+						in: 'SourceGraphic',
+					}),
+				]),
+			]),
 		]);
 		graph.appendChild(this._definitions);
 

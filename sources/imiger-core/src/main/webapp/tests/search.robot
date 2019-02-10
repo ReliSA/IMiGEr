@@ -25,9 +25,9 @@ Search vertex using enter key
 	# check counter of found nodes
 	${found}=		Get Text	${searchCounter}
 	Should Be Equal As Strings	${found}		2
-	# check CSS classes of found nodes
-	Element Should Have Class	${vertex2015}	node--found
-	Element Should Have Class	${vertex2039}	node--found
+	# check found nodes
+	Element Attribute Value Should Be	${vertex2015}	filter	url(#node--found)
+	Element Attribute Value Should Be	${vertex2039}	filter	url(#node--found)
 
 
 Search vertex using button
@@ -36,9 +36,9 @@ Search vertex using button
 	# check counter of found nodes
 	${found}=	Get Text		${searchCounter}
 	Should Be Equal As Strings	${found}		2
-	# check CSS classes of found nodes
-	Element Should Have Class	${vertex2015}	node--found
-	Element Should Have Class	${vertex2039}	node--found
+	# check found nodes
+	Element Attribute Value Should Be	${vertex2015}	filter	url(#node--found)
+	Element Attribute Value Should Be	${vertex2039}	filter	url(#node--found)
 
 
 Reset search using escape key
@@ -50,8 +50,8 @@ Reset search using escape key
 	${found}=	Get Text	${searchCounter}
 	Should Be Equal As Strings	${found}		0
 	# check that no nodes are found
-	Element Should Not Have Class	${vertex2015}	node--found
-	Element Should Not Have Class	${vertex2039}	node--found
+	Element Should Not Have Attribute	${vertex2015}	filter
+	Element Should Not Have Attribute	${vertex2039}	filter
 
 
 Reset search using counter click
@@ -62,5 +62,5 @@ Reset search using counter click
 	${found}=	Get Text	${searchCounter}
 	Should Be Equal As Strings	${found}		0
 	# check that no nodes are found
-	Element Should Not Have Class	${vertex2015}	vertex--found
-	Element Should Not Have Class	${vertex2039}	vertex--found
+	Element Should Not Have Attribute	${vertex2015}	filter
+	Element Should Not Have Attribute	${vertex2039}	filter
