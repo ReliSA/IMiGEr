@@ -4,6 +4,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	background-color: #f0f9ff;
+	box-shadow: 0 0 5px #7db9e8;
 }
 
 .sidebar .button {
@@ -20,6 +21,7 @@
 
 .sidebar .node-container {
 	position: relative;
+	min-height: 140px; /* just enough to display one node */
 	overflow-y: overlay;
 }
 

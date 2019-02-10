@@ -93,9 +93,9 @@ class Navbar {
 	}
 
 	_createSearchListItem() {
-		let searchInput = DOM.h('input', {
+		const searchInput = DOM.h('input', {
 			type: 'search',
-			placeholder: 'Search components...',
+			placeholder: 'Search nodes...',
 			class: 'search-text',
 			id: 'searchText',
 			title: 'search nodes [ctrl + f]',
@@ -112,7 +112,7 @@ class Navbar {
 			},
 		});
 
-		let searchButton = DOM.h('button', {
+		const searchButton = DOM.h('button', {
 			class: 'btn search',
 			id: 'searchButton',
 			onClick: () => {
@@ -126,7 +126,7 @@ class Navbar {
 			}),
 		]);
 
-		let searchCounter = DOM.h('span', {
+		const searchCounter = DOM.h('span', {
 			class: 'search-count',
 			id: 'searchCount',
 			title: 'Count of components found',
@@ -181,9 +181,7 @@ class Navbar {
 
 		function resetSearch() {
 			let nodeList = app.nodeList;
-			nodeList.forEach(node => {
-				node.isFound = false;
-			});
+			nodeList.filter(node => node.isFound === true).forEach(node => node.isFound = false);
 
 			searchInput.value = '';
 			searchCounter.innerText = 0;

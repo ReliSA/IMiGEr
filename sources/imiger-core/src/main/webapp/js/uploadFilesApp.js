@@ -151,8 +151,8 @@ class UploadFilesApp extends App {
 	 * Removes diagram from DB and reloads the page.
 	 */
 	async _removeDiagram() {
-		let diagramId = this.getAttribute('data-id');
-		let diagramName = this.getAttribute('data-name');
+		let diagramId = this.dataset.id;
+		let diagramName = this.dataset.name;
 
 		if (confirm('Do you really want to delete ' + diagramName + '?')) {
 			try {

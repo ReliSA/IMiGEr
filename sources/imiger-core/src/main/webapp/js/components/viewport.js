@@ -170,7 +170,7 @@ class Viewport {
 
 		// reusable definitions
 		this._definitions = DOM.s('defs', {}, [
-			// linear gradient
+			// linear gradient for nodes that are highlighted as both required and provided
 			DOM.s('linearGradient', {
 				id: 'node--highlighted-as-required-provided',
 			}, [

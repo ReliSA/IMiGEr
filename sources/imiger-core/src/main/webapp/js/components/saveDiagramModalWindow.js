@@ -58,7 +58,7 @@ class SaveDiagramModalWindow extends ModalWindow {
 					]),
 				]),
 			]),
-		])
+		]);
 		this._bodyElement.appendChild(this._form);
 
 		return this._rootElement;

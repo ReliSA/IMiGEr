@@ -37,7 +37,7 @@ class GroupVertexList {
 
 		if (this.isRendered) {
 			this._rootElement.childNodes.forEach(child => {
-				if (child.getAttribute('data-id') === vertex.id) {
+				if (child.dataset.id === vertex.id) {
 					child.remove();
 				}
 			});
