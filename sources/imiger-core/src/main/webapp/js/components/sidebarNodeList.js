@@ -3,6 +3,7 @@ class SidebarNodeList {
 	constructor(props) {
 		this._properties = props;
 
+		this._isScrolling = null;
 		this._nodeList = [];
 	}
 
@@ -93,7 +94,7 @@ class SidebarNodeList {
 		this._rootElement = DOM.h('div', {
 			class: this._properties.class,
 			id: this._properties.id,
-			onScroll: () => app.redrawEdges(),
+			onScroll: this._onScroll.bind(this),
 		}, [
 			// title
 			DOM.h('h2', {
@@ -121,6 +122,17 @@ class SidebarNodeList {
 		this._nodeListElement.innerHTML = '';
 
 		this.toggleControls();
+	}
+
+	_onScroll() {
+		if (this._isScrolling !== null) {
+			window.clearTimeout(this._isScrolling);
+		}
+
+		this._isScrolling = window.setTimeout(() => {
+			// NOTE: edges are only redrawn when scrolling ends in the sake of better performance
+			app.redrawEdges();
+		}, 100);
 	}
 
 	_sortByName(sortOrder) {
