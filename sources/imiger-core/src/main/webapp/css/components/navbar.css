@@ -69,3 +69,7 @@
 	line-height: 40px;
 	vertical-align: middle;
 }
+
+.navbar .search-count {
+	margin-right: 5px;
+}

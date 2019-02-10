@@ -133,11 +133,38 @@ class Navbar {
 			onClick: () => resetSearch(),
 		});
 
+		const groupFoundButton = DOM.h('button', {
+			id: 'groupFoundButton',
+			innerText: 'Group found vertices',
+			onClick: () => {
+				const foundVertexList = app.vertexList.filter(node => node.isFound === true && node.group === null);
+
+				if (foundVertexList.length > 0) {
+					// create a new group
+					let group = Group.create();
+					group.isExcluded = true;
+
+					app.nodeList.push(group);
+					app.groupList.push(group);
+
+					app.sidebarComponent.excludedNodeListComponent.addNode(group);
+
+					foundVertexList.forEach(node => {
+						group.addVertex(node);
+						app.sidebarComponent.excludedNodeListComponent.removeNode(node);
+						node.remove(true);
+					});
+				}
+
+				resetSearch();
+			},
+		})
+
 		function search(term) {
 			if (term.length < 2) return;
 
 			let found = 0;
-			
+
 			let nodeList = app.nodeList;
 			nodeList.forEach(node => {
 				if (node.name.toLowerCase().includes(term.toLowerCase())) {
@@ -165,6 +192,7 @@ class Navbar {
 			searchInput,
 			searchButton,
 			searchCounter,
+			groupFoundButton,
 		]);
 	}
 

@@ -144,6 +144,13 @@ class Node {
 	}
 
 	/**
+	 * @returns {boolean} True if the node is found, otherwise false.
+	 */
+	get isFound() {
+		return this._isFound;
+	}
+
+	/**
 	 * Sets the node as found. Highlighting is skipped when the node is excluded.
 	 * @param {boolean} newValue True to mark the node as found, otherwise false.
 	 */
