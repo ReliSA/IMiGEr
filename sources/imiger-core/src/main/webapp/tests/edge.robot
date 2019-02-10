@@ -11,8 +11,8 @@ Resource		common.robot
 *** Variables ***
 ${edge38}		//*[name()="g"][contains(@class, "edge")][@data-id="38"]
 
-${vertex4}		//*[name()="svg"][contains(@class, "vertex")][@data-id="4"]
-${vertex2014}	//*[name()="svg"][contains(@class, "vertex")][@data-id="2014"]
+${vertex4}		//*[name()="g"][contains(@class, "vertex")][@data-id="4"]
+${vertex2014}	//*[name()="g"][contains(@class, "vertex")][@data-id="2014"]
 
 ${edgeArrow}	/*[name()="g"][contains(@class, "arrow")]
 

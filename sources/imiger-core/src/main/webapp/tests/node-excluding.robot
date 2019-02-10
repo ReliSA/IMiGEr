@@ -16,12 +16,12 @@ ${excludedNodeList}		//div[@id="excludedNodeListComponent"]
 
 ${includeAllButton}		//button[contains(@class, "include-all-button")]
 
-${vertex2013}			//*[name()="svg"][contains(@class, "vertex")][@data-id="2013"]
+${vertex2013}			//*[name()="g"][contains(@class, "vertex")][@data-id="2013"]
 ${excludedVertex2013}	//li[contains(@class, "vertex")][@data-id="2013"]
-${vertex2014}			//*[name()="svg"][contains(@class, "vertex")][@data-id="2014"]
+${vertex2014}			//*[name()="g"][contains(@class, "vertex")][@data-id="2014"]
 ${excludedVertex2014}	//li[contains(@class, "vertex")][@data-id="2014"]
 
-${group1}				//*[name()="svg"][contains(@class, "group")][@data-id="1"]
+${group1}				//*[name()="g"][contains(@class, "group")][@data-id="1"]
 ${excludedGroup1}		//li[contains(@class, "group")][@data-id="1"]
 
 

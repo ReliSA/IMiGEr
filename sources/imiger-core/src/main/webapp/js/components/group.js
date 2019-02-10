@@ -200,10 +200,9 @@ class Group extends Node {
 	 */
 	_renderIncluded() {
 		// root
-		this._rootElement = DOM.s('svg', {
+		this._rootElement = DOM.s('g', {
 			class: 'node group',
-			x: this.position.x,
-			y: this.position.y,
+			transform: `translate(${this.position.x}, ${this.position.y})`,
 			'data-id': this.id,
 			onClick: this._onNodeClick.bind(this),
 			onMouseDown: this._onNodeMouseDown.bind(this),

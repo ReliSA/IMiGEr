@@ -12,10 +12,10 @@ Resource		common.robot
 *** Variables ***
 ${zoomInButton}		//button[@id="zoomIn"]
 
-${vertex2014}		//*[name()="svg"][contains(@class, "vertex")][@data-id="2014"]
-${vertex2019}		//*[name()="svg"][contains(@class, "vertex")][@data-id="2019"]
+${vertex2014}		//*[name()="g"][contains(@class, "vertex")][@data-id="2014"]
+${vertex2019}		//*[name()="g"][contains(@class, "vertex")][@data-id="2019"]
 
-${group1}			//*[name()="svg"][contains(@class, "group")][@data-id="1"]
+${group1}			//*[name()="g"][contains(@class, "group")][@data-id="1"]
 
 ${groupName}			//span[@class="group-name"]
 
@@ -35,17 +35,15 @@ Drag Group
 	Click Element	${zoomInButton}
 	Click Element	${zoomInButton}
 	# get old group coordinates
-	${oldX}=	Get Element Attribute	${group1}	x
-	${oldX}=	Convert To Number		${oldX}	2
-	${oldY}=	Get Element Attribute	${group1}	y
-	${oldY}=	Convert To Number		${oldY}	2
+	${oldCoords}=	Get Element Coordinates		${group1}
+	${oldX}=	Convert To Number		${oldCoords}[0]		2
+	${oldY}=	Convert To Number		${oldCoords}[1]		2
 	# move vertex by 10 pixels in both directions
 	Drag And Drop By Offset				${group1}	10	10
 	# get new group coordinates
-	${newX}=	Get Element Attribute	${group1}	x
-	${newX}=	Convert To Number		${newX}	2
-	${newY}=	Get Element Attribute	${group1}	y
-	${newY}=	Convert To Number		${newY}	2
+	${newCoords}=	Get Element Coordinates		${group1}
+	${newX}=	Convert To Number		${newCoords}[0]		2
+	${newY}=	Convert To Number		${newCoords}[1]		2
 	# check that offset matches
 	Should Be Equal As Numbers			${oldX + 10}	${newX}
 	Should Be Equal As Numbers			${oldY + 10}	${newY}

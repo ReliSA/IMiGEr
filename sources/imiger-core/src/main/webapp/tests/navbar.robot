@@ -18,8 +18,8 @@ ${backToUploadButton}	//a[@id="backToUpload"]
 
 ${excludedNodeList}		//div[@id="excludedNodeListComponent"]
 
-${group1}				//*[name()="svg"][contains(@class, "group")][@data-id="1"]
-${vertex2044}			//*[name()="svg"][contains(@class, "vertex")][@data-id="2044"]
+${group1}				//*[name()="g"][contains(@class, "group")][@data-id="1"]
+${vertex2044}			//*[name()="g"][contains(@class, "vertex")][@data-id="2044"]
 ${excludedVertex2044}	//li[contains(@class, "vertex")][@data-id="2044"]
 
 

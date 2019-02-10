@@ -15,7 +15,7 @@ ${unconnectedNodeList}	//div[@id="unconnectedNodeListComponent"]
 ${includeAllButton}		//button[contains(@class, "include-all-button")]
 ${excludeAllButton}		//button[contains(@class, "exclude-all-button")]
 
-${vertex2030}			//*[name()="svg"][contains(@class, "vertex")][@data-id="2030"]
+${vertex2030}			//*[name()="g"][contains(@class, "vertex")][@data-id="2030"]
 ${excludedVertex2030}	//li[contains(@class, "vertex")][@data-id="2030"]
 
 

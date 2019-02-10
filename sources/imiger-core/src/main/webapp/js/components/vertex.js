@@ -214,10 +214,9 @@ class Vertex extends Node {
 	 */
 	_renderIncluded() {
 		// root
-		this._rootElement = DOM.s('svg', {
+		this._rootElement = DOM.s('g', {
 			class: 'node vertex',
-			x: this.position.x,
-			y: this.position.y,
+			transform: `translate(${this.position.x}, ${this.position.y})`,
 			'data-id': this.id,
 			'data-name': this.name,
 			onClick: this._onNodeClick.bind(this),

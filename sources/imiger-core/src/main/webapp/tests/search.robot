@@ -13,8 +13,8 @@ ${searchInputField}	//input[@id="searchText"]
 ${searchButton}		//button[@id="searchButton"]
 ${searchCounter}	//span[@id="searchCount"]
 
-${vertex2015}		//*[name()="svg"][@data-id="2015"]
-${vertex2039}		//*[name()="svg"][@data-id="2039"]
+${vertex2015}		//*[contains(@class, "vertex")][@data-id="2015"]
+${vertex2039}		//*[contains(@class, "vertex")][@data-id="2039"]
 
 
 *** Test Cases ***

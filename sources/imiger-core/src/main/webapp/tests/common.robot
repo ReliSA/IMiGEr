@@ -3,6 +3,7 @@ Documentation	A resource file with reusable keywords and variables.
 
 Library			Selenium2Library
 Library			OperatingSystem
+Library			String
 
 
 *** Variables ***
@@ -53,19 +54,29 @@ Reload Diagram Screen
 
 Element Should Have Class
 	[Arguments]		${element}		${className}
-	Page Should Contain Element		${element}[contains(@class, "${className}")]
+	${element}=		Catenate	SEPARATOR=	${element}	[contains(@class,"		${className}	")]
+	Page Should Contain Element		${element}
 
 
 Element Should Not Have Class
 	[Arguments]		${element}		${className}
-	Page Should Not Contain Element	${element}[contains(@class, "${className}")]
+	${element}=		Catenate	SEPARATOR=	${element}	[contains(@class,"		${className}	")]
+	Page Should Not Contain Element	${element}
 
 
 Element Should Have Attribute
 	[Arguments]		${element}		${attributeName}
-	Page Should Contain Element		${element}[@${attributeName}]
+	${element}=		Catenate	SEPARATOR=	${element}	[@	${attributeName}	]
+	Page Should Contain Element		${element}
 
 
 Element Should Not Have Attribute
 	[Arguments]		${element}		${attributeName}
-	Page Should Not Contain Element	${element}[@${attributeName}]
+	Element Attribute Value Should Be	${element}	${attributeName}	${None}
+
+
+Get Element Coordinates
+	[Arguments]		${element}
+	${transformAttributeValue}=		Get Element Attribute	${element}	transform
+	${matches}=		Get Regexp Matches		${transformAttributeValue}	([0-9\.-]+)
+	[Return]		${matches}

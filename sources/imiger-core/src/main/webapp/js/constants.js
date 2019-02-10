@@ -18,3 +18,6 @@ Constants.API = {
 	removeDiagram: 'api/remove-diagram',
 	getPrivateDiagrams: 'api/get-private-diagrams',
 };
+
+/** @static @prop {object} Regular expression for extracting coordinates from SVG transform attribute. */
+Constants.transformAttributeRegex = /translate\((?<x>[0-9\.-]+), (?<y>[0-9\.-]+)\)/;

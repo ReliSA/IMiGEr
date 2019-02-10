@@ -31,7 +31,7 @@ ${dateToValueInput}					${filterModalWindow}//input[@name="value-to"]
 ${applyButton}						${filterModalWindow}//button[@type="submit"]
 ${resetButton}						${filterModalWindow}//button[@type="reset"]
 
-${foundNodes}						//*[name()="svg"][contains(@class, "node--found")]
+${foundNodes}						//*[contains(@class, "node")][@filter="url(#node--found)"]
 
 
 *** Test Cases ***

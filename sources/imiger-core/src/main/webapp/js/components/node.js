@@ -117,8 +117,7 @@ class Node {
 			throw new TypeError(coords.toString() + ' is not an instance of Coordinates');
 		}
 
-		this._rootElement.setAttribute('x', coords.x);
-		this._rootElement.setAttribute('y', coords.y);
+		this._rootElement.setAttribute('transform', `translate(${coords.x}, ${coords.y})`);
 
 		let inEdgeList = this.inEdgeList;
 		inEdgeList.forEach(edge => {
@@ -452,10 +451,9 @@ class Node {
 		 * @param {Event} e Mouse up event.
 		 */
 		function mouseUp() {
-			that.position = new Coordinates(
-				+that._rootElement.getAttribute('x'),
-				+that._rootElement.getAttribute('y'),
-			);
+			const match = Constants.transformAttributeRegex.exec(that._rootElement.getAttribute('transform'));
+
+			that.position = new Coordinates(+match.groups.x, +match.groups.y);
 
 			that._rootElement.classList.remove('node--dragged');
 			
