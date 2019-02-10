@@ -289,6 +289,8 @@ class Viewport {
 	}
 
 	_onRootDoubleClick(e) {
+		e.preventDefault();
+
 		app.closeFloatingComponents();
 
 		app.zoom.zoomIn(new Coordinates(e.offsetX, e.offsetY));

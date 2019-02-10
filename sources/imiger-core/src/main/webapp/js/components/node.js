@@ -416,16 +416,17 @@ class Node {
 				return;
 			}
 
-			switch (document.modeForm.mode.value) {
-				case 'move':
-					this.highlightWithNeighbours(!this.isHighlighted);
-					break;
+			if (document.modeForm.mode.value === 'exclude' || (document.modeForm.mode.value === 'move' && e.altKey === true)) {
+				this.exclude();
+				app.sidebarComponent.excludedNodeListComponent.addNode(this);
+			} else if (document.modeForm.mode.value === 'move') {
+				this.highlightWithNeighbours(!this.isHighlighted);
 
-				case 'exclude':
-					this.exclude();
-
-					app.sidebarComponent.excludedNodeListComponent.addNode(this);
-					break;
+				if (this.isHighlighted) {
+					app.activeNode = this;
+				} else {
+					app.activeNode = null;
+				}
 			}
 		}
 	}

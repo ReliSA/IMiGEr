@@ -1,5 +1,6 @@
 .viewport {
 	flex: 1;
+	user-select: none;
 }
 
 .viewport .edge {
@@ -37,7 +38,6 @@
 .viewport .vertex {
     font-family: 'Consolas', sans-serif;
     font-size: 15px;
-	user-select: none;
 	cursor: default;
 }
 
@@ -83,10 +83,6 @@
 
 .viewport .neighbour-node-symbol > text {
 	stroke-width: 0;
-}
-
-.viewport .group {
-	user-select: none;
 }
 
 .viewport .group .group-viewport {

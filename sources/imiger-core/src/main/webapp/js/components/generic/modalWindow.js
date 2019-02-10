@@ -55,6 +55,10 @@ class ModalWindow {
 	 */
 	open() {
 		this._rootElement.removeAttribute('hidden');
+
+		document.body.addEventListener('keydown', this._closeOnEscapeKeyPressed.bind(this), {
+			once: true,
+		});
 	}
 
 	/**
@@ -73,6 +77,17 @@ class ModalWindow {
 		if (this.isVisible) {
 			this.open();
 		} else {
+			this.close();
+		}
+	}
+
+	/**
+	 * Closes the modal window when Escape key is pressed.
+	 * @param {KeyboardEvent} e Keyboard event triggered by keydown event listener.
+	 */
+	_closeOnEscapeKeyPressed(e) {
+		if (e.key === 'Escape') {
+			e.preventDefault();
 			this.close();
 		}
 	}

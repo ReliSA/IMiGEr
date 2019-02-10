@@ -27,6 +27,8 @@ class ShowGraphApp extends App {
 		this.groupList = [];
 		/** @prop {array<NodeProxy>} proxyList */
 		this.proxyList = [];
+		/** @prop {Node} activeNode */
+		this.activeNode = null;
 
 		/** @prop {Diagram} diagram */
 		this.diagram = null;
@@ -97,6 +99,7 @@ class ShowGraphApp extends App {
 		this.saveDiagramModalWindowComponent = new SaveDiagramModalWindow;
 		this.filterModalWindowComponent = new FilterModalWindow;
 		this.spinLoaderComponent = new SpinLoader;
+		this.helpModalWindowComponent = new HelpModalWindow;
 
 		const appElement = document.getElementById('app');
 		appElement.appendChild(this.headerComponent.render());
@@ -111,6 +114,7 @@ class ShowGraphApp extends App {
 		appElement.appendChild(this.saveDiagramModalWindowComponent.render());
 		appElement.appendChild(this.filterModalWindowComponent.render());
 		appElement.appendChild(this.spinLoaderComponent.render());
+		appElement.appendChild(this.helpModalWindowComponent.render());
 
 		this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.size;
 
@@ -141,6 +145,90 @@ class ShowGraphApp extends App {
 			this.redrawEdges();
 			this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.size;
 		});
+
+		// keyboard shortcuts
+		document.body.addEventListener('keydown', e => {
+			// zoom in
+			if (e.ctrlKey === true && e.key === '+') {
+				e.preventDefault();
+				app.zoom.zoomIn();
+			}
+
+			// zoom out
+			if (e.ctrlKey === true && e.key === '-') {
+				e.preventDefault();
+				app.zoom.zoomOut();
+			}
+
+			// reset zoom
+			if (e.ctrlKey === true && e.key === '0') {
+				e.preventDefault();
+				app.zoom.reset();
+			}
+
+			// search
+			if (e.ctrlKey === true && e.key === 'f') {
+				e.preventDefault();
+				const searchInput = document.getElementById('searchText');
+				if (searchInput === document.activeElement) {
+					searchInput.blur();
+				} else {
+					searchInput.focus();
+				}
+			}
+
+			// save diagram
+			if (e.ctrlKey === true && e.key === 's') {
+				e.preventDefault();
+				if (Auth.isLoggedIn()) {
+					app.saveDiagramModalWindowComponent.open();
+				}
+			}
+
+			// toggle minimap
+			if (e.ctrlKey === true && e.key === 'm') {
+				e.preventDefault();
+				app.sidebarComponent.minimapComponent.toggle();
+			}
+
+			// move active node
+			if (e.key === 'ArrowUp' && app.activeNode !== null) {
+				e.preventDefault();
+				this._moveActiveNode(new Coordinates(0, -10));
+			}
+			if (e.key === 'ArrowDown' && app.activeNode !== null) {
+				e.preventDefault();
+				this._moveActiveNode(new Coordinates(0, 10));
+			}
+			if (e.key === 'ArrowLeft' && app.activeNode !== null) {
+				e.preventDefault();
+				this._moveActiveNode(new Coordinates(-10, 0));
+			}
+			if (e.key === 'ArrowRight' && app.activeNode !== null) {
+				e.preventDefault();
+				this._moveActiveNode(new Coordinates(10, 0));
+			}
+
+			// help modal
+			if (e.key === 'F1') {
+				e.preventDefault();
+				this.helpModalWindowComponent.open();
+			}
+		});
+	}
+
+	/**
+	 * Moves the currently active node by the coordinates from its current location.
+	 * @param {Coordinates} offsetCoords Offset coordinates.
+	 */
+	_moveActiveNode(offsetCoords) {
+		const coords = new Coordinates(
+			app.activeNode.position.x + offsetCoords.x,
+			app.activeNode.position.y + offsetCoords.y,
+		);
+
+		app.activeNode.position = coords;
+		app.activeNode.move(coords);
 	}
 
 	/**

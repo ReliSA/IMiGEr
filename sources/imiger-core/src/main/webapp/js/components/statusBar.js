@@ -19,6 +19,7 @@ class StatusBar {
 			DOM.h('span', {
 				class: 'link',
 				innerText: 'toggle minimap',
+				title: 'toggle minimap [ctrl + m]',
 				onClick: this._toggleMinimap.bind(this),
 			}),
 		]);
@@ -48,7 +49,6 @@ class StatusBar {
 	 */
 	_toggleMinimap(e) {
 		e.preventDefault();
-
-		document.getElementById('minimapComponent').classList.toggle('hidden');
+		app.sidebarComponent.minimapComponent.toggle();
 	}
 }

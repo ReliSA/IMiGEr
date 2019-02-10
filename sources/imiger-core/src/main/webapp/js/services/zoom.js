@@ -48,7 +48,15 @@ class Zoom {
 			document.querySelector('#zoomOut img').src = 'images/zoom_out_disabled.png';
 		}
 	}
-	
+
+	/**
+	 * Reset the zoom to 100%.
+	 */
+	reset() {
+		this._step = this._steps.indexOf(1);
+		this._onChange();
+	}
+
 	/**
 	 * Change current zoom scale according to currently selected step.
 	 */

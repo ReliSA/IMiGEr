@@ -2,6 +2,15 @@ body {
 	overflow: hidden;
 }
 
+kbd {
+	display: inline-block;
+	font-size: 1rem;
+	line-height: 1;
+	padding: 4px;
+	border-radius: 4px;
+	background-color: #eee;
+}
+
 .graph-content {
 	display: flex;
 	height: calc(100vh - 60px - 43px);

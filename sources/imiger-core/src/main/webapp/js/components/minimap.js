@@ -25,17 +25,22 @@ class Minimap {
 			onMouseDown: this._onViewportMouseDown.bind(this),
 		});
 
-		this._rootElement = DOM.s('svg', {
+		this._minimapElement = DOM.s('svg', {
 			class: 'minimap',
-			id: 'minimapComponent',
 			viewBox: `-100 -50 ${this._width} ${this._height}`,
-			onMouseDown: this._onRootMouseDown.bind(this),
+			onMouseDown: this._onMinimapMouseDown.bind(this),
 		}, [
 			DOM.s('use', {
 				transform: `scale(${this._scale})`,
 				href: this._useElement,
 			}),
 			this._viewportElement,
+		]);
+
+		this._rootElement = DOM.h('div', {
+			id: 'minimapComponent',
+		}, [
+			this._minimapElement,
 		]);
 
 		return this._rootElement;
@@ -73,12 +78,48 @@ class Minimap {
 	}
 
 	/**
+	 * @returns {boolean} True if the minimap is revealed at the moment, otherwise false.
+	 * @public
+	 */
+	get isVisible() {
+		return this._rootElement.hasAttribute('hidden');
+	}
+
+	/**
+	 * Reveals the minimap.
+	 * @public
+	 */
+	display() {
+		this._rootElement.removeAttribute('hidden');
+	}
+
+	/**
+	 * Hides the minimap.
+	 * @public
+	 */
+	hide() {
+		this._rootElement.setAttribute('hidden', 'hidden');
+	}
+
+	/**
+	 * Toggles visibility of the minimap.
+	 * @public
+	 */
+	toggle() {
+		if (this.isVisible) {
+			this.display();
+		} else {
+			this.hide();
+		}
+	}
+
+	/**
 	 * @private
 	 */
-	_onRootMouseDown(e) {
+	_onMinimapMouseDown(e) {
 		let start = new Coordinates(e.clientX, e.clientY);
 
-		let viewBox = this._rootElement.getAttribute('viewBox').split(' ');
+		let viewBox = this._minimapElement.getAttribute('viewBox').split(' ');
 		let minimapRootPosition = new Coordinates(parseInt(viewBox[0]), parseInt(viewBox[1]));
 
 		let that = this;
@@ -91,7 +132,7 @@ class Minimap {
 
 			let offset = new Coordinates(start.x - e.clientX, start.y - e.clientY);
 
-			that._rootElement.setAttribute('viewBox', `${minimapRootPosition.x + offset.x} ${minimapRootPosition.y + offset.y} ${that._width} ${that._height}`);
+			that._minimapElement.setAttribute('viewBox', `${minimapRootPosition.x + offset.x} ${minimapRootPosition.y + offset.y} ${that._width} ${that._height}`);
 		}
 
 		function mouseUp() {

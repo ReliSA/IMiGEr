@@ -48,6 +48,7 @@
 		<script src="js/components/group.js"></script>
 		<script src="js/components/groupVertexList.js"></script>
 		<script src="js/components/header.js"></script>
+		<script src="js/components/HelpModalWindow.js"></script>
 		<script src="js/components/loginPopup.js"></script>
 		<script src="js/components/minimap.js"></script>
 		<script src="js/components/navbar.js"></script>
@@ -91,6 +92,7 @@
 		<script src="js/services/zoom.js"></script>
 
 		<script src="js/utils/ajax.js"></script>
+		<script src="js/utils/Auth.js"></script>
 		<script src="js/utils/cookies.js"></script>
 		<script src="js/utils/dom.js"></script>
 		<script src="js/utils/utils.js"></script>

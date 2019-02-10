@@ -65,7 +65,7 @@ class Navbar {
 			DOM.h('button', {
 				class: 'btn zoom',
 				id: 'zoomOut',
-				title: 'zoom -',
+				title: 'zoom out [ctrl and -]',
 				onClick: () => app.zoom.zoomOut(),
 			}, [
 				DOM.h('img', {
@@ -81,7 +81,7 @@ class Navbar {
 			DOM.h('button', {
 				class: 'btn zoom',
 				id: 'zoomIn',
-				title: 'zoom +',
+				title: 'zoom in [ctrl and +]',
 				onClick: () => app.zoom.zoomIn(),
 			}, [
 				DOM.h('img', {
@@ -98,7 +98,8 @@ class Navbar {
 			placeholder: 'Search components...',
 			class: 'search-text',
 			id: 'searchText',
-			onKeyUp: e => {
+			title: 'search nodes [ctrl + f]',
+			onKeyDown: e => {
 				switch (e.key) {
 					case 'Enter':
 						search(e.target.value);
@@ -216,6 +217,7 @@ class Navbar {
 			}, [
 				DOM.h('label', {
 					for: 'move',
+					title: 'move node [click]',
 				}, [
 					DOM.h('input', {
 						type: 'radio',
@@ -233,6 +235,7 @@ class Navbar {
 				]),
 				DOM.h('label', {
 					for: 'exclude',
+					title: 'exclude node [alt + click]',
 				}, [
 					DOM.h('input', {
 						type: 'radio',
@@ -396,7 +399,7 @@ class Navbar {
 		}, [
 			DOM.h('button', {
 				class: 'btn save-diagram',
-				title: 'Save diagram',
+				title: 'Save diagram [ctrl + s]',
 				onClick: () => app.saveDiagramModalWindowComponent.open(),
 			}, [
 				DOM.h('img', {
