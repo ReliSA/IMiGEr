@@ -21,3 +21,6 @@ Constants.API = {
 
 /** @static @prop {object} Regular expression for extracting coordinates from SVG transform attribute. */
 Constants.transformAttributeRegex = /translate\((?<x>[0-9\.-]+), (?<y>[0-9\.-]+)\)/;
+
+/** @static @prop {object} Regular expression for extracting middle part of URL path so that it can be stripped away. */
+Constants.urlShortenerRegex = /(?<start>[^\/]+\/\/[^\/]+)(?<middle>.*)(?<end>\/[^\/]+)$/;

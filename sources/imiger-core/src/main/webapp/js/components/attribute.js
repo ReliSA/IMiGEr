@@ -33,10 +33,12 @@ class Attribute {
 	_renderValue() {
 		switch (this.name) {
 			case 'URL':
+				const match = Constants.urlShortenerRegex.exec(this.value);
+
 				return DOM.h('a', {
 					href: this.value,
 					target: '_blank',
-					innerText: this.value,
+					innerText: (match === null || match.groups.middle === '') ? this.value : this.value.replace(match.groups.middle, '/...'),
 				});
 			case 'Size':
 				return DOM.t(this._formatValue() + ' B');
