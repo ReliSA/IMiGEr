@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation	A resource file with reusable keywords and variables.
 
-Library			Selenium2Library
+Library			SeleniumLibrary
 Library			OperatingSystem
 Library			String
 
@@ -11,7 +11,7 @@ ${BROWSER}		Chrome
 ${DELAY}		0.1
 
 ${SERVER}			http://localhost:8080/imiger/
-${TEST DATA PATH}	${CURDIR}${/}..${/}..${/}..${/}..${/}..${/}data${/}
+${TEST DATA PATH}	${CURDIR}${/}..${/}..${/}..${/}..${/}..${/}..${/}data${/}
 
 ${UPLOAD FILES URL}	${SERVER}
 ${GRAPH URL}		${SERVER}/graph
@@ -31,8 +31,8 @@ Go To Upload Screen
 Open Diagram
 	${filePath}=		Normalize Path		${TEST DATA PATH}SPADe JSONs${/}aswi2017mutant-industries-ltd.json
 	Choose File				name:file		${filePath}
-	Select Radio Button		jsonFileFormat	spade
-	Click Element			//div[@class="upload-form"]//button[@type="submit"]
+	Select Radio Button		fileFormat		-968839389
+	Click Button			Start visualization
 	Wait Until Element Is Not Visible		//div[@id="loader"]
 
 

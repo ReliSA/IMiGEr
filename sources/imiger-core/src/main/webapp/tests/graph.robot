@@ -22,7 +22,7 @@ ${vertex6}				//*[name()="li"][contains(@class, "vertex")][@data-id="6"]
 
 *** Test Cases ***
 General
-	Title Should Be			IMiGEr
+	Title Should Be			IMiGEr - aswi2017mutant-industries-ltd.json
 	# check component counter
 	${count}=	Get Text	${componentCounter}
 	Should Be Equal As Strings		${count}	loaded components: 19
