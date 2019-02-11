@@ -2,9 +2,8 @@ package cz.zcu.kiv.offscreen.servlets;
 
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.storage.FileLoader;
-import cz.zcu.kiv.offscreen.user.DB;
 import cz.zcu.kiv.offscreen.user.DataAccessException;
-import cz.zcu.kiv.offscreen.user.Diagram;
+import cz.zcu.kiv.offscreen.user.dao.DiagramDAO;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,20 +29,19 @@ public class UploadFiles extends BaseServlet {
 
         logger.debug("Processing request");
 
-        List<Map<String, String>> userDiagramList = new ArrayList<>();
-        List<Map<String, String>> publicDiagramList = new ArrayList<>();
+        List<Map<String, Object>> userDiagramList = new ArrayList<>();
+        List<Map<String, Object>> publicDiagramList = new ArrayList<>();
         try {
-            DB db = new DB(getServletContext());
-            Diagram diagram = new Diagram(db);
+            DiagramDAO diagramDAO = new DiagramDAO();
 
             if (isLoggedIn(request)) {
                 logger.debug("Logged user");
                 int loggedUserId = getUserId(request);
 
-                userDiagramList = diagram.getDiagramListByUserId(loggedUserId);
+                userDiagramList = diagramDAO.getDiagramsByUserId(loggedUserId);
             }
 
-            publicDiagramList = diagram.getDiagramPublicList();
+            publicDiagramList = diagramDAO.getPublicDiagrams();
 
         } catch (DataAccessException e){
             logger.error("Data access exception");

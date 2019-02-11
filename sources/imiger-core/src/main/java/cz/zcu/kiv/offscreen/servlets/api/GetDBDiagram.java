@@ -2,8 +2,7 @@ package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.gson.Gson;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
-import cz.zcu.kiv.offscreen.user.DB;
-import cz.zcu.kiv.offscreen.user.Diagram;
+import cz.zcu.kiv.offscreen.user.dao.DiagramDAO;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * This class is used for loading diagrams from database.
@@ -30,16 +30,16 @@ public class GetDBDiagram extends BaseServlet {
             return;
         }
 
-        DB db = new DB(getServletContext());
-        Diagram diagram = new Diagram(db, Integer.parseInt(diagramId));
+        DiagramDAO diagramDAO = new DiagramDAO();
+        Map<String, Object> diagram = diagramDAO.getDiagram(Integer.parseInt(diagramId));
 
-        if (!diagram.isPublic() && (!isLoggedIn(request) || (isLoggedIn(request) && diagram.getUserId() != getUserId(request)))) {
+        if (!(boolean)diagram.get("public") && (!isLoggedIn(request) || (isLoggedIn(request) && (int)diagram.get("user_id") != getUserId(request)))) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             logger.debug("User is unauthorized");
             return;
         }
 
-        String json = new Gson().toJson(diagram.getDiagram());
+        String json = new Gson().toJson(diagram);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

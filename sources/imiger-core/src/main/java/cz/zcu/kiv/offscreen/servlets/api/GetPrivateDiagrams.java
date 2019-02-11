@@ -3,8 +3,7 @@ package cz.zcu.kiv.offscreen.servlets.api;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
-import cz.zcu.kiv.offscreen.user.DB;
-import cz.zcu.kiv.offscreen.user.Diagram;
+import cz.zcu.kiv.offscreen.user.dao.DiagramDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,19 +27,19 @@ public class GetPrivateDiagrams extends BaseServlet {
             return;
         }
 
-        DB db = new DB(getServletContext());
-        Diagram diagram = new Diagram(db);
+        DiagramDAO diagramDAO = new DiagramDAO();
 
         int loggedUserId = getUserId(request);
-        List<Map<String, String>> userDiagramList = diagram.getDiagramListByUserId(loggedUserId);
+        List<Map<String, Object>> userDiagramList = diagramDAO.getDiagramsByUserId(loggedUserId);
 
         JsonArray jsonArray = new JsonArray();
-        for (Map<String, String> userDiagram : userDiagramList) {
+        for (Map<String, Object> userDiagram : userDiagramList) {
+
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("id", userDiagram.get("id"));
-            jsonObject.addProperty("name", userDiagram.get("name"));
-            jsonObject.addProperty("created", userDiagram.get("created"));
-            jsonObject.addProperty("last_update", userDiagram.get("last_update"));
+            jsonObject.addProperty("id", String.valueOf(userDiagram.get("id")));
+            jsonObject.addProperty("name", String.valueOf(userDiagram.get("name")));
+            jsonObject.addProperty("created", String.valueOf(userDiagram.get("created")));
+            jsonObject.addProperty("last_update", String.valueOf(userDiagram.get("last_update")));
             jsonArray.add(jsonObject);
         }
 

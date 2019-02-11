@@ -2,8 +2,7 @@ package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.gson.JsonObject;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
-import cz.zcu.kiv.offscreen.user.DB;
-import cz.zcu.kiv.offscreen.user.User;
+import cz.zcu.kiv.offscreen.user.dao.UserDAO;
 import cz.zcu.kiv.offscreen.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 public class Login extends BaseServlet {
     private static final Logger logger = LogManager.getLogger();
@@ -35,21 +35,21 @@ public class Login extends BaseServlet {
         }
 
         if (errors.size() == 0) {
-            DB db = new DB(getServletContext());
-            User user = new User(db);
+            UserDAO userDAO = new UserDAO();
+            Map<String, Object> user = userDAO.login(username, password);
 
-            if (user.login(username, password)) {
+            if (user != null) {
                 UserVO userVO = new UserVO();
-                userVO.setId(user.getId());
-                userVO.setUsername(user.getNick());
+                userVO.setId((int)user.get("id"));
+                userVO.setUsername((String)user.get("nick"));
 
                 request.getSession().setAttribute("isLoggedIn", true);
                 request.getSession().setAttribute("userId", userVO.getId());
                 request.getSession().setAttribute("user", userVO);
 
                 JsonObject json = new JsonObject();
-                json.addProperty("id", user.getId());
-                json.addProperty("username", user.getNick());
+                json.addProperty("id",(int) user.get("id"));
+                json.addProperty("username", (String) user.get("nick"));
 
 
                 response.setContentType("application/json");

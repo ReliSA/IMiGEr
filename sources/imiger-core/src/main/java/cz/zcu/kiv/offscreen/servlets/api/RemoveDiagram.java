@@ -1,8 +1,7 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
-import cz.zcu.kiv.offscreen.user.DB;
-import cz.zcu.kiv.offscreen.user.Diagram;
+import cz.zcu.kiv.offscreen.user.dao.DiagramDAO;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,16 +32,15 @@ public class RemoveDiagram extends BaseServlet {
             return;
         }
 
-        DB db = new DB(getServletContext());
-        Diagram diagram = new Diagram(db, Integer.parseInt(diagramId));
+        DiagramDAO diagramDAO = new DiagramDAO();
 
-        if (diagram.getUserId() != loggedUserId) {
+        if (diagramDAO.getDiagramUserId(Integer.parseInt(diagramId)) != loggedUserId) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             logger.debug("User is not owner of diagram");
             return;
         }
 
-        diagram.delete();
+        diagramDAO.deleteDiagram(Integer.parseInt(diagramId));
         logger.debug("Diagram removed");
 
         response.setStatus(HttpServletResponse.SC_NO_CONTENT);

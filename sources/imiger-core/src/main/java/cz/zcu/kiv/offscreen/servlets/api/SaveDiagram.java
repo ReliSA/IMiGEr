@@ -2,8 +2,7 @@ package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.gson.Gson;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
-import cz.zcu.kiv.offscreen.user.DB;
-import cz.zcu.kiv.offscreen.user.Diagram;
+import cz.zcu.kiv.offscreen.user.dao.DiagramDAO;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,8 +10,6 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SaveDiagram extends BaseServlet {
     private static final Logger logger = LogManager.getLogger();
@@ -43,36 +40,33 @@ public class SaveDiagram extends BaseServlet {
             return;
         }
 
-        DB db = new DB(getServletContext());
-        Diagram diagram;
+        DiagramDAO diagramDAO = new DiagramDAO();
+
+        int intDiagramId;
 
         if (StringUtils.isBlank(diagramId)) {
             logger.debug("Creating new diagram");
-            diagram = new Diagram(db);
+            intDiagramId = diagramDAO.createDiagram(name, Integer.toString(loggedUserId), isPublic, graphJson);
+            logger.debug("Diagram created or updated.");
 
         } else {
             logger.debug("Getting existing diagram from database");
-            diagram = new Diagram(db, Integer.parseInt(diagramId));
+            intDiagramId = Integer.parseInt(diagramId);
+            int diagramUserId = diagramDAO.getDiagramUserId(intDiagramId);
 
-            if (loggedUserId != diagram.getUserId()) {
+            if (loggedUserId != diagramUserId) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
                 logger.debug("User is not owner of diagram");
                 return;
             }
+
+            diagramDAO.updateDiagram(intDiagramId, name, isPublic, graphJson);
+            logger.debug("Diagram updated.");
         }
-
-        Map<String, String> diagramParams = new HashMap<>();
-        diagramParams.put("name", name);
-        diagramParams.put("public", isPublic);
-        diagramParams.put("graph_json", graphJson);
-        diagramParams.put("user_id", Integer.toString(loggedUserId));
-
-        diagram.update(diagramParams);
-        logger.debug("Diagram created or updated.");
 
         // send response
 
-        String json = new Gson().toJson(diagram.getDiagram());
+        String json = new Gson().toJson(diagramDAO.getDiagram(intDiagramId));
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
