@@ -220,12 +220,9 @@
 					"id": {
 						"type": "string",
 						"pattern": "^(group|vertex)-[0-9]+$"
-					},
-					"isIconsDisplayed": {
-						"type": "boolean"
 					}
 				},
-				"required": [ "id", "isIconsDisplayed" ]
+				"required": [ "id" ]
 			},
 			"uniqueItems": true
 		},

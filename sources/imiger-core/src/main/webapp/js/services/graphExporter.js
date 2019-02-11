@@ -8,7 +8,6 @@ class GraphExporter {
 		let sideBar = excludedNodeList.map(node => {
 			return {
 				id: node.uniqueId,
-				isIconsDisplayed: node.isIconsDisplayed,
 			};
 		});
 

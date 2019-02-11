@@ -179,8 +179,6 @@ function GraphLoader() {
 			});
 
 			if (app.utils.isDefined(node)) {
-				node.exclude(excludedNode.isIconsDisplayed);
-
 				app.sidebarComponent.excludedNodeListComponent.add(node);
 			}
 		});
