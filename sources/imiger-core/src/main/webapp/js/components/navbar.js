@@ -37,6 +37,9 @@ class Navbar {
 			this._createSaveDiagramListItem(),
 			this._createSeparatorListItem(),
 
+			this._createDownloadDiagramListItem(),
+			this._createSeparatorListItem(),
+
 			this._createRefreshDiagramListItem(),
 			this._createSeparatorListItem(),
 
@@ -403,6 +406,35 @@ class Navbar {
 				DOM.h('img', {
 					src: 'images/icon_save.png',
 					alt: 'Save diagram',
+				}),
+			]),
+		]);
+	}
+
+	_createDownloadDiagramListItem() {
+		return DOM.h('li', {}, [
+			DOM.h('button', {
+				class: 'btn download-diagram-as-raw-json',
+				title: 'Download diagram as Raw JSON',
+				onClick: () => {
+					const json = JSON.stringify(app.graphExporter.run());
+					const blob = new Blob([json]);
+					const downloadLink = DOM.h('a', {
+						href: URL.createObjectURL(blob, {
+							type: 'application/json',
+						}),
+						download: app.diagram.name + '.json',
+						hidden: 'hidden',
+					});
+
+					document.body.appendChild(downloadLink);
+					downloadLink.click();
+					document.body.removeChild(downloadLink);
+				},
+			}, [
+				DOM.h('img', {
+					src: 'images/icomoon/download3.svg',
+					alt: 'download diagram icon',
 				}),
 			]),
 		]);
