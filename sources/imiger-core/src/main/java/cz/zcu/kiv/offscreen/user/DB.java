@@ -34,6 +34,7 @@ public class DB {
 			connection.setAutoCommit(true);
 		} catch (ClassNotFoundException | SQLException e) {
 			logger.error("Can not open database connection: ", e);
+			throw new DataAccessException(e);
 		}
 	}
 
@@ -43,11 +44,16 @@ public class DB {
 	 * @param query query with ? on values.
 	 * @param returnGeneratedKeys true - RETURN_GENERATED_KEYS flag is set, false - no flag is set
 	 */
-	PreparedStatement getPreparedStatement(String query, boolean returnGeneratedKeys) throws SQLException {
-		if (returnGeneratedKeys) {
-			return connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-		} else {
-			return connection.prepareStatement(query);
+	PreparedStatement getPreparedStatement(String query, boolean returnGeneratedKeys) {
+		try {
+			if (returnGeneratedKeys) {
+				return connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+			} else {
+				return connection.prepareStatement(query);
+			}
+		}catch (SQLException e){
+			logger.error("Can not execute query: " + query);
+			throw new DataAccessException(e);
 		}
 	}
 
@@ -63,8 +69,8 @@ public class DB {
 			return preparedStatement.getResultSet();
 		} catch (SQLException e) {
 			logger.error("Can not execute database query: ", e);
+			throw new DataAccessException(e);
 		}
-		return null;
 	}
 
 	/**
@@ -78,8 +84,8 @@ public class DB {
 			return preparedStatement.getGeneratedKeys();
 		} catch (SQLException e) {
 			logger.error("Can not execute database query: ", e);
+			throw new DataAccessException(e);
 		}
-		return null;
 	}
 
 	/**
@@ -95,8 +101,8 @@ public class DB {
 
 		} catch(SQLException | NullPointerException e) {
 			logger.error("Can not execute database query: ", e);
+			throw new DataAccessException(e);
 		}
-		return null;
 	}
 
 	/**
@@ -107,12 +113,9 @@ public class DB {
 	int executeStatement(PreparedStatement preparedStatement) {
 		try {
 			return preparedStatement.executeUpdate();
-		} catch(SQLException e) {
+		} catch(NullPointerException | SQLException e) {
 			logger.error("Can not execute database query: ", e);
-			return -1;
-		} catch (NullPointerException e) {
-			logger.error("Can not execute database query: ", e);
-			return -2;
+			throw new DataAccessException(e);
 		}
 	}
 

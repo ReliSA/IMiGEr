@@ -80,6 +80,10 @@
 		<servlet-name>RestRawInput</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.rest.RawInput</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>DataAccessError</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.DataAccessError</servlet-class>
+	</servlet>
 
 	<!--
 	URL-to-servlet mappings
@@ -132,6 +136,15 @@
 		<servlet-name>RestRawInput</servlet-name>
 		<url-pattern>/rest/raw-input</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DataAccessError</servlet-name>
+		<url-pattern>/data-access-error</url-pattern>
+	</servlet-mapping>
+
+	<error-page>
+		<exception-type>cz.zcu.kiv.offscreen.user.DataAccessException</exception-type>
+		<location>/data-access-error</location>
+	</error-page>
 
 	<session-config>
 		<session-timeout>120</session-timeout>

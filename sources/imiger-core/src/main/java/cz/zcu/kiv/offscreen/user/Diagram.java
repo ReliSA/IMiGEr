@@ -58,6 +58,7 @@ public class Diagram {
             }
         }  catch (SQLException e){
             logger.error("Can not get owner id: ", e);
+            throw new DataAccessException(e);
         }
         return -1;
     }
@@ -78,6 +79,7 @@ public class Diagram {
             }
         }  catch (SQLException e){
             logger.error("Can not check if diagram is public: ", e);
+            throw new DataAccessException(e);
         }
         return false;
     }
@@ -97,6 +99,7 @@ public class Diagram {
             }
         }  catch (SQLException e){
             logger.error("Can not get json of diagram: ", e);
+            throw new DataAccessException(e);
         }
         return "";
     }
@@ -120,6 +123,7 @@ public class Diagram {
 
         } catch (SQLException e) {
             logger.error("Can not get diagram: ", e);
+            throw new DataAccessException(e);
         }
 
         return Collections.emptyMap();
@@ -172,6 +176,7 @@ public class Diagram {
             }
         } catch (SQLException e) {
             logger.error("Can not update diagram: ", e);
+            throw new DataAccessException(e);
         }
     }
 
@@ -190,6 +195,7 @@ public class Diagram {
 
         } catch (SQLException e) {
             logger.error("Can not delete diagram: ", e);
+            throw new DataAccessException(e);
         }
     }
 
@@ -235,9 +241,8 @@ public class Diagram {
 
         } catch (SQLException e){
             logger.error("Can not create map from input result set: ", e);
+            throw new DataAccessException(e);
         }
-
-        return new ArrayList<>();
     }
 
     /**

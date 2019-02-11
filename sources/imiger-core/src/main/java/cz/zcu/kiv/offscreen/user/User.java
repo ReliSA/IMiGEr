@@ -62,6 +62,7 @@ public class User {
 			}
 		} catch (SQLException | IllegalArgumentException e) {
 			logger.error("Can not login user: ", e);
+			throw new DataAccessException(e);
 		}
 
 		return false;
@@ -98,6 +99,7 @@ public class User {
 
 		} catch (SQLException e) {
 			logger.error("Can not register user: ", e);
+			throw new DataAccessException(e);
 		}
 	}
 
@@ -130,6 +132,7 @@ public class User {
 			}
 		} catch (SQLException e) {
 			logger.error("Can not get user: ", e);
+			throw new DataAccessException(e);
 		}
 
 		return Collections.emptyMap();
@@ -159,6 +162,7 @@ public class User {
 
 			} catch (SQLException e) {
 				logger.error("Can not get user session: ", e);
+				throw new DataAccessException(e);
 			}
 		}
 	}
@@ -181,6 +185,7 @@ public class User {
 				db.executeStatement(pst);
 			} catch (SQLException e) {
 				logger.error("Can not update user: ", e);
+				throw new DataAccessException(e);
 			}
 		}
 	}
@@ -199,6 +204,7 @@ public class User {
 				}
 			}  catch (SQLException e){
 				logger.error("Can not get users nick name: ", e);
+				throw new DataAccessException(e);
 			}
 		}
 
@@ -241,6 +247,7 @@ public class User {
 			}
 		} catch (SQLException e) {
 			logger.error("Can not check if user exits: ", e);
+			throw new DataAccessException(e);
 		}
 
 		return false;
