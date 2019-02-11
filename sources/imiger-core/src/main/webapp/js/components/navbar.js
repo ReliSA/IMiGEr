@@ -154,8 +154,11 @@ class Navbar {
 					app.sidebarComponent.excludedNodeListComponent.addNode(group);
 
 					foundVertexList.forEach(node => {
+						if (node.isExcluded) {
+							app.sidebarComponent.excludedNodeListComponent.removeNode(node);
+						}
+
 						group.addVertex(node);
-						app.sidebarComponent.excludedNodeListComponent.removeNode(node);
 						node.remove(true);
 					});
 				}
