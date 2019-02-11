@@ -3,6 +3,7 @@ package cz.zcu.kiv.offscreen.servlets;
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.storage.FileLoader;
 import cz.zcu.kiv.offscreen.user.DB;
+import cz.zcu.kiv.offscreen.user.DataAccessException;
 import cz.zcu.kiv.offscreen.user.Diagram;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -26,23 +27,31 @@ public class UploadFiles extends BaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         logger.debug("Processing request");
-        DB db = new DB(getServletContext());
-        Diagram diagram = new Diagram(db);
 
         List<Map<String, String>> userDiagramList = new ArrayList<>();
-        if (isLoggedIn(request)) {
-            logger.debug("Logged user");
-            int loggedUserId = getUserId(request);
+        List<Map<String, String>> publicDiagramList = new ArrayList<>();
+        try {
+            DB db = new DB(getServletContext());
+            Diagram diagram = new Diagram(db);
 
-            userDiagramList = diagram.getDiagramListByUserId(loggedUserId);
+            if (isLoggedIn(request)) {
+                logger.debug("Logged user");
+                int loggedUserId = getUserId(request);
+
+                userDiagramList = diagram.getDiagramListByUserId(loggedUserId);
+            }
+
+            publicDiagramList = diagram.getDiagramPublicList();
+
+        } catch (DataAccessException e){
+            logger.error("Data access exception");
         }
-        request.setAttribute("diagramsPrivate", userDiagramList);
 
-        List<Map<String, String>> publicDiagramList = diagram.getDiagramPublicList();
+        request.setAttribute("diagramsPrivate", userDiagramList);
         request.setAttribute("diagramsPublic", publicDiagramList);
         request.setAttribute("processingModules", ModuleProvider.getInstance().getModules());
-
         // render
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/uploadFiles.jsp");
         rd.forward(request, response);
