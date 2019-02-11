@@ -5,12 +5,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.*;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.ServiceLoader;
+import java.util.Optional;
 import java.util.concurrent.*;
 
 /**
@@ -19,13 +17,15 @@ import java.util.concurrent.*;
 public class ModuleProvider {
 
     private static final Logger logger = LogManager.getLogger();
+    /** Path to folder with modules relative to resources */
+    private static final String MODULES_PATH = "/../lib/";
     /** Instance of this class used for singleton pattern. */
     private static ModuleProvider instance = null;
 
     /** Queue containing actual loaded modules. */
     private Map<String, IModule> modules = new ConcurrentHashMap<>();
-    /** Instance of ServiceLoader. */
-    private final ServiceLoader<IModule> loader;
+    /** Instance of DynamicServiceLoader. */
+    private final DynamicServiceLoader<IModule> serviceLoader;
 
     /** Instance of ScheduledExecutorService used for scheduling of module folder watcher. */
     private ScheduledExecutorService executor;
@@ -53,9 +53,9 @@ public class ModuleProvider {
      * When watcher fails than is automatically starts new watcher after 5 minutes timeout.
      */
     private ModuleProvider() {
-        this.loader = ServiceLoader.load(IModule.class);
+        serviceLoader = new DynamicServiceLoader<>(IModule.class, MODULES_PATH);
 
-        processModules(loader.iterator());
+        processModules(serviceLoader.load());
 
         executor = Executors.newSingleThreadScheduledExecutor();
         Runnable task = this::initModulesWatcher;
@@ -91,11 +91,17 @@ public class ModuleProvider {
      * and storing (method processModules) of all modules.
      */
     private void initModulesWatcher() {
+        Optional<Path> modulesFolderOptional = serviceLoader.getServicesPath();
+        if (!modulesFolderOptional.isPresent()) {
+            return;
+        }
+
         try {
             logger.debug("Initializing new WatcherService for modules directory");
 
-            Path path = Paths.get(getClass().getClassLoader().getResource("/../lib/").toURI());
             watcher = FileSystems.getDefault().newWatchService();
+
+            Path path = modulesFolderOptional.get();
             path.register(watcher,
                     StandardWatchEventKinds.ENTRY_CREATE,
                     StandardWatchEventKinds.ENTRY_DELETE,
@@ -113,8 +119,8 @@ public class ModuleProvider {
                         continue;
                     }
 
-                    loader.reload();
-                    processModules(loader.iterator());
+                    serviceLoader.reload();
+                    processModules(serviceLoader.load());
                     break; // watching only one folder and loading all files every loop => Only one iteration is needed.
                 }
 
@@ -124,7 +130,7 @@ public class ModuleProvider {
                 }
             }
 
-        } catch (URISyntaxException | IOException | InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             logger.error("Modules directory watcher throw an exception: ", e);
         }
     }
@@ -138,14 +144,11 @@ public class ModuleProvider {
      */
     private void processModules(Iterator<IModule> unprocessedModules) {
         long startTime = System.nanoTime();
-        Map<String, IModule> localModules = new HashMap<>();
-
         logger.info("Processing modules.");
 
-        unprocessedModules.forEachRemaining(module -> localModules.put(String.valueOf(module.getModuleName().hashCode()), module));
-
         modules.clear();
-        modules.putAll(localModules);
+        unprocessedModules.forEachRemaining(module -> modules.put(String.valueOf(module.getModuleName().hashCode()), module));
+
         logger.debug("Modules were loaded and processed in " + (System.nanoTime() - startTime) / 1000000d + " milliseconds");
     }
 
