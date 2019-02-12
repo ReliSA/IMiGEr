@@ -28,9 +28,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <archive>
-                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                    </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -51,7 +48,7 @@
     <dependencies>
         <dependency>
             <groupId>cz.zcu.kiv</groupId>
-            <artifactId>imiger-vo</artifactId>
+            <artifactId>imiger-module</artifactId>
             <version>0.1.2-SNAPSHOT</version>
         </dependency>
 

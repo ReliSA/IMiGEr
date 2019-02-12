@@ -1,9 +1,9 @@
 package cz.zcu.kiv.offscreen.servlets.api;
 
 import com.google.gson.JsonObject;
+import cz.zcu.kiv.imiger.spi.IModule;
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
-import javafx.util.Pair;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.Optional;
 
 /**
@@ -85,32 +84,23 @@ public class GetSessionDiagram extends BaseServlet {
     private Optional<String> callModuleConverter(String type, String stringToConvert){
         logger.debug("Processing json with module");
 
-        Pair<String, Class> module = ModuleProvider.getInstance().getModules().get(type);
-        if (module == null){
+        IModule module = ModuleProvider.getInstance().getModules().get(type);
+        if (module == null) {
             logger.debug("No loader available for type: " + type + ". Response BAD REQUEST");
             return Optional.empty();
         }
 
         try {
-            final Class<?> moduleClass = module.getValue();
-            // switching to class loader of module
-            final ClassLoader appClassLoader = Thread.currentThread().getContextClassLoader();
-            Thread.currentThread().setContextClassLoader(moduleClass.getClassLoader());
+            String rawJson = String.valueOf(module.getRawJson(stringToConvert));
 
-            final Method moduleMethod = moduleClass.getMethod(ModuleProvider.METHOD_NAME, ModuleProvider.METHOD_PARAMETER_CLASS);
-            String rawJson = String.valueOf(moduleMethod.invoke(moduleClass.newInstance(), stringToConvert));
-
-            // switching back to application class loader
-            Thread.currentThread().setContextClassLoader(appClassLoader);
-
-            if(StringUtils.isBlank(rawJson)){
+            if (StringUtils.isBlank(rawJson)){
                 return Optional.empty();
             } else {
                 return Optional.of(rawJson);
             }
 
         } catch (Exception e) {
-            logger.error("Can not call convert method in module. Module name: " + module.getKey(), e);
+            logger.error("Can not call convert method in module. Module name: " + module.getModuleName(), e);
             return Optional.empty();
         }
     }

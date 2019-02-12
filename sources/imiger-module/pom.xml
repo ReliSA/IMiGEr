@@ -11,7 +11,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>imiger-vo</artifactId>
+    <artifactId>imiger-module</artifactId>
     <version>0.1.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 

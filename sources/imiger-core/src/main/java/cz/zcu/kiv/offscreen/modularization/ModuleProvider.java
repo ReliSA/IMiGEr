@@ -1,16 +1,14 @@
 package cz.zcu.kiv.offscreen.modularization;
 
-import javafx.util.Pair;
+import cz.zcu.kiv.imiger.spi.IModule;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.*;
 
 /**
@@ -18,24 +16,16 @@ import java.util.concurrent.*;
  */
 public class ModuleProvider {
 
-    /** Name of accessed method in every module. */
-    public static final String METHOD_NAME = "getRawJson";
-    /** Class of input parameter to accessed method in every module. */
-    public static final Class METHOD_PARAMETER_CLASS = String.class;
-
     private static final Logger logger = LogManager.getLogger();
     /** Path to folder with modules relative to resources */
-    private static final String MODULES_PATH = "modules";
+    private static final String MODULES_PATH = "/../lib/";
     /** Instance of this class used for singleton pattern. */
     private static ModuleProvider instance = null;
 
-    /**
-     * Map containing actual loaded modules. Key is hash of visible name and value is pair of
-     * visible name na accessed method.
-     */
-    private ConcurrentMap<String, Pair<String, Class>> modules = new ConcurrentHashMap<>();
-    /** Instance of class ModuleLoader. */
-    private final ModuleLoader loader;
+    /** Queue containing actual loaded modules. */
+    private Map<String, IModule> modules = new ConcurrentHashMap<>();
+    /** Instance of DynamicServiceLoader. */
+    private final DynamicServiceLoader<IModule> serviceLoader;
 
     /** Instance of ScheduledExecutorService used for scheduling of module folder watcher. */
     private ScheduledExecutorService executor;
@@ -63,9 +53,9 @@ public class ModuleProvider {
      * When watcher fails than is automatically starts new watcher after 5 minutes timeout.
      */
     private ModuleProvider() {
-        this.loader = new ModuleLoader(MODULES_PATH, METHOD_NAME, METHOD_PARAMETER_CLASS);
+        serviceLoader = new DynamicServiceLoader<>(IModule.class, MODULES_PATH);
 
-        processModules(loader.loadModules());
+        processModules(serviceLoader.load());
 
         executor = Executors.newSingleThreadScheduledExecutor();
         Runnable task = this::initModulesWatcher;
@@ -101,16 +91,17 @@ public class ModuleProvider {
      * and storing (method processModules) of all modules.
      */
     private void initModulesWatcher() {
+        Optional<Path> modulesFolderOptional = serviceLoader.getServicesPath();
+        if (!modulesFolderOptional.isPresent()) {
+            return;
+        }
+
         try {
             logger.debug("Initializing new WatcherService for modules directory");
 
-            Optional<File> folderFileOptional = loader.getModulesFolder();
-            if (!folderFileOptional.isPresent()) {
-                return;
-            }
-
-            Path path = folderFileOptional.get().toPath();
             watcher = FileSystems.getDefault().newWatchService();
+
+            Path path = modulesFolderOptional.get();
             path.register(watcher,
                     StandardWatchEventKinds.ENTRY_CREATE,
                     StandardWatchEventKinds.ENTRY_DELETE,
@@ -128,7 +119,8 @@ public class ModuleProvider {
                         continue;
                     }
 
-                    processModules(loader.loadModules());
+                    serviceLoader.reload();
+                    processModules(serviceLoader.load());
                     break; // watching only one folder and loading all files every loop => Only one iteration is needed.
                 }
 
@@ -150,18 +142,13 @@ public class ModuleProvider {
      *
      * @param unprocessedModules Set of loaded modules where first argument is visible name and second is accessible method.
      */
-    private void processModules(Set<Pair<String, Class>> unprocessedModules) {
+    private void processModules(Iterator<IModule> unprocessedModules) {
         long startTime = System.nanoTime();
-        Map<String, Pair<String, Class>> localModules = new HashMap<>();
-
-        logger.info("Processing " + unprocessedModules.size() + " modules.");
-
-        for (Pair<String, Class> pair : unprocessedModules) {
-            localModules.put(String.valueOf(pair.getKey().hashCode()), pair);
-        }
+        logger.info("Processing modules.");
 
         modules.clear();
-        modules.putAll(localModules);
+        unprocessedModules.forEachRemaining(module -> modules.put(String.valueOf(module.getModuleName().hashCode()), module));
+
         logger.debug("Modules were loaded and processed in " + (System.nanoTime() - startTime) / 1000000d + " milliseconds");
     }
 
@@ -171,7 +158,7 @@ public class ModuleProvider {
      * 
      * @return all loaded modules.
      */
-    public Map<String, Pair<String, Class>> getModules() {
+    public Map<String, IModule> getModules() {
         return modules;
     }
 }
