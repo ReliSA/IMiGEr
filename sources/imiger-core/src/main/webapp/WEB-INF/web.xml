@@ -3,23 +3,7 @@
 		 xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 		 version="3.1">
-
-	<context-param>
-		<param-name>jdbc.driverClassName</param-name>
-		<param-value>com.mysql.cj.jdbc.Driver</param-value>
-	</context-param>
-	<context-param>
-		<param-name>jdbc.url</param-name>
-		<param-value>jdbc:mysql://localhost/visualization_tool?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</param-value>
-	</context-param>
-	<context-param>
-		<param-name>jdbc.username</param-name>
-		<param-value>admin</param-value>
-	</context-param>
-	<context-param>
-		<param-name>jdbc.password</param-name>
-		<param-value>admin</param-value>
-	</context-param>
+	
 	<context-param>
 		<param-name>APP_NAME</param-name>
 		<param-value>IMiGEr</param-value>
