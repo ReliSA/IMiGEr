@@ -1,4 +1,6 @@
 # IMiGEr
+[![Build Status](https://travis-ci.org/Hartrik/IMiGEr.svg?branch=master)](https://travis-ci.org/Hartrik/IMiGEr)
+
 Interactive Multimodal Graph Explorer
 
 The program is able to display various typesof  graphs,  which  is  enabled  by  generalized  [input graph  structure](https://github.com/ReliSA/IMiGEr/blob/devel/documents/IMiGEr/IMiGEr_raw_input_format.pdf).   It  is  able  to  handle  multiple  types of  both  nodes  and  edge.   Thus  it  can  suite  to  any graph  data  which  could  be  converted  to  given  generalized structure (e.g. software engineering projects, intelligence  agencies  analysis,  historical  data,  computer  networks,  social networks).  
