@@ -1,5 +1,5 @@
 # IMiGEr
-[![Build Status](https://travis-ci.org/Hartrik/IMiGEr.svg?branch=master)](https://travis-ci.org/Hartrik/IMiGEr)
+[![Build Status](https://travis-ci.org/kiv-hkmm/IMiGEr.svg?branch=master)](https://travis-ci.org/kiv-hkmm/IMiGEr)
 
 Interactive Multimodal Graph Explorer
 
