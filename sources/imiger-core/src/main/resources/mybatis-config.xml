@@ -9,9 +9,9 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost/visualization_tool?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"/>
-                <property name="username" value="admin"/>
-                <property name="password" value="admin"/>
+                <property name="url" value="${JDBC_DATABASE_URL}"/>
+                <property name="username" value="${JDBC_DATABASE_USERNAME}"/>
+                <property name="password" value="${JDBC_DATABASE_PASSWORD}"/>
             </dataSource>
         </environment>
     </environments>
