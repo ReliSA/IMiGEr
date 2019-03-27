@@ -4,3 +4,7 @@
 sources/*/target/
 sources/*/logs/
 sources/imiger-core/src/main/webapp/node_modules/
+
+**/.DS_Store
+.DS_Store
+.DS_Store
