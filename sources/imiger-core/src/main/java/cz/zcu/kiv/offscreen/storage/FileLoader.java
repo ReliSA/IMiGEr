@@ -14,7 +14,7 @@ import java.util.Map;
 public class FileLoader {
 
     private static final int MAX_FILE_SIZE = 512000000;
-    private static final String ACCEPTED_EXTENSION_FILE = "json";
+    private static final String[] ACCEPTED_EXTENSIONS_FILE = {"json", "dot"};
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -63,6 +63,14 @@ public class FileLoader {
      * @return true - if extension is allowed, false - otherwise.
      */
     private boolean isAcceptedExtension(String componentName) {
-        return componentName.endsWith("." + ACCEPTED_EXTENSION_FILE);
+        boolean accepted = false;
+        for(String extension : ACCEPTED_EXTENSIONS_FILE) {
+            accepted = componentName.endsWith(extension);
+
+            if(accepted) {
+                break;
+            }
+        }
+        return accepted;
     }
 }
