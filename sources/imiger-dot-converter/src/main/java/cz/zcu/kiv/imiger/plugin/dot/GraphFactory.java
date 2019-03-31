@@ -60,8 +60,7 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 	private void addVerticesToGraph(Graph graph, List<VertexDTO> vertices) {
 		for (VertexDTO v : vertices) {
 
-			List<String[]> attributes = new ArrayList<>();
-			attributes.add(convertListToArray(v.getAttributes().values()));
+			List<String[]> attributes = sortAttributes(v.getAttributes(), attributeTypes);
 			Vertex vertex = new Vertex(v.getId(), v.getName(), DEFAULT_ARCHETYPE_INDEX, "", attributes);
 			graph.getVertices().add(vertex);
 		}
@@ -70,8 +69,7 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 	private void addEdgesToGraph(Graph graph, List<EdgeDTO> edges) {
 		for (EdgeDTO e : edges) {
 
-			List<String[]> attributes = new ArrayList<>();
-			attributes.add(convertListToArray(e.getAttributes().values()));
+			List<String[]> attributes = sortAttributes(e.getAttributes(), attributeTypes);
 			SubedgeInfo subedgeInfo = new SubedgeInfo(e.getId(), DEFAULT_ARCHETYPE_INDEX, attributes);
 
 			List<SubedgeInfo> subedgeInfos = new ArrayList<>();
@@ -82,15 +80,25 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 		}
 	}
 
-	private String[] convertListToArray(Collection<String> list) {
-		String[] array = new String[list.size()];
-		int i = 0;
+	private List<String[]> sortAttributes(Map<String, String> unsortedAttributes, List<AttributeType> attributeTypes) {
+		HashMap<String, List<String>> attributes = new HashMap<>();
 
-		for (String str: list) {
-			array[i++] = str;
+		attributeTypes.forEach(type -> {
+			attributes.put(type.getName(), new ArrayList<>());
+		});
+
+		for (Map.Entry<String, String> e: unsortedAttributes.entrySet()) {
+			if (attributes.containsKey(e.getKey())) {
+				attributes.get(e.getKey()).add(e.getValue());
+			}
 		}
 
-		return array;
+		List<String[]> finalAttributes = new ArrayList<>();
+		attributes.forEach((k, v) -> {
+			finalAttributes.add(v.toArray(new String[0]));
+		});
+
+		return finalAttributes;
 	}
 
 	private void prepareEdgeArchetypes() {
