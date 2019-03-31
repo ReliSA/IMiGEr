@@ -77,8 +77,8 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 			List<SubedgeInfo> subedgeInfos = new ArrayList<>();
 			subedgeInfos.add(subedgeInfo);
 
-			Edge eddge = new Edge(e.getId(), e.getIdFrom(), e.getIdTo(), e.getName(), subedgeInfos);
-			graph.getEdges().add(eddge);
+			Edge edge = new Edge(e.getId(), e.getIdFrom(), e.getIdTo(), e.getName(), subedgeInfos);
+			graph.getEdges().add(edge);
 		}
 	}
 
