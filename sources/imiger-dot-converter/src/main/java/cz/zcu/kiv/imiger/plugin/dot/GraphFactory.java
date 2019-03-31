@@ -21,9 +21,6 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 
 	public GraphFactory(BaseDOTLoader<VertexDTO,EdgeDTO> dotLoader) {
 		super(dotLoader);
-		vertices = new ArrayList<>();
-		edges = new ArrayList<>();
-		attributeTypes = new ArrayList<>();
 		prepareEdgeArchetypes();
 		prepareVertexArchetypes();
 	}
@@ -38,11 +35,11 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 			vertices = new ArrayList<>(loadedVertices);
 		}
 
-		if (loadedVertices != null) {
+		if (loadedEdges != null) {
 			edges = new ArrayList<>(loadedEdges);
 		}
 
-		if (loadedVertices != null) {
+		if (loadedAttributeTypes != null) {
 			attributeTypes = new ArrayList<>(loadedAttributeTypes);
 		}
 	}
@@ -64,7 +61,7 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 		for (VertexDTO v : vertices) {
 
 			List<String[]> attributes = new ArrayList<>();
-			attributes.add((String[]) v.getAttributes().values().toArray());
+			attributes.add(convertListToArray(v.getAttributes().values()));
 			Vertex vertex = new Vertex(v.getId(), v.getName(), DEFAULT_ARCHETYPE_INDEX, "", attributes);
 			graph.getVertices().add(vertex);
 		}
@@ -74,7 +71,7 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 		for (EdgeDTO e : edges) {
 
 			List<String[]> attributes = new ArrayList<>();
-			attributes.add((String[]) e.getAttributes().values().toArray());
+			attributes.add(convertListToArray(e.getAttributes().values()));
 			SubedgeInfo subedgeInfo = new SubedgeInfo(e.getId(), DEFAULT_ARCHETYPE_INDEX, attributes);
 
 			List<SubedgeInfo> subedgeInfos = new ArrayList<>();
@@ -83,6 +80,17 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 			Edge eddge = new Edge(e.getId(), e.getIdFrom(), e.getIdTo(), e.getName(), subedgeInfos);
 			graph.getEdges().add(eddge);
 		}
+	}
+
+	private String[] convertListToArray(Collection<String> list) {
+		String[] array = new String[list.size()];
+		int i = 0;
+
+		for (String str: list) {
+			array[i++] = str;
+		}
+
+		return array;
 	}
 
 	private void prepareEdgeArchetypes() {

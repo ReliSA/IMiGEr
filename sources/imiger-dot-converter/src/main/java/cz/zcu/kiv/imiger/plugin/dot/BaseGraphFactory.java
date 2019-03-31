@@ -22,6 +22,9 @@ public abstract class BaseGraphFactory<V extends VertexDTO, E extends EdgeDTO> {
 
 
 	protected BaseGraphFactory(BaseDOTLoader<V, E> dotLoader) {
+		vertices = new ArrayList<>();
+		edges = new ArrayList<>();
+		attributeTypes = new ArrayList<>();
 		loadData(dotLoader);
 	}
 
