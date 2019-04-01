@@ -43,8 +43,11 @@ public class PaypalDOTLoader extends BaseDOTLoader<VertexDTO, EdgeDTO> {
         attributeTypes = new HashSet<>();
         remappedVertices = new HashMap<>();
         attributeNames = new HashSet<>();
-        processVertices();
-        processEdges();
+
+        if(parser != null) {
+            processVertices();
+            processEdges();
+        }
     }
 
     /**
@@ -71,7 +74,7 @@ public class PaypalDOTLoader extends BaseDOTLoader<VertexDTO, EdgeDTO> {
      */
     @Override
     public Set<AttributeType> getAttributeTypes() {
-        if(attributeTypes.size() == 0) {
+        if(attributeTypes.size() == 0 && attributeNames.size() > 0) {
             for(String attr : attributeNames) {
                 attributeTypes.add(new AttributeType(attr, AttributeDataType.STRING, ""));
             }
