@@ -61,4 +61,19 @@ public class PaypalDOTLoaderTest {
         assertEquals(0, edges.size());
         assertEquals(0, attrs.size());
     }
+
+    @Test
+    public void missingVertexDefinitionTest() {
+        String input = getFileAsString("incomplete2.dot");
+
+        loader = new PaypalDOTLoader(input);
+
+        List<VertexDTO> vertices = loader.getVertices();
+        List<EdgeDTO> edges = loader.getEdges();
+        Set<AttributeType> attrs = loader.getAttributeTypes();
+
+        assertEquals(13, vertices.size());
+        assertEquals(12, edges.size());
+        assertEquals(5, attrs.size());
+    }
 }
