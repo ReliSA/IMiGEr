@@ -130,7 +130,7 @@ public class PaypalDOTLoader extends BaseDOTLoader<VertexDTO, EdgeDTO> {
             int from = remappedVertices.get(edge.getNode1());
             int to = remappedVertices.get(edge.getNode2());
             EdgeDTO edgeDTO = new EdgeDTO(edge.getId().replaceAll("\\\\n|\\\\l|\"", ""), from, to, id++, attrs);
-            logger.warn(edgeDTO.getName());
+            
             edges.add(edgeDTO);
         }
     }
