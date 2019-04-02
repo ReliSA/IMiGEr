@@ -8,12 +8,28 @@ import cz.zcu.kiv.imiger.plugin.dot.loader.PaypalDOTLoader;
 import cz.zcu.kiv.imiger.spi.IModule;
 import cz.zcu.kiv.imiger.vo.Graph;
 
+/**
+ * IModule implementation for DOT converter.
+ */
 public class DOT implements IModule {
+
+    /**
+     * Returns name of this module.
+     *
+     * @return - name of this module
+     */
     @Override
     public String getModuleName() {
         return "DOT file";
     }
 
+    /**
+     * Retrieves DOT file which has to be converted to raw JSON that
+     * IMiGEr support.
+     *
+     * @param stringToConvert String to be converted to raw JSON.
+     * @return - raw JSON as string
+     */
     @Override
     public String getRawJson(String stringToConvert) {
         BaseDOTLoader<VertexDTO, EdgeDTO> loader = new PaypalDOTLoader(stringToConvert);
