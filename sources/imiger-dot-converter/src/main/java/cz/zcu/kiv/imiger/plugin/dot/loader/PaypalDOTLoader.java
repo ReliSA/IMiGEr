@@ -94,12 +94,14 @@ public class PaypalDOTLoader extends BaseDOTLoader<VertexDTO, EdgeDTO> {
 
             if(!node.getAttributes().entrySet().isEmpty()) {
                 for (Map.Entry<String, Object> entry : node.getAttributes().entrySet()) {
-                    attrs.put(entry.getKey(), entry.getValue().toString());
-                    attributeNames.add(entry.getKey());
+                    String key = entry.getKey().replaceAll("\\\\n|\\\\l", "");
+                    String value = entry.getValue().toString().replaceAll("\\\\n|\\\\l", "");
+                    attrs.put(key, value);
+                    attributeNames.add(key);
                 }
             }
 
-            VertexDTO vertex = new VertexDTO(node.getId(), id++, attrs);
+            VertexDTO vertex = new VertexDTO(node.getId().replaceAll("\\\\n|\\\\l", ""), id++, attrs);
             this.remappedVertices.put(node, vertex.getId());
 
             vertices.add(vertex);
@@ -118,14 +120,16 @@ public class PaypalDOTLoader extends BaseDOTLoader<VertexDTO, EdgeDTO> {
 
             if(!edge.getAttributes().entrySet().isEmpty()) {
                 for (Map.Entry<String, Object> entry : edge.getAttributes().entrySet()) {
-                    attrs.put(entry.getKey(), entry.getValue().toString());
-                    attributeNames.add(entry.getKey());
+                    String key = entry.getKey().replaceAll("\\\\n|\\\\l", "");
+                    String value = entry.getValue().toString().replaceAll("\\\\n|\\\\l", "");
+                    attrs.put(key, value);
+                    attributeNames.add(key);
                 }
             }
 
             int from = remappedVertices.get(edge.getNode1());
             int to = remappedVertices.get(edge.getNode2());
-            EdgeDTO edgeDTO = new EdgeDTO(edge.getId(), from, to, id++, attrs);
+            EdgeDTO edgeDTO = new EdgeDTO(edge.getId().replaceAll("\\\\n|\\\\l", ""), from, to, id++, attrs);
 
             edges.add(edgeDTO);
         }
