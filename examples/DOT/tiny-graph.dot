@@ -1,0 +1,4 @@
+digraph tiny {
+     a -> b -> c;
+     b -> d;
+ }
