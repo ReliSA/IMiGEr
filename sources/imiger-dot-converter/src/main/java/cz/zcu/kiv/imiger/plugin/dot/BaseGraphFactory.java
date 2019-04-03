@@ -17,83 +17,83 @@ import java.util.*;
  */
 public abstract class BaseGraphFactory<V extends VertexDTO, E extends EdgeDTO> {
 
-	/**
-	 * List of vertex archetypes that must factory initialize.
-	 */
-	protected List<VertexArchetype> vertexArchetypes;
+    /**
+     * List of vertex archetypes that must factory initialize.
+     */
+    protected List<VertexArchetype> vertexArchetypes;
 
-	/**
-	 * List of edge archetypes that must factory initialize.
-	 */
-	protected List<EdgeArchetype> edgeArchetypes;
+    /**
+     * List of edge archetypes that must factory initialize.
+     */
+    protected List<EdgeArchetype> edgeArchetypes;
 
-	/**
-	 * List of defined attribute types retrieved from {@link BaseDOTLoader}.
-	 */
-	protected List<AttributeType> attributeTypes;
+    /**
+     * List of defined attribute types retrieved from {@link BaseDOTLoader}.
+     */
+    protected List<AttributeType> attributeTypes;
 
-	/**
-	 * List of defined vertices retrieved from {@link BaseDOTLoader}. {@link VertexDTO} is
-	 * specific vertex created with DOTLoader.
-	 */
-	protected List<VertexDTO> vertices;
+    /**
+     * List of defined vertices retrieved from {@link BaseDOTLoader}. {@link VertexDTO} is
+     * specific vertex created with DOTLoader.
+     */
+    protected List<VertexDTO> vertices;
 
-	/**
-	 * List of defined edges retrieved from {@link BaseDOTLoader}. {@link EdgeDTO} is
-	 * specific vertex created with DOTLoader.
-	 */
-	protected List<EdgeDTO> edges;
+    /**
+     * List of defined edges retrieved from {@link BaseDOTLoader}. {@link EdgeDTO} is
+     * specific vertex created with DOTLoader.
+     */
+    protected List<EdgeDTO> edges;
 
     /**
      * Map of possible enum values that must factory initialize.
      */
-	protected Map<Integer, List<String>> possibleEnumValues;
+    protected Map<Integer, List<String>> possibleEnumValues;
 
     /**
      * List of groups that must factory initialize.
      */
-	protected List<Group> groups;
+    protected List<Group> groups;
 
     /**
      * List of sidebars that must factory initialize.
      */
-	protected List<SideBar> sideBar;
+    protected List<SideBar> sideBar;
 
     /**
      * Edge that will be highlighted when graph loads. GraphFactory must initialize.
      */
-	protected String highlightedEdge;
+    protected String highlightedEdge;
 
     /**
      * Vertex that will be highlighted when graph loads. GraphFactory must initialize.
      */
-	protected String highlightedVertex;
+    protected String highlightedVertex;
 
-	/**
-	 * Constructor initialize data that can be retrieved from {@link BaseDOTLoader}, the rest of
-	 * necessary attributes for creating graph must be initialized in children of this abstract class.
-	 *
-	 * @param dotLoader - instance of {@link BaseDOTLoader} which provides parsed data from DOT file
-	 */
-	protected BaseGraphFactory(BaseDOTLoader<V, E> dotLoader) {
-		vertices = new ArrayList<>();
-		edges = new ArrayList<>();
-		attributeTypes = new ArrayList<>();
-		loadData(dotLoader);
-	}
+    /**
+     * Constructor initialize data that can be retrieved from {@link BaseDOTLoader}, the rest of
+     * necessary attributes for creating graph must be initialized in children of this abstract class.
+     *
+     * @param dotLoader - instance of {@link BaseDOTLoader} which provides parsed data from DOT file
+     */
+    protected BaseGraphFactory(BaseDOTLoader<V, E> dotLoader) {
+        vertices = new ArrayList<>();
+        edges = new ArrayList<>();
+        attributeTypes = new ArrayList<>();
+        loadData(dotLoader);
+    }
 
-	/**
-	 * Must initialize necessary attributes for creating graph from data provided by {@link BaseDOTLoader}.
-	 *
-	 * @param dotLoader - instance of {@link BaseDOTLoader} which provides parsed data from DOT file
-	 */
-	protected abstract void loadData(BaseDOTLoader<V, E> dotLoader);
+    /**
+     * Must initialize necessary attributes for creating graph from data provided by {@link BaseDOTLoader}.
+     *
+     * @param dotLoader - instance of {@link BaseDOTLoader} which provides parsed data from DOT file
+     */
+    protected abstract void loadData(BaseDOTLoader<V, E> dotLoader);
 
-	/**
-	 * Must create instance of {@link Graph} from created and retrieved data.
-	 *
-	 * @return - new graph created from prepared data
-	 */
-	public abstract Graph createGraph();
+    /**
+     * Must create instance of {@link Graph} from created and retrieved data.
+     *
+     * @return - new graph created from prepared data
+     */
+    public abstract Graph createGraph();
 
 }
