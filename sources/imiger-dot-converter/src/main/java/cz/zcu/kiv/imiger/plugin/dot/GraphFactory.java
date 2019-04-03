@@ -45,6 +45,11 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 		super(dotLoader);
 		prepareEdgeArchetypes();
 		prepareVertexArchetypes();
+		preparePossibleEnumValues();
+		prepareGroups();
+		prepareSideBar();
+		defineHighlightedVertex();
+        defineHighlightedEdge();
 	}
 
 	/**
@@ -84,6 +89,11 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 		graph.setEdgeArchetypes(edgeArchetypes);
 		graph.setVertexArchetypes(vertexArchetypes);
 		graph.setAttributeTypes(attributeTypes);
+		graph.setPossibleEnumValues(possibleEnumValues);
+		graph.setGroups(groups);
+		graph.setSideBar(sideBar);
+		graph.setHighlightedEdge(highlightedEdge);
+		graph.setHighlightedVertex(highlightedVertex);
 		addEdgesToGraph(graph, edges);
 		addVerticesToGraph(graph, vertices);
 
@@ -157,7 +167,7 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 	 * Defines default edge archetype for edges.
 	 */
 	private void prepareEdgeArchetypes() {
-		edgeArchetypes= new ArrayList<>();
+		edgeArchetypes = new ArrayList<>();
 		edgeArchetypes.add(new EdgeArchetype(EDGE_ARCHETYPE_NAME, ARCHETYPE_TEXT));
 	}
 
@@ -167,6 +177,46 @@ public class GraphFactory extends BaseGraphFactory<VertexDTO, EdgeDTO> {
 	private void prepareVertexArchetypes() {
 		vertexArchetypes = new ArrayList<>();
 		vertexArchetypes.add(new VertexArchetype(VERTEX_ARCHETYPE_NAME, ARCHETYPE_TEXT));
+	}
+
+    /**
+     * Defines default map of possible enum values.
+     */
+	private void preparePossibleEnumValues() {
+		possibleEnumValues = new HashMap<>();
+	}
+
+
+    /**
+     * Defines default list fo groups.
+     */
+	private void prepareGroups() {
+		groups = new ArrayList<>();
+	}
+
+
+    /**
+     * Defines default list of sidebars.
+     */
+	private void prepareSideBar() {
+		sideBar = new ArrayList<>();
+	}
+
+
+    /**
+     * Defines default highlighted edge. Empty string means that no edge will be highlighted
+     * when graph loads.
+     */
+	private void defineHighlightedEdge() {
+		highlightedEdge = "";
+	}
+
+    /**
+     * Defines default highlighted vertex. Empty string means that no vertex will be highlighted
+     * when graph loads.
+     */
+	private void defineHighlightedVertex() {
+		highlightedVertex = "";
 	}
 
 }

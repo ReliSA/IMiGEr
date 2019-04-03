@@ -11,14 +11,14 @@ public abstract class BaseVertex {
     /** Name of vertex. */
     private String name;
     /** Index of vertex archetype. */
-    private int archetypeIndex;
+    private int archetype;
     /** Additional info. */
     private String text;
 
-    public BaseVertex(int id, String name, int archetypeIndex, String text) {
+    public BaseVertex(int id, String name, int archetype, String text) {
         this.id = id;
         this.name = name;
-        this.archetypeIndex = archetypeIndex;
+        this.archetype = archetype;
         this.text = text;
     }
 
@@ -39,11 +39,11 @@ public abstract class BaseVertex {
     }
 
     public int getArchetype() {
-        return archetypeIndex;
+        return archetype;
     }
 
     public void setArchetype(int archetypeIndex) {
-        this.archetypeIndex = archetypeIndex;
+        this.archetype = archetypeIndex;
     }
 
     public String getText() {

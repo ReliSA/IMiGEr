@@ -44,6 +44,31 @@ public abstract class BaseGraphFactory<V extends VertexDTO, E extends EdgeDTO> {
 	 */
 	protected List<EdgeDTO> edges;
 
+    /**
+     * Map of possible enum values that must factory initialize.
+     */
+	protected Map<Integer, List<String>> possibleEnumValues;
+
+    /**
+     * List of groups that must factory initialize.
+     */
+	protected List<Group> groups;
+
+    /**
+     * List of sidebars that must factory initialize.
+     */
+	protected List<SideBar> sideBar;
+
+    /**
+     * Edge that will be highlighted when graph loads. GraphFactory must initialize.
+     */
+	protected String highlightedEdge;
+
+    /**
+     * Vertex that will be highlighted when graph loads. GraphFactory must initialize.
+     */
+	protected String highlightedVertex;
+
 	/**
 	 * Constructor initialize data that can be retrieved from {@link BaseDOTLoader}, the rest of
 	 * necessary attributes for creating graph must be initialized in children of this abstract class.
