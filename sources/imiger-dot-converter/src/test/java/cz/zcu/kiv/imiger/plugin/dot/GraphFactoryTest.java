@@ -59,6 +59,8 @@ public class GraphFactoryTest {
 	private static final String EDGE_ARCHETYPE = "Edge";
 	private static final String VERTEX_ARCHETYPE = "Vertex";
 
+	private static final boolean EMPTY_UNUSED_CLASS_ATTR = true;
+
 	/**
 	 * Mock object of {@link BaseDOTLoader}.
 	 */
@@ -85,6 +87,11 @@ public class GraphFactoryTest {
 		assertThat(factory.vertices.size(), is(expectedVerticesSize));
 		assertThat(factory.edgeArchetypes, is(not(nullValue())));
 		assertThat(factory.vertexArchetypes, is(not(nullValue())));
+		assertThat(factory.possibleEnumValues, is(not(nullValue())));
+		assertThat(factory.groups, is(not(nullValue())));
+		assertThat(factory.sideBar, is(not(nullValue())));
+		assertThat(factory.highlightedEdge, is(not(nullValue())));
+		assertThat(factory.highlightedVertex, is(not(nullValue())));
 		// test attribute type
 		assertThat(factory.attributeTypes.get(ATTR_TYPE_ID).getName(), is(equalTo(ATTR_TYPE_NAME)));
 		assertThat(factory.attributeTypes.get(ATTR_TYPE_ID).getText(), is(equalTo(ATTR_TYPE_TEXT)));
@@ -98,6 +105,12 @@ public class GraphFactoryTest {
 		// test archetypes
 		assertThat(factory.edgeArchetypes.get(0).getName(), is(equalTo(EDGE_ARCHETYPE)));
 		assertThat(factory.vertexArchetypes.get(0).getName(), is(equalTo(VERTEX_ARCHETYPE)));
+		// the rest of required but unused attributes
+		assertThat(factory.possibleEnumValues.isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
+		assertThat(factory.groups.isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
+		assertThat(factory.sideBar.isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
+		assertThat(factory.highlightedEdge.isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
+		assertThat(factory.highlightedVertex.isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
 	}
 
 	/**
@@ -120,6 +133,11 @@ public class GraphFactoryTest {
 		assertThat(factory.vertices.size(), is(expectedVerticesSize));
 		assertThat(factory.edgeArchetypes, is(not(nullValue())));
 		assertThat(factory.vertexArchetypes, is(not(nullValue())));
+		assertThat(factory.possibleEnumValues, is(not(nullValue())));
+		assertThat(factory.groups, is(not(nullValue())));
+		assertThat(factory.sideBar, is(not(nullValue())));
+		assertThat(factory.highlightedEdge, is(not(nullValue())));
+		assertThat(factory.highlightedVertex, is(not(nullValue())));
 	}
 
 	/**
@@ -142,6 +160,11 @@ public class GraphFactoryTest {
 		assertThat(factory.vertices.size(), is(expectedVerticesSize));
 		assertThat(factory.edgeArchetypes, is(not(nullValue())));
 		assertThat(factory.vertexArchetypes, is(not(nullValue())));
+		assertThat(factory.possibleEnumValues, is(not(nullValue())));
+		assertThat(factory.groups, is(not(nullValue())));
+		assertThat(factory.sideBar, is(not(nullValue())));
+		assertThat(factory.highlightedEdge, is(not(nullValue())));
+		assertThat(factory.highlightedVertex, is(not(nullValue())));
 	}
 
 	/**
@@ -186,6 +209,12 @@ public class GraphFactoryTest {
 		// test archetypes
 		assertThat(graph.getEdgeArchetypes().get(0).getName(), is(equalTo(EDGE_ARCHETYPE)));
 		assertThat(graph.getVertexArchetypes().get(0).getName(), is(equalTo(VERTEX_ARCHETYPE)));
+		// the rest of required but unused attributes
+		assertThat(graph.getPossibleEnumValues().isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
+		assertThat(graph.getGroups().isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
+		assertThat(graph.getSideBar().isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
+		assertThat(graph.getHighlightedEdge().isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
+		assertThat(graph.getHighlightedVertex().isEmpty(), is(equalTo(EMPTY_UNUSED_CLASS_ATTR)));
 	}
 
 	/**
