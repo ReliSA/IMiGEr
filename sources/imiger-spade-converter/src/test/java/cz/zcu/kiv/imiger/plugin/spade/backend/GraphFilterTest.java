@@ -7,10 +7,11 @@ import cz.zcu.kiv.imiger.plugin.spade.graph.GraphManager;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.JSONConfigLoader;
 import cz.zcu.kiv.imiger.vo.SubedgeInfo;
+import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,14 +22,15 @@ public class GraphFilterTest {
 
     private static GraphManager graphManager;
 
-    @BeforeAll
-    static void initTest() throws IOException {
-        String loadedJSON = IOUtils.toString(GraphFilterTest.class.getClassLoader().getResourceAsStream("data/test1.json"), "UTF-8");
+    @BeforeClass
+    public static void initTest() throws IOException {
+        InputStream resource = GraphFilterTest.class.getClassLoader().getResourceAsStream("data/test1.json");
+        String loadedJSON = IOUtils.toString(resource, "UTF-8");
         graphManager = new GraphJSONDataLoader(loadedJSON).loadData();
     }
 
     @Test
-    void testFilter1a() {
+    public void testFilter1a() {
         Graph graph = createGraph("config/test1a.json");
 
         List<Integer> vertexIds = new ArrayList<>();
@@ -55,7 +57,7 @@ public class GraphFilterTest {
     }
 
     @Test
-    void testFilter1b() {
+    public void testFilter1b() {
         Graph graph = createGraph("config/test1b.json");
 
         List<Integer> vertexIds = new ArrayList<>();
@@ -77,7 +79,7 @@ public class GraphFilterTest {
     }
 
     @Test
-    void testFilter1c() {
+    public void testFilter1c() {
         Graph graph = createGraph("config/test1c.json");
 
         List<Integer> vertexIds = new ArrayList<>();
@@ -99,7 +101,7 @@ public class GraphFilterTest {
     }
 
     @Test
-    void testFilter1d() {
+    public void testFilter1d() {
         Graph graph = createGraph("config/test1d.json");
 
         List<Integer> vertexIds = new ArrayList<>();
@@ -121,7 +123,7 @@ public class GraphFilterTest {
     }
 
     @Test
-    void testFilter1e() {
+    public void testFilter1e() {
         Graph graph = createGraph("config/test1e.json");
 
         List<Integer> vertexIds = new ArrayList<>();
@@ -143,7 +145,7 @@ public class GraphFilterTest {
     }
 
     @Test
-    void testFilter1f() {
+    public void testFilter1f() {
         Graph graph = createGraph("config/test1f.json");
 
         List<Integer> vertexIds = new ArrayList<>();
@@ -179,23 +181,23 @@ public class GraphFilterTest {
      * @param edges - edges, that graph must contain in order to pass the test.
      */
     private void graphContains(Graph graph, List<Integer> vertexIds, List<Edge> edges) {
-        Assertions.assertEquals(graph.getVertices().size(), vertexIds.size());
-        Assertions.assertEquals(graph.getEdges().size(), edges.size());
+        Assert.assertEquals(graph.getVertices().size(), vertexIds.size());
+        Assert.assertEquals(graph.getEdges().size(), edges.size());
 
         // Vertices
         for (Vertex vertex : graph.getVertices()) {
-            Assertions.assertTrue(vertexIds.contains(vertex.getId()));
+            Assert.assertTrue(vertexIds.contains(vertex.getId()));
         }
 
         // Edges
         for (Edge edge : graph.getEdges()) {
-            Assertions.assertTrue(edges.contains(edge));
+            Assert.assertTrue(edges.contains(edge));
 
             Edge edgeCmp = edges.get(edges.indexOf(edge));
-            Assertions.assertEquals(edge.getSubedgeInfo().size(), edgeCmp.getSubedgeInfo().size());
+            Assert.assertEquals(edge.getSubedgeInfo().size(), edgeCmp.getSubedgeInfo().size());
 
             for (SubedgeInfo subedgeInfo : edge.getSubedgeInfo()) {
-                Assertions.assertTrue(containsSubedgeWithId(subedgeInfo, edgeCmp.getSubedgeInfo()));
+                Assert.assertTrue(containsSubedgeWithId(subedgeInfo, edgeCmp.getSubedgeInfo()));
             }
         }
     }
