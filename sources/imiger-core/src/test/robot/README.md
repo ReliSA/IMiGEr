@@ -41,6 +41,10 @@ To run a particular test from a test suite, use option `--test`:
 
 `robot --outputdir ./output --test "General" ./graph.robot`
 
+Or using Maven:
+
+`mvn exec:exec@ui-tests` (imiger-core)
+
 ### 5. Check results
 
 In your output folder (`./` by default), there should be a HTML file called `report.html`. It contains additional details about executed test runs.

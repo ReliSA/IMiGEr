@@ -56,13 +56,13 @@
             </plugin>
 
             <plugin>
-                <!-- npm integration -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <executions>
-                    <!-- The following will ensure `npm install` is called -->
                     <execution>
+                        <!-- npm integration -->
+                        <!-- The following will ensure `npm install` is called -->
                         <id>npm install</id>
                         <goals>
                             <goal>exec</goal>
@@ -74,6 +74,23 @@
                                 <argument>install</argument>
                             </arguments>
                             <workingDirectory>${project.basedir}/src/main/webapp</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- Run Robot framework tests -->
+                        <!-- mvn exec:exec@ui-tests -->
+                        <id>ui-tests</id>
+                        <phase>none</phase> <!-- On demand only -->
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>robot</executable>
+                            <arguments>
+                                <argument>--outputdir</argument>
+                                <argument>${project.build.directory}/robot-tests</argument>
+                                <argument>${project.basedir}/src/test/robot</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                 </executions>
