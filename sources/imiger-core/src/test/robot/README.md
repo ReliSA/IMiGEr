@@ -11,7 +11,7 @@ pip is a Python package management system which can be used to install Robot Fra
 ### 2. Install Robot Framework using pip
 
 `pip install robotframework`
-`pip install robotframework-selenium2library`
+`pip install robotframework-seleniumlibrary`
 
 ### 3. Install browser controlling driver
 

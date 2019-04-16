@@ -11,7 +11,7 @@ ${BROWSER}		Chrome
 ${DELAY}		0.1
 
 ${SERVER}			http://localhost:8080/imiger/
-${TEST DATA PATH}	${CURDIR}${/}..${/}..${/}..${/}..${/}..${/}..${/}data${/}
+${TEST DATA PATH}	${CURDIR}${/}data${/}
 
 ${UPLOAD FILES URL}	${SERVER}
 ${GRAPH URL}		${SERVER}/graph
@@ -28,23 +28,21 @@ Go To Upload Screen
 	Go To				${UPLOAD FILES URL}
 
 
-Open Diagram
-	${filePath}=		Normalize Path		${TEST DATA PATH}SPADe JSONs${/}aswi2017mutant-industries-ltd.json
+Open Diagram Raw
+	Open Browser To Base Path
+	${filePath}=		Normalize Path		${TEST DATA PATH}${/}raw${/}jira-project.json
 	Choose File				name:file		${filePath}
-	Select Radio Button		fileFormat		-968839389
 	Click Button			Start visualization
 	Wait Until Element Is Not Visible		//div[@id="loader"]
 
 
-Open Browser To Demo Diagram
+Open Diagram Spade
 	Open Browser To Base Path
-	Click Element			//ul[@id="publicDiagramList"]/li[1]/a[text()="robot"]
+	${filePath}=		Normalize Path		${TEST DATA PATH}${/}spade${/}jira-project.json
+	Choose File				name:file		${filePath}
+	Select Radio Button		fileFormat		-968839389
+	Click Button			Start visualization
 	Wait Until Element Is Not Visible		//div[@id="loader"]
-
-
-Open Browser To Diagram
-	Open Browser To Base Path
-	Open Diagram
 
 
 Reload Diagram Screen

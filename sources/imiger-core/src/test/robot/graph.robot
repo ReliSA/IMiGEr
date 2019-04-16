@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation	A test suite with tests of graph construction.
 
-Suite Setup		Open Browser To Diagram
+Suite Setup		Open Diagram Spade
 Suite Teardown	Close Browser
 
 Resource		common.robot
@@ -22,7 +22,7 @@ ${vertex6}				//*[name()="li"][contains(@class, "vertex")][@data-id="6"]
 
 *** Test Cases ***
 General
-	Title Should Be			IMiGEr - aswi2017mutant-industries-ltd.json
+	Title Should Be			IMiGEr - jira-project.json
 	# check component counter
 	${count}=	Get Text	${componentCounter}
 	Should Be Equal As Strings		${count}	loaded components: 19

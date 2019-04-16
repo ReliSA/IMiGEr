@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation	A test suite with tests of sidebar panels toggling.
 
-Suite Setup		Open Browser To Demo Diagram
+Suite Setup		Open Diagram Raw
 Suite Teardown	Close Browser
 
 Resource		common.robot

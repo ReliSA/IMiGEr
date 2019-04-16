@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation	A test suite with tests of vertex grouping functionality.
 
-Suite Setup		Open Browser To Demo Diagram
+Suite Setup		Open Diagram Raw
 Suite Teardown	Close Browser
 Test Setup		Click Element	//button[@id="vertexToGroup"]
 Test Teardown	Reload Diagram Screen

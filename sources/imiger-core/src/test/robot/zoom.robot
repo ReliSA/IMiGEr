@@ -3,7 +3,7 @@ Documentation	A test suite with tests of graph zoom.
 
 Library			String
 
-Suite Setup		Open Browser To Demo Diagram
+Suite Setup		Open Diagram Raw
 Suite Teardown	Close Browser
 Test Teardown	Reload Diagram Screen
 

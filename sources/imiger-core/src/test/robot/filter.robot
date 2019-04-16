@@ -3,7 +3,7 @@ Documentation	A test suite with tests of node filtering.
 
 Library			String
 
-Suite Setup		Open Browser To Demo Diagram
+Suite Setup		Open Diagram Raw
 Suite Teardown	Close Browser
 Test Teardown	Reload Diagram Screen
 
@@ -199,62 +199,6 @@ Filter by enum vertex attribute not equals
 	Found Count Should Be Equal		3
 
 
-Filter by date vertex attribute equals
-	[Tags]		filter-by-vertex-attribute		filter-by-vertex-date-attribute
-	Click Button					${filterButton}
-	Select From List By Label		${baseFilterDropdown}	Vertex attribute
-	Select From List By Label		${additionalFilterDropdown}		Created (date)
-	Select From List By Label		${operationDropdown}	equals
-	Input Date						${dateValueInput}		2017-03-27
-	Click Button					${applyButton}
-	Found Count Should Be Equal		5
-
-
-Filter by date vertex attribute not equals
-	[Tags]		filter-by-vertex-attribute		filter-by-vertex-date-attribute
-	Click Button					${filterButton}
-	Select From List By Label		${baseFilterDropdown}	Vertex attribute
-	Select From List By Label		${additionalFilterDropdown}		Created (date)
-	Select From List By Label		${operationDropdown}	not equals
-	Input Date						${dateValueInput}		2017-03-27
-	Click Button					${applyButton}
-	Found Count Should Be Equal		27
-
-
-Filter by date vertex attribute from unix epoch to date
-	[Tags]		filter-by-vertex-attribute		filter-by-vertex-date-attribute
-	Click Button					${filterButton}
-	Select From List By Label		${baseFilterDropdown}	Vertex attribute
-	Select From List By Label		${additionalFilterDropdown}		Created (date)
-	Select From List By Label		${operationDropdown}	is in range
-	Input Date						${dateToValueInput}		2017-04-01
-	Click Button					${applyButton}
-	Found Count Should Be Equal		6
-
-
-Filter by date vertex attribute is in range
-	[Tags]		filter-by-vertex-attribute		filter-by-vertex-date-attribute
-	Click Button					${filterButton}
-	Select From List By Label		${baseFilterDropdown}	Vertex attribute
-	Select From List By Label		${additionalFilterDropdown}		Created (date)
-	Select From List By Label		${operationDropdown}	is in range
-	Input Date						${dateFromValueInput}	2017-04-01
-	Input Date						${dateToValueInput}		2017-05-01
-	Click Button					${applyButton}
-	Found Count Should Be Equal		22
-
-
-Filter by date vertex attribute is from date to now
-	[Tags]		filter-by-vertex-attribute		filter-by-vertex-date-attribute
-	Click Button					${filterButton}
-	Select From List By Label		${baseFilterDropdown}	Vertex attribute
-	Select From List By Label		${additionalFilterDropdown}		Created (date)
-	Select From List By Label		${operationDropdown}	is in range
-	Input Date						${dateFromValueInput}	2017-05-01
-	Click Button					${applyButton}
-	Found Count Should Be Equal		4
-
-
 Filter by number vertex attribute equals
 	[Tags]		filter-by-vertex-attribute		filter-by-vertex-number-attribute
 	Click Button					${filterButton}
@@ -360,14 +304,3 @@ Found Count Should Be Equal
 	[Arguments]		${expectedCount}
 	${count}=	Get Element Count	${foundNodes}
 	Should Be Equal As Integers		${count}	${expectedCount}
-
-
-Input Date
-	[Arguments]		${locator}		${date}
-	# split date to parts (day, month, year)
-	@{parts}=		Split String	${date}		-
-	# enter individual parts into the input
-	Set Focus To Element			${locator}
-	Press Key						${locator}		@{parts}[2]
-	Press Key						${locator}		@{parts}[1]
-	Press Key						${locator}		@{parts}[0]
