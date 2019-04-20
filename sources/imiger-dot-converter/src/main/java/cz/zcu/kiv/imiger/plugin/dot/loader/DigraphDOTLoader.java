@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.ByteArrayInputStream;
 import java.util.*;
 
-public class PaypalDOTLoader extends BaseDOTLoader<VertexDTO, EdgeDTO> {
+public class DigraphDOTLoader extends BaseDOTLoader<VertexDTO, EdgeDTO> {
     private static Logger logger = LogManager.getLogger();
 
     private GraphParser parser;
@@ -29,7 +29,7 @@ public class PaypalDOTLoader extends BaseDOTLoader<VertexDTO, EdgeDTO> {
      *
      * @param dotInput - Source DOT file
      */
-    public PaypalDOTLoader(String dotInput) {
+    public DigraphDOTLoader(String dotInput) {
         super(dotInput);
         parser = null;
 

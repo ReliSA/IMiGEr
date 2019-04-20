@@ -3,7 +3,7 @@ package cz.zcu.kiv.imiger.plugin.dot.backend;
 import cz.zcu.kiv.imiger.plugin.dot.dto.EdgeDTO;
 import cz.zcu.kiv.imiger.plugin.dot.dto.VertexDTO;
 import cz.zcu.kiv.imiger.plugin.dot.loader.BaseDOTLoader;
-import cz.zcu.kiv.imiger.plugin.dot.loader.PaypalDOTLoader;
+import cz.zcu.kiv.imiger.plugin.dot.loader.DigraphDOTLoader;
 import cz.zcu.kiv.imiger.vo.AttributeType;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
-public class PaypalDOTLoaderTest {
+public class DigraphDOTLoaderTest {
 
     BaseDOTLoader<VertexDTO, EdgeDTO> loader;
 
@@ -36,7 +36,7 @@ public class PaypalDOTLoaderTest {
     public void testOkGraph() {
         String input = getFileAsString("complete1.dot");
 
-        loader = new PaypalDOTLoader(input);
+        loader = new DigraphDOTLoader(input);
 
         List<VertexDTO> vertices = loader.getVertices();
         List<EdgeDTO> edges = loader.getEdges();
@@ -51,7 +51,7 @@ public class PaypalDOTLoaderTest {
     public void testIncompleteGraph() {
         String input = getFileAsString("incomplete1.dot");
 
-        loader = new PaypalDOTLoader(input);
+        loader = new DigraphDOTLoader(input);
 
         List<VertexDTO> vertices = loader.getVertices();
         List<EdgeDTO> edges = loader.getEdges();
@@ -66,7 +66,7 @@ public class PaypalDOTLoaderTest {
     public void missingVertexDefinitionTest() {
         String input = getFileAsString("incomplete2.dot");
 
-        loader = new PaypalDOTLoader(input);
+        loader = new DigraphDOTLoader(input);
 
         List<VertexDTO> vertices = loader.getVertices();
         List<EdgeDTO> edges = loader.getEdges();

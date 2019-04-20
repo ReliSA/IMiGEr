@@ -53,7 +53,7 @@ public class GetSessionDiagram extends BaseServlet {
                 if(optional.isPresent()){
                     rawJson = optional.get();
                 } else {
-                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
                     return;
                 }
             }
