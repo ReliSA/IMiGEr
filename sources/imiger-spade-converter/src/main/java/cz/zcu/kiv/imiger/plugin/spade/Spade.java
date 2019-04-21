@@ -5,12 +5,18 @@ import cz.zcu.kiv.imiger.vo.Graph;
 import cz.zcu.kiv.imiger.plugin.spade.graph.GraphManager;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.JSONConfigLoader;
+import java.util.regex.Pattern;
 import net.sf.json.JSONObject;
 
 public class Spade implements IModule {
     @Override
     public String getModuleName() {
         return "Spade JSON";
+    }
+
+    @Override
+    public Pattern getFileNamePattern() {
+        return Pattern.compile("(?s).+\\.json");
     }
 
     /**

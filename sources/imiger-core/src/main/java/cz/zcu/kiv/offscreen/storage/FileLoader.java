@@ -1,12 +1,12 @@
 package cz.zcu.kiv.offscreen.storage;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +14,16 @@ import java.util.Map;
 public class FileLoader {
 
     private static final int MAX_FILE_SIZE = 512000000;
-    private static final String[] ACCEPTED_EXTENSIONS_FILE = {"json", "dot"};
 
-    private static final Logger logger = LogManager.getLogger();
+    private final List<FileItem> fileItems;
+
+    public FileLoader(HttpServletRequest request) throws FileUploadException {
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setSizeMax(MAX_FILE_SIZE);
+
+        this.fileItems = upload.parseRequest(request);
+    }
 
     /**
      * Get multipart data from request which was send and return it as a map where key is field name from form and
@@ -24,53 +31,25 @@ public class FileLoader {
      *
      * @return loaded multipart data in map or empty map.
      */
-    public Map<String, String> loadFile(HttpServletRequest request){
-
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-
-        ServletFileUpload upload = new ServletFileUpload(factory);
-        upload.setSizeMax(MAX_FILE_SIZE);
-
+    public Map<String, String> loadFormFields() throws FileUploadException {
         Map<String, String> resultMap = new HashMap<>();
-
-        try {
-
-            List<FileItem> fileItems = upload.parseRequest(request);
-            for (FileItem item : fileItems) {
-                if (item.isFormField()) {
-                    resultMap.put(item.getFieldName(), item.getString());
-                } else {
-                    resultMap.put("filename", item.getName());
-                    if (isAcceptedExtension(item.getName()) && item.getSize() > 0) {
-                        logger.debug(item.getName() + " - " + item.getContentType());
-                        resultMap.put(item.getFieldName(), item.getString("UTF-8"));
-                    } else {
-                        resultMap.put(item.getFieldName(), "");
-                    }
-                }
+        for (FileItem item : fileItems) {
+            if (item.isFormField()) {
+                resultMap.put(item.getFieldName(), item.getString());
+            } else {
+                resultMap.put("filename", item.getName());
             }
-
-        } catch (Exception ex) {
-            logger.error("Can not load file from request: ", ex);
         }
         return resultMap;
     }
 
-    /**
-     * Check if input string ends with allowed extension.
-     *
-     * @param componentName all name of file
-     * @return true - if extension is allowed, false - otherwise.
-     */
-    private boolean isAcceptedExtension(String componentName) {
-        boolean accepted = false;
-        for(String extension : ACCEPTED_EXTENSIONS_FILE) {
-            accepted = componentName.endsWith(extension);
-
-            if(accepted) {
-                break;
+    public String loadFileAsString(String name) throws UnsupportedEncodingException {
+        for (FileItem item : fileItems) {
+            if (!item.isFormField() && item.getName().equals(name)) {
+                return item.getString("UTF-8");
             }
         }
-        return accepted;
+        return null;
     }
+
 }

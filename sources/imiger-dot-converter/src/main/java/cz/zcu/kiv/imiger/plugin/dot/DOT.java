@@ -7,6 +7,7 @@ import cz.zcu.kiv.imiger.plugin.dot.loader.BaseDOTLoader;
 import cz.zcu.kiv.imiger.plugin.dot.loader.DigraphDOTLoader;
 import cz.zcu.kiv.imiger.spi.IModule;
 import cz.zcu.kiv.imiger.vo.Graph;
+import java.util.regex.Pattern;
 
 /**
  * IModule implementation for DOT converter.
@@ -21,6 +22,11 @@ public class DOT implements IModule {
     @Override
     public String getModuleName() {
         return "DOT file";
+    }
+
+    @Override
+    public Pattern getFileNamePattern() {
+        return Pattern.compile("(?s).+\\.(dot|gv)");
     }
 
     /**
@@ -39,9 +45,7 @@ public class DOT implements IModule {
         if(!graph.getVertices().isEmpty()) {
             Gson gson = new Gson();
             return gson.toJson(graph, Graph.class);
-        }
-
-        else {
+        } else {
             return "";
         }
     }

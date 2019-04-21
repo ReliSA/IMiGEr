@@ -1,9 +1,11 @@
 package cz.zcu.kiv.offscreen.servlets;
 
+import cz.zcu.kiv.imiger.spi.IModule;
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.storage.FileLoader;
 import cz.zcu.kiv.offscreen.user.DataAccessException;
 import cz.zcu.kiv.offscreen.user.dao.DiagramDAO;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,14 +15,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- *
- * @author Jindra PavlĂ­kovĂˇ <jindra.pav2@seznam.cz>
- */
 public class UploadFiles extends BaseServlet {
     private static final Logger logger = LogManager.getLogger();
 
@@ -59,24 +60,57 @@ public class UploadFiles extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.debug("Processing request");
-        Map<String, String> data = new FileLoader().loadFile(request);
+        try {
+            FileLoader fileLoader = new FileLoader(request);
+            Map<String, String> formFields = fileLoader.loadFormFields();
+            String fileType = formFields.get("fileFormat");
+            String fileName = formFields.get("filename");
 
-        if(!data.containsKey("file") || !data.containsKey("fileFormat")) {
-            request.setAttribute("errorMessage", "<strong>Invalid request!</strong><br/>");
-            logger.debug("Invalid request");
-            doGet(request, response);
+            if (fileType == null || fileName == null) {
+                throw new IllegalArgumentException("Missing parameter");
+            }
 
-        } else if (StringUtils.isBlank(data.get("file"))) {
-            request.setAttribute("errorMessage", "<strong>Unsupported file</strong><br/>");
-            logger.debug("Empty diagram string");
-            doGet(request, response);
-        } else {
-            request.getSession().setAttribute("diagram_string", data.get("file"));
-            request.getSession().setAttribute("diagram_type", data.get("fileFormat"));
-            request.getSession().setAttribute("diagram_filename", data.get("filename"));
+            Pattern pattern = getFileNamePatternForType(fileType);
+            Matcher matcher = pattern.matcher(fileName);
+            if (!matcher.matches()) {
+                throw new IllegalArgumentException(
+                        "Filename '" + fileName + "' does not match file type pattern: " + pattern);
+            }
+
+            String fileContent = fileLoader.loadFileAsString(fileName);
+            if (fileContent == null || StringUtils.isBlank(fileContent)) {
+                throw new IllegalArgumentException("Empty file!");
+            }
+
+            request.getSession().setAttribute("diagram_string", fileContent);
+            request.getSession().setAttribute("diagram_type", fileType);
+            request.getSession().setAttribute("diagram_filename", fileName);
             response.sendRedirect(getServletContext().getInitParameter("APP_HOME_URL") + "graph");
             logger.debug("send redirect to /graph");
+
+        } catch (IllegalArgumentException | UnsupportedEncodingException e) {
+            logger.debug("Invalid request");
+            request.setAttribute("errorMessage", "<strong>" + e.getMessage() + "</strong><br/>");
+            doGet(request, response);
+        } catch (FileUploadException e) {
+            logger.debug("Invalid request");
+            request.setAttribute("errorMessage", "<strong>File upload failed!</strong><br/>");
+            doGet(request, response);
         }
         logger.debug("Request processed");
     }
+
+    private Pattern getFileNamePatternForType(String fileType) {
+        if (fileType.equals("raw")) {
+            return Pattern.compile("(?s).+\\.json");
+        } else {
+            IModule module = ModuleProvider.getInstance().getModules().get(fileType);
+            if (module != null) {
+                return module.getFileNamePattern();
+            } else {
+                throw new IllegalArgumentException("No loader available for type: " + fileType);
+            }
+        }
+    }
+
 }
