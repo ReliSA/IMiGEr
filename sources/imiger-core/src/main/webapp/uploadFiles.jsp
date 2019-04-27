@@ -66,7 +66,7 @@
 
 				<form method="post" enctype="multipart/form-data" class="diagram-form">
 					<div class="form-field">
-						<label for="file">Select JSON data file:</label><br>
+						<label for="file">Select data file:</label><br>
 						<input type="file" name="file" id="file">
 					</div>
 
