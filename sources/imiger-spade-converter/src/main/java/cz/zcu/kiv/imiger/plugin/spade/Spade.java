@@ -1,12 +1,12 @@
 package cz.zcu.kiv.imiger.plugin.spade;
 
+import com.google.gson.Gson;
 import cz.zcu.kiv.imiger.spi.IModule;
 import cz.zcu.kiv.imiger.vo.Graph;
 import cz.zcu.kiv.imiger.plugin.spade.graph.GraphManager;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.GraphJSONDataLoader;
 import cz.zcu.kiv.imiger.plugin.spade.graph.loader.JSONConfigLoader;
 import java.util.regex.Pattern;
-import net.sf.json.JSONObject;
 
 public class Spade implements IModule {
     @Override
@@ -31,8 +31,6 @@ public class Spade implements IModule {
         JSONConfigLoader configLoader = new JSONConfigLoader(graphManager);
 
         Graph graph = graphManager.createGraph(configLoader);
-        JSONObject json = JSONObject.fromObject(graph);
-
-        return json.toString();
+        return new Gson().toJson(graph);
     }
 }
