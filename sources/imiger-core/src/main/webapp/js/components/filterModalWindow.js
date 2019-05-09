@@ -135,6 +135,9 @@ class FilterModalWindow extends ModalWindow {
 					]),
 				]),
 			]),
+			DOM.h('script', {}, [
+				DOM.t("$(\"#slider\").dateRangeSlider();")
+			]),
 		]);
 		this._bodyElement.appendChild(this._form);
 
@@ -174,18 +177,10 @@ class FilterModalWindow extends ModalWindow {
 			name: 'value',
 			required: 'required',
 		});
-		
-		this._dateRangeField = DOM.h('div', {}, [
-			DOM.h('input', {
-				type: 'date',
-				name: 'value-from',
-			}),
-			DOM.t(' - '),
-			DOM.h('input', {
-				type: 'date',
-				name: 'value-to',
-			}),
-		]);
+
+		this._dateRangeField = DOM.h('div', {
+			id: "slider"
+		}, []);
 
 		// number
 		this._numberField = DOM.h('input', {

@@ -28,6 +28,7 @@
 		<link rel="stylesheet" href="css/components/status-bar.css">
 		<link rel="stylesheet" href="css/components/tooltip.css">
 		<link rel="stylesheet" href="css/components/viewport.css">
+		<link rel="stylesheet" href="css/components/slider.css">
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
@@ -103,6 +104,11 @@
 		<script src="js/valueObjects/nodeSymbol.js"></script>
 
 		<script src="js/constants.js"></script>
+
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+		<script src="js/components/slider/jquery.mousewheel.min.js"></script>
+		<script src="js/components/slider/jQAllRangeSliders-min.js"></script>
 
 		<title>${APP_NAME}</title>
 	</head>
