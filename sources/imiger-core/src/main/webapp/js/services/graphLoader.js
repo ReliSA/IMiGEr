@@ -198,6 +198,9 @@ class GraphLoader {
 		if (Utils.isDefined(highlightedNode)) {
 			highlightedNode.highlightWithNeighbours(true);
 		}
+
+		let MAX_VISIBLE_COMPONENTS = 20;
+		new InitialElimination(MAX_VISIBLE_COMPONENTS).run();
 	}
 }
 
