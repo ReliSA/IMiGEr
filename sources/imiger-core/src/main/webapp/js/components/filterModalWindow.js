@@ -5,6 +5,7 @@ class FilterModalWindow extends ModalWindow {
 	constructor() {
 		super();
 
+		this._sliderString = "$(\"#slider\").dateRangeSlider({valueLabels:\"change\", step:{days:1}});";
 		this._baseFilterOptions = {
 			nodeType: 'Node type',
 			vertexArchetype: 'Vertex archetype',
@@ -76,7 +77,9 @@ class FilterModalWindow extends ModalWindow {
 				type: 'hidden',
 				name: 'dataType',
 			}),
-			DOM.h('table', {}, [
+			DOM.h('table', {
+				style: "width:100%;"
+			}, [
 				DOM.h('tr', {}, [
 					DOM.h('td', {}, [
 						DOM.h('label', {
@@ -135,9 +138,6 @@ class FilterModalWindow extends ModalWindow {
 					]),
 				]),
 			]),
-			DOM.h('script', {}, [
-				DOM.t("$(\"#slider\").dateRangeSlider();")
-			]),
 		]);
 		this._bodyElement.appendChild(this._form);
 
@@ -180,7 +180,23 @@ class FilterModalWindow extends ModalWindow {
 
 		this._dateRangeField = DOM.h('div', {
 			id: "slider"
-		}, []);
+		}, [/*
+			DOM.h('input', {
+				type: 'date',
+				name: 'value-from',
+			}),
+			DOM.t(' - '),
+			DOM.h('input', {
+				type: 'date',
+				name: 'value-to',
+			}),*/
+		]);
+
+		this._showSlider = DOM.h('script', {
+			id: "sliderScript",
+		}, [
+				DOM.t(this._sliderString)
+			]),
 
 		// number
 		this._numberField = DOM.h('input', {
@@ -302,6 +318,7 @@ class FilterModalWindow extends ModalWindow {
 			case FilterDataType.DATE:
 				if (value === DateFilterOperation.RANGE) {
 					this._valueCell.appendChild(this._dateRangeField);
+					this._valueCell.appendChild(this._showSlider);
 				} else {
 					this._valueCell.appendChild(this._dateField);
 				}
@@ -420,5 +437,12 @@ class FilterModalWindow extends ModalWindow {
 		nodeFilter.run(app.nodeList).forEach(node => {
 			node.isFound = true;
 		});
+	}
+
+	setDateBounds(minDate, maxDate) {
+		if(minDate !== null && maxDate !== null) {
+			this._sliderString = "$(\"#slider\").dateRangeSlider({valueLabels:\"change\", step:{days:1}, bounds:{min: new Date(" + minDate.toString() + "), max: new Date(" + maxDate.toString() + ")}});";
+			var element = document.getElementById("sliderScript");
+		}
 	}
 }
