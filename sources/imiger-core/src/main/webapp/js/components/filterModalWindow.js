@@ -176,6 +176,20 @@ class FilterModalWindow extends ModalWindow {
 			required: 'required',
 		});
 
+		this._dateRangeLabel = DOM.h('div', {}, [
+			DOM.h('span', {
+				id: 'event-start'
+			}, [
+				DOM.t('dd. mm. yyyy')
+			]),
+			DOM.t(' - '),
+			DOM.h('span', {
+				id: 'event-end'
+			}, [
+				DOM.t('dd. mm. yyyy')
+			]),
+		]);
+
 		this._dateRangeField = DOM.h('div', {
 			id: "slider"
 		}, [
@@ -193,9 +207,34 @@ class FilterModalWindow extends ModalWindow {
 		]);
 
 		this._showSlider = DOM.h('script', {
-				id: "sliderScript",
-			}, [
-				DOM.t("$(\"#slider\").dateRangeSlider({valueLabels:\"change\", step:{days:1}});")
+			id: "sliderScript",
+		}, [
+			DOM.t(
+				"function timestamp(str) {" +
+				"    return new Date(str).getTime();" +
+				"}" +
+				"var dateSlider = document.getElementById('slider');" +
+				"noUiSlider.create(dateSlider, {" +
+				"	 connect: true," +
+				"    range: {" +
+				"        min: timestamp(1970)," +
+				"        max: timestamp(new Date())" +
+				"    }," +
+				"    step: 24 * 60 * 60 * 1000," +
+				"    start: [timestamp(1970), timestamp(new Date())]," +
+				"    format: wNumb({" +
+				"        decimals: 0" +
+				"    })" +
+				"});" +
+				"var dateValues = [" +
+				"    document.getElementById('event-start')," +
+				"    document.getElementById('event-end')" +
+				"];" +
+				"dateSlider.noUiSlider.on('update', function (values, handle) {" +
+				"	var date = new Date(+values[handle]);" +
+				"	console.log(date);" +
+				"   dateValues[handle].innerHTML = date.toLocaleDateString('cs-CZ');" +
+				"});")
 		]);
 
 		// number
@@ -317,6 +356,7 @@ class FilterModalWindow extends ModalWindow {
 
 			case FilterDataType.DATE:
 				if (value === DateFilterOperation.RANGE) {
+					this._valueCell.appendChild(this._dateRangeLabel);
 					this._valueCell.appendChild(this._dateRangeField);
 					this._valueCell.appendChild(this._showSlider);
 				} else {
@@ -441,17 +481,37 @@ class FilterModalWindow extends ModalWindow {
 
 	setDateBounds(minDate, maxDate) {
 		if(minDate !== null && maxDate !== null) {
+			console.log(minDate.toString());
+			console.log(maxDate.toString());
 			this._showSlider = DOM.h('script', {
 				id: "sliderScript",
 			}, [
-				DOM.t("$(\"#slider\").dateRangeSlider({valueLabels:\"change\", step:{days:1}, " +
-					"bounds:{min: new Date(" + minDate.getTime() + "), max: new Date(" + maxDate.getTime() + ")}, " +
-					"defaultValues:{min: new Date(" + minDate.getTime() + "), max: new Date(" + maxDate.getTime() + ")}});" +
-
-					" $(\"#slider\").bind(\"valuesChanged\", function(e, data){\n" +
-					"   document.getElementById(\"value-from\").value = new Date(data.values.min.getTime());" +
-					"   document.getElementById(\"value-to\").value = new Date(data.values.max.getTime());" +
-					" });")
+				DOM.t(
+					"function timestamp(str) {" +
+					"    return new Date(str).getTime();" +
+					"}" +
+					"var dateSlider = document.getElementById('slider');" +
+					"noUiSlider.create(dateSlider, {" +
+					"	 connect: true," +
+					"    range: {" +
+					"        min: " + minDate.getTime() + "," +
+					"        max: " + maxDate.getTime() + "" +
+					"    }," +
+					"    step: 24 * 60 * 60 * 1000," +
+					"    start: [" + minDate.getTime() + ", " + maxDate.getTime() + "]," +
+					"    format: wNumb({" +
+					"        decimals: 0" +
+					"    })" +
+					"});" +
+					"var dateValues = [" +
+					"    document.getElementById('event-start')," +
+					"    document.getElementById('event-end')" +
+					"];" +
+					"dateSlider.noUiSlider.on('update', function (values, handle) {" +
+					"	var date = new Date(+values[handle]);" +
+					"	console.log(date);" +
+					"   dateValues[handle].innerHTML = date.toLocaleDateString('cs-CZ');" +
+					"});")
 			]);
 		}
 	}

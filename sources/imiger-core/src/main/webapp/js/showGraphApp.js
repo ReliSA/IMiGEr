@@ -312,9 +312,11 @@ class ShowGraphApp extends App {
 						if(date !== 'Invalid Date') {
 							if(minDate === null || date < minDate) {
 								minDate = date;
+								console.log("new min: " + minDate.toString());
 							}
 							if(maxDate === null || date > maxDate) {
 								maxDate = date;
+								console.log("new max: " + maxDate.toString());
 							}
 						}
 					}
