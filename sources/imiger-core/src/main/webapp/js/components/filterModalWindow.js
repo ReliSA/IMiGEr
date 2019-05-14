@@ -232,7 +232,6 @@ class FilterModalWindow extends ModalWindow {
 				"];" +
 				"dateSlider.noUiSlider.on('update', function (values, handle) {" +
 				"	var date = new Date(+values[handle]);" +
-				"	console.log(date);" +
 				"   dateValues[handle].innerHTML = date.toLocaleDateString('cs-CZ');" +
 				"});")
 		]);
@@ -481,8 +480,6 @@ class FilterModalWindow extends ModalWindow {
 
 	setDateBounds(minDate, maxDate) {
 		if(minDate !== null && maxDate !== null) {
-			console.log(minDate.toString());
-			console.log(maxDate.toString());
 			this._showSlider = DOM.h('script', {
 				id: "sliderScript",
 			}, [
@@ -509,7 +506,6 @@ class FilterModalWindow extends ModalWindow {
 					"];" +
 					"dateSlider.noUiSlider.on('update', function (values, handle) {" +
 					"	var date = new Date(+values[handle]);" +
-					"	console.log(date);" +
 					"   dateValues[handle].innerHTML = date.toLocaleDateString('cs-CZ');" +
 					"});")
 			]);
