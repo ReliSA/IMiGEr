@@ -5,7 +5,6 @@ class FilterModalWindow extends ModalWindow {
 	constructor() {
 		super();
 
-		this._sliderString = "$(\"#slider\").dateRangeSlider({valueLabels:\"change\", step:{days:1}});";
 		this._baseFilterOptions = {
 			nodeType: 'Node type',
 			vertexArchetype: 'Vertex archetype',
@@ -152,7 +151,6 @@ class FilterModalWindow extends ModalWindow {
 		}
 
 		this._onBaseFilterChange('nodeType');
-
 		return this._rootElement;
 	}
 
@@ -180,23 +178,25 @@ class FilterModalWindow extends ModalWindow {
 
 		this._dateRangeField = DOM.h('div', {
 			id: "slider"
-		}, [/*
+		}, [
 			DOM.h('input', {
-				type: 'date',
+				type: 'hidden',
 				name: 'value-from',
+				id: 'value-from',
 			}),
-			DOM.t(' - '),
+			//DOM.t(' - '),
 			DOM.h('input', {
-				type: 'date',
+				type: 'hidden',
 				name: 'value-to',
-			}),*/
+				id: 'value-to',
+			}),
 		]);
 
 		this._showSlider = DOM.h('script', {
-			id: "sliderScript",
-		}, [
-				DOM.t(this._sliderString)
-			]),
+				id: "sliderScript",
+			}, [
+				DOM.t("$(\"#slider\").dateRangeSlider({valueLabels:\"change\", step:{days:1}});")
+		]);
 
 		// number
 		this._numberField = DOM.h('input', {
@@ -441,8 +441,18 @@ class FilterModalWindow extends ModalWindow {
 
 	setDateBounds(minDate, maxDate) {
 		if(minDate !== null && maxDate !== null) {
-			this._sliderString = "$(\"#slider\").dateRangeSlider({valueLabels:\"change\", step:{days:1}, bounds:{min: new Date(" + minDate.toString() + "), max: new Date(" + maxDate.toString() + ")}});";
-			var element = document.getElementById("sliderScript");
+			this._showSlider = DOM.h('script', {
+				id: "sliderScript",
+			}, [
+				DOM.t("$(\"#slider\").dateRangeSlider({valueLabels:\"change\", step:{days:1}, " +
+					"bounds:{min: new Date(" + minDate.getTime() + "), max: new Date(" + maxDate.getTime() + ")}, " +
+					"defaultValues:{min: new Date(" + minDate.getTime() + "), max: new Date(" + maxDate.getTime() + ")}});" +
+
+					" $(\"#slider\").bind(\"valuesChanged\", function(e, data){\n" +
+					"   document.getElementById(\"value-from\").value = new Date(data.values.min.getTime());" +
+					"   document.getElementById(\"value-to\").value = new Date(data.values.max.getTime());" +
+					" });")
+			]);
 		}
 	}
 }
