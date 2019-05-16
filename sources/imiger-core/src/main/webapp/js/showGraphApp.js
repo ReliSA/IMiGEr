@@ -101,6 +101,20 @@ class ShowGraphApp extends App {
 		this.spinLoaderComponent = new SpinLoader;
 		this.helpModalWindowComponent = new HelpModalWindow;
 
+		const container = DOM.h('div', {
+			class: 'pokus',
+			id: 'pokus',
+			style: 'flex: 1;'
+		});
+		container.appendChild(DOM.h('iframe', {
+			class: 'timelineFrame',
+			id: 'timelineFrame',
+			src: 'timeline/index.html',
+			style: 'height: 300px; width: 100%; display:block;',
+			frameborder: 0
+		}));
+		container.appendChild(this.viewportComponent.render());
+
 		const appElement = document.getElementById('app');
 		appElement.appendChild(this.headerComponent.render());
 		appElement.appendChild(this.navbarComponent.render());
@@ -108,7 +122,7 @@ class ShowGraphApp extends App {
 			class: 'graph-content',
 			id: 'content',
 		}, [
-			this.viewportComponent.render(),
+			container,
 			this.sidebarComponent.render(),
 		]));
 		appElement.appendChild(this.saveDiagramModalWindowComponent.render());

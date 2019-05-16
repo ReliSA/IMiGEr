@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Timeline (DP, Bc. Michal Kacerovský, 2015)</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="robots" content="noindex">
+        <link href="css/auxiliary/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" />
+        <link href="css/auxiliary/bootstrap/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
+        <link href="css/auxiliary/bootstrap-dialog/bootstrap-dialog.min.css" type="text/css" rel="stylesheet" />
+        <link href="css/cz.kajda.timeline.css" type="text/css" rel="stylesheet" />
+        <link href="css/styles.css" type="text/css" rel="stylesheet" />
+        <!--FIALA CSS customStyles.css -->
+        <link href="css/customStyles.css" type="text/css" rel="stylesheet" />
+        <script src="js/oop.js"></script>
+        <script data-main="js/main" src="js/lib/require/require.js"></script>
+        
+    </head>
+    <body>
+    
+        <div id="glass-pane">
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="timeline-pane">
+                    <div id="timeline" tabindex="0"></div>
+                </div>
+          
+                <div role="tabpanel" class="sidebar" id="sidebar">
+                    <ul class="nav nav-pills tab-list" role="tablist">
+                        <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#home">Záznamy</a></li>
+                        <li role="presentation"><a role="tab" data-toggle="tab" href="#widgeting">Rozhraní widgetu</a></li>
+                        <li role="presentation"><a role="tab" data-toggle="tab" href="#testing">Test widgetu</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div id="item_detail_pane" class="hidden">
+                                <div id="item_image">
+                                    <div class="helper"><img alt="náhled"></div>
+                                </div>
+                                <div class="padded">
+                                    <h1 id="item_title"></h1>
+                                    <p class="small" id="item_timerange"></p>
+                                    <p class="small" id="item_description"></p>
+                                    <h4>Související</h4>
+                                </div>
+                                <table id="item_relations" class="table table-condensed small table-striped">
+                                </table>
+                            </div>
+                            <div id="item_search">
+                                <div class="row">
+                                <div class="text-center col-xs-8 col-xs-offset-2">
+                                    <p>Zadejte část názvu hledaného záznamu</p>
+                                    <input type="search" id="item_search_term" class="form-control input-sm">
+                                    <div class="text-center text-muted padded-top">nebo</div>
+                                    <p class="padded-top text-center">klepněte na některý ze záznamů v ose a zobrazte jeho detail.</p>
+                                </div>
+                                </div>
+                                <div class="padded-top">
+                                    <table id="item_search_result" class="table table-condensed small table-striped">
+                                        <tr>
+                                            <td><em>Žádné nálezy...</em></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="widgeting">
+                            <div class="padded">
+                                <h1>Rozhraní widgetu</h1>
+                            </div>
+                            <table class="table small table-condensed table-striped">
+                                <tr>
+                                    <td><strong>středový čas</strong></td>
+                                    <td class="text-right" id="center_time_td">?</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>rozsah průhledu</strong></td>
+                                    <td class="text-right" id="viewport_range_td">?<div>?</div></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>úroveň přiblížení</strong></td>
+                                    <td class="text-right" id="zoom_level_td">?<div>?</div></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>vybraný záznam</strong></td>
+                                    <td class="text-right"><div style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden" id="focused_entity_td"><em>žádný</em></div></td>
+                                </tr>
+                            </table>
+                            <div class="padded">
+                                <div>
+                                    <div class="btn-group btn-group-justified">
+                                        <a class="btn btn-default" id="zoomin_btn">Přiblížit</a>
+                                        <a class="btn btn-default" id="zoomout_btn">Oddálit</a>
+                                    </div>
+                                    <div class="btn-group btn-group-justified">
+                                        <a class="btn btn-default" id="slideLeft_btn">Posun vzad</a>
+                                        <a class="btn btn-default" id="slideRight_btn">Posun vpřed</a>
+                                    </div>
+                                    <div class="btn-group btn-group-justified">
+                                        <a class="btn btn-default" id="jump_ad_btn">Přejít na počátek letopočtu</a>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label for="bandLabels_chb">
+                                                <input type="checkbox" checked id="bandLabels_chb">Zobrazit popisky pásů
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label for="zoombar_chb">
+                                                <input type="checkbox" checked id="zoombar_chb">Zobrazit zoom panel
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label for="timepointer_chb">
+                                                <input type="checkbox" checked id="timepointer_chb">Zobrazit ukazatel středového času
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label for="popover_chb">
+                                                <input type="checkbox" checked id="popover_chb">Zobrazovat náhledy záznamů a vztahů
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label for="guidelines_chb">
+                                                <input type="checkbox" checked id="guidelines_chb">Zobrazovat vodící linky záznamů
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label for="relations_chb">
+                                                <input type="checkbox" checked id="relations_chb">Zobrazovat vztahy mezi záznamy
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="testing">
+                            <!-- FIALA Test tool  -->
+                            <div class="padded" id="testing_content">
+                                <div style="display: none;"> 
+                                    <h2 id="question_label">Otázka</h2>
+                                    <h4 id="questions_done_label"> 1/10</h4>
+                                    <div id="answer_fgroup_label" class="form-group">
+                                        <label for="answer">Odpověď</label>
+                                        <input type="text" class="form-control" id="answer_text">
+                                    </div>
+                                </div>
+                                <div style="display: none;" class="btn-group btn-group-justified">
+                                    <a class="btn btn-default" id="confirm_btn">Potvrdit</a>
+                                </div>
+                                <div class="btn-group btn-group-justified">
+                                    <a class="btn btn-default" id="start_test_btn">Začít test</a>
+                                </div>
+                            </div>
+                            <div class="padded" style="display: none; color: red;" id="wrong_anser_content">
+                                <h2>Špatná odpověď</h2>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </body>
+</html>
