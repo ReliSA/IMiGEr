@@ -8,12 +8,11 @@ define([
     'cz/kajda/common/Observable',
     'cz/kajda/data/Entity',
     'cz/kajda/data/Relation',
-    'auxiliary/RandSource',
-    'auxiliary/StaticSource',
+    'auxiliary/RestSource',
     'momentjs',
     'auxiliary/QuestionTool',
 ],
-function(DataWizard, Observable, Entity, Relation, RandSource, StaticSource, moment, QuestionTool) {
+function(DataWizard, Observable, Entity, Relation, RestSource, moment, QuestionTool) {
     
 /**
  * Demo application support for the widget.
@@ -48,32 +47,13 @@ var App = new Class("App", {
      *  @author Michal Fiala
      */
     _questionTool : null,
-    
-    
-    /**
-     * Launch data wizard that invokes REST request to obtain data.
-	 * @param {String} url REST service url
-     */
-    startDataWizard : function(url) {
-        new DataWizard(url, new Closure(this, this._sourceReady));
-    },
+
     
     /**
      * Creates data source using static JSON object 
      */
     createSource : function() {
-        this._source = new StaticSource(Entity, Relation);
-        this._source.addListener("dataLoaded", new Closure(this, this._sourceReady));
-        this._source.loadData();
-    },
-    
-    /**
-     * Creates data source generating data randomly.
-     * @param {Object} conf
-     */
-    createRandSource : function(conf) {
-        this._source = new RandSource(conf, Entity, Relation);
-        this._source.setTimeRange(moment.utc("-002000-01-01T00:00:00"), moment.utc("2000-12-31T23:59:00"));
+        this._source = new RestSource(Entity, Relation, "http://localhost:8080/imiger/", null);
         this._source.addListener("dataLoaded", new Closure(this, this._sourceReady));
         this._source.loadData();
     },

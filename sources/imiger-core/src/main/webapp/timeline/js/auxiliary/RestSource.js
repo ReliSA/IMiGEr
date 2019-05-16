@@ -68,18 +68,56 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
         /** @see cz.kajda.data.AbstractDataSource#loadData */
         loadData : function(callback) {
             var mapClosure = new Closure(this, this._map);
-            this._client.post("importances", {
-                "query" : {
-                    "from" : this._timeRange.start.utc().format(),
-                    "to" : this._timeRange.end.format(),
-                    "nodeImportance" : this._entityPriors,
-                    "edgeImportance" : this._relationPriors,
-                    "properties" : {}
-                }
-            }, new Closure(this, function(data) {
-                this._map(data);
+            this._client.get("api/load-graph-data", new Closure(this, function(data) {
+                var json = JSON.parse(data.graph_json);
+                var graph = this._convertGraph(json);
+                this._map(graph);
                 this._fireEvent("dataLoaded", this);
             }));
+        },
+
+        _convertGraph : function(data) {
+            var archetypes = data.vertexArchetypes;
+            var nodes = new Array(data.vertices.length), edges = new Array(data.edges.length);
+
+            for(var i = 0; i < data.vertices.length; i++) {
+                var v = data.vertices[i];
+                var prop = {
+                    startPrecision: "none",
+                    endPrecision: "none"
+                };
+                var archetype = archetypes[v.archetype].name.toLowerCase();
+                if (archetype !== 'person') {
+                    archetype = 'item';
+                }
+                var node = {
+                    id: v.id, 
+                    name: v.name, 
+                    description: v.text,
+                    stereotype: archetype,
+                    properties: prop,
+                    begin: v.attributes[1][1],
+                    end: typeof v.attributes[2] === 'undefined' ? null : v.attributes[2][1]
+                }
+                nodes[i] = node;
+            }
+
+            for(var i = 0; i < data.edges.length; i++) {
+                var e = data.edges[i];
+                var edge = {
+                    id: e.id, 
+                    name: e.text, 
+                    from: e.from,
+                    stereotype: "relationship",
+                    to: e.to
+                }
+                edges[i] = edge;
+            }
+
+            return {
+                nodes: nodes,
+                edges: edges
+            }
         },
 
         /** @see cz.kajda.data.AbstractDataSource#_map */

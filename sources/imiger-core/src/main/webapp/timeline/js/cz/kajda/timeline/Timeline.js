@@ -501,7 +501,7 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
 
             _handleIMiGErClick : function(e) {
                 var entity = this.getEntities().get(e.detail);
-                    bandItem = this._bandGroup.getBand("Sjednoceny pruh").getBandItem(entity.getId());
+                    bandItem = this._bandGroup.getBand("person").getBandItem(entity.getId());
                 
                 this.focusItem(bandItem.getEntity(), false);
                 this._fireEvent("itemClick", entity);
