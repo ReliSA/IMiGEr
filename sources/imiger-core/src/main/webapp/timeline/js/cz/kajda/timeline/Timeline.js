@@ -500,8 +500,8 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
             },
 
             _handleIMiGErClick : function(e) {
-                var entity = this.getEntities().get(e.detail);
-                    bandItem = this._bandGroup.getBand("person").getBandItem(entity.getId());
+                var entity = this.getEntities().get(e.originalEvent.detail.entityID);
+                    bandItem = this._bandGroup.getBand(e.originalEvent.detail.archetype).getBandItem(entity.getId());
                 
                 this.focusItem(bandItem.getEntity(), false);
                 this._fireEvent("itemClick", entity);

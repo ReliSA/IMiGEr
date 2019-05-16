@@ -421,6 +421,8 @@ class Node {
 				app.sidebarComponent.excludedNodeListComponent.addNode(this);
 			} else if (document.modeForm.mode.value === 'move') {
 				this.highlightWithNeighbours(!this.isHighlighted);
+                var notifyTimeline = new CustomEvent('imigerClick', { detail: { entityID: this.id, archetype: "item" } });
+                window.frames[0].document.dispatchEvent(notifyTimeline);
 
 				if (this.isHighlighted) {
 					app.activeNode = this;

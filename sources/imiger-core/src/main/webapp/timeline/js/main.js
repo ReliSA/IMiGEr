@@ -136,9 +136,7 @@ function($, App, Timeline, BandsDistribution) {
     
     // creates static data source using JSON
     app.createSource();
-    /*var event = $.Event( "imigerClick" );
-    event.detail = 66;
-    $(document).trigger( event );*/
+    
     // creates data source using REST server request
     //app.startDataWizard("http://localhost:8080/timeline-rest/");
     
