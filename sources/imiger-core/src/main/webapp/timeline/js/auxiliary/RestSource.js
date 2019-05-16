@@ -96,22 +96,23 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
                     description: v.text,
                     stereotype: archetype,
                     properties: prop,
-                    begin: v.attributes[1][1],
-                    end: typeof v.attributes[2] === 'undefined' ? null : v.attributes[2][1]
+                    begin: v.attributes[1][1]
+                };
+                if (typeof v.attributes[2] !== 'undefined') {
+                    node.end = v.attributes[2][1];
                 }
                 nodes[i] = node;
             }
 
-            for(var i = 0; i < data.edges.length; i++) {
+            for(var j = 0; j < data.edges.length; j++) {
                 var e = data.edges[i];
-                var edge = {
-                    id: e.id, 
-                    name: e.text, 
+                edges[i] = {
+                    id: e.id,
+                    name: e.text,
                     from: e.from,
                     stereotype: "relationship",
                     to: e.to
-                }
-                edges[i] = edge;
+                };
             }
 
             return {
@@ -126,20 +127,20 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
                 relations = new Collection();
 
             // map entities 
-            for(var i = 0; i < data.nodes.length; i++) {    
-                entities.add(new this._objectMapping.entity(data.nodes[i]));
+            for(var nodeIdx in data.nodes) {
+                entities.add(new this._objectMapping.entity(data.nodes[nodeIdx]));
             }
 
             // map relations
-            for(var i = 0; i < data.edges.length; i++) {
-                var edge = data.edges[i],
+            for(var edgeIdx in data.edges) {
+                var edge = data.edges[edgeIdx],
                     edgeObj = new this._objectMapping.relation(edge); // mapped object
-            
+
                 if(!entities.get(edge.from).getRelationIds())
                     entities.get(edge.from).addRelation(edge.id);
                 if(!entities.get(edge.to).getRelationIds())
                     entities.get(edge.to).addRelation(edge.id);
-                
+
                 relations.add(edgeObj);
             }
 
