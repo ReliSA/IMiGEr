@@ -500,7 +500,7 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
             },
 
             _handleIMiGErClick : function(e) {
-                var entity = this.getEntities().get(e.originalEvent.detail.entityID);
+                var entity = this.getEntities().get(e.originalEvent.detail.entityID),
                     bandItem = this._bandGroup.getBand(e.originalEvent.detail.archetype).getBandItem(entity.getId());
                 
                 this.focusItem(bandItem.getEntity(), false);
@@ -611,8 +611,12 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
              */
             _handleItemClick : function(e) {
                 var bandItemElm = $(e.currentTarget);
-                var entity = this.getEntities().get(bandItemElm.data("entity"));
+                var entity = this.getEntities().get(bandItemElm.data("entity")),
                     bandItem = this._bandGroup.getBand($(e.currentTarget).data("band")).getBandItem(entity.getId());
+
+                // imiger trigger
+                var ev = new CustomEvent('timelineClick', { detail: entity.getId() });
+                window.parent.document.dispatchEvent(ev);
                 
                 this.focusItem(bandItem.getEntity(), false);
                 this._fireEvent("itemClick", entity);

@@ -421,8 +421,13 @@ class Node {
 				app.sidebarComponent.excludedNodeListComponent.addNode(this);
 			} else if (document.modeForm.mode.value === 'move') {
 				this.highlightWithNeighbours(!this.isHighlighted);
-                var notifyTimeline = new CustomEvent('imigerClick', { detail: { entityID: this.id, archetype: "item" } });
-                window.frames[0].document.dispatchEvent(notifyTimeline);
+
+				if (e.detail !== this.id) {
+				    var archetypeString = app.archetype.vertex[this.archetype].name;
+				    if (archetypeString !== 'person') archetypeString = 'item';
+                    var notifyTimeline = new CustomEvent('imigerClick', { detail: { entityID: this.id, archetype: archetypeString } });
+                    window.frames[0].document.dispatchEvent(notifyTimeline);
+                }
 
 				if (this.isHighlighted) {
 					app.activeNode = this;

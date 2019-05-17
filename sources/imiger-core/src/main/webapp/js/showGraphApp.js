@@ -132,6 +132,14 @@ class ShowGraphApp extends App {
 
 		this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.size;
 
+		// timeline
+        document.addEventListener('timelineClick', function (e) {
+            var node = app.nodeList[e.detail];
+            if (node !== undefined) {
+                node._onNodeClick(e);
+            }
+        }, false);
+
 		// diagram
 		document.addEventListener(DiagramUpdatedEvent.name, e => {
 			this.diagram = new Diagram(e.detail);
