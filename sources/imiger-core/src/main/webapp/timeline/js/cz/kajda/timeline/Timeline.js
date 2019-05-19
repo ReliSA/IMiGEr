@@ -44,7 +44,9 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
      */
     _constructor : function(htmlElement, options) {
         Component.call(this, null);
-        
+
+        this._selected = false;
+        this._selectedEntity = null;
         this._htmlElement = htmlElement;
         this._options =  $.extend(this._defaults, options);
         this._zoomLevel = this._options.defaultZoomLevel;
@@ -483,7 +485,6 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
                 $(window).on("resize", new Closure(this, this._handleResizing));
                 $(document).on("imigerClick", new Closure(this, this._handleIMiGErClick));
                 this._htmlElement
-                        .on("contextmenu", new Closure(this, this._handleRightClick))
                         .on("mouseover", "*", new Closure(this, this._handleMouseOver))
                         .on("wheel", new Closure(this, this._handleZooming))
                         .on("keypress keydown", new Closure(this, this._handleKeyboard))
@@ -502,21 +503,22 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
             _handleIMiGErClick : function(e) {
                 var entity = this.getEntities().get(e.originalEvent.detail.entityID),
                     bandItem = this._bandGroup.getBand(e.originalEvent.detail.archetype).getBandItem(entity.getId());
+
+                if (this._selected) {
+                    this.blur();
+                    e.preventDefault();
+                    this._selected = false;
+                    if (this._selectedEntity === entity.getId()) {
+                        return;
+                    }
+                }
                 
                 this.focusItem(bandItem.getEntity(), false);
                 this._fireEvent("itemClick", entity);
                 // FIALA Event for item click
                 this._fireEvent("itemLogClick", entity);
-            },
-
-            /**
-             * @private 
-             * Right click or context menu event handler.
-             * @param {jQuery.Event} e
-             */
-            _handleRightClick : function(e) {
-                this.blur();
-                e.preventDefault();
+                this._selected = true;
+                this._selectedEntity = entity.getId();
             },
 
             /**
@@ -617,11 +619,22 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
                 // imiger trigger
                 var ev = new CustomEvent('timelineClick', { detail: entity.getId() });
                 window.parent.document.dispatchEvent(ev);
+
+                if (this._selected) {
+                    this.blur();
+                    e.preventDefault();
+                    this._selected = false;
+                    if (this._selectedEntity === entity.getId()) {
+                        return;
+                    }
+                }
                 
                 this.focusItem(bandItem.getEntity(), false);
                 this._fireEvent("itemClick", entity);
                 // FIALA Event for item click
                 this._fireEvent("itemLogClick", entity);
+                this._selected = true;
+                this._selectedEntity = entity.getId();
             },
 
             /**
