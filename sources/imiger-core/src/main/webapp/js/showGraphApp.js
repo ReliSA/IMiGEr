@@ -263,6 +263,9 @@ class ShowGraphApp extends App {
 					case 401:
 						alert('You are not allowed to view the diagram.');
 						break;
+					case 406:
+						alert('There was a problem in graph source file.');
+						break;
 					default:
 						console.error(error);
 						alert('Something went wrong. Check console for more details.');

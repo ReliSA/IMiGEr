@@ -1,0 +1,5 @@
+digraph "test" {
+	"A" [test="test value"];
+	"B" [test="test value"];
+	"A" -> "B" [test="test value"];
+}

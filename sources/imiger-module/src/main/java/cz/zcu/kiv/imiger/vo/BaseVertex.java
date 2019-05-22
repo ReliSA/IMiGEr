@@ -15,10 +15,10 @@ public abstract class BaseVertex {
     /** Additional info. */
     private String text;
 
-    public BaseVertex(int id, String name, int archetypeIndex, String text) {
+    public BaseVertex(int id, String name, int archetype, String text) {
         this.id = id;
         this.name = name;
-        this.archetype = archetypeIndex;
+        this.archetype = archetype;
         this.text = text;
     }
 
