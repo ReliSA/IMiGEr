@@ -37,6 +37,14 @@ Open Diagram Raw
 	Wait Until Element Is Not Visible		//div[@id="loader"]
 
 
+Open Diagram Raw With Initial Elimination
+	Open Browser To Base Path
+	${filePath}=		Normalize Path		${TEST DATA PATH}${/}raw${/}jira-project.json
+	Choose File				name:file		${filePath}
+	Click Button			Start visualization
+	Wait Until Element Is Not Visible		//div[@id="loader"]
+
+
 Open Diagram Spade
 	Open Browser To Base Path
 	${filePath}=		Normalize Path		${TEST DATA PATH}${/}spade${/}jira-project.json
