@@ -233,6 +233,14 @@ class FilterModalWindow extends ModalWindow {
 				"dateSlider.noUiSlider.on('update', function (values, handle) {" +
 				"	var date = new Date(+values[handle]);" +
 				"   dateValues[handle].innerHTML = date.toLocaleDateString('cs-CZ');" +
+				"});" +
+				"var filterValues = [" +
+				"    document.getElementById('value-from')," +
+				"    document.getElementById('value-to')" +
+				"];" +
+				"dateSlider.noUiSlider.on('update', function (values, handle) {" +
+				"	var date = new Date(+values[handle]);" +
+				"   filterValues[handle].value = date;" +
 				"});")
 		]);
 
@@ -395,9 +403,10 @@ class FilterModalWindow extends ModalWindow {
 	_onFilterFormReset() {
 		this._onBaseFilterChange('nodeType');
 
-		app.nodeList.forEach(node => {
-			node.isFound = false;
-		});
+		let nodeList = app.nodeList;
+		let edgeList = app.edgeList;
+		nodeList.filter(node => node._rootElement.style.display === 'none').forEach(node => node._rootElement.style.display = '');
+		edgeList.filter(edge => edge._rootElement.style.display === 'none').forEach(edge => edge._rootElement.style.display = '');
 	}
 
 	_displayFilter(formData) {
@@ -474,7 +483,13 @@ class FilterModalWindow extends ModalWindow {
 		}
 
 		nodeFilter.run(app.nodeList).forEach(node => {
-			node.isFound = true;
+			//node.isFound = true;
+			node._rootElement.style.display = 'none';
+			app.edgeList.forEach(edge => {
+				if(edge.from.id === node.id || edge.to.id === node.id) {
+					edge._rootElement.style.display = 'none';
+				}
+			});
 		});
 	}
 
@@ -507,6 +522,14 @@ class FilterModalWindow extends ModalWindow {
 					"dateSlider.noUiSlider.on('update', function (values, handle) {" +
 					"	var date = new Date(+values[handle]);" +
 					"   dateValues[handle].innerHTML = date.toLocaleDateString('cs-CZ');" +
+					"});" +
+					"var filterValues = [" +
+					"    document.getElementById('value-from')," +
+					"    document.getElementById('value-to')" +
+					"];" +
+					"dateSlider.noUiSlider.on('update', function (values, handle) {" +
+					"	var date = new Date(+values[handle]);" +
+					"   filterValues[handle].value = date;" +
 					"});")
 			]);
 		}

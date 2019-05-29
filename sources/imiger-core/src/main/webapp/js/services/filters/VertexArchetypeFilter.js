@@ -34,13 +34,13 @@ class VertexArchetypeFilter extends AbstractFilter {
 		switch (this._operation) {
 			case EnumFilterOperation.EQ:
 				filterFn = vertex => {
-					return filterValues.indexOf(vertex.archetype) > -1;
+					return filterValues.indexOf(vertex.archetype) < 0; //> -1
 				};
 				break;
 
 			case EnumFilterOperation.NEQ:
 				filterFn = vertex => {
-					return filterValues.indexOf(vertex.archetype) < 0;
+					return filterValues.indexOf(vertex.archetype) > -1; //< 0
 				};
 				break;
 

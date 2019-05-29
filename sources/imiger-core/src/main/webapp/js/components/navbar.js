@@ -187,7 +187,9 @@ class Navbar {
 
 		function resetSearch() {
 			let nodeList = app.nodeList;
-			nodeList.filter(node => node.isFound === true).forEach(node => node.isFound = false);
+			let edgeList = app.edgeList;
+			nodeList.filter(node => node._rootElement.style.display === 'none').forEach(node => node._rootElement.style.display = '');
+			edgeList.filter(edge => edge._rootElement.style.display === 'none').forEach(edge => edge._rootElement.style.display = '');
 
 			searchInput.value = '';
 			searchCounter.innerText = 0;

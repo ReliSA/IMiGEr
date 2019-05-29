@@ -144,7 +144,8 @@ class VertexAttributeFilter extends AbstractFilter {
 			filterFn = vertex => {
 				const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
 				const attributeValue = parseInt(attribute[1]);
-				return (attributeValue >= filterValueFrom) && (attributeValue <= filterValueTo);
+
+				return (attributeValue < filterValueFrom) || (attributeValue > filterValueTo);
 			};
 
 		} else {
