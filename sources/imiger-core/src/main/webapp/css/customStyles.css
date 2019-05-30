@@ -1,0 +1,104 @@
+.king{
+    /*background-color: black; */
+    background:rgba(59, 58, 58, 1);
+}
+.person{
+    /*background-color: blue; */
+    background:rgba(39, 2, 253, 0.7);
+}
+.queen{
+    /*background-color: pink; */
+    background:rgba(228, 109, 109, 0.5);
+}
+.fancy{
+    border-radius: 5px;
+}
+.commit{
+    background:rgba(4, 84, 255, 0.5);
+}
+
+.dumbbell-king{
+    /*background-color: black; */
+    background:rgb(59, 58, 58);
+}
+
+.dumbbell-person{
+    /*background-color: blue; */
+    background:rgb(39, 2, 253);
+}
+
+.dumbbell-event{
+    /*background-color: blue; */
+    background:rgb(44, 253, 2);
+}
+
+/** FIALA */
+.timeline-banditem .subitem{
+    height: 13px;
+}
+
+.timeline-banditem .default-color{
+    background-color:rgb(120, 180, 255);
+}
+.timeline-banditem .splititem-moment{
+    width: 2px;
+}
+.timeline-banditem .dumbbellitem-moment{
+    width: 15px;
+    border-radius: 50%;
+}
+.timeline-banditem .dumbbell-node{
+    height: 98%;
+    border-style: solid;
+    border-width: 1px;
+}
+.timeline-banditem .dumbbell-join{
+    height: 1px;
+    position : absolute;
+    top : 50%;
+    background-color: black;
+    z-index: -1;
+    left: 0;
+}
+
+.container {
+    width: 100%;
+}
+
+.sidebar {
+    width: 100%;
+}
+
+.viewport, .graph-content {
+    width: 100%;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.timeline-container {
+    height: 300px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.timeline-band-legend-item, .timeline-navbar-prev-btn {
+    margin-left: 15px !important;
+}
+
+.node-container {
+    background-color: #e8f4ff;
+}
+
+.no-margin {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+#sidebar-container {
+    border: 1px solid #7db9e8;
+}
+

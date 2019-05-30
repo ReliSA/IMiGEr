@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: 'js',
+    baseUrl: 'js/timeline/',
     paths: {
         jquery : 'lib/jquery/jquery-2.1.4.min',
         jqueryui : 'lib/jqueryui/jquery-ui.min',
@@ -28,7 +28,7 @@ requirejs([
     'jquery',
     'auxiliary/App',
     'cz/kajda/timeline/Timeline',
-    '../data/BandsDistribution'
+    '../../data/BandsDistribution'
 ],
 
 /**
@@ -38,7 +38,6 @@ requirejs([
  * (un)comment one of the last lines in this function.
  */
 function($, App, Timeline, BandsDistribution) {
-    
     // create new instance of app support
     var app = new App();
     // FIALA 
@@ -136,7 +135,8 @@ function($, App, Timeline, BandsDistribution) {
     
     // creates static data source using JSON
     app.createSource();
-    
+
+    sessionStorage.setItem("timeline", JSON.stringify(app));
     // creates data source using REST server request
     //app.startDataWizard("http://localhost:8080/timeline-rest/");
     

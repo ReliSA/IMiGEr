@@ -2,7 +2,6 @@
  * @author Bc. Michal Kacerovský
  * @version 1.0
  */
-
 define([
     'auxiliary/DataWizard',
     'cz/kajda/common/Observable',
@@ -10,9 +9,8 @@ define([
     'cz/kajda/data/Relation',
     'auxiliary/RestSource',
     'momentjs',
-    'auxiliary/QuestionTool',
 ],
-function(DataWizard, Observable, Entity, Relation, RestSource, moment, QuestionTool) {
+function(DataWizard, Observable, Entity, Relation, RestSource, moment) {
     
 /**
  * Demo application support for the widget.
@@ -42,11 +40,6 @@ var App = new Class("App", {
         "cause" : "zapříčinění",
         "interaction" : "interakce"
     },
-
-    /** @member {Object} questionTool tool for questions
-     *  @author Michal Fiala
-     */
-    _questionTool : null,
 
     
     /**
@@ -86,7 +79,7 @@ var App = new Class("App", {
         /** Michal Fiala */
         $("#start_test_btn").on("click", new Closure(this, this._startTest));
     },
-    
+
     /**
      * Shows the sidebar.
      */
@@ -268,13 +261,6 @@ var App = new Class("App", {
             if(res === 0) {
                 resTable.append($('<tr><td><em>Žádné nálezy...</em></td></tr>'));
             }
-        },
-
-        /** @author Michal Fiala
-         * 
-         */
-        _startTest: function(){
-            this._questionTool = new QuestionTool();
         }
         
 

@@ -101,30 +101,16 @@ class ShowGraphApp extends App {
 		this.spinLoaderComponent = new SpinLoader;
 		this.helpModalWindowComponent = new HelpModalWindow;
 
-		const container = DOM.h('div', {
-			class: 'pokus',
-			id: 'pokus',
-			style: 'flex: 1;'
-		});
-		container.appendChild(DOM.h('iframe', {
-			class: 'timelineFrame',
-			id: 'timelineFrame',
-			src: 'timeline/index.html',
-			style: 'height: 300px; width: 100%; display:block;',
-			frameborder: 0
-		}));
-		container.appendChild(this.viewportComponent.render());
-
 		const appElement = document.getElementById('app');
-		appElement.appendChild(this.headerComponent.render());
-		appElement.appendChild(this.navbarComponent.render());
+		document.getElementById('header').appendChild(this.headerComponent.render());
+		document.getElementById('navbar').appendChild(this.navbarComponent.render());
 		appElement.appendChild(DOM.h('main', {
 			class: 'graph-content',
 			id: 'content',
 		}, [
-			container,
-			this.sidebarComponent.render(),
+			this.viewportComponent.render()
 		]));
+		document.getElementById('sidebar-container').appendChild(this.sidebarComponent.render());
 		appElement.appendChild(this.saveDiagramModalWindowComponent.render());
 		appElement.appendChild(this.filterModalWindowComponent.render());
 		appElement.appendChild(this.spinLoaderComponent.render());

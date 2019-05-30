@@ -447,10 +447,7 @@
 /* line 98, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\styles.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/styles\.less}line{font-family:\0000398}}
 .timeline-pane {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
   bottom: 0;
@@ -459,19 +456,14 @@
 /* line 109, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\styles.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/styles\.less}line{font-family:\00003109}}
 .sidebar {
-  display: none;
-  width: 400px;
   padding: 0;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
   z-index: 1000;
   overflow-x: hidden;
   overflow-y: auto;
   /* Scrollable contents if viewport is shorter than content. */
-  color: #ffffff;
-  background-color: #202931;
+  color: #000000;
+  background-color: #f0f9ff;
+  border: 1px solid #7db9e8;
 }
 /* line 124, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\styles.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/styles\.less}line{font-family:\00003124}}
@@ -576,31 +568,5 @@
   padding-top: 20px;
 }
 
-/** FIALA */
-.timeline-banditem .subitem{
-  height: 13px;
-}
 
-.timeline-banditem .default-color{
-  background-color:rgb(120, 180, 255);
-}
-.timeline-banditem .splititem-moment{
-  width: 2px;
-}
-.timeline-banditem .dumbbellitem-moment{
-  width: 15px;
-  border-radius: 50%;
-}
-.timeline-banditem .dumbbell-node{
-  height: 98%;
-  border-style: solid;
-  border-width: 1px;
-} 
-.timeline-banditem .dumbbell-join{
-  height: 1px;
-  position : absolute;
-  top : 50%;
-  background-color: black;
-  z-index: -1;
-  left: 0;
-}
+
