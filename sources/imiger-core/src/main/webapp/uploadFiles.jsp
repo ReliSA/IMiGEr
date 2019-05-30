@@ -78,6 +78,11 @@
 						</c:forEach>
 					</div>
 
+					<div class="form-field">
+						Chose additional visualisation:<br>
+						<label for="timeline"><input type="radio" name="visualisation" value="timeline" id="timeline">Timeline</label><br>
+					</div>
+
 					<button id="btnLoad" type="submit">Start visualization</button>
 				</form>
 			</section>
