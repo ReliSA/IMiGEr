@@ -79,6 +79,9 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
         _convertGraph : function(data) {
             var archetypes = data.vertexArchetypes;
             var nodes = new Array(data.vertices.length), edges = new Array(data.edges.length);
+            var attrNames = data.attributeTypes.map(function(attr) { return attr.name; })
+                ,beginAttrIdx = attrNames.indexOf('begin')
+                ,endAttrIdx = attrNames.indexOf('end');
 
             for(var i = 0; i < data.vertices.length; i++) {
                 var v = data.vertices[i];
@@ -95,11 +98,13 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
                     name: v.name, 
                     description: v.text,
                     stereotype: archetype,
-                    properties: prop,
-                    begin: v.attributes[1][1]
+                    properties: prop
                 };
-                if (typeof v.attributes[2] !== 'undefined') {
-                    node.end = v.attributes[2][1];
+                if (beginAttrIdx !== -1 && typeof v.attributes[beginAttrIdx] !== 'undefined') {
+                    node.begin = v.attributes[beginAttrIdx][1];
+                }
+                if (endAttrIdx !== -1 && typeof v.attributes[endAttrIdx] !== 'undefined') {
+                    node.end = v.attributes[endAttrIdx][1];
                 }
                 nodes[i] = node;
             }

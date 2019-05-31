@@ -632,21 +632,23 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
                 var ev = new CustomEvent('timelineClick', { detail: entity.getId() });
                 window.parent.document.dispatchEvent(ev);
 
-                if (this._selected) {
-                    this.blur();
-                    e.preventDefault();
-                    this._selected = false;
-                    if (this._selectedEntity === entity.getId()) {
-                        return;
+                if (document.modeForm.mode.value === 'move' && e.altKey === false) {
+                    if (this._selected) {
+                        this.blur();
+                        e.preventDefault();
+                        this._selected = false;
+                        if (this._selectedEntity === entity.getId()) {
+                            return;
+                        }
                     }
+
+                    this.focusItem(bandItem.getEntity(), false);
+                    this._fireEvent("itemClick", entity);
+                    // FIALA Event for item click
+                    this._fireEvent("itemLogClick", entity);
+                    this._selected = true;
+                    this._selectedEntity = entity.getId();
                 }
-                
-                this.focusItem(bandItem.getEntity(), false);
-                this._fireEvent("itemClick", entity);
-                // FIALA Event for item click
-                this._fireEvent("itemLogClick", entity);
-                this._selected = true;
-                this._selectedEntity = entity.getId();
             },
 
             /**
