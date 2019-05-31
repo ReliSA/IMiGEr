@@ -484,6 +484,8 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
             _attachTimelineEventListeners : function() {
                 $(window).on("resize", new Closure(this, this._handleResizing));
                 $(document).on("imigerClick", new Closure(this, this._handleIMiGErClick));
+                $(document).on("imigerExclude", new Closure(this, this._handleIMiGErExclude));
+                $(document).on("imigerInclude", new Closure(this, this._handleIMiGErInclude));
                 this._htmlElement
                         .on("mouseover", "*", new Closure(this, this._handleMouseOver))
                         .on("wheel", new Closure(this, this._handleZooming))
@@ -500,6 +502,16 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
                     .addListener("dropped", this, this._handleWrapperDropped);
             },
 
+            _handleIMiGErExclude : function(e) {
+                var entity = this.getEntities().get(e.originalEvent.detail.entityID);
+                $('div[data-entity=' + entity.getId() + ']').hide();
+            },
+
+            _handleIMiGErInclude : function(e) {
+                var entity = this.getEntities().get(e.originalEvent.detail.entityID);
+                $('div[data-entity=' + entity.getId() + ']').show();
+            },
+
             _handleIMiGErClick : function(e) {
                 var entity = this.getEntities().get(e.originalEvent.detail.entityID),
                     bandItem = this._bandGroup.getBand(e.originalEvent.detail.archetype).getBandItem(entity.getId());
@@ -512,7 +524,7 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
                         return;
                     }
                 }
-                
+
                 this.focusItem(bandItem.getEntity(), false);
                 this._fireEvent("itemClick", entity);
                 // FIALA Event for item click
