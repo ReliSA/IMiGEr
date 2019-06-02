@@ -9,9 +9,10 @@ class GraphLoader {
 	/**
 	 * Loads a new graph using graph data passed as parameters.
 	 * @param {object} data Data of the graph.
+	 * @param {boolean} enableInitialElimination Enable initial elimination
 	 * @throws {AJVValidationError} Thrown when graph data are incomplete.
 	 */
-	run(data) {
+	run(data, enableInitialElimination) {
 		let isValid = this._ajv.validate(GraphLoader.rawInputSchema, data);
 		if (isValid === false) {
 			throw new AJVValidationError(this._ajv.errorsText(), this._ajv.errors);
@@ -182,6 +183,11 @@ class GraphLoader {
 				}
 			});
 		}
+
+		if (enableInitialElimination) {
+			let MAX_VISIBLE_COMPONENTS = 20;
+			new InitialElimination(MAX_VISIBLE_COMPONENTS).run();
+        }
 
 		// center viewport
 		app.viewportComponent.center();

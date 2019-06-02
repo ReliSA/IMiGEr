@@ -40,6 +40,7 @@ public class GetSessionDiagram extends BaseServlet {
         String diagramToDisplay = (String) request.getSession().getAttribute("diagram_string");
         String diagramType = (String) request.getSession().getAttribute("diagram_type");
         String filename = (String) request.getSession().getAttribute("diagram_filename");
+        String initialElimination = (String) request.getSession().getAttribute("diagram_initial_elimination");
 
         if (StringUtils.isNotBlank(diagramToDisplay) && diagramType != null) {
 
@@ -61,6 +62,7 @@ public class GetSessionDiagram extends BaseServlet {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("graph_json", rawJson);
             jsonObject.addProperty("name", filename);
+            jsonObject.addProperty("initial_elimination", initialElimination);
 
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write(jsonObject.toString());

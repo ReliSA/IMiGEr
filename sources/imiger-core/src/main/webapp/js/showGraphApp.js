@@ -253,7 +253,9 @@ class ShowGraphApp extends App {
 			document.dispatchEvent(new DiagramUpdatedEvent(graphData));
 
 			// construct graph
-			this.graphLoader.run(JSON.parse(graphData.graph_json));
+			let initialElimination = (graphData.initial_elimination === undefined)
+					? true : graphData.initial_elimination == 'true';
+			this.graphLoader.run(JSON.parse(graphData.graph_json), initialElimination);
 
 			this.spinLoaderComponent.disable();
 

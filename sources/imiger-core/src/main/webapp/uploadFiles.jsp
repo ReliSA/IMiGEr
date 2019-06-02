@@ -78,6 +78,11 @@
 						</c:forEach>
 					</div>
 
+					<div class="form-field">
+						<input type="checkbox" id="enableInitialElimination" name="enableInitialElimination" value="true" checked>
+						<label for="enableInitialElimination">Initial elimination</label><br>
+					</div>
+
 					<button id="btnLoad" type="submit">Start visualization</button>
 				</form>
 			</section>
