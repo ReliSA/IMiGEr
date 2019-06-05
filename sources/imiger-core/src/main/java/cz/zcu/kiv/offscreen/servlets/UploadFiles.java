@@ -67,7 +67,7 @@ public class UploadFiles extends BaseServlet {
             String fileName = formFields.get("filename");
             String initialElimination = formFields.get("enableInitialElimination");
 
-            if (fileType == null || fileName == null) {
+            if (fileType == null || fileName == null || fileName.isEmpty()) {
                 throw new IllegalArgumentException("Missing parameter");
             }
 
