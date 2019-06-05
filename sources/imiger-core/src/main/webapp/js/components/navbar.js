@@ -31,6 +31,9 @@ class Navbar {
 			this._createApplyLayoutListItem(),
 			this._createSeparatorListItem(),
 
+			this._createApplyInitialEliminationListItem(),
+			this._createSeparatorListItem(),
+
 			this._createSaveDiagramAsPNGListItem(),
 			this._createSeparatorListItem(true),
 
@@ -41,9 +44,10 @@ class Navbar {
 			this._createSeparatorListItem(),
 
 			this._createRefreshDiagramListItem(),
-			this._createSeparatorListItem(),
 
-			this._createResetDiagramListItem(),
+			// TODO: not implemented
+			// this._createSeparatorListItem(),
+			// this._createResetDiagramListItem(),
 		]));
 
 		return this._rootElement;
@@ -165,7 +169,7 @@ class Navbar {
 
 				resetSearch();
 			},
-		})
+		});
 
 		function search(term) {
 			if (term.length < 2) return;
@@ -369,6 +373,25 @@ class Navbar {
 				},
 			}, [
 				applyLayoutImg,
+			]),
+		]);
+	}
+
+	_createApplyInitialEliminationListItem() {
+		return DOM.h('li', {}, [
+			DOM.h('button', {
+				class: 'btn',
+				id: 'initialElimination',
+				title: 'Apply initial elimination',
+				onClick: () => {
+					let MAX_VISIBLE_COMPONENTS = 20;
+					new InitialElimination(MAX_VISIBLE_COMPONENTS).run();
+				},
+			}, [
+				DOM.h('img', {
+					src: 'images/initial_elimination.png',
+					alt: 'Apply initial elimination',
+				}),
 			]),
 		]);
 	}
