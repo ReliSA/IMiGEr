@@ -87,6 +87,7 @@
 		<script src="js/services/filters/VertexArchetypeFilter.js"></script>
 		<script src="js/services/filters/VertexAttributeFilter.js"></script>
 		<script src="js/services/forceDirected.js"></script>
+		<script src="js/services/initialElimination.js"></script>
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>
 		<script src="js/services/markSymbol.js"></script>

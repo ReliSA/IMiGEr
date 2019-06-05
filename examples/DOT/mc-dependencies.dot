@@ -1,0 +1,30 @@
+digraph "mc" {
+	rankdir=LR;
+	node [shape=box];
+	"mc" -> "e2fslibs" [color=blue,label="(>= 1.37)"];
+	"mc" -> "libglib2.0-0" [color=blue,label="(>= 2.35.9)"];
+	"mc" -> "libgpm2" [color=blue,label="(>= 1.20.4)"];
+	"mc" -> "libslang2" [color=blue,label="(>= 2.2.4)"];
+	"mc" -> "libssh2-1" [color=blue,label="(>= 1.2.8)"];
+	"libssh2-1" -> "libgcrypt20" [color=blue,label="(>= 1.7.0)"];
+	"libgcrypt20" -> "libgpg-error0" [color=blue,label="(>= 1.14)"];
+	"mc" -> "mc-data" [color=blue,label="(= 3:4.8.18-1)"];
+	"mc" -> "mime-support";
+	"mime-support" -> "bzip2";
+	"bzip2" -> "libbz2-1.0" [color=blue,label="(= 1.0.6-8.1)"];
+	"mime-support" -> "file";
+	"file" -> "libmagic1" [color=blue,label="(= 1:5.30-1+deb9u2)"];
+	"libmagic1" -> "libmagic-mgc" [color=blue,label="(= 1:5.30-1+deb9u2)"];
+	"mime-support" -> "xz-utils";
+	"xz-utils" -> "liblzma5" [color=blue,label="(>= 5.2.2)"];
+	"xz-utils" -> "xz-lzma" [color=red];
+	"mc" -> "perl";
+	"mc" -> "unzip";
+	"unzip" -> "libbz2-1.0" [color=blue];
+	"mc" -> "mcedit" [arrowhead=inv,color=green];
+	"mcedit" [shape=octagon];
+	"mc" [style="setlinewidth(2)"]
+	"xz-lzma" [style=filled,fillcolor=oldlace];
+	"libglib2.0-0" [shape=diamond];
+	"perl" [shape=diamond];
+}
