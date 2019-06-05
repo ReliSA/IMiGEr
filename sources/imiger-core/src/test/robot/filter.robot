@@ -31,7 +31,7 @@ ${dateToValueInput}					${filterModalWindow}//input[@name="value-to"]
 ${applyButton}						${filterModalWindow}//button[@type="submit"]
 ${resetButton}						${filterModalWindow}//button[@type="reset"]
 
-${foundNodes}						//*[contains(@class, "node")][@filter="url(#node--found)"]
+${foundNodes}						//*[contains(@class, "node") and not(contains(@style, 'display: none;'))]
 
 
 *** Test Cases ***
