@@ -415,6 +415,7 @@ class FilterModalWindow extends ModalWindow {
 		});
 		app.deletedVertexList.forEach(vertex => {
 			v.push(vertex);
+			app.viewportComponent.addNode(vertex);
 		});
 		app.deletedEdgeList.forEach(edge => {
 			e.push(edge);
@@ -500,12 +501,23 @@ class FilterModalWindow extends ModalWindow {
 		}
 
 		nodeFilter.run(app.nodeList).forEach(node => {
-			node._rootElement.style.display = 'none';
-			app.edgeList.forEach(edge => {
-				if(edge.from.id === node.id || edge.to.id === node.id) {
-					edge._rootElement.style.display = 'none';
+			if(node instanceof Group) {
+				let outEdges = node.outEdgeList;
+				let inEdges = node.inEdgeList;
+				this._hideEdges(outEdges);
+				this._hideEdges(inEdges);
+				node._rootElement.style.display = 'none';
+			} else {
+				if(node._group === null) {
+					node._rootElement.style.display = 'none';
+					app.edgeList.forEach(edge => {
+						if(edge.from.id === node.id || edge.to.id === node.id) {
+							edge._rootElement.style.display = 'none';
+						}
+					});
 				}
-			});
+			}
+			app.viewportComponent.removeNode(node);
 		});
 
 		var newNodeList = [];
@@ -537,6 +549,12 @@ class FilterModalWindow extends ModalWindow {
 		app.nodeList = newNodeList;
 		app.vertexList = newVertexList;
 		app.edgeList = newEdgeList;
+	}
+
+	_hideEdges(edges) {
+		edges.forEach(edge => {
+			edge._rootElement.style.display = 'none';
+		});
 	}
 
 	setDateBounds(minDate, maxDate) {
