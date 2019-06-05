@@ -403,10 +403,27 @@ class FilterModalWindow extends ModalWindow {
 	_onFilterFormReset() {
 		this._onBaseFilterChange('nodeType');
 
-		let nodeList = app.nodeList;
-		let edgeList = app.edgeList;
-		nodeList.filter(node => node._rootElement.style.display === 'none').forEach(node => node._rootElement.style.display = '');
-		edgeList.filter(edge => edge._rootElement.style.display === 'none').forEach(edge => edge._rootElement.style.display = '');
+		this.resetFilter();
+	}
+
+	resetFilter() {
+		var n = app.nodeList;
+		var v = app.vertexList;
+		var e = app.edgeList;
+		app.deletedNodeList.forEach(node =>{
+			n.push(node);
+		});
+		app.deletedVertexList.forEach(vertex => {
+			v.push(vertex);
+		});
+		app.deletedEdgeList.forEach(edge => {
+			e.push(edge);
+		});
+		n.filter(node => node._rootElement.style.display === 'none').forEach(node => node._rootElement.style.display = '');
+		e.filter(edge => edge._rootElement.style.display === 'none').forEach(edge => edge._rootElement.style.display = '');
+		app.deletedEdgeList = [];
+		app.deletedVertexList = [];
+		app.deletedNodeList = [];
 	}
 
 	_displayFilter(formData) {
@@ -483,7 +500,6 @@ class FilterModalWindow extends ModalWindow {
 		}
 
 		nodeFilter.run(app.nodeList).forEach(node => {
-			//node.isFound = true;
 			node._rootElement.style.display = 'none';
 			app.edgeList.forEach(edge => {
 				if(edge.from.id === node.id || edge.to.id === node.id) {
@@ -491,6 +507,36 @@ class FilterModalWindow extends ModalWindow {
 				}
 			});
 		});
+
+		var newNodeList = [];
+		var newVertexList = [];
+		var newEdgeList = [];
+
+		app.nodeList.forEach(node => {
+			if(node._rootElement.style.display !== 'none') {
+				newNodeList.push(node);
+			} else {
+				app.deletedNodeList.push(node);
+			}
+		});
+		app.vertexList.forEach(vertex => {
+			if(vertex._rootElement.style.display !== 'none') {
+				newVertexList.push(vertex);
+			} else {
+				app.deletedVertexList.push(vertex);
+			}
+		});
+		app.edgeList.forEach(edge => {
+			if(edge._rootElement.style.display !== 'none') {
+				newEdgeList.push(edge);
+			} else {
+				app.deletedEdgeList.push(edge);
+			}
+		});
+
+		app.nodeList = newNodeList;
+		app.vertexList = newVertexList;
+		app.edgeList = newEdgeList;
 	}
 
 	setDateBounds(minDate, maxDate) {

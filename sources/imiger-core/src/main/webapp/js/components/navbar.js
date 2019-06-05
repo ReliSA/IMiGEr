@@ -11,7 +11,6 @@ class Navbar {
 			this._createSeparatorListItem(),
 
 			this._createSearchListItem(),
-			this._createSeparatorListItem(),
 
 			this._createFilterListItem(),
 			this._createSeparatorListItem(),
@@ -187,9 +186,7 @@ class Navbar {
 
 		function resetSearch() {
 			let nodeList = app.nodeList;
-			let edgeList = app.edgeList;
-			nodeList.filter(node => node._rootElement.style.display === 'none').forEach(node => node._rootElement.style.display = '');
-			edgeList.filter(edge => edge._rootElement.style.display === 'none').forEach(edge => edge._rootElement.style.display = '');
+			nodeList.filter(node => node.isFound === true).forEach(node => node.isFound = false);
 
 			searchInput.value = '';
 			searchCounter.innerText = 0;
@@ -207,7 +204,7 @@ class Navbar {
 		const filterButton = DOM.h('button', {
 			class: 'filter',
 			id: 'filterButton',
-			innerText: 'Filter nodes',
+			innerText: 'Select nodes',
 			onClick: () => app.filterModalWindowComponent.open(),
 		});
 

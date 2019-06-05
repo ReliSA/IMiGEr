@@ -30,6 +30,11 @@ class ShowGraphApp extends App {
 		/** @prop {Node} activeNode */
 		this.activeNode = null;
 
+		this.deletedNodeList = [];
+		this.deletedVertexList = [];
+		this.deletedEdgeList = [];
+
+
 		/** @prop {Diagram} diagram */
 		this.diagram = null;
 
