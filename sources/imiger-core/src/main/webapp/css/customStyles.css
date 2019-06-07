@@ -75,6 +75,7 @@
 
 .navbar {
     margin-bottom: 0;
+    overflow: hidden;
 }
 
 .timeline-container {
@@ -100,5 +101,15 @@
 
 #sidebar-container {
     border: 1px solid #7db9e8;
+}
+
+.navbar  > ul {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+button {
+    color: black;
 }
 

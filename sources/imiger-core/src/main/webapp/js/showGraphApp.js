@@ -114,6 +114,7 @@ class ShowGraphApp extends App {
 			id: 'content',
 		}, [
 			this.viewportComponent.render()
+
 		]));
 		document.getElementById('sidebar-container').appendChild(this.sidebarComponent.render());
 		appElement.appendChild(this.saveDiagramModalWindowComponent.render());

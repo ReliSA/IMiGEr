@@ -10,7 +10,9 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-
+		<link href="css/auxiliary/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" />
+		<link href="css/auxiliary/bootstrap/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
+		<link href="css/auxiliary/bootstrap-dialog/bootstrap-dialog.min.css" type="text/css" rel="stylesheet" />
 		<link rel="stylesheet" href="node_modules/spin.js/spin.css">
 
 		<link rel="stylesheet" href="css/common.css">
@@ -105,10 +107,6 @@
 		<script src="js/valueObjects/nodeSymbol.js"></script>
 
 		<script src="js/constants.js"></script>
-
-		<link href="css/auxiliary/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" />
-		<link href="css/auxiliary/bootstrap/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
-		<link href="css/auxiliary/bootstrap-dialog/bootstrap-dialog.min.css" type="text/css" rel="stylesheet" />
 		<link href="css/customStyles.css" type="text/css" rel="stylesheet" />
 
 		<c:if test = "${sessionScope.showTimeline eq true}">
@@ -129,7 +127,7 @@
 			<div id="navbar" class="navbar"></div>
             <div class="container full-width no-margin">
                 <div class="row">
-                    <div class="col-xs-10 no-margin">
+                    <div class="col-xs-10 no-margin" style="margin-righ:30px">
                         <c:if test = "${sessionScope.showTimeline eq true}">
                             <div class="row container-fluid timeline-container" style="">
                                 <div class="timeline-pane">
