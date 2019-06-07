@@ -66,27 +66,27 @@ class VertexAttributeFilter extends AbstractFilter {
 		let comparatorFn;
 		switch (operation) {
 			case StringFilterOperation.EQ:
-				comparatorFn = (a, b) => a === b;
-				break;
-
-			case StringFilterOperation.NEQ:
 				comparatorFn = (a, b) => a !== b;
 				break;
 
+			case StringFilterOperation.NEQ:
+				comparatorFn = (a, b) => a === b;
+				break;
+
 			case StringFilterOperation.CONTAINS:
-				comparatorFn = (a, b) => a.includes(b);
+				comparatorFn = (a, b) => !(a.includes(b));
 				break;
 
 			case StringFilterOperation.STARTS_WITH:
-				comparatorFn = (a, b) => a.startsWith(b);
+				comparatorFn = (a, b) => !(a.startsWith(b));
 				break;
 
 			case StringFilterOperation.ENDS_WITH:
-				comparatorFn = (a, b) => a.endsWith(b);
+				comparatorFn = (a, b) => !(a.endsWith(b));
 				break;
 
 			case StringFilterOperation.REGEXP:
-				comparatorFn = (a, b) => a.match(new RegExp(b, 'i'));
+				comparatorFn = (a, b) => !(a.match(new RegExp(b, 'i')));
 				break;
 
 			default:
@@ -110,9 +110,14 @@ class VertexAttributeFilter extends AbstractFilter {
 					const attributeValues = attribute[1].split(', ');
 
 					// some (at least one) of the attribute items should be contained in the filters
-					return attributeValues.some(attributeValue => {
-						return filterValues.indexOf(attributeValue) > -1;
-					});
+					 let count = 0;
+					 attributeValues.forEach(value => {
+						if(filterValues.indexOf(value) > -1) {
+							count++;
+						}
+					 });
+
+					 return count === 0;
 				};
 				break;
 
@@ -122,9 +127,14 @@ class VertexAttributeFilter extends AbstractFilter {
 					const attributeValues = attribute[1].split(', ');
 
 					// every of the attribute items should not be contained in the filters (translated: none of the items should be contained in the filters)
-					return attributeValues.every(attributeValue => {
-						return filterValues.indexOf(attributeValue) < 0;
+					let count = 0;
+					attributeValues.forEach(value => {
+						if(filterValues.indexOf(value) > -1) {
+						count++;
+					}
 					});
+
+					return count > 0;
 				};
 				break;
 
@@ -144,7 +154,8 @@ class VertexAttributeFilter extends AbstractFilter {
 			filterFn = vertex => {
 				const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
 				const attributeValue = parseInt(attribute[1]);
-				return (attributeValue >= filterValueFrom) && (attributeValue <= filterValueTo);
+
+				return (attributeValue < filterValueFrom) || (attributeValue > filterValueTo);
 			};
 
 		} else {
@@ -152,11 +163,11 @@ class VertexAttributeFilter extends AbstractFilter {
 
 			let comparatorFn;
 			switch (operation) {
-				case DateFilterOperation.EQ:
+				case DateFilterOperation.NEQ:
 					comparatorFn = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 					break;
 
-				case DateFilterOperation.NEQ:
+				case DateFilterOperation.EQ:
 					comparatorFn = (a, b) => a.getFullYear() !== b.getFullYear() || a.getMonth() !== b.getMonth() || a.getDate() !== b.getDate();
 					break;
 
@@ -183,7 +194,7 @@ class VertexAttributeFilter extends AbstractFilter {
 			filterFn = vertex => {
 				const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
 				const attributeValue = parseFloat(attribute[1]);
-				return (attributeValue >= filterValueFrom) && (attributeValue <= filterValueTo);
+				return (attributeValue < filterValueFrom) || (attributeValue > filterValueTo);
 			};
 
 		} else {

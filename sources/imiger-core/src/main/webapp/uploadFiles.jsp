@@ -81,6 +81,8 @@
 					<div class="form-field">
 						Chose additional visualisation:<br>
 						<label for="timeline"><input type="radio" name="visualisation" value="timeline" id="timeline">Timeline</label><br>
+						<input type="checkbox" id="enableInitialElimination" name="enableInitialElimination" value="true" checked>
+						<label for="enableInitialElimination">Initial elimination</label><br>
 					</div>
 
 					<button id="btnLoad" type="submit">Start visualization</button>

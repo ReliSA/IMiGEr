@@ -28,7 +28,6 @@
 		<link rel="stylesheet" href="css/components/status-bar.css">
 		<link rel="stylesheet" href="css/components/tooltip.css">
 		<link rel="stylesheet" href="css/components/viewport.css">
-		<link rel="stylesheet" href="css/components/nouislider.min.css">
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
@@ -87,7 +86,6 @@
 		<script src="js/services/filters/VertexArchetypeFilter.js"></script>
 		<script src="js/services/filters/VertexAttributeFilter.js"></script>
 		<script src="js/services/forceDirected.js"></script>
-		<script src="js/services/initialElimination.js"></script>
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>
 		<script src="js/services/markSymbol.js"></script>
@@ -106,48 +104,11 @@
 
 		<script src="js/constants.js"></script>
 
-		<link href="css/auxiliary/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" />
-		<link href="css/auxiliary/bootstrap/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
-		<link href="css/auxiliary/bootstrap-dialog/bootstrap-dialog.min.css" type="text/css" rel="stylesheet" />
-		<link href="css/customStyles.css" type="text/css" rel="stylesheet" />
-
-		<c:if test = "${sessionScope.showTimeline eq true}">
-			<link href="css/cz.kajda.timeline.css" type="text/css" rel="stylesheet" />
-			<link href="css/styles.css" type="text/css" rel="stylesheet" />
-			<script src="js/timeline/oop.js"></script>
-			<script data-main="js/timeline/main" src="js/timeline/lib/require/require.js"></script>
-		</c:if>
-		<!--<script src="js/components/slider/nouislider.min.js"></script>-->
-		<script src="js/components/slider/wNumb.js"></script>
-
 		<title>${APP_NAME}</title>
 	</head>
 
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
-		<div class="container full-width no-margin">
-			<div id="header" class="header"></div>
-			<div id="navbar" class="navbar"></div>
-            <div class="container full-width no-margin">
-                <div class="row">
-                    <div class="col-xs-10 no-margin">
-                        <c:if test = "${sessionScope.showTimeline eq true}">
-                            <div class="row container-fluid timeline-container" style="">
-                                <div class="timeline-pane">
-                                    <div id="timeline" tabindex="0"></div>
-                                </div>
-                            </div>
-                        </c:if>
-                        <div id="app" class="row"></div>
-                    </div>
-
-                    <div class="col-xs-2 no-margin" id="sidebar-container">
-
-
-                    </div>
-                </div>
-
-		    </div>
-        </div>
+		<div id="app"></div>
 
 		<script type="module">
 			import ShowGraphApp from './js/showGraphApp.js';

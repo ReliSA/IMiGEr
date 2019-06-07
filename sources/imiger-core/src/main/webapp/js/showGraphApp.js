@@ -30,6 +30,11 @@ class ShowGraphApp extends App {
 		/** @prop {Node} activeNode */
 		this.activeNode = null;
 
+		this.deletedNodeList = [];
+		this.deletedVertexList = [];
+		this.deletedEdgeList = [];
+
+
 		/** @prop {Diagram} diagram */
 		this.diagram = null;
 
@@ -261,10 +266,14 @@ class ShowGraphApp extends App {
 			document.dispatchEvent(new DiagramUpdatedEvent(graphData));
 
 			// construct graph
-			this.graphLoader.run(JSON.parse(graphData.graph_json));
+			let initialElimination = (graphData.initial_elimination === undefined)
+					? true : graphData.initial_elimination == 'true';
+			this.graphLoader.run(JSON.parse(graphData.graph_json), initialElimination);
 
 			this.spinLoaderComponent.disable();
 
+			// find date in graph data
+			this.checkDate();
 		} catch (error) {
 			if (error instanceof HttpError) {
 				switch (error.response.status) {
@@ -291,6 +300,43 @@ class ShowGraphApp extends App {
 			// go to the upload page
 			window.location.replace('./');
 		}
+	}
+
+	/**
+	 * Checks for date bounds and set them to filter
+	 */
+	checkDate() {
+		var dateAttributes = [];
+		var minDate = null;
+		var maxDate = null;
+		this.attributeTypeList.forEach(function (attribute) {
+			if(attribute.dataType === "DATE") {
+				dateAttributes.push(attribute.name);
+			}
+		});
+		if(dateAttributes.length > 0) {
+			this.vertexList.forEach(function (vertex) {
+				vertex.attributes.forEach(function (a) {
+					var index = dateAttributes.indexOf(a[0]);
+					if(index > -1) {
+						var date = Date.parse(a[1]);
+						if(isNaN(date)) {
+							date = new Date(Number(a[1]));
+						}
+
+						if(date !== 'Invalid Date') {
+							if(minDate === null || date < minDate) {
+								minDate = date;
+							}
+							if(maxDate === null || date > maxDate) {
+								maxDate = date;
+							}
+						}
+					}
+				});
+			});
+		}
+		this.filterModalWindowComponent.setDateBounds(minDate, maxDate);
 	}
 }
 

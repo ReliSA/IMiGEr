@@ -28,7 +28,6 @@
 		<link rel="stylesheet" href="css/components/status-bar.css">
 		<link rel="stylesheet" href="css/components/tooltip.css">
 		<link rel="stylesheet" href="css/components/viewport.css">
-		<link rel="stylesheet" href="css/components/nouislider.min.css">
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
@@ -87,7 +86,6 @@
 		<script src="js/services/filters/VertexArchetypeFilter.js"></script>
 		<script src="js/services/filters/VertexAttributeFilter.js"></script>
 		<script src="js/services/forceDirected.js"></script>
-		<script src="js/services/initialElimination.js"></script>
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>
 		<script src="js/services/markSymbol.js"></script>
@@ -117,8 +115,7 @@
 			<script src="js/timeline/oop.js"></script>
 			<script data-main="js/timeline/main" src="js/timeline/lib/require/require.js"></script>
 		</c:if>
-		<!--<script src="js/components/slider/nouislider.min.js"></script>-->
-		<script src="js/components/slider/wNumb.js"></script>
+
 
 		<title>${APP_NAME}</title>
 	</head>

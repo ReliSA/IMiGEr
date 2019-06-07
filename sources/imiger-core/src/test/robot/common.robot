@@ -32,6 +32,15 @@ Open Diagram Raw
 	Open Browser To Base Path
 	${filePath}=		Normalize Path		${TEST DATA PATH}${/}raw${/}jira-project.json
 	Choose File				name:file		${filePath}
+	Unselect Checkbox			enableInitialElimination
+	Click Button			Start visualization
+	Wait Until Element Is Not Visible		//div[@id="loader"]
+
+
+Open Diagram Raw With Initial Elimination
+	Open Browser To Base Path
+	${filePath}=		Normalize Path		${TEST DATA PATH}${/}raw${/}jira-project.json
+	Choose File				name:file		${filePath}
 	Click Button			Start visualization
 	Wait Until Element Is Not Visible		//div[@id="loader"]
 
@@ -41,6 +50,7 @@ Open Diagram Spade
 	${filePath}=		Normalize Path		${TEST DATA PATH}${/}spade${/}jira-project.json
 	Choose File				name:file		${filePath}
 	Select Radio Button		fileFormat		-968839389
+	Unselect Checkbox			enableInitialElimination
 	Click Button			Start visualization
 	Wait Until Element Is Not Visible		//div[@id="loader"]
 

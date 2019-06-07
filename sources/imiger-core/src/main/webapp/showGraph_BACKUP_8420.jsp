@@ -106,6 +106,7 @@
 
 		<script src="js/constants.js"></script>
 
+<<<<<<< HEAD
 		<link href="css/auxiliary/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" />
 		<link href="css/auxiliary/bootstrap/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
 		<link href="css/auxiliary/bootstrap-dialog/bootstrap-dialog.min.css" type="text/css" rel="stylesheet" />
@@ -117,8 +118,11 @@
 			<script src="js/timeline/oop.js"></script>
 			<script data-main="js/timeline/main" src="js/timeline/lib/require/require.js"></script>
 		</c:if>
-		<!--<script src="js/components/slider/nouislider.min.js"></script>-->
+
+=======
+		<script src="js/components/slider/nouislider.min.js"></script>
 		<script src="js/components/slider/wNumb.js"></script>
+>>>>>>> origin/master
 
 		<title>${APP_NAME}</title>
 	</head>
