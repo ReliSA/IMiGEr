@@ -89,10 +89,12 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
                     startPrecision: "none",
                     endPrecision: "none"
                 };
+
                 var archetype = archetypes[v.archetype].name.toLowerCase();
                 if (archetype !== 'person') {
                     archetype = 'item';
                 }
+
                 var node = {
                     id: v.id, 
                     name: v.name, 
@@ -100,18 +102,44 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
                     stereotype: archetype,
                     properties: prop
                 };
+
+                // spade search
+                if (beginAttrIdx === -1 || endAttrIdx === -1) {
+                    attrNames = v.attributes.map(function(attr) { return attr[0]; });
+                    beginAttrIdx = attrNames.indexOf('begin');
+                    endAttrIdx = attrNames.indexOf('end');
+                }
+
+                var parsed, date;
                 if (beginAttrIdx !== -1 && typeof v.attributes[beginAttrIdx] !== 'undefined') {
-                    node.begin = v.attributes[beginAttrIdx][1];
+                    parsed = parseInt(v.attributes[beginAttrIdx][1], 10);
+
+                    if (isNaN(parsed)) {
+                        node.begin = v.attributes[beginAttrIdx][1];
+                    } else {
+                        date = new Date(parsed);
+                        node.begin = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()
+                            + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                    }
                 }
                 if (endAttrIdx !== -1 && typeof v.attributes[endAttrIdx] !== 'undefined') {
-                    node.end = v.attributes[endAttrIdx][1];
+                    parsed = parseInt(v.attributes[endAttrIdx][1], 10);
+
+                    if (isNaN(parsed)) {
+                        node.end = v.attributes[endAttrIdx][1];
+                    } else {
+                        date = new Date(parsed);
+                        node.end = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()
+                            + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                    }
                 }
+
                 nodes[i] = node;
             }
 
             for(var j = 0; j < data.edges.length; j++) {
-                var e = data.edges[i];
-                edges[i] = {
+                var e = data.edges[j];
+                edges[j] = {
                     id: e.id,
                     name: e.text,
                     from: e.from,
@@ -131,7 +159,7 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
             var entities = new Collection(),
                 relations = new Collection();
 
-            // map entities 
+            // map entities
             for(var nodeIdx in data.nodes) {
                 entities.add(new this._objectMapping.entity(data.nodes[nodeIdx]));
             }
