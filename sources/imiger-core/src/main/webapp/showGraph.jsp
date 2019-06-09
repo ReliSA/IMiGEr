@@ -10,6 +10,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 		<link href="css/auxiliary/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" />
 		<link href="css/auxiliary/bootstrap/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
 		<link href="css/auxiliary/bootstrap-dialog/bootstrap-dialog.min.css" type="text/css" rel="stylesheet" />
@@ -122,12 +124,12 @@
 	</head>
 
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
-		<div class="container full-width no-margin">
+		<div class="container-fluid full-width no-margin">
 			<div id="header" class="header"></div>
-			<div id="navbar" class="navbar"></div>
-            <div class="container full-width no-margin">
+			<div id="navbar" class="navbar p-0"></div>
+            <div class="container-fluid full-width no-margin">
                 <div class="row">
-                    <div class="col-xs-10 no-margin" style="margin-righ:30px">
+                    <div class="col-10 p-0 no-margin" style="margin-righ:30px">
                         <c:if test = "${sessionScope.showTimeline eq true}">
                             <div class="row container-fluid timeline-container" style="">
                                 <div class="timeline-pane">
@@ -138,7 +140,7 @@
                         <div id="app" class="row"></div>
                     </div>
 
-                    <div class="col-xs-2 no-margin" id="sidebar-container">
+                    <div class="col-2 p-0 no-margin d-flex" id="sidebar-container">
 
 
                     </div>
