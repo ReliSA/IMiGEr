@@ -500,29 +500,34 @@ class FilterModalWindow extends ModalWindow {
 				break;
 		}
 
-		const filterValues = formData.getAll('value').map(value => parseInt(value));
+		let foundNodes = [];
 		nodeFilter.run(app.nodeList).forEach(node => {
+				foundNodes.push(node);
+		});
+
+		const filterValues = formData.getAll('value').map(value => parseInt(value));
+		app.nodeList.filter(node => foundNodes.indexOf(node) === -1).forEach(node => {
 			if(node instanceof Group) {
-				let outEdges = node.outEdgeList;
-				let inEdges = node.inEdgeList;
-				this._hideEdges(outEdges);
-				this._hideEdges(inEdges);
+			let outEdges = node.outEdgeList;
+			let inEdges = node.inEdgeList;
+			this._hideEdges(outEdges);
+			this._hideEdges(inEdges);
+			node._rootElement.style.display = 'none';
+		} else {
+			if(node._group !== null) {
+				if(baseFilter !== 'nodeType' || (filterValues[0] === 1 && operation === "NEQ") || (filterValues[0] === 0 && operation === "EQ")) {
+					node._group._rootElement.style.display = 'none';
+					this._hideEdges(node._group.outEdgeList);
+					this._hideEdges(node._group.inEdgeList);
+				}
 				node._rootElement.style.display = 'none';
 			} else {
-				if(node._group !== null) {
-					if(baseFilter !== 'nodeType' || filterValues[0] !== 1) {
-						node._group._rootElement.style.display = 'none';
-						this._hideEdges(node._group.outEdgeList);
-						this._hideEdges(node._group.inEdgeList);
-					}
-					node._rootElement.style.display = 'none';
-				} else {
-					node._rootElement.style.display = 'none';
-					app.edgeList.forEach(edge => {
-						if(edge.from.id === node.id || edge.to.id === node.id) {
+				node._rootElement.style.display = 'none';
+				app.edgeList.forEach(edge => {
+					if(edge.from.id === node.id || edge.to.id === node.id) {
 						edge._rootElement.style.display = 'none';
-						}
-					});
+					}
+				});
 				}
 			}
 			app.viewportComponent.removeNode(node);
@@ -561,7 +566,7 @@ class FilterModalWindow extends ModalWindow {
 
 	_hideEdges(edges) {
 		edges.forEach(edge => {
-			edge._rootElement.style.display = 'none';
+				edge._rootElement.style.display = 'none';
 		});
 	}
 
