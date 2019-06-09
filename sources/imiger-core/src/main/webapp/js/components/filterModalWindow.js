@@ -500,6 +500,7 @@ class FilterModalWindow extends ModalWindow {
 				break;
 		}
 
+		const filterValues = formData.getAll('value').map(value => parseInt(value));
 		nodeFilter.run(app.nodeList).forEach(node => {
 			if(node instanceof Group) {
 				let outEdges = node.outEdgeList;
@@ -508,11 +509,18 @@ class FilterModalWindow extends ModalWindow {
 				this._hideEdges(inEdges);
 				node._rootElement.style.display = 'none';
 			} else {
-				if(node._group === null) {
+				if(node._group !== null) {
+					if(baseFilter !== 'nodeType' || filterValues[0] !== 1) {
+						node._group._rootElement.style.display = 'none';
+						this._hideEdges(node._group.outEdgeList);
+						this._hideEdges(node._group.inEdgeList);
+					}
+					node._rootElement.style.display = 'none';
+				} else {
 					node._rootElement.style.display = 'none';
 					app.edgeList.forEach(edge => {
 						if(edge.from.id === node.id || edge.to.id === node.id) {
-							edge._rootElement.style.display = 'none';
+						edge._rootElement.style.display = 'none';
 						}
 					});
 				}
