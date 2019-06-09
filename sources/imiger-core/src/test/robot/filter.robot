@@ -68,7 +68,7 @@ Reset form
 	${values}=			Get Selected List Labels	${enumValueDropdown}
 	Should Be Empty					${values}
 	${count}=			Get Element Count	${foundNodes}
-	Should Be Equal As Integers		${count}	0
+	Should Be Equal As Integers		${count}	37
 
 
 Check defaults
