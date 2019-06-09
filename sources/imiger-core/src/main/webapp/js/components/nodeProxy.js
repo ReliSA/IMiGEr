@@ -87,9 +87,10 @@ class NodeProxy {
 	updatePosition() {
 		let bbox = this._rootElement.getBoundingClientRect();
 		let viewportPosition = app.viewportComponent.position;
-
+		var timelineElement = document.getElementsByClassName("timeline-pane");
+		var timelineHeight = timelineElement.length > 0 ? timelineElement[0].clientHeight : 0;
 		this._position.x = (bbox.left - viewportPosition.x);
-		this._position.y = (bbox.top - viewportPosition.y - app.headerComponent.height - app.navbarComponent.height);
+		this._position.y = (bbox.top - viewportPosition.y - app.headerComponent.height - app.navbarComponent.height - timelineHeight);
 
 		let edgeOffsetY;
 		if (this._node instanceof Vertex) {

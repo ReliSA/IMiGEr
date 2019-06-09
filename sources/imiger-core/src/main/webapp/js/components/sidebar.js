@@ -21,7 +21,7 @@ class Sidebar {
 			this.unconnectedNodeListComponent.render(),
 			this.excludedNodeListComponent.render(),
 			DOM.h('div', {
-				class: 'sidebar-bottom',
+				class: 'sidebar-bottom affix-bottom',
 			}, [
 				this.minimapComponent.render(),
 				this.statusBarComponent.render(),

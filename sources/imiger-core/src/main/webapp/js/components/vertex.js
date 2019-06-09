@@ -340,7 +340,7 @@ class Vertex extends Node {
 		if (nodeList.length === 0) return;
 
 		app.viewportComponent.contextMenuComponent.vertex = this;
-		app.viewportComponent.contextMenuComponent.position = new Coordinates(e.clientX, e.clientY);
+		app.viewportComponent.contextMenuComponent.position = new Coordinates(e.clientX, e.layerY);
 
 		// fill list with items
 		nodeList.forEach(node => {
