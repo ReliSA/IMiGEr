@@ -157,7 +157,7 @@ class FilterModalWindow extends ModalWindow {
 	_initializeFormFields() {
 		// string
 		this._stringField = DOM.h('input', {
-			type: 'text',
+			type: FilterDataType.STRING,
 			name: 'value',
 			required: 'required',
 		});
@@ -171,7 +171,7 @@ class FilterModalWindow extends ModalWindow {
 
 		// date
 		this._dateField = DOM.h('input', {
-			type: 'date',
+			type: FilterDataType.DATE,
 			name: 'value',
 			required: 'required',
 		});
@@ -214,7 +214,7 @@ class FilterModalWindow extends ModalWindow {
 				"    return new Date(str).getTime();" +
 				"}" +
 				"var dateSlider = document.getElementById('slider');" +
-				"noUiSlider.create(dateSlider, {" +
+				"window.noUiSlider.create(dateSlider, {" +
 				"	 connect: true," +
 				"    range: {" +
 				"        min: timestamp(1970)," +
@@ -246,7 +246,7 @@ class FilterModalWindow extends ModalWindow {
 
 		// number
 		this._numberField = DOM.h('input', {
-			type: 'number',
+			type: FilterDataType.NUMBER,
 			name: 'value',
 			required: 'required',
 		});
@@ -580,7 +580,7 @@ class FilterModalWindow extends ModalWindow {
 					"    return new Date(str).getTime();" +
 					"}" +
 					"var dateSlider = document.getElementById('slider');" +
-					"noUiSlider.create(dateSlider, {" +
+					"window.noUiSlider.create(dateSlider, {" +
 					"	 connect: true," +
 					"    range: {" +
 					"        min: " + minDate.getTime() + "," +

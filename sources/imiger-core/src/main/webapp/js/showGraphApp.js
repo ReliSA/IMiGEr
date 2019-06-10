@@ -107,21 +107,31 @@ class ShowGraphApp extends App {
 		this.helpModalWindowComponent = new HelpModalWindow;
 
 		const appElement = document.getElementById('app');
-		appElement.appendChild(this.headerComponent.render());
-		appElement.appendChild(this.navbarComponent.render());
+		document.getElementById('header').appendChild(this.headerComponent.render());
+		document.getElementById('navbar').appendChild(this.navbarComponent.render());
 		appElement.appendChild(DOM.h('main', {
 			class: 'graph-content',
 			id: 'content',
 		}, [
-			this.viewportComponent.render(),
-			this.sidebarComponent.render(),
+			this.viewportComponent.render()
+
 		]));
+		document.getElementById('sidebar-container').appendChild(this.sidebarComponent.render());
 		appElement.appendChild(this.saveDiagramModalWindowComponent.render());
 		appElement.appendChild(this.filterModalWindowComponent.render());
 		appElement.appendChild(this.spinLoaderComponent.render());
 		appElement.appendChild(this.helpModalWindowComponent.render());
 
 		this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.size;
+
+		// timeline
+        document.addEventListener('timelineClick', function (e) {
+            var nodeIDs = app.nodeList.map(function(node) { return node.id; });
+            var node = app.nodeList[nodeIDs.indexOf(e.detail)];
+            if (node !== undefined) {
+                node._onNodeClick(e);
+            }
+        }, false);
 
 		// diagram
 		document.addEventListener(DiagramUpdatedEvent.name, e => {

@@ -19,7 +19,6 @@
 	padding-left: 0;
 	list-style: none;
 	white-space: nowrap;
-	overflow-x: auto;
 }
 
 .navbar > ul > li {

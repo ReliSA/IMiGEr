@@ -1,0 +1,17 @@
+<p>V prvním kroku se pokuste oblast Vašeho zájmu vymezit časově.</p>
+<div class="row top-buffered">
+    <div class="col-xs-12">
+        <strong>Od roku</strong> <span id="from_o">1</span>
+    </div>
+    <div class="col-xs-12">
+        <input data-dlg-payload="from" type="range" min="-20000" value="1" max="2015"  id="_from_input" oninput='$("#from_o").text(this.value)'>
+    </div>
+</div>
+<div class="row" top-buffered>
+    <div class="col-xs-12">
+            <strong>Do roku</strong> <span id="to_o">2015</span>
+    </div>
+    <div class="col-xs-12">
+        <input data-dlg-payload="to" type="range" min="-20000" value="2015" max="2015"  id="_to_input" oninput='$("#to_o").text(this.value)'>
+    </div>
+</div>

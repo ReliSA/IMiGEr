@@ -47,7 +47,7 @@
   },
   {
    "dataType": "date",
-   "name": "Created",
+   "name": "begin",
    "text": "Creation date"
   },
   {

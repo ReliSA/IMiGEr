@@ -1,0 +1,78 @@
+<p>Určete priority jednotlivých relací mezi záznamy.</p>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Mezilidské vztahy</strong>
+        <div class="small">Vyjádření vztahů mezi historickými postavami či místy, např. <em>manželství, rodičovství</em>.</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="relationship" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Interakce</strong>
+        <div class="small">Vzájemná akce mezi osobami, např. <em>spolupráce na objevu</em>.</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="interaction" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Účast</strong>
+        <div class="small">Účast osoby či objektu na historické události.</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="participation" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Zapříčinění vzniku</strong>
+        <div class="small">Zodpovědnost místa, osoby, objektu či události za vznik jiného historického záznamu.</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="creation" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Přičinná souvislost</strong>
+        <div class="small">Vztah mezi záznamy, kde jeden zapříčinil souvislost ovlivňující druhý záznam.</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="cause" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Popis struktury</strong>
+        <div class="small">Vztah, který označuje, že jeden záznam je fyzickou či abstraktní součástí druhého.</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="part_of" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Umístění</strong>
+        <div class="small">Popisuje vztah osoby, objektu či události k místo, s nímž je spojena.</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="takes_place" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
