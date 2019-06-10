@@ -112,8 +112,8 @@ function($, App, Timeline, BandsDistribution) {
             },
             'relation' : {
                 '*' : function(relation) {
-                    var from = this.getDataSource().getAllMappedEntities().get(relation.getOriginId());
-                    var to = this.getDataSource().getAllMappedEntities().get(relation.getDestinationId());
+                    var from = this.getDataSource().getEntities().get(relation.getOriginId());
+                    var to = this.getDataSource().getEntities().get(relation.getDestinationId());
                     var elm = new jQuery("<div class='text-center'>");
                     elm.addClass("my-popover")
                             .html("<div>" + from.getTitle() + " </div><h3>&#x21e9; " + relation.getTitle() + " &#x21e9;</h3><div>" + to.getTitle() + "</div>");
