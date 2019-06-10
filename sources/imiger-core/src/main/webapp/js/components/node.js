@@ -413,7 +413,7 @@ class Node {
 	_onNodeClick(e) {
 		e.stopPropagation();
 
-        var archetypeString = app.archetype.vertex[this.archetype].name;
+        var archetypeString = app.archetype.vertex[this.archetype].name.toLowerCase();;
         if (archetypeString !== 'person') archetypeString = 'item';
         var notifyTimeline;
 

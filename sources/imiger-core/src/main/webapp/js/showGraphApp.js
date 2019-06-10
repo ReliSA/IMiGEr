@@ -126,7 +126,8 @@ class ShowGraphApp extends App {
 
 		// timeline
         document.addEventListener('timelineClick', function (e) {
-            var node = app.nodeList[e.detail];
+            var nodeIDs = app.nodeList.map(function(node) { return node.id; });
+            var node = app.nodeList[nodeIDs.indexOf(e.detail)];
             if (node !== undefined) {
                 node._onNodeClick(e);
             }

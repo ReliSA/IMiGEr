@@ -114,7 +114,7 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
                 if (beginAttrIdx !== -1 && typeof v.attributes[beginAttrIdx] !== 'undefined') {
                     parsed = parseInt(v.attributes[beginAttrIdx][1], 10);
 
-                    if (isNaN(parsed)) {
+                    if (isNaN(parsed) || parsed < 4000) {
                         node.begin = v.attributes[beginAttrIdx][1];
                     } else {
                         date = new Date(parsed);
@@ -125,7 +125,7 @@ var RestSource = new Class("cz.kajda.data.RestSource", {
                 if (endAttrIdx !== -1 && typeof v.attributes[endAttrIdx] !== 'undefined') {
                     parsed = parseInt(v.attributes[endAttrIdx][1], 10);
 
-                    if (isNaN(parsed)) {
+                    if (isNaN(parsed) || parsed < 4000) {
                         node.end = v.attributes[endAttrIdx][1];
                     } else {
                         date = new Date(parsed);
