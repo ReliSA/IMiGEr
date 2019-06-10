@@ -113,6 +113,14 @@
         <link href="css/cz.kajda.timeline.css" type="text/css" rel="stylesheet" />
         <link href="css/styles.css" type="text/css" rel="stylesheet" />
         <script src="js/timeline/oop.js"></script>
+        <c:if test = "${sessionScope.showTimeline eq true}">
+            <style>
+               #app {
+                   height: 70% !important;
+               }
+            </style>
+        </c:if>
+
         <script data-main="js/timeline/main" src="js/timeline/lib/require/require.js"></script>
 
 		<title>${APP_NAME}</title>
