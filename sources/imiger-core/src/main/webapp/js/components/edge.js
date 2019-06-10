@@ -269,7 +269,7 @@ class Edge {
 	 */
 	_onEdgeClick(e) {
 		app.viewportComponent.edgePopoverComponent.body = this.subedgeInfo;
-		app.viewportComponent.edgePopoverComponent.position = new Coordinates(e.clientX, e.clientY);
+		app.viewportComponent.edgePopoverComponent.position = new Coordinates(e.clientX, e.layerY);
 		app.viewportComponent.edgePopoverComponent.open();
 
 		// unhighlight other edges

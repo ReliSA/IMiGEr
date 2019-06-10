@@ -156,3 +156,8 @@ button {
 div.content {
     height: calc(100vh - 104px);
 }
+
+div.modal-body {
+    padding: 0;
+    margin: 15px;
+}
