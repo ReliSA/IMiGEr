@@ -122,9 +122,9 @@
 		<div class="container-fluid full-width no-margin full-height">
 			<div id="header" class="header"></div>
 			<div id="navbar" class="navbar p-0"></div>
-            <div class="container-fluid full-width no-margin full-height">
+            <div class="container-fluid full-width no-margin content">
                 <div class="row full-height">
-                    <div class="col-xs-10 p-0 no-margin" style="margin-righ:30px">
+                    <div class="col-xs-10 p-0 no-margin full-height" style="margin-righ:30px">
                         <c:if test = "${sessionScope.showTimeline eq true}">
                             <div class="row container-fluid timeline-container" style="">
                                 <div class="timeline-pane">
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                         </c:if>
-                        <div id="app" class="row full-height no-margin"></div>
+                        <div id="app" class="row no-margin"></div>
                     </div>
 
                     <div class="col-xs-2 p-0 no-margin d-flex" id="sidebar-container">

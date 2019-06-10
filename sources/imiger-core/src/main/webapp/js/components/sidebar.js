@@ -18,14 +18,15 @@ class Sidebar {
 			class: 'sidebar',
 			id: 'sidebar',
 		}, [
-			this.unconnectedNodeListComponent.render(),
-			this.excludedNodeListComponent.render(),
+
 			DOM.h('div', {
-				class: 'sidebar-bottom affix-bottom',
+				class: 'sidebar-bottom',
 			}, [
 				this.minimapComponent.render(),
 				this.statusBarComponent.render(),
 			]),
+			this.unconnectedNodeListComponent.render(),
+			this.excludedNodeListComponent.render(),
 		]);
 
 		return this._rootElement;
