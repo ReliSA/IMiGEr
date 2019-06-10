@@ -81,6 +81,7 @@ var Entity = new Class("cz.kajda.data.Entity", {
         _continuous : null,
         _properties : null,
         _description : null,
+        _visible : true,
         /**
          * @author Michal Fiala
          * Array for subEntities
@@ -142,6 +143,22 @@ var Entity = new Class("cz.kajda.data.Entity", {
          */
         isContinuous : function() {
             return this._continuous;
+        },
+
+        /**
+         * Checks whether the entity is visible or not.
+         * @returns {Boolean}
+         */
+        isVisible : function() {
+            return this._visible;
+        },
+
+        /**
+         * Set whether the entity is visible or not.
+         * @param isVisible {Boolean}
+         */
+        setVisibility : function(isVisible) {
+            this._visible = isVisible;
         },
 
         /**

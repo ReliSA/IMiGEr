@@ -504,12 +504,14 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
 
             _handleIMiGErExclude : function(e) {
                 var entity = this.getEntities().get(e.originalEvent.detail.entityID);
-                $('div[data-entity=' + entity.getId() + ']').hide();
+                entity.setVisibility(false);
+                this.redraw();
             },
 
             _handleIMiGErInclude : function(e) {
                 var entity = this.getEntities().get(e.originalEvent.detail.entityID);
-                $('div[data-entity=' + entity.getId() + ']').show();
+                entity.setVisibility(true);
+                this.redraw();
             },
 
             _handleIMiGErClick : function(e) {

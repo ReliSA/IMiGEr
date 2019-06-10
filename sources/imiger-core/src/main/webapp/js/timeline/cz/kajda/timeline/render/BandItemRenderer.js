@@ -184,18 +184,21 @@ var BandItemRenderer = new Class("cz.kajda.timeline.render.BandItemRenderer", {
         /** @see cz.kajda.timeline.render.AbstractItemRenderer#render */
         render : function(item) {
             var itemWrapper = $("<div>");
-            var element = item.getEntity().isContinuous() ? this._renderContinuous(item) : this._renderMoment(item);
-            element.addClass(this.DURATION_CLASS);
-            var titleEl = $("<div>")
+
+            if (item.getEntity().isVisible()) {
+                var element = item.getEntity().isContinuous() ? this._renderContinuous(item) : this._renderMoment(item);
+                element.addClass(this.DURATION_CLASS);
+                var titleEl = $("<div>")
                     .addClass(this.LABEL_CLASS)
                     .text(item.getEntity().getTitle());
-            
-            itemWrapper.append(element)
+
+                itemWrapper.append(element)
                     .append(titleEl);
-            
-            item.setLabelElement(titleEl);
-            item.setDurationElement(element);                
-            
+
+                item.setLabelElement(titleEl);
+                item.setDurationElement(element);
+            }
+
             return itemWrapper;
         },
         

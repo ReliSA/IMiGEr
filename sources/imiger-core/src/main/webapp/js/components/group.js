@@ -168,6 +168,11 @@ class Group extends Node {
 	include() {
 		super.include();
 
+        this.vertexList.forEach(vertex => {
+            var notifyTimeline = new CustomEvent('imigerInclude', { detail: { entityID: vertex.id } });
+            document.dispatchEvent(notifyTimeline);
+        });
+
 		// set edges' ends
 		let inEdgeList = this.inEdgeList;
 		inEdgeList.forEach(edge => {
