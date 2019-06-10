@@ -360,6 +360,21 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
 
             /**
              * @private
+             * Hides alreade excluded nodes.
+             */
+            _initialExclude : function() {
+                if(!this._dataSource) return;
+
+                var alreadyExcluded = app.sidebarComponent.unconnectedNodeListComponent.nodeList;
+                for (var i = 0; i < alreadyExcluded.length; i++) {
+                    var entity = this.getEntities().get(alreadyExcluded[i].id);
+                    entity.setVisibility(false);
+                }
+                this.redraw();
+            },
+
+            /**
+             * @private
              * Shows or hides guidelines displaying boundary moments of the entity.
              * @param {cz.kajda.timeline.band.BandItem} bandItem bandItem that fired the hover event
              * @param {Boolean} show false, if should be hidden
@@ -841,6 +856,7 @@ var Timeline = Class("cz.kajda.timeline.Timeline", {
         setDataSource : function(source) {
             this._dataSource = source;
             this._processData();
+            this._initialExclude();
         },
         
         /**
