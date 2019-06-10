@@ -7,7 +7,9 @@ require.config({
         moment: 'lib/moment/moment.min',
         "bootstrap-dialog" : 'auxiliary/bootstrap-dialog/bootstrap-dialog.min',
         momentjs : 'moment.extension',
-        bootstrap : 'auxiliary/bootstrap/bootstrap.min'
+        bootstrap : 'auxiliary/bootstrap/bootstrap.min',
+        slider : 'auxiliary/nouislider.min',
+        wNumb : 'auxiliary/wNumb'
     },
     shim: {
         "jqueryui" : {
@@ -26,6 +28,8 @@ require.config({
 
 requirejs([
     'jquery',
+    'slider',
+    'wNumb',
     'auxiliary/App',
     'cz/kajda/timeline/Timeline',
     '../../data/BandsDistribution'
@@ -37,8 +41,12 @@ requirejs([
  * To decide which data source should be used,
  * (un)comment one of the last lines in this function.
  */
-function($, App, Timeline, BandsDistribution) {
+function($, noUiSlider, wNumb, App, Timeline, BandsDistribution) {
+
+    window.wNumb = wNumb;
+    window.noUiSlider = noUiSlider;
     // create new instance of app support
+    if($('.timeline-container').length) {
     var app = new App();
     // FIALA 
     var bandsDistribution = new BandsDistribution();
@@ -142,4 +150,5 @@ function($, App, Timeline, BandsDistribution) {
     
     // creates source producing random data
     //app.createRandSource({ /* here comes config that changes distribution parameters (see RandSource~_DEFAULTS) */ });
+    }
 });

@@ -110,15 +110,10 @@
 
 		<script src="js/constants.js"></script>
 		<link href="css/customStyles.css" type="text/css" rel="stylesheet" />
-
-		<c:if test = "${sessionScope.showTimeline eq true}">
-			<link href="css/cz.kajda.timeline.css" type="text/css" rel="stylesheet" />
-			<link href="css/styles.css" type="text/css" rel="stylesheet" />
-			<script src="js/timeline/oop.js"></script>
-			<script data-main="js/timeline/main" src="js/timeline/lib/require/require.js"></script>
-		</c:if>
-		<!--<script src="js/components/slider/nouislider.min.js"></script>-->
-		<script src="js/components/slider/wNumb.js"></script>
+        <link href="css/cz.kajda.timeline.css" type="text/css" rel="stylesheet" />
+        <link href="css/styles.css" type="text/css" rel="stylesheet" />
+        <script src="js/timeline/oop.js"></script>
+        <script data-main="js/timeline/main" src="js/timeline/lib/require/require.js"></script>
 
 		<title>${APP_NAME}</title>
 	</head>
