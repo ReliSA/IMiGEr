@@ -31,7 +31,7 @@ ${dateToValueInput}					${filterModalWindow}//input[@name="value-to"]
 ${applyButton}						${filterModalWindow}//button[@type="submit"]
 ${resetButton}						${filterModalWindow}//button[@type="reset"]
 
-${foundNodes}						//*[contains(@class, "node")][@filter="url(#node--found)"]
+${foundNodes}						//div[contains(@class, "viewport")]//*[contains(@class, "node") and not(contains(@style, 'display: none;'))]
 
 
 *** Test Cases ***
@@ -68,7 +68,7 @@ Reset form
 	${values}=			Get Selected List Labels	${enumValueDropdown}
 	Should Be Empty					${values}
 	${count}=			Get Element Count	${foundNodes}
-	Should Be Equal As Integers		${count}	0
+	Should Be Equal As Integers		${count}	37
 
 
 Check defaults

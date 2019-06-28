@@ -10,7 +10,11 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<link href="css/auxiliary/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" />
+		<link href="css/auxiliary/bootstrap/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
+		<link href="css/auxiliary/bootstrap-dialog/bootstrap-dialog.min.css" type="text/css" rel="stylesheet" />
 		<link rel="stylesheet" href="node_modules/spin.js/spin.css">
 
 		<link rel="stylesheet" href="css/common.css">
@@ -28,6 +32,7 @@
 		<link rel="stylesheet" href="css/components/status-bar.css">
 		<link rel="stylesheet" href="css/components/tooltip.css">
 		<link rel="stylesheet" href="css/components/viewport.css">
+		<link rel="stylesheet" href="css/components/nouislider.min.css">
 
 		<script id="htmlTags" type="application/json"><%@ include file="node_modules/html-tags/html-tags.json" %></script>
 		<script id="svgTags" type="application/json"><%@ include file="node_modules/svg-tags/lib/svg-tags.json" %></script>
@@ -86,6 +91,7 @@
 		<script src="js/services/filters/VertexArchetypeFilter.js"></script>
 		<script src="js/services/filters/VertexAttributeFilter.js"></script>
 		<script src="js/services/forceDirected.js"></script>
+		<script src="js/services/initialElimination.js"></script>
 		<script src="js/services/graphLoader.js"></script>
 		<script src="js/services/graphExporter.js"></script>
 		<script src="js/services/markSymbol.js"></script>
@@ -103,12 +109,48 @@
 		<script src="js/valueObjects/nodeSymbol.js"></script>
 
 		<script src="js/constants.js"></script>
+		<link href="css/customStyles.css" type="text/css" rel="stylesheet" />
+        <link href="css/cz.kajda.timeline.css" type="text/css" rel="stylesheet" />
+        <link href="css/styles.css" type="text/css" rel="stylesheet" />
+        <script src="js/timeline/oop.js"></script>
+        <c:if test = "${sessionScope.showTimeline eq true}">
+            <style>
+               #app {
+                   height: 70% !important;
+               }
+            </style>
+        </c:if>
+
+        <script data-main="js/timeline/main" src="js/timeline/lib/require/require.js"></script>
 
 		<title>${APP_NAME}</title>
 	</head>
 
 	<body class="${isLoggedIn ? 'loggedIn' : 'loggedOut'}">
-		<div id="app"></div>
+		<div class="container-fluid full-width no-margin full-height">
+			<div id="header" class="header"></div>
+			<div id="navbar" class="navbar p-0"></div>
+            <div class="container-fluid full-width no-margin content">
+                <div class="row full-height">
+                    <div class="col-xs-10 p-0 no-margin full-height" style="margin-righ:30px">
+                        <c:if test = "${sessionScope.showTimeline eq true}">
+                            <div class="row container-fluid timeline-container" style="">
+                                <div class="timeline-pane">
+                                    <div id="timeline" tabindex="0"></div>
+                                </div>
+                            </div>
+                        </c:if>
+                        <div id="app" class="row no-margin"></div>
+                    </div>
+
+                    <div class="col-xs-2 p-0 no-margin d-flex" id="sidebar-container">
+
+
+                    </div>
+                </div>
+
+		    </div>
+        </div>
 
 		<script type="module">
 			import ShowGraphApp from './js/showGraphApp.js';

@@ -1,0 +1,9 @@
+<div class="text-center">
+    <div>Probíhá předzpracování dat ve vybraném časovém rozmezí...</div>
+    <div>To může trvat, proto prosíme o chvilku strpení.</div>
+</div>
+<div class="dlg-spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+</div>

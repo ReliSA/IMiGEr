@@ -1,0 +1,46 @@
+<p>Záznamy jsou rozděleny do několika základních kategorií.
+Posuvníky můžete určit, které chcete upřednostnit a kterým naopak nastavíte minimální prioritu.</p>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Lidé</strong>
+        <div class="small">Panovníci, generálové, šlechtici, ...</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="person" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Místa</strong>
+        <div class="small">Země, dějiště bitev, sídla, pomníky, ...</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="place" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Události</strong>
+        <div class="small">Bitvy, uzevření mírů, tažení, války, ...</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="event" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>
+<div class="row top-buffered">
+    <div class="col-xs-7">
+        <strong>Objekty</strong>
+        <div class="small">Listiny, smlouvy, klenoty, ...</div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+        <div class="form-group">
+            <input data-dlg-payload="item" type="range" min="1" max="10" value="5" class="prior-slider">
+        </div>
+    </div>
+</div>

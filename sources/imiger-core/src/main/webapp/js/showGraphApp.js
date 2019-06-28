@@ -30,6 +30,11 @@ class ShowGraphApp extends App {
 		/** @prop {Node} activeNode */
 		this.activeNode = null;
 
+		this.deletedNodeList = [];
+		this.deletedVertexList = [];
+		this.deletedEdgeList = [];
+
+
 		/** @prop {Diagram} diagram */
 		this.diagram = null;
 
@@ -102,21 +107,31 @@ class ShowGraphApp extends App {
 		this.helpModalWindowComponent = new HelpModalWindow;
 
 		const appElement = document.getElementById('app');
-		appElement.appendChild(this.headerComponent.render());
-		appElement.appendChild(this.navbarComponent.render());
+		document.getElementById('header').appendChild(this.headerComponent.render());
+		document.getElementById('navbar').appendChild(this.navbarComponent.render());
 		appElement.appendChild(DOM.h('main', {
 			class: 'graph-content',
 			id: 'content',
 		}, [
-			this.viewportComponent.render(),
-			this.sidebarComponent.render(),
+			this.viewportComponent.render()
+
 		]));
+		document.getElementById('sidebar-container').appendChild(this.sidebarComponent.render());
 		appElement.appendChild(this.saveDiagramModalWindowComponent.render());
 		appElement.appendChild(this.filterModalWindowComponent.render());
 		appElement.appendChild(this.spinLoaderComponent.render());
 		appElement.appendChild(this.helpModalWindowComponent.render());
 
 		this.sidebarComponent.minimapComponent.viewportSize = this.viewportComponent.size;
+
+		// timeline
+        document.addEventListener('timelineClick', function (e) {
+            var nodeIDs = app.nodeList.map(function(node) { return node.id; });
+            var node = app.nodeList[nodeIDs.indexOf(e.detail)];
+            if (node !== undefined) {
+                node._onNodeClick(e);
+            }
+        }, false);
 
 		// diagram
 		document.addEventListener(DiagramUpdatedEvent.name, e => {
@@ -253,10 +268,14 @@ class ShowGraphApp extends App {
 			document.dispatchEvent(new DiagramUpdatedEvent(graphData));
 
 			// construct graph
-			this.graphLoader.run(JSON.parse(graphData.graph_json));
+			let initialElimination = (graphData.initial_elimination === undefined)
+					? true : graphData.initial_elimination == 'true';
+			this.graphLoader.run(JSON.parse(graphData.graph_json), initialElimination);
 
 			this.spinLoaderComponent.disable();
 
+			// find date in graph data
+			this.checkDate();
 		} catch (error) {
 			if (error instanceof HttpError) {
 				switch (error.response.status) {
@@ -283,6 +302,43 @@ class ShowGraphApp extends App {
 			// go to the upload page
 			window.location.replace('./');
 		}
+	}
+
+	/**
+	 * Checks for date bounds and set them to filter
+	 */
+	checkDate() {
+		var dateAttributes = [];
+		var minDate = null;
+		var maxDate = null;
+		this.attributeTypeList.forEach(function (attribute) {
+			if(attribute.dataType === "DATE") {
+				dateAttributes.push(attribute.name);
+			}
+		});
+		if(dateAttributes.length > 0) {
+			this.vertexList.forEach(function (vertex) {
+				vertex.attributes.forEach(function (a) {
+					var index = dateAttributes.indexOf(a[0]);
+					if(index > -1) {
+						var date = Date.parse(a[1]);
+						if(isNaN(date)) {
+							date = new Date(Number(a[1]));
+						}
+
+						if(date !== 'Invalid Date') {
+							if(minDate === null || date < minDate) {
+								minDate = date;
+							}
+							if(maxDate === null || date > maxDate) {
+								maxDate = date;
+							}
+						}
+					}
+				});
+			});
+		}
+		this.filterModalWindowComponent.setDateBounds(minDate, maxDate);
 	}
 }
 

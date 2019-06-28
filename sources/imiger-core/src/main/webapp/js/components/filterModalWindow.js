@@ -76,7 +76,9 @@ class FilterModalWindow extends ModalWindow {
 				type: 'hidden',
 				name: 'dataType',
 			}),
-			DOM.h('table', {}, [
+			DOM.h('table', {
+				style: "width:100%;"
+			}, [
 				DOM.h('tr', {}, [
 					DOM.h('td', {}, [
 						DOM.h('label', {
@@ -149,14 +151,13 @@ class FilterModalWindow extends ModalWindow {
 		}
 
 		this._onBaseFilterChange('nodeType');
-
 		return this._rootElement;
 	}
 
 	_initializeFormFields() {
 		// string
 		this._stringField = DOM.h('input', {
-			type: 'text',
+			type: FilterDataType.STRING,
 			name: 'value',
 			required: 'required',
 		});
@@ -170,26 +171,82 @@ class FilterModalWindow extends ModalWindow {
 
 		// date
 		this._dateField = DOM.h('input', {
-			type: 'date',
+			type: FilterDataType.DATE,
 			name: 'value',
 			required: 'required',
 		});
-		
-		this._dateRangeField = DOM.h('div', {}, [
-			DOM.h('input', {
-				type: 'date',
-				name: 'value-from',
-			}),
+
+		this._dateRangeLabel = DOM.h('div', {}, [
+			DOM.h('span', {
+				id: 'event-start'
+			}, [
+				DOM.t('dd. mm. yyyy')
+			]),
 			DOM.t(' - '),
+			DOM.h('span', {
+				id: 'event-end'
+			}, [
+				DOM.t('dd. mm. yyyy')
+			]),
+		]);
+
+		this._dateRangeField = DOM.h('div', {
+			id: "slider"
+		}, [
 			DOM.h('input', {
-				type: 'date',
-				name: 'value-to',
+				type: 'hidden',
+				name: 'value-from',
+				id: 'value-from',
 			}),
+			//DOM.t(' - '),
+			DOM.h('input', {
+				type: 'hidden',
+				name: 'value-to',
+				id: 'value-to',
+			}),
+		]);
+
+		this._showSlider = DOM.h('script', {
+			id: "sliderScript",
+		}, [
+			DOM.t(
+				"function timestamp(str) {" +
+				"    return new Date(str).getTime();" +
+				"}" +
+				"var dateSlider = document.getElementById('slider');" +
+				"window.noUiSlider.create(dateSlider, {" +
+				"	 connect: true," +
+				"    range: {" +
+				"        min: timestamp(1970)," +
+				"        max: timestamp(new Date())" +
+				"    }," +
+				"    step: 24 * 60 * 60 * 1000," +
+				"    start: [timestamp(1970), timestamp(new Date())]," +
+				"    format: wNumb({" +
+				"        decimals: 0" +
+				"    })" +
+				"});" +
+				"var dateValues = [" +
+				"    document.getElementById('event-start')," +
+				"    document.getElementById('event-end')" +
+				"];" +
+				"dateSlider.noUiSlider.on('update', function (values, handle) {" +
+				"	var date = new Date(+values[handle]);" +
+				"   dateValues[handle].innerHTML = date.toLocaleDateString('cs-CZ');" +
+				"});" +
+				"var filterValues = [" +
+				"    document.getElementById('value-from')," +
+				"    document.getElementById('value-to')" +
+				"];" +
+				"dateSlider.noUiSlider.on('update', function (values, handle) {" +
+				"	var date = new Date(+values[handle]);" +
+				"   filterValues[handle].value = date;" +
+				"});")
 		]);
 
 		// number
 		this._numberField = DOM.h('input', {
-			type: 'number',
+			type: FilterDataType.NUMBER,
 			name: 'value',
 			required: 'required',
 		});
@@ -306,7 +363,9 @@ class FilterModalWindow extends ModalWindow {
 
 			case FilterDataType.DATE:
 				if (value === DateFilterOperation.RANGE) {
+					this._valueCell.appendChild(this._dateRangeLabel);
 					this._valueCell.appendChild(this._dateRangeField);
+					this._valueCell.appendChild(this._showSlider);
 				} else {
 					this._valueCell.appendChild(this._dateField);
 				}
@@ -344,9 +403,28 @@ class FilterModalWindow extends ModalWindow {
 	_onFilterFormReset() {
 		this._onBaseFilterChange('nodeType');
 
-		app.nodeList.forEach(node => {
-			node.isFound = false;
+		this.resetFilter();
+	}
+
+	resetFilter() {
+		var n = app.nodeList;
+		var v = app.vertexList;
+		var e = app.edgeList;
+		app.deletedNodeList.forEach(node =>{
+			n.push(node);
 		});
+		app.deletedVertexList.forEach(vertex => {
+			v.push(vertex);
+			app.viewportComponent.addNode(vertex);
+		});
+		app.deletedEdgeList.forEach(edge => {
+			e.push(edge);
+		});
+		n.filter(node => node._rootElement.style.display === 'none').forEach(node => node._rootElement.style.display = '');
+		e.filter(edge => edge._rootElement.style.display === 'none').forEach(edge => edge._rootElement.style.display = '');
+		app.deletedEdgeList = [];
+		app.deletedVertexList = [];
+		app.deletedNodeList = [];
 	}
 
 	_displayFilter(formData) {
@@ -422,8 +500,115 @@ class FilterModalWindow extends ModalWindow {
 				break;
 		}
 
+		let foundNodes = [];
 		nodeFilter.run(app.nodeList).forEach(node => {
-			node.isFound = true;
+				foundNodes.push(node);
 		});
+
+		const filterValues = formData.getAll('value').map(value => parseInt(value));
+		app.nodeList.filter(node => foundNodes.indexOf(node) === -1).forEach(node => {
+			if(node instanceof Group) {
+			let outEdges = node.outEdgeList;
+			let inEdges = node.inEdgeList;
+			this._hideEdges(outEdges);
+			this._hideEdges(inEdges);
+			node._rootElement.style.display = 'none';
+		} else {
+			if(node._group !== null) {
+				if(baseFilter !== 'nodeType' || (filterValues[0] === 1 && operation === "NEQ") || (filterValues[0] === 0 && operation === "EQ")) {
+					node._group._rootElement.style.display = 'none';
+					this._hideEdges(node._group.outEdgeList);
+					this._hideEdges(node._group.inEdgeList);
+				}
+				node._rootElement.style.display = 'none';
+			} else {
+				node._rootElement.style.display = 'none';
+				app.edgeList.forEach(edge => {
+					if(edge.from.id === node.id || edge.to.id === node.id) {
+						edge._rootElement.style.display = 'none';
+					}
+				});
+				}
+			}
+			app.viewportComponent.removeNode(node);
+		});
+
+		var newNodeList = [];
+		var newVertexList = [];
+		var newEdgeList = [];
+
+		app.nodeList.forEach(node => {
+			if(node._rootElement.style.display !== 'none') {
+				newNodeList.push(node);
+			} else {
+				app.deletedNodeList.push(node);
+			}
+		});
+		app.vertexList.forEach(vertex => {
+			if(vertex._rootElement.style.display !== 'none') {
+				newVertexList.push(vertex);
+			} else {
+				app.deletedVertexList.push(vertex);
+			}
+		});
+		app.edgeList.forEach(edge => {
+			if(edge._rootElement.style.display !== 'none') {
+				newEdgeList.push(edge);
+			} else {
+				app.deletedEdgeList.push(edge);
+			}
+		});
+
+		app.nodeList = newNodeList;
+		app.vertexList = newVertexList;
+		app.edgeList = newEdgeList;
+	}
+
+	_hideEdges(edges) {
+		edges.forEach(edge => {
+				edge._rootElement.style.display = 'none';
+		});
+	}
+
+	setDateBounds(minDate, maxDate) {
+		if(minDate !== null && maxDate !== null) {
+			this._showSlider = DOM.h('script', {
+				id: "sliderScript",
+			}, [
+				DOM.t(
+					"function timestamp(str) {" +
+					"    return new Date(str).getTime();" +
+					"}" +
+					"var dateSlider = document.getElementById('slider');" +
+					"window.noUiSlider.create(dateSlider, {" +
+					"	 connect: true," +
+					"    range: {" +
+					"        min: " + minDate.getTime() + "," +
+					"        max: " + maxDate.getTime() + "" +
+					"    }," +
+					"    step: 24 * 60 * 60 * 1000," +
+					"    start: [" + minDate.getTime() + ", " + maxDate.getTime() + "]," +
+					"    format: wNumb({" +
+					"        decimals: 0" +
+					"    })" +
+					"});" +
+					"var dateValues = [" +
+					"    document.getElementById('event-start')," +
+					"    document.getElementById('event-end')" +
+					"];" +
+					"dateSlider.noUiSlider.on('update', function (values, handle) {" +
+					"	var date = new Date(+values[handle]);" +
+					"   dateValues[handle].innerHTML = date.toLocaleDateString('cs-CZ');" +
+					"});" +
+					"var filterValues = [" +
+					"    document.getElementById('value-from')," +
+					"    document.getElementById('value-to')" +
+					"];" +
+					"dateSlider.noUiSlider.on('update', function (values, handle) {" +
+					"	var date = new Date(+values[handle]);" +
+					"   filterValues[handle].value = date;" +
+					"});")
+			]);
+		}
 	}
 }

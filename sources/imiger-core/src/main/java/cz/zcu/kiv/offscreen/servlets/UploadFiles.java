@@ -63,10 +63,12 @@ public class UploadFiles extends BaseServlet {
         try {
             FileLoader fileLoader = new FileLoader(request);
             Map<String, String> formFields = fileLoader.loadFormFields();
+            String visualisation = formFields.get("visualisation");
             String fileType = formFields.get("fileFormat");
             String fileName = formFields.get("filename");
+            String initialElimination = formFields.get("enableInitialElimination");
 
-            if (fileType == null || fileName == null) {
+            if (fileType == null || fileName == null || fileName.isEmpty()) {
                 throw new IllegalArgumentException("Missing parameter");
             }
 
@@ -85,6 +87,15 @@ public class UploadFiles extends BaseServlet {
             request.getSession().setAttribute("diagram_string", fileContent);
             request.getSession().setAttribute("diagram_type", fileType);
             request.getSession().setAttribute("diagram_filename", fileName);
+
+            if(visualisation == null) {
+                request.getSession().setAttribute("showTimeline", false);
+            } else if (visualisation.equals("timeline")) {
+                request.getSession().setAttribute("showTimeline", true);
+            }
+
+            request.getSession().setAttribute("diagram_initial_elimination",
+                    initialElimination != null ? initialElimination : "false");
             response.sendRedirect(getServletContext().getInitParameter("APP_HOME_URL") + "graph");
             logger.debug("send redirect to /graph");
 

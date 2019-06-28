@@ -1,0 +1,330 @@
+/* line 17, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000317}}
+.timeline {
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+/* line 34, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000334}}
+.timeline * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+/* line 40, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000340}}
+.timeline a {
+  text-decoration: none;
+}
+/* line 42, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000342}}
+.timeline a:hover,
+.timeline a:active,
+.timeline a:focus {
+  text-decoration: none;
+}
+/* line 47, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000347}}
+.timeline .tool-btn {
+  font-size: 80%;
+  background-color: #424c55;
+  padding: 3px 6px;
+  margin: 2px;
+  border-radius: 2px;
+  color: #ffffff !important;
+}
+/* line 56, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000356}}
+.timeline .tool-btn.disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+/* line 62, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000362}}
+.timeline .tool-btn:not(.disabled):hover {
+  background-color: #36c77b;
+}
+/* line 68, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000368}}
+.timeline-wrapper {
+  top: 0;
+  bottom: 0;
+  width: 300%;
+  height: 100%;
+}
+/* line 74, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000374}}
+.timeline-wrapper-guideline {
+  border-style: dotted;
+  border-color: gray;
+  border-width: 0;
+  position: absolute;
+  z-index: 110000;
+}
+/* line 84, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000384}}
+.timeline-relation-viewer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 40px;
+  width: 100%;
+  height: 100%;
+  z-index: 99998;
+  background: rgba(255, 255, 255, 0.5);
+}
+/* line 95, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000395}}
+.timeline-navbar {
+  width: 100%;
+  background: #202931;
+  height: 30px;
+  padding: 4px 5px;
+  z-index: 110000;
+  color: #ffffff;
+}
+/* line 103, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003103}}
+.timeline-navbar-left,
+.timeline-navbar-right,
+.timeline-navbar-center {
+  display: inline-block;
+  width: 33.3%;
+}
+/* line 108, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003108}}
+.timeline-navbar-left {
+  text-align: left;
+}
+/* line 112, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003112}}
+.timeline-navbar-center {
+  text-align: center;
+  padding-top: 1px;
+}
+/* line 117, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003117}}
+.timeline-navbar-right {
+  text-align: right;
+}
+/* line 121, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003121}}
+.timeline-navbar-prev-btn,
+.timeline-navbar-next-btn {
+  font-size: 80%;
+  background-color: #424c55;
+  padding: 3px 6px;
+  margin: 2px;
+  border-radius: 2px;
+  color: #ffffff !important;
+}
+/* line 56, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000356}}
+.timeline-navbar-prev-btn.disabled,
+.timeline-navbar-next-btn.disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+/* line 62, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\0000362}}
+.timeline-navbar-prev-btn:not(.disabled):hover,
+.timeline-navbar-next-btn:not(.disabled):hover {
+  background-color: #36c77b;
+}
+/* line 126, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003126}}
+.timeline-zoombar {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 2px;
+  right: 5px;
+  top: 35px;
+  z-index: 110000;
+}
+/* line 134, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003134}}
+.timeline-zoombar a {
+  display: inline-block;
+}
+/* line 138, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003138}}
+.timeline-zoombar-info {
+  font-size: 80%;
+  display: inline-block;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+/* line 147, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003147}}
+.timeline-ruler {
+  color: #ffffff;
+  width: 100%;
+  background: #424c55;
+  height: 40px;
+  position: relative;
+  bottom: 0;
+  overflow: hidden;
+}
+/* line 156, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003156}}
+.timeline-ruler-major-axis {
+  position: relative;
+  width: 100%;
+  margin-left: 1px;
+}
+/* line 161, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003161}}
+.timeline-ruler-major-axis-interval {
+  position: absolute;
+  top: 0;
+  border-right: solid 1px #7c8389;
+  height: 40px;
+}
+/* line 167, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003167}}
+.timeline-ruler-major-axis-interval-label {
+  font-size: 90%;
+  padding: 4px 3px;
+}
+/* line 175, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003175}}
+.timeline-ruler-minor-axis {
+  position: absolute;
+  bottom: 0;
+}
+/* line 180, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003180}}
+.timeline-ruler-minor-axis-interval {
+  position: absolute;
+  bottom: 0;
+  display: inline-block;
+  height: 15px;
+}
+/* line 186, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003186}}
+.timeline-ruler-minor-axis-interval:not(:last-of-type) {
+  border-right: solid 1px #7c8389;
+}
+/* line 192, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003192}}
+.timeline-ruler-highlight-duration {
+  background-color: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  top: 0;
+  z-index: 99999;
+}
+/* line 201, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003201}}
+.timeline-timepointer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 50%;
+  border-left: solid 1px rgba(0, 0, 0, 0.15);
+  width: 0px;
+  z-index: 110000;
+}
+/* line 211, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003211}}
+.timeline-band {
+  overflow: hidden;
+  position: relative;
+}
+/* line 216, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003216}}
+.timeline-band-group {
+  position: relative;
+}
+/* line 220, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003220}}
+.timeline-banditem {
+  cursor: pointer;
+  font-size: 11px;
+  z-index: 99997;
+  height: 15px;
+}
+/* line 227, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003227}}
+.timeline-banditem.focused {
+  z-index: 100000;
+}
+/* line 230, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003230}}
+.timeline-banditem.focused .duration {
+  border-color: #000 !important;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+/* line 236, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003236}}
+.timeline-banditem .duration {
+  float: left;
+  border-width: 1px;
+  border-style: solid;
+  height: 15px;
+}
+/* line 242, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003242}}
+.timeline-banditem .duration.moment {
+  width: 15px;
+  border-radius: 50%; 
+  border-style: solid;
+  border-width: 1;
+}
+/* line 254, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003254}}
+.timeline-banditem .title {
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: left;
+  white-space: nowrap;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 266, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003266}}
+.timeline-band-legend {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 11px;
+  z-index: 110000;
+}
+/* line 273, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003273}}
+.timeline-band-legend-item {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4px;
+  margin: 4px;
+  opacity: 0.7;
+}
+/* line 282, C:\Program Files (x86)\EasyPHP-12.1\data\localweb\dp-prj\public_html\less\cz.kajda.timeline.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Program Files (x86)\/EasyPHP-12\.1\/data\/localweb\/dp-prj\/public_html\/less\/cz\.kajda\.timeline\.less}line{font-family:\00003282}}
+.timeline-item-popover {
+  position: absolute;
+  z-index: 99999999;
+  display: none;
+  border: solid 1px gray;
+  border-radius: 2px;
+  font-size: 11px;
+  background-color: #fff;
+  padding: 8px;
+  max-width: 300px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}

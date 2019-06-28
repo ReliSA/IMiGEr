@@ -119,6 +119,8 @@ class VertexContextMenuList {
 
 		// add the vertex to the group
 		group.addVertex(this._vertex);
+        var notifyTimeline = new CustomEvent('imigerExclude', { detail: { entityID: this._vertex.id } });
+        document.dispatchEvent(notifyTimeline);
 
 		app.viewportComponent.contextMenuComponent.close();
 	}

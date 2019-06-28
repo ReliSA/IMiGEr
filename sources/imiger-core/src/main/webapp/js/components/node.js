@@ -323,6 +323,9 @@ class Node {
 		this.isExcluded = true;
 		this.remove(true);
 
+        var notifyTimeline = new CustomEvent('imigerExclude', { detail: { entityID: this.id } });
+        document.dispatchEvent(notifyTimeline);
+
 		app.viewportComponent.removeNode(this);
 	}
 
@@ -334,6 +337,9 @@ class Node {
 
 		this.isExcluded = false;
 		this.remove(false);
+
+        var notifyTimeline = new CustomEvent('imigerInclude', { detail: { entityID: this.id } });
+        document.dispatchEvent(notifyTimeline);
 
 		app.viewportComponent.addNode(this);
 	}
@@ -407,8 +413,17 @@ class Node {
 	_onNodeClick(e) {
 		e.stopPropagation();
 
+        var archetypeString = app.archetype.vertex[this.archetype].name.toLowerCase();;
+        if (archetypeString !== 'person') archetypeString = 'item';
+        var notifyTimeline;
+
 		if (this.isExcluded) {
 			this.highlightWithNeighbours(!this.isHighlighted);
+
+            if (e.detail !== this.id) {
+                notifyTimeline = new CustomEvent('imigerClick', { detail: { entityID: this.id, archetype: archetypeString } });
+                document.dispatchEvent(notifyTimeline);
+            }
 
 		} else {
 			if (this._panning === true) {
@@ -419,8 +434,14 @@ class Node {
 			if (document.modeForm.mode.value === 'exclude' || (document.modeForm.mode.value === 'move' && e.altKey === true)) {
 				this.exclude();
 				app.sidebarComponent.excludedNodeListComponent.addNode(this);
+
 			} else if (document.modeForm.mode.value === 'move') {
 				this.highlightWithNeighbours(!this.isHighlighted);
+
+				if (e.detail !== this.id) {
+                    notifyTimeline = new CustomEvent('imigerClick', { detail: { entityID: this.id, archetype: archetypeString } });
+                    document.dispatchEvent(notifyTimeline);
+                }
 
 				if (this.isHighlighted) {
 					app.activeNode = this;

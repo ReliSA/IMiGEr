@@ -1,0 +1,297 @@
+/* 
+    Created on : 31.12.2014, 14:14:32
+    Author     : Michal Kacerovský, kajda.cz
+	Timeline styles.
+*/
+
+@background : #202931;
+@element-background : #424C55;
+@text : #FFF;
+@text-darker : #7C8389;
+@element-special : #36C77B;
+@glasspane-light : rgba(255,255,255,0.75);
+
+@ruler-height : 40px;
+@navbar-height : 30px;
+
+
+.timeline {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    
+    * {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    
+    a {
+        text-decoration: none;
+        &:hover, &:active, &:focus {
+            text-decoration: none;
+        }
+    }
+    
+    .tool-btn {
+        font-size: 80%;
+        background-color: @element-background;
+        padding: 3px 6px;
+        margin: 2px;
+        border-radius: 2px;
+        color: @text !important;
+        
+        
+        &.disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+        
+        &:not(.disabled) {
+            &:hover {
+                background-color: @element-special;
+            }
+        }
+    }
+    
+    &-wrapper {
+        top: 0;
+        bottom: 0;
+        width: 300%;
+        height: 100%;
+        
+        &-guideline {
+            border-style: dotted;
+            border-color: gray;
+            border-width: 0;
+            position: absolute;
+            z-index: 110000;
+            
+        }
+    }
+    
+    &-relation-viewer {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: @ruler-height;
+        width: 100%;
+        height: 100%;
+        z-index: 99998;
+        background : rgba(255,255,255,0.5);
+    }
+    
+    &-navbar {
+        width: 100%;
+        background: @background;
+        height: @navbar-height;
+        padding: 4px 5px;
+        z-index: 110000;
+        color: @text;
+        
+        &-left, &-right, &-center {
+            display: inline-block;
+            width: 33.3%;
+        }
+        
+        &-left {
+            text-align: left;
+        }
+        
+        &-center {
+            text-align: center;
+            padding-top: 1px;
+        }
+        
+        &-right {
+            text-align: right;
+        }
+            
+        &-prev-btn, &-next-btn {
+            .tool-btn;
+        }
+    }
+    
+    &-zoombar {
+        position: absolute;
+        background-color: @glasspane-light;
+        padding: 2px;
+        right: 5px;
+        top: 35px;
+        z-index: 110000;
+        
+        a {
+            display: inline-block;
+        }
+        
+        &-info {
+            font-size: 80%;
+            display: inline-block;
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+        
+    }
+    
+    &-ruler {
+        color: @text;
+        width: 100%;
+        background: @element-background;
+        height: @ruler-height;
+        position: relative;
+        bottom: 0;
+        overflow: hidden;
+        
+        &-major-axis { 
+            position: relative;
+            width: 100%;   
+            margin-left: 1px;
+
+            &-interval {
+                position: absolute;
+                top: 0;
+                border-right: solid 1px @text-darker;
+                height:  40px;
+        
+                &-label {
+                    font-size: 90%;
+                    padding: 4px 3px;
+                }
+
+            }
+        }
+
+        &-minor-axis {
+           // margin: 0 0 0 -1px;
+            position: absolute;
+            bottom: 0;
+
+            &-interval {
+                position: absolute;
+                bottom: 0;
+                display: inline-block;
+                height: 15px;
+                
+                &:not(:last-of-type) {
+                    border-right: solid 1px @text-darker;
+                }
+            }
+        }
+        
+        &-highlight-duration {
+            background-color: rgba(255,255,255,0.4);
+            position: absolute;
+            top: 0;
+            z-index: 99999;
+        }
+        
+    }
+    
+    &-timepointer {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        left: 50%;
+        border-left: solid 1px rgba(0,0,0,0.15);
+        width: 0px;
+        z-index: 110000;
+    }
+    
+    &-band {
+        overflow: hidden;
+        position: relative;
+    }
+    
+    &-band-group {
+        position: relative;
+    }
+    
+    &-banditem {
+        cursor: pointer;
+        font-size: 11px;
+        z-index: 99997;
+        height: 15px;
+        
+        
+        &.focused {
+            z-index: 100000;
+            
+            .duration {
+                border-color: #000 !important;
+                box-shadow: 0 0 3px rgba(0,0,0,0.5);
+            }
+        }
+        
+        .duration {
+            float: left;
+            border-width: 1px;
+            border-style: solid;
+            height: 15px;
+        
+            &.moment {
+                width : 15px;
+                border-radius : 50%;
+                border-style : solid;
+                border-width : 1;
+            }
+
+            &.interval {
+
+            }
+        }    
+        
+        .title {
+            padding-left: 3px;
+            padding-right: 3px;
+            text-align: left;
+            white-space: nowrap;
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
+    
+    &-band-legend {
+        position : absolute;
+        left : 0;
+        top : 0;
+        font-size: 11px;
+        z-index: 110000;
+        
+        &-item {
+            position: absolute;
+            background-color: rgba(255,255,255,0.8);
+            padding: 4px;
+            margin: 4px;
+            opacity: 0.7;
+        }
+    }
+    
+    &-item-popover {
+        position: absolute;
+        z-index: 99999999;
+        display: none;
+        border: solid 1px gray;
+        border-radius: 2px;
+        font-size: 11px;
+        background-color: #fff;
+        padding: 8px;
+        max-width: 300px;
+        box-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+        -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+        -moz-box-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+    }
+}

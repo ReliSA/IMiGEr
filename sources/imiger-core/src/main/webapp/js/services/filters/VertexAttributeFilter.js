@@ -1,8 +1,8 @@
 class VertexAttributeFilter extends AbstractFilter {
 	/**
 	 * @constructor
-	 * @param {string} additionalFilter 
-	 * @param {string} dataType 
+	 * @param {string} additionalFilter
+	 * @param {string} dataType
 	 * @param {string} operation Filtering operation.
 	 * @param {FormData} formData Raw, unprocessed form content.
 	 */
@@ -23,9 +23,9 @@ class VertexAttributeFilter extends AbstractFilter {
 		// prefilter
 		nodeList = nodeList.filter(node => {
 			return node instanceof Vertex;
-		}).filter(vertex => {
+	}).filter(vertex => {
 			return vertex.attributes.some(attribute => attribute[0] === this._filterAttributeName);
-		});
+	});
 
 		// filter
 		return nodeList.filter(this._getFilterFunction());
@@ -106,26 +106,26 @@ class VertexAttributeFilter extends AbstractFilter {
 		switch (operation) {
 			case EnumFilterOperation.EQ:
 				filterFn = vertex => {
-					const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
-					const attributeValues = attribute[1].split(', ');
+				const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
+				const attributeValues = attribute[1].split(', ');
 
-					// some (at least one) of the attribute items should be contained in the filters
-					return attributeValues.some(attributeValue => {
-						return filterValues.indexOf(attributeValue) > -1;
-					});
-				};
+				// some (at least one) of the attribute items should be contained in the filters
+				return attributeValues.some(attributeValue => {
+					return filterValues.indexOf(attributeValue) > -1;
+			});
+			};
 				break;
 
 			case EnumFilterOperation.NEQ:
 				filterFn = vertex => {
-					const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
-					const attributeValues = attribute[1].split(', ');
+				const attribute = vertex.attributes.find(attribute => attribute[0] === filterAttributeName);
+				const attributeValues = attribute[1].split(', ');
 
-					// every of the attribute items should not be contained in the filters (translated: none of the items should be contained in the filters)
-					return attributeValues.every(attributeValue => {
-						return filterValues.indexOf(attributeValue) < 0;
-					});
-				};
+				// every of the attribute items should not be contained in the filters (translated: none of the items should be contained in the filters)
+				return attributeValues.every(attributeValue => {
+					return filterValues.indexOf(attributeValue) < 0;
+			});
+			};
 				break;
 
 			default:

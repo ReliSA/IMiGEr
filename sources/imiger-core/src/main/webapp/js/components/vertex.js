@@ -322,7 +322,7 @@ class Vertex extends Node {
 
 		app.viewportComponent.vertexPopoverComponent.title = this.name + ` (${app.archetype.vertex[this.archetype].name})`;
 		app.viewportComponent.vertexPopoverComponent.body = this.attributes;
-		app.viewportComponent.vertexPopoverComponent.position = new Coordinates(e.clientX, e.clientY);
+		app.viewportComponent.vertexPopoverComponent.position = new Coordinates(e.clientX, e.layerY);
 		app.viewportComponent.vertexPopoverComponent.open();
 	}
 
@@ -340,7 +340,7 @@ class Vertex extends Node {
 		if (nodeList.length === 0) return;
 
 		app.viewportComponent.contextMenuComponent.vertex = this;
-		app.viewportComponent.contextMenuComponent.position = new Coordinates(e.clientX, e.clientY);
+		app.viewportComponent.contextMenuComponent.position = new Coordinates(e.clientX, e.layerY);
 
 		// fill list with items
 		nodeList.forEach(node => {

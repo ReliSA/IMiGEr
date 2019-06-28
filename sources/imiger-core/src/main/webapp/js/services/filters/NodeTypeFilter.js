@@ -28,16 +28,16 @@ class NodeTypeFilter extends AbstractFilter {
 		switch (this._operation) {
 			case EnumFilterOperation.EQ:
 				filterFn = node => {
-					return (node instanceof Vertex && filterValues.indexOf(NodeTypeFilter.VERTEX) > -1)
-						|| (node instanceof Group && filterValues.indexOf(NodeTypeFilter.GROUP) > -1);
-				};
+				return (node instanceof Vertex && filterValues.indexOf(NodeTypeFilter.VERTEX) > -1)
+					|| (node instanceof Group && filterValues.indexOf(NodeTypeFilter.GROUP) > -1);
+			};
 				break;
 
 			case EnumFilterOperation.NEQ:
 				filterFn = node => {
-					return (node instanceof Vertex && filterValues.indexOf(NodeTypeFilter.VERTEX) < 0)
-						|| (node instanceof Group && filterValues.indexOf(NodeTypeFilter.GROUP) < 0);
-				};
+				return (node instanceof Vertex && filterValues.indexOf(NodeTypeFilter.VERTEX) < 0)
+					|| (node instanceof Group && filterValues.indexOf(NodeTypeFilter.GROUP) < 0);
+			};
 				break;
 
 			default:

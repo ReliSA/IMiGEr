@@ -78,6 +78,14 @@
 						</c:forEach>
 					</div>
 
+					<div class="form-field">
+						Chose additional visualisation:<br>
+						<input type="checkbox" name="visualisation" value="timeline" id="timeline">
+						<label for="timeline">Timeline</label><br>
+						<input type="checkbox" id="enableInitialElimination" name="enableInitialElimination" value="true" checked>
+						<label for="enableInitialElimination">Initial elimination</label>
+					</div>
+
 					<button id="btnLoad" type="submit">Start visualization</button>
 				</form>
 			</section>
