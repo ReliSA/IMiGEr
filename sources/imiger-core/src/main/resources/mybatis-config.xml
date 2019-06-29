@@ -4,14 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+    <!--  This properties should be configured  -->
+    <properties resource="application.properties">
+        <property name="db.driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="db.url" value="jdbc:mysql://localhost/visualization_tool?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"/>
+        <property name="db.username" value="admin"/>
+        <property name="db.password" value="admin"/>
+    </properties>
+
+    <!--  Please do not configure environments and mappers  -->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="${JDBC_DATABASE_URL}"/>
-                <property name="username" value="${JDBC_DATABASE_USERNAME}"/>
-                <property name="password" value="${JDBC_DATABASE_PASSWORD}"/>
+                <property name="driver" value="${db.driver}"/>
+                <property name="url" value="${db.url}"/>
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
             </dataSource>
         </environment>
     </environments>
