@@ -1,0 +1,87 @@
+{
+	"attributeTypes": [
+		{
+			"dataType": <string>,
+			"name": <string>,
+			"text": <string>
+		},
+	],
+	"edgeArchetypes": [
+		{
+			"name": <string>,
+			"text": <string>
+		},
+	],
+	"vertexArchetypes": [
+		{
+			"icon": <string>,
+			"name": <string>,
+			"text": <string>
+		},
+	],
+	"vertices": [
+		{
+			"archetype": <int>,
+			"attributes": [
+				[
+					<string -index>
+					<string -value>
+				],
+			],
+			"id": <int>,
+			"text": <string>,
+			"name": <string>,
+			"position": {
+				"x": <float>,
+				"y": <float>
+			}
+		},
+	],
+	"edges": [
+		{
+			"subedgeInfo": [
+				{
+					"id": <int>,
+					"archetype": <int>,
+					"attributes": [
+						[
+							<string -key>
+							<string -value>
+						],
+					]
+				},
+			],
+			"from": <int>,
+			"id": <int>,
+			"text": <string>,
+			"to": <int>,
+		}
+	],
+	"possibleEnumValues ": {
+		<attribute idx>: [
+			<string>,
+			[<string>, ...],
+		],
+	},
+	"groups": [
+		{
+			"id": <int>,
+			"name": <string>,
+			"verticesId": [<int>, <int>, ...],
+			"verticesEdgeFromId": [<int>, <int>, ...],
+			"verticesEdgeToId": [<int>, <int>, ...],
+			"position": {
+				"x": <float>,
+				"y": <float>
+			}
+		},
+	],
+	"sideBar": [
+		{
+			"id": <string>
+		},
+	],
+	"highlightedVertex": <string>,
+	"highlightedEdge": <string>
+}
+	
