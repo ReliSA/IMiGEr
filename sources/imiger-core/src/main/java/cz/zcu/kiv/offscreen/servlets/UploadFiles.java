@@ -88,10 +88,10 @@ public class UploadFiles extends BaseServlet {
             request.getSession().setAttribute("diagram_type", fileType);
             request.getSession().setAttribute("diagram_filename", fileName);
 
-            if(visualisation == null) {
-                request.getSession().setAttribute("showTimeline", false);
-            } else if (visualisation.equals("timeline")) {
+            if(visualisation != null && visualisation.equals("timeline")) {
                 request.getSession().setAttribute("showTimeline", true);
+            } else  {
+                request.getSession().setAttribute("showTimeline", false);
             }
 
             request.getSession().setAttribute("diagram_initial_elimination",
