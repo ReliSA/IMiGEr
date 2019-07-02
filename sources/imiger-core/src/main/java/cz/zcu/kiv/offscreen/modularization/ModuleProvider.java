@@ -4,12 +4,9 @@ import cz.zcu.kiv.imiger.spi.IModule;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
-import java.nio.file.*;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Tomáš Šimandl
@@ -24,15 +21,7 @@ public class ModuleProvider {
 
     /** Queue containing actual loaded modules. */
     private Map<String, IModule> modules = new ConcurrentHashMap<>();
-    /** Instance of DynamicServiceLoader. */
-    private final DynamicServiceLoader<IModule> serviceLoader;
 
-    /** Instance of ScheduledExecutorService used for scheduling of module folder watcher. */
-    private ScheduledExecutorService executor;
-    /** Instance of ScheduledFuture used for scheduling of module folder watcher. */
-    private ScheduledFuture scheduledFuture;
-    /** Instance of WatchService used for watching of folder with modules. */
-    private WatchService watcher = null;
 
     /**
      * Static method for creating only one instance of this class.
@@ -53,86 +42,8 @@ public class ModuleProvider {
      * When watcher fails than is automatically starts new watcher after 5 minutes timeout.
      */
     private ModuleProvider() {
-        serviceLoader = new DynamicServiceLoader<>(IModule.class, MODULES_PATH);
-
+        DynamicServiceLoader<IModule> serviceLoader = new DynamicServiceLoader<>(IModule.class, MODULES_PATH);
         processModules(serviceLoader.load());
-
-        executor = Executors.newSingleThreadScheduledExecutor();
-        Runnable task = this::initModulesWatcher;
-        logger.debug("Scheduling Modules Watcher thread.");
-        // task will be scheduled after 1 minute
-        // When task ends (on failure) after one minute will be planed again
-        scheduledFuture = executor.scheduleWithFixedDelay(task, 0, 5, TimeUnit.MINUTES);
-    }
-
-    /**
-     * Method is used for stopping watcher on modules folder and thread associate with it.
-     */
-    public void stopWatcher() {
-        logger.debug("Stopping WatcherProvider");
-
-        try {
-            logger.info("Closing WatcherService");
-            if (watcher != null) watcher.close();
-        } catch (IOException e) {
-            logger.debug("Closing watcher throw exception: ", e);
-        }
-
-        logger.info("Canceling scheduler");
-        if (scheduledFuture != null) scheduledFuture.cancel(true);
-
-        logger.info("Shutting down an ScheduledExecutorService");
-        if (executor != null) executor.shutdown();
-    }
-
-    /**
-     * Method open folder with modules and starts watcher on folder. Watcher is activated when any file is created,
-     * deleted of modified in modules folder. Activation of watcher run loading (method moduleLoader.loadModules)
-     * and storing (method processModules) of all modules.
-     */
-    private void initModulesWatcher() {
-        Optional<Path> modulesFolderOptional = serviceLoader.getServicesPath();
-        if (!modulesFolderOptional.isPresent()) {
-            return;
-        }
-
-        try {
-            logger.debug("Initializing new WatcherService for modules directory");
-
-            watcher = FileSystems.getDefault().newWatchService();
-
-            Path path = modulesFolderOptional.get();
-            path.register(watcher,
-                    StandardWatchEventKinds.ENTRY_CREATE,
-                    StandardWatchEventKinds.ENTRY_DELETE,
-                    StandardWatchEventKinds.ENTRY_MODIFY);
-
-            while (true) {
-                WatchKey key = watcher.take();
-                logger.debug("Watcher events was detected");
-
-                for (WatchEvent<?> event : key.pollEvents()) {
-                    WatchEvent.Kind<?> kind = event.kind();
-
-                    if (kind == StandardWatchEventKinds.OVERFLOW) {
-                        logger.debug("Overflow watcher event was detected");
-                        continue;
-                    }
-
-                    serviceLoader.reload();
-                    processModules(serviceLoader.load());
-                    break; // watching only one folder and loading all files every loop => Only one iteration is needed.
-                }
-
-                if (!key.reset()) {
-                    logger.warn("Stopping modules directory watcher");
-                    break;
-                }
-            }
-
-        } catch (IOException | InterruptedException e) {
-            logger.error("Modules directory watcher throw an exception: ", e);
-        }
     }
 
     /**
@@ -155,7 +66,7 @@ public class ModuleProvider {
     /**
      * Return all loaded modules in map where value is Pair of visible name and module accessible method and key is
      * hash code of visible name.
-     * 
+     *
      * @return all loaded modules.
      */
     public Map<String, IModule> getModules() {
