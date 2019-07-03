@@ -1,0 +1,1 @@
+All diagrams were created with online application draw.io For updating them can be used `.html` version of diagrams. HTML page contains button for edit which opens diagram on draw.io server.
