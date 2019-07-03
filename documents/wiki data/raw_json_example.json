@@ -55,7 +55,7 @@
 			"id": <int>,
 			"text": <string>,
 			"to": <int>,
-		}
+		},
 	],
 	"possibleEnumValues ": {
 		<attribute idx>: [
@@ -78,7 +78,8 @@
 	],
 	"sideBar": [
 		{
-			"id": <string>
+			"id": <string>,
+			"isIconDiplayed": <bool>
 		},
 	],
 	"highlightedVertex": <string>,
