@@ -68,6 +68,10 @@
 		<servlet-name>DataAccessError</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.DataAccessError</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetProcessingModules</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetProcessingModules</servlet-class>
+	</servlet>
 
 	<!--
 	URL-to-servlet mappings
@@ -115,6 +119,10 @@
 	<servlet-mapping>
 		<servlet-name>GetPrivateDiagrams</servlet-name>
 		<url-pattern>/api/get-private-diagrams</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetProcessingModules</servlet-name>
+		<url-pattern>/api/get-processing-modules</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RestRawInput</servlet-name>
