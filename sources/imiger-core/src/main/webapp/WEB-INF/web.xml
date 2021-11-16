@@ -57,6 +57,10 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetPrivateDiagrams</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>GetPublicDiagrams</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetPrivateDiagrams</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>RestRawInput</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.rest.RawInput</servlet-class>
 	</servlet>
@@ -74,7 +78,7 @@
 	-->
 	<servlet-mapping>
 		<servlet-name>UploadFiles</servlet-name>
-		<url-pattern></url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ShowGraph</servlet-name>
@@ -111,6 +115,10 @@
 	<servlet-mapping>
 		<servlet-name>GetPrivateDiagrams</servlet-name>
 		<url-pattern>/api/get-private-diagrams</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetPublicDiagrams</servlet-name>
+		<url-pattern>/api/get-public-diagrams</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetProcessingModules</servlet-name>
