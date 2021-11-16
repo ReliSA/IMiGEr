@@ -41,10 +41,6 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetDBDiagram</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>GetDBDiagramData</servlet-name>
-		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetDBDiagramData</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>SaveDiagram</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.SaveDiagram</servlet-class>
 	</servlet>
@@ -99,10 +95,6 @@
 	<servlet-mapping>
 		<servlet-name>GetDBDiagram</servlet-name>
 		<url-pattern>/api/get-diagram</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>GetDBDiagramData</servlet-name>
-		<url-pattern>/api/get-diagram-data</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SaveDiagram</servlet-name>
