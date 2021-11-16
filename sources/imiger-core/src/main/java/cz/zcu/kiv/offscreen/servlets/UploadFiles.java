@@ -3,8 +3,6 @@ package cz.zcu.kiv.offscreen.servlets;
 import cz.zcu.kiv.imiger.spi.IModule;
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
 import cz.zcu.kiv.offscreen.storage.FileLoader;
-import cz.zcu.kiv.offscreen.user.DataAccessException;
-import cz.zcu.kiv.offscreen.user.dao.DiagramDAO;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -16,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,32 +23,11 @@ public class UploadFiles extends BaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         logger.debug("Processing request");
 
-        List<Map<String, Object>> userDiagramList = new ArrayList<>();
-        List<Map<String, Object>> publicDiagramList = new ArrayList<>();
-        try {
-            DiagramDAO diagramDAO = new DiagramDAO();
-
-            if (isLoggedIn(request)) {
-                logger.debug("Logged user");
-                int loggedUserId = getUserId(request);
-
-                userDiagramList = diagramDAO.getDiagramsByUserId(loggedUserId);
-            }
-
-            publicDiagramList = diagramDAO.getPublicDiagrams();
-
-        } catch (DataAccessException e){
-            logger.error("Data access exception");
-        }
-
-        request.setAttribute("diagramsPrivate", userDiagramList);
-        request.setAttribute("diagramsPublic", publicDiagramList);
-        request.setAttribute("processingModules", ModuleProvider.getInstance().getModules());
         // render
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/uploadFiles.jsp");
+        // TODO: Return main page of the Vue.JS application as soon as it's available
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.html");
         rd.forward(request, response);
         logger.debug("Request processed");
     }
