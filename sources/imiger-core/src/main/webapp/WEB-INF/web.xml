@@ -49,6 +49,10 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.RemoveDiagram</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>UploadDiagram</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.UploadDiagram</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>GetPrivateDiagrams</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetPrivateDiagrams</servlet-class>
 	</servlet>
@@ -78,7 +82,7 @@
 	-->
 	<servlet-mapping>
 		<servlet-name>UploadFiles</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern></url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ShowGraph</servlet-name>
@@ -123,6 +127,10 @@
 	<servlet-mapping>
 		<servlet-name>GetLoggedInUser</servlet-name>
 		<url-pattern>/api/get-logged-in-user</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadDiagram</servlet-name>
+		<url-pattern>/api/upload-diagram</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RestRawInput</servlet-name>
