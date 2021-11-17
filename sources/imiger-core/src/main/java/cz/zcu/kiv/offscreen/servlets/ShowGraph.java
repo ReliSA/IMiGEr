@@ -21,7 +21,9 @@ public class ShowGraph extends BaseServlet {
         logger.debug("Processing request");
 
         // render
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/showGraph.jsp");
+        // TODO: Return graph display page of the Vue.JS application as soon as it's available
+        // TODO: It is also possible that this page will be removed completely and the app will be a SPA
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/graph_display.html");
         rd.forward(request, response);
         logger.debug("Request processed");
     }

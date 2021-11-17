@@ -27,7 +27,7 @@ public class UploadFiles extends BaseServlet {
 
         // render
         // TODO: Return main page of the Vue.JS application as soon as it's available
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/main.html");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/welcome_page.html");
         rd.forward(request, response);
         logger.debug("Request processed");
     }
