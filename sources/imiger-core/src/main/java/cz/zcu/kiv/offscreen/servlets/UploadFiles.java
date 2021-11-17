@@ -71,6 +71,8 @@ public class UploadFiles extends BaseServlet {
 
             request.getSession().setAttribute("diagram_initial_elimination",
                     initialElimination != null ? initialElimination : "false");
+
+            // TODO Do we want redirect here or will we create SPA?
             response.sendRedirect(getServletContext().getInitParameter("APP_HOME_URL") + "graph");
             logger.debug("send redirect to /graph");
 

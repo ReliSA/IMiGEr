@@ -61,6 +61,10 @@
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetPrivateDiagrams</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>GetLoggedInUser</servlet-name>
+		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.GetLoggedInUser</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>RestRawInput</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.rest.RawInput</servlet-class>
 	</servlet>
@@ -123,6 +127,10 @@
 	<servlet-mapping>
 		<servlet-name>GetProcessingModules</servlet-name>
 		<url-pattern>/api/get-processing-modules</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetLoggedInUser</servlet-name>
+		<url-pattern>/api/get-logged-in-user</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RestRawInput</servlet-name>
