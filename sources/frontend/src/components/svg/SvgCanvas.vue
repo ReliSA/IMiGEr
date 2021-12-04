@@ -23,6 +23,7 @@
                 :end-y="vertices[l.to].y"
                 :title="l.description"
                 :style="style.edge"
+                :highlighted="l.highlighted"
                 :start-offset="style.vertex.radius"
                 :key="`link-${l.id}`"/>
 
