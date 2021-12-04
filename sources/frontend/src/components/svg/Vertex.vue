@@ -8,7 +8,6 @@
         :stroke="style.strokeColor"
         :fill="highlighted ? style.highlightedFillColor : style.fillColor"
         :r="radiusSafe"
-        @click="onCircleClicked()"
     />
     <foreignObject :x="x - radiusSafe" :y="y - radiusSafe/2" :width="2*radiusSafe" :height="radiusSafe">
       <div class="vertex-text">
@@ -28,7 +27,6 @@ export default {
     style: Object,
     radius: Number,
     highlighted: Boolean,
-    onClick: Function,
     onVertexMouseDownOrUp: Function
   },
   computed: {
@@ -50,13 +48,10 @@ export default {
       }
     },
   },
-  methods: {
-    onCircleClicked() {
-      this.onClick()
-    },
-  },
   mounted() {
-    document.getElementById(this.fullId).addEventListener("mousedown", () => this.onVertexMouseDownOrUp(true));
+    document.getElementById(this.fullId).addEventListener("mousedown", () => {
+      this.onVertexMouseDownOrUp(true)
+    });
   }
 }
 </script>

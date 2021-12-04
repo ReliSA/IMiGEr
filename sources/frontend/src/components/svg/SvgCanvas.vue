@@ -35,7 +35,6 @@
                   :style="style.vertex"
                   :radius="n.radius"
                   :highlighted="n.highlighted"
-                  :on-click="() => onVertexClicked(n)"
                   :on-vertex-mouse-down-or-up="(down) => onVertexMouseDown(down, n)"
                   :key="`vertex-${n.id}`"/>
 
@@ -84,7 +83,10 @@ export default {
       this.iX = event.clientX
       this.iY = event.clientY
     },
-    onMouseUpEvent() {
+    onMouseUpEvent(e) {
+      if (this.iX === e.clientX && this.iY === e.clientY && this.$store.state.vertexBeingDragged != null) {
+        this.toggleVertexHighlightState(this.$store.state.vertexBeingDragged)
+      }
       this.vertexMouseDown(false)
     },
     onMouseWheelEvent(event) {
@@ -114,10 +116,6 @@ export default {
           this.changeTranslation({dx: dx, dy: dy})
         }
       }
-    },
-    onVertexClicked(vertex) {
-      // toggle vertex highlight state when clicked
-      this.toggleVertexHighlightState(vertex)
     },
     onVertexPositionChanged(payload) {
       this.changeVertexPos(payload)
