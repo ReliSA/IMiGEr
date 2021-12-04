@@ -16,14 +16,14 @@
 	<!--
 	servlets
 	-->
-	<servlet>
+	<!--<servlet>
 		<servlet-name>UploadFiles</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.UploadFiles</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>ShowGraph</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.ShowGraph</servlet-class>
-	</servlet>
+	</servlet>-->
 	<servlet>
 		<servlet-name>Register</servlet-name>
 		<servlet-class>cz.zcu.kiv.offscreen.servlets.api.Register</servlet-class>
@@ -80,14 +80,14 @@
 	<!--
 	URL-to-servlet mappings
 	-->
-	<servlet-mapping>
+	<!--<servlet-mapping>
 		<servlet-name>UploadFiles</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ShowGraph</servlet-name>
 		<url-pattern>/graph</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>-->
 	<servlet-mapping>
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/api/register</url-pattern>
