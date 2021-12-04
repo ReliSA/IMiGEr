@@ -25,8 +25,10 @@ export default createStore({
         style: {
             edge: {
                 strokeColor: "#888888AA",
-                tipColor: "#444444",
                 strokeWidth: 4,
+                highlightedStrokeColor: "#880000AA",
+                highlightedStrokeWidth: 8,
+                tipColor: "#444444",
                 fontSize: 1.5,
                 textBottomOffset: 15,
                 arrowSize: 9,
@@ -121,6 +123,10 @@ export default createStore({
         SET_GRAPH_LOADED(state, loaded){
             state.graph_loaded = loaded;
         },
+        // mutation for toggling highlight state of an edge
+        SET_EDGE_HIGHLIGHTED(state, {edge, highlighted}) {
+            edge.highlighted = highlighted
+        },
 
         // mutation to be when invoked a mouse button has been clicked down on a vertex
         VERTEX_MOUSE_DOWN(state, {vertex, down}) {
@@ -143,12 +149,32 @@ export default createStore({
         async updateScale({commit}, event) {
             commit("UPDATE_SCALE", event)
         },
-        async toggleVertexHighlightState({commit}, vertex) {
+        async toggleVertexHighlightState({commit, dispatch}, vertex) {
             if (vertex.highlighted) {
                 commit("DISABLE_VERTEX_HIGHLIGHT", vertex)
+                // remove highlight from edges that are connected to the vertex
+                dispatch("highlightVertexEdges", {vertex, highlighted: false})
             } else {
                 commit("HIGHLIGHT_VERTEX", vertex)
+                // highlight edges that are connected to the vertex
+                dispatch("highlightVertexEdges", {vertex, highlighted: true})
             }
+        },
+        async highlightVertexEdges({commit, state}, {vertex, highlighted}) {
+            vertex.edges.forEach(edgeId => {
+                // iterate over all edges that are connected to the node
+                if (!highlighted) {
+                    // when edges should not be highlighted check first whether
+                    // other vertices the edge is connected to are highlighted
+                    // (if so, then the edge should remain highlighted)
+                    let edge = state.edges[edgeId]
+                    if (!state.vertices[edge.from].highlighted && !state.vertices[edge.to].highlighted) {
+                        commit("SET_EDGE_HIGHLIGHTED", {edge: edge, highlighted: highlighted})
+                    }
+                } else {
+                    commit("SET_EDGE_HIGHLIGHTED", {edge: state.edges[edgeId], highlighted: highlighted})
+                }
+            })
         },
         async changeTranslation({commit, state}, payload) {
             if (!state.vertexBeingDragged) {

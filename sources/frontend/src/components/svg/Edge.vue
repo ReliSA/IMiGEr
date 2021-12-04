@@ -7,7 +7,8 @@
         :x2="endX - endOffsetX"
         :y2="endY - endOffsetY"
         marker-end="url(#triangle)"
-        :style="`stroke:${style.strokeColor};stroke-width:${style.strokeWidth}`"
+        :style="highlighted ? `stroke:${style.highlightedStrokeColor};stroke-width:${style.highlightedStrokeWidth}`
+         : `stroke:${style.strokeColor};stroke-width:${style.strokeWidth}`"
     />
     <text class="wrap" :x="titleX" :y="titleY">
       <tspan text-anchor="middle" :fill="style.textColor">{{ title }}</tspan>
@@ -25,6 +26,7 @@ export default {
     startOffset: Number,
     endOffset: Number,
     title: String,
+    highlighted: Boolean,
     style: Object
   },
   computed: {
