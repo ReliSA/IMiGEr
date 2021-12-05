@@ -75,8 +75,8 @@ public class UploadDiagram extends BaseServlet {
             sendErrorResponse(HttpServletResponse.SC_BAD_REQUEST, e.getMessage(), response);
             return;
         } catch (FileUploadException e) {
-            logger.debug("Invalid request");
-            sendErrorResponse(HttpServletResponse.SC_BAD_REQUEST, "File upload failed", response);
+            logger.debug("Invalid request", e);
+            sendErrorResponse(HttpServletResponse.SC_BAD_REQUEST, e.getMessage(), response);
             return;
         }
         logger.debug("Request processed");
@@ -132,7 +132,10 @@ public class UploadDiagram extends BaseServlet {
                 if(optional.isPresent()){ // conversion OK
                     rawJson = optional.get();
                 } else { // handle conversion error
-                    response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+                    sendErrorResponse(HttpServletResponse.SC_NOT_ACCEPTABLE,
+                            "Module converter failed converting this file. " +
+                                    "This is probably due to the fact that the specified graph type does not correspond to the " +
+                                    "selected file.", response);
                     return;
                 }
             }
