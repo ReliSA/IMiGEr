@@ -43,7 +43,8 @@ export default createStore({
             ty: 0,
             width: window.innerWidth,
             height: window.innerHeight
-        }
+        },
+        clickBehaviour: "move"
     },
     mutations: {
         // mutations of the viewports scale
@@ -101,6 +102,9 @@ export default createStore({
         SET_VIEWPORT_DIMENSIONS(state, {width, height}) {
             state.viewPort.width = width
             state.viewPort.height = height
+        },
+        SET_CLICK_BEHAVIOUR(state, clickBehaviour) {
+            state.clickBehaviour = clickBehaviour
         }
     },
     actions: {
