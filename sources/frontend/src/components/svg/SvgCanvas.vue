@@ -23,20 +23,20 @@
                 :end-y="vertices[vertex_map[l.to]].y"
                 :title="l.description"
                 :style="style.edge"
-                :highlighted="l.highlighted"
+                :highlighted="edge.highlighted"
                 :start-offset="style.vertex.radius"
-                :key="`link-${l.id}`"/>
+                :key="`link-${edge.id}`"/>
 
-          <Vertex v-for="n in vertices"
-                  :id="n.id"
-                  :x="n.x"
-                  :y="n.y"
-                  :title="n.name"
+          <Vertex v-for="vertex in visibleVertices"
+                  :id="vertex.id"
+                  :x="vertex.x"
+                  :y="vertex.y"
+                  :title="vertex.name"
                   :style="style.vertex"
-                  :radius="n.radius"
-                  :highlighted="n.highlighted"
-                  :on-vertex-mouse-down-or-up="(down) => onVertexMouseDown(down, n)"
-                  :key="`vertex-${n.id}`"/>
+                  :radius="vertex.radius"
+                  :highlighted="vertex.highlighted"
+                  :on-vertex-mouse-down-or-up="(down) => onVertexMouseDown(down, vertex)"
+                  :key="`vertex-${vertex.id}`"/>
 
         </g>
       </g>
@@ -70,6 +70,14 @@ export default {
       iY: 0
     }
   },
+  computed: {
+    visibleVertices() {
+      return this.vertices.filter(v => !v.excluded)
+    },
+    visibleEdges() {
+      return this.edges.filter(e => !e.excluded)
+    }
+  },
   mounted() {
     let id = `${this.id}`
     // hook up event listeners for particular mouse events
@@ -92,7 +100,7 @@ export default {
     },
     onMouseUpEvent(e) {
       if (this.iX === e.clientX && this.iY === e.clientY && this.$store.state.vertexBeingDragged != null) {
-        this.toggleVertexHighlightState(this.$store.state.vertexBeingDragged)
+        this.vertexClicked(this.$store.state.vertexBeingDragged)
       }
       this.vertexMouseDown(false)
     },

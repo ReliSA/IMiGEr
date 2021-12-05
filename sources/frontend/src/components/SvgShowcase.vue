@@ -3,10 +3,11 @@
   <div class="container-fluid d-flex flex-column h-100">
     <div class="py-3">
       <p class="display-6 font-weight-bold"><strong>IMiGEr</strong></p>
-      <ClickBehaviourToggle :behaviour="this.$store.state.clickBehaviour" :behaviour-changed="this.clickBehaviourChanged"/>
+      <ClickBehaviourToggle :behaviour="this.$store.state.clickBehaviour"
+                            :behaviour-changed="this.clickBehaviourChanged"/>
     </div>
     <div class="row flex-grow-1">
-      <div class="col-md-9 no-padding">
+      <div class="col-md-9 no-padding d-flex flex-column h-100">
         <svg-canvas
             id="main"
             :view-port="this.$store.state.viewPort"
@@ -15,7 +16,7 @@
             :vertex_map="this.$store.state.vertex_map"
             :style="this.$store.state.style"/>
       </div>
-      <div class="col-md-3 no-padding">
+      <div class="col-md-3 no-padding flex-grow-1">
         <svg-minimap
             class="canvas-minimap"
             ref-id="main"
@@ -25,9 +26,11 @@
         />
         <div class="p-3">
           Excluded nodes:
-          <ExcludedVertex v-for="vertex in excludedVertices"
+          <ExcludedVertex v-for="vertex in this.$store.state.excludedVertices"
                           :key="vertex.id"
-                          :title="vertex.description"/>
+                          :title="vertex.name"
+                          @click="() => includeVertex(vertex)"
+          />
         </div>
       </div>
     </div>
@@ -39,6 +42,7 @@ import SvgCanvas from "@/components/svg/SvgCanvas";
 import SvgMinimap from "@/components/svg/SvgMinimap";
 import ExcludedVertex from "@/components/ExcludedVertex";
 import ClickBehaviourToggle from "@/components/controls/ClickBehaviourToggle";
+import {mapActions} from "vuex";
 
 export default {
   name: 'SvgShowcase',
@@ -62,7 +66,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["includeVertex"]),
     clickBehaviourChanged(value) {
+      this.$store.commit("SET_CLICK_BEHAVIOUR", value);
+    },
+    onIncludeButtonClicked(value) {
       this.$store.commit("SET_CLICK_BEHAVIOUR", value);
     }
   }
