@@ -137,6 +137,12 @@ export default createStore({
             }
         },
 
+        // sets viewport dimensions
+        SET_VIEWPORT_DIMENSIONS(state, {width, height}) {
+            state.viewPort.width = width
+            state.viewPort.height = height
+        },
+
         // mutation to be used to reset all graph data
         RESET_GRAPH_DATA(state) {
             state.edges = [];
@@ -202,6 +208,9 @@ export default createStore({
         async restartVisualization({commit}) {
             commit("SET_GRAPH_LOADED", false);
             commit("RESET_GRAPH_DATA");
+        },
+        async setViewPortDimensions({commit}, dimensions) {
+            commit("SET_VIEWPORT_DIMENSIONS", dimensions)
         }
     }
 })

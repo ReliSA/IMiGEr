@@ -1,5 +1,31 @@
 <!-- A component composing together a SVG canvas and its minimap -->
 <template>
+  <div class="container-fluid">
+    <div class="text-center p-2">
+      <h1 class="no-padding">IMiGEr</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-9 no-padding">
+        <svg-canvas
+            id="main"
+            :view-port="this.$store.state.viewPort"
+            :vertices="this.$store.state.vertices"
+            :edges="this.$store.state.edges"
+            :style="this.$store.state.style"/>
+      </div>
+      <div class="col-md-3 no-padding">
+        <svg-minimap
+            class="canvas-minimap"
+            ref-id="main"
+            :view-port="{height: 300}"
+            :parent-world-size="this.$store.state.worldSize"
+            :parent-view-port="this.$store.state.viewPort"
+        />
+        <div class="p-3">
+          Excluded nodes:
+        </div>
+      </div>
+    </div>
   <div class="row flex-grow-1 d-flex">
     <div class="p-0 col-md-9">
       <svg-canvas
@@ -34,6 +60,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.container-fluid, .canvas-container, .row, .col-md-8 {
+  height: 100%;
+}
 
 .canvas-minimap-container {
   /*width: 300px;*/
@@ -41,5 +70,10 @@ export default {
   /*top: 87px;*/
   /*background: white;*/
   /*right: 5px;*/
+}
+
+.no-padding {
+  padding: 0;
+  margin: 0;
 }
 </style>
