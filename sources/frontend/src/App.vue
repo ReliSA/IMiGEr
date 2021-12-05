@@ -1,6 +1,6 @@
 <!-- Root Vue component of the application -->
 <template>
-  <h1 v-if="this.$store.state.loading" class="mt-5 text-center"><strong>VueJS prototype</strong> is being loaded...</h1>
+  <InitialScreen v-if="!this.$store.state.graph_loaded" />
   <SvgShowcase v-else />
 </template>
 
@@ -8,11 +8,13 @@
 import SvgShowcase from './components/SvgShowcase.vue'
 import store from './store'
 import {mapActions} from "vuex"
-import testData from '@/assets/data/test-data.json'
+// import testData from '@/assets/data/test-data.json'
+import InitialScreen from "./components/InitialScreen";
 
 export default {
   name: 'App',
   components: {
+    InitialScreen,
     SvgShowcase
   },
   methods: {
@@ -21,7 +23,7 @@ export default {
   store,
   mounted() {
     // load graph data on component initialization
-    this.loadInitialData(testData)
+    //this.loadInitialData(testData)
   }
 }
 </script>
