@@ -83,6 +83,10 @@ export default createStore({
         SET_LOADING(state, loading) {
             state.loading = loading
         },
+        // mutation for notifying of graph being loaded
+        SET_GRAPH_LOADED(state, loaded){
+            state.graph_loaded = loaded;
+        },
 
         // mutation to be when invoked a mouse button has been clicked down on a vertex
         VERTEX_MOUSE_DOWN(state, {vertex, down}) {
@@ -125,6 +129,7 @@ export default createStore({
             commit("SET_GRAPH_DATA", graph)
             await new Promise(resolve => setTimeout(resolve, 1500));
             commit("SET_LOADING", false)
+            commit("SET_GRAPH_LOADED", true)
         },
         async vertexMouseDown({commit}, payload) {
             commit("VERTEX_MOUSE_DOWN", payload)

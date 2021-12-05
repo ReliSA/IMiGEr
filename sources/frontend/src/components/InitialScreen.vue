@@ -1,7 +1,8 @@
 <template>
   <div v-if="modules === null"></div>
   <div v-else class="container h-100 w-100">
-    <div v-if="show_error_popup" class="error_popup">{{error_message}}</div>
+    <div v-if="show_error_popup" class="error popup">{{ message }}</div>
+    <div v-if="show_notify_popup" class="notify popup">{{ message }}</div>
 
     <div class="row h-100 justify-content-center align-items-center">
       <div class="col-10 col-md-8 col-lg-6">
@@ -44,7 +45,8 @@ export default {
   data() {
     return {
       show_error_popup: false,
-      error_message: '',
+      show_notify_popup: false,
+      message: '',
 
       modules: null,
       api_base_path: process.env.VUE_APP_ROOT_API,
@@ -84,13 +86,16 @@ export default {
 
             response.json().then(json => {
               let graph_json = JSON.parse(json["graph_json"]);
-              console.log(graph_json);
+              this.message = "Your graph is being loaded...";
+              this.show_notify_popup = true;
+              setTimeout(() => {this.show_notify_popup = false}, 3000);
+              this.$emit('diagram_retrieved', graph_json);
             });
 
           } else {
 
             response.json().then(json => {
-              this.error_message = json["error_message"];
+              this.message = json["error_message"];
               this.show_error_popup = true;
               setTimeout(() => {this.show_error_popup = false}, 3000);
             });
@@ -113,15 +118,23 @@ export default {
   left: 40%;
   text-align: left;
 }
-.error_popup {
+.popup {
   position: absolute;
   top: 5px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   padding: 5px;
+  border-radius: 10px 0 10px 0;
+}
+
+.error {
   background-color: #ffb1a9;
   border: 2px solid crimson;
-  border-radius: 10px 0 10px 0;
+}
+
+.notify {
+  background-color: #afffa9;
+  border: 2px solid #49dc14;
 }
 </style>

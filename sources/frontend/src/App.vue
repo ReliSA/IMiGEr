@@ -1,6 +1,6 @@
 <!-- Root Vue component of the application -->
 <template>
-  <InitialScreen v-if="!this.$store.state.graph_loaded" />
+  <InitialScreen @diagram_retrieved="on_diagram_retrieval" v-if="!this.$store.state.graph_loaded" />
   <SvgShowcase v-else />
 </template>
 
@@ -18,7 +18,10 @@ export default {
     SvgShowcase
   },
   methods: {
-    ...mapActions(["loadInitialData"])
+    ...mapActions(["loadInitialData"]),
+    on_diagram_retrieval(data){
+      this.loadInitialData(data);
+    }
   },
   store,
   mounted() {
