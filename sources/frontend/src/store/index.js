@@ -95,6 +95,12 @@ export default createStore({
             } else {
                 state.vertexBeingDragged = null
             }
+        },
+
+        // sets viewport dimensions
+        SET_VIEWPORT_DIMENSIONS(state, {width, height}) {
+            state.viewPort.width = width
+            state.viewPort.height = height
         }
     },
     actions: {
@@ -152,6 +158,9 @@ export default createStore({
         },
         async vertexMouseDown({commit}, payload) {
             commit("VERTEX_MOUSE_DOWN", payload)
+        },
+        async setViewPortDimensions({commit}, dimensions) {
+            commit("SET_VIEWPORT_DIMENSIONS", dimensions)
         }
     }
 })

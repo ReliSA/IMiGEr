@@ -72,13 +72,19 @@ export default {
   mounted() {
     let id = `${this.id}`
     // hook up event listeners for particular mouse events
-    document.getElementById(id).addEventListener("wheel", this.onMouseWheelEvent);
-    document.getElementById(id).addEventListener("mousemove", this.onMouseMoveEvent);
-    document.getElementById(id).addEventListener("mousedown", this.onMouseDownEvent);
-    document.getElementById(id).addEventListener("mouseup", this.onMouseUpEvent);
+    let svgElem = document.getElementById(id)
+    svgElem.addEventListener("wheel", this.onMouseWheelEvent);
+    svgElem.addEventListener("mousemove", this.onMouseMoveEvent);
+    svgElem.addEventListener("mousedown", this.onMouseDownEvent);
+    svgElem.addEventListener("mouseup", this.onMouseUpEvent);
+    // once mounted set real viewport dimensions based on the dimensions of the main SVG element
+    this.setViewPortDimensions({
+      width: svgElem.clientWidth,
+      height: svgElem.clientHeight
+    })
   },
   methods: {
-    ...mapActions(["increaseScale", "decreaseScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown"]),
+    ...mapActions(["increaseScale", "decreaseScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown", "setViewPortDimensions"]),
     onMouseDownEvent(event) {
       this.iX = event.clientX
       this.iY = event.clientY
