@@ -48,7 +48,8 @@ export default createStore({
             ty: 0,
             width: window.innerWidth,
             height: window.innerHeight
-        }
+        },
+        clickBehaviour: "move"
     },
     mutations: {
         // mutations of the viewports scale
@@ -149,6 +150,9 @@ export default createStore({
             state.vertices = [];
             state.vertex_map = {};
             state.vertexBeingDragged = null;
+        },
+        SET_CLICK_BEHAVIOUR(state, clickBehaviour) {
+            state.clickBehaviour = clickBehaviour
         }
     },
     actions: {
