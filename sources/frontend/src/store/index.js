@@ -9,6 +9,8 @@ export default createStore({
     state: {
         // flag indicating whether the application is busy loading/processing something
         loading: true,
+        // flag indicating whether a graph has been loaded or not
+        graph_loaded: false,
         // state attributes representing the graph
         edges: [],
         vertices: [],
