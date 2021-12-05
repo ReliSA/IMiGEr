@@ -16,27 +16,27 @@
         <!-- nested in order to be able to create a minimap that is not affected by viewport transformations-->
         <g :id="`${id}-root-element`">
 
-          <Edge v-for="l in edges"
-                :start-x="vertices[l.from].x"
-                :start-y="vertices[l.from].y"
-                :end-x="vertices[l.to].x"
-                :end-y="vertices[l.to].y"
-                :title="l.description"
+          <Edge v-for="edge in visibleEdges"
+                :start-x="vertices[edge.from].x"
+                :start-y="vertices[edge.from].y"
+                :end-x="vertices[edge.to].x"
+                :end-y="vertices[edge.to].y"
+                :title="edge.description"
                 :style="style.edge"
-                :highlighted="l.highlighted"
+                :highlighted="edge.highlighted"
                 :start-offset="style.vertex.radius"
-                :key="`link-${l.id}`"/>
+                :key="`link-${edge.id}`"/>
 
-          <Vertex v-for="n in vertices"
-                  :id="n.id"
-                  :x="n.x"
-                  :y="n.y"
-                  :title="n.name"
+          <Vertex v-for="vertex in visibleVertices"
+                  :id="vertex.id"
+                  :x="vertex.x"
+                  :y="vertex.y"
+                  :title="vertex.name"
                   :style="style.vertex"
-                  :radius="n.radius"
-                  :highlighted="n.highlighted"
-                  :on-vertex-mouse-down-or-up="(down) => onVertexMouseDown(down, n)"
-                  :key="`vertex-${n.id}`"/>
+                  :radius="vertex.radius"
+                  :highlighted="vertex.highlighted"
+                  :on-vertex-mouse-down-or-up="(down) => onVertexMouseDown(down, vertex)"
+                  :key="`vertex-${vertex.id}`"/>
 
         </g>
       </g>
@@ -69,6 +69,14 @@ export default {
       iY: 0
     }
   },
+  computed: {
+    visibleVertices() {
+      return this.vertices.filter(v => !v.excluded)
+    },
+    visibleEdges() {
+      return this.edges.filter(e => !e.excluded)
+    }
+  },
   mounted() {
     let id = `${this.id}`
     // hook up event listeners for particular mouse events
@@ -84,14 +92,14 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["increaseScale", "decreaseScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown", "setViewPortDimensions"]),
+    ...mapActions(["increaseScale", "decreaseScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown", "setViewPortDimensions", "vertexClicked"]),
     onMouseDownEvent(event) {
       this.iX = event.clientX
       this.iY = event.clientY
     },
     onMouseUpEvent(e) {
       if (this.iX === e.clientX && this.iY === e.clientY && this.$store.state.vertexBeingDragged != null) {
-        this.toggleVertexHighlightState(this.$store.state.vertexBeingDragged)
+        this.vertexClicked(this.$store.state.vertexBeingDragged)
       }
       this.vertexMouseDown(false)
     },

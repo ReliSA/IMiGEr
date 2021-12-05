@@ -12,6 +12,7 @@ export default createStore({
         // state attributes representing the graph
         edges: [],
         vertices: [],
+        excludedVertices: [],
         // vertex that is being dragged
         vertexBeingDragged: null,
         // define the size of the world
@@ -103,8 +104,34 @@ export default createStore({
             state.viewPort.width = width
             state.viewPort.height = height
         },
+
+        // set the page behaviour when a vertex is clicked on
         SET_CLICK_BEHAVIOUR(state, clickBehaviour) {
             state.clickBehaviour = clickBehaviour
+        },
+
+        // exclude a vertex
+        SET_VERTEX_EXCLUDED(state, vertex) {
+            vertex.excluded = true;
+            state.excludedVertices.push(vertex)
+            vertex.edges.forEach(edgeId => {
+                // iterate over all edges that are connected to the node
+                state.edges[edgeId].excluded = true
+            })
+        },
+
+        // include an edge
+        SET_VERTEX_INCLUDED(state, vertex) {
+            vertex.excluded = false;
+            let index = state.excludedVertices.indexOf(vertex);
+            if (index !== -1) {
+                state.excludedVertices.splice(index, 1);
+            }
+        },
+
+        // exclude an edge
+        SET_EDGE_EXCLUDED(state, {edge, excluded}) {
+           edge.excluded = excluded
         }
     },
     actions: {
@@ -124,6 +151,32 @@ export default createStore({
                 // highlight edges that are connected to the vertex
                 dispatch("highlightVertexEdges", {vertex, highlighted: true})
             }
+        },
+        async excludeVertex({state, commit}, vertex) {
+            commit("SET_VERTEX_EXCLUDED", vertex)
+            // iterate over all edges that are connected to the node
+            vertex.edges.forEach(edgeId => {
+                // and exclude them
+                commit("SET_EDGE_EXCLUDED", {edge: state.edges[edgeId], excluded: true})
+            })
+        },
+        async includeVertex({commit, state}, vertex) {
+            commit("SET_VERTEX_INCLUDED", vertex)
+            // iterate over all edges that are connected to the node
+            vertex.edges.forEach(edgeId => {
+                let edge = state.edges[edgeId]
+                if (!state.vertices[edge.from].excluded  && !state.vertices[edge.to].excluded) {
+                    // and include them only if both nodes it is connected to are not excluded
+                    commit("SET_EDGE_EXCLUDED", {edge: state.edges[edgeId], excluded: false})
+                }
+            })
+        },
+        async vertexClicked({dispatch, state}, vertex) {
+           if (state.clickBehaviour === "move") {
+               dispatch("toggleVertexHighlightState", vertex)
+           } else {
+               dispatch("excludeVertex", vertex)
+           }
         },
         async highlightVertexEdges({commit, state}, {vertex, highlighted}) {
             vertex.edges.forEach(edgeId => {
