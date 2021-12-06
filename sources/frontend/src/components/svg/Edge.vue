@@ -46,7 +46,7 @@ export default {
     },
     // length of the edge
     length() {
-      return Math.sqrt(Math.pow(this.a, 2) + Math.pow(this.b, 2))
+      return Math.sqrt(this.a * this.a + this.b * this.b);
     },
     // computed properties utilized for positioning of arrows head
     startOffsetRatio() {
