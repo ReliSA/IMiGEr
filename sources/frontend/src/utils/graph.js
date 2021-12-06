@@ -3,28 +3,35 @@ export default {
      * Constructs an in-memory representation of the loaded graph. Reindexes vertices and edges to match their
      * array positions and adds edge list to each vertex to improve performance.
      */
-    prepare_graph_object(input_graph, size) {
-        let loaded_graph = Object.assign({}, input_graph);
+    prepare_graph_object(loaded_graph, size) {
+        loaded_graph.vertex_map = {};
+        loaded_graph.edge_map = {};
 
-        function add_edge_to_vertex(vertex, current_edge) {
+        function add_edge_to_vertex(vertex_positional_id, current_edge) {
             // eslint-disable-next-line no-prototype-builtins
-            if (!loaded_graph["vertices"][vertex].hasOwnProperty("edges")) {
-                loaded_graph["vertices"][vertex].edges = [];
+            if (!loaded_graph.edge_map.hasOwnProperty(vertex_positional_id)) {
+                loaded_graph.edge_map[vertex_positional_id] = [];
             }
-            if (!loaded_graph["vertices"][vertex].edges.includes(current_edge)) {
-                loaded_graph["vertices"][vertex].edges.push(current_edge);
+            if (!loaded_graph.edge_map[vertex_positional_id].includes(current_edge)) {
+                loaded_graph.edge_map[vertex_positional_id].push(current_edge);
             }
         }
 
         for (let i = 0; i < loaded_graph["vertices"].length; i++) {
-            loaded_graph["vertices"][i].id = i;
+            loaded_graph.vertex_map[loaded_graph["vertices"][i].id] = i;
         }
         for (let i = 0; i < loaded_graph["edges"].length; i++) {
-            loaded_graph["edges"][i].id = i;
-
-            add_edge_to_vertex(loaded_graph["edges"][i].from, i);
-            add_edge_to_vertex(loaded_graph["edges"][i].to, i);
+            add_edge_to_vertex(loaded_graph.vertex_map[loaded_graph["edges"][i].from], i);
+            add_edge_to_vertex(loaded_graph.vertex_map[loaded_graph["edges"][i].to], i);
         }
+
+        /// RESULT ///
+        // loaded_graph.vertices ~= random vertex IDs                                   - source data
+        // loaded_graph.edges ~= random edge IDs                                        - source data
+        // loaded_graph.edge.from, to ~= random vertex IDs                              - source data
+        // loaded_graph.vertex_map ~= random vertex ID -> positional vertex ID          - added
+        // loaded_graph.edge_map ~= positional vertex ID -> array[ positional edge ID ] - added
+
         this.initialize_xy(loaded_graph, size)
     },
 
