@@ -3,6 +3,8 @@ package cz.zcu.kiv.offscreen.servlets.api;
 import com.google.gson.JsonObject;
 import cz.zcu.kiv.imiger.spi.IModule;
 import cz.zcu.kiv.offscreen.modularization.ModuleProvider;
+import cz.zcu.kiv.offscreen.services.IInitialEliminationService;
+import cz.zcu.kiv.offscreen.services.impl.InitialEliminationService;
 import cz.zcu.kiv.offscreen.servlets.BaseServlet;
 import cz.zcu.kiv.offscreen.storage.FileLoader;
 import org.apache.commons.fileupload.FileUploadException;
@@ -138,6 +140,10 @@ public class UploadDiagram extends BaseServlet {
                                     "selected file.", response);
                     return;
                 }
+            }
+
+            if (initialElimination) {
+                IInitialEliminationService initialEliminationService = new InitialEliminationService();
             }
 
             // prepare JSON response
