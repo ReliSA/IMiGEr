@@ -4,6 +4,8 @@ import force_directed_layout from '@/utils/graph.js'
 
 // scale factor
 const scaleD = 0.1
+const MAX_SCALE = 5;
+const MIN_SCALE = 0.11;
 
 export default createStore({
     state: {
@@ -48,14 +50,44 @@ export default createStore({
     mutations: {
         // mutations of the viewports scale
         // eslint-disable-next-line no-unused-vars
-        INCREASE_SCALE(state, {targetX, targetY}) {
-            // TODO utilize targetX and targetY to zoom at the target coordinates
-            state.viewPort.scale += scaleD
-        },
-        DECREASE_SCALE(state) {
-            if (state.viewPort.scale - scaleD > 0.1) {
-                state.viewPort.scale -= scaleD
+        UPDATE_SCALE(state, {targetX, targetY, direction}) {
+            let original_scale = state.viewPort.scale;
+            let size = [state.viewPort.width / original_scale, state.viewPort.height / original_scale];
+            let full_size = [state.viewPort.width, state.viewPort.height];
+
+            if (direction < 0) {
+                if (original_scale >= MAX_SCALE) return;
+                state.viewPort.scale += scaleD;
+            } else {
+                if (original_scale <= MIN_SCALE) return;
+                state.viewPort.scale -= scaleD;
             }
+
+            let shift_fraction = [targetX / full_size[0], targetY / full_size[1]];
+            // console.log(original_scale, state.viewPort.scale, size);
+
+            // console.log("original tx", state.viewPort.tx);
+
+            state.viewPort.tx = state.viewPort.tx / original_scale;
+            state.viewPort.ty = state.viewPort.ty / original_scale;
+
+            // console.log("normalized tx", state.viewPort.tx);
+
+            state.viewPort.tx -= (size[0] - size[0] * original_scale / state.viewPort.scale) * shift_fraction[0];
+            state.viewPort.ty -= (size[1] - size[1] * original_scale / state.viewPort.scale) * shift_fraction[1];
+
+            // console.log("updated tx", state.viewPort.tx);
+
+            state.viewPort.tx *= state.viewPort.scale;
+            state.viewPort.ty *= state.viewPort.scale;
+
+            // console.log("denormalized tx", state.viewPort.tx);
+        },
+        // mutations of viewport tx/ty in order to center the viewport on the graph
+        ADJUST_VIEWPORT(state){
+            state.viewPort.scale = 0.3;
+            state.viewPort.tx = - (state.worldSize - state.viewPort.width / state.viewPort.scale) / 2 * state.viewPort.scale;
+            state.viewPort.ty = - (state.worldSize - state.viewPort.height / state.viewPort.scale) / 2 * state.viewPort.scale;
         },
         // mutations of node highlight state
         HIGHLIGHT_VERTEX(state, vertex) {
@@ -98,11 +130,8 @@ export default createStore({
         }
     },
     actions: {
-        async increaseScale({commit}, event) {
-            commit("INCREASE_SCALE", event)
-        },
-        async decreaseScale({commit}) {
-            commit("DECREASE_SCALE")
+        async updateScale({commit}, event) {
+            commit("UPDATE_SCALE", event)
         },
         async toggleVertexHighlightState({commit}, vertex) {
             if (vertex.highlighted) {
@@ -127,7 +156,7 @@ export default createStore({
             loadTestData.prepare_graph_object(graph, state.worldSize)
             force_directed_layout.force_directed_layout(graph, state.worldSize, state.worldSize, 20)
             commit("SET_GRAPH_DATA", graph)
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            commit("ADJUST_VIEWPORT")
             commit("SET_LOADING", false)
             commit("SET_GRAPH_LOADED", true)
         },

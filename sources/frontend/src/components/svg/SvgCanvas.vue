@@ -78,7 +78,7 @@ export default {
     document.getElementById(id).addEventListener("mouseup", this.onMouseUpEvent);
   },
   methods: {
-    ...mapActions(["increaseScale", "decreaseScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown"]),
+    ...mapActions(["updateScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown"]),
     onMouseDownEvent(event) {
       this.iX = event.clientX
       this.iY = event.clientY
@@ -87,12 +87,7 @@ export default {
       this.vertexMouseDown(false)
     },
     onMouseWheelEvent(event) {
-      const delta = Math.sign(event.deltaY)
-      if (delta < 0) {
-        this.increaseScale({targetX: event.clientX, targetY: event.clientY})
-      } else {
-        this.decreaseScale()
-      }
+      this.updateScale({targetX: event.clientX, targetY: event.clientY, direction: Math.sign(event.deltaY)})
     },
     onMouseMoveEvent(event) {
       // perform viewport translation or dragging of a vertex
