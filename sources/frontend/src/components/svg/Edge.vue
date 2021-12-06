@@ -50,10 +50,18 @@ export default {
     },
     // computed properties utilized for positioning of arrows head
     startOffsetRatio() {
-      return this.startOffset / this.length
+      if(this.length > 0) {
+        return this.startOffset / this.length
+      }else{
+        return 0;
+      }
     },
     endOffsetRatio() {
-      return (this.startOffset + this.style.arrowSize) / this.length
+      if(this.length > 0) {
+        return (this.startOffset + this.style.arrowSize) / this.length
+      }else{
+        return 0;
+      }
     },
     startOffsetX() {
       return this.startOffsetRatio * this.a
