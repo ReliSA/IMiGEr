@@ -101,8 +101,13 @@ export default {
 
             // edge forces
             for (let i = 0; i < NUM_E; i++) {
-                let a = loaded_graph["edges"][i].from;
-                let b = loaded_graph["edges"][i].to;
+                let a = loaded_graph.vertex_map[loaded_graph["edges"][i].from]; //
+                let b = loaded_graph.vertex_map[loaded_graph["edges"][i].to]; // map random vertex ID to positional ID
+
+                if (a === b){ // skip inward edges
+                    continue;
+                }
+
                 let dx = (movement[b].x - movement[a].x);
                 let dy = (movement[b].y - movement[a].y);
                 let dt = Math.sqrt(dx * dx + dy * dy);
@@ -174,11 +179,25 @@ export default {
                 }
 
                 ret.add(id);
-                let vertex = loaded_graph["vertices"][id];
-                if (vertex.edges !== undefined) {
-                    for (let i = 0; i < vertex.edges.length; i++) {
-                        let edge = loaded_graph["edges"][vertex.edges[i]];
-                        if (edge.from === id) {
+
+                // console.log('id =', id, ret);
+
+                let vertex_positional_id = loaded_graph.vertex_map[id]; // mapping random id to positional
+
+                // console.log("corresponding vertex = ", vertex);
+
+                let edges = loaded_graph.edge_map[vertex_positional_id];
+                if (edges !== undefined) { // if this vertex has any edges
+                    // console.log("vertex has edges");
+                    for (let i = 0; i < edges.length; i++) {
+                        let edge_positional_id = edges[i];
+                        // console.log("found edge positional id ", edge_positional_id);
+
+                        let edge = loaded_graph["edges"][edge_positional_id]; // edges[i] is positional
+                        // console.log("corresponding to edge ", edge);
+                        // console.log("which has vertices with random indices ", edge.from, edge.to);
+
+                        if (edge.from === id) { // move to neighboring vertex (random id)
                             dfs(edge.to);
                         } else {
                             dfs(edge.from);
@@ -191,9 +210,9 @@ export default {
             return ret;
         }
 
-        let all_ids = new Set();
+        let all_ids = new Set(); // set of RANDOM IDs !
         for (let i = 0; i < loaded_graph["vertices"].length; i++) {
-            all_ids.add(i);
+            all_ids.add(loaded_graph["vertices"][i].id);
         }
         let components = [];
 
@@ -210,8 +229,9 @@ export default {
             end_x = start_x + width * (components[i].size / loaded_graph["vertices"].length);
 
             components[i].forEach(v => {
-                loaded_graph["vertices"][v].x = start_x + Math.random() * (end_x - start_x);
-                loaded_graph["vertices"][v].y = Math.random() * height;
+                let positional_id = loaded_graph.vertex_map[v]; // mapping random id to positional id
+                loaded_graph["vertices"][positional_id].x = start_x + Math.random() * (end_x - start_x);
+                loaded_graph["vertices"][positional_id].y = Math.random() * height;
             });
 
             start_x = end_x + 1000;
