@@ -50,7 +50,10 @@ export default createStore({
             width: window.innerWidth,
             height: window.innerHeight
         },
-        clickBehaviour: "move"
+        clickBehaviour: "move",
+
+        // required in order to be able to connect excluded nodes with the rest of the graph (contains absolute coordinates relative to the window)
+        excludedNodesClientRects: {}
     },
     mutations: {
         // mutations of the viewports scale
@@ -179,7 +182,22 @@ export default createStore({
 
         // exclude an edge
         SET_EDGE_EXCLUDED(state, {edge, excluded}) {
-           edge.excluded = excluded
+            edge.excluded = excluded
+        },
+
+        // add a client box of an excluded vertex box
+        ADD_EXCLUDED_VERTEX_CLIENT_BOX(state, {vertex, clientRect}) {
+            state.excludedNodesClientRects[vertex.id] = {
+                x: clientRect.x,
+                y: clientRect.y,
+                width: clientRect.width,
+                height: clientRect.height
+            }
+        },
+
+        // remove a client box of an excluded vertex box
+        REMOVE_EXCLUDED_VERTEX_CLIENT_BOX(state, vertex) {
+            delete state.excludedNodesClientRects[vertex.id]
         }
     },
     actions: {
@@ -210,18 +228,18 @@ export default createStore({
             // iterate over all edges that are connected to the node
             vertex.edges.forEach(edgeId => {
                 let edge = state.edges[edgeId]
-                if (!state.vertices[edge.from].excluded  && !state.vertices[edge.to].excluded) {
+                if (!state.vertices[edge.from].excluded && !state.vertices[edge.to].excluded) {
                     // and include them only if both nodes it is connected to are not excluded
                     commit("SET_EDGE_EXCLUDED", {edge: state.edges[edgeId], excluded: false})
                 }
             })
         },
         async vertexClicked({dispatch, state}, vertex) {
-           if (state.clickBehaviour === "move") {
-               dispatch("toggleVertexHighlightState", vertex)
-           } else {
-               dispatch("excludeVertex", vertex)
-           }
+            if (state.clickBehaviour === "move") {
+                dispatch("toggleVertexHighlightState", vertex)
+            } else {
+                dispatch("excludeVertex", vertex)
+            }
         },
         async highlightVertexEdges({commit, state}, {vertex, highlighted}) {
             vertex.edges.forEach(edgeId => {
@@ -268,6 +286,12 @@ export default createStore({
         },
         async setViewPortDimensions({commit}, dimensions) {
             commit("SET_VIEWPORT_DIMENSIONS", dimensions)
+        },
+        async addExcludedVertexClientRect({commit}, payload) {
+            commit("ADD_EXCLUDED_VERTEX_CLIENT_BOX", payload)
+        },
+        async removeExcludedVertexClientRect({commit}, vertex) {
+            commit("REMOVE_EXCLUDED_VERTEX_CLIENT_BOX", vertex)
         }
     }
 })
