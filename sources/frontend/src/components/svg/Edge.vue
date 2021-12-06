@@ -46,14 +46,22 @@ export default {
     },
     // length of the edge
     length() {
-      return Math.sqrt(Math.pow(this.a, 2) + Math.pow(this.b, 2))
+      return Math.sqrt(this.a * this.a + this.b * this.b);
     },
     // computed properties utilized for positioning of arrows head
     startOffsetRatio() {
-      return this.startOffset / this.length
+      if(this.length > 0) {
+        return this.startOffset / this.length
+      }else{
+        return 0;
+      }
     },
     endOffsetRatio() {
-      return (this.startOffset + this.style.arrowSize) / this.length
+      if(this.length > 0) {
+        return (this.startOffset + this.style.arrowSize) / this.length
+      }else{
+        return 0;
+      }
     },
     startOffsetX() {
       return this.startOffsetRatio * this.a

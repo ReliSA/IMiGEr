@@ -4,44 +4,38 @@
     <div v-if="show_error_popup" class="error popup">{{ message }}</div>
     <div v-if="show_notify_popup" class="notify popup">{{ message }}</div>
 
-    <div class="row h-100 justify-content-center align-items-center">
-      <div class="col-10 col-md-8 col-lg-6">
-        <form class="text-center" @submit.prevent="submit">
-          <h1>IMiGEr</h1>
-          <p class="description">Interactive visualization of your graph data.</p>
-          <div class="mb-3">
-            <fieldset>
-              <legend>Choose graph type:</legend>
-              <div class="form-check form-check-custom">
-                <input class="form-check-input" type="radio" value="raw" id="json_graph" name="fileFormat" v-model="fileFormat">
-                <label class="form-check-label" for="json_graph">JSON</label>
-              </div>
-              <div v-for="(v, k) in modules" :key="k" class="form-check form-check-custom">
-                <upload-method :method_id="k" :method_name="v" v-model="fileFormat"/>
-              </div>
-            </fieldset>
-          </div>
-          <div class="mb-3">
-            <label for="formFile" class="form-label">Graph file</label>
-            <input class="form-control" type="file" id="formFile" name="input_graph" @change="upload_file" ref="file">
-          </div>
-          <div class="form-group text-center mb-3">
-            <button type="submit" class="btn btn-primary btn-customized">Submit</button>
-          </div>
-          <div class="form-group text-center">
-            <p class="copyright">&copy; RELISA 2021</p>
-          </div>
-        </form>
+    <div id="switch_button">
+      <button class="btn btn-primary btn-customized" @click="switch_context">{{ switch_button_text }}</button>
+    </div>
+
+    <!-- MAIN SCREEN -->
+
+    <div v-if="main_screen" class="row h-100 justify-content-center align-items-center">
+      <UploadDiagramForm :modules="modules" :api_base_path="api_base_path" @diagram_retrieved="handle_diagram"
+                         @failure="handle_failure"/>
+    </div>
+
+    <!-- SIGNUP/IN -->
+
+    <div v-else class="row h-100 justify-content-center align-items-center">
+      <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <SignUpForm />
+          <SignInForm />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import UploadMethod from "@/components/initial_screen/UploadMethod";
+import SignUpForm from "@/components/initial_screen/SignUpForm";
+import SignInForm from "@/components/initial_screen/SignInForm";
+import UploadDiagramForm from "@/components/initial_screen/UploadDiagramForm";
+
 export default {
   name: "InitialScreen",
-  components: {UploadMethod},
+  components: {UploadDiagramForm, SignInForm, SignUpForm},
   data() {
     return {
       show_error_popup: false,
@@ -50,8 +44,10 @@ export default {
 
       modules: null,
       api_base_path: process.env.VUE_APP_ROOT_API,
-      fileFormat: '',
-      file: null,
+
+      main_screen: true,
+      switch_button_texts: ["Login", "Back to main page"],
+      switch_button_text: "Login"
     }
   },
   created() {
@@ -62,50 +58,20 @@ export default {
         .catch(err => console.log(err));
   },
   methods: {
-    submit(){
-      const form_data = new FormData();
-      form_data.append('file', this.file);
-      form_data.append('fileFormat', this.fileFormat);
-      if(this.file === null) {
-        form_data.append('filename', '');
-      }else{
-        form_data.append('filename', this.file.name);
-      }
-
-      for (let key of form_data.entries()) {
-        console.log(key[0] + ' -> ' + key[1]);
-      }
-
-      fetch(this.api_base_path + '/upload-diagram', {
-        body: form_data,
-        method: "post"
-      })
-        .then(response => {
-          console.log(response.status);
-          if (response.status === 200) {
-
-            response.json().then(json => {
-              let graph_json = JSON.parse(json["graph_json"]);
-              this.message = "Your graph is being loaded...";
-              this.show_notify_popup = true;
-              setTimeout(() => {this.show_notify_popup = false}, 3000);
-              this.$emit('diagram_retrieved', graph_json);
-            });
-
-          } else {
-
-            response.json().then(json => {
-              this.message = json["error_message"];
-              this.show_error_popup = true;
-              setTimeout(() => {this.show_error_popup = false}, 3000);
-            });
-
-          }
-        })
-        .catch(err => console.log(err));
+    switch_context(){
+      this.switch_button_text = this.switch_button_texts[+this.main_screen];
+      this.main_screen = !this.main_screen;
     },
-    upload_file(){
-      this.file = this.$refs.file.files[0];
+    handle_diagram(json){
+      this.message = "Your graph is being loaded...";
+      this.show_notify_popup = true;
+      setTimeout(() => {this.show_notify_popup = false}, 3000);
+      this.$emit('diagram_retrieved', json);
+    },
+    handle_failure(error_message){
+      this.message = error_message;
+      this.show_error_popup = true;
+      setTimeout(() => {this.show_error_popup = false}, 3000);
     }
   }
 }
@@ -113,11 +79,6 @@ export default {
 </script>
 
 <style scoped>
-.form-check-custom {
-  position: relative;
-  left: 40%;
-  text-align: left;
-}
 .popup {
   position: absolute;
   top: 5px;
@@ -137,4 +98,10 @@ export default {
   background-color: #afffa9;
   border: 2px solid #49dc14;
 }
+
+#switch_button {
+  position: absolute;
+  margin-top: 20px;
+}
+
 </style>

@@ -6,6 +6,7 @@
         :view-port="this.$store.state.viewPort"
         :vertices="this.$store.state.vertices"
         :edges="this.$store.state.edges"
+        :vertex_map="this.$store.state.vertex_map"
         :style="this.$store.state.style"/>
   </div>
   <div class="canvas-minimap-container" style="opacity: 0.9">

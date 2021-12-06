@@ -3,28 +3,35 @@ export default {
      * Constructs an in-memory representation of the loaded graph. Reindexes vertices and edges to match their
      * array positions and adds edge list to each vertex to improve performance.
      */
-    prepare_graph_object(input_graph, size) {
-        let loaded_graph = Object.assign({}, input_graph);
+    prepare_graph_object(loaded_graph, size) {
+        loaded_graph.vertex_map = {};
+        loaded_graph.edge_map = {};
 
-        function add_edge_to_vertex(vertex, current_edge) {
+        function add_edge_to_vertex(vertex_positional_id, current_edge) {
             // eslint-disable-next-line no-prototype-builtins
-            if (!loaded_graph["vertices"][vertex].hasOwnProperty("edges")) {
-                loaded_graph["vertices"][vertex].edges = [];
+            if (!loaded_graph.edge_map.hasOwnProperty(vertex_positional_id)) {
+                loaded_graph.edge_map[vertex_positional_id] = [];
             }
-            if (!loaded_graph["vertices"][vertex].edges.includes(current_edge)) {
-                loaded_graph["vertices"][vertex].edges.push(current_edge);
+            if (!loaded_graph.edge_map[vertex_positional_id].includes(current_edge)) {
+                loaded_graph.edge_map[vertex_positional_id].push(current_edge);
             }
         }
 
         for (let i = 0; i < loaded_graph["vertices"].length; i++) {
-            loaded_graph["vertices"][i].id = i;
+            loaded_graph.vertex_map[loaded_graph["vertices"][i].id] = i;
         }
         for (let i = 0; i < loaded_graph["edges"].length; i++) {
-            loaded_graph["edges"][i].id = i;
-
-            add_edge_to_vertex(loaded_graph["edges"][i].from, i);
-            add_edge_to_vertex(loaded_graph["edges"][i].to, i);
+            add_edge_to_vertex(loaded_graph.vertex_map[loaded_graph["edges"][i].from], i);
+            add_edge_to_vertex(loaded_graph.vertex_map[loaded_graph["edges"][i].to], i);
         }
+
+        /// RESULT ///
+        // loaded_graph.vertices ~= random vertex IDs                                   - source data
+        // loaded_graph.edges ~= random edge IDs                                        - source data
+        // loaded_graph.edge.from, to ~= random vertex IDs                              - source data
+        // loaded_graph.vertex_map ~= random vertex ID -> positional vertex ID          - added
+        // loaded_graph.edge_map ~= positional vertex ID -> array[ positional edge ID ] - added
+
         this.initialize_xy(loaded_graph, size)
     },
 
@@ -94,8 +101,13 @@ export default {
 
             // edge forces
             for (let i = 0; i < NUM_E; i++) {
-                let a = loaded_graph["edges"][i].from;
-                let b = loaded_graph["edges"][i].to;
+                let a = loaded_graph.vertex_map[loaded_graph["edges"][i].from]; //
+                let b = loaded_graph.vertex_map[loaded_graph["edges"][i].to]; // map random vertex ID to positional ID
+
+                if (a === b){ // skip inward edges
+                    continue;
+                }
+
                 let dx = (movement[b].x - movement[a].x);
                 let dy = (movement[b].y - movement[a].y);
                 let dt = Math.sqrt(dx * dx + dy * dy);
@@ -167,11 +179,25 @@ export default {
                 }
 
                 ret.add(id);
-                let vertex = loaded_graph["vertices"][id];
-                if (vertex.edges !== undefined) {
-                    for (let i = 0; i < vertex.edges.length; i++) {
-                        let edge = loaded_graph["edges"][vertex.edges[i]];
-                        if (edge.from === id) {
+
+                // console.log('id =', id, ret);
+
+                let vertex_positional_id = loaded_graph.vertex_map[id]; // mapping random id to positional
+
+                // console.log("corresponding vertex = ", vertex);
+
+                let edges = loaded_graph.edge_map[vertex_positional_id];
+                if (edges !== undefined) { // if this vertex has any edges
+                    // console.log("vertex has edges");
+                    for (let i = 0; i < edges.length; i++) {
+                        let edge_positional_id = edges[i];
+                        // console.log("found edge positional id ", edge_positional_id);
+
+                        let edge = loaded_graph["edges"][edge_positional_id]; // edges[i] is positional
+                        // console.log("corresponding to edge ", edge);
+                        // console.log("which has vertices with random indices ", edge.from, edge.to);
+
+                        if (edge.from === id) { // move to neighboring vertex (random id)
                             dfs(edge.to);
                         } else {
                             dfs(edge.from);
@@ -184,9 +210,9 @@ export default {
             return ret;
         }
 
-        let all_ids = new Set();
+        let all_ids = new Set(); // set of RANDOM IDs !
         for (let i = 0; i < loaded_graph["vertices"].length; i++) {
-            all_ids.add(i);
+            all_ids.add(loaded_graph["vertices"][i].id);
         }
         let components = [];
 
@@ -203,8 +229,9 @@ export default {
             end_x = start_x + width * (components[i].size / loaded_graph["vertices"].length);
 
             components[i].forEach(v => {
-                loaded_graph["vertices"][v].x = start_x + Math.random() * (end_x - start_x);
-                loaded_graph["vertices"][v].y = Math.random() * height;
+                let positional_id = loaded_graph.vertex_map[v]; // mapping random id to positional id
+                loaded_graph["vertices"][positional_id].x = start_x + Math.random() * (end_x - start_x);
+                loaded_graph["vertices"][positional_id].y = Math.random() * height;
             });
 
             start_x = end_x + 1000;

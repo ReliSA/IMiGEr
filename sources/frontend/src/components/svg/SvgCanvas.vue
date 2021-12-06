@@ -17,10 +17,10 @@
         <g :id="`${id}-root-element`">
 
           <Edge v-for="l in edges"
-                :start-x="vertices[l.from].x"
-                :start-y="vertices[l.from].y"
-                :end-x="vertices[l.to].x"
-                :end-y="vertices[l.to].y"
+                :start-x="vertices[vertex_map[l.from]].x"
+                :start-y="vertices[vertex_map[l.from]].y"
+                :end-x="vertices[vertex_map[l.to]].x"
+                :end-y="vertices[vertex_map[l.to]].y"
                 :title="l.description"
                 :style="style.edge"
                 :start-offset="style.vertex.radius"
@@ -57,6 +57,7 @@ export default {
     height: Number,
     edges: Array,
     vertices: Array,
+    vertex_map: Object,
     style: {
       line: Object,
       vertex: Object
