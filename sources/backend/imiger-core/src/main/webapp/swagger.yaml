@@ -1,0 +1,694 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: IMiGEr visualization tool
+  description: ''
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/captain_trojan/relisa_imiger/1.0.0
+    
+paths: 
+  /api/register:
+    post:
+      tags: 
+      - user
+      summary: Register a new user
+      description: Registers a new user by name, email, username, and password. Pass should be duplicated in passwordCheck.
+      operationId: registerUser
+      parameters: 
+      - name: name
+        in: header
+        description: User name
+        required: true
+        schema:
+          type: string
+          example: "John Doe"
+      - name: email
+        in: header
+        description: User e-mail address
+        required: true
+        schema:
+          type: string
+          example: "john@doe.gov.sh"
+      - name: username
+        in: header
+        description: User login name string
+        required: true
+        schema:
+          type: string
+          example: "johndoe123"
+      - name: password
+        in: header
+        description: User password
+        required: true
+        schema:
+          type: string
+          minLength: 5
+          example: "123456Seven"
+      - name: passwordCheck
+        in: header
+        description: User password repeated
+        required: true
+        schema:
+          type: string
+          example: "123456Seven"
+        
+      responses:
+        "400":
+          description: incorrect format/amount of parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterError'
+        "201":
+          description: success
+  /api/log-in:
+    post:
+      tags: 
+      - user
+      summary: Log a user in
+      description: Logs a user into the system.
+      operationId: loginUser
+      parameters: 
+      - name: username
+        in: header
+        description: User login name string
+        required: true
+        schema:
+          type: string
+          example: "johndoe123"
+      - name: password
+        in: header
+        description: User password
+        required: true
+        schema:
+          type: string
+          minLength: 5
+          example: "123456Seven"
+      responses:
+        "400":
+          description: incorrect format/amount of parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginError'
+        "401":
+          description: unknown username or wrong password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginError'
+        "202":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginSuccess'
+  /api/log-out:
+    get:
+      tags: 
+      - user
+      summary: Log a user out
+      description: Logs a user out of the system.
+      operationId: logoutUser
+      responses:
+        "205":
+          description: success
+  /api/get-processing-modules:
+    get:
+      tags: 
+      - auxiliary
+      summary: List processing modules
+      description: Lists out the processing module keys and corresponding module names.
+      operationId: getProcessingModules
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingModuleMap'
+  /api/get-diagram:
+    get:
+      tags: 
+      - diagrams
+      summary: Get diagram by ID
+      description: Returns a diagram by ID if its public or if it belongs to the logged-in user.
+      operationId: getDiagramByID
+      parameters: 
+      - name: id
+        in: header
+        description: Diagram ID
+        required: true
+        schema:
+          type: integer
+          example: 1
+        
+      responses:
+        "400":
+          description: specified ID unknown
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "401":
+          description: diagram is not public and the logged-in user does not own it
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseDiagram'
+  /api/save-diagram:
+    post:
+      tags: 
+      - diagrams
+      summary: Store/update a diagram
+      description: Stores a diagram into the database or updates an existing diagram if the user is logged in and -- in case of update -- owns the updated diagram.
+      operationId: saveDiagram
+      parameters: 
+      - name: name
+        in: header
+        description: Diagram name
+        required: true
+        schema:
+          type: string
+          example: "my_diagram_1"
+      - name: graphJson
+        in: header
+        description: Diagram JSON
+        required: true
+        schema:
+          $ref: '#/components/schemas/Diagram'
+      - name: id
+        in: header
+        description: Diagram ID
+        required: false
+        schema:
+          type: integer
+          example: 1
+      - name: public
+        in: header
+        description: Whether the diagram is public or not
+        required: false
+        schema:
+          type: boolean
+          example: false
+        
+      responses:
+        "400":
+          description: name or graphJson not specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "401":
+          description: user not logged in or doesn't own the to-be-updated diagram
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TODO'
+  /api/remove-diagram:
+    post:
+      tags: 
+      - diagrams
+      summary: Remove a diagram
+      description: Removes a diagram from the database if it is owned by the logged-in user.
+      operationId: removeDiagram
+      parameters: 
+      - name: id
+        in: header
+        description: Diagram ID
+        required: true
+        schema:
+          type: integer
+          example: 1
+        
+      responses:
+        "400":
+          description: id not specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "401":
+          description: user not logged in or doesn't own the to-be-removed diagram
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TODO'
+  /api/upload-diagram:
+    post:
+      tags: 
+      - diagrams
+      summary: Upload a diagram
+      description: Uploads a diagram to the server for processing.
+      operationId: uploadDiagram
+      parameters: 
+      - name: fileFormat
+        in: header
+        description: Diagram format
+        required: true
+        schema:
+          $ref: '#/components/schemas/ProcessingModuleInput'
+      - name: filename
+        in: header
+        description: Diagram filename
+        required: true
+        schema:
+          type: string
+          example: "my_diagram.json"
+      - name: visualization
+        in: header
+        description: Visualization style
+        required: false
+        schema:
+          type: string
+      - name: enableInitialElimination
+        in: header
+        description: Whether to enable initial elimination or not
+        required: false
+        schema:
+          type: string
+          example: "true"
+        
+      responses:
+        "400":
+          description: missing parameters, file type mismatch, empty file, wrong encoding or file upload failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "406":
+          description: conversion error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadSuccess'
+  /api/get-private-diagrams:
+    get:
+      tags: 
+      - diagrams
+      summary: List private diagrams
+      description: List private diagrams for the logged-in user.
+      operationId: getPrivateDiagrams
+      responses:
+        "401":
+          description: user not logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatabaseDiagramSimpler'
+  /api/get-public-diagrams:
+    get:
+      tags: 
+      - diagrams
+      summary: List public diagrams
+      description: List all public diagrams.
+      operationId: getPublicDiagrams
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatabaseDiagramSimpler'
+  /api/get-logged-in-user:
+    get:
+      tags: 
+      - user
+      summary: Get logged-in user info
+      description: Fetches information about the logged-in user.
+      operationId: getLoggedInUser
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoggedUserInfo'
+components:
+  schemas:
+    TODO:
+      title: TODO
+      description: TODO
+    LoggedUserInfo:
+      title: Logged user info
+      description: Information about the logged-in user, or information that the user is not logged in.
+      type: object
+      required: [isLoggedIn]
+      properties:
+        isLoggedIn:
+          type: boolean
+          example: true
+        userId:
+          type: integer
+          example: 1
+        userName:
+          type: string
+          example: "johndoe123"
+    DatabaseDiagram:
+      title: Database diagram
+      description: Diagram stored in a database. Contains graph_json and other various fields.
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "my_diagram_1"
+        created:
+          type: string
+          example: "[datetime stringified]"
+        last_update:
+          type: string
+          example: "[datetime stringified]"
+        user_id:
+          type: integer
+          example: 1
+        public:
+          type: integer
+          description: 1 for true, 0 for false
+          example: 0
+        graph_json:
+          $ref: '#/components/schemas/Diagram'
+    DatabaseDiagramSimpler:
+      title: Database diagram without user_id and public info
+      description: Diagram stored in a database except for user_id and public info. 
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "my_diagram_1"
+        created:
+          type: string
+          example: "[datetime stringified]"
+        last_update:
+          type: string
+          example: "[datetime stringified]"
+        graph_json:
+          $ref: '#/components/schemas/Diagram'
+    ProcessingModuleInput:
+      title: Processing module identificator
+      description: Maps processing module keys (hashes) to their names. Useful for specifying uploaded graph types. 2082876947 stands for DOT and -968839389 stands for SPADE
+      type: string
+      enum: ["raw", "2082876947", "-968839389"]
+      example: "raw"
+    ProcessingModuleMap:
+      title: Processing module map
+      description: Maps processing module keys (hashes) to their names. Useful for specifying uploaded graph types.
+      type: object
+      properties:
+        processingModules:
+          type: object
+          properties:
+            2082876947: 
+              type: string
+              example: DOT file
+            -968839389:
+              type: string
+              example: Spade JSON
+    UploadSuccess:
+      title: Upload response
+      description: Graph variables returned after a successful response
+      type: object
+      properties:
+        graph_json:
+          $ref: '#/components/schemas/Diagram'
+        name:
+          description: file name
+          type: string
+          example: "my_diagram.json"
+        initial_elimination:
+          type: string
+          example: "true"
+    GenericError:
+      title: Generic error response
+      type: object
+      properties:
+        error_message:
+          type: string
+    RegisterError:
+      title: Register error response
+      description: Incorrect parameter feedback
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Please enter name."
+        email:
+          type: string
+          example: "Please enter e-mail address. / Please enter valid e-mail address."
+        username:
+          type: string
+          example: "Please enter username / Nickname already exists."
+        password:
+          type: string
+          example: "Please enter password. / Passwords must be at least 5 characters long."
+        passwordCheck:
+          type: string
+          example: "Passwords must be equal."
+    LoginError:
+      title: Login error response
+      description: Incorrect parameter feedback
+      type: object
+      properties:
+        username:
+          type: string
+          example: "Please enter username."
+        password:
+          type: string
+          example: "Please enter password."
+    LoginSuccess:
+      title: Login response
+      description: User session variables returned after a successful login
+      type: object
+      properties:
+        id:
+          description: User ID
+          type: integer
+          example: 2
+        username:
+          type: string
+          example: "johndoe123"
+    Diagram:
+      title: Diagram in "raw" JSON format
+      description: Diagram displayable by IMiGEr tool using raw input
+      type: object
+      properties:
+        attributeTypes:
+          type: array
+          items:
+            type: object
+            properties:
+              dataType:
+                type: string
+              name:
+                type: string
+              text:
+                type: string
+            required:
+            - dataType
+            - name
+          uniqueItems: true
+        edgeArchetypes:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              text:
+                type: string
+            required:
+            - name
+          uniqueItems: true
+        vertexArchetypes:
+          type: array
+          items:
+            type: object
+            properties:
+              icon:
+                type: string
+              name:
+                type: string
+              text:
+                type: string
+            required:
+            - name
+          uniqueItems: true
+        vertices:
+          type: array
+          items:
+            type: object
+            properties:
+              archetype:
+                type: integer
+                minimum: 0
+              attributes:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: object
+                    maxLength: 2
+                    minLength: 2
+              id:
+                type: integer
+              name:
+                type: string
+              text:
+                type: string
+              position:
+                anyOf:
+                - type: object
+                  properties:
+                    x:
+                      type: number
+                    y:
+                      type: number
+                  required:
+                  - x
+                  - y
+            required:
+            - id
+            - name
+          minItems: 1
+          uniqueItems: true
+        edges:
+          type: array
+          items:
+            type: object
+            properties:
+              subedgeInfo:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    archetype:
+                      type: integer
+                      minimum: 0
+                    attributes:
+                      type: array
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          maxLength: 2
+                          minLength: 2
+                  required:
+                  - id
+                  - archetype
+                  - attributes
+              id:
+                type: integer
+              text:
+                type: string
+              from:
+                type: integer
+              to:
+                type: integer
+            required:
+            - subedgeInfo
+            - id
+            - from
+            - to
+          minItems: 1
+          uniqueItems: true
+        possibleEnumValues:
+          type: object
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              verticesId:
+                type: array
+                items:
+                  type: integer
+                minItems: 1
+              verticesEdgeFromId:
+                type: array
+                items:
+                  type: integer
+              verticesEdgeToId:
+                type: array
+                items:
+                  type: integer
+              position:
+                anyOf:
+                - type: object
+                  properties:
+                    x:
+                      type: number
+                    y:
+                      type: number
+                  required:
+                  - x
+                  - y
+            required:
+            - id
+            - name
+            - verticesId
+          uniqueItems: true
+        sideBar:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: "^(group|vertex)-[0-9]+$"
+            required:
+            - id
+          uniqueItems: true
+        highlightedVertex:
+          type: string
+        highlightedEdge:
+          type: string
+      required:
+      - vertices
+      - edges

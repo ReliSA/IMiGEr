@@ -1,0 +1,894 @@
+{
+    "vertices": [
+        {
+            "id": 0,
+            "name": "Blaise Pascal"
+        },
+        {
+            "id": 1,
+            "name": "Pascaline"
+        },
+        {
+            "id": 2,
+            "name": "Gottfried Wilhelm Leibniz"
+        },
+        {
+            "id": 3,
+            "name": "Leibnitzova kola"
+        },
+        {
+            "id": 4,
+            "name": "Charles Stanhope"
+        },
+        {
+            "id": 5,
+            "name": "Zubové počítadlo"
+        },
+        {
+            "id": 6,
+            "name": "Charles Xavier Thomas"
+        },
+        {
+            "id": 7,
+            "name": "Arithmometer"
+        },
+        {
+            "id": 8,
+            "name": "Curt Herzstark"
+        },
+        {
+            "id": 9,
+            "name": "Curta"
+        },
+        {
+            "id": 10,
+            "name": "Dorr Eugene Felt"
+        },
+        {
+            "id": 11,
+            "name": "Comptometer"
+        },
+        {
+            "id": 12,
+            "name": "Comptograph"
+        },
+        {
+            "id": 13,
+            "name": "Charles Babbage"
+        },
+        {
+            "id": 14,
+            "name": "Návrh na Difference engine"
+        },
+        {
+            "id": 15,
+            "name": "Návrh na Analytical Engine"
+        },
+        {
+            "id": 16,
+            "name": "Difference engine"
+        },
+        {
+            "id": 17,
+            "name": "Ada Lovelace"
+        },
+        {
+            "id": 18,
+            "name": "První program"
+        },
+        {
+            "id": 19,
+            "name": "George Boole"
+        },
+        {
+            "id": 20,
+            "name": "Booleova algebra"
+        },
+        {
+            "id": 21,
+            "name": "Herman Hollerith"
+        },
+        {
+            "id": 22,
+            "name": "Tabulátor 1880"
+        },
+        {
+            "id": 23,
+            "name": "Vannevar Bush"
+        },
+        {
+            "id": 24,
+            "name": "Diferenciální analyzátor"
+        },
+        {
+            "id": 25,
+            "name": "Rockefellerův diferenciální analyzátor"
+        },
+        {
+            "id": 26,
+            "name": "Memex"
+        },
+        {
+            "id": 27,
+            "name": "James Thomson"
+        },
+        {
+            "id": 28,
+            "name": "Integrátor s koulí a diskem"
+        },
+        {
+            "id": 29,
+            "name": "William Phillips"
+        },
+        {
+            "id": 30,
+            "name": "MONIAC"
+        },
+        {
+            "id": 31,
+            "name": "Konrád Zuse"
+        },
+        {
+            "id": 32,
+            "name": "Z1 (V1)"
+        },
+        {
+            "id": 33,
+            "name": "Z2 (V2)"
+        },
+        {
+            "id": 34,
+            "name": "Z3 (V3)"
+        },
+        {
+            "id": 35,
+            "name": "Z4"
+        },
+        {
+            "id": 36,
+            "name": "John Vincent Atanasoff"
+        },
+        {
+            "id": 37,
+            "name": "ABC (Atanasoff-Berry COmputer) počítač"
+        },
+        {
+            "id": 38,
+            "name": "Clifford Berry"
+        },
+        {
+            "id": 39,
+            "name": "Howard Hathaway Aiken"
+        },
+        {
+            "id": 40,
+            "name": "Harvard Mark I"
+        },
+        {
+            "id": 41,
+            "name": "John von Neumann"
+        },
+        {
+            "id": 42,
+            "name": "Lee de Forest"
+        },
+        {
+            "id": 43,
+            "name": "Elektronka"
+        },
+        {
+            "id": 44,
+            "name": "Samuel Morse"
+        },
+        {
+            "id": 45,
+            "name": "Moresova abeceda"
+        },
+        {
+            "id": 46,
+            "name": "Relé"
+        },
+        {
+            "id": 47,
+            "name": "John Mauchly"
+        },
+        {
+            "id": 48,
+            "name": "John Adam Presper Eckert, Jr."
+        },
+        {
+            "id": 49,
+            "name": "EDVAC (Electronic Discrete Variable Automatic Computer)"
+        },
+        {
+            "id": 50,
+            "name": "ENIAC  (Electronic Numerical Integrator And Computer)"
+        },
+        {
+            "id": 51,
+            "name": "Rtuťová zpožďovací smyčka"
+        },
+        {
+            "id": 52,
+            "name": "Základní konstrukce počítače"
+        },
+        {
+            "id": 53,
+            "name": "Alan Turing"
+        },
+        {
+            "id": 54,
+            "name": "Turingův stroj"
+        },
+        {
+            "id": 55,
+            "name": "Arthur Scherbius"
+        },
+        {
+            "id": 56,
+            "name": "Enigma"
+        },
+        {
+            "id": 57,
+            "name": "Joseph Marie Jacquard"
+        },
+        {
+            "id": 58,
+            "name": "Jacquardův stav"
+        },
+        {
+            "id": 59,
+            "name": "Děrný štítek"
+        },
+        {
+            "id": 60,
+            "name": "Basile Bouchon"
+        },
+        {
+            "id": 61,
+            "name": "Bouchonův stav"
+        },
+        {
+            "id": 62,
+            "name": "Claude Elwood Shannon"
+        },
+        {
+            "id": 63,
+            "name": "Logické sítě"
+        },
+        {
+            "id": 64,
+            "name": "Informační entropie"
+        },
+        {
+            "id": 65,
+            "name": "Claude Elwood Shannon"
+        },
+        {
+            "id": 66,
+            "name": "Walter Houser Brattain"
+        },
+        {
+            "id": 67,
+            "name": "William Shockley"
+        },
+        {
+            "id": 68,
+            "name": "Tranzistor"
+        },
+        {
+            "id": 69,
+            "name": "Jack Kilby"
+        },
+        {
+            "id": 70,
+            "name": "Integrovaný obvod"
+        },
+        {
+            "id": 71,
+            "name": "Přenosná elektronická kalkulačka"
+        },
+        {
+            "id": 72,
+            "name": "Colossus"
+        },
+        {
+            "id": 73,
+            "name": "Procesor 8080"
+        },
+        {
+            "id": 74,
+            "name": "Altair 8800"
+        },
+        {
+            "id": 75,
+            "name": "MOS Technology 6502"
+        },
+        {
+            "id": 76,
+            "name": "Apple Computer 1"
+        },
+        {
+            "id": 77,
+            "name": "Steve Wozniak"
+        },
+        {
+            "id": 78,
+            "name": "Procesor 8086"
+        },
+        {
+            "id": 79,
+            "name": "Apple Computer 2"
+        },
+        {
+            "id": 80,
+            "name": "Steve Jobs"
+        },
+        {
+            "id": 81,
+            "name": "Dennis MacAlistair Ritchie"
+        },
+        {
+            "id": 82,
+            "name": "Jazyk C"
+        },
+        {
+            "id": 83,
+            "name": "Grace Brewster Murray Hopper"
+        },
+        {
+            "id": 84,
+            "name": "A-0 systém"
+        },
+        {
+            "id": 85,
+            "name": "UNIVAC I"
+        },
+        {
+            "id": 86,
+            "name": "Whirlwind I"
+        }
+    ],
+    "edges": [
+        {
+            "id": 1,
+            "from": 0,
+            "to": 1,
+            "description": "vytvořil"
+        },
+        {
+            "id": 2,
+            "from": 2,
+            "to": 3,
+            "description": "vytvořil"
+        },
+        {
+            "id": 3,
+            "from": 4,
+            "to": 5,
+            "description": "vytvořil"
+        },
+        {
+            "id": 4,
+            "from": 6,
+            "to": 7,
+            "description": "vytvořil"
+        },
+        {
+            "id": 5,
+            "from": 8,
+            "to": 9,
+            "description": "vytvořil"
+        },
+        {
+            "id": 6,
+            "from": 10,
+            "to": 11,
+            "description": "vytvořil"
+        },
+        {
+            "id": 7,
+            "from": 10,
+            "to": 12,
+            "description": "vytvořil"
+        },
+        {
+            "id": 8,
+            "from": 13,
+            "to": 14,
+            "description": "navrhl"
+        },
+        {
+            "id": 9,
+            "from": 13,
+            "to": 15,
+            "description": "navrhl"
+        },
+        {
+            "id": 10,
+            "from": 13,
+            "to": 16,
+            "description": "navrhl"
+        },
+        {
+            "id": 11,
+            "from": 14,
+            "to": 16,
+            "description": "popisuje"
+        },
+        {
+            "id": 12,
+            "from": 17,
+            "to": 15,
+            "description": "popisuje"
+        },
+        {
+            "id": 13,
+            "from": 17,
+            "to": 18,
+            "description": "vytváří"
+        },
+        {
+            "id": 14,
+            "from": 18,
+            "to": 15,
+            "description": "ovládá"
+        },
+        {
+            "id": 15,
+            "from": 19,
+            "to": 20,
+            "description": "vytváří"
+        },
+        {
+            "id": 16,
+            "from": 21,
+            "to": 22,
+            "description": "vytváří"
+        },
+        {
+            "id": 17,
+            "from": 23,
+            "to": 24,
+            "description": "vytváří"
+        },
+        {
+            "id": 18,
+            "from": 23,
+            "to": 25,
+            "description": "vytváří"
+        },
+        {
+            "id": 19,
+            "from": 24,
+            "to": 25,
+            "description": "je zdokonalením"
+        },
+        {
+            "id": 20,
+            "from": 23,
+            "to": 26,
+            "description": "navrhuje"
+        },
+        {
+            "id": 21,
+            "from": 27,
+            "to": 28,
+            "description": "vytváří"
+        },
+        {
+            "id": 22,
+            "from": 28,
+            "to": 24,
+            "description": "je zdokonalením"
+        },
+        {
+            "id": 23,
+            "from": 29,
+            "to": 30,
+            "description": "vytváří"
+        },
+        {
+            "id": 24,
+            "from": 11,
+            "to": 12,
+            "description": "je zdokonalením"
+        },
+        {
+            "id": 25,
+            "from": 31,
+            "to": 32,
+            "description": "vytváří"
+        },
+        {
+            "id": 26,
+            "from": 31,
+            "to": 33,
+            "description": "vytváří"
+        },
+        {
+            "id": 27,
+            "from": 31,
+            "to": 34,
+            "description": "vytváří"
+        },
+        {
+            "id": 28,
+            "from": 31,
+            "to": 35,
+            "description": "vytváří"
+        },
+        {
+            "id": 29,
+            "from": 32,
+            "to": 33,
+            "description": "je zdokonalením"
+        },
+        {
+            "id": 30,
+            "from": 33,
+            "to": 34,
+            "description": "je zdokonalením"
+        },
+        {
+            "id": 31,
+            "from": 34,
+            "to": 35,
+            "description": "je zdokonalením"
+        },
+        {
+            "id": 32,
+            "from": 32,
+            "to": 20,
+            "description": "založen na"
+        },
+        {
+            "id": 33,
+            "from": 36,
+            "to": 37,
+            "description": "vytvořil"
+        },
+        {
+            "id": 34,
+            "from": 38,
+            "to": 37,
+            "description": "vytvořil"
+        },
+        {
+            "id": 35,
+            "from": 36,
+            "to": 38,
+            "description": "učil"
+        },
+        {
+            "id": 36,
+            "from": 37,
+            "to": 20,
+            "description": "založen na"
+        },
+        {
+            "id": 37,
+            "from": 39,
+            "to": 40,
+            "description": "vytvořil"
+        },
+        {
+            "id": 38,
+            "from": 14,
+            "to": 40,
+            "description": "inspiroval"
+        },
+        {
+            "id": 39,
+            "from": 41,
+            "to": 40,
+            "description": "využíval v projektu Manhattan"
+        },
+        {
+            "id": 40,
+            "from": 42,
+            "to": 43,
+            "description": "vymyslel"
+        },
+        {
+            "id": 41,
+            "from": 40,
+            "to": 43,
+            "description": "využívá"
+        },
+        {
+            "id": 42,
+            "from": 15,
+            "to": 40,
+            "description": "inspiroval"
+        },
+        {
+            "id": 43,
+            "from": 44,
+            "to": 45,
+            "description": "vymyslel"
+        },
+        {
+            "id": 44,
+            "from": 44,
+            "to": 46,
+            "description": "vymyslel"
+        },
+        {
+            "id": 45,
+            "from": 33,
+            "to": 46,
+            "description": "využívá"
+        },
+        {
+            "id": 46,
+            "from": 33,
+            "to": 46,
+            "description": "využívá"
+        },
+        {
+            "id": 47,
+            "from": 37,
+            "to": 43,
+            "description": "využívá"
+        },
+        {
+            "id": 48,
+            "from": 47,
+            "to": 49,
+            "description": "konstruuje"
+        },
+        {
+            "id": 49,
+            "from": 48,
+            "to": 49,
+            "description": "konstruuje"
+        },
+        {
+            "id": 50,
+            "from": 49,
+            "to": 46,
+            "description": "využívá"
+        },
+        {
+            "id": 51,
+            "from": 41,
+            "to": 49,
+            "description": "navrhuje"
+        },
+        {
+            "id": 52,
+            "from": 47,
+            "to": 50,
+            "description": "konstruuje"
+        },
+        {
+            "id": 53,
+            "from": 48,
+            "to": 50,
+            "description": "konstruuje"
+        },
+        {
+            "id": 54,
+            "from": 50,
+            "to": 46,
+            "description": "využívá"
+        },
+        {
+            "id": 55,
+            "from": 48,
+            "to": 51,
+            "description": "vymyslel"
+        },
+        {
+            "id": 56,
+            "from": 49,
+            "to": 51,
+            "description": "využívá"
+        },
+        {
+            "id": 57,
+            "from": 53,
+            "to": 54,
+            "description": "vymyslel"
+        },
+        {
+            "id": 58,
+            "from": 55,
+            "to": 56,
+            "description": "konstruuje"
+        },
+        {
+            "id": 59,
+            "from": 57,
+            "to": 58,
+            "description": "konstruuje"
+        },
+        {
+            "id": 60,
+            "from": 60,
+            "to": 61,
+            "description": "konstruuje"
+        },
+        {
+            "id": 61,
+            "from": 58,
+            "to": 61,
+            "description": "je zdokonalením"
+        },
+        {
+            "id": 62,
+            "from": 60,
+            "to": 59,
+            "description": "vymyslel"
+        },
+        {
+            "id": 63,
+            "from": 58,
+            "to": 59,
+            "description": "využívá"
+        },
+        {
+            "id": 64,
+            "from": 61,
+            "to": 59,
+            "description": "využívá"
+        },
+        {
+            "id": 65,
+            "from": 14,
+            "to": 59,
+            "description": "využívá"
+        },
+        {
+            "id": 66,
+            "from": 15,
+            "to": 59,
+            "description": "využívá"
+        },
+        {
+            "id": 67,
+            "from": 22,
+            "to": 59,
+            "description": "využívá"
+        },
+        {
+            "id": 68,
+            "from": 62,
+            "to": 63,
+            "description": "vymyslel"
+        },
+        {
+            "id": 69,
+            "from": 63,
+            "to": 20,
+            "description": "založeno na"
+        },
+        {
+            "id": 70,
+            "from": 63,
+            "to": 46,
+            "description": "založeno na"
+        },
+        {
+            "id": 71,
+            "from": 62,
+            "to": 25,
+            "description": "spolupracuje na"
+        },
+        {
+            "id": 72,
+            "from": 62,
+            "to": 64,
+            "description": "vymyslel"
+        },
+        {
+            "id": 73,
+            "from": 65,
+            "to": 68,
+            "description": "vymyslel"
+        },
+        {
+            "id": 74,
+            "from": 66,
+            "to": 68,
+            "description": "vymyslel"
+        },
+        {
+            "id": 75,
+            "from": 67,
+            "to": 68,
+            "description": "vymyslel"
+        },
+        {
+            "id": 76,
+            "from": 41,
+            "to": 52,
+            "description": "vymyslel"
+        },
+        {
+            "id": 77,
+            "from": 69,
+            "to": 70,
+            "description": "vymyslel"
+        },
+        {
+            "id": 78,
+            "from": 69,
+            "to": 71,
+            "description": "vymyslel"
+        },
+        {
+            "id": 79,
+            "from": 53,
+            "to": 72,
+            "description": "podílí se na konstrukci"
+        },
+        {
+            "id": 80,
+            "from": 72,
+            "to": 43,
+            "description": "využívá"
+        },
+        {
+            "id": 81,
+            "from": 73,
+            "to": 74,
+            "description": "umožňuje konstrukci"
+        },
+        {
+            "id": 82,
+            "from": 75,
+            "to": 76,
+            "description": "umožňuje konstrukci"
+        },
+        {
+            "id": 83,
+            "from": 77,
+            "to": 76,
+            "description": "konstruuje"
+        },
+        {
+            "id": 84,
+            "from": 78,
+            "to": 73,
+            "description": "je vylepšením"
+        },
+        {
+            "id": 85,
+            "from": 77,
+            "to": 79,
+            "description": "konstruuje"
+        },
+        {
+            "id": 86,
+            "from": 80,
+            "to": 79,
+            "description": "spolupracuje na"
+        },
+        {
+            "id": 87,
+            "from": 81,
+            "to": 82,
+            "description": "navrhuje"
+        },
+        {
+            "id": 88,
+            "from": 83,
+            "to": 84,
+            "description": "navrhuje"
+        },
+        {
+            "id": 89,
+            "from": 84,
+            "to": 85,
+            "description": "využíván k programování"
+        },
+        {
+            "id": 90,
+            "from": 79,
+            "to": 76,
+            "description": "navazuje na"
+        }
+    ]
+}
