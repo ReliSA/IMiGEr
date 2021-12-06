@@ -16,6 +16,7 @@ export default createStore({
         // state attributes representing the graph
         edges: [],
         vertices: [],
+        vertex_map: {},
         // vertex that is being dragged
         vertexBeingDragged: null,
         // define the size of the world
@@ -107,7 +108,8 @@ export default createStore({
             vertex.y += dy
         },
         // mutation for storing the graph data
-        SET_GRAPH_DATA(state, {edges, vertices}) {
+        SET_GRAPH_DATA(state, {edges, vertices, vertex_map}) {
+            state.vertex_map = vertex_map
             state.vertices = vertices
             state.edges = edges
         },
