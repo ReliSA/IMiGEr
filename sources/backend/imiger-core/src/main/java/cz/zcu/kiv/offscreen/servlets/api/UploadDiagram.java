@@ -144,6 +144,7 @@ public class UploadDiagram extends BaseServlet {
 
             if (initialElimination) {
                 IInitialEliminationService initialEliminationService = new InitialEliminationService();
+                rawJson = initialEliminationService.computeInitialElimination(rawJson);
             }
 
             // prepare JSON response
