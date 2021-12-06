@@ -25,7 +25,20 @@
                 :style="style.edge"
                 :highlighted="edge.highlighted"
                 :start-offset="style.vertex.radius"
+                :end-offset="style.vertex.radius"
                 :key="`link-${edge.id}`"/>
+
+          <Edge v-for="edge in excludedEdges"
+                :start-x="edge.x1"
+                :start-y="edge.y1"
+                :end-x="edge.x2"
+                :end-y="edge.y2"
+                :title="edge.fromExcluded && edge.toExcluded ? `` : edge.description "
+                :style="style.edge"
+                :highlighted="false"
+                :start-offset="edge.fromExcluded ? 0 : style.vertex.radius"
+                :end-offset="edge.toExcluded ? 0 : style.vertex.radius"
+                :key="`excluded-link-${edge.id}`"/>
 
           <Vertex v-for="vertex in visibleVertices"
                   :id="vertex.id"
@@ -48,6 +61,7 @@ import Edge from "@/components/svg/Edge";
 import Vertex from "@/components/svg/Vertex";
 import SvgComponents from "@/components/svg/SvgComponents";
 import {mapActions} from "vuex";
+import transformUtils from '@/utils/transform'
 
 export default {
   components: {SvgComponents, Vertex, Edge},
@@ -57,6 +71,7 @@ export default {
     height: Number,
     edges: Array,
     vertices: Array,
+    excludedVerticesBoxes: Object,
     style: {
       line: Object,
       vertex: Object
@@ -75,6 +90,19 @@ export default {
     },
     visibleEdges() {
       return this.edges.filter(e => !e.excluded)
+    },
+    excludedEdges() {
+      return this.edges.filter(edge => edge.excluded)
+          .map(edge => {
+            return transformUtils.createEdgeConnectedToAExcludedVertex(
+                edge,
+                this.vertices[edge.from],
+                this.vertices[edge.to],
+                this.viewPort,
+                this.excludedVerticesBoxes
+            )
+          })
+          .filter(e => e != null)
     }
   },
   mounted() {

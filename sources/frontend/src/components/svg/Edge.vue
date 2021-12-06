@@ -55,7 +55,7 @@ export default {
       return this.startOffset / this.length
     },
     endOffsetRatio() {
-      return (this.startOffset + this.style.arrowSize) / this.length
+      return (this.endOffset + this.style.arrowSize) / this.length
     },
     startOffsetX() {
       return this.startOffsetRatio * this.a

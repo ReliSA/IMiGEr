@@ -13,6 +13,7 @@
             :view-port="this.$store.state.viewPort"
             :vertices="this.$store.state.vertices"
             :edges="this.$store.state.edges"
+            :excluded-vertices-boxes="this.$store.state.excludedNodesClientRects"
             :style="this.$store.state.style"/>
       </div>
       <div class="col-md-3 no-padding flex-grow-1">
@@ -29,6 +30,8 @@
                           :key="vertex.id"
                           :title="vertex.name"
                           @click="() => includeVertex(vertex)"
+                          :on-client-box-updated="(box) => addExcludedVertexClientRect({vertex: vertex, clientRect: box})"
+                          :on-client-box-removed="() => removeExcludedVertexClientRect(vertex)"
           />
         </div>
       </div>
@@ -65,11 +68,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["includeVertex"]),
+    ...mapActions(["includeVertex", "addExcludedVertexClientRect", "removeExcludedVertexClientRect"]),
     clickBehaviourChanged(value) {
-      this.$store.commit("SET_CLICK_BEHAVIOUR", value);
-    },
-    onIncludeButtonClicked(value) {
       this.$store.commit("SET_CLICK_BEHAVIOUR", value);
     }
   }
