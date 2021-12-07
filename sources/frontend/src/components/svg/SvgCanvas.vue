@@ -21,7 +21,7 @@
                 :start-y="vertices[vertex_map[edge.from]].y"
                 :end-x="vertices[vertex_map[edge.to]].x"
                 :end-y="vertices[vertex_map[edge.to]].y"
-                :title="edge.description"
+                :title="edge.attributes['3']"
                 :style="style.edge"
                 :highlighted="edge.highlighted"
                 :start-offset="style.vertex.radius"
@@ -97,8 +97,8 @@ export default {
           .map(edge => {
             return transformUtils.createEdgeConnectedToAExcludedVertex(
                 edge,
-                this.vertices[edge.from],
-                this.vertices[edge.to],
+                this.vertices[this.vertex_map[edge.from]],
+                this.vertices[this.vertex_map[edge.to]],
                 this.viewPort,
                 this.excludedVerticesBoxes
             )
