@@ -1,22 +1,24 @@
 <!-- A component composing together a SVG canvas and its minimap -->
 <template>
-  <div class="container-fluid canvas-container p-0">
-    <svg-canvas
-        id="main"
-        :view-port="this.$store.state.viewPort"
-        :vertices="this.$store.state.vertices"
-        :edges="this.$store.state.edges"
-        :vertex_map="this.$store.state.vertex_map"
-        :style="this.$store.state.style"/>
-  </div>
-  <div class="canvas-minimap-container" style="opacity: 0.9">
-    <svg-minimap
-        class="canvas-minimap"
-        ref-id="main"
-        :view-port="{height: 300}"
-        :parent-world-size="this.$store.state.worldSize"
-        :parent-view-port="this.$store.state.viewPort"
-    />
+  <div class="row flex-grow-1 d-flex">
+    <div class="p-0">
+      <svg-canvas
+          id="main"
+          :view-port="this.$store.state.viewPort"
+          :vertices="this.$store.state.vertices"
+          :edges="this.$store.state.edges"
+          :vertex_map="this.$store.state.vertex_map"
+          :style="this.$store.state.style"/>
+    </div>
+      <div class="canvas-minimap-container p-0" style="opacity: 0.9">
+        <svg-minimap
+            class="canvas-minimap"
+            ref-id="main"
+            :view-port="{height: 300, width: 300}"
+            :parent-world-size="this.$store.state.worldSize"
+            :parent-view-port="this.$store.state.viewPort"
+        />
+    </div>
   </div>
 </template>
 
@@ -32,14 +34,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.canvas-container, .row, .col-md-8 {
-  height: 100%;
-}
 
 .canvas-minimap-container {
+  width: 300px;
   position: absolute;
-  top: 0px;
+  top: 87px;
   background: white;
-  right: 0px;
+  right: 5px;
 }
 </style>

@@ -1,8 +1,12 @@
 <!-- Root Vue component of the application -->
 <template>
-  <Menu/>
-  <InitialScreen @diagram_retrieved="on_diagram_retrieval" v-if="!this.$store.state.graph_loaded" />
-  <SvgShowcase v-else />
+  <div class="container-fluid d-flex h-100 flex-column">
+    <div class="row">
+      <Menu/>
+    </div>
+    <InitialScreen @diagram_retrieved="on_diagram_retrieval" v-if="!this.$store.state.graph_loaded" />
+    <SvgShowcase v-else />
+  </div>
 </template>
 
 <script>
@@ -35,5 +39,4 @@ export default {
 </script>
 
 <style>
-
 </style>

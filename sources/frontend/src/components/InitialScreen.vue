@@ -1,27 +1,29 @@
 <template>
-  <div v-if="modules === null"></div>
-  <div v-else class="container h-100 w-100">
-    <div v-if="show_error_popup" class="error popup">{{ message }}</div>
-    <div v-if="show_notify_popup" class="notify popup">{{ message }}</div>
+  <div class="row flex-grow-1 d-flex">
+    <div v-if="modules === null"></div>
+    <div v-else class="container w-100">
+      <div v-if="show_error_popup" class="error popup">{{ message }}</div>
+      <div v-if="show_notify_popup" class="notify popup">{{ message }}</div>
 
-    <div id="switch_button">
-      <button class="btn btn-primary btn-customized" @click="switch_context">{{ switch_button_text }}</button>
-    </div>
+      <div id="switch_button">
+        <button class="btn btn-primary btn-customized" @click="switch_context">{{ switch_button_text }}</button>
+      </div>
 
-    <!-- MAIN SCREEN -->
+      <!-- MAIN SCREEN -->
 
-    <div v-if="main_screen" class="row h-100 justify-content-center align-items-center">
-      <UploadDiagramForm :modules="modules" :api_base_path="api_base_path" @diagram_retrieved="handle_diagram"
-                         @failure="handle_failure"/>
-    </div>
+      <div v-if="main_screen" class="row h-100 justify-content-center align-items-center">
+        <UploadDiagramForm :modules="modules" :api_base_path="api_base_path" @diagram_retrieved="handle_diagram"
+                           @failure="handle_failure"/>
+      </div>
 
-    <!-- SIGNUP/IN -->
+      <!-- SIGNUP/IN -->
 
-    <div v-else class="row h-100 justify-content-center align-items-center">
-      <div class="container-fluid h-custom">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <SignUpForm />
-          <SignInForm />
+      <div v-else class="row h-100 justify-content-center align-items-center">
+        <div class="container-fluid h-custom">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <SignUpForm />
+            <SignInForm />
+          </div>
         </div>
       </div>
     </div>
