@@ -49,7 +49,9 @@ export default createStore({
             tx: 0,
             ty: 0,
             width: window.innerWidth,
-            height: window.innerHeight
+            height: window.innerHeight,
+            X: 0,
+            Y: 0
         },
         clickBehaviour: "move",
 
@@ -145,7 +147,9 @@ export default createStore({
         },
 
         // sets viewport dimensions
-        SET_VIEWPORT_DIMENSIONS(state, {width, height}) {
+        SET_VIEWPORT_BOX(state, {x, y, width, height}) {
+            state.viewPort.X = x
+            state.viewPort.Y = y
             state.viewPort.width = width
             state.viewPort.height = height
         },
@@ -275,7 +279,7 @@ export default createStore({
             commit("VERTEX_MOUSE_DOWN", payload)
         },
         async setViewPortDimensions({commit}, dimensions) {
-            commit("SET_VIEWPORT_DIMENSIONS", dimensions)
+            commit("SET_VIEWPORT_BOX", dimensions)
         },
         async addExcludedVertexClientRect({commit}, payload) {
             commit("ADD_EXCLUDED_VERTEX_CLIENT_BOX", payload)

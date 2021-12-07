@@ -115,10 +115,8 @@ export default {
     svgElem.addEventListener("mousedown", this.onMouseDownEvent);
     svgElem.addEventListener("mouseup", this.onMouseUpEvent);
     // once mounted set real viewport dimensions based on the dimensions of the main SVG element
-    this.setViewPortDimensions({
-      width: svgElem.clientWidth,
-      height: svgElem.clientHeight
-    })
+
+    this.setViewPortDimensions(svgElem.getBoundingClientRect());
   },
   methods: {
     ...mapActions(["updateScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown", "setViewPortDimensions", "vertexClicked"]),
