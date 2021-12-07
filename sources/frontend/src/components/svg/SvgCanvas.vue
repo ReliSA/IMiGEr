@@ -154,6 +154,7 @@ export default {
           this.changeTranslation({dx: dx, dy: dy})
         }
       }
+      event.preventDefault();
     },
     onVertexPositionChanged(payload) {
       this.changeVertexPos(payload)
