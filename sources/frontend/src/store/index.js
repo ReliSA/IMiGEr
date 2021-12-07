@@ -144,6 +144,16 @@ export default createStore({
             }
         },
 
+        // mutation to be used to reset all graph data
+        RESET_GRAPH_DATA(state) {
+            state.edges = [];
+            state.vertices = [];
+            state.vertex_map = {};
+            state.vertexBeingDragged = null;
+            state.edge_map = {};
+            state.excludedVertices = [];
+        },
+
         // sets viewport dimensions
         SET_VIEWPORT_DIMENSIONS(state, {width, height}) {
             state.viewPort.width = width
