@@ -129,6 +129,14 @@ export default createStore({
             } else {
                 state.vertexBeingDragged = null
             }
+        },
+
+        // mutation to be used to reset all graph data
+        RESET_GRAPH_DATA(state) {
+            state.edges = [];
+            state.vertices = [];
+            state.vertex_map = {};
+            state.vertexBeingDragged = null;
         }
     },
     actions: {
@@ -164,6 +172,10 @@ export default createStore({
         },
         async vertexMouseDown({commit}, payload) {
             commit("VERTEX_MOUSE_DOWN", payload)
+        },
+        async restartVisualization({commit}) {
+            commit("SET_GRAPH_LOADED", false);
+            commit("RESET_GRAPH_DATA");
         }
     }
 })

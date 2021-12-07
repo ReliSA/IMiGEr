@@ -1,8 +1,8 @@
 <template>
   <div class="col-10 col-md-8 col-lg-6">
     <form class="text-center" @submit.prevent="upload_diagram">
-      <h1>IMiGEr</h1>
-      <p class="description">Interactive visualization of your graph data.</p>
+      <p class="text-start">New Graph</p>
+      <hr>
       <div class="mb-3">
         <fieldset>
           <legend>Choose graph type:</legend>
