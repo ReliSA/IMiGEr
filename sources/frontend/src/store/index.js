@@ -60,39 +60,23 @@ export default createStore({
     },
     mutations: {
         // mutations of the viewports scale
-        // eslint-disable-next-line no-unused-vars
         UPDATE_SCALE(state, {targetX, targetY, direction}) {
-            let original_scale = state.viewPort.scale;
-            let size = [state.viewPort.width / original_scale, state.viewPort.height / original_scale];
-            let full_size = [state.viewPort.width, state.viewPort.height];
-
+            let d;
             if (direction < 0) {
-                if (original_scale >= MAX_SCALE) return;
-                state.viewPort.scale += scaleD;
+                if (state.viewPort.scale >= MAX_SCALE) return;
+                d = +scaleD;
             } else {
-                if (original_scale <= MIN_SCALE) return;
-                state.viewPort.scale -= scaleD;
+                if (state.viewPort.scale <= MIN_SCALE) return;
+                d = -scaleD;
             }
 
-            let shift_fraction = [targetX / full_size[0], targetY / full_size[1]];
-            // console.log(original_scale, state.viewPort.scale, size);
+            function new_value_of_dimension(t, w, a, b){
+                return -(d*(a-b) - t*(state.viewPort.scale+d)) / state.viewPort.scale;
+            }
 
-            // console.log("original tx", state.viewPort.tx);
-
-            state.viewPort.tx = state.viewPort.tx / original_scale;
-            state.viewPort.ty = state.viewPort.ty / original_scale;
-
-            // console.log("normalized tx", state.viewPort.tx);
-
-            state.viewPort.tx -= (size[0] - size[0] * original_scale / state.viewPort.scale) * shift_fraction[0];
-            state.viewPort.ty -= (size[1] - size[1] * original_scale / state.viewPort.scale) * shift_fraction[1];
-
-            // console.log("updated tx", state.viewPort.tx);
-
-            state.viewPort.tx *= state.viewPort.scale;
-            state.viewPort.ty *= state.viewPort.scale;
-
-            // console.log("denormalized tx", state.viewPort.tx);
+            state.viewPort.tx = new_value_of_dimension(state.viewPort.tx, state.viewPort.width, targetX, state.viewPort.X);
+            state.viewPort.ty = new_value_of_dimension(state.viewPort.ty, state.viewPort.height, targetY, state.viewPort.Y);
+            state.viewPort.scale += d;
         },
         // mutations of viewport tx/ty in order to center the viewport on the graph
         ADJUST_VIEWPORT(state){
@@ -271,7 +255,7 @@ export default createStore({
             loadTestData.prepare_graph_object(graph, state.worldSize)
             force_directed_layout.force_directed_layout(graph, state.worldSize, state.worldSize, 20)
             commit("SET_GRAPH_DATA", graph)
-            commit("ADJUST_VIEWPORT")
+            commit("CENTER_VIEWPORT")
             commit("SET_LOADING", false)
             commit("SET_GRAPH_LOADED", true)
         },
