@@ -79,10 +79,11 @@ export default createStore({
             state.viewPort.scale += d;
         },
         // mutations of viewport tx/ty in order to center the viewport on the graph
-        ADJUST_VIEWPORT(state){
+        CENTER_VIEWPORT(state){
+            // TODO include viewPort.X/Y information for precise centering (imprecise is sufficient)
             state.viewPort.scale = 0.3;
-            state.viewPort.tx = - (state.worldSize - state.viewPort.width / state.viewPort.scale) / 2 * state.viewPort.scale;
-            state.viewPort.ty = - (state.worldSize - state.viewPort.height / state.viewPort.scale) / 2 * state.viewPort.scale;
+            state.viewPort.tx = - (state.worldSize * state.viewPort.scale - state.viewPort.width) / 2;
+            state.viewPort.ty = - (state.worldSize * state.viewPort.scale - state.viewPort.height) / 2;
         },
         // mutations of node highlight state
         HIGHLIGHT_VERTEX(state, vertex) {
