@@ -6,7 +6,7 @@
       <ClickBehaviourToggle :behaviour="this.$store.state.clickBehaviour"
                             :behaviour-changed="this.clickBehaviourChanged"/>
     </div>
-    <div class="p-0">
+    <div class="p-0 col-md-9">
       <svg-canvas
           id="main"
           :view-port="this.$store.state.viewPort"
@@ -16,24 +16,24 @@
           :vertex_map="this.$store.state.vertex_map"
           :style="this.$store.state.style"/>
     </div>
-      <div class="p-0" style="opacity: 0.9">
-        <svg-minimap
-            class="canvas-minimap"
-            ref-id="main"
-            :view-port="{height: 300, width: 300}"
-            :parent-world-size="this.$store.state.worldSize"
-            :parent-view-port="this.$store.state.viewPort"
+    <div class="canvas-minimap-container p-0 col-md-3" style="opacity: 0.9">
+      <svg-minimap
+          class="canvas-minimap"
+          ref-id="main"
+          :view-port="{height: 300}"
+          :parent-world-size="this.$store.state.worldSize"
+          :parent-view-port="this.$store.state.viewPort"
+      />
+      <div class="p-3">
+        Excluded nodes:
+        <ExcludedVertex v-for="vertex in this.$store.state.excludedVertices"
+                        :key="vertex.id"
+                        :title="vertex.name"
+                        @click="() => includeVertex(vertex)"
+                        :on-client-box-updated="(box) => addExcludedVertexClientRect({vertex: vertex, clientRect: box})"
+                        :on-client-box-removed="() => removeExcludedVertexClientRect(vertex)"
         />
-        <div class="p-3">
-          Excluded nodes:
-          <ExcludedVertex v-for="vertex in this.$store.state.excludedVertices"
-                          :key="vertex.id"
-                          :title="vertex.name"
-                          @click="() => includeVertex(vertex)"
-                          :on-client-box-updated="(box) => addExcludedVertexClientRect({vertex: vertex, clientRect: box})"
-                          :on-client-box-removed="() => removeExcludedVertexClientRect(vertex)"
-          />
-        </div>
+      </div>
     </div>
   </div>
 </template>
