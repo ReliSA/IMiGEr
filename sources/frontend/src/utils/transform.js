@@ -1,51 +1,39 @@
 export default {
     createEdgeConnectedToAExcludedVertex(edge, fromVertex, toVertex, viewPort, excludedVerticesBoxes) {
-        let x1 = 0
-        let y1 = 0
-        let x2 = 0
-        let y2 = 0
-
-        if (fromVertex.excluded) {
-            let box = excludedVerticesBoxes[fromVertex.id]
-            if (box == null) {
-                return null
-            } else {
-                x1 = getExcludedEdgeX(viewPort)
-                y1 = getExcludedEdgeY(viewPort, box)
-            }
-        } else {
-            x1 = fromVertex.x
-            y1 = fromVertex.y
-        }
-
-        if (toVertex.excluded) {
-            let box = excludedVerticesBoxes[toVertex.id]
-            if (box == null) {
-                return null
-            } else {
-                x2 = getExcludedEdgeX(viewPort)
-                y2 = getExcludedEdgeY(viewPort, box)
-            }
-        } else {
-            x2 = toVertex.x
-            y2 = toVertex.y
-        }
-
-        // horizontal padding (TODO pass value "5" as a parameter)
-        x1 -= 5 * (1 / viewPort.scale)
-        x2 -= 5 * (1 / viewPort.scale)
+        let coords1 = getExcludedEdgeCoordinates(fromVertex, excludedVerticesBoxes, viewPort)
+        if (coords1 == null) return null;
+        let coords2 = getExcludedEdgeCoordinates(toVertex, excludedVerticesBoxes, viewPort)
+        if (coords2 == null) return null;
 
         return {
             id: edge.id,
-            x1: x1,
-            y1: y1,
-            x2: x2,
-            y2: y2,
+            x1: coords1.x,
+            y1: coords1.y,
+            x2: coords2.x,
+            y2: coords2.y,
             description: edge.description,
             toExcluded: toVertex.excluded,
             fromExcluded: fromVertex.excluded
         }
     }
+}
+
+function getExcludedEdgeCoordinates(vertex, excludedVerticesBoxes, viewPort) {
+    let obj = {}
+    if (vertex.excluded) {
+        let box = excludedVerticesBoxes[vertex.id]
+        if (box == null) {
+            return null
+        } else {
+            // TODO pass 5 as parameter
+            obj.x = getExcludedEdgeX(viewPort) - 5 * (1 / viewPort.scale)
+            obj.y = getExcludedEdgeY(viewPort, box)
+        }
+    } else {
+        obj.x = vertex.x
+        obj.y = vertex.y
+    }
+    return obj;
 }
 
 function getExcludedEdgeX(viewPort) {
