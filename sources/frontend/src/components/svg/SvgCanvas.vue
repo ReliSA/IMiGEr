@@ -16,12 +16,12 @@
         <!-- nested in order to be able to create a minimap that is not affected by viewport transformations-->
         <g :id="`${id}-root-element`">
 
-          <Edge v-for="l in edges"
-                :start-x="vertices[vertex_map[l.from]].x"
-                :start-y="vertices[vertex_map[l.from]].y"
-                :end-x="vertices[vertex_map[l.to]].x"
-                :end-y="vertices[vertex_map[l.to]].y"
-                :title="l.description"
+          <Edge v-for="edge in visibleEdges"
+                :start-x="vertices[vertex_map[edge.from]].x"
+                :start-y="vertices[vertex_map[edge.from]].y"
+                :end-x="vertices[vertex_map[edge.to]].x"
+                :end-y="vertices[vertex_map[edge.to]].y"
+                :title="edge.attributes['3']"
                 :style="style.edge"
                 :highlighted="edge.highlighted"
                 :start-offset="style.vertex.radius"
@@ -97,8 +97,8 @@ export default {
           .map(edge => {
             return transformUtils.createEdgeConnectedToAExcludedVertex(
                 edge,
-                this.vertices[edge.from],
-                this.vertices[edge.to],
+                this.vertices[this.vertex_map[edge.from]],
+                this.vertices[this.vertex_map[edge.to]],
                 this.viewPort,
                 this.excludedVerticesBoxes
             )
