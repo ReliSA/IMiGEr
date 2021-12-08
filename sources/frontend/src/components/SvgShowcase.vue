@@ -1,5 +1,8 @@
 <!-- A component composing together a SVG canvas and its minimap -->
 <template>
+  <div class="row" v-if="this.$store.state.showTimeline">
+    <Timeline :height="this.$store.state.style.timeline.height"/>
+  </div>
   <div class="row flex-grow-1 d-flex">
     <div class="p-0 col-md-9">
       <svg-canvas
@@ -36,12 +39,13 @@
 <script>
 import SvgCanvas from "@/components/svg/SvgCanvas";
 import SvgMinimap from "@/components/svg/SvgMinimap";
+import Timeline from "@/components/svg/Timeline";
 import ExcludedVertex from "@/components/ExcludedVertex";
 import {mapActions} from "vuex";
 
 export default {
   name: 'SvgShowcase',
-  components: {SvgMinimap, SvgCanvas, ExcludedVertex},
+  components: {SvgMinimap, SvgCanvas, ExcludedVertex, Timeline},
   data() {
     return {
       excludedVertices: [

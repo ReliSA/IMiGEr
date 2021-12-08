@@ -6,6 +6,7 @@ import force_directed_layout from '@/utils/graph.js'
 const scaleD = 0.1
 const MAX_SCALE = 5;
 const MIN_SCALE = 0.11;
+const TIMELINE_HEIGHT = 200;
 
 export default createStore({
     state: {
@@ -42,6 +43,9 @@ export default createStore({
                 highlightedFillColor: "#F44336",
                 strokeColor: "black",
                 radius: 50
+            },
+            timeline: {
+                height: TIMELINE_HEIGHT,
             }
         },
         viewPort: {
@@ -58,6 +62,9 @@ export default createStore({
 
         // defines whether the signing/signup menu shall be displayed on the main page
         displayAuthComponent: false,
+
+        // defines whether to display a timeline in the SGV view
+        showTimeline: false,
     },
     mutations: {
         // mutations of the viewports scale
@@ -210,6 +217,11 @@ export default createStore({
         // sets the visibility of the auth component on the main scree
         SET_AUTH_COMPONENT_VISIBILITY(state, authEnabled) {
             state.displayAuthComponent = authEnabled;
+        },
+
+        // sets the visibility of the timeline component
+        SET_TIMELINE_COMPONENT_VISIBILITY(state, timelineEnabled) {
+            state.showTimeline = timelineEnabled;
         }
     },
     actions: {
@@ -310,6 +322,9 @@ export default createStore({
         },
         async setAuthComponentVisibility({commit}, displayAuthComponent) {
             commit("SET_AUTH_COMPONENT_VISIBILITY", displayAuthComponent)
+        },
+        async setTimelineComponentVisibility({commit}, displayTimeline) {
+            commit("SET_TIMELINE_COMPONENT_VISIBILITY", displayTimeline)
         }
     }
 })

@@ -14,7 +14,9 @@
       <SvgShowcaseSubMenu v-else
                           :move-mode="this.$store.state.clickBehaviour"
                           :on-home-menu-item-clicked="() => this.on_back_to_menu()"
-                          :on-click-behavior-change="(behaviour) =>  this.setClickBehavior(behaviour)"/>
+                          :on-click-behavior-change="(behaviour) =>  this.setClickBehavior(behaviour)"
+                          :on-display-timeline-change="(visible) => this.setTimelineComponentVisibility(visible)"
+      />
     </div>
   </nav>
 </template>
@@ -30,7 +32,7 @@ export default {
   components: {InitialScreenSubMenu, SvgShowcaseSubMenu},
   store,
   methods: {
-    ...mapActions(["restartVisualization", "setClickBehavior", "setAuthComponentVisibility"]),
+    ...mapActions(["restartVisualization", "setClickBehavior", "setAuthComponentVisibility", "setTimelineComponentVisibility"]),
     on_back_to_menu() {
       this.restartVisualization();
     }
