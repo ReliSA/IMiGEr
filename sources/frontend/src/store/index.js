@@ -54,7 +54,10 @@ export default createStore({
         clickBehaviour: "move",
 
         // required in order to be able to connect excluded nodes with the rest of the graph (contains absolute coordinates relative to the window)
-        excludedNodesClientRects: {}
+        excludedNodesClientRects: {},
+
+        // defines whether the signing/signup menu shall be displayed on the main page
+        displayAuthComponent: false,
     },
     mutations: {
         // mutations of the viewports scale
@@ -202,6 +205,11 @@ export default createStore({
         // remove a client box of an excluded vertex box
         REMOVE_EXCLUDED_VERTEX_CLIENT_BOX(state, vertex) {
             delete state.excludedNodesClientRects[vertex.id]
+        },
+
+        // sets the visibility of the auth component on the main scree
+        SET_AUTH_COMPONENT_VISIBILITY(state, authEnabled) {
+            state.displayAuthComponent = authEnabled;
         }
     },
     actions: {
@@ -300,5 +308,8 @@ export default createStore({
         async setClickBehavior({commit}, behavior) {
             commit("SET_CLICK_BEHAVIOUR", behavior)
         },
+        async setAuthComponentVisibility({commit}, displayAuthComponent) {
+            commit("SET_AUTH_COMPONENT_VISIBILITY", displayAuthComponent)
+        }
     }
 })

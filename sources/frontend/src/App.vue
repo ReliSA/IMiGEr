@@ -4,7 +4,10 @@
     <div class="row">
       <Menu/>
     </div>
-    <InitialScreen @diagram_retrieved="on_diagram_retrieval" v-if="!this.$store.state.graph_loaded" />
+    <InitialScreen @diagram_retrieved="on_diagram_retrieval"
+                   v-if="!this.$store.state.graph_loaded"
+                   :display-auth-component="this.$store.state.displayAuthComponent"
+    />
     <SvgShowcase v-else />
   </div>
 </template>

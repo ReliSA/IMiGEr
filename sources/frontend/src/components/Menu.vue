@@ -7,7 +7,10 @@
           IMiGEr
         </span>
       </a>
-      <InitialScreenSubMenu v-if="!this.$store.state.graph_loaded"/>
+      <InitialScreenSubMenu v-if="!this.$store.state.graph_loaded"
+                            :on-display-auth-change="(visible) => this.setAuthComponentVisibility(visible)"
+                            :display-auth-component="this.$store.state.displayAuthComponent"
+      />
       <SvgShowcaseSubMenu v-else
                           :move-mode="this.$store.state.clickBehaviour"
                           :on-home-menu-item-clicked="() => this.on_back_to_menu()"
@@ -27,7 +30,7 @@ export default {
   components: {InitialScreenSubMenu, SvgShowcaseSubMenu},
   store,
   methods: {
-    ...mapActions(["restartVisualization", "setClickBehavior"]),
+    ...mapActions(["restartVisualization", "setClickBehavior", "setAuthComponentVisibility"]),
     on_back_to_menu() {
       this.restartVisualization();
     }

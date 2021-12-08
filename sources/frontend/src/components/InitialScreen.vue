@@ -5,13 +5,9 @@
       <div v-if="show_error_popup" class="error popup">{{ message }}</div>
       <div v-if="show_notify_popup" class="notify popup">{{ message }}</div>
 
-      <div id="switch_button">
-        <button class="btn btn-primary btn-customized" @click="switch_context">{{ switch_button_text }}</button>
-      </div>
-
       <!-- MAIN SCREEN -->
 
-      <div v-if="main_screen" class="row h-100 justify-content-center align-items-center">
+      <div v-if="!displayAuthComponent" class="row h-100 justify-content-center align-items-center">
         <UploadDiagramForm :modules="modules" :api_base_path="api_base_path" @diagram_retrieved="handle_diagram"
                            @failure="handle_failure"/>
       </div>
@@ -38,6 +34,9 @@ import UploadDiagramForm from "@/components/initial_screen/UploadDiagramForm";
 export default {
   name: "InitialScreen",
   components: {UploadDiagramForm, SignInForm, SignUpForm},
+  props: {
+    displayAuthComponent: Boolean,
+  },
   data() {
     return {
       show_error_popup: false,
@@ -46,8 +45,6 @@ export default {
 
       modules: null,
       api_base_path: process.env.VUE_APP_ROOT_API,
-
-      main_screen: true,
       switch_button_texts: ["Login", "Back to main page"],
       switch_button_text: "Login"
     }
@@ -60,10 +57,6 @@ export default {
         .catch(err => console.log(err));
   },
   methods: {
-    switch_context(){
-      this.switch_button_text = this.switch_button_texts[+this.main_screen];
-      this.main_screen = !this.main_screen;
-    },
     handle_diagram(json){
       this.message = "Your graph is being loaded...";
       this.show_notify_popup = true;
