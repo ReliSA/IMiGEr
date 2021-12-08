@@ -72,6 +72,7 @@ export default {
     edges: Array,
     vertices: Array,
     excludedVerticesBoxes: Object,
+    showingTimeline: Boolean,
     vertex_map: Object,
     style: {
       line: Object,
@@ -115,10 +116,7 @@ export default {
     svgElem.addEventListener("mousedown", this.onMouseDownEvent);
     svgElem.addEventListener("mouseup", this.onMouseUpEvent);
     // once mounted set real viewport dimensions based on the dimensions of the main SVG element
-    this.setViewPortDimensions({
-      width: svgElem.clientWidth,
-      height: svgElem.clientHeight
-    })
+    this.onViewResizeEvent();
   },
   methods: {
     ...mapActions(["updateScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown", "setViewPortDimensions", "vertexClicked"]),
@@ -161,8 +159,21 @@ export default {
     },
     onVertexMouseDown(down, vertex) {
       this.vertexMouseDown({vertex, down})
+    },
+    onViewResizeEvent() {
+      let id = `${this.id}`
+      let svgElem = document.getElementById(id)
+      this.setViewPortDimensions({
+        width: svgElem.clientWidth,
+        height: svgElem.clientHeight
+      })
     }
-
+  },
+  watch: {
+    showingTimeline: function(newValue) {
+      console.log("Showing timeline " + newValue);
+      this.onViewResizeEvent();
+    }
   }
 }
 </script>

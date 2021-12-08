@@ -12,6 +12,7 @@
           :edges="this.$store.state.edges"
           :excluded-vertices-boxes="this.$store.state.excludedNodesClientRects"
           :vertex_map="this.$store.state.vertex_map"
+          :showing-timeline="this.$store.state.showTimeline"
           :style="this.$store.state.style"/>
     </div>
     <div class="canvas-minimap-container p-0 col-md-3" style="opacity: 0.9">
