@@ -62,9 +62,6 @@ export default {
   },
   methods: {
     ...mapActions(["includeVertex", "addExcludedVertexClientRect", "removeExcludedVertexClientRect"]),
-    clickBehaviourChanged(value) {
-      this.$store.commit("SET_CLICK_BEHAVIOUR", value);
-    }
   }
 }
 </script>

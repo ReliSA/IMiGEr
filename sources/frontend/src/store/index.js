@@ -160,14 +160,6 @@ export default createStore({
             state.viewPort.height = height
         },
 
-        // mutation to be used to reset all graph data
-        RESET_GRAPH_DATA(state) {
-            state.edges = [];
-            state.vertices = [];
-            state.vertex_map = {};
-            state.vertexBeingDragged = null;
-        },
-
         // set the page behaviour when a vertex is clicked on
         SET_CLICK_BEHAVIOUR(state, clickBehaviour) {
             state.clickBehaviour = clickBehaviour

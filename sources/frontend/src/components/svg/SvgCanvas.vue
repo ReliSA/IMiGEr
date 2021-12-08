@@ -121,7 +121,8 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["updateScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown"]),
+    ...mapActions(["updateScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos",
+                   "vertexMouseDown", "setViewPortDimensions", "vertexClicked"]),
     onMouseDownEvent(event) {
       this.iX = event.clientX
       this.iY = event.clientY
