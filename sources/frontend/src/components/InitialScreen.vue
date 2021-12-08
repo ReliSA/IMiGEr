@@ -8,8 +8,12 @@
       <!-- MAIN SCREEN -->
 
       <div v-if="!displayAuthComponent" class="row h-100 justify-content-center align-items-center">
-        <UploadDiagramForm :modules="modules" :api_base_path="api_base_path" @diagram_retrieved="handle_diagram"
-                           @failure="handle_failure"/>
+        <div class="col-10 col-md-8 col-lg-4 justify-content-start">
+          <UploadDiagramForm :modules="modules" :api_base_path="api_base_path" @diagram_retrieved="handle_diagram"
+                             @failure="handle_failure"/>
+          <DiagramListing :list-name="`Public Diagrams`"/>
+          <DiagramListing :list-name="`Private Diagrams`"/>
+        </div>
       </div>
 
       <!-- SIGNUP/IN -->
@@ -29,11 +33,12 @@
 <script>
 import SignUpForm from "@/components/initial_screen/SignUpForm";
 import SignInForm from "@/components/initial_screen/SignInForm";
+import DiagramListing from "@/components/initial_screen/DiagramListing";
 import UploadDiagramForm from "@/components/initial_screen/UploadDiagramForm";
 
 export default {
   name: "InitialScreen",
-  components: {UploadDiagramForm, SignInForm, SignUpForm},
+  components: {UploadDiagramForm, SignInForm, SignUpForm, DiagramListing},
   props: {
     displayAuthComponent: Boolean,
   },

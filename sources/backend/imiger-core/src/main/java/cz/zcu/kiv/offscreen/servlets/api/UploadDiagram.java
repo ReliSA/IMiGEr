@@ -154,6 +154,8 @@ public class UploadDiagram extends BaseServlet {
             jsonObject.addProperty("initial_elimination", initialElimination);
 
             // write out the response
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write(jsonObject.toString());
             response.getWriter().flush();

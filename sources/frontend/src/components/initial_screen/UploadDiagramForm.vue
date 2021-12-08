@@ -1,5 +1,4 @@
 <template>
-  <div class="col-10 col-md-8 col-lg-4 justify-content-start">
     <form class="text-start" @submit.prevent="upload_diagram">
       <p class="text-start">New Graph</p>
       <hr>
@@ -32,11 +31,7 @@
       <div class="form-group text-center mb-3">
         <button type="submit" class="btn btn-primary btn-customized">Submit</button>
       </div>
-      <div class="form-group text-center">
-        <p class="copyright">&copy; RELISA 2021</p>
-      </div>
     </form>
-  </div>
 </template>
 <script>
 import UploadMethod from "@/components/initial_screen/UploadMethod"
