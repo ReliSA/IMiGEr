@@ -71,8 +71,8 @@ export default {
     height: Number,
     edges: Array,
     vertices: Array,
-    vertex_map: Object,
     excludedVerticesBoxes: Object,
+    vertex_map: Object,
     style: {
       line: Object,
       vertex: Object
@@ -121,8 +121,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["updateScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos",
-                   "vertexMouseDown", "setViewPortDimensions", "vertexClicked"]),
+    ...mapActions(["updateScale", "toggleVertexHighlightState", "changeTranslation", "changeVertexPos", "vertexMouseDown", "setViewPortDimensions", "vertexClicked"]),
     onMouseDownEvent(event) {
       this.iX = event.clientX
       this.iY = event.clientY

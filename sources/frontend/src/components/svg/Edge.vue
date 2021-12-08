@@ -52,16 +52,16 @@ export default {
     },
     // computed properties utilized for positioning of arrows head
     startOffsetRatio() {
-      if(this.length > 0) {
+      if (this.length > 0) {
         return this.startOffset / this.length
-      }else{
+      } else {
         return 0;
       }
     },
     endOffsetRatio() {
-      if(this.length > 0) {
-        return (this.startOffset + this.style.arrowSize) / this.length
-      }else{
+      if (this.length > 0) {
+        return (this.endOffset + this.style.arrowSize) / this.length
+      } else {
         return 0;
       }
     },
