@@ -1,11 +1,6 @@
 <!-- A component composing together a SVG canvas and its minimap -->
 <template>
   <div class="row flex-grow-1 d-flex">
-    <div class="py-3">
-      <p class="display-6 font-weight-bold"><strong>IMiGEr</strong></p>
-      <ClickBehaviourToggle :behaviour="this.$store.state.clickBehaviour"
-                            :behaviour-changed="this.clickBehaviourChanged"/>
-    </div>
     <div class="p-0 col-md-9">
       <svg-canvas
           id="main"
@@ -42,12 +37,11 @@
 import SvgCanvas from "@/components/svg/SvgCanvas";
 import SvgMinimap from "@/components/svg/SvgMinimap";
 import ExcludedVertex from "@/components/ExcludedVertex";
-import ClickBehaviourToggle from "@/components/controls/ClickBehaviourToggle";
 import {mapActions} from "vuex";
 
 export default {
   name: 'SvgShowcase',
-  components: {SvgMinimap, SvgCanvas, ExcludedVertex, ClickBehaviourToggle},
+  components: {SvgMinimap, SvgCanvas, ExcludedVertex},
   data() {
     return {
       excludedVertices: [

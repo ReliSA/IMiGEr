@@ -304,6 +304,9 @@ export default createStore({
         },
         async removeExcludedVertexClientRect({commit}, vertex) {
             commit("REMOVE_EXCLUDED_VERTEX_CLIENT_BOX", vertex)
-        }
+        },
+        async setClickBehavior({commit}, behavior) {
+            commit("SET_CLICK_BEHAVIOUR", behavior)
+        },
     }
 })

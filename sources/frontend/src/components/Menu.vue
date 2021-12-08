@@ -7,25 +7,30 @@
           IMiGEr
         </span>
       </a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        </ul>
-        <a class="btn btn-outline-primary">Login</a>
-      </div>
+      <InitialScreenSubMenu v-if="!this.$store.state.graph_loaded"/>
+      <SvgShowcaseSubMenu v-else
+                          :move-mode="this.$store.state.clickBehaviour"
+                          :on-home-menu-item-clicked="() => this.on_back_to_menu()"
+                          :on-click-behavior-change="(behaviour) =>  this.setClickBehavior(behaviour)"/>
     </div>
   </nav>
 </template>
 
 <script>
 import {mapActions} from "vuex";
+import InitialScreenSubMenu from "@/components/controls/InitialScreenSubMenu";
+import SvgShowcaseSubMenu from "@/components/controls/SvgShowcaseSubMenu";
+import store from '@/store';
 
 export default {
   name: "Menu",
+  components: {InitialScreenSubMenu, SvgShowcaseSubMenu},
+  store,
   methods: {
-    ...mapActions(["restartVisualization"]),
+    ...mapActions(["restartVisualization", "setClickBehavior"]),
     on_back_to_menu() {
       this.restartVisualization();
-    },
+    }
   },
 }
 </script>
