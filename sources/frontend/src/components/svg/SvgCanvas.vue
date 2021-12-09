@@ -163,10 +163,7 @@ export default {
     onViewResizeEvent() {
       let id = `${this.id}`
       let svgElem = document.getElementById(id)
-      this.setViewPortDimensions({
-        width: svgElem.clientWidth,
-        height: svgElem.clientHeight
-      })
+      this.setViewPortDimensions(svgElem.getBoundingClientRect())
     }
   },
   watch: {

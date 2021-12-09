@@ -69,17 +69,17 @@ export default {
         method: "post"
       })
           .then(response => {
-            console.log(response.status);
             if (response.status === 200) {
 
               response.json().then(json => {
                 let graph_json;
                 try {
                   graph_json = JSON.parse(json["graph_json"]);
+                  //console.log(graph_json);
+                  this.$emit('diagram_retrieved', graph_json);
                 }catch (e) {
                   this.$emit('failure', e);
                 }
-                this.$emit('diagram_retrieved', graph_json);
               });
 
             } else {
