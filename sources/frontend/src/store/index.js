@@ -255,14 +255,15 @@ export default createStore({
             }
         },
         async highlightVertexEdges({commit, state}, {vertex, highlighted}) {
-            state.edge_map[vertex.id].forEach(edgeId => {
+            state.edge_map[state.vertex_map[vertex.id]].forEach(edgeId => {
                 // iterate over all edges that are connected to the node
                 if (!highlighted) {
                     // when edges should not be highlighted check first whether
                     // other vertices the edge is connected to are highlighted
                     // (if so, then the edge should remain highlighted)
                     let edge = state.edges[edgeId]
-                    if (!state.vertices[edge.from].highlighted && !state.vertices[edge.to].highlighted) {
+                    if (   !state.vertices[state.vertex_map[edge.from]].highlighted
+                        && !state.vertices[state.vertex_map[edge.to]].highlighted) {
                         commit("SET_EDGE_HIGHLIGHTED", {edge: edge, highlighted: highlighted})
                     }
                 } else {
