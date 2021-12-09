@@ -6,6 +6,7 @@ import force_directed_layout from '@/utils/graph.js'
 const scaleD = 0.1
 const MAX_SCALE = 5;
 const MIN_SCALE = 0.11;
+const TIMELINE_HEIGHT = 200;
 
 export default createStore({
     state: {
@@ -42,6 +43,9 @@ export default createStore({
                 highlightedFillColor: "#F44336",
                 strokeColor: "black",
                 radius: 50
+            },
+            timeline: {
+                height: TIMELINE_HEIGHT,
             }
         },
         viewPort: {
@@ -56,7 +60,13 @@ export default createStore({
         clickBehaviour: "move",
 
         // required in order to be able to connect excluded nodes with the rest of the graph (contains absolute coordinates relative to the window)
-        excludedNodesClientRects: {}
+        excludedNodesClientRects: {},
+
+        // defines whether the signing/signup menu shall be displayed on the main page
+        displayAuthComponent: false,
+
+        // defines whether to display a timeline in the SGV view
+        showTimeline: false,
     },
     mutations: {
         // mutations of the viewports scale
@@ -131,6 +141,16 @@ export default createStore({
             }
         },
 
+        // mutation to be used to reset all graph data
+        RESET_GRAPH_DATA(state) {
+            state.edges = [];
+            state.vertices = [];
+            state.vertex_map = {};
+            state.vertexBeingDragged = null;
+            state.edge_map = {};
+            state.excludedVertices = [];
+        },
+
         // sets viewport dimensions
         SET_VIEWPORT_BOX(state, {x, y, width, height}) {
             state.viewPort.X = x
@@ -181,6 +201,16 @@ export default createStore({
         // remove a client box of an excluded vertex box
         REMOVE_EXCLUDED_VERTEX_CLIENT_BOX(state, vertex) {
             delete state.excludedNodesClientRects[vertex.id]
+        },
+
+        // sets the visibility of the auth component on the main scree
+        SET_AUTH_COMPONENT_VISIBILITY(state, authEnabled) {
+            state.displayAuthComponent = authEnabled;
+        },
+
+        // sets the visibility of the timeline component
+        SET_TIMELINE_COMPONENT_VISIBILITY(state, timelineEnabled) {
+            state.showTimeline = timelineEnabled;
         }
     },
     actions: {
@@ -263,6 +293,10 @@ export default createStore({
         async vertexMouseDown({commit}, payload) {
             commit("VERTEX_MOUSE_DOWN", payload)
         },
+        async restartVisualization({commit}) {
+            commit("SET_GRAPH_LOADED", false);
+            commit("RESET_GRAPH_DATA");
+        },
         async setViewPortDimensions({commit}, dimensions) {
             commit("SET_VIEWPORT_BOX", dimensions)
         },
@@ -271,6 +305,15 @@ export default createStore({
         },
         async removeExcludedVertexClientRect({commit}, vertex) {
             commit("REMOVE_EXCLUDED_VERTEX_CLIENT_BOX", vertex)
+        },
+        async setClickBehavior({commit}, behavior) {
+            commit("SET_CLICK_BEHAVIOUR", behavior)
+        },
+        async setAuthComponentVisibility({commit}, displayAuthComponent) {
+            commit("SET_AUTH_COMPONENT_VISIBILITY", displayAuthComponent)
+        },
+        async setTimelineComponentVisibility({commit}, displayTimeline) {
+            commit("SET_TIMELINE_COMPONENT_VISIBILITY", displayTimeline)
         }
     }
 })

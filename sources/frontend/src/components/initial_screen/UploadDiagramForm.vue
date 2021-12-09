@@ -1,17 +1,16 @@
 <template>
-  <div class="col-10 col-md-8 col-lg-6">
-    <form class="text-center" @submit.prevent="upload_diagram">
-      <h1>IMiGEr</h1>
-      <p class="description">Interactive visualization of your graph data.</p>
+    <form class="text-start" @submit.prevent="upload_diagram">
+      <p class="text-start">New Graph</p>
+      <hr>
       <div class="mb-3">
         <fieldset>
           <legend>Choose graph type:</legend>
-          <div class="form-check form-check-custom">
+          <div class="form-check ms-5">
             <input class="form-check-input" type="radio" value="raw" id="json_graph" name="fileFormat"
                    v-model="fileFormat">
             <label class="form-check-label" for="json_graph">JSON</label>
           </div>
-          <div v-for="(v, k) in modules" :key="k" class="form-check form-check-custom">
+          <div v-for="(v, k) in modules" :key="k" class="form-check  ms-5">
             <upload-method :method_id="k" :method_name="v" v-model="fileFormat"/>
           </div>
         </fieldset>
@@ -19,28 +18,20 @@
       <div class="mb-3">
         <fieldset>
           <legend>Visualization options:</legend>
-          <div class="form-check form-check-custom">
-            <input class="form-check-input" type="checkbox" value="timeline" id="timeline" name="timeline">
-            <label class="form-check-label" for="timeline">Timeline</label>
-          </div>
-          <div class="form-check form-check-custom">
+          <div class="form-check ms-5">
             <input class="form-check-input" type="checkbox" value="IE" id="IE" name="IE">
             <label class="form-check-label" for="IE">Initial Elimination</label>
           </div>
         </fieldset>
       </div>
       <div class="mb-3">
-        <label for="formFile" class="form-label">Graph file</label>
+        <legend for="formFile" class="form-label">Graph file</legend>
         <input class="form-control" type="file" id="formFile" name="input_graph" @change="upload_file" ref="file">
       </div>
       <div class="form-group text-center mb-3">
         <button type="submit" class="btn btn-primary btn-customized">Submit</button>
       </div>
-      <div class="form-group text-center">
-        <p class="copyright">&copy; RELISA 2021</p>
-      </div>
     </form>
-  </div>
 </template>
 <script>
 import UploadMethod from "@/components/initial_screen/UploadMethod"
@@ -50,7 +41,7 @@ export default {
   components: {UploadMethod},
   data(){
     return {
-      fileFormat: '',
+      fileFormat: 'raw',
       file: null,
     }
   },

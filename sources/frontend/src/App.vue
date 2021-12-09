@@ -1,7 +1,15 @@
 <!-- Root Vue component of the application -->
 <template>
-  <InitialScreen @diagram_retrieved="on_diagram_retrieval" v-if="!this.$store.state.graph_loaded" />
-  <SvgShowcase v-else />
+  <div class="container-fluid d-flex h-100 flex-column">
+    <div class="row">
+      <Menu/>
+    </div>
+    <InitialScreen @diagram_retrieved="on_diagram_retrieval"
+                   v-if="!this.$store.state.graph_loaded"
+                   :display-auth-component="this.$store.state.displayAuthComponent"
+    />
+    <SvgShowcase v-else />
+  </div>
 </template>
 
 <script>
@@ -10,12 +18,14 @@ import store from './store'
 import {mapActions} from "vuex"
 // import testData from '@/assets/data/test-data.json'
 import InitialScreen from "./components/InitialScreen";
+import Menu from "./components/Menu";
 
 export default {
   name: 'App',
   components: {
     InitialScreen,
-    SvgShowcase
+    SvgShowcase,
+    Menu
   },
   methods: {
     ...mapActions(["loadInitialData"]),
@@ -32,5 +42,4 @@ export default {
 </script>
 
 <style>
-
 </style>
