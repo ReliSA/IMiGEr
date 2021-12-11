@@ -244,7 +244,8 @@ export default createStore({
             if (state.edge_map[state.vertex_map[vertex.id]] === undefined) return;
             state.edge_map[state.vertex_map[vertex.id]].forEach(edgeId => {
                 let edge = state.edges[edgeId]
-                if (!state.vertices[edge.from].excluded && !state.vertices[edge.to].excluded) {
+                if (!state.vertices[state.vertex_map[edge.from]].excluded &&
+                    !state.vertices[state.vertex_map[edge.to]].excluded) {
                     // and include them only if both nodes it is connected to are not excluded
                     commit("SET_EDGE_EXCLUDED", {edge: state.edges[edgeId], excluded: false})
                 }
