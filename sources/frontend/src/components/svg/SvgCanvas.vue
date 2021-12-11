@@ -21,7 +21,7 @@
                 :start-y="vertices[vertex_map[edge.from]].y"
                 :end-x="vertices[vertex_map[edge.to]].x"
                 :end-y="vertices[vertex_map[edge.to]].y"
-                :title="edge.attributes != null ? edge.attributes['3'] : ''"
+                :attributes="edge.attributes !== undefined ? edge.attributes : {}"
                 :style="style.edge"
                 :highlighted="edge.highlighted"
                 :start-offset="style.vertex.radius"

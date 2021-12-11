@@ -11,7 +11,7 @@
          : `stroke:${style.strokeColor};stroke-width:${style.strokeWidth}`"
     />
     <text class="wrap" :x="titleX" :y="titleY">
-      <tspan text-anchor="middle" :fill="style.textColor">{{ title }}</tspan>
+      <tspan text-anchor="middle" :fill="style.textColor">{{ edgeDescription }}</tspan>
     </text>
   </g>
 </template>
@@ -25,7 +25,7 @@ export default {
     endY: Number,
     startOffset: Number,
     endOffset: Number,
-    title: String,
+    attributes: Object,
     highlighted: Boolean,
     style: Object
   },
@@ -76,7 +76,14 @@ export default {
     },
     endOffsetY() {
       return this.endOffsetRatio * this.b
-    }
+    },
+    edgeDescription() {
+      let ret = ''
+      Object.keys(this.attributes).forEach(attr => {
+        ret = this.attributes[attr]
+      })
+      return ret
+    },
   }
 }
 </script>
