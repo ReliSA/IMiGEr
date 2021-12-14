@@ -26,6 +26,7 @@ export default {
     startOffset: Number,
     endOffset: Number,
     attributes: Object,
+    subEdgeInfo: Object,
     highlighted: Boolean,
     style: Object
   },
@@ -79,9 +80,22 @@ export default {
     },
     edgeDescription() {
       let ret = ''
-      Object.keys(this.attributes).forEach(attr => {
-        ret = this.attributes[attr]
-      })
+
+      // Try to get the description from edge.attributes
+      if (this.attributes !== undefined) {
+        Object.keys(this.attributes).forEach(attr => {
+          ret = this.attributes[attr]
+        })
+      }
+      if (ret !== '') return ret;
+
+      // Try to get description from subEdgeInfo
+      if(this.subEdgeInfo !== undefined &&
+          this.subEdgeInfo.attributes !== undefined &&
+          this.subEdgeInfo.attributes[0] !== undefined) {
+        return this.subEdgeInfo.attributes[0][1]
+      }
+
       return ret
     },
   }
