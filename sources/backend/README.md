@@ -2,7 +2,11 @@
 This document describes the deoployment options that can be used to run the backend using three different ways.
 
 ## Docker-Compose
-
+- run `mvn clean install` to build a WAR archive of the backend application
+    - the archive is then found in the `./imiger-core/target/` folder
+- after building the WAR archive run `docker-compose up` to start up the following containers:
+    - `db` container, that contains the MySQL database (see `docker-compose.yml` for credentials) that is available from host at `localhost:3306`
+    - `web` container, that starts up a Tomcat container running the backend server from the WAR archive (available from host at `localhost:8082`)
 ## IntelliJ Idea
 
 ### Prerequisities:
