@@ -18,8 +18,10 @@ The program is deployed at http://relisa-dev.kiv.zcu.cz:8085/imiger (use Chromiu
 
 [![obrazek](https://github.com/ReliSA/IMiGEr/blob/devel/documents/IMiGEr/IMiGEr_11_2018.png)]()
 
-## Deployment
+## Production Deployment
 This section describes a production deployment using a Tomcat
+
+_NOTE: For development deployment isntructions go to:_ `sources/fronend` _or_ `sources/backend`
 
 ### Prerequisities:
 In the following listing, we state versions of the individual dependencies. These versions are the one used for testing. However, other versions may be supported as well.
