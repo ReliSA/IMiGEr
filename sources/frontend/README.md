@@ -9,6 +9,7 @@ A web application that communicates with the IMiGEr backend, created using the V
 - `src/main.js` - main JS file that initializes the application
 - `src/store/index.js` - main Vuex store
 - `src/utils/` - utility scripts
+- `.env` - contains path to deployed backend. **EDIT** this after deploying your backend server to target `YOUR_PATH/imiger/api`
 
 ## Development setup
 - install all dependencies:
