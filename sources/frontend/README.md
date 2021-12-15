@@ -12,7 +12,7 @@ A web application that communicates with the IMiGEr backend, created using the V
 - `.env` - contains path to deployed backend. **EDIT** this after deploying your backend server to target `YOUR_PATH/imiger/api`
 
 ## Deployment
-### Prerequisities
+### Prerequisites
 
 TODO: Add yarn
 
@@ -28,6 +28,10 @@ yarn serve
 
 
 ### Production deployment
+- install all dependencies:
+```
+yarn install
+```
 - edit `vue.config.js` if going to test locally without starting up a server
 ```
 module.exports = {
