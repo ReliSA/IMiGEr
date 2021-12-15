@@ -31,6 +31,11 @@ In the following listing, we state versions of the individual dependencies. Thes
  - Java - `15.0.2 2021-01-19`
  - Maven - `3.6.3`
  - Yarn - `1.22.15`
+ - MySql server - `8.0.27`
+    - there must be a schema with name `visualization_tool` available in the database
+    - the database must be initialized with `sources/backend/imiger-core/src/main/resources/create_table.sql`
+    - correct name and password must be set in `sources/backend/imiger-core/src/main/resources/mybatis-config.xml`
+
 
 **Configuration Prerequisities**
  - `TOMCAT_HOME` environment variable pointing to a root folder of Tomcat instalation must be set
@@ -41,6 +46,10 @@ In the following listing, we state versions of the individual dependencies. Thes
      publicPath: ""
    }
    ```
+  - MySql server
+    - there must be a schema with name `visualization_tool` available in the database
+    - the database must be initialized with `sources/backend/imiger-core/src/main/resources/create_table.sql`
+    - correct name and password must be set in `sources/backend/imiger-core/src/main/resources/mybatis-config.xml`
 
 ### Deploy the Application
 
