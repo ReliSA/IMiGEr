@@ -28,10 +28,29 @@ yarn serve
 ```
 yarn build
 ```
+This generates a bunch of static HTML, CSS and JS files. To pack them into a WAR file: 
+
+1. `cd` to `dist
+2. Add a `src/main/webapp` folder
+3. Add all of your HTML, CSS and JS files to the `src/main/webapp` folder
+4. Add an empty [web.xml](http://en.wikipedia.org/wiki/Deployment_descriptor) file to the `src/main/webapp/WEB-INF` directory. 
+5. add a maven pom.xml
+6. add the maven-war-plugin to your pom.xml, with the following configuration: 
+
+        <!--  create the war -->
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <configuration>
+            <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+          </configuration>
+        </plugin>
+
+7. run `mvn clean install`
+
+The resulting `.war` file can be deployed to a Tomcat or other Java-based web server.
 
 ### Lints and fixes files
 - to view lints execute the following command:
 ```
 yarn lint
 ```
-
