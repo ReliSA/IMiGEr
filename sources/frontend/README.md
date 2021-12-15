@@ -11,25 +11,34 @@ A web application that communicates with the IMiGEr backend, created using the V
 - `src/utils/` - utility scripts
 - `.env` - contains path to deployed backend. **EDIT** this after deploying your backend server to target `YOUR_PATH/imiger/api`
 
-## Development setup
+## Deployment
+### Prerequisities
+
+TODO: Add yarn
+
+### Development deployment
 - install all dependencies:
 ```
 yarn install
 ```
-
-### Running the applicaiton
 - execute the following command that starts up a local instance of the client and allows for hot reloads:
 ```
 yarn serve
 ```
 
-### Compilation and minification for production
+
+### Production deployment
 - edit `vue.config.js` if going to test locally without starting up a server
+```
+module.exports = {
+  publicPath: ""
+}
+```
 - following command produces `dist` folder containing static HTML and bundled JS of the application:
 ```
 yarn build
 ```
-This generates a bunch of static HTML, CSS and JS files. To pack them into a WAR file: 
+The previous command generates a bunch of static HTML, CSS and JS files. To pack them into a WAR file: 
 
 1. `cd` to `dist
 2. Add a `src/main/webapp` folder
