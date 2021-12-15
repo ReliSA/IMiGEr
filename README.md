@@ -39,8 +39,8 @@ In the following listing, we state versions of the individual dependencies. Thes
 
 **Configuration Prerequisities**
  - `TOMCAT_HOME` environment variable pointing to a root folder of Tomcat instalation must be set
- - `VUE_APP_ROOT_API` option in `sources/frontend/.env` must be set to IMiGEr backend URL. Eg. `VUE_APP_ROOT_API=http://localhost:8080/imiger/api`
- - File `vue.config.js` must have the following content:
+ - `VUE_APP_ROOT_API` option in `sources/frontend/.env` must be set to IMiGEr backend URL. E.g. `VUE_APP_ROOT_API=http://localhost:8080/imiger/api`
+ - File `sources/frontend/vue.config.js` must have the following content:
    ```
    module.exports = {
      publicPath: ""
