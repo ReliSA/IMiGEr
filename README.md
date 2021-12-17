@@ -58,7 +58,7 @@ In the following listing, we state versions of the individual dependencies. Thes
   2. Access `http://localhost:8080/imiger-frontend/index.html` (replace `localhost`) with your the IP of the server running the deployment.
   3. Done
 
-### Option A: Manual Deployment
+#### Option B: Manual Deployment
   1. Deploy the backend
       1. Go to `sources/backend`
       2. Run `mvn clean install`
