@@ -30,7 +30,8 @@ In the following listing, we state versions of the individual dependencies. Thes
  - Tomcat - `8.5.71`
  - Java - `15.0.2 2021-01-19`
  - Maven - `3.6.3`
- - Yarn - `1.22.15`
+ - Npm - `8.1.1`
+ - Yarn - `1.22.15` (install using `npm install --global yarn`)
  - MySql server - `8.0.27`
     - there must be a schema with name `visualization_tool` available in the database
     - the database must be initialized with `sources/backend/imiger-core/src/main/resources/create_table.sql`
