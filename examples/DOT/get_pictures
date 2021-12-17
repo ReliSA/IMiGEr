@@ -1,0 +1,27 @@
+#!/bin/bash
+
+pack_file="./dot_input"
+dot_folder="./dot-images"
+
+if ! [ -e $pack_file ] ; then
+    echo "No list of packages available"
+    exit
+else
+    input="$pack_file"
+    if [ -d $dot_folder ] ; then 
+        rm -rf $dot_folder
+    fi
+
+    mkdir $dot_folder
+
+    while IFS= read -r line
+    do
+        echo "Building the image for the package: $line"
+        bitbake -g $line
+        mv ./task-depends.dot $dot_folder/$line-depends.dot
+
+    done < "$input"
+fi
+
+
+ 
