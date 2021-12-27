@@ -45,9 +45,14 @@ export default {
         }
     },
 
-    force_directed_layout(loaded_graph, width, height, margin) {
-        this.separate_components(loaded_graph, width, height); // in order to prevent unnecessary clash
+    random_layout(loaded_graph, width, height, margin) {
+        for (let i = 0; i < loaded_graph.vertices.length; i++) {
+            loaded_graph.vertices[i].x = margin + Math.random() * (width - 2*margin);
+            loaded_graph.vertices[i].y = margin + Math.random() * (height - 2*margin);
+        }
+    },
 
+    force_directed_layout(loaded_graph, width, height, margin) {
         const max_speed = 5;
         const vertex_repulse_accel = 3;
         const edge_accel = 3;
@@ -62,6 +67,13 @@ export default {
         let NUM_V = loaded_graph["vertices"].length;
         let NUM_E = loaded_graph["edges"].length;
 
+        if (NUM_V > 100){
+            this.random_layout(loaded_graph, width, height, margin);
+            return;
+        }
+
+        this.separate_components(loaded_graph, width, height); // in order to prevent unnecessary clash
+
         for (let i = 0; i < NUM_V; i++) {
             movement[i] = {};
             movement[i].x = loaded_graph["vertices"][i].x;
@@ -75,6 +87,7 @@ export default {
 
         for (let k = 0; k < iters; k++) {
             // vertex forces
+            // TODO: Implement k-NN. O(n^2) is way too oof-y. //tr01an
             for (let i = 0; i < NUM_V; i++) {
                 for (let j = 0; j < NUM_V; j++) {
                     if (i === j) continue;
@@ -121,6 +134,12 @@ export default {
 
             // integration step (dt = 1)
             for (let i = 0; i < NUM_V; i++) {
+                // denanify
+                if(isNaN(movement[i].ax) || isNaN(movement[i].ay)) {
+                    movement[i].ax = 0;
+                    movement[i].ay = 0;
+                }
+
                 // damp
                 movement[i].vx += movement[i].ax * damp;
                 movement[i].vy += movement[i].ay * damp;
