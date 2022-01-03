@@ -1,0 +1,23 @@
+digraph depends {
+"quilt-native.do_build" [label="quilt-native do_build\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_build" -> "quilt-native.do_populate_lic"
+"quilt-native.do_build" -> "quilt-native.do_populate_sysroot"
+"quilt-native.do_compile" [label="quilt-native do_compile\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_compile" -> "quilt-native.do_configure"
+"quilt-native.do_configure" [label="quilt-native do_configure\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_configure" -> "quilt-native.do_patch"
+"quilt-native.do_configure" -> "quilt-native.do_prepare_recipe_sysroot"
+"quilt-native.do_fetch" [label="quilt-native do_fetch\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_install" [label="quilt-native do_install\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_install" -> "quilt-native.do_compile"
+"quilt-native.do_patch" [label="quilt-native do_patch\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_patch" -> "quilt-native.do_unpack"
+"quilt-native.do_populate_lic" [label="quilt-native do_populate_lic\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_populate_lic" -> "quilt-native.do_patch"
+"quilt-native.do_populate_sysroot" [label="quilt-native do_populate_sysroot\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_populate_sysroot" -> "quilt-native.do_install"
+"quilt-native.do_prepare_recipe_sysroot" [label="quilt-native do_prepare_recipe_sysroot\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_prepare_recipe_sysroot" -> "quilt-native.do_fetch"
+"quilt-native.do_unpack" [label="quilt-native do_unpack\n:0.65-r0\n/workdir/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb"]
+"quilt-native.do_unpack" -> "quilt-native.do_fetch"
+}
